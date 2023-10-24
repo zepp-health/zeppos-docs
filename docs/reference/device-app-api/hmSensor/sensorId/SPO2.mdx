@@ -1,0 +1,60 @@
+---
+title: SPO2
+sidebar_label: SPO2
+---
+
+## Creating Sensors
+
+```js
+const spo2 = hmSensor.createSensor(hmSensor.id.SPO2)
+
+console.log(spo2.current)
+console.log(spo2.time)
+```
+
+## SPO2 instance
+
+### spo2: object
+
+| Properties   | Description                                             | Type            |
+| ------------ | ------------------------------------------------------- | --------------- |
+| current      | Blood oxygen measurement values                         | `number`        |
+| time         | time when the result was generated                      | `number`        |
+| retcode      | result return code                                      | `number`        |
+| hourAvgofDay | Returns the hourly average blood sample data, length 24 | `Array<number>` |
+
+## Registering sensor instance callback events
+
+```js
+calorie.addEventListener(event, callback: Callback)
+```
+
+### The events of CHANGE
+
+#### The value of event
+
+`hmSensor.event.CHANGE`
+
+#### Callback
+
+```ts
+() => void
+```
+
+#### The example of events
+
+```js
+spo2.addEventListener(hmSensor.event.CHANGE, function () {
+  console.log(spo2.current)
+  console.log(spo2.time)
+  console.log(spo2.retcode)
+})
+```
+
+### start
+
+Initiate single point measurement
+
+```js
+spo2.start()
+```

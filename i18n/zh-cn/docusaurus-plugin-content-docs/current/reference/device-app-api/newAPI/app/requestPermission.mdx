@@ -1,0 +1,48 @@
+# requestPermission
+
+> API_LEVEL `3.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+动态权限申请，当查询某个动态权限尚未授权时，可使用该接口申请相关权限。一般在使用系统相关功能接口（如启用设备应用服务的接口）前，做相关权限的检查和申请，否则功能接口会因权限问题不被允许执行。
+
+## 类型
+
+```ts
+function requestPermission(option: Option): Result
+```
+
+## 参数
+
+### Option
+
+| 属性        | 类型                                                     | 必填 | 默认值 | 说明                               | API_LEVEL |
+| ----------- | -------------------------------------------------------- | ---- | ------ | ---------------------------------- | --------- |
+| permissions | <code>Array&#60;string&#62;</code>                       | 是   | -      | 权限字符串数组，数组长度至少为 `1` | 3.0       |
+| function    | <code>(result: Array&#60;number&#62;) =&#62; void</code> | 是   | -      | 权限申请结果回调函数               | 3.0       |
+
+### Result
+
+| 类型                | 说明                          |
+| ------------------- | ----------------------------- |
+| <code>number</code> | 方法结果值，值描述见 `result` |
+
+### result
+
+| 值  | 类型                | 说明                                                       | API_LEVEL |
+| --- | ------------------- | ---------------------------------------------------------- | --------- |
+| 0   | <code>number</code> | 授权处理中，将触发用户交互，并在回调函数中告知用户授权结果 | 3.0       |
+| 1   | <code>number</code> | 没有可以授权的权限                                         | 3.0       |
+| 2   | <code>number</code> | 所申请接口已经获得授权，可以立即调用                       | 3.0       |
+
+## 代码示例
+
+```js
+import { requestPermission } from '@zos/app'
+
+const result = requestPermission({
+  permissions: ['device:os.bg_service'],
+  function: (result) => {
+    console.log(result)
+  },
+})
+console.log(result)
+```

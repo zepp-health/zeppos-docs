@@ -1,0 +1,27 @@
+# mstStopScan
+
+> Start from API_LEVEL `3.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Stop device scanning, used in conjunction with `mstStartScan`.
+
+## Type
+
+```ts
+function mstStopScan(): Result
+```
+
+## Parameters
+
+### Result
+
+| Type                 | Description                                                                  |
+| -------------------- | ---------------------------------------------------------------------------- |
+| <code>boolean</code> | The result of the function call, `true` means success, `false` means failure |
+
+## Example
+
+```js
+import { mstStopScan } from '@zos/ble'
+
+mstStopScan()
+```

@@ -1,0 +1,65 @@
+---
+title: Barometer
+sidebar_label: Barometer 气压高度
+---
+
+> API_LEVEL `2.1` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+气压高度传感器。
+
+:::info
+权限代码： `device:os.barometer`
+:::
+
+## 方法
+
+### getAirPressure
+
+获取气压值，单位百帕
+
+```ts
+getAirPressure(): number
+```
+
+### getAltitude
+
+获取海拔高度值，单位米
+
+```ts
+getAltitude(): number
+```
+
+### onChange
+
+注册气压和海拔变化事件监听回调函数
+
+```ts
+onChange(callback: () => void): void
+```
+
+### offChange
+
+取消气压和海拔变化事件监听回调函数
+
+```ts
+offChange(callback: () => void): void
+```
+
+## 代码示例
+
+```js
+import { Barometer } from '@zos/sensor'
+
+const barometer = new Barometer()
+const airPressure = barometer.getAirPressure()
+const altitude = barometer.getAltitude()
+
+const callback = () => {
+  console.log(barometer.getAltitude())
+}
+
+barometer.onChange(callback)
+
+// When not needed for use
+barometer.offChange(callback)
+```

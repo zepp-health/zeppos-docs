@@ -1,0 +1,88 @@
+---
+title: PAGE_INDICATOR
+sidebar_label: PAGE_INDICATOR
+---
+
+> Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](../../../../../guides/framework/device/compatibility.md).
+
+When a page is set to Swiper scroll mode using the `@zos/page setScrollMode` method, an indicator control is created on the page to indicate the total number of pages and to indicate which page is currently stopped.
+
+## Create UI widget
+
+```js
+import { createWidget, widget } from '@zos/ui'
+
+const pageIndicator = createWidget(widget.PAGE_INDICATOR, Param)
+```
+
+## Type
+
+### Param: object
+
+| Properties   | Description                                                                                                                                                  | Required | Type     |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------- | -------- |
+| x            | The x-axis coordinate of the widget.                                                                                                                         | YES      | `number` |
+| y            | The y-axis coordinate of the widget.                                                                                                                         | YES      | `number` |
+| w            | The width of the widget.                                                                                                                                     | YES      | `number` |
+| h            | The height of the widget.                                                                                                                                    | YES      | `number` |
+| align_h      | The alignment of the horizontal axis (see ALIGN for values).                                                                                                 | NO       | `ALIGN`  |
+| h_space      | Horizontal spacing                                                                                                                                           | NO       | `number` |
+| select_src   | Indicator current page highlight image path, resource storage path reference [Folder Structure](../../../../../guides/architecture/folder-structure.mdx)     | YES      | `string` |
+| unselect_src | Indicator non-current page highlight image path, resource storage path reference [Folder Structure](../../../../../guides/architecture/folder-structure.mdx) | YES      | `string` |
+
+### ALIGN alignment
+
+| Value          | Description                   |
+| -------------- | ----------------------------- |
+| align.LEFT     | Horizontal axis-left aligned. |
+| align.RIGHT    | Horizontal axis-align right.  |
+| align.CENTER_H | Horizontal axis-centered.     |
+
+## Code Example
+
+```js
+import { createWidget, widget, align } from '@zos/ui'
+import { setScrollMode, SCROLL_MODE_SWIPER_HORIZONTAL } from '@zos/page'
+import { px } from '@zos/utils'
+
+Page({
+  build() {
+    const itemCount = 10
+    const pageSize = px(480)
+
+    setScrollMode({
+      mode: SCROLL_MODE_SWIPER_HORIZONTAL,
+      options: {
+        height: pageSize,
+        count: itemCount
+      }
+    })
+
+    const pageIndicator = createWidget(widget.PAGE_INDICATOR, {
+      x: 0,
+      y: px(470),
+      w: px(480),
+      h: px(10),
+      align_h: align.CENTER_H,
+      h_space: 8,
+      select_src: 'images/test/select/select.png',
+      unselect_src: 'images/test/select/unselect.png'
+    })
+
+    for (let i = 0; i < itemCount; i++) {
+      let xPos = 0
+      let yPos = px(400) + pageSize * i
+      createWidget(widget.TEXT, {
+        x: xPos,
+        y: yPos,
+        w: px(480),
+        h: px(120),
+        text_size: 35,
+        color: 0xffffff,
+        align_h: align.CENTER_H,
+        text: `PAGE ${i}`
+      })
+    }
+  }
+})
+```

@@ -1,0 +1,90 @@
+---
+title: 跨页面通信
+sidebar_label: 跨页面通信
+---
+
+当小程序有了多个页面后，页面之间该如何进行通信呢？
+
+本文对一些常见的场景给出一些解决思路：
+
+- 页面跳转
+- 通过全局 `app` 对象进行通信
+- 通过 storage 模块的 [`sessionStorage`](../../reference/device-app-api/newAPI/storage/sessionStorage.mdx) API
+
+## 页面跳转
+
+当从 `pageA.js` 页面跳转到 `pageB.js` 页面时，使用 [`push`](../../reference/device-app-api/newAPI/router/push.mdx) API，通过 `param` 参数向 `pageB.js` 页面传递参数。
+
+```js title=pageA.js
+import { push } from '@zos/router'
+
+push({
+  url: 'path/to/pageB',
+  params: {
+    id: '0',
+    type: 'normal'
+  }
+})
+```
+
+```js title=pageB.js
+Page({
+  onInit(params) {
+    const paramsObj = JSON.parse(params)
+    const { id, type } = paramsObj
+    console.log(id === '0') // true
+    console.log(type === 'normal') // true
+  }
+})
+```
+
+此方案只可用于页面跳转的单向传递，如果在 `pageB.js` 进行了一些操作，再返回 `pageA.js` 页面时，调用 [`back`](../../reference/device-app-api/newAPI/router/back.mdx) API，并不支持参数传递，这种情况就需要借助全局的 `app` 对象来进行通信。
+
+## 通过全局 `app` 对象进行通信
+
+在 `app.js` 中的 `App` 构造函数参数中，传入 `globalData` 对象
+
+```js title=app.js
+App({
+  globalData: {
+    type: 'normal'
+  }
+})
+```
+
+```js title=pageA.js
+Page({
+  build() {
+    console.log(getApp()._options.globalData.type)
+  }
+})
+```
+
+```js title=pageB.js
+import { back } from '@zos/router'
+
+// ...
+getApp()._options.globalData.type = 'classic'
+
+back()
+```
+
+我们的页面跳转还是从 `PageA.js` 对 `PageB.js`。
+
+在 `pageB.js` 中修改了挂载在全局 `app` 对象上的 `globalData` 对象，当我们调用 `back` 方法从 `pageB.js` 页面回到 `pageA.js` 页面的时候，就可以在 `pageA.js` 中通过全局 `app` 对象获取到修改过的 `type` 值。
+
+## 通过 [sessionStorage API](../../reference/device-app-api/newAPI/storage/sessionStorage.mdx)
+
+`sessionStorage` 提供了键值对存储，类似全局 `app` 对象通信的方式，区别在于将数据挂载到了 `sessionStorage` 对象上。
+
+```js title=pageA.js
+import { sessionStorage } from '@zos/storage'
+
+sessionStorage.setItem('test', 'test value')
+```
+
+```js title=pageB.js
+import { sessionStorage } from '@zos/storage'
+
+sessionStorage.getItem('test')
+```

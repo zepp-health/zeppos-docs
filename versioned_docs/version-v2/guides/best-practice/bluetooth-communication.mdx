@@ -1,0 +1,137 @@
+---
+title: Bluetooth Communication
+sidebar_label: Bluetooth Communication
+---
+
+First, let's review the [Overall Architecture](../architecture/arc.mdx) of the Zepp OS Mini Program.
+
+Communication between "Device App" and "Side Service" is carried out via Bluetooth.
+
+The "Device App" uses Bluetooth capabilities through the [`ble` API](../../reference/device-app-api/newAPI/ble.mdx) and the "Side Service" uses Bluetooth capabilities through the `Messaging API`, both of which can currently only manipulate binary data and are cumbersome for developers to organize data structures.
+
+Refer to the example [ToDoList](../../samples/app/toDoList.md), where `/shared/message.js` encapsulates the Bluetooth communication process, making it easier for developers to develop applications.
+
+This article shares the experience of using `MessageBuilder`, i.e. `message.js`, to complete the communication between "Device App" and "Side Service"
+
+:::tip
+The communication library that Device Application relies on is `/shared/message.js`.
+
+The communication library that the Side Service depends on is `/shared/message-side.js`.
+:::
+
+## Usage
+
+### 1. Environmental Preparation
+
+`/shared/message.js` relies on a lot of methods that the host environment does not have, so you need to polyfill the environment. All the files in the `/shared` directory will be used, and are imported in app.js
+
+```js title=app.js
+import './shared/device-polyfill'
+```
+
+### 2. Establish connection
+
+Instantiate `MessageBuilder` in `Device App` and `Side Service` respectively, and perform Bluetooth channel connection establishment in their respective lifecycles.
+
+:::caution
+In the `onDestroy` lifecycle of "Device App", connection destruction is required to prevent memory leaks.
+:::
+
+```js title=app.js
+import './shared/device-polyfill'
+import { MessageBuilder } from './shared/message'
+
+// need to pass in the appId
+const appId = 27280
+const messageBuilder = new MessageBuilder({ appId })
+
+App({
+  globalData: {
+    messageBuilder: messageBuilder,
+  },
+  onCreate(options) {
+    console.log('app on create invoke')
+    // establish connection
+    messageBuilder.connect()
+  },
+
+  onDestroy(options) {
+    console.log('app on destroy invoke')
+    messageBuilder.disConnect()
+  }
+})
+```
+
+```js title=app-side/index.js
+import { MessageBuilder } from '../shared/message-side'
+
+const messageBuilder = new MessageBuilder()
+
+AppSideService({
+  onInit() {
+    // establish connection
+    messageBuilder.listen(() => {})
+  },
+})
+```
+
+### 3. Event-based communication
+
+After the connection is established, subsequent communication is based on the event mechanism, with listening and dispatching methods on both ends, just refer to the code example.
+
+```js title=page.js
+import { log } from '@zos/utils'
+
+const { messageBuilder } = getApp()._options.globalData
+const logger = log.getLogger('demo')
+
+Page({
+  build() {
+    // receive a message from the Side Service
+    messageBuilder.on('call', ({ payload: buf }) => {
+      // call the messageBuilder.buf2Json method to convert the buffer to a JS JSON object
+      const data = messageBuilder.buf2Json(buf)
+      logger.log('data', data)
+    })
+
+    // send a message to Side Service
+    messageBuilder.request({
+      method: 'GET',
+      params: {
+        index: 0
+      }
+    }).then(data => {
+      // process Side Service responses
+      const { result } = data
+      logger.log(result)
+    })
+  }
+})
+```
+
+```js title=app-side/index.js
+import { MessageBuilder } from '../shared/message-side'
+
+const messageBuilder = new MessageBuilder()
+
+AppSideService({
+  onInit() {
+    messageBuilder.listen(() => {})
+
+    // send a message to Device App
+    messageBuilder.call({ text: 'Hello Zepp OS' })
+
+    // receive a message from Device App
+    messageBuilder.on('request', (ctx) => {
+      const payload = messageBuilder.buf2Json(ctx.request.payload)
+      const { method, params } = payload
+
+      if (method === 'GET') {
+        ctx.response({
+          data: { result : 0 }
+        })
+      }
+    })
+  },
+})
+```

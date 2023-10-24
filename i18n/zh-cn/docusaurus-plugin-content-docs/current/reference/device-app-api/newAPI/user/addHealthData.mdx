@@ -1,0 +1,41 @@
+# addHealthData
+
+> API_LEVEL `3.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+设置用户健康数据信息。
+
+:::info
+权限代码： `data:user.health`
+:::
+
+## 类型
+
+```ts
+function addHealthData(option: Option): Result
+```
+
+## 参数
+
+### Option
+
+| 属性   | 类型                | 必填 | 默认值 | 说明              | API_LEVEL |
+| ------ | ------------------- | ---- | ------ | ----------------- | --------- |
+| weight | <code>number</code> | 是   | -      | 体重，单位 g      | 3.0       |
+| bmi    | <code>number</code> | 是   | -      | BMI 数值的 100 倍 | 3.0       |
+
+### Result
+
+| 类型                 | 说明      |
+| -------------------- | --------- |
+| <code>boolean</code> | undefined |
+
+## 代码示例
+
+```js
+import { addHealthData } from '@zos/user'
+
+addHealthData({
+  weight: 65,
+  bmi: 1900,
+})
+```

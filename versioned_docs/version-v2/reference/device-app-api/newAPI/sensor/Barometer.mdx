@@ -1,0 +1,65 @@
+---
+title: Barometer
+sidebar_label: Barometer
+---
+
+> Start from API_LEVEL `2.1` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Barometer Sensor.
+
+:::info
+permission code: `device:os.barometer`
+:::
+
+## Methods
+
+### getAirPressure
+
+Get air pressure value in hPa
+
+```ts
+getAirPressure(): number
+```
+
+### getAltitude
+
+Get altitude value in meters
+
+```ts
+getAltitude(): number
+```
+
+### onChange
+
+Register the air pressure and altitude change event callback function
+
+```ts
+onChange(callback: () => void): void
+```
+
+### offChange
+
+Cancel the air pressure and altitude change event callback function
+
+```ts
+offChange(callback: () => void): void
+```
+
+## Example
+
+```js
+import { Barometer } from '@zos/sensor'
+
+const barometer = new Barometer()
+const airPressure = barometer.getAirPressure()
+const altitude = barometer.getAltitude()
+
+const callback = () => {
+  console.log(barometer.getAltitude())
+}
+
+barometer.onChange(callback)
+
+// When not needed for use
+barometer.offChange(callback)
+```

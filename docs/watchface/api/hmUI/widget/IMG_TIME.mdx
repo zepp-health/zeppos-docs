@@ -1,0 +1,32 @@
+---
+title: IMG_TIME
+sidebar_label: IMG_TIME
+---
+
+## Code example
+
+```js
+// The font of array. The number of images must be 10 in order 0-9.
+const timeArray = []
+let timeText = hmUI.createWidget(hmUI.widget.IMG_TIME, {
+  hour_zero: 1, // Whether to make up zero.
+  hour_startX: 205,
+  hour_startY: 184,
+  hour_array: timeArray,
+  hour_space: 8, // The interval between each array.
+  // Units
+  hour_unit_sc: rootPath + 'icon/colon.png',
+  hour_unit_tc: rootPath + 'icon/colon.png',
+  hour_unit_en: rootPath + 'icon/colon.png',
+  hour_align: hmUI.align.LEFT,
+  // minute second Replaces hour.
+  minute_follow: 1, // Whether to follow.
+  second_follow: 1, // Whether to follow.
+  // omitted as above
+  am_x: 200,
+  am_x: 200, am_y: 100,
+  am_sc_path: 'am.png',
+  am_en_path: 'am_en.png'
+  // pm as above. Prefix changed from am to pm.
+})
+```

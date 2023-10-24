@@ -1,0 +1,109 @@
+---
+title: BloodOxygen
+sidebar_label: BloodOxygen
+---
+
+> Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Blood oxygen Sensor.
+
+:::info
+permission code: `data:user.hd.spo2`
+:::
+
+## Methods
+
+### getCurrent
+
+Get the current measured blood oxygen result
+
+```ts
+getCurrent(): Result
+```
+
+#### Result
+
+| Property | Type                | Description                               | API_LEVEL |
+| -------- | ------------------- | ----------------------------------------- | --------- |
+| value    | <code>number</code> | Blood oxygen measurement values           | 2.0       |
+| time     | <code>number</code> | Measurement time                          | 2.0       |
+| retCode  | <code>number</code> | Result code, refer to retCode description | 2.0       |
+
+#### retCode
+
+| Value | Type                | Description             | API_LEVEL |
+| ----- | ------------------- | ----------------------- | --------- |
+| 0     | <code>number</code> | Measurement invalid     | 2.0       |
+| 1     | <code>number</code> | Continue measuring      | 2.0       |
+| 2     | <code>number</code> | Measurement success     | 2.0       |
+| 3     | <code>number</code> | Measurement failure     | 2.0       |
+| 4     | <code>number</code> | Not wearing             | 2.0       |
+| 5     | <code>number</code> | Measurement timeout     | 2.0       |
+| 6     | <code>number</code> | Invalid wearing         | 2.0       |
+| 7     | <code>number</code> | Invalid signal          | 2.0       |
+| 8     | <code>number</code> | Low blood oxygen value  | 2.0       |
+| 9     | <code>number</code> | High blood oxygen value | 2.0       |
+| 10    | <code>number</code> | Measurement invalid     | 2.0       |
+
+### getLastDay
+
+Returns the average blood sample data for the past 24 hours, with an array length of 24
+
+```ts
+getLastDay(): Array<number>
+```
+
+### start
+
+> Start from API_LEVEL `2.1`
+
+Start blood oxygen measurement, it is recommended to call `stop` to stop the last measurement before calling the `start` method
+
+```ts
+start(): void
+```
+
+### stop
+
+> Start from API_LEVEL `2.1`
+
+Cancel blood oxygen measurement
+
+```ts
+stop(): void
+```
+
+### onChange
+
+Register a callback function to listen for blood oxygen measurement change events
+
+```ts
+onChange(callback: () => void): void
+```
+
+### offChange
+
+Cancel a callback function to listen for blood oxygen measurement change events
+
+```ts
+offChange(callback: () => void): void
+```
+
+## Example
+
+```js
+import { BloodOxygen } from '@zos/sensor'
+
+const bloodOxygen = new BloodOxygen()
+const { value } = bloodOxygen.getCurrent()
+const lastDay = bloodOxygen.getLastDay()
+const callback = () => {
+  console.log(bloodOxygen.getCurrent())
+}
+
+bloodOxygen.onChange(callback)
+bloodOxygen.stop()
+bloodOxygen.start()
+// When not needed for use
+bloodOxygen.offChange(callback)
+```

@@ -1,0 +1,29 @@
+# clearInterval
+
+> API_LEVEL `2.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+取消 `setInterval` 注册的定时器。
+
+## 类型
+
+```ts
+function clearInterval(intervalID: IntervalID): void
+```
+
+## 参数
+
+### IntervalID
+
+| 类型                | 说明         |
+| ------------------- | ------------ |
+| <code>number</code> | 定时器的编号 |
+
+## 代码示例
+
+```js
+const intervalID = setInterval(() => {
+  console.log('Hello Zepp OS')
+}, 1000)
+
+clearInterval(intervalID)
+```

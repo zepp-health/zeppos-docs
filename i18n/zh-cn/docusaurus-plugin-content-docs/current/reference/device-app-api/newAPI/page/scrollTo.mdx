@@ -1,0 +1,35 @@
+# scrollTo
+
+> API_LEVEL `2.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+滚动页面至指定位置。
+
+## 类型
+
+```ts
+function scrollTo(option: Option): void
+```
+
+### 简化调用方式
+
+```ts
+function scrollTo(y: number): void
+```
+
+## 参数
+
+### Option
+
+| 属性 | 类型                | 必填 | 默认值 | 说明           | API_LEVEL |
+| ---- | ------------------- | ---- | ------ | -------------- | --------- |
+| y    | <code>number</code> | 是   | -      | 页面的纵轴坐标 | 2.0       |
+
+## 代码示例
+
+```js
+import { scrollTo } from '@zos/page'
+
+scrollTo({
+  y: 200,
+})
+```

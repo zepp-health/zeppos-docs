@@ -1,0 +1,96 @@
+---
+title: BUTTON
+sidebar_label: BUTTON
+---
+
+![button_sample](/img/api/button_sample.jpg)
+
+The button widget supports setting images and colors for normal and pressed states.
+
+## Create UI widget
+
+```js
+const button = hmUI.createWidget(hmUI.widget.BUTTON, Param)
+```
+
+## Type
+
+### Param: object
+
+| Properties   | Description                                                                                              | Required | Type        |
+| ------------ | -------------------------------------------------------------------------------------------------------- | -------- | ----------- |
+| x            | The x-coordinate of widgets                                                                           | YES      | `number`    |
+| y            | The y-coordinate of widgets                                                                           | YES      | `number`    |
+| w            | The width of widgets;If set to `-1`, the size of normal_src is preferred, otherwise the default is `100`. | YES      | `number`    |
+| h            | The height of widgets;If set to `-1`, the size of normal_src is preferred, otherwise the default is `40`. | YES      | `number`    |
+| text         | Text displayed on the button.                                                                            | YES      | `string`    |
+| color        | The color of the text.                                                                                   | NO       | `number`    |
+| text_size    | The font size of the text.                                                                               | NO       | `number`    |
+| press_src    | The image of background displayed when pressed. Need to be used with `normal_src`.                       | NO       | `string`    |
+| normal_src   | Normal state of the background image. Need to be used with `press_src`.                                  | NO       | `string`    |
+| press_color  | The color of background when pressed. Need to be used with `normal_color`.                               | NO       | `number`    |
+| normal_color | The color of normal state background. Need to be used with `press_color`.                                | NO       | `number`    |
+| radius       | Rounded corners when using color as button background.                                                   | NO       | `number`    |
+| click_func   | Callbacks for button clicks.                                                                             | NO       | `ClickFunc` |
+
+:::caution
+
+- When neither the background nor the color of the button is set, the default click state background color is used (normal black click gray)
+- When both the background and color of the button are set, the background color is used instead of the background image.
+- The radius field is only useful when the background color is set
+- background color `normal_color` and `press_color` need to be set at the same time for the background color to take effect
+- The background color `normal_src` and the press background color `press_color` need to be set at the same time for the background color to take effect
+- When using [`widget.setProperty`](../setProperty.mdx) API to modify `BUTTON` widget properties, you need to pass in the required fields `x`, `y`, `w`, `h` (refer to the code example)
+:::
+
+### ClickFunc
+
+```js
+(button: Button) => void
+```
+
+The `button` instance created by the `createWidget` method.
+
+## Code example
+
+:::tip
+Please refer to [Design Resources](../../../related-resources/design-resources.mdx) for the image resources in the code example
+:::
+
+```js
+Page({
+  build() {
+    const img_button = hmUI.createWidget(hmUI.widget.BUTTON, {
+      x: (480 - 96) / 2,
+      y: 120,
+      text: 'Hello',
+      w: -1,
+      h: -1,
+      normal_src: 'button_normal.png',
+      press_src: 'button_press.png',
+      click_func: () => {
+        console.log('button click')
+      }
+    })
+
+    hmUI.createWidget(hmUI.widget.BUTTON, {
+      x: (480 - 400) / 2,
+      y: 240,
+      w: 400,
+      h: 100,
+      radius: 12,
+      normal_color: 0xfc6950,
+      press_color: 0xfeb4a8,
+      text: 'Hello',
+      click_func: (button_widget) => {
+        button_widget.setProperty(hmUI.prop.MORE, {
+          x: (480 - 400) / 2,
+          y: 300,
+          w: 400,
+          h: 100
+        })
+      }
+    })
+  }
+})
+```

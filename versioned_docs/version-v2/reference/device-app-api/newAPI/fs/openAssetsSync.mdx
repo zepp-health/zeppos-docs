@@ -1,0 +1,51 @@
+# openAssetsSync
+
+> Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Open the file in the `/assets` directory of the Mini Program synchronously and get the file handle.
+
+## Type
+
+```ts
+function openAssetsSync(option: Option): Result
+```
+
+## Parameters
+
+### Option
+
+| Property | Type                | Required | DefaultValue          | Description                        | API_LEVEL |
+| -------- | ------------------- | -------- | --------------------- | ---------------------------------- | --------- |
+| path     | <code>string</code> | Y        | -                     | path                               | 2.0       |
+| flag     | <code>number</code> | N        | <code>O_RDONLY</code> | Value refer to file open constants | 2.0       |
+
+### Result
+
+| Type                | Description                 |
+| ------------------- | --------------------------- |
+| <code>number</code> | The numeric file descriptor |
+
+## Constants
+
+### file open constants
+
+| Constant   | Description                                                                                                                         | API_LEVEL |
+| ---------- | ----------------------------------------------------------------------------------------------------------------------------------- | --------- |
+| `O_RDONLY` | Flag indicating to open a file for read-only access                                                                                 | 2.0       |
+| `O_WRONLY` | Flag indicating to open a file for write-only access                                                                                | 2.0       |
+| `O_RDWR`   | Flag indicating to open a file for read-write access                                                                                | 2.0       |
+| `O_APPEND` | Flag indicating that data will be appended to the end of the file                                                                   | 2.0       |
+| `O_CREAT`  | Flag indicating to create the file if it does not already exist                                                                     | 2.0       |
+| `O_EXCL`   | Flag indicating that opening a file should fail if the `O_CREAT` flag is set and the file already exists                            | 2.0       |
+| `O_TRUNC`  | Flag indicating that if the file exists and the file is opened successfully for write access, its length shall be truncated to zero | 2.0       |
+
+## Example
+
+```js
+import { openSync, O_RDONLY } from '@zos/fs'
+
+const fd = openAssetsSync({
+  path: 'test.txt',
+  flag: O_RDONLY,
+})
+```

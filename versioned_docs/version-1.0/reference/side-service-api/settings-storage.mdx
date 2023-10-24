@@ -1,0 +1,100 @@
+---
+title: Settings Storage API
+sidebar_label: Settings Storage API
+---
+
+The settingsStorage API can store data persistently in the Zepp App.
+
+:::tip
+Both the "Side Service" and the "Settings App" can access the data stored via `settingsStorage`.
+
+The event system of `settingsStorage` can be used to communicate between the two ends.
+
+For the communication method, please refer to the [Overall Architecture](../../guides/architecture/arc.mdx)
+:::
+
+## setItem
+
+Storing key-value pairs.
+
+### Type
+
+```ts
+(key: string, value: string) => void
+```
+
+## getItem
+
+Get the stored value by key name.
+
+### Type
+
+```ts
+(key: string) => result: string
+```
+
+### Code example
+
+```js
+settings.settingsStorage.setItem('key', 'Hello World')
+const result = settings.settingsStorage.getItem('key')
+```
+
+## length: number
+
+`settings.settingsStorage.length` returns the number of members in `settingsStorage`
+
+## removeItem
+
+Delete the value stored by the key name.
+
+### Type
+
+```ts
+(key: string) => void
+```
+
+## clear
+
+Delete all key-value pairs.
+
+```ts
+() => void
+```
+
+## toObject
+
+Converts the content stored in `settingsStorage` to the form of an object.
+
+### Type
+
+```ts
+() => Record<string, any>
+```
+
+### Code example
+
+```js
+const storageObj = settings.settingsStorage.toObject()
+
+console.log(storageObj)
+```
+
+## addEventListener
+
+:::caution
+This API only needs to be used in the Side Service. The Settings App is "responsive" to data changes in `settingsStorage`, so there is no need to manually listen for data changes.
+:::
+
+Listens for changes to storage, with the agreed event name `change`, and can be used in the Side Service to listen for changes to data in `settingsStorage` by the Settings App.
+
+### Code example
+
+```js
+settings.settingsStorage.addListener('change', async ({ key, newValue, oldValue }) => {
+  if (key === 'token' && newValue) {
+    // ...
+    await reLogin()
+  }
+})
+```

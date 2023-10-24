@@ -1,0 +1,31 @@
+---
+title: getAppWidgetSize()
+sidebar_label: getAppWidgetSize
+---
+
+> API_LEVEL `2.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+获取系统默认的快捷卡片尺寸，方便开发者进行控件布局。
+
+## 类型
+
+```ts
+() => result
+```
+
+### result: object
+
+| 属性  | 说明           | 类型     |
+| ----- | -------------- | -------- |
+| w | 快捷卡片宽度 | `number` |
+| h | 快捷卡片默认高度 | `number` |
+| margin | 快捷卡片距离屏幕边缘的边距 | `number` |
+| radius | 快捷卡片圆角 | `number` |
+
+## 代码示例
+
+```js
+import { getAppWidgetSize } from '@zos/ui'
+
+const { w } = getAppWidgetSize()
+```

@@ -1,0 +1,81 @@
+---
+title: hmUI.setScrollView(enable, pageHeight, pageCount, isVertical)
+sidebar_label: setScrollView
+---
+
+![scroll_view](/img/api/scroll_view.gif)
+
+![scroll_view](/img/api/scroll_view_horizon.gif)
+
+将整个页面设置为 Swipe 轮播模式，可支持纵向、横向滚动。
+
+## 类型
+
+```ts
+(enable: boolean, pageHeight: number, pageCount: number, isVertical: boolean) => result
+```
+
+## 参数
+
+| 参数       | 说明                                                               | 类型      |
+| ---------- | ------------------------------------------------------------------ | --------- |
+| enable     | `true`：将页面滚动模式设置为 Swipe 轮播模式，`false`：常规滚动模式 | `boolean` |
+| pageHeight | `enable` 为 `true` 时，必选参数。每个页面的长度/高度。             | `number`  |
+| pageCount  | `enable` 为 `true` 时，必选参数。滚动页面的数量                    | `number`  |
+| isVertical | `true` 代表纵向滚动，`false` 为横向滚动，默认为 `true`             | `boolean` |
+
+### result
+
+| 说明                          | 类型      |
+| ----------------------------- | --------- |
+| 操作结果，`true` 表示设置成功 | `boolean` |
+
+## 代码示例
+
+```js
+const randomArr = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f']
+
+function getRandomFromSection(low, high) {
+  const RANDOM = Math.random()
+  const RANGE = high - low + 1
+
+  return Math.floor(RANDOM * RANGE) + low
+}
+
+Page({
+  build() {
+    const isVertical = true
+    hmUI.setScrollView(true, px(480), 20, isVertical)
+
+    const numArr = Array.from({ length: 20 }).map((_, index) => index)
+
+    numArr.forEach((num) => {
+      const backgroundColor = Array.from({ length: 6 }).reduce((prev, curr) => {
+        const random = getRandomFromSection(0, 15)
+        return prev + randomArr[random]
+      }, '0x')
+
+      hmUI.createWidget(hmUI.widget.FILL_RECT, {
+        x: 0,
+        y: px(480) * num,
+        w: px(480),
+        h: px(480),
+        color: Number(backgroundColor)
+      })
+
+      const text = hmUI.createWidget(hmUI.widget.TEXT, {
+        x: px(96),
+        y: px(200) + px(480) * num,
+        w: px(320),
+        h: px(46),
+        color: 0xffffff,
+        text_size: px(36),
+        align_h: hmUI.align.CENTER_H,
+        align_v: hmUI.align.CENTER_V,
+        text_style: hmUI.text_style.NONE,
+        text: `HELLO ZEPPOS ${num}`
+      })
+    })
+  }
+})
+```

@@ -1,0 +1,31 @@
+---
+title: getAppWidgetSize()
+sidebar_label: getAppWidgetSize
+---
+
+> Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Get the system default shortcut card size for developers to layout the widget.
+
+## Type
+
+```ts
+() => result
+```
+
+### result: object
+
+| Parameter | Description                                             | Type     |
+| --------- | ------------------------------------------------------- | -------- |
+| w         | Shortcut card width                                     | `number` |
+| h         | shortcut card height                                    | `number` |
+| margin    | Margin of the shortcut card from the edge of the screen | `number` |
+| radius    | Quick Card Rounded Corners                              | `number` |
+
+## Code example
+
+```js
+import { getAppWidgetSize } from '@zos/ui'
+
+const { w } = getAppWidgetSize()
+```

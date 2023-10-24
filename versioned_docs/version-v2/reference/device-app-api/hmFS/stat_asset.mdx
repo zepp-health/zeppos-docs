@@ -1,0 +1,45 @@
+---
+title: hmFS.stat_asset(path)
+sidebar_label: stat_asset
+---
+
+Get information about the files in the application assets directory.
+
+## Type
+
+```ts
+(path: string) => [stat, err]
+```
+
+## Parameters
+
+### path
+
+| Description                                       | Required | Type     | Default |
+| ------------------------------------------------- | -------- | -------- | ------- |
+| Mini Program's assets directory file name (relative path) | yes      | `string` | -       |
+
+### stat
+
+| Properties | Description                            | Type     |
+| ---------- | -------------------------------------- | -------- |
+| size       | Number of bytes of the file            | `number` |
+| mtime      | File last modified time in UTC seconds | `number` |
+
+### err
+
+| Description                       | Type     |
+| --------------------------------- | -------- |
+| Error code, `0` means get success | `number` |
+
+## Usage
+
+```js
+const [fs_stat, err] = hmFS.stat_asset('test_file.txt')
+
+if (err == 0) {
+  console.log('--->size:', fs_stat.size)
+} else {
+  console.log('err:', err)
+}
+```

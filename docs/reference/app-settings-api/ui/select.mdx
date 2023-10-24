@@ -1,0 +1,28 @@
+---
+title: Select
+sidebar_label: Select
+---
+
+## Type
+
+```ts
+(props: Props) => result: RenderFunc
+```
+
+### Props: object
+
+| Name     | Description                    | Required | Type                        | Default |
+| -------- | ------------------------------ | -------- | --------------------------- | ------- |
+| label    | select label                   | NO       | `string`                    | -       |
+| options  | select options                 | NO       | `Array<SelectOption>`       | -       |
+| multiple | multiple options               | NO       | `boolean`                   | `false` |
+| value    | selectedValue                  | NO       | `string` or `Array<string>` | -       |
+| onChange | `(value: SelectValue) => void` | NO       | `function`                  | -       |
+| title    | title                          | NO       | `string`                    | -       |
+
+### SelectOption: object
+
+| Name  | Description  | Required | Type     | Default |
+| ----- | ------------ | -------- | -------- | ------- |
+| name  | option name  | NO       | `string` | -       |
+| value | option value | NO       | `string` | -       |

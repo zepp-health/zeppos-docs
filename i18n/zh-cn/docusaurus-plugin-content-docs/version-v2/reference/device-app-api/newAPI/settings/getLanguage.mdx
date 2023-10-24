@@ -1,0 +1,28 @@
+# getLanguage
+
+> API_LEVEL `2.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+获取当前系统语言设置。
+
+## 类型
+
+```ts
+function getLanguage(): Result
+```
+
+## 参数
+
+### Result
+
+| 类型                | 说明                             |
+| ------------------- | -------------------------------- |
+| <code>number</code> | 此处不一一列举，请参考多语言映射 |
+
+## 代码示例
+
+```js
+import { getLanguage } from '@zos/settings'
+
+const languageCode = getLanguage()
+console.log(languageCode)
+```

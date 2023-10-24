@@ -1,0 +1,51 @@
+# mstOnCharaReadComplete
+
+> API_LEVEL `3.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+注册读取 Characteristic 完成回调函数。
+
+## 类型
+
+```ts
+function mstOnCharaReadComplete(callback: Callback): Result
+```
+
+## 参数
+
+### Callback
+
+| 类型                                                                    | 说明                             |
+| ----------------------------------------------------------------------- | -------------------------------- |
+| <code>(profile: Profile, uuid: UUID, status: Status) =&#62; void</code> | 读取 Characteristic 完成回调函数 |
+
+### Profile
+
+| 类型                | 说明         |
+| ------------------- | ------------ |
+| <code>number</code> | Profile 指针 |
+
+### UUID
+
+| 类型                | 说明                       |
+| ------------------- | -------------------------- |
+| <code>string</code> | Characteristic UUID 字符串 |
+
+### Status
+
+| 类型                | 说明               |
+| ------------------- | ------------------ |
+| <code>number</code> | 状态，`0` 表示成功 |
+
+### Result
+
+| 类型                 | 说明                                            |
+| -------------------- | ----------------------------------------------- |
+| <code>boolean</code> | 函数调用结果，`true` 表示成功、`false` 表示失败 |
+
+## 代码示例
+
+```js
+import { mstOnCharaReadComplete } from '@zos/ble'
+
+// ...
+```

@@ -1,0 +1,30 @@
+---
+title: hmFS.seek(fileId, position, whence)
+sidebar_label: seek
+---
+
+Move file pointer
+
+## Type
+
+```ts
+(fileId: number, position: number, whence: number) => void
+```
+
+## Parameters
+
+| Parameter | Description              | Required | Type     | Default |
+| --------- | ------------------------ | -------- | -------- | ------- |
+| fileId    | file handle              | yes      | `number` | -       |
+| position  | Offset based on `whence` | yes      | `number` | -       |
+| whence    | file location            | yes      | `number` | -       |
+
+## Code example
+
+```js
+// Open/Create a file.
+const fileId = hmFS.open('test_file.txt', hmFS.O_RDWR | hmFS.O_CREAT)
+
+//Locate the file start location.
+hmFS.seek(file, 0, hmFS.SEEK_SET)
+```

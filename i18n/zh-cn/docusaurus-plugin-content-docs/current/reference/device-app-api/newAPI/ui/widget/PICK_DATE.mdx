@@ -1,0 +1,89 @@
+---
+title: PICK_DATE 时间选择控件
+sidebar_label: PICK_DATE 时间选择
+---
+
+> API_LEVEL `2.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../../guides/framework/device/compatibility.md)。
+
+![pick_date](/img/api/pick_date_sample.jpg)
+
+展示时间选择控件，提供用户选择
+
+## 创建 UI 控件
+
+```js
+import { createWidget, widget } from '@zos/ui'
+
+const pickDate = createWidget(widget.PICK_DATE, Param)
+```
+
+## 类型
+
+### Param: object
+
+| 属性      | 说明                                                                        | 是否必须 | 类型     |
+| --------- | --------------------------------------------------------------------------- | -------- | -------- |
+| x         | 控件 x 坐标（x <= 0 会默认居中）                                            | 是       | `number` |
+| y         | 控件 y 坐标                                                                 | 是       | `number` |
+| w         | 整个空间的宽度（宽度小于设备宽度 1/2 会判定为异常，此时设置为默认值 300px） | 否       | `number` |
+| padding_1 | 一二列间 padding                                                            | 否       | `number` |
+| padding_2 | 二三列间 padding                                                            | 否       | `number` |
+| font_size | 控件上文字的大小，默认 36                                                   | 否       | `number` |
+| startYear | 起始年                                                                      | 否       | `number` |
+| endYear   | 结束年                                                                      | 否       | `number` |
+| initYear  | 初始年                                                                      | 否       | `number` |
+| initMonth | 初始月                                                                      | 否       | `number` |
+| initDay   | 初始日                                                                      | 否       | `number` |
+| initHour  | 初始小时                                                                    | 否       | `number` |
+| initMin   | 初始分钟                                                                    | 否       | `number` |
+
+### `getProperty` 支持字段
+
+| 属性   | 说明 | 类型     |
+| ------ | ---- | -------- |
+| year   | 年   | `number` |
+| month  | 月   | `number` |
+| day    | 日   | `number` |
+| hour   | 小时 | `number` |
+| minute | 分钟 | `number` |
+
+## 代码示例
+
+```js
+import { createWidget, widget, prop } from '@zos/ui'
+
+Page({
+  build() {
+    const pick_date_date = createWidget(widget.PICK_DATE)
+    pick_date_date.setProperty(prop.MORE, {
+      w: 480,
+      x: 20,
+      y: 120,
+      startYear: 2000,
+      endYear: 2030,
+      initYear: 2021,
+      initMonth: 2,
+      initDay: 3
+    })
+
+    const confirm = createWidget(widget.TEXT, {
+      x: 0,
+      y: 400,
+      w: 480,
+      h: 80,
+      text_size: 42,
+      color: 0xffffff,
+      text: 'confirm'
+    })
+
+    confirm.addEventListener(event.CLICK_UP, (info) => {
+      const dateObj = pick_date_date.getProperty(prop.MORE, {})
+      const { year, month, day } = dateObj
+
+      console.log('year', year)
+      console.log('month', month)
+      console.log('day', day)
+    })
+  }
+})
+```

@@ -1,0 +1,39 @@
+# setInterval
+
+> API_LEVEL `2.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+重复调用一个函数，在每次调用之间具有固定的时间间隔。
+
+## 类型
+
+```ts
+function setInterval(callback: Callback, delay: Delay): IntervalID
+```
+
+## 参数
+
+### Callback
+
+| 类型                           | 说明               |
+| ------------------------------ | ------------------ |
+| <code>() =&#62; unknown</code> | 重复调用的回调函数 |
+
+### Delay
+
+| 类型                | 说明                       |
+| ------------------- | -------------------------- |
+| <code>number</code> | 每次调用回调函数的时间间隔 |
+
+### IntervalID
+
+| 类型                | 说明         |
+| ------------------- | ------------ |
+| <code>number</code> | 定时器的编号 |
+
+## 代码示例
+
+```js
+setInterval(() => {
+  console.log('Hello Zepp OS')
+}, 1000)
+```

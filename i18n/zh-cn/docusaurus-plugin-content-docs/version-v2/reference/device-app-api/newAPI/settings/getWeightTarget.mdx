@@ -1,0 +1,28 @@
+# getWeightTarget
+
+> API_LEVEL `2.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+获取用户设置的体重目标。
+
+## 类型
+
+```ts
+function getWeightTarget(): Result
+```
+
+## 参数
+
+### Result
+
+| 类型                | 说明                           |
+| ------------------- | ------------------------------ |
+| <code>number</code> | 用户设置的体重目标，默认为 `0` |
+
+## 代码示例
+
+```js
+import { getWeightTarget } from '@zos/settings'
+
+const weightTarget = getWeightTarget()
+console.log(weightTarget)
+```

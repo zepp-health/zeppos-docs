@@ -1,0 +1,64 @@
+---
+title: Calorie
+sidebar_label: Calorie 卡路里
+---
+
+> API_LEVEL `2.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+卡路里传感器。
+
+:::info
+权限代码： `data:user.hd.calorie`
+:::
+
+## 方法
+
+### getCurrent
+
+获取当前消耗卡路里，单位 kcal
+
+```ts
+getCurrent(): number
+```
+
+### getTarget
+
+获取目标消耗卡路里，单位 kcal
+
+```ts
+getTarget(): number
+```
+
+### onChange
+
+注册卡路里消耗变化事件监听回调函数
+
+```ts
+onChange(callback: () => void): void
+```
+
+### offChange
+
+取消卡路里消耗变化事件监听回调函数
+
+```ts
+offChange(callback: () => void): void
+```
+
+## 代码示例
+
+```js
+import { Calorie } from '@zos/sensor'
+
+const calorie = new Calorie()
+const current = calorie.getCurrent()
+const target = calorie.getTarget()
+const callback = () => {
+  console.log(calorie.getCurrent())
+}
+
+calorie.onChange(callback)
+
+// When not needed for use
+calorie.offChange(callback)
+```

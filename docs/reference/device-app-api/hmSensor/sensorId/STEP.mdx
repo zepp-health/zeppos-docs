@@ -1,0 +1,48 @@
+---
+title: STEP
+sidebar_label: STEP
+---
+
+## Creating Sensors
+
+```js
+const step = hmSensor.createSensor(hmSensor.id.STEP)
+
+console.log(step.current)
+```
+
+### STEP instance
+
+### step: object
+
+| Properties |      Description    | Type |
+| ---------- | ------------------- | -------- |
+|   current  | current step number | `number` |
+|   target   |     target step     | `number` |
+
+## Registering sensor instance callback events
+
+```js
+step.addEventListener(event, callback: Callback)
+```
+
+### The events of CHANGE
+
+#### The value of event
+
+`hmSensor.event.CHANGE`
+
+#### Callback
+
+```ts
+() => void
+```
+
+#### The example of events
+
+```js
+step.addEventListener(hmSensor.event.CHANGE, function () {
+  console.log('The current step is ' + step.current + '\r\n')
+  console.log('The step target is ' + step.target + '\r\n')
+})
+```

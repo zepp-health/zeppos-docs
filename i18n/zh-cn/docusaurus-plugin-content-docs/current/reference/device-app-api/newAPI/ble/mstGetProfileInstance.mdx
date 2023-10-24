@@ -1,0 +1,39 @@
+# mstGetProfileInstance
+
+> API_LEVEL `3.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+销毁 Profile。
+
+## 类型
+
+```ts
+function mstGetProfileInstance(profileName: ProfileName, connectId: ConnectId): Result
+```
+
+## 参数
+
+### ProfileName
+
+| 类型                | 说明         |
+| ------------------- | ------------ |
+| <code>string</code> | Profile 名称 |
+
+### ConnectId
+
+| 类型                | 说明                |
+| ------------------- | ------------------- |
+| <code>number</code> | 连接成功时返回的 ID |
+
+### Result
+
+| 类型                               | 说明                                            |
+| ---------------------------------- | ----------------------------------------------- |
+| <code>number&#124;undefined</code> | 查找成功返回 Profile 指针，失败返回 `undefined` |
+
+## 代码示例
+
+```js
+import { mstGetProfileInstance } from '@zos/ble'
+
+// ...
+```

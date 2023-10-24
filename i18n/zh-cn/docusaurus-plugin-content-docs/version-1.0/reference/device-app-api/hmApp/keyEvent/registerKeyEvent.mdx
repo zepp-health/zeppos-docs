@@ -1,0 +1,91 @@
+---
+title: hmApp.registerKeyEvent(callback)
+sidebar_label: registerKeyEvent
+---
+
+注册按键事件监听
+
+## 类型
+
+```ts
+(callback: (key: Key, action: Action) => boolean) => void
+```
+
+## 参数
+
+### Callback
+
+| 说明                                                                         | 必填 | 类型                        | 默认值 |
+| ---------------------------------------------------------------------------- | ---- | --------------------------- | ------ |
+| 按键事件回调函数，返回值 `false` 不跳过默认行为，`true` 跳过默认行为 | 是   | `(key: Key, action: Action) => boolean` | -      |
+
+### Key
+
+| 说明                                                                          |
+| ----------------------------------------------------------------------------- |
+| 支持 `BACK`、`SELECT`、`HOME`、`UP`、`DOWN`、`SHORTCUT`，具体用法参考代码示例，按键排布位置参考 [实体按键](../../../related-resources/physical-keys.mdx) |
+
+### Action
+
+| 说明                                                                                 |
+| ------------------------------------------------------------------------------------ |
+| 支持 `CLICK`、`LONG_PRESS`、`DOUBLE_CLICK`、`RELEASE`、`PRESS`，具体用法参考代码示例 |
+
+## 代码示例
+
+```js
+//注册按键监听 一个JsApp重复注册会导致上一个注册的回调失效
+hmApp.registerKeyEvent(function (key, action) {
+  console.log('receive key code:' + code + ' action:' + action)
+  let msg = ''
+  let ret = false
+  switch (key) {
+    case hmApp.key.BACK:
+      msg = 'back.'
+      break
+    case hmApp.key.SELECT:
+      msg = 'select.'
+      break
+    case hmApp.key.HOME:
+      msg = 'home.'
+      ret = true //跳过默认 home键处理
+      break
+    case hmApp.key.UP:
+      msg = 'up.'
+      break
+    case hmApp.key.DOWN:
+      msg = 'down.'
+      break
+    case hmApp.key.SHORTCUT:
+      msg = 'shortcut.'
+      break
+    default:
+      msg = 'none.'
+      break
+  }
+
+  switch (action) {
+    case hmApp.action.CLICK:
+      msg = msg + 'click'
+      break
+    case hmApp.action.LONG_PRESS:
+      msg = msg + 'longPress'
+      break
+    case hmApp.action.DOUBLE_CLICK:
+      msg = msg + 'doubleClick'
+      break
+    case hmApp.action.RELEASE:
+      msg = msg + 'release'
+      break
+    case hmApp.action.PRESS:
+      msg = msg + 'press'
+      break
+    default:
+      msg = msg + 'none'
+      break
+  }
+
+  console.log('receive key:' + msg)
+  return ret
+})
+```

@@ -1,0 +1,60 @@
+---
+title: LocalStorage
+sidebar_label: LocalStorage
+---
+
+> API_LEVEL `3.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+本地存储的键值对，数据在小程序卸载过后清除。
+
+:::info
+权限代码： `device:os.local_storage`
+:::
+
+## 方法
+
+### setItem
+
+保存数据
+
+```ts
+setItem(key: string, value: any): void
+```
+
+### getItem
+
+读取数据，指定默认值 `defaultValue` 后，如果没有获取到指定 `key` 上的值，返回 `defaultValue`
+
+```ts
+getItem(key: string, defaultValue?: any): void
+```
+
+### removeItem
+
+删除所指定 `key` 的数据
+
+```ts
+removeItem(key: string): void
+```
+
+### clear
+
+清空 localStorage 中所有数据
+
+```ts
+clear(): void
+```
+
+## 代码示例
+
+```js
+import { LocalStorage } from '@zos/storage'
+
+const localStorage = new LocalStorage()
+localStorage.setItem('test', 'test value')
+const val = localStorage.getItem('test')
+const defaultValue = localStorage.getItem('none_key', 'defaultValue')
+
+localStorage.removeItem('test')
+localStorage.clear()
+```

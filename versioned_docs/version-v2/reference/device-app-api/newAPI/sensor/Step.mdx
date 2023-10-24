@@ -1,0 +1,64 @@
+---
+title: Step
+sidebar_label: Step
+---
+
+> Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Step Sensor.
+
+:::info
+permission code: `data:user.hd.step`
+:::
+
+## Methods
+
+### getCurrent
+
+Get the current step count
+
+```ts
+getCurrent(): number
+```
+
+### getTarget
+
+Get step goal
+
+```ts
+getTarget(): number
+```
+
+### onChange
+
+Register the step change event callback function
+
+```ts
+onChange(callback: () => void): void
+```
+
+### offChange
+
+Cancel the step change event callback function
+
+```ts
+offChange(callback: () => void): void
+```
+
+## Example
+
+```js
+import { Step } from '@zos/sensor'
+
+const step = new Step()
+const current = step.getCurrent()
+const target = step.getTarget()
+const callback = () => {
+  console.log(step.getCurrent())
+}
+
+step.onChange(callback)
+
+// When not needed for use
+step.offChange(callback)
+```

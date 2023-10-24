@@ -1,0 +1,142 @@
+---
+title: Code adaptations for more Zepp OS devices
+sidebar_label: Code adaptations for more Zepp OS devices
+---
+
+Developers have already built an Mini Program based on one device, how can they get it to run on more Zepp OS devices?
+
+This article helps developers quickly adapt existing Mini Program code to more Zepp OS-enabled devices.
+
+Zepp OS Mini Programs are designed with compatibility in mind, so there is no need for developers to adjust the code too much.
+
+- `app.json` configuration
+- Screen differences
+- Physical keys, crown differences
+
+## `app.json` configuration
+
+With the `targets` field in [app.json - Mini Program Configuration](../../reference/app-json.mdx), you can pass in different build configurations for different devices.
+
+The key name of each `target` can be named arbitrarily, it is recommended to use the device name to do the naming, this name corresponds to the Mini Program resource file `/assets` directory subdirectory, you can refer to the [Folder Structure](../architecture/folder-structure.mdx).
+
+Look at an example that lists some of the configuration in `app.json`.
+
+```json title="app.json"
+{
+  // ...
+  "targets": {
+    "gtr-3-pro": {
+      "module": {
+        // ···
+      },
+      "platforms": [
+        {
+          "name": "gtr-3-pro",
+          "deviceSource": 229
+        },
+        {
+          "name": "gtr-3-prow",
+          "deviceSource": 230
+        }
+      ],
+      "designWidth": 480
+    }
+  }
+}
+```
+
+Part of the directory structure of this Mini Program.
+
+```txt
+.
+├── app.js
+├── app.json
+├── assets
+│   ├── gtr-3-pro
+│   │   ├── icon.png
+│   │   └── image
+│   │       └── logo.png
+...
+```
+
+In this `targets` configuration, `gtr-3-pro` is used as the key name of a build configuration, named after the device name, corresponding to the `/assets` resource directory, and the resource files associated with this device are placed in the `gtr-3-pro` directory.
+
+For example, `src: 'image/logo.png'` in the parameters of the `IMG` widget, the corresponding image path in this target configuration is `/assets/gtr-3-pro/image/logo.png`.
+
+Why there are more than one `deviceSource` for the same GTR 3 PRO device, you don't need to care about this issue, just fill in the `deviceSource` in [Device Basic Information](../../reference/related-resources/device-list.mdx).
+
+The following is a practical exercise to adapt this GTR3 PRO-only Mini Program to GTR3 models.
+
+1. First add the target configuration for GTR3, fill in the relevant configuration
+
+```json title="app.json"
+{
+  // ...
+  "targets": {
+    "gtr-3-pro": {
+      "module": {
+        // ···
+      },
+      "platforms": [
+        {
+          "name": "gtr-3-pro",
+          "deviceSource": 229
+        },
+        {
+          "name": "gtr-3-prow",
+          "deviceSource": 230
+        }
+      ],
+      "designWidth": 480
+    },
+    "gtr-3": {
+      "module": {
+        // ···
+      },
+      "platforms": [
+        {
+          "name": "gtr-3",
+          "deviceSource": 226
+        },
+        {
+          "name": "gtr-3w",
+          "deviceSource": 227
+        }
+      ],
+      "designWidth": 480
+    }
+  }
+}
+```
+
+2. Create a folder under the `/assets` directory with the targets key name and place the resource files in it
+
+:::caution
+Suggestion: the image resource file needs to be scaled according to the screen ratio, which can have a better adaptation effect
+:::
+
+```txt
+.
+├── app.js
+├── app.json
+├── assets
+│   ├── gtr-3
+│   │   ├── icon.png
+│   │   └── image
+│   │       └── logo.png
+│   └── gtr-3-pro
+│       ├── icon.png
+│       └── image
+│           └── logo.png
+...
+```
+
+## Different screen adaptations
+
+You can refer to [Screen Adaptation](../best-practice/multi-screen-adaption.mdx) for more information about adapting the Mini Program to different screens.
+
+## Physical keys, crown logic adaptation
+
+Products with Zepp OS will have a different number of physical keys depending on the scenario, and some models will be equipped with a digital crown. For more information about the layout and naming of the keys, please refer to the [Physical keys](../../reference/related-resources/physical-keys.mdx)。
+
+For the adaptation of the physical keys and crown logic, the corresponding code logic needs to be adjusted, referring to the corresponding button event and crown event APIs.

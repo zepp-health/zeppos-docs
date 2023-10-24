@@ -1,0 +1,42 @@
+# getWeightUnit
+
+> API_LEVEL `2.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+获取用户设置的重量单位。
+
+## 类型
+
+```ts
+function getWeightUnit(): Result
+```
+
+## 参数
+
+### Result
+
+| 类型                | 说明                         |
+| ------------------- | ---------------------------- |
+| <code>number</code> | 重量单位，值参考重量单位常量 |
+
+## 常量
+
+### 重量单位常量
+
+| 常量                   | 说明 | API_LEVEL |
+| ---------------------- | ---- | --------- |
+| `WEIGHT_UNIT_KILOGRAM` | 千克 | 2.0       |
+| `WEIGHT_UNIT_JIN`      | 斤   | 2.0       |
+| `WEIGHT_UNIT_POUND`    | 英磅 | 2.0       |
+| `WEIGHT_UNIT_STONE`    | 英石 | 2.0       |
+
+## 代码示例
+
+```js
+import { getWeightUnit, WEIGHT_UNIT_KILOGRAM } from '@zos/settings'
+
+const weightUnit = getWeightUnit()
+
+if (weightUnit === WEIGHT_UNIT_KILOGRAM) {
+  console.log('Kilogram')
+}
+```

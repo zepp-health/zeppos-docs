@@ -1,0 +1,46 @@
+---
+title: BATTERY
+sidebar_label: BATTERY 电量
+---
+
+## 创建传感器
+
+```js
+const battery = hmSensor.createSensor(hmSensor.id.BATTERY)
+
+console.log('The current battery level is ' + battery.current + '\r\n')
+```
+
+## battery 实例
+
+### battery: object
+
+| 属性    | 说明     | 类型     |
+| ------- | -------- | -------- |
+| current | 当前电量 | `number` |
+
+## 注册传感器实例回调事件
+
+```js
+battery.addEventListener(event, callback: Callback)
+```
+
+### CHANGE 事件
+
+#### event 值
+
+`hmSensor.event.CHANGE`
+
+#### Callback
+
+```ts
+() => void
+```
+
+#### 事件示例
+
+```js
+battery.addEventListener(hmSensor.event.CHANGE, function () {
+  console.log('The current battery level is ' + battery.current + '\r\n')
+})
+```

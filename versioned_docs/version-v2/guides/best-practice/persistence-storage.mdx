@@ -1,0 +1,33 @@
+---
+title: Data Persistence
+sidebar_label: Data Persistence
+---
+
+## Introduction
+
+In some cases, we want to be able to store a part of the data state of an Mini Program persistently.
+
+In simple terms, persistence means saving data to a storage device that can be saved permanently. Take a look at a practical Mini Program with an example.
+
+The sample Mini Program [calories](./../../samples/app/calories.md) reads the consumption of the day and calculates the relationship between the calorie value and different foods, providing 10 foods for the user to choose from, with chocolate as the default. If the user wants to change to a burger, he needs to go to the selection page. Assuming that the program is not persistent, when the user exits the Mini Program and enters the Mini Program again, the food selected will still be chocolate. If persistence is done, then each time the Mini Program is entered, the previously saved application state is fetched and the selected food becomes a burger.
+
+## Thinking
+
+Data persistence in Mini Programs can be achieved with the help of file system related APIs, i.e. reading and writing files. However, this is more tedious and can be done with the help of [`localStorage` API](../../reference/device-app-api/newAPI/storage/localStorage.mdx).
+
+```js title="page.js"
+import { localStorage } from '@zos/storage'
+
+Page({
+  state: {
+    data: null
+  },
+  build() {
+    this.state.data = localStorage.getItem('state')
+    // ...
+  },
+  onDestroy() {
+    localStorage.setItem('state', this.state.data)
+  }
+})
+```

@@ -1,0 +1,54 @@
+---
+title: ARC
+sidebar_label: ARC 圆弧
+---
+
+![arc_sample](/img/api/arc_sample.jpg)
+
+圆弧控件展示圆弧进度。支持设置线宽、颜色、开始和结束的角度。
+
+## 创建 UI 控件
+
+```js
+const arc = hmUI.createWidget(hmUI.widget.ARC, Param)
+```
+
+## 类型
+
+### Param: object
+
+| 属性        | 说明                          | 是否必须 | 类型     |
+| ----------- | ----------------------------- | -------- | -------- |
+| x           | 控件 x 坐标                   | 是       | `number` |
+| y           | 控件 y 坐标                   | 是       | `number` |
+| w           | 控件显示宽度                  | 是       | `number` |
+| h           | 控件显示高度                  | 是       | `number` |
+| start_angle | 开始角度（3 点钟方向为 0 度） | 否       | `number` |
+| end_angle   | 结束角度（3 点钟方向为 0 度） | 否       | `number` |
+| line_width  | 线宽                          | 是       | `number` |
+| color       | 颜色                          | 是       | `number` |
+
+## 代码示例
+
+```js
+Page({
+  build() {
+    const arc = hmUI.createWidget(hmUI.widget.ARC, {
+      x: 100,
+      y: 100,
+      w: 250,
+      h: 250,
+      start_angle: -90,
+      end_angle: 90,
+      color: 0xfc6950,
+      line_width: 20
+    })
+
+    arc.addEventListener(hmUI.event.CLICK_DOWN, (info) => {
+      arc.setProperty(hmUI.prop.MORE, {
+        y: 150
+      })
+    })
+  }
+})
+```

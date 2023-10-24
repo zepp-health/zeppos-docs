@@ -1,0 +1,182 @@
+{
+  "sidebar.guides.category.Mini Program Architecture": {
+    "message": "小程序架构",
+    "description": "The label for category Architecture in sidebar guides"
+  },
+  "sidebar.guides.category.Framework Introduction": {
+    "message": "框架介绍",
+    "description": "The label for category Architecture in sidebar guides"
+  },
+  "sidebar.guides.category.Device App": {
+    "message": "设备应用",
+    "description": "The label for category Architecture in sidebar guides"
+  },
+  "sidebar.guides.category.Side Service": {
+    "message": "伴生服务",
+    "description": "The label for category Architecture in sidebar guides"
+  },
+  "sidebar.guides.category.Settings App": {
+    "message": "设置应用",
+    "description": "The label for category Architecture in sidebar guides"
+  },
+  "sidebar.guides.category.Tools": {
+    "message": "工具",
+    "description": "The label for category Tools in sidebar guides"
+  },
+  "sidebar.guides.category.Simulator": {
+    "message": "模拟器",
+    "description": "The label for category Simulator in sidebar guides"
+  },
+  "sidebar.guides.category.Watchface Maker": {
+    "message": "表盘制作工具",
+    "description": "The label for category Watchface in sidebar guides"
+  },
+  "sidebar.guides.category.Getting Started": {
+    "message": "开始",
+    "description": "The label for category Getting Started in sidebar guides"
+  },
+  "sidebar.guides.category.Best practice": {
+    "message": "最佳实践",
+    "description": "The label for category Getting Started in sidebar guides"
+  },
+  "sidebar.guides.category.FAQ": {
+    "message": "常见问题",
+    "description": "The label for category FAQ in sidebar guides"
+  },
+  "sidebar.reference.category.Sample App": {
+    "message": "应用示例",
+    "description": "The label for category App in sidebar samples"
+  },
+  "sidebar.watchface.category.Sample Watchface": {
+    "message": "表盘示例",
+    "description": "The label for category Watchface in sidebar samples"
+  },
+  "sidebar.reference.category.Device App API": {
+    "message": "设备应用 API",
+    "description": "The label for category Reference in sidebar reference"
+  },
+  "sidebar.reference.category.Side App API": {
+    "message": "伴生应用 API",
+    "description": "The label for category Reference in sidebar reference"
+  },
+  "sidebar.reference.category.Settings App API": {
+    "message": "设置应用 API",
+    "description": "The label for category Reference in sidebar reference"
+  },
+  "sidebar.reference.category.UI Components": {
+    "message": "UI 组件",
+    "description": "The label for category Reference in sidebar reference"
+  },
+  "sidebar.reference.category.Related Resources": {
+    "message": "相关资源",
+    "description": "The label for category Reference in sidebar reference"
+  },
+  "sidebar.watchface.category.Watchface API": {
+    "message": "表盘 API",
+    "description": "The label for category watchface in sidebar watchface"
+  },
+  "sidebar.reference.category.Side Service API": {
+    "message": "伴生服务 API",
+    "description": "The label for category Side Service API in sidebar reference"
+  },
+  "sidebar.reference.category.hmApp Device Module": {
+    "message": "hmApp 设备模块",
+    "description": "The label for category Reference in sidebar reference"
+  },
+  "sidebar.reference.category.gestureEvent": {
+    "message": "gestureEvent 手势事件",
+    "description": "The label for category Reference in sidebar reference"
+  },
+  "sidebar.reference.category.alarm": {
+    "message": "alarm 定时唤醒",
+    "description": "The label for category Reference in sidebar reference"
+  },
+  "sidebar.reference.category.keyEvent": {
+    "message": "keyEvent 按键事件",
+    "description": "The label for category Reference in sidebar reference"
+  },
+  "sidebar.reference.category.spinEvent": {
+    "message": "spinEvent 表冠旋转事件",
+    "description": "The label for category Reference in sidebar reference"
+  },
+  "sidebar.reference.category.hmSetting OS Module": {
+    "message": "hmSetting 系统模块",
+    "description": "The label for category Reference in sidebar reference"
+  },
+  "sidebar.watchface.category.hmSetting OS Module": {
+    "message": "hmSetting 系统模块",
+    "description": "The label for category Reference in sidebar reference"
+  },
+  "sidebar.reference.category.hmSensor Sensor Module": {
+    "message": "hmSensor 传感器模块",
+    "description": "The label for category Reference in sidebar reference"
+  },
+  "sidebar.watchface.category.hmSensor Sensor Module": {
+    "message": "hmSensor 传感器模块",
+    "description": "The label for category Reference in sidebar reference"
+  },
+  "sidebar.reference.category.Sensor": {
+    "message": "传感器",
+    "description": "The label for category Reference in sidebar reference"
+  },
+  "sidebar.reference.category.hmFS File System Module": {
+    "message": "hmFS 文件系统模块",
+    "description": "The label for category Reference in sidebar reference"
+  },
+  "sidebar.watchface.category.hmFS File System Module": {
+    "message": "hmFS 文件系统模块",
+    "description": "The label for category Reference in sidebar reference"
+  },
+  "sidebar.reference.category.Timer Module": {
+    "message": "定时器模块",
+    "description": "The label for category Reference in sidebar reference"
+  },
+  "sidebar.watchface.category.Timer Module": {
+    "message": "定时器模块",
+    "description": "The label for category Reference in sidebar reference"
+  },
+  "sidebar.reference.category.hmUI Components Module": {
+    "message": "hmUI 控件模块",
+    "description": "The label for category Reference in sidebar reference"
+  },
+  "sidebar.watchface.category.hmUI Components Module": {
+    "message": "hmUI 控件模块",
+    "description": "The label for category Reference in sidebar reference"
+  },
+  "sidebar.designs.category.Design Concept": {
+    "message": "设计理念",
+    "description": "The label for category Reference in sidebar reference"
+  },
+  "sidebar.designs.category.Structure": {
+    "message": "结构",
+    "description": "The label for category Reference in sidebar reference"
+  },
+  "sidebar.designs.category.Interaction": {
+    "message": "交互",
+    "description": "The label for category Reference in sidebar reference"
+  },
+  "sidebar.designs.category.Visual": {
+    "message": "视觉",
+    "description": "The label for category Reference in sidebar reference"
+  },
+  "sidebar.designs.category.Templates": {
+    "message": "模板",
+    "description": "The label for category Reference in sidebar reference"
+  },
+  "sidebar.designs.category.Elements": {
+    "message": "元素",
+    "description": "The label for category Reference in sidebar reference"
+  },
+  "sidebar.designs.category.Watchface Design Specifications": {
+    "message": "定制化",
+    "description": "The label for category Reference in sidebar reference"
+  },
+  "sidebar.designs.category.Internationalization": {
+    "message": "国际化",
+    "description": "The label for category Reference in sidebar reference"
+  },
+  "sidebar.designs.category.Accessibility Design": {
+    "message": "无障碍设计",
+    "description": "The label for category Reference in sidebar reference"
+  }
+}

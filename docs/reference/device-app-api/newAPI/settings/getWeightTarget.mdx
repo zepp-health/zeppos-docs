@@ -1,0 +1,28 @@
+# getWeightTarget
+
+> Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Get the weight target set by the user.
+
+## Type
+
+```ts
+function getWeightTarget(): Result
+```
+
+## Parameters
+
+### Result
+
+| Type                | Description                            |
+| ------------------- | -------------------------------------- |
+| <code>number</code> | User-set weight target, default is `0` |
+
+## Example
+
+```js
+import { getWeightTarget } from '@zos/settings'
+
+const weightTarget = getWeightTarget()
+console.log(weightTarget)
+```

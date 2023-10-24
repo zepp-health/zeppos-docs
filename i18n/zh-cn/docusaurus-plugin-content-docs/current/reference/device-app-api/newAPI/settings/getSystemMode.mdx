@@ -1,0 +1,36 @@
+# getSystemMode
+
+> API_LEVEL `3.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+获取系统各种模式的设置信息。
+
+## 类型
+
+```ts
+function getSystemMode(): Result
+```
+
+## 参数
+
+### Result
+
+| 属性             | 类型                 | 说明                 | API_LEVEL |
+| ---------------- | -------------------- | -------------------- | --------- |
+| DND              | <code>boolean</code> | 勿扰模式开关状态     | 3.0       |
+| sleep            | <code>boolean</code> | 睡眠模式开关状态     | 3.0       |
+| theater          | <code>boolean</code> | 剧场模式开关状态     | 3.0       |
+| systemLock       | <code>boolean</code> | 屏幕锁定开关状态     | 3.0       |
+| lowTemperature   | <code>boolean</code> | 低温模式开关状态     | 3.0       |
+| powerSaving      | <code>boolean</code> | 省电模式开关状态     | 3.0       |
+| ultraPowerSaving | <code>boolean</code> | 省电时钟模式开关状态 | 3.0       |
+| button           | <code>boolean</code> | 按键模式开关状态     | 3.0       |
+| accessibleSwitch | <code>boolean</code> | 无障碍模式开关状态   | 3.0       |
+
+## 代码示例
+
+```js
+import { getSystemMode } from '@zos/settings'
+
+const mode = getSystemMode()
+console.log(mode)
+```

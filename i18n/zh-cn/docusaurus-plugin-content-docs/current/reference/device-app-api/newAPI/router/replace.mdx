@@ -1,0 +1,31 @@
+# replace
+
+> API_LEVEL `2.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+关闭当前页面，跳转到小程序内的某个页面。
+
+## 类型
+
+```ts
+function replace(option: Option): void
+```
+
+## 参数
+
+### Option
+
+| 属性   | 类型                            | 必填 | 默认值 | 说明                                                                                                                       | API_LEVEL |
+| ------ | ------------------------------- | ---- | ------ | -------------------------------------------------------------------------------------------------------------------------- | --------- |
+| url    | <code>string</code>             | 是   | -      | 页面路径                                                                                                                   | 2.0       |
+| params | <code>string&#124;object</code> | 否   | -      | 传递给 page.js `onInit` 生命周期中的参数，支持字符串或者标准 JSON 对象。如果传递标准 JSON 对象，该方法内部会将其转为字符串 | 2.0       |
+
+## 代码示例
+
+```js
+import { replace } from '@zos/router'
+
+replace({
+  url: 'page/index',
+  params: 'type=1',
+})
+```

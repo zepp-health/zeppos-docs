@@ -1,0 +1,549 @@
+---
+title: 小程序配置
+sidebar_label: 小程序配置
+---
+
+小程序根目录下的 `app.json` 文件对小程序进行全局配置。
+
+## 配置项
+
+| 属性            | 类型            | 必填 | 描述                                                                                                                             | 最低版本 |
+| --------------- | --------------- | ---- | -------------------------------------------------------------------------------------------------------------------------------- | -------- |
+| configVersion   | `string`        | 是   | 配置文件版本号，支持以下值： `v3` 当前使用值、 `v1` 已经废弃。凡是本文标注 v3 的特性，需要使用 v3 版本的 app.json 才能正常运行 | -        |
+| app             | `object`        | 是   | 小程序配置信息                                                                                                                   | -        |
+| runtime         | `object`        | 是   | 小程序运行时设置                                                                                                                 | -        |
+| permissions     | `Array<string>` | 是   | 小程序权限列表                                                                                                                   | -        |
+| targets         | `object`        | 是   | 构建小程序安装包设置                                                                                                             | -        |
+| i18n            | `object`        | 是   | 小程序国际化配置                                                                                                                 | -        |
+| defaultLanguage | `string`        | 是   | 小程序的默认语言设置。 当系统无法找到合适的语言设置程序时，会把这个值作为程序的语言。该值不建议为空。                            | -        |
+| debug           | `boolean`       | 否   | 小程序调试功能，支持以下值：`true` 开启调试功能 `false` 默认值。关闭调试功能                                                     | -        |
+
+### configVersion
+
+`configVersion` 是该 JSON 文件的版本，作用是解析区分。格式为小写字母 `v` + 数字，如：`v3`。
+
+示例如下：
+
+```js
+{
+  "configVersion": "v3"
+}
+```
+
+### app
+
+`app` 表示程序配置信息。
+
+| 属性        | 类型            | 必填 | 描述                                                                                                             | 最低版本 |
+| ----------- | --------------- | ---- | ---------------------------------------------------------------------------------------------------------------- | -------- |
+| appId       | `number`        | 是   | 小程序 `id`，该 `id` 是小程序唯一标识                                                                            | v2       |
+| appName     | `string`        | 是   | 小程序名称                                                                                                       | v2       |
+| appType     | `string`        | 是   | 小程序类型。支持以下值：`app` 小程序; `watchface` 表盘                                                           | v2       |
+| version     | `object`        | 是   | 小程序版本信息                                                                                                   | v2       |
+| icon        | `string`        | 否   | 小程序图标 icon 的路径。请参考[设计规范 - 图标](../designs/visual/icons.md#应用程序图标)。如未传，使用默认的图标 | v2       |
+| vender      | `string`        | 是   | 开发者名                                                                                                         | v2       |
+| venderId    | `number`        | 否   | 开发者 id                                                                                                        | -        |
+| cover       | `Array<string>` | 否   | 小程序展示用的配图。一般情况下，表盘使用。                                                                       | -        |
+| description | `string`        | 是   | 小程序简短的描述                                                                                                 | v2       |
+
+#### version: object
+
+`version` 表示小程序的版本信息。
+
+| 属性 | 类型     | 必填 | 描述                                                                                                | 最低版本 |
+| ---- | -------- | ---- | --------------------------------------------------------------------------------------------------- | -------- |
+| code | `number` | 是   | 小程序程序版本号。默认从 `1` 开始。 注意：每一个版本应该比上一个版本大。 如： `12`，`13`，`2001` 等 | -        |
+| name | `string` | 是   | 小程序语义化版本。建议以 x.x.x 为格式记录版本。 如：`1.0.1`                                         | -        |
+
+示例如下：
+
+```js
+{
+  "app": {
+    "appId": 1000089,
+    "appName": "······",
+    "appType": "app",
+    "version": {
+      "code": 5,
+      "name": "0.0.5"
+    },
+    "icon": "logo.png",
+    "vender": "······",
+    "description": "······"
+    }
+}
+```
+
+### runtime: object
+
+`runtime` 表示小程序运行时配置。
+
+| 属性       | 类型     | 必填 | 描述                                                                                                                                                                                                                                                                | 最低版本 |
+| ---------- | -------- | ---- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
+| apiVersion | `object` | 是   | 运行时 API 版本                                                                                                                                                                                                                                                     | v2       |
+| type       | `number` | 否   | 运行时加载小程序的加载器类型，支持以下值： `0` 当前值是默认值。表示该小程序用 QuickJS-js 解释器的加载器加载小程序，后缀名.js ；`1` 表示该小程序用 C 解释器的加载器加载小程序，后缀名 .c ；`2` 表示该小程序用 QuickJS-bytecode 解释器的加载器加载小程序，后缀名 .bin | v2       |
+
+#### apiVersion: object
+
+`apiVersion` 表示 API 版本信息、最低版本、目标版本，已通过版本等。
+
+APP 端小程序通过蓝牙给设备端小程序安装或者升级时，需要获取到设备端的 JS-SDK 版本号，然后进一步和该字段比较。
+
+| 属性       | 类型     | 必填 | 描述                                                                                        | 最低版本 |
+| ---------- | -------- | ---- | ------------------------------------------------------------------------------------------- | -------- |
+| minVersion | `string` | 是   | 运行时要求，这个字段是必须的，判断当前小程序的运行时要求; v <= minVersion, 不可升级或者安装 | v2       |
+| compatible | `string` | 否   | 兼容版本，能够兼容的版本，可选                                                              | v2       |
+| target     | `string` | 否   | 这是目标 SDK 的版本，运行时，可选                                                           | v2       |
+
+示例如下：
+
+```js
+{
+  "runtime": {
+    "apiVersion": {
+      "compatible": "1.0.0",
+      "target": "1.0.1",
+      "minVersion": "1.0.0"
+    }，
+  "type": "0"
+  }
+}
+```
+
+### permissions: Array
+
+`permissions` 表示权限列表，如果用户申请使用的权限不在该列表，则申请无效，`permissions` 支持动态申请权限。
+
+```js
+{
+  "permissions": []
+}
+```
+
+### targets: object
+
+通过 targets 可以区分设备以传入不同的构建配置
+
+:::caution
+targets 对象的键名就是 /assets 目录下子目录的名称，需要保持一致，参考 [目录结构](../guides/architecture/folder-structure.mdx)
+:::
+
+| 属性        | 类型            | 必填 | 描述                                                     | 最低版本 |
+| ----------- | --------------- | ---- | -------------------------------------------------------- | -------- |
+| module      | `object`        | 是   | 小程序功能模块配置                                       | v2       |
+| platforms   | `Array<object>` | 是   | 小程序运行平台设备选择                                   | v2       |
+| designWidth | `number`        | 是   | 当前视图的设计宽度，使用 px 运行时调整；该值取决于设计稿 | v2       |
+
+targets 对象的键名可以自由命名，建议使用设备名进行命名，比如这样三款设备都会有独立的构建参数。
+
+```js
+{
+  "targets": {
+    "gtr-3-pro": {
+      "module": {
+        // ···
+      }
+    },
+    "gtr-3": {
+      "module": {
+        // ···
+      }
+    },
+    "gts-3": {
+      "module": {
+        // ···
+      }
+    },
+ }
+```
+
+### module: object
+
+| 属性             | 类型     | 必填                                   | 描述               | 最低版本 |
+| ---------------- | -------- | -------------------------------------- | ------------------ | -------- |
+| shortcut         | `object` | 否。仅当 `appType` 为 `app` 时该值生效 | 跳转小程序的描述   | v2       |
+| page             | `object` | 是。当 `appType` 为 `app` 时必填       | 设备端页面模块配置 | v2       |
+| app-widget       | `object` | 否                                     | 快捷卡片配置       | v2       |
+| secondary-widget | `object` | 否                                     | 副屏应用配置       | v2       |
+| watch-widget     | `object` | 否                                     | 表盘组件模块配置   | v2       |
+| watchface        | `object` | 是。当 `appType` 为 `watchface` 时必填 | 表盘模块配置       | v2       |
+| app-side         | `object` | 否                                     | 伴生服务配置       | v2       |
+| setting          | `object` | 否                                     | 设置应用配置       | v2       |
+| app-service      | `object` | 否                                     | 后台服务配置       | v3       |
+| app-event        | `object` | 否                                     | 系统事件监听配置   | v3       |
+
+示例如下
+
+```json
+{
+  "module": {
+    "page": {
+      "pages": ["page/gtr-3-pro/loading"],
+      "window": {
+        "navigationBarBackgroundColor": "#ffffff",
+        "navigationBarTextStyle": "black",
+        "navigationBarTitleText": "Home Connect",
+        "backgroundColor": "#eeeeee",
+        "backgroundTextStyle": "light"
+      },
+      "app-side": {
+        "path": "app-side/index"
+      },
+      "setting": {
+        "path": "setting/index"
+      },
+      "app-widget": {
+        "widgets": [
+          {
+            "path": "app-widget/index",
+            "icon": "icon.png",
+            "name": "app-widget-demo",
+            "runtime": {
+              "type": "js"
+            }
+          }
+        ]
+      },
+      "secondary-widget": {
+        "widgets": [
+          {
+            "path": "secondary-widget/index",
+            "icon": "icon.png",
+            "name": "secondary-widget-demo",
+            "runtime": {
+              "type": "js"
+            }
+          }
+        ]
+      }
+    }
+  }
+}
+```
+
+#### shortcut: object
+
+`shortcut` 表示跳转小程序的描述。该属性与 `page` 属性互斥，一个包中不会同时存在。
+
+| 属性        | 类型     | 必填                         | 描述                                                   | 最低版本 |
+| ----------- | -------- | ---------------------------- | ------------------------------------------------------ | -------- |
+| scheme      | `string` | 是                           | 协议类型：支持类型为 dapp                              | v2       |
+| appLangType | `number` | 是                           | 跳转目标小程序类型： `0`：js 小程序； `1`：native 应用 | v2       |
+| appId       | `number` | `appLangType` 为 js 时，必填 | 小程序 appid                                           | v2       |
+| path        | `string` | 是                           | 文件路径/native 应用名                                 | v2       |
+| params      | `string` | 否                           | 跳转参数                                               | v2       |
+
+#### page: object
+
+`page` 表示设备端页面模块配置。该属性与 `shortcut` 属性互斥，一个包中不会同时存在。
+
+| 属性  | 类型            | 必填 | 描述                                       | 最低版本 |
+| ----- | --------------- | ---- | ------------------------------------------ | -------- |
+| pages | `Array<string>` | 是   | 页面路径，至少一个；默认第一个为小程序入口 | v2       |
+
+#### app-widget: object
+
+`app-widget` 表示三方小程序组件。
+
+| 属性    | 类型            | 必填 | 描述           | 最低版本 |
+| ------- | --------------- | ---- | -------------- | -------- |
+| widgets | `Array<string>` | 是   | 组件路径，可无 | v2       |
+
+#### watch-widget: object
+
+`watch-widget` 表示表盘组件。
+
+| 属性    | 类型            | 必填 | 描述           | 最低版本 |
+| ------- | --------------- | ---- | -------------- | -------- |
+| widgets | `Array<string>` | 是   | 组件路径，可无 | v2       |
+
+#### watchface: object
+
+`watchface` 表示表盘。
+
+| 属性        | 类型     | 必填               | 描述                   | 最低版本 |
+| ----------- | -------- | ------------------ | ---------------------- | -------- |
+| path        | `string` | 是                 | 表盘路径               | v2       |
+| main        | `number` | 否（不添加默认 1） | 首页显示表盘（0:无）   | v2       |
+| editable    | `number` | 否（不添加默认 0） | 可编辑表盘（0:不支持） | v2       |
+| lockscreen  | `number` | 否（不添加默认 0） | 息屏显示（0:无）       | v2       |
+| photoscreen | `number` | 否（不添加默认 0） | 照片表盘（0:不支持）   | v2       |
+
+#### app-side: object
+
+`app-side` 表示伴生应用。
+
+| 属性 | 类型     | 必填 | 描述         | 最低版本 |
+| ---- | -------- | ---- | ------------ | -------- |
+| path | `string` | 否   | 伴生应用路径 | v2       |
+
+#### setting: object
+
+`setting` 表示设置页面。
+
+| 属性 | 类型     | 必填 | 描述         | 最低版本 |
+| ---- | -------- | ---- | ------------ | -------- |
+| path | `string` | 是   | 设置页面路径 | v2       |
+
+#### platforms: object
+
+`platforms` 表示目标平台选择。需要跟着开发者选择类型：`target.platforms` 规范取值规范。
+
+`deviceSource` 的取值参考 [搭载 Zepp OS 设备列表](./related-resources/device-list.mdx)
+
+| 属性         | 类型     | 必填        | 描述                                                                                                                               | 最低版本 |
+| ------------ | -------- | ----------- | ---------------------------------------------------------------------------------------------------------------------------------- | -------- |
+| name         | `string` | 否          | 设备描述，开发者自行命名                                                                                                           | v2       |
+| deviceSource | `number` | 是，v3 为否 | 设备的编号                                                                                                                         | v2       |
+| st           | `string` | 否          | 屏幕的类型，支持 `s`、`r`、`b` 详情参考 [屏幕适配](../guides/framework/device/screen-adaption.md)                                  | v3       |
+| sr           | `string` | 否          | 屏幕的分辨率，格式为 `w` + 数字，如 `w480` 表示屏幕宽度 480 px，详情参考 [屏幕适配](../guides/framework/device/screen-adaption.md) | v3       |
+
+示例如下：
+
+```js
+{
+  "platforms": [{
+    "name": "gts-3",
+    "deviceSource": 229
+  }, {
+    "name": "gts-3",
+    "deviceSource": 230
+  }]
+}
+```
+
+#### designWidth
+
+`designWidth` 表示设计宽度，提供给全局的 `px` 函数作为尺寸计算基准，参考 [屏幕适配](../guides/best-practice/multi-screen-adaption.mdx)。
+
+```js
+{
+  "designWidth": 390
+}
+```
+
+### i18n: object
+
+`i18n` 作用是配置多语言处理。
+
+各个国家区域对应的代码缩写，参考 [多语言映射](./related-resources/language-list.mdx)。
+
+示例如下：
+
+```js
+{
+  "i18n": {
+    "en-US": {
+      "appName": "······"
+    },
+    "en-ES": {
+      "appName": "······"
+    }
+  }
+}
+```
+
+### defaultLanguage: string
+
+示例如下：
+
+```js
+{
+  "defaultLanguage": "zh-cn"
+}
+```
+
+## 完整的 app.json 示例
+
+以示例应用 Calories 的 `app.json` 为例
+
+:::caution
+此示例只配置了 Amazfit GTR 3 Pro、Amazfit GTR 3、Amazfit GTS 3 三款设备的 `deviceSource`，如需支持其余设备，请参考 targets 字段的配置自行添加
+:::
+
+```js
+{
+  "configVersion": "v2",
+  "app": {
+    "appId": 1000000,
+    "appName": "Calories",
+    "appType": "app",
+    "version": {
+      "code": 1,
+      "name": "1.0.0"
+    },
+    "icon": "icon.png",
+    "vender": "huami",
+    "description": ""
+  },
+  "permissions": [],
+  "runtime": {
+    "apiVersion": {
+      "compatible": "1.0.0",
+      "target": "1.0.1",
+      "minVersion": "1.0.0"
+    }
+  },
+  "targets": {
+    "gtr-3-pro": {
+      "module": {
+        "page": {
+          "pages": [
+            "page/gtr-3/index",
+            "page/gtr-3/foodList"
+          ]
+        }
+      },
+      "platforms": [{
+        "name": "gtr3pro",
+        "deviceSource": 229
+      }, {
+        "name": "gtr3pro",
+        "deviceSource": 230
+      }],
+      "designWidth": 480
+    },
+    "gtr-3": {
+      "module": {
+        "page": {
+          "pages": [
+            "page/gtr-3/index",
+            "page/gtr-3/foodList"
+          ]
+        }
+      },
+      "platforms": [{
+        "name": "gtr3",
+        "deviceSource": 226
+      }, {
+        "name": "gtr3",
+        "deviceSource": 227
+      }],
+      "designWidth": 480
+    },
+    "gts-3": {
+      "module": {
+        "page": {
+          "pages": [
+            "page/gts-3/index",
+            "page/gts-3/foodList"
+          ]
+        }
+      },
+      "platforms": [{
+        "name": "gts3",
+        "deviceSource": 224
+      }, {
+        "name": "gts3",
+        "deviceSource": 225
+      }],
+      "designWidth": 390
+    }
+  },
+  "i18n": {
+    "zh-CN": {
+      "appName": "卡路里"
+    },
+    "ar-EG": {
+      "appName": "السعرات الحرارية"
+    },
+    "ca-ES": {
+      "appName": "Calories"
+    },
+    "cs": {
+      "appName": "Kalorie"
+    },
+    "da-DK": {
+      "appName": "Kalorier"
+    },
+    "de-DE": {
+      "appName": "Kalorien"
+    },
+    "el": {
+      "appName": "Θερμίδες"
+    },
+    "en-US": {
+      "appName": "Calories"
+    },
+    "es-ES": {
+      "appName": "Calorías"
+    },
+    "fi": {
+      "appName": "Kalorit"
+    },
+    "fr-FR": {
+      "appName": "Calories"
+    },
+    "he": {
+      "appName": "קלוריות"
+    },
+    "hi": {
+      "appName": "कैलोरी"
+    },
+    "hu-HU": {
+      "appName": "Kalória"
+    },
+    "id-ID": {
+      "appName": "Kalori"
+    },
+    "it-IT": {
+      "appName": "Calorie"
+    },
+    "ja-JP": {
+      "appName": "カロリー"
+    },
+    "ko-KR": {
+      "appName": "칼로리"
+    },
+    "mr": {
+      "appName": "कॅलरीज"
+    },
+    "nb-NO": {
+      "appName": "Kalorier"
+    },
+    "nl": {
+      "appName": "Calorieën"
+    },
+    "pl-PL": {
+      "appName": "Kalorie"
+    },
+    "pt": {
+      "appName": "Calorias"
+    },
+    "pt-BR": {
+      "appName": "Calorias"
+    },
+    "ro": {
+      "appName": "Calorii"
+    },
+    "ru-RU": {
+      "appName": "Калории"
+    },
+    "sk": {
+      "appName": "Kalórie"
+    },
+    "sr": {
+      "appName": "Калорије"
+    },
+    "sv-SE": {
+      "appName": "Kalorier"
+    },
+    "th-TH": {
+      "appName": "แคลอรี"
+    },
+    "tr-TR": {
+      "appName": "Kalori"
+    },
+    "uk": {
+      "appName": "Калорії"
+    },
+    "vi": {
+      "appName": "Calo"
+    },
+    "zh-TW": {
+      "appName": "卡路里"
+    }
+  },
+  "defaultLanguage": "en-US"
+}
+```

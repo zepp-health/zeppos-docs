@@ -1,0 +1,22 @@
+---
+title: redraw()
+sidebar_label: redraw
+---
+
+> API_LEVEL `2.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+在部分边界情况下调用 `deleteWidget` 后，视图存在更新不及时的可能，此时可以调用 `redraw()` 更新视图。
+
+## 类型
+
+```ts
+() => undefined
+```
+
+## 代码示例
+
+```js
+import { redraw } from '@zos/ui'
+
+redraw()
+```

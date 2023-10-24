@@ -1,0 +1,34 @@
+---
+title: hmUI.showToast(option)
+sidebar_label: showToast
+---
+
+![show_toast](/img/api/show_toast.jpg)
+
+显示 Toast，支持 `\n` 文本换行。
+
+## 类型
+
+```ts
+(option: Option) => void
+```
+
+## 参数
+
+### Option: object
+
+| 属性 | 说明           | 类型     |
+| ---- | -------------- | -------- |
+| text | 文本内容 | `string` |
+
+## 代码示例
+
+```js
+Page({
+  build() {
+    hmUI.showToast({
+      text: 'Hello\nZepp OS'
+    })
+  }
+})
+```

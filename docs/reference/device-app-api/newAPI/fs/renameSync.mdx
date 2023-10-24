@@ -1,0 +1,41 @@
+# renameSync
+
+> Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Rename the files in the `/data` directory of the Mini Program, renaming the files from `oldPath` to `newPath`.
+
+## Type
+
+```ts
+function renameSync(option: Option): Result
+```
+
+## Parameters
+
+### Option
+
+| Property | Type                | Required | DefaultValue | Description | API_LEVEL |
+| -------- | ------------------- | -------- | ------------ | ----------- | --------- |
+| oldPath  | <code>string</code> | Y        | -            | Old path    | 2.0       |
+| newPath  | <code>string</code> | Y        | -            | New path    | 2.0       |
+
+### Result
+
+| Type                | Description                              |
+| ------------------- | ---------------------------------------- |
+| <code>number</code> | If `0` is returned, success is indicated |
+
+## Example
+
+```js
+import { renameSync } from '@zos/fs'
+
+const result = renameSync({
+  oldPath: 'test.txt',
+  newPath: 'new_test.txt',
+})
+
+if (result === 0) {
+  console.log('renameSync success')
+}
+```

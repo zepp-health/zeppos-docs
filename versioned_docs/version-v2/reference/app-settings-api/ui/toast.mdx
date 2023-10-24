@@ -1,0 +1,21 @@
+---
+title: Toast 
+sidebar_label: Toast 
+---
+
+## Type
+
+```ts
+(props: Props, renderFuncArr?: RenderFunc | Array<RenderFunc>) => result: RenderFunc
+```
+
+## Props: object
+
+|    Name    |                       Description                           | Required |    Type    | Default |
+| ---------- | ----------------------------------------------------------- |   ----   | ---------- | -------- |
+|  duration  |               Duration of the popup prompt                  |    NO    |   number   | `2000` |
+| horizontal |              Horizontal position of the Toast               |    NO    |  `string`  | `center` |
+|   message  |                 The message to display                      |    NO    |  `string`  | - |
+|   vertical |               The vertical position of the Toast            |    NO    |  `string`  | `top` |
+|   visible  |               If true, the Toast is visible                 |    NO    |  `boolean` | - |
+|   onClose  | Triggers a callback when the component requests to be closed |   NO    | `function` | - |

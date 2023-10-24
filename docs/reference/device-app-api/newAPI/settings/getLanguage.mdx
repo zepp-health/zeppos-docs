@@ -1,0 +1,28 @@
+# getLanguage
+
+> Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Get the current system language setting.
+
+## Type
+
+```ts
+function getLanguage(): Result
+```
+
+## Parameters
+
+### Result
+
+| Type                | Description                                          |
+| ------------------- | ---------------------------------------------------- |
+| <code>number</code> | Please see the Multilingual Mapping for more details |
+
+## Example
+
+```js
+import { getLanguage } from '@zos/settings'
+
+const languageCode = getLanguage()
+console.log(languageCode)
+```

@@ -1,0 +1,43 @@
+---
+title: hmFS.read(fileId, buffer, position, length)
+sidebar_label: read
+---
+
+读取文件
+
+## 类型
+
+```ts
+(fileId: number, buffer: ArrayBuffer, position: number, length: number) => [fileList, err]
+```
+
+## 参数
+
+| 参数   | 说明                         | 必填 | 类型          | 默认值 |
+| ------ | ---------------------------- | ---- | ------------- | ------ |
+| fileId | 文件句柄                     | 是   | `number`      | -      |
+| buff   | 将填充读取的文件数据的缓冲区 | 是   | `ArrayBuffer` | -      |
+| pos    | 基于 `buff` 首地址的偏移     | 是   | `number`      | -      |
+| len    | 读取的字节数                 | 是   | `number`      | -      |
+
+### fileList
+
+| 说明       | 类型            |
+| ---------- | --------------- |
+| 文件名数组 | `Array<string>` |
+
+### err
+
+| 说明                     | 类型     |
+| ------------------------ | -------- |
+| 错误码，`0` 表示获取成功 | `number` |
+
+## 代码示例
+
+```js
+const test_buf = new Uint8Array(10)
+const test_buf2 = new Uint8Array(test_buf.length)
+
+const file = hmFS.open('test_file.txt', hmFS.O_RDWR | hmFS.O_CREAT)
+hmFS.read(file, test_buf2.buffer, 0, test_buf2.length)
+```

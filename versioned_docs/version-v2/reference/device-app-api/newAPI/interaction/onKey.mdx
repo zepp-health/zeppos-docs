@@ -1,0 +1,71 @@
+# onKey
+
+> Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Listen to key events, only one event is allowed to be registered, if multiple registrations will cause the last registered event to fail.
+
+## Type
+
+```ts
+function onKey(option: Option): void
+```
+
+### Simplified calling method
+
+```ts
+function onKey(callback: (key: Key, event: KeyEvent) => PreventDefault): void
+```
+
+## Parameters
+
+### Option
+
+| Property | Type                                                           | Required | DefaultValue | Description                 | API_LEVEL |
+| -------- | -------------------------------------------------------------- | -------- | ------------ | --------------------------- | --------- |
+| callback | <code>(key: Key, event: KeyEvent) =&#62; PreventDefault</code> | Y        | -            | Key event callback function | 2.0       |
+
+### Key
+
+| Type                | Description                                  |
+| ------------------- | -------------------------------------------- |
+| <code>number</code> | Key name, value reference key name constants |
+
+### KeyEvent
+
+| Type                | Description                                         |
+| ------------------- | --------------------------------------------------- |
+| <code>number</code> | Key event name, value reference key event constants |
+
+### PreventDefault
+
+| Type                 | Description                                                                   |
+| -------------------- | ----------------------------------------------------------------------------- |
+| <code>boolean</code> | Whether to skip the default key behavior, `true` - skip, `false` - don't skip |
+
+## Constants
+
+### Key name constants
+
+| Constant       | Description  | API_LEVEL |
+| -------------- | ------------ | --------- |
+| `KEY_BACK`     | BACK KEY     | 2.0       |
+| `KEY_SELECT`   | SELECT KEY   | 2.0       |
+| `KEY_HOME`     | HOME KEY     | 2.0       |
+| `KEY_UP`       | UP KEY       | 2.0       |
+| `KEY_DOWN`     | SHORTCUT KEY | 2.0       |
+| `KEY_SHORTCUT` | SHORTCUT KEY | 2.0       |
+
+## Example
+
+```js
+import { onKey, KEY_UP, KEY_EVENT_CLICK } from '@zos/interaction'
+
+onKey({
+  callback: (key, keyEvent) => {
+    if (key === KEY_UP && keyEvent === KEY_EVENT_CLICK) {
+      console.log('up click')
+    }
+    return true
+  },
+})
+```

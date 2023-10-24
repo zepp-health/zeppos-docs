@@ -1,0 +1,28 @@
+---
+title: hmSetting.getMileageUnit()
+sidebar_label: getMileageUnit
+---
+
+返回当前的距离单位是公制还是英制。
+
+该方法是获取的是用户设置的单位，不代表数据的单位，数据单位参考相应数据的接口说明。
+
+## 类型
+
+```ts
+() => result
+```
+
+## 参数
+
+### result
+
+| 说明                                         | 类型     |
+| -------------------------------------------- | -------- |
+| 当前的距离单位，`0`:公制，`1`:英制，其它无效 | `number` |
+
+## 代码示例
+
+```js
+const mileageUnit = hmSetting.getMileageUnit()
+```

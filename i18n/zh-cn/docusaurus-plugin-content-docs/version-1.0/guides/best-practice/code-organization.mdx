@@ -1,0 +1,76 @@
+---
+title: 代码组织
+sidebar_label: 代码组织
+---
+
+为了提高开发效率和工程的可维护性，需要有更好的代码组织方式，本文仅提供一个思路。
+
+## 原则
+
+**结构、样式、行为分离，各司其职**
+
+以一个功能页面 `page.js` 为例，我们完全可以将页面的 UI 结构、样式描述、行为（JS 逻辑）都放在一个文件中，简单的页面也许只有一两百行，没有太大问题。
+
+一旦遇到复杂 UI 或者复杂逻辑，将三者堆在一起，代码行数就会过多，可读性较差，并且各种相对独立的逻辑糅杂在一起，维护性较差。
+
+推荐将一个 `page.js` 继续做一些细粒度的拆分，将样式描述拆分到 `page.styles.js` 中，高耦合的变量和逻辑使用面向对象的形式组织到 `class.js` 中，`page.js` 只做 UI 渲染和事件派发。
+
+## 如何提高开发效率
+
+现有的开发流程下，每一次代码变更需要在模拟器或者真机预览效果，其过程较为耗时。然而小程序中的纯 JavaScript 部分是不依赖运行环境的，这部分代码的开发我们可以将其运行在测试框架上，比如说 [Jest](https://jestjs.io/)。
+
+我们代码中的 `class.js`（逻辑相关的类），和 `/utils` 目录下的工具函数都是可以在测试框架中进行运行的，这样在编写纯 JavaScript 部分的时候，无需依赖模拟器或者真机，节省大量时间，并且可以在测试框架中调试代码，从而提高开发效率。
+
+测试框架带来便利的同时，也对我们的代码的「可测试性」也提出了更高的要求，比如工具函数尽可能多的使用「纯函数」。
+
+## 例子
+
+完整的看一个例子
+
+```js title="page.js"
+import { TEXT_STYLE } from './page.styles.js'
+import TextClass from './text.class.js'
+
+Page({
+  state: {
+    textInstance: null
+  },
+  build() {
+    this.state.textInstance = new TextClass()
+    this.buildUI()
+  },
+  buildUI() {
+    hmUI.createWidget(hmUI.widget.TEXT, {
+      attr: {
+        text: this.state.textInstance.getText()
+      },
+      styles: TEXT_STYLE
+    })
+  }
+})
+```
+
+```js title="class.js"
+export default class TextClass {
+  constructor() {
+    this.text = 'Hello World'
+  }
+  getText() {
+    return this.text
+  }
+}
+```
+
+```js title="page.styles.js"
+export const TEXT_STYLE = {
+  x: px(96),
+  y: px(40),
+  w: px(288),
+  h: px(46),
+  color: 0xffffff,
+  text_size: px(36),
+  align_h: h.ALIGN.CENTER_H,
+  align_v: h.ALIGN.CENTER_V,
+  text_style: hmUI.text_style.WRAP
+}
+```

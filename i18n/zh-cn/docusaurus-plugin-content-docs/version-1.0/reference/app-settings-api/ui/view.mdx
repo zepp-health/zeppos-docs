@@ -1,0 +1,19 @@
+---
+title: View 视图容器
+sidebar_label: View 视图容器
+---
+
+View 视图容器类比与 Web 标准中的 `div`
+
+## 类型
+
+```ts
+(props: Props, renderFuncArr?: RenderFunc | Array<RenderFunc>) => result: RenderFunc
+```
+
+## Props: object
+
+| 名称    | 说明                     | 必填 | 类型       | 默认值 |
+| ------- | ------------------------ | ---- | ---------- | ------ |
+| style   | 样式属性，支持 CSS 属性  | 否   | `object`   | -      |
+| onClick | 当组件请求关闭时触发回调 | 否   | `function` | -      |

@@ -1,0 +1,19 @@
+---
+title: Toggle 切换开关
+sidebar_label: Toggle 切换开关
+---
+
+## 类型
+
+```ts
+(props: Props, renderFuncArr?: RenderFunc | Array<RenderFunc>) => result: RenderFunc
+```
+
+## Props: object
+
+| 名称        | 说明                                | 必填 | 类型                       | 默认值 |
+| ----------- | ----------------------------------- | ---- | -------------------------- | ------ |
+| label       | 标签                                | 否   | `string`                   | -      |
+| settingsKey | Settings Storage API 中存储值的 key | 否   | `string`                   | -      |
+| value       | 值                                  | 否   | `boolean`                  | -      |
+| onChange    | 切换事件                            | 否   | `(value: boolean) => void` | -      |

@@ -1,0 +1,55 @@
+---
+title: sessionStorage
+sidebar_label: sessionStorage
+---
+
+> Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Key-value pairs are stored and data is cleared after exiting the Mini Program.
+
+## Methods
+
+### setItem
+
+Get sleep information
+
+```ts
+setItem(key: string, value: any): void
+```
+
+### getItem
+
+Read the data, specify the default value `defaultValue`, and return `defaultValue` if the value on the specified `key` is not retrieved.
+
+```ts
+getItem(key: string, defaultValue?: any): void
+```
+
+### removeItem
+
+Delete the data of the specified `key`
+
+```ts
+removeItem(key: string): void
+```
+
+### clear
+
+Clear all data in sessionStorage
+
+```ts
+clear(): void
+```
+
+## Example
+
+```js
+import { sessionStorage } from '@zos/storage'
+
+sessionStorage.setItem('test', 'test value')
+const val = sessionStorage.getItem('test')
+const defaultValue = sessionStorage.getItem('none_key', 'defaultValue')
+
+sessionStorage.removeItem('test')
+sessionStorage.clear()
+```

@@ -1,0 +1,23 @@
+# getAllAlarms
+
+> API_LEVEL `3.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+获取当前小程序所有已创建的定时器 alarmId 数组, 包括支持持久化的定时器。
+
+:::info
+权限代码： `device:os.alarm`
+:::
+
+## 类型
+
+```ts
+function getAllAlarms(): Array<number>
+```
+
+## 代码示例
+
+```js
+import { getAllAlarms } from '@zos/alarm'
+
+getAllAlarms()
+```

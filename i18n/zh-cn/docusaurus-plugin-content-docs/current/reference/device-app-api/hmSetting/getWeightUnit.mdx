@@ -1,0 +1,29 @@
+---
+title: hmSetting.getWeightUnit()
+sidebar_label: getWeightUnit
+---
+
+获取用户设置的体重单位。
+
+## 类型
+
+```ts
+() => weightUnit
+```
+
+## 返回值
+
+### weightUnit: number
+
+| 值  | 说明     |
+| --- | -------- |
+| `0` | Kilogram |
+| `1` | Jin      |
+| `2` | Pound    |
+| `3` | Stone    |
+
+## 代码示例
+
+```js
+const unit = hmSetting.getWeightUnit()
+```

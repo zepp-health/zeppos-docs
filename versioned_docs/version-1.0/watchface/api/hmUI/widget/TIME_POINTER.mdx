@@ -1,0 +1,24 @@
+---
+title: TIME_POINTER
+sidebar_label: TIME_POINTER
+---
+
+![指针时钟](/img/api/image_pointer.png)
+
+## Code example
+
+```js
+let timePointer = hmUI.createWidget(hmUI.widget.TIME_POINTER, {
+  hour_centerX: 240, // Center of pointer rotation corresponds to centerX.
+  hour_centerY: 240, // Center of pointer rotation corresponds to centerY.
+  hour_posX: 19, // The pointer's own center of rotation, corresponds to the x in position.
+  hour_posY: 100, // Pointer's own center of rotation, corresponds to y in position.
+  hour_path: 'pointer.png', // Path of the pointer.
+  hour_cover_path: 'cover.png', // Pointer circle image.
+  hour_cover_y: 0,
+  hour_cover_x: 0
+  // Minute and seconds as same as above, just replace hour with minute/second.
+})
+```
+
+- xx_cover is a non-required field.

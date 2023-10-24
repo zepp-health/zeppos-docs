@@ -1,0 +1,39 @@
+# setInterval
+
+> Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Repeatedly call a function with a fixed time interval between each call.
+
+## Type
+
+```ts
+function setInterval(callback: Callback, delay: Delay): IntervalID
+```
+
+## Parameters
+
+### Callback
+
+| Type                           | Description                          |
+| ------------------------------ | ------------------------------------ |
+| <code>() =&#62; unknown</code> | Repeatedly called callback functions |
+
+### Delay
+
+| Type                | Description                                       |
+| ------------------- | ------------------------------------------------- |
+| <code>number</code> | Time interval between each callback function call |
+
+### IntervalID
+
+| Type                | Description  |
+| ------------------- | ------------ |
+| <code>number</code> | Timer number |
+
+## Example
+
+```js
+setInterval(() => {
+  console.log('Hello Zepp OS')
+}, 1000)
+```

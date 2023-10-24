@@ -1,0 +1,24 @@
+---
+title: console
+sidebar_label: console
+---
+
+> Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Console Print Log.
+
+## Methods
+
+### log
+
+Print log level logs with any number of parameters. Each log is limited in length and will be truncated if it is exceeded. To print the full content, the developer needs to print the content in multiple times
+
+```ts
+log(...data: any[]): void
+```
+
+## Example
+
+```js
+console.log('Hello Zepp OS')
+```

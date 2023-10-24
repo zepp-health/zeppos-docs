@@ -1,0 +1,33 @@
+# mstPair
+
+> API_LEVEL `3.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+通过 `connectId` 与设备进行配对。
+
+## 类型
+
+```ts
+function mstPair(connectId: ConnectId): Result
+```
+
+## 参数
+
+### ConnectId
+
+| 类型                | 说明                                          |
+| ------------------- | --------------------------------------------- |
+| <code>number</code> | 使用 `mstConnect` API 连接成功时返回的连接 ID |
+
+### Result
+
+| 类型                 | 说明                                            |
+| -------------------- | ----------------------------------------------- |
+| <code>boolean</code> | 函数调用结果，`true` 表示成功、`false` 表示失败 |
+
+## 代码示例
+
+```js
+import { mstPair } from '@zos/ble'
+
+// ...
+```

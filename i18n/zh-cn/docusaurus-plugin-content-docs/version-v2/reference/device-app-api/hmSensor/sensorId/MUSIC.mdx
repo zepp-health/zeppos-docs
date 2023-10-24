@@ -1,0 +1,111 @@
+---
+title: MUSIC
+sidebar_label: MUSIC 音乐控制
+---
+
+## 创建传感器
+
+```js
+const music = hmSensor.createSensor(hmSensor.id.MUSIC)
+```
+
+## music 实例
+
+### music: object
+
+| 属性      | 说明                                     | 类型      |
+| --------- | ---------------------------------------- | --------- |
+| artist    | 艺术家名称                               | `string`  |
+| title     | 音乐名称                                 | `string`  |
+| isPlaying | 播放状态 `true`: 播放中、`false`: 未播放 | `boolean` |
+
+### music.audInit()
+
+初始化音乐控制
+
+#### 类型
+
+```ts
+() => void
+```
+
+### music.audPlay()
+
+播放
+
+#### 类型
+
+```ts
+() => void
+```
+
+### music.audPause()
+
+暂停
+
+#### 类型
+
+```ts
+() => void
+```
+
+### music.audPrev()
+
+上一首
+
+#### 类型
+
+```ts
+() => void
+```
+
+### music.audNext()
+
+下一首
+
+#### 类型
+
+```ts
+() => void
+```
+
+## 注册传感器实例回调事件
+
+```js
+music.addEventListener(event, callback: Callback)
+```
+
+### CHANGE 事件
+
+#### event 值
+
+`hmSensor.event.CHANGE`
+
+#### Callback
+
+```ts
+() => void
+```
+
+#### 事件示例
+
+```js
+music.addEventListener(hmSensor.event.CHANGE, function () {
+  console.log("The current song's name: " + music.title + '\r\n')
+})
+```
+
+## 代码示例
+
+```js
+const music = hmSensor.createSensor(hmSensor.id.MUSIC)
+
+music.audInit()
+music.audPlay()
+music.audPause()
+music.audPrev()
+music.audNext()
+
+console.log('The artist of song: ' + music.artist)
+console.log('The name of song: ' + music.title)
+```

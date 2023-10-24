@@ -1,0 +1,28 @@
+---
+title: hmApp.gotoPage(option)
+sidebar_label: gotoPage
+---
+
+跳转页面。
+
+## 类型
+
+```ts
+(option: Option) => void
+```
+
+## 参数
+
+### Option: object
+
+| 属性  | 说明                                             | 必填 | 类型     | 默认值 |
+| ----- | ------------------------------------------------ | ---- | -------- | ------ |
+| url   | 跳转路径                                         | 是   | `string` | -      |
+| param | 传递给 `Page` 构造函数中 `onInit` 生命周期的参数 | 否   | `string` | -      |
+
+## 代码示例
+
+```js
+// 加载pages/index2.js页面
+hmApp.gotoPage({ url: 'pages/index2', param: '...' })
+```

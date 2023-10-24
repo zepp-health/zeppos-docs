@@ -1,0 +1,39 @@
+# setTimeout
+
+> Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Set a timer and execute the registered callback function after the timer expires.
+
+## Type
+
+```ts
+function setTimeout(callback: Callback, delay?: Delay): TimeoutID
+```
+
+## Parameters
+
+### Callback
+
+| Type                           | Description                                         |
+| ------------------------------ | --------------------------------------------------- |
+| <code>() =&#62; unknown</code> | Callback functions executed after the timer expires |
+
+### Delay
+
+| Type                | Description                                                   |
+| ------------------- | ------------------------------------------------------------- |
+| <code>number</code> | The number of milliseconds to delay the function, default 1ms |
+
+### TimeoutID
+
+| Type                | Description  |
+| ------------------- | ------------ |
+| <code>number</code> | Timer number |
+
+## Example
+
+```js
+setTimeout(() => {
+  console.log('Hello Zepp OS')
+}, 1000)
+```

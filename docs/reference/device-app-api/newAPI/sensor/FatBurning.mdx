@@ -1,0 +1,64 @@
+---
+title: FatBurning
+sidebar_label: FatBurning
+---
+
+> Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+FatBurning Sensor.
+
+:::info
+permission code: `data:user.hd.fat_burning`
+:::
+
+## Methods
+
+### getCurrent
+
+Get current fat burning minutes
+
+```ts
+getCurrent(): number
+```
+
+### getTarget
+
+Get current fat burning target minutes
+
+```ts
+getTarget(): number
+```
+
+### onChange
+
+Register a callback function to listen to the fat burning minutes change event
+
+```ts
+onChange(callback: () => void): void
+```
+
+### offChange
+
+Cancel a callback function to listen to the fat burning minutes change event
+
+```ts
+offChange(callback: () => void): void
+```
+
+## Example
+
+```js
+import { FatBurning } from '@zos/sensor'
+
+const fatBurning = new FatBurning()
+const current = fatBurning.getCurrent()
+const target = fatBurning.getTarget()
+const callback = () => {
+  console.log(fatBurning.getCurrent())
+}
+
+fatBurning.onChange(callback)
+
+// When not needed for use
+fatBurning.offChange(callback)
+```

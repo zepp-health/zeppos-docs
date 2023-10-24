@@ -1,0 +1,95 @@
+---
+title: WEATHER
+sidebar_label: WEATHER
+---
+
+## Creating Sensors
+
+```js
+const weather = hmSensor.createSensor(hmSensor.id.WEATHER)
+```
+
+## WEATHER instance
+
+### weather.getForecastWeather()
+
+#### Type
+
+```ts
+() => ForecastWeather
+```
+
+#### ForecastWeather: object
+
+| Properties   | Description  | Type           |
+| ------------ | ------------ | -------------- |
+| cityName     | City Name    | `string`       |
+| forecastData | Weather Data | `ForecastData` |
+| tideData     | Tide Data    | `TideData`     |
+
+#### ForecastData: object
+
+| Properties | Description                      | Type                      |
+| ---------- | -------------------------------- | ------------------------- |
+| data       | ForecastData array               | `Array<ForecastDataItem>` |
+| count      | Length of the ForecastData array | `number`                  |
+
+#### ForecastDataItem: object
+
+| Properties | Description         | Type     |
+| ---------- | ------------------- | -------- |
+| high       | Highest temperature | `number` |
+| low        | Lowest temperature  | `number` |
+| index      | index               | `number` |
+
+#### TideData: object
+
+| Properties | Description                  | Type                  |
+| ---------- | ---------------------------- | --------------------- |
+| data       | TideData array               | `Array<TideDataItem>` |
+| count      | Length of the TideData array | `number`              |
+
+#### TideDataItem: object
+
+| Properties | Description  | Type      |
+| ---------- | ------------ | --------- |
+| sunrise    | Sunrise data | `Sunrise` |
+| sunset     | Sunset data  | `Sunset`  |
+
+#### Sunrise: object
+
+| Properties | Description | Type     |
+| ---------- | ----------- | -------- |
+| hour       | Hour        | `number` |
+| minute     | Minute      | `number` |
+
+#### Sunset: object
+
+| Properties | Description | Type     |
+| ---------- | ----------- | -------- |
+| hour       | Hour        | `number` |
+| minute     | Minute      | `number` |
+
+## Code example
+
+```js
+// Creating Sensors
+const weatherData = weather.getForecastWeather()
+
+console.log(weatherData.cityName)
+
+const forecastData = weatherData.forecastData
+for (let i = 0; i < forecastData.count; i++) {
+  const element = forecastData.data[i] // i:0 means the day
+  console.log(element.index)
+  console.log(element.high)
+  console.log(element.low)
+}
+
+const tideData = weatherData.tideData
+for (let i = 0; i < tideData.count; i++) {
+  const element = tideData.data[i] // i:0 means the day
+  console.log(element.sunrise.hour + element.sunrise.minute)
+  console.log(element.sunset.hour + element.sunset.minute)
+}
+```

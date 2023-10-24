@@ -1,0 +1,33 @@
+---
+title: DATE_POINTER 
+sidebar_label: DATE_POINTER 
+---
+
+| Value           | Description |
+| --------------- | ----------- |
+| hmUI.date.MONTH | month       |
+| hmUI.date.DAY   | day         |
+| hmUI.date.WEEK  | Day of the week |
+
+## Code example
+
+```js
+let week = hmUI.createWidget(hmUI.widget.DATE_POINTER, {
+  scale_x: 0,
+  scale_x: 0, scale_y: 0,
+  scale_sc: 'bg.png', // Background image, optional.
+  scale_tc: 'bg.png',
+  scale_en: 'bg.png',
+  center_x: 100,
+  center_y: 100,
+  src: 'pointer.png', // Image.
+  posX: 0,
+  posY: 0,
+  cover_x: 0, //Pointer above the hat.
+  cover_y: 0,
+  cover_path: 'cover.png',
+  start_angle: 0, //Point 0 is positive. You can write negative numbers.
+  end_angle: 180,
+  type: hmUI.date.WEEK //Refer to the table above.
+})
+```

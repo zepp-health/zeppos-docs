@@ -1,0 +1,91 @@
+---
+title: CYCLE_LIST
+sidebar_label: CYCLE_LIST
+---
+
+> Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](../../../../../guides/framework/device/compatibility.md).
+
+![cycle_list_sample](/img/api/cycle_list_sample.jpg)
+
+Create a list that scrolls in a loop, which can be populated with images.
+
+## Create UI widget
+
+```js
+import { createWidget, widget } from '@zos/ui'
+
+const cycleList = createWidget(widget.CYCLE_LIST, Param)
+```
+
+## Type
+
+### Param: object
+
+|    Properties     |                         Description               |  Required |      Type       |
+| ----------------- | --------------------------------------------------| --------- | --------------- |
+| item_bg_color     |  Background color.                                | YES       | `number`        |
+| item_height       |  The height of item.                              | YES       | `number`        |
+| x                 | The x-coordinate of widgets.                   | YES       | `number` |
+| y                 | The y-coordinate of widgets.                   | YES       | `number` |
+| w                 | The width of widgets.                          | YES       | `number` |
+| h                 | The height of widgets.                         | YES       | `number` |
+| data_array        | Data arrays.                                      | YES       | `Array<Data>`   |
+| data_size         | The length of the array.                          | YES       | `number`        |
+| item_click_func   | Callback for item click.                          | NO        | `ItemClickFunc` |
+| item_focus_change_func | Item focus state callback.  | NO       | `ItemFocusChangeFunc` |
+
+### ItemClickFunc: function
+
+```ts
+(cycleList: CycleList, index: number) => void
+```
+
+| Properties | Type     | Notes                      |
+| ---------- | -------- | -------------------------- |
+|  cycleList | `object` | The instance of cycleList.  |
+|  index     | `number` | Clicked item index.Starting from 0. |
+
+### ItemFocusChangeFunc: function
+
+```ts
+(cycleList: CycleList, index: number, isFocus: boolean) => void
+```
+
+| 参数      | 说明                       | 类型     |
+| --------- | -------------------------- | -------- |
+| cycleList | The instance of cycleList.             | `object` |
+| index     | Losing/getting the index of the focus item. | `number` |
+| isFocus     | Whether to get the focus. | `boolean` |
+
+## Code example
+
+:::tip
+Please refer to [Design Resources](../../../../related-resources/design-resources.mdx) for the image resources in the code example
+:::
+
+```js
+import { createWidget, widget } from '@zos/ui'
+
+Page({
+  state: {
+    pageName: 'CYCLE_LIST'
+  },
+
+  build() {
+    const imgArray = ['number-img/0.png', 'number-img/1.png', 'number-img/2.png', 'number-img/3.png', 'number-img/4.png']
+    const cycleList = createWidget(widget.CYCLE_LIST, {
+      x: 230,
+      y: 120,
+      h: 300,
+      w: 30,
+      data_array: imgArray,
+      data_size: 5,
+      item_height: 100,
+      item_click_func: (list, index) => {
+        console.log(index)
+      },
+      item_bg_color: 0xffffff
+    })
+  }
+})
+```

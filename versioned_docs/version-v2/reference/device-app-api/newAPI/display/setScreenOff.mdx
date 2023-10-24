@@ -1,0 +1,31 @@
+# setScreenOff
+
+> Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Set the screen to rest.
+
+## Type
+
+```ts
+function setScreenOff(): Result
+```
+
+## Parameters
+
+### Result
+
+| Type                | Description                              |
+| ------------------- | ---------------------------------------- |
+| <code>number</code> | If `0` is returned, success is indicated |
+
+## Example
+
+```js
+import { setScreenOff } from '@zos/display'
+
+const result = setScreenOff()
+
+if (result === 0) {
+  console.log('setScreenOff success')
+}
+```

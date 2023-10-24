@@ -1,0 +1,27 @@
+# mstDestroyProfileInstance
+
+> API_LEVEL `3.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+销毁 Profile。
+
+## 类型
+
+```ts
+function mstDestroyProfileInstance(profile: Profile): void
+```
+
+## 参数
+
+### Profile
+
+| 类型                | 说明         |
+| ------------------- | ------------ |
+| <code>number</code> | Profile 指针 |
+
+## 代码示例
+
+```js
+import { mstDestroyProfileInstance } from '@zos/ble'
+
+mstDestroyProfileInstance()
+```

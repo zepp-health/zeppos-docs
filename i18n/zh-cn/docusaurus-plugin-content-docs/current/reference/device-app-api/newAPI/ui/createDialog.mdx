@@ -1,0 +1,68 @@
+---
+title: createDialog(option)
+sidebar_label: createDialog
+---
+
+> API_LEVEL `2.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+![create_dialog](/img/api/create_dialog.jpg)
+
+创建 Dialog 对话框。
+
+## 类型
+
+```ts
+(option: Option) => dialog
+```
+
+## 参数
+
+### Option: object
+
+| 属性          | 说明                                                        | 是否必须 | 类型                      |
+| ------------- | ----------------------------------------------------------- | -------- | ------------------------- |
+| title         | 标题                                                        | 是       | `string`                  |
+| show          | 完成创建后是否立即显示 Dialog 对话框                        | 否       | `boolean`                 |
+| click_listener | 回调函数，type: 0 点击取消、type: 1 点击确认                  | 是       | `({type: number}) => void` |
+| auto_hide     | 弹窗是否在点击「确认」或者「取消」按钮之后消失，默认 `true` | 否       | `boolean`                 |
+
+:::caution
+`auto_hide` 为 `false` 即可通过 Dialog 实例方法，通过 `show` API 手动控制 Dialog 显示隐藏。
+
+如果需要在弹窗回调函数中调用路由相关 API 如 `back`，建议将 `auto_hide` 设置为 `false`，这样可以让页面跳转更加平滑。否则页面切换时，先销毁 Dialog 弹窗，再进行页面跳转，视觉上会感觉多切换一次。
+:::
+
+### dialog 实例
+
+#### dialog.show()
+
+```ts
+(isShow: boolean) => void
+```
+
+| `isShow` | 说明 |
+| ----------- | ---- |
+| `true`      | 显示 |
+| `false`     | 隐藏 |
+
+## 代码示例
+
+```js
+import { createDialog } from '@zos/ui'
+
+Page({
+  build() {
+    const dialog = createDialog({
+      title: 'HELLO ZEPP OS',
+      auto_hide: false,
+      click_listener: ({ type }) => {
+        dialog.show(false)
+        console.log('type', type)
+        console.log('click dialog')
+      }
+    })
+
+    dialog.show(true)
+  }
+})
+```

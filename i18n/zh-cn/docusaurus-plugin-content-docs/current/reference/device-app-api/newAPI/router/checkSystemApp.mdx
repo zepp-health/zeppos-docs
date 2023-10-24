@@ -1,0 +1,81 @@
+# checkSystemApp
+
+> API_LEVEL `3.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+检查系统应用是否支持跳转。
+
+## 类型
+
+```ts
+function checkSystemApp(option: Option): void
+```
+
+### 简化调用方式
+
+```ts
+function checkSystemApp(appId: number): void
+```
+
+## 参数
+
+### Option
+
+| 属性  | 类型                | 必填 | 默认值 | 说明                                          | API_LEVEL |
+| ----- | ------------------- | ---- | ------ | --------------------------------------------- | --------- |
+| appId | <code>number</code> | 是   | -      | 需要跳转的系统应用 ID，值参考系统应用 ID 常量 | 3.0       |
+
+## 常量
+
+### 系统应用 ID 常量
+
+| 常量                          | 说明          | API_LEVEL |
+| ----------------------------- | ------------- | --------- |
+| `SYSTEM_APP_STATUS`           | 今日活动      | 3.0       |
+| `SYSTEM_APP_HR`               | 心率          | 3.0       |
+| `SYSTEM_APP_SPORT`            | 运动          | 3.0       |
+| `SYSTEM_APP_WEATHER`          | 天气          | 3.0       |
+| `SYSTEM_APP_ALARM`            | 闹钟          | 3.0       |
+| `SYSTEM_APP_CAMERA`           | 遥控拍照      | 3.0       |
+| `SYSTEM_APP_MUSIC`            | 音乐          | 3.0       |
+| `SYSTEM_APP_STOPWATCH`        | 秒表          | 3.0       |
+| `SYSTEM_APP_COUNTDOWN`        | 倒计时        | 3.0       |
+| `SYSTEM_APP_FINE_PHONE`       | 查找手机      | 3.0       |
+| `SYSTEM_APP_CARD`             | 卡包          | 3.0       |
+| `SYSTEM_APP_ALIPAY`           | 支付宝        | 3.0       |
+| `SYSTEM_APP_SETTING`          | 设置          | 3.0       |
+| `SYSTEM_APP_SPORT_HISTORY`    | 运动记录      | 3.0       |
+| `SYSTEM_APP_COMPASS`          | 指南针        | 3.0       |
+| `SYSTEM_APP_PAI`              | PAI           | 3.0       |
+| `SYSTEM_APP_WORLD_CLOCK`      | 世界时钟      | 3.0       |
+| `SYSTEM_APP_PRESSURE`         | 压力          | 3.0       |
+| `SYSTEM_APP_MENSTRUAL`        | 生理周期      | 3.0       |
+| `SYSTEM_APP_SPORT_STATUS`     | 运动状态      | 3.0       |
+| `SYSTEM_APP_CALENDAR`         | 日历          | 3.0       |
+| `SYSTEM_APP_SLEEP`            | 睡眠          | 3.0       |
+| `SYSTEM_APP_SPO2`             | 血氧          | 3.0       |
+| `SYSTEM_APP_PHONE`            | 电话          | 3.0       |
+| `SYSTEM_APP_NETEASE_MUSIC`    | 网易云音乐    | 3.0       |
+| `SYSTEM_APP_WEPAY`            | 微信支付      | 3.0       |
+| `SYSTEM_APP_BREATH`           | 呼吸          | 3.0       |
+| `SYSTEM_APP_POMODORO`         | 番茄钟        | 3.0       |
+| `SYSTEM_APP_ALEAX`            | Alexa         | 3.0       |
+| `SYSTEM_APP_THERMOMETER`      | 温度计        | 3.0       |
+| `SYSTEM_APP_TODO_LIST`        | 待办事项      | 3.0       |
+| `SYSTEM_APP_ALTIMETER`        | 气压高度计    | 3.0       |
+| `SYSTEM_APP_VOICE_MEMO`       | 语音备忘录    | 3.0       |
+| `SYSTEM_APP_SUN_AND_MOON`     | 太阳和月亮    | 3.0       |
+| `SYSTEM_APP_MEASUREMENT`      | 一键测量      | 3.0       |
+| `SYSTEM_APP_ZEPP_COACH`       | Zepp 运动教练 | 3.0       |
+| `SYSTEM_APP_CLUB_CARD`        | 会员卡        | 3.0       |
+| `SYSTEM_APP_BODY_COMPOSITION` | 身体成分      | 3.0       |
+| `SYSTEM_APP_READINESS`        | 身心准备度    | 3.0       |
+
+## 代码示例
+
+```js
+import { checkSystemApp, SYSTEM_APP_STATUS } from '@zos/router'
+
+checkSystemApp({
+  appId: SYSTEM_APP_STATUS,
+})
+```

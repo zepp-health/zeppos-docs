@@ -1,0 +1,47 @@
+# mstConnect
+
+> API_LEVEL `3.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+连接设备。
+
+## 类型
+
+```ts
+function mstConnect(deviceAddress: DeviceAddress, callback: Callback): Result
+```
+
+## 参数
+
+### DeviceAddress
+
+| 类型                     | 说明                                                 |
+| ------------------------ | ---------------------------------------------------- |
+| <code>ArrayBuffer</code> | 设备 MAC 地址，长度 6 字节，建议使用 Uint8Array 视图 |
+
+### Callback
+
+| 类型                                             | 说明             |
+| ------------------------------------------------ | ---------------- |
+| <code>(result: ConnectResult) =&#62; void</code> | 连接结果回调函数 |
+
+### ConnectResult
+
+| 属性       | 类型                     | 说明                                                 | API_LEVEL |
+| ---------- | ------------------------ | ---------------------------------------------------- | --------- |
+| connected  | <code>number</code>      | 连接状态，`0` - 连接成功、`1` - 连接失败、`2` - 断连 | 3.0       |
+| connect_id | <code>number</code>      | 连接成功时返回连接的 ID                              | 3.0       |
+| dev_addr   | <code>ArrayBuffer</code> | 设备 MAC 地址，长度 6 字节，建议使用 Uint8Array 视图 | 3.0       |
+
+### Result
+
+| 类型                 | 说明                                            |
+| -------------------- | ----------------------------------------------- |
+| <code>boolean</code> | 函数调用结果，`true` 表示成功、`false` 表示失败 |
+
+## 代码示例
+
+```js
+import { mstConnect } from '@zos/ble'
+
+// ...
+```

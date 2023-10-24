@@ -1,0 +1,41 @@
+# addHealthData
+
+> Start from API_LEVEL `3.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Set user health data information.
+
+:::info
+permission code: `data:user.health`
+:::
+
+## Type
+
+```ts
+function addHealthData(option: Option): Result
+```
+
+## Parameters
+
+### Option
+
+| Property | Type                | Required | DefaultValue | Description                | API_LEVEL |
+| -------- | ------------------- | -------- | ------------ | -------------------------- | --------- |
+| weight   | <code>number</code> | Y        | -            | Weight, in g               | 3.0       |
+| bmi      | <code>number</code> | Y        | -            | 100 times the value of BMI | 3.0       |
+
+### Result
+
+| Type                 | Description |
+| -------------------- | ----------- |
+| <code>boolean</code> | undefined   |
+
+## Example
+
+```js
+import { addHealthData } from '@zos/user'
+
+addHealthData({
+  weight: 65,
+  bmi: 1900,
+})
+```

@@ -1,0 +1,64 @@
+# onDigitalCrown
+
+> API_LEVEL `2.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+监听数字表冠旋转事件，只允许注册一个事件，如果多次注册会导致上一次注册的事件失效。
+
+## 类型
+
+```ts
+function onDigitalCrown(option: Option): void
+```
+
+### 简化调用方式
+
+```ts
+function onDigitalCrown(callback: (key: Key, degree: Degree) => void): void
+```
+
+## 参数
+
+### Option
+
+| 属性     | 类型                                                | 必填 | 默认值 | 说明                     | API_LEVEL |
+| -------- | --------------------------------------------------- | ---- | ------ | ------------------------ | --------- |
+| callback | <code>(key: Key, degree: Degree) =&#62; void</code> | 是   | -      | 数字表冠旋转事件回调函数 | 2.0       |
+
+### Key
+
+| 类型                | 说明                                            |
+| ------------------- | ----------------------------------------------- |
+| <code>number</code> | 按键名，值参考按键名常量，目前仅支持 `KEY_HOME` |
+
+### Degree
+
+| 类型                | 说明                                                                                     |
+| ------------------- | ---------------------------------------------------------------------------------------- |
+| <code>number</code> | 旋转角度，正数为逆时针旋转，负数为顺时针旋转。数值为转过的角度，旋转速度越快，绝对值越大 |
+
+## 常量
+
+### 按键名常量
+
+| 常量           | 说明          | API_LEVEL |
+| -------------- | ------------- | --------- |
+| `KEY_BACK`     | BACK 按键     | 2.0       |
+| `KEY_SELECT`   | SELECT 按键   | 2.0       |
+| `KEY_HOME`     | HOME 按键     | 2.0       |
+| `KEY_UP`       | UP 按键       | 2.0       |
+| `KEY_DOWN`     | DOWN 按键     | 2.0       |
+| `KEY_SHORTCUT` | SHORTCUT 按键 | 2.0       |
+
+## 代码示例
+
+```js
+import { onDigitalCrown, KEY_HOME } from '@zos/interaction'
+
+onDigitalCrown({
+  callback: (key, degree) => {
+    if (key === KEY_HOME) {
+      console.log(degree)
+    }
+  },
+})
+```

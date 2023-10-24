@@ -1,0 +1,117 @@
+---
+title: Stress
+sidebar_label: Stress
+---
+
+> Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Stress Sensor.
+
+:::info
+permission code: `data:user.hd.stress`
+:::
+
+## Methods
+
+### getCurrent
+
+Get the current pressure measurement
+
+```ts
+getCurrent(): Result
+```
+
+#### Result
+
+| Property | Type                | Description                       | API_LEVEL |
+| -------- | ------------------- | --------------------------------- | --------- |
+| value    | <code>number</code> | Stress measurement values         | 2.0       |
+| time     | <code>number</code> | Time to obtain the measured value | 2.0       |
+
+### onChange
+
+Register a callback function to listen for stress measurement change events
+
+```ts
+onChange(callback: () => void): void
+```
+
+### offChange
+
+Cancel a callback function to listen for stress measurement change events
+
+```ts
+offChange(callback: () => void): void
+```
+
+### getToday
+
+> Start from API_LEVEL `3.0`
+
+Get the pressure measurements for the whole day, recorded every minute, the return value is an array of variable length, the maximum length of the array is 24 \* 60
+
+```ts
+getToday(): Array<number>
+```
+
+#### StressInfo
+
+| Property | Type                | Description                                                 | API_LEVEL |
+| -------- | ------------------- | ----------------------------------------------------------- | --------- |
+| second   | <code>number</code> | Pressure value measurement time, UTC time stamp, in seconds | 3.0       |
+| stress   | <code>number</code> | Pressure value, `0` means invalid                           | 3.0       |
+
+### getTodayByHour
+
+> Start from API_LEVEL `3.0`
+
+Get the average pressure value for the whole day, the return value is a fixed-length array, the average pressure for each hour, the length of the array is 24
+
+```ts
+getTodayByHour(): Array<number>
+```
+
+### getLastWeek
+
+> Start from API_LEVEL `3.0`
+
+Get the average pressure value for each day of the past week, the return value is a fixed-length array, the average pressure per day, the length of the array is 7, the position of index 0 represents six days ago, the position of index 6 represents today
+
+```ts
+getLastWeek(): Array<number>
+```
+
+### getLastWeekByHour
+
+> Start from API_LEVEL `3.0`
+
+Get the hourly pressure average for the past week, the return value is a fixed-length array, the length of the array is 7 \* 24
+
+```ts
+getLastWeekByHour(): Array<StressInfo>
+```
+
+#### StressInfo
+
+| Property | Type                | Description                                                 | API_LEVEL |
+| -------- | ------------------- | ----------------------------------------------------------- | --------- |
+| second   | <code>number</code> | Pressure value measurement time, UTC time stamp, in seconds | 3.0       |
+| stress   | <code>number</code> | Pressure value, `0` means invalid                           | 3.0       |
+
+## Example
+
+```js
+import { Stress } from '@zos/sensor'
+
+const stress = new Stress()
+const { value } = stress.getCurrent()
+
+const callback = () => {
+  console.log(stress.getCurrent())
+}
+
+stress.onChange(callback)
+
+// When not needed for use
+stress.offChange(callback)
+```

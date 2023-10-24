@@ -1,0 +1,64 @@
+---
+title: hmUI.createDialog(option)
+sidebar_label: createDialog
+---
+
+![create_dialog](/img/api/create_dialog.jpg)
+
+Create a Dialog.
+
+## Type
+
+```ts
+(option: Option) => result
+```
+
+## Parameters
+
+### Option: object
+
+| Properties    | Description                                                                                    | Required | Type                       |
+| ------------- | ---------------------------------------------------------------------------------------------- | -------- | -------------------------- |
+| title         | The title of the widget.                                                                    | YES      | `string`                   |
+| show          | Whether to display Dialog immediately after the creation is completed, default `false`.         | NO       | `boolean`                  |
+| click_linster | Callback function, type: 0 click to cancel, type: 1 click to confirm.                          | YES      | `({type: number}) => void` |
+| auto_hide     | Whether the dialog disappears after clicking the "Confirm" or "Cancel" button, default `true`. | NO       | `boolean`                  |
+
+:::caution
+Setting `auto_hide` to `false` allows the Dialog to be shown and hidden manually through the `show` API via the Dialog instance method.
+
+If you need to call routing-related APIs like `hm.goBack` in the popup callback function, it is recommended to set `auto_hide` to `false` to make the page jump smoother. Otherwise, when the page is switched, the Dialog popup will be destroyed first, and then the page will be jumped, which will make the page feel switched once more.
+:::
+
+### dialog instance
+
+#### dialog.show()
+
+```ts
+(isShow: boolean) => void
+```
+
+| `isShow` | Description |
+| -------- | ----------- |
+| `true`   | show        |
+| `false`  | hide        |
+
+## Code examples
+
+```js
+Page({
+  build() {
+    const dialog = hmUI.createDialog({
+      title: 'HELLO ZEPP OS',
+      auto_hide: false,
+      click_linster: ({ type }) => {
+        dialog.show(false)
+        console.log('type', type)
+        console.log('click dialog')
+      }
+    })
+
+    dialog.show(true)
+  }
+})
+```

@@ -1,0 +1,133 @@
+---
+title: Widgets Management by Group
+sidebar_label: Widgets Management by Group
+---
+
+This article introduces the use of `GROUP` widget to group and manage a series of widgets in some suitable scenarios for a more elegant code implementation.
+
+Examples are given for the following scenarios, and we look forward to more scenarios from the community
+
+- Scenario 1: Uniformly control the widgets in a rectangular area to show/hide, modify the position, etc.
+- Scenario 2: Registering the same click events for widgets in a rectangular area and expanding the click area for user interaction
+
+## Scenario 1: Uniformly control the widgets in a rectangular area to show/hide, modify the position, etc.
+
+The following screenshot shows the "Holiday Calendar" Mini Program running in the simulator.
+
+![holidays screenshot](/img/docs/guides/best-practice/widget-group1.jpg)
+
+Take a part of the interface as an example.
+
+![holidays screenshot](/img/docs/guides/best-practice/widget-group2.jpg)
+
+This part of the screen includes two `IMG` widgets and a `TEXT` widget. If I wanted to hide this whole area, how would the code do it?
+
+```js
+const img_icon_widget = hmUI.createWidget(hmUI.widget.IMG, {
+  // ...
+})
+
+const img_arrow_widget = hmUI.createWidget(hmUI.widget.IMG, {
+  // ...
+})
+
+const text_name_widget = hmUI.createWidget(hmUI.widget.TEXT, {
+  // ...
+})
+
+img_icon_widget.setProperty(hmUI.prop.VISIBLE, false)
+img_arrow_widget.setProperty(hmUI.prop.VISIBLE, false)
+text_name_widget.setProperty(hmUI.prop.VISIBLE, false)
+```
+
+Need to set property `hmUI.prop.VISIBLE` once for each widget in this area, this code is not well maintained, use `GROUP` widget to transform the code.
+
+```js
+const group_widget = hmUI.createWidget(hmUI.widget.GROUP , {
+  // ...
+})
+
+const img_icon_widget = group_widget.createWidget(hmUI.widget.IMG, {
+  // ...
+})
+
+const img_arrow_widget = group_widget.createWidget(hmUI.widget.IMG, {
+  // ...
+})
+
+const text_name_widget = group_widget.createWidget(hmUI.widget.TEXT, {
+  // ...
+})
+
+group_widget.setProperty(hmUI.prop.VISIBLE, false)
+```
+
+As you can see, all widgets created with `GROUP` are managed with `GROUP`, and the code is streamlined by unifying the control of showing and hiding with `GROUP` widget.
+
+:::caution
+Note that widgets created with `group.createWidget` are laid out using relative coordinates, with the origin of the layout coordinate system located in the upper-left corner of the `group` widget.
+:::
+
+## Scenario 2: Register the same click events for controls in a rectangular area and expand the click area for user interaction
+
+![holidays screenshot](/img/docs/guides/best-practice/widget-group2.jpg)
+
+Again, using this interface as an example, we want to trigger the function `callback` for each widget clicked in this area, and we usually implement the code like this
+
+```js
+const callback = () => {
+  console.log('callback')
+}
+
+const img_icon_widget = hmUI.createWidget(hmUI.widget.IMG, {
+  // ...
+})
+
+img_icon_widget.addEventListener(hmUI.event.CLICK_DOWN, callback)
+
+const img_arrow_widget = hmUI.createWidget(hmUI.widget.IMG, {
+  // ...
+})
+
+img_arrow_widget.addEventListener(hmUI.event.CLICK_DOWN, callback)
+
+const text_name_widget = hmUI.createWidget(hmUI.widget.TEXT, {
+  // ...
+})
+
+text_name_widget.addEventListener(hmUI.event.CLICK_DOWN, callback)
+```
+
+The purpose is achieved by registering the same event for each widget. The areas marked in the figure below indicate the interactable areas that can trigger click events.
+
+![holidays screenshot](/img/docs/guides/best-practice/widget-group3.jpg)
+
+As you can observe, the interactable area is too narrow and hard to click on the watch device, resulting in a poor user experience, so the code is modified using the `GROUP` widget.
+
+```js
+const callback = () => {
+  console.log('callback')
+}
+
+const group_widget = hmUI.createWidget(hmUI.widget.GROUP , {
+  // ...
+})
+
+const img_icon_widget = group_widget.createWidget(hmUI.widget.IMG, {
+  // ...
+})
+
+const img_arrow_widget = group_widget.createWidget(hmUI.widget.IMG, {
+  // ...
+})
+
+const text_name_widget = group_widget.createWidget(hmUI.widget.TEXT, {
+  // ...
+})
+
+group_widget.addEventListener(hmUI.event.CLICK_DOWN, callback)
+```
+
+![holidays screenshot](/img/docs/guides/best-practice/widget-group4.jpg)
+
+Only need to register the event once and you can observe that the clickable area gets bigger!

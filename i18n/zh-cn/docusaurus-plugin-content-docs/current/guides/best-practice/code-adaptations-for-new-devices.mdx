@@ -1,0 +1,142 @@
+---
+title: 代码适配更多 Zepp OS 设备
+sidebar_label: 代码适配更多 Zepp OS 设备
+---
+
+开发者已经以一款设备为基准完成了小程序的开发，如何让其运行在更多已发布的 Zepp OS 设备上？
+
+本文帮助开发者快速地将现有小程序代码适配到更多搭载 Zepp OS 的设备上。
+
+Zepp OS 小程序在设计之初就考虑到了兼容性，无需开发者调整过多代码，对各个设备之间的差异部分进行适当处理即可，主要差异有：
+
+- app.json 配置
+- 屏幕差异
+- 实体按键、表冠差异
+
+## app.json 配置
+
+通过 [app.json 小程序配置](../../reference/app-json.mdx) 中的 `targets` 字段，就可以对不同设备传入不同构建配置。
+
+每一个 `target` 的键名可以随意命名，建议使用设备名来做命名，这个名称对应着小程序资源文件 `/assets` 目录下的子目录，可以参考 [目录结构](../architecture/folder-structure.mdx)。
+
+完整看一个例子，列举了 `app.json` 中的部分配置。
+
+```json title="app.json"
+{
+  // ...
+  "targets": {
+    "gtr-3-pro": {
+      "module": {
+        // ···
+      },
+      "platforms": [
+        {
+          "name": "gtr-3-pro",
+          "deviceSource": 229
+        },
+        {
+          "name": "gtr-3-prow",
+          "deviceSource": 230
+        }
+      ],
+      "designWidth": 480
+    }
+  }
+}
+```
+
+这个小程序的部分目录结构
+
+```txt
+.
+├── app.js
+├── app.json
+├── assets
+│   ├── gtr-3-pro
+│   │   ├── icon.png
+│   │   └── image
+│   │       └── logo.png
+...
+```
+
+在这一份 `targets` 配置中，使用 `gtr-3-pro` 作为一个构建配置的键名，键名以设备名来命名，对应到 `/assets` 资源目录，与此设备相关的资源文件都放置在 `/gtr-3-pro` 子目录下。
+
+比如 `IMG` 控件的参数中 `src: 'image/logo.png'` 在此 `target` 配置下对应的图片路径就是 `/assets/gtr-3-pro/image/logo.png`。
+
+为什么同一款 GTR 3 PRO 设备的 `deviceSource` 会有多个，此问题可以不用关心，参考 [设备基本信息](../../reference/related-resources/device-list.mdx) 中的 `deviceSource` 填入即可。
+
+下面进行一个实战，让此仅支持 GTR3 PRO 的小程序适配 GTR3 机型。
+
+1.首先添加针对 GTR3 的 target 配置
+
+```json title="app.json"
+{
+  // ...
+  "targets": {
+    "gtr-3-pro": {
+      "module": {
+        // ···
+      },
+      "platforms": [
+        {
+          "name": "gtr-3-pro",
+          "deviceSource": 229
+        },
+        {
+          "name": "gtr-3-prow",
+          "deviceSource": 230
+        }
+      ],
+      "designWidth": 480
+    },
+    "gtr-3": {
+      "module": {
+        // ···
+      },
+      "platforms": [
+        {
+          "name": "gtr-3",
+          "deviceSource": 226
+        },
+        {
+          "name": "gtr-3w",
+          "deviceSource": 227
+        }
+      ],
+      "designWidth": 480
+    }
+  }
+}
+```
+
+2.在 `/assets` 目录下建立以 `target` 键名为名称的文件夹，将资源文件放在其中
+
+:::caution
+建议：图片资源文件需要根据屏幕比例进行一个等比例缩放，才会有更好的显示效果
+:::
+
+```txt
+.
+├── app.js
+├── app.json
+├── assets
+│   ├── gtr-3
+│   │   ├── icon.png
+│   │   └── image
+│   │       └── logo.png
+│   └── gtr-3-pro
+│       ├── icon.png
+│       └── image
+│           └── logo.png
+...
+```
+
+## 不同屏幕适配
+
+关于小程序适配不同屏幕，可以参考 [屏幕适配](../best-practice/multi-screen-adaption.mdx)。
+
+## 实体按键，表冠逻辑适配
+
+搭载 Zepp OS 的产品根据场景需要，会有不一样的实体按键数量，并且部分机型会配备数字表冠。关于按键的排布和命名可以参考 [实体按键](../../reference/related-resources/physical-keys.mdx)。
+
+对于实体按键和表冠逻辑的适配，需要进行对应代码逻辑的调整，参考对应的按键事件和表冠事件 API 即可。

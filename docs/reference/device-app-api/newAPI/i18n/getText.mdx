@@ -1,0 +1,33 @@
+# getText
+
+> Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Get the corresponding string from the internationalization resource file (.po) based on the internationalization key.
+
+## Type
+
+```ts
+function getText(key: Key): Result
+```
+
+## Parameters
+
+### Key
+
+| Type                | Description              |
+| ------------------- | ------------------------ |
+| <code>string</code> | Internationalization key |
+
+### Result
+
+| Type                | Description                                           |
+| ------------------- | ----------------------------------------------------- |
+| <code>string</code> | The string corresponding to the internationalized key |
+
+## Example
+
+```js
+import { getText } from '@zos/i18n'
+
+getText('name')
+```

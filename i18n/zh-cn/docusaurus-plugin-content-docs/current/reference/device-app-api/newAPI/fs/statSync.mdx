@@ -1,0 +1,46 @@
+# statSync
+
+> API_LEVEL `2.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+同步地获取小程序 `/data` 目录下的文件信息。
+
+## 类型
+
+```ts
+function statSync(option: Option): Result
+```
+
+## 参数
+
+### Option
+
+| 属性 | 类型                | 必填 | 默认值 | 说明 | API_LEVEL |
+| ---- | ------------------- | ---- | ------ | ---- | --------- |
+| path | <code>string</code> | 是   | -      | 路径 | 2.0       |
+
+### Result
+
+| 类型                               | 说明                                                        |
+| ---------------------------------- | ----------------------------------------------------------- |
+| <code>FSStat&#124;undefined</code> | 如果返回 `undefined` 则目标文件不存在，否则返回文件信息对象 |
+
+### FSStat
+
+| 属性 | 类型                | 说明                   | API_LEVEL |
+| ---- | ------------------- | ---------------------- | --------- |
+| size | <code>number</code> | 文件大小（单位为字节） | 2.0       |
+
+## 代码示例
+
+```js
+import { statSync } from '@zos/fs'
+
+const result = statSync({
+  path: 'test.txt',
+})
+
+if (result) {
+  const { size } = result
+  console.log(size)
+}
+```

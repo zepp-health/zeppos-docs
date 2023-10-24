@@ -1,0 +1,33 @@
+# px
+
+> API_LEVEL `2.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+以小程序配置 `app.json` 中 `targets` 对象中各机型配置的 `designWidth` 为基准进行像素值缩放计算。
+
+## 类型
+
+```ts
+function px(value: PxValue): Result
+```
+
+## 参数
+
+### PxValue
+
+| 类型                | 说明                                |
+| ------------------- | ----------------------------------- |
+| <code>number</code> | 以 `designWidth` 为缩放基准的像素值 |
+
+### Result
+
+| 类型                | 说明                                   |
+| ------------------- | -------------------------------------- |
+| <code>string</code> | 根据机型实际宽度进行缩放计算后的像素值 |
+
+## 代码示例
+
+```js
+import { px } from '@zos/utils'
+
+px(480)
+```

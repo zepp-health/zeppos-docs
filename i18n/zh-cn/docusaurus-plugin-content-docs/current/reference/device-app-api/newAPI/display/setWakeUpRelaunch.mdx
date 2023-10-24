@@ -1,0 +1,41 @@
+# setWakeUpRelaunch
+
+> API_LEVEL `2.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+默认情况下，在小程序某个页面中触发系统息屏，10s 后系统会退出该小程序，再次唤醒手表时进入表盘页面，如果设置 `relaunch` 为 `true`，再次唤醒手表后会重新打开小程序，并进入对应页面。
+
+## 类型
+
+```ts
+function setWakeUpRelaunch(option: Option): void
+```
+
+### 简化调用方式
+
+```ts
+function setWakeUpRelaunch(relaunch: boolean): void
+```
+
+## 参数
+
+### Option
+
+| 类型                              | 说明                                                              |
+| --------------------------------- | ----------------------------------------------------------------- |
+| <code>Options&#124;boolean</code> | 如果类型为 `boolean` 参数含义为 `relaunch`，否则代表 Options 对象 |
+
+### Options
+
+| 属性     | 类型                 | 必填 | 默认值 | 说明                                 | API_LEVEL |
+| -------- | -------------------- | ---- | ------ | ------------------------------------ | --------- |
+| relaunch | <code>boolean</code> | 是   | -      | 息屏后再次唤醒手表是否重新打开小程序 | 2.0       |
+
+## 代码示例
+
+```js
+import { setWakeUpRelaunch } from '@zos/display'
+
+setWakeUpRelaunch({
+  relaunch: true,
+})
+```

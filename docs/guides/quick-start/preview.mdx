@@ -1,0 +1,59 @@
+---
+title: 5. Preview on a Watch
+sidebar_label: 5. Preview on a Watch
+---
+
+import useBaseUrl from '@docusaurus/useBaseUrl'
+
+In this section, we will accomplish the following tasks
+
+- Install the Zepp App on your phone and register for a Zepp account.
+  - Follow the prompts to complete the watch device binding
+- Generate Mini program QR code by compiling with `zeus preview` command
+- Enable Developer Mode from within the Zepp App
+
+## Install the Zepp App on your phone and register for a Zepp account
+
+Scan the QR code with your mobile device to install Zepp App.
+
+<img src={useBaseUrl('/img/docs/quick-start/download_zepp.jpg')} width="300" title="download_zepp" />
+
+Register and log in to your Zepp account in the Zepp App and follow the instructions to complete the binding of your Zepp OS watch device.
+
+## Generate Mini program QR code by compiling with `zeus preview` command
+
+Execute the `zeus preview` command from the root of the `hello-world` applet.
+
+Generate QR code images in the terminal after compilation is complete.
+
+## Enable Developer Mode from within the Zepp App
+
+- Turn on
+  - Go to "Profile" => "Settings" => "About" and click the Zepp icon 7 times in a row until a pop-up window appears
+- Turn off
+  - Go to"Profile" => "Settings" and remove the Developer Mode option
+
+![devInfo.png](/img/docs/watchface/lesson/dev_info.png)
+
+Using the "Scan" function, you can scan the QR code to install it on your device.
+
+![installAppScanCode.png](/img/docs/watchface/lesson/install_app_scan_code.jpg)
+
+---
+
+Congratulations 🎉🎉🎉, you have completed the first Zepp OS Mini Program creation, development, debugging, and preview process.
+
+To learn more about the framework, API details, please refer to:
+
+- [Overall Architecture](../architecture/arc.mdx)
+- [Folder Structure](../architecture/folder-structure.mdx)
+- [Framework Device](../framework/device/intro.md)
+- [Mini Program Configuration app.json](../../reference/app-json.mdx)
+
+For more tips on debugging small program development, please refer to:
+
+- [Debug Mini Program](../../guides/best-practice/debug.mdx)
+
+To learn about the release of Mini Program, please refer to:
+
+- [How to submit an App](../../distribute/index.md)

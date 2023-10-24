@@ -1,0 +1,20 @@
+---
+title: Image
+sidebar_label: Image 图片
+---
+
+## 类型
+
+```ts
+(props: Props) => result: RenderFunc
+```
+
+## Props: object
+
+| 名称     | 说明                           | 必填 | 类型                        | 默认值  |
+| -------- | ------------------------------ | ---- | --------------------------- | ------- |
+| style | 样式属性，支持 CSS 属性 | 否   | `object`                  | -       |
+| src    | 图片URL或者base64字符串                      | 是   | `string`                    | -       |
+| alt  | 图像无法显示时的替代文本                       | 否   | `string`       | -       |
+| width | 图片宽                      | 否   | `string` 或 `number`                   | - |
+| height    | 图片高                       | 否   | `string` 或 `number` | -       |

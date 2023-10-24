@@ -1,0 +1,96 @@
+---
+title: HeartRate
+sidebar_label: HeartRate
+---
+
+> Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+HeartRate Sensor.
+
+:::info
+permission code: `data:user.hd.heart_rate`
+:::
+
+## Methods
+
+### getCurrent
+
+Get the current heart rate measurement, this method needs to be used in the `onCurrentChange` callback function
+
+```ts
+getCurrent(): number
+```
+
+### getLast
+
+Get the most recent heart rate measurement (single measurement or heart rate monitoring measurement, continuous heart rate measurement `onCurrentChange` results are not counted)
+
+```ts
+getLast(): number
+```
+
+### getToday
+
+Get the heart rate measurement data in minutes from 0:00 to the current moment of the day, the longest array is 60\*24
+
+```ts
+getToday(): Array<number>
+```
+
+### onCurrentChange
+
+> Start from API_LEVEL `2.1`
+
+Call this method and start measuring heart rate continuously, call the callback function when there is a measurement result, call the `getCurrent` method in the callback function to get the heart rate measurement value, if you want to stop the heart rate measurement, you need to call the `offCurrentChange` method
+
+```ts
+onCurrentChange(callback: () => void): void
+```
+
+### offCurrentChange
+
+> Start from API_LEVEL `2.1`
+
+Cancel continuous heart rate measurement and cancel callback function listeners
+
+```ts
+offCurrentChange(callback: () => void): void
+```
+
+### onLastChange
+
+> Start from API_LEVEL `2.1`
+
+Register the heart rate single measurement change event callback function
+
+```ts
+onLastChange(callback: () => void): void
+```
+
+### offLastChange
+
+> Start from API_LEVEL `2.1`
+
+Cancel the heart rate single measurement change event callback function
+
+```ts
+offLastChange(callback: () => void): void
+```
+
+## Example
+
+```js
+import { HeartRate } from '@zos/sensor'
+
+const heartRate = new HeartRate()
+const lastValue = heartRate.getLast()
+
+const callback = () => {
+  console.log(heartRate.getCurrent())
+}
+
+heartRate.onCurrentChange(callback)
+
+// When not needed for use
+heartRate.offCurrentChange(callback)
+```

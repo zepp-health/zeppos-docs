@@ -1,0 +1,46 @@
+---
+title: DISTANCE
+sidebar_label: DISTANCE
+---
+
+## Creating Sensors
+
+```js
+const distance = hmSensor.createSensor(hmSensor.id.DISTANCE)
+
+console.log(distance.current)
+```
+
+## DISTANCE instance
+
+### distance: object
+
+| Properties |   Description   | Type |
+| ---------- | --------------- | -------- |
+|  current   | current mileage | `number` |
+
+## Registering sensor instance callback events
+
+```js
+calorie.addEventListener(event, callback: Callback)
+```
+
+### The events of CHANGE
+
+#### The value of events
+
+`hmSensor.event.CHANGE`
+
+#### Callback
+
+```ts
+() => void
+```
+
+#### The example of events
+
+```js
+distance.addEventListener(hmSensor.event.CHANGE, function () {
+  console.log('The current distance is ' + distance.current + '\r\n')
+})
+```

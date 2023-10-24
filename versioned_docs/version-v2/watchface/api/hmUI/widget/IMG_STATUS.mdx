@@ -1,0 +1,23 @@
+---
+title: IMG_STATUS 
+sidebar_label: IMG_STATUS 
+---
+
+| Value                             | Description           |
+| --------------------------------- | --------------------- |
+| hmUI.system_status.CLOCK          | Alarm clock on        |
+| DISCONNECT                        | Bluetooth Disconnect | 
+| hmUI.system_status.DISTURB        | Do not disturb        |
+| hmUI.system_status.LOCK           | Lock screen on        |
+
+## Code example
+
+```js
+const status = hmUI.createWidget(hmUI.widget.IMG_STATUS, {
+  x: 0,
+  y: 0,
+  // w,h are optional settings. Use image width and height by default.
+  type: hmUI.system_status.DISCONNECT, // Data types, refer to the table above.
+  src: 'status.png'
+})
+```

@@ -1,0 +1,47 @@
+---
+title: STAND
+sidebar_label: STAND 站立
+---
+
+## 创建传感器
+
+```js
+const stand = hmSensor.createSensor(hmSensor.id.STAND)
+
+console.log(stand.current)
+```
+
+## stand 实例
+
+### stand: object
+
+| 属性    | 说明           | 类型     |
+| ------- | -------------- | -------- |
+| current | 当前有站立小时 | `number` |
+| target  | 有站立小时目标 | `number` |
+
+## 注册传感器实例回调事件
+
+```js
+calorie.addEventListener(event, callback: Callback)
+```
+
+### CHANGE 事件
+
+#### event 值
+
+`hmSensor.event.CHANGE`
+
+#### Callback
+
+```ts
+() => void
+```
+
+#### 事件示例
+
+```js
+stand.addEventListener(hmSensor.event.CHANGE, function () {
+  console.log('the current stand: ' + stand.current + ' target: ' + stand.target + '\r\n')
+})
+```

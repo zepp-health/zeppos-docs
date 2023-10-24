@@ -1,0 +1,131 @@
+---
+title: Weather
+sidebar_label: Weather 天气预报
+---
+
+:::warning
+此接口已废弃，调整规则请参考 https://github.com/orgs/zepp-health/discussions/83
+:::
+
+> API_LEVEL `2.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+天气预报传感器。
+
+## 方法
+
+### getForecastWeather
+
+获取天气预报数据
+
+```ts
+getForecastWeather(): ForecastWeather
+```
+
+#### ForecastWeather
+
+| 属性         | 类型                      | 说明     | API_LEVEL |
+| ------------ | ------------------------- | -------- | --------- |
+| cityName     | <code>string</code>       | 城市名称 | 2.0       |
+| forecastData | <code>ForecastData</code> | 天气信息 | 2.0       |
+| tideData     | <code>TideData</code>     | 潮汐信息 | 2.0       |
+
+#### ForecastData
+
+| 属性  | 类型                                         | 说明                              | API_LEVEL |
+| ----- | -------------------------------------------- | --------------------------------- | --------- |
+| data  | <code>Array&#60;ForecastDataItem&#62;</code> | 天气信息数组，索引 0 位置代表当天 | 2.0       |
+| count | <code>number</code>                          | 天气信息数组长度                  | 2.0       |
+
+#### ForecastDataItem
+
+| 属性  | 类型                | 说明                               | API_LEVEL |
+| ----- | ------------------- | ---------------------------------- | --------- |
+| high  | <code>number</code> | 最高温度                           | 2.0       |
+| low   | <code>number</code> | 最低温度                           | 2.0       |
+| index | <code>number</code> | 天气的索引值，值描述详见下方 index | 2.0       |
+
+#### index
+
+| 值  | 类型                | 说明           | API_LEVEL |
+| --- | ------------------- | -------------- | --------- |
+| 0   | <code>number</code> | 多云           | 2.0       |
+| 1   | <code>number</code> | 阵雨           | 2.0       |
+| 2   | <code>number</code> | 阵雪           | 2.0       |
+| 3   | <code>number</code> | 晴             | 2.0       |
+| 4   | <code>number</code> | 阴             | 2.0       |
+| 5   | <code>number</code> | 小雨           | 2.0       |
+| 6   | <code>number</code> | 小雪           | 2.0       |
+| 7   | <code>number</code> | 中雨           | 2.0       |
+| 8   | <code>number</code> | 中雪           | 2.0       |
+| 9   | <code>number</code> | 大雪           | 2.0       |
+| 10  | <code>number</code> | 大雨           | 2.0       |
+| 11  | <code>number</code> | 沙尘暴         | 2.0       |
+| 12  | <code>number</code> | 雨夹雪         | 2.0       |
+| 13  | <code>number</code> | 雾             | 2.0       |
+| 14  | <code>number</code> | 霾             | 2.0       |
+| 15  | <code>number</code> | 雷阵雨         | 2.0       |
+| 16  | <code>number</code> | 暴雪           | 2.0       |
+| 17  | <code>number</code> | 浮尘           | 2.0       |
+| 18  | <code>number</code> | 特大暴雨       | 2.0       |
+| 19  | <code>number</code> | 雨加冰雹       | 2.0       |
+| 20  | <code>number</code> | 雷阵雨伴有冰雹 | 2.0       |
+| 21  | <code>number</code> | 大暴雨         | 2.0       |
+| 22  | <code>number</code> | 扬尘           | 2.0       |
+| 23  | <code>number</code> | 强沙尘暴       | 2.0       |
+| 24  | <code>number</code> | 暴雨           | 2.0       |
+| 25  | <code>number</code> | 未知天气       | 2.0       |
+| 26  | <code>number</code> | 夜间多云       | 2.0       |
+| 27  | <code>number</code> | 夜间阵雨       | 2.0       |
+| 28  | <code>number</code> | 夜间晴         | 2.0       |
+
+#### TideData
+
+| 属性  | 类型                                     | 说明                              | API_LEVEL |
+| ----- | ---------------------------------------- | --------------------------------- | --------- |
+| data  | <code>Array&#60;TideDataItem&#62;</code> | 潮汐信息数组，索引 0 位置代表当天 | 2.0       |
+| count | <code>number</code>                      | 潮汐信息数组长度                  | 2.0       |
+
+#### TideDataItem
+
+| 属性    | 类型                 | 说明     | API_LEVEL |
+| ------- | -------------------- | -------- | --------- |
+| sunrise | <code>Sunrise</code> | 日出时间 | 2.0       |
+| sunset  | <code>Sunset</code>  | 日落时间 | 2.0       |
+
+#### Sunrise
+
+| 属性   | 类型                | 说明            | API_LEVEL |
+| ------ | ------------------- | --------------- | --------- |
+| hour   | <code>number</code> | 日出时间 - 小时 | 2.0       |
+| minute | <code>number</code> | 日出时间 - 分钟 | 2.0       |
+
+#### Sunset
+
+| 属性   | 类型                | 说明            | API_LEVEL |
+| ------ | ------------------- | --------------- | --------- |
+| hour   | <code>number</code> | 日落时间 - 小时 | 2.0       |
+| minute | <code>number</code> | 日落时间 - 分钟 | 2.0       |
+
+## 代码示例
+
+```js
+import { Weather } from '@zos/sensor'
+
+const weather = new Weather()
+const { forecastData, tideData, cityName } = weather.getForecast()
+
+console.log(cityName)
+
+for (let i = 0; i < forecastData.count; i++) {
+  const element = forecastData.data[i]
+  console.log('Index' + element.index)
+  console.log('Highest temperature' + element.high)
+  console.log('Lowest temperature' + element.low)
+}
+
+for (let i = 0; i < tideData.count; i++) {
+  const element = tideData.data[i]
+  console.log('Sunrise' + element.sunrise.hour + element.sunrise.minute)
+  console.log('Sunset' + element.sunset.hour + element.sunset.minute)
+}
+```

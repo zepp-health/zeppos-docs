@@ -1,0 +1,45 @@
+# mstWriteCharacteristic
+
+> Start from API_LEVEL `3.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Write Characteristic information.
+
+## Type
+
+```ts
+function mstWriteCharacteristic(profile: Profile, uuid: UUID, data: Data, length: Length): void
+```
+
+## Parameters
+
+### Profile
+
+| Type                | Description     |
+| ------------------- | --------------- |
+| <code>number</code> | Profile pointer |
+
+### UUID
+
+| Type                | Description                |
+| ------------------- | -------------------------- |
+| <code>string</code> | Characteristic UUID string |
+
+### Data
+
+| Type                     | Description                              |
+| ------------------------ | ---------------------------------------- |
+| <code>ArrayBuffer</code> | Reads the data using the Uint8Array view |
+
+### Length
+
+| Type                | Description |
+| ------------------- | ----------- |
+| <code>number</code> | Data length |
+
+## Example
+
+```js
+import { mstWriteCharacteristic } from '@zos/ble'
+
+// ...
+```

@@ -1,0 +1,44 @@
+---
+title: hmFS.open_asset(path, flag)
+sidebar_label: open_asset
+---
+
+> Zepp OS 小程序文件系统介绍请参考 [文件系统](../../../guides/framework/device/fs.md)。
+
+打开小程序 `/assets` 目录下的文件，`/assets` 目录只读。
+
+## 类型
+
+```ts
+(path: string, flag: FLAG) => fileId
+```
+
+## 参数
+
+### path
+
+| 说明                                  | 必填 | 类型     | 默认值 |
+| ------------------------------------- | ---- | -------- | ------ |
+| 小程序 `/assets` 目录下文件名(相对路径) | 是   | `string` | -      |
+
+### FLAG
+
+| 可选属性 | 说明                                                    |
+| -------- | ------------------------------------------------------- |
+| O_RDONLY | 只读                                                    |
+
+### fileId
+
+| 说明     | 类型     |
+| -------- | -------- |
+| 文件句柄 | `number` |
+
+## 代码示例
+
+```js
+Page({
+  build() {
+    const fileId = hmFS.open_asset('test_file.txt', hmFS.O_RDONLY)
+  }
+})
+```

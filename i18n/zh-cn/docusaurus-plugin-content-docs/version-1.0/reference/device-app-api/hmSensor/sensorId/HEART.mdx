@@ -1,0 +1,189 @@
+---
+title: HEART
+sidebar_label: HEART 心率
+---
+
+## 创建传感器
+
+```js
+const heart = hmSensor.createSensor(hmSensor.id.HEART)
+```
+
+## heart 实例
+
+### heart: object
+
+| 属性    | 说明                                                                                                                                                   | 类型            |
+| ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------- |
+| last    | 最近一次心率测量值。设备心率自动监测会更新 `last` 值，注册 `CURRENT` 事件开启心率持续测量，也会更新 `last` 值                                          | `number`        |
+| current | 最近一次持续测量的测量值。注册 `CURRENT` 事件开启心率持续测量，会以一定频率，更新这个 `current` 值。如果在没有开启持续测量的情况下，获取 `current` 值没有意义 | `number`        |
+| today   | 当日自 0 时起至当前时刻以分钟计的心率数据，返回 js 数组最长为 60\*24                                                                                   | `Array<number>` |
+
+## 注册传感器实例回调事件
+
+```js
+battery.addEventListener(event, callback: Callback)
+```
+
+### CURRENT 事件
+
+注册 `CURRENT` 事件后，会开启心率传感器进行持续测量，以一定频率，更新 `current` 值。
+
+:::tip
+持续监测心率，建议使用 `CURRENT` 事件
+:::
+
+#### event 值
+
+`heart.event.CURRENT`
+
+#### Callback
+
+```ts
+() => void
+```
+
+#### 事件示例
+
+```js
+const hrCurrentListener = function () {
+  console.log(heart.current)
+}
+
+heart.addEventListener(heart.event.CURRENT, hrCurrentListener)
+```
+
+### LAST 事件
+
+持续监听 `last` 值变化。
+
+#### event 值
+
+`heart.event.LAST`
+
+#### Callback
+
+```ts
+() => void
+```
+
+#### 事件示例
+
+```js
+const hrLastListener = function () {
+  console.log(heart.last)
+}
+
+heart.addEventListener(heart.event.LAST, hrLastListener)
+```
+
+## 代码示例
+
+一个完整的心率测量示例。
+
+```js
+Page({
+  build() {
+    const heart = hmSensor.createSensor(hmSensor.id.HEART)
+
+    const current = heart.current
+    const last = heart.last
+
+    const text = hmUI.createWidget(hmUI.widget.TEXT, {
+      x: px(0),
+      y: px(120),
+      w: px(480),
+      h: px(46),
+      color: 0xffffff,
+      text_size: px(20),
+      align_h: hmUI.align.CENTER_H,
+      align_v: hmUI.align.CENTER_V,
+      text_style: hmUI.text_style.NONE,
+      text: `CURRENT: ${current}; LAST: ${last}`
+    })
+
+    text.addEventListener(hmUI.event.CLICK_DOWN, (info) => {
+      const current = heart.current
+      const last = heart.last
+
+      text.setProperty(hmUI.prop.MORE, {
+        text: `CURRENT: ${current}; LAST: ${last}`
+      })
+    })
+
+    const currentText = hmUI.createWidget(hmUI.widget.TEXT, {
+      x: px(0),
+      y: px(180),
+      w: px(480),
+      h: px(46),
+      color: 0xffffff,
+      text_size: px(20),
+      align_h: hmUI.align.CENTER_H,
+      align_v: hmUI.align.CENTER_V,
+      text_style: hmUI.text_style.NONE,
+      text: `EVENT-CURRENT: `
+    })
+
+    const lastText = hmUI.createWidget(hmUI.widget.TEXT, {
+      x: px(0),
+      y: px(240),
+      w: px(480),
+      h: px(46),
+      color: 0xffffff,
+      text_size: px(20),
+      align_h: hmUI.align.CENTER_H,
+      align_v: hmUI.align.CENTER_V,
+      text_style: hmUI.text_style.NONE,
+      text: `EVENT-LAST: `
+    })
+
+    const currCallback = () => {
+      const current = heart.current
+
+      currentText.setProperty(hmUI.prop.MORE, {
+        text: `EVENT-CURRENT: ${current}`
+      })
+    }
+
+    const heartRateCurrListener = () => {
+      heart.addEventListener(heart.event.CURRENT, currCallback)
+    }
+
+    hmUI.createWidget(hmUI.widget.BUTTON, {
+      x: px(80),
+      y: px(300),
+      w: px(300),
+      h: px(60),
+      radius: px(12),
+      normal_color: 0xfc6950,
+      press_color: 0xfeb4a8,
+      text: 'REGISTER_CURRENT',
+      click_func: heartRateCurrListener
+    })
+
+    const lastCallback = () => {
+      const last = heart.last
+
+      lastText.setProperty(hmUI.prop.MORE, {
+        text: `EVENT-LAST: ${last}`
+      })
+    }
+
+    const heartRateLastListener = () => {
+      heart.addEventListener(heart.event.LAST, lastCallback)
+    }
+
+    hmUI.createWidget(hmUI.widget.BUTTON, {
+      x: px(80),
+      y: px(380),
+      w: px(300),
+      h: px(60),
+      radius: px(12),
+      normal_color: 0xfc6950,
+      press_color: 0xfeb4a8,
+      text: 'REGISTER_LAST',
+      click_func: heartRateLastListener
+    })
+  }
+})
+```

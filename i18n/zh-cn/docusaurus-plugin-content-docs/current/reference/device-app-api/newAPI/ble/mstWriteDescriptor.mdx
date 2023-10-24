@@ -1,0 +1,63 @@
+# mstWriteDescriptor
+
+> API_LEVEL `3.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+注册 Characteristic notification 到达回调函数。
+
+## 类型
+
+```ts
+function mstWriteDescriptor(
+  profile: Profile,
+  uuid: UUID,
+  descUUID: DescUUID,
+  data: Data,
+  length: Length,
+): Result
+```
+
+## 参数
+
+### Profile
+
+| 类型                | 说明         |
+| ------------------- | ------------ |
+| <code>number</code> | Profile 指针 |
+
+### UUID
+
+| 类型                | 说明                       |
+| ------------------- | -------------------------- |
+| <code>string</code> | Characteristic UUID 字符串 |
+
+### DescUUID
+
+| 类型                | 说明                   |
+| ------------------- | ---------------------- |
+| <code>string</code> | Descriptor UUID 字符串 |
+
+### Data
+
+| 类型                     | 说明                                   |
+| ------------------------ | -------------------------------------- |
+| <code>ArrayBuffer</code> | 读取到的数据，使用 Uint8Array 视图读取 |
+
+### Length
+
+| 类型                | 说明     |
+| ------------------- | -------- |
+| <code>number</code> | 数据长度 |
+
+### Result
+
+| 类型                 | 说明                                            |
+| -------------------- | ----------------------------------------------- |
+| <code>boolean</code> | 函数调用结果，`true` 表示成功、`false` 表示失败 |
+
+## 代码示例
+
+```js
+import { mstOnCharaNotification } from '@zos/ble'
+
+// ...
+```

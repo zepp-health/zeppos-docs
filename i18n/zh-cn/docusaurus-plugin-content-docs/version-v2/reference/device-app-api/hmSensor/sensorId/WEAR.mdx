@@ -1,0 +1,53 @@
+---
+title: WEAR
+sidebar_label: WEAR 佩戴状态
+---
+
+## 创建传感器
+
+```js
+const wear = hmSensor.createSensor(hmSensor.id.WEAR)
+
+console.log(wear.current)
+```
+
+## wear 实例
+
+### wear: object
+
+| 属性    | 说明                   | 类型     |
+| ------- | ---------------------- | -------- |
+| current | 当前佩戴状态，详见下表 | `number` |
+
+| current 值 | 说明   |
+| ---------- | ------ |
+| `0`        | 未佩戴 |
+| `1`        | 佩戴   |
+| `2`        | 运动中 |
+| `3`        | 不确定 |
+
+## 注册传感器实例回调事件
+
+```js
+wear.addEventListener(event, callback: Callback)
+```
+
+### CHANGE 事件
+
+#### event 值
+
+`hmSensor.event.CHANGE`
+
+#### Callback
+
+```ts
+() => void
+```
+
+#### 事件示例
+
+```js
+wear.addEventListener(hmSensor.event.CHANGE, function () {
+  console.log('The current wear statusis ' + wear.current + '\r\n')
+})
+```

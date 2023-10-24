@@ -1,0 +1,57 @@
+---
+title: QRCODE
+sidebar_label: QRCODE
+---
+
+> Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](../../../../../guides/framework/device/compatibility.md).
+
+The QRCODE widget consists of a QR code and a background (white).
+
+![qrcode_sample](/img/api/qrcode_sample.jpg)
+
+## Create UI widget
+
+```js
+import { createWidget, widget } from '@zos/ui'
+
+const qrcode = createWidget(widget.QRCODE, Param)
+```
+
+## Type
+
+### Param: object
+
+| Properties | Description                     | Required | Required | Version |
+| ---------- | ------------------------------- | -------- | -------- | ------- |
+| content    | QR code content                 | YES      | `string` | -       |
+| x          | QR Code x Coordinate            | YES      | `number` | -       |
+| y          | QR Code y Coordinate            | YES      | `number` | -       |
+| w          | QR code width                   | YES      | `number` | -       |
+| h          | QR code height                  | YES      | `number` | -       |
+| bg_x       | Background x coordinates        | NO       | `number` | -       |
+| bg_y       | Background y coordinates        | NO       | `number` | -       |
+| bg_w       | Background width                | NO       | `number` | -       |
+| bg_h       | Background height               | NO       | `number` | -       |
+| bg_radius  | Background area rounding radius | NO       | `number` | 2.1     |
+
+## Code example
+
+```js
+import { createWidget, widget } from '@zos/ui'
+
+Page({
+  build() {
+    const qrcode = createWidget(widget.QRCODE, {
+      content: 'Hello Zepp OS',
+      x: 140,
+      y: 140,
+      w: 200,
+      h: 200,
+      bg_x: 120,
+      bg_y: 120,
+      bg_w: 240,
+      bg_h: 240
+    })
+  }
+})
+```

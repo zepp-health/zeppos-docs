@@ -1,0 +1,23 @@
+# cancel
+
+> API_LEVEL `3.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+删除通知中心里指定 ID 标识的通知信息。
+
+:::info
+权限代码： `device:os.notification`
+:::
+
+## 类型
+
+```ts
+function cancel(alarmId: number | Array<number>): void
+```
+
+## 代码示例
+
+```js
+import { cancel } from '@zos/notification'
+
+cancel(alarmID)
+```

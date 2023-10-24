@@ -1,0 +1,31 @@
+# push
+
+> Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Navigate to a page within the Mini Program. Use the `back` method to go back to the original page.
+
+## Type
+
+```ts
+function push(option: Option): void
+```
+
+## Parameters
+
+### Option
+
+| Property | Type                            | Required | DefaultValue | Description                                                                                                                                                                      | API_LEVEL |
+| -------- | ------------------------------- | -------- | ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------- |
+| url      | <code>string</code>             | Y        | -            | path                                                                                                                                                                             | 2.0       |
+| params   | <code>string&#124;object</code> | N        | -            | Parameters passed to the page `onInit` lifecycle, supporting strings or standard JSON object. If a standard JSON object is passed, the method internally converts it to a string | 2.0       |
+
+## Example
+
+```js
+import { push } from '@zos/router'
+
+push({
+  url: 'page/index',
+  params: 'type=1',
+})
+```

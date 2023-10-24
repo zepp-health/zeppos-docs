@@ -1,0 +1,55 @@
+# assets
+
+> Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Used to handle resource file paths, splice `basePath`. and can pass in parameters for rtl path conversion of images, for RTL adaptation of Mini Program.
+
+## Type
+
+```ts
+function assets(basePath: BasePath): AssetsPathFunc
+```
+
+## Parameters
+
+### BasePath
+
+| Type                | Description                                                        |
+| ------------------- | ------------------------------------------------------------------ |
+| <code>string</code> | The base path, which will be spliced before the resource file path |
+
+### AssetsPathFunc
+
+| Type                                                       | Description                    |
+| ---------------------------------------------------------- | ------------------------------ |
+| <code>(path: Path, isRtl?: IsRtl) =&#62; ResultPath</code> | Resource file path constructor |
+
+### Path
+
+| Type                | Description        |
+| ------------------- | ------------------ |
+| <code>string</code> | Resource file path |
+
+### IsRtl
+
+| Type                 | Description                    |
+| -------------------- | ------------------------------ |
+| <code>boolean</code> | Whether to splice the rtl path |
+
+### ResultPath
+
+| Type                | Description     |
+| ------------------- | --------------- |
+| <code>string</code> | Final file path |
+
+## Example
+
+```js
+import { assets } from '@zos/utils'
+
+const imagePath = 'zeppos-logo.png'
+const assetsPathFunc = assets('img')
+
+console.log(assetsPathFunc(imagePath)) // img/zeppos-logo.png
+console.log(assetsPathFunc(imagePath, true)) // img/zeppos-logo@rtl.png
+```

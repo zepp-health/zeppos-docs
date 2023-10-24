@@ -1,0 +1,35 @@
+# setAutoBrightness
+
+> API_LEVEL `2.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+设置是否开启自动亮度，如果开启，则屏幕亮度由光线传感器控制，`setBrightness` 的设置会失效。
+
+## 类型
+
+```ts
+function setAutoBrightness(option: Option): void
+```
+
+### 简化调用方式
+
+```ts
+function setAutoBrightness(autoBright: boolean): void
+```
+
+## 参数
+
+### Option
+
+| 属性       | 类型                 | 必填 | 默认值 | 说明             | API_LEVEL |
+| ---------- | -------------------- | ---- | ------ | ---------------- | --------- |
+| autoBright | <code>boolean</code> | 是   | -      | 是否开启自动亮度 | 2.0       |
+
+## 代码示例
+
+```js
+import { setAutoBrightness } from '@zos/display'
+
+setAutoBrightness({
+  autoBright: true,
+})
+```

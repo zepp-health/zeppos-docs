@@ -1,0 +1,61 @@
+---
+title: createWidget(widgetId, option)
+sidebar_label: createWidget
+---
+
+> Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Create UI widgets.
+
+## Type
+
+```ts
+(widgetId: WIDGET_ID, option?: Option) => widget: WIDGET
+```
+
+## Parameters
+
+| Parameter | Description                                               | Required | Type |
+| --------- | --------------------------------------------------------- | -------- | ---- |
+| widgetId  | The ID of the widget to be created. (Reference WIDGET_ID) | YES      | -    |
+| option    | Parameters.                                               | NO       | -    |
+| widget    | The instance of widget.                                   | -        | -    |
+
+### WIDGET_ID
+
+| Value           | Description                                                             |
+| --------------- | ----------------------------------------------------------------------- |
+| `widget.BUTTON` | Button widget ID.                                                       |
+| IMG`            | Image widget ID.                                                        |
+| ...             | The rest of the values are not listed, refer to the `widget` directory. |
+
+### WIDGET
+
+| Description   | Type     |
+| ------------- | -------- |
+| Widget object | `object` |
+
+## Code examples
+
+> Reference to a widget example.
+
+```js
+import { createWidget, widget, align, text_style } from '@zos/ui'
+
+Page({
+  build() {
+    const textWidget = createWidget(widget.TEXT, {
+      x: 96,
+      y: 120,
+      w: 288,
+      h: 46,
+      color: 0xffffff,
+      text_size: 36,
+      align_h: align.CENTER_H,
+      align_v: align.CENTER_V,
+      text_style: text_style.NONE,
+      text: 'HELLO ZEPPOS'
+    })
+  }
+})
+```

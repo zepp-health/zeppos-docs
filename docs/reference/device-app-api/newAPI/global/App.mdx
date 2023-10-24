@@ -1,0 +1,44 @@
+# App
+
+> Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Register the Mini Program, specifying the Mini Program's lifecycle callbacks, etc. `App()` must be called in `app.js`, and can only be called once.
+
+## Type
+
+```ts
+function App(option: Option): Result
+```
+
+## Parameters
+
+### Option
+
+| Property   | Type                                       | Required | DefaultValue | Description                                                                                          | API_LEVEL |
+| ---------- | ------------------------------------------ | -------- | ------------ | ---------------------------------------------------------------------------------------------------- | --------- |
+| globalData | <code>object</code>                        | N        | -            | Mounted data objects on App instances that can be used to store the global state of the Mini Program | 2.0       |
+| onCreate   | <code>(params?: string) =&#62; void</code> | N        | -            | Mounted data objects on App instances that can be used to store the global state of the Mini Program | 2.0       |
+| onDestroy  | <code>() =&#62; void</code>                | N        | -            | The `onDestroy` lifecycle function is triggered when the Mini Program is destroyed                   | 2.0       |
+
+### Result
+
+| Type                 | Description  |
+| -------------------- | ------------ |
+| <code>unknown</code> | App instance |
+
+## Example
+
+```js title="app.js"
+App({
+  globalData: {
+    text: 'Hello Zepp OS',
+  },
+  onCreate() {
+    console.log('onCreate')
+    console.log(this.globalData.text)
+  },
+  onDestroy() {
+    console.log('onDestroy')
+  },
+})
+```

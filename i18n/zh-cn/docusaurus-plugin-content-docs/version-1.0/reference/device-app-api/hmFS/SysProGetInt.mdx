@@ -1,0 +1,33 @@
+---
+title: hmFS.SysProGetInt(key)
+sidebar_label: SysProGetInt
+---
+
+获取临时存储的整数，系统重启将清除
+
+## 类型
+
+```ts
+(key: string) => result
+```
+
+## 参数
+
+### key
+
+| 说明     | 必填 | 类型     | 默认值 |
+| -------- | ---- | -------- | ------ |
+| 键字符串 | 是   | `string` | -      |
+
+### result
+
+| 说明       | 类型     |
+| ---------- | -------- |
+| 存储的整数 | `number` |
+
+## 用法
+
+```js
+hmFS.SysProSetInt('js_test_int', 100)
+console.log(hmFS.SysProGetInt('js_test_int'))
+```

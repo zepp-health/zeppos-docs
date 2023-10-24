@@ -1,0 +1,36 @@
+---
+title: hmUI.deleteWidget(widget)
+sidebar_label: deleteWidget
+---
+
+Delete the UI widget.
+
+## Type
+
+```ts
+(widget: WIDGET) => void
+```
+
+## Parameters
+
+### WIDGET
+
+| Description                                    | Type     |
+| ---------------------------------------------- | -------- |
+| widget object, returned by `hmUI.createWidget` | `number` |
+
+## Code examples
+
+```js
+Page({
+  build() {
+    const img = hmUI.createWidget(hmUI.widget.IMG, {
+      x: 125,
+      y: 125,
+      src: 'zeppos.png'
+    })
+
+    hmUI.deleteWidget(img)
+  }
+})
+```

@@ -1,0 +1,48 @@
+---
+title: CIRCLE
+sidebar_label: CIRCLE
+---
+
+> Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](../../../../../guides/framework/device/compatibility.md).
+
+![circle_sample](/img/api/circle_sample.jpg)
+
+Draws a circle with support for color, transparency, and other properties.
+
+## Creating UI widgets
+
+```js
+import { createWidget, widget } from '@zos/ui'
+
+const circle = createWidget(widget.CIRCLE, Param)
+```
+
+## Type
+
+### Param: object
+
+| Properties | Description                                  | Required | Type     |
+| ---------- | -------------------------------------------- | -------- | -------- |
+| center_x   | Center of circle x.                          | YES      | `number` |
+| center_y   | Center of circle y.                          | YES      | `number` |
+| radius     | Radius.                                      | YES      | `number` |
+| color      | Color 16-increment value.                    | YES      | `number` |
+| alpha      | Transparency.[0-255] 0 for full transparency | NO       | `number` |
+
+## Code example
+
+```js
+import { createWidget, widget } from '@zos/ui'
+
+Page({
+  build() {
+    const circle = createWidget(widget.CIRCLE, {
+      center_x: 240,
+      center_y: 240,
+      radius: 120,
+      color: 0xfc6950,
+      alpha: 200
+    })
+  }
+})
+```

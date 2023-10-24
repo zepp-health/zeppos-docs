@@ -1,0 +1,38 @@
+{
+  "item.label.Introduction": {
+    "message": "介绍",
+    "description": "Navbar item with label Introduction"
+  },
+  "item.label.Guides": {
+    "message": "指南",
+    "description": "Navbar item with label Guides"
+  },
+  "item.label.App": {
+    "message": "应用",
+    "description": "Navbar item with label Reference"
+  },
+  "item.label.Watchface": {
+    "message": "表盘",
+    "description": "Navbar item with label Watchface"
+  },
+  "item.label.Distribute": {
+    "message": "发布",
+    "description": "Navbar item with label distribute"
+  },
+  "item.label.Samples": {
+    "message": "示例",
+    "description": "Navbar item with label Samples"
+  },
+  "item.label.Design Specifications": {
+    "message": "设计规范",
+    "description": "Navbar item with label Designs"
+  },
+  "item.label.Console": {
+    "message": "管理中心",
+    "description": "Navbar item with label Console"
+  },
+  "item.label.Register": {
+    "message": "注册",
+    "description": "Navbar item with label Register"
+  }
+}

@@ -1,0 +1,28 @@
+# getSleepTarget
+
+> API_LEVEL `2.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+获取用户设置的睡眠目标。
+
+## 类型
+
+```ts
+function getSleepTarget(): Result
+```
+
+## 参数
+
+### Result
+
+| 类型                | 说明                                     |
+| ------------------- | ---------------------------------------- |
+| <code>number</code> | 用户设置的睡眠目标，默认为 `0`，单位分钟 |
+
+## 代码示例
+
+```js
+import { getSleepTarget } from '@zos/settings'
+
+const sleepTarget = getSleepTarget()
+console.log(sleepTarget)
+```

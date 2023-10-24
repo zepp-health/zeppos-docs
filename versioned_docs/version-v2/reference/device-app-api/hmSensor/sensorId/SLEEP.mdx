@@ -1,0 +1,154 @@
+---
+title: SLEEP
+sidebar_label: SLEEP
+---
+
+## Creating Sensors
+
+```js
+const sleep = hmSensor.createSensor(hmSensor.id.SLEEP)
+```
+
+## SLEEP instance
+
+### sleep.updateInfo()
+
+Active update of sleep information
+
+#### Type
+
+```ts
+() => void
+```
+
+### sleep.getSleepStageData()
+
+Get stage sleep information
+
+#### Type
+
+```ts
+() => Array<SleepInfo>
+```
+
+##### SleepInfo
+
+| Properties |                             Description                       | Type |
+| ---------- | ------------------------------------------------------------- | -------- |
+|    model   |                                model                          | `number` |
+|    start   | start time, based on the number of minutes at 0:00 on the day | `number` |
+|    stop    | The end event, based on the number of minutes at 0:00 on the day | `number` |
+
+##### model:number
+
+Search `modelData` in `sleep.getSleepStageModel()`
+
+| value                      | Description       |
+| -------------------------- | ------------ |
+| `modelData.WAKE_STAGE`     | wake stage |
+| `modelData.REM_STAGE`      | REM stage  |
+| `modelData.LIGHT_STAGE`    | light stage|
+| `modelData.DEEP_STAGE`     | deep stage |
+
+#### Code example
+
+```js
+const sleepStageArray = sleep.getSleepStageData()
+
+for (int i = 0; i < sleepStageArray.length; i++) {
+  const data = sleepStageArray[i];
+  console.log(data.model)
+  console.log(data.start)
+  console.log(data.stop)
+}
+```
+
+### sleep.getSleepStageModel()
+
+Get Sleep Mode
+
+#### Type
+
+```ts
+() => modelData
+```
+
+#### Code example
+
+```js
+const modelData = sleep.getSleepStageModel()
+console.log(modelData.WAKE_STAGE)
+console.log(modelData.REM_STAGE)
+console.log(modelData.LIGHT_STAGE)
+console.log(modelData.DEEP_STAGE)
+```
+
+### sleep.getSleepHrData()
+
+Get your sleep heart rate
+
+#### Type
+
+```ts
+() => void
+```
+
+### sleep.getTotalTime()
+
+Get total sleep time
+
+#### Type
+
+```ts
+() => number
+```
+
+#### Code example
+
+```js
+const totalTime = sleep.getTotalTime()
+```
+
+### sleep.getBasicInfo()
+
+#### Type
+
+```ts
+() => BasicInfo
+```
+
+##### BasicInfo
+
+| Properties |                                      Description                                 | Type |
+| ---------- | -------------------------------------------------------------------------------- | -------- |
+|  score     |                                      sleep score                                 | `number` |
+|  deepMin   |                              Deep sleep time in minutes                          | `number` |
+| startTime  |      Sleep start time, based on the number of minutes at 0:00 on the day         | `number` |
+|  endTime   | Sleep end time, the number of minutes from the same base point as the start time | `number` |
+
+#### Code example
+
+```js
+const basicInfo = sleep.getBasicInfo()
+console.log('basicInfo score=' + basicInfo.score) //sleep score
+console.log('basicInfo deepMin=' + basicInfo.deepMin) //deep sleep time unit score
+console.log('basicInfo startTime=' + basicInfo.startTime) // sleep start time, based on the number of minutes at 0:00 of the day
+console.log('basicInfo endTime=' + basicInfo.endTime) // sleep end time, minutes from the same base as the start time
+// sleep totalTime = endTime - startTime + 1;
+
+let start = basicInfo.startTime
+if (start >= SLEEP_REFERENCE_ZERO) {
+  // SLEEP_REFERENCE_ZERO is the number of minutes in a day, i.e. 24*60
+  start -= SLEEP_REFERENCE_ZERO
+}
+
+hour = start / 60
+minute = start % 60
+
+const end = basicInfo.endTime + 1 // if it is aligned with the secondary screen, the end time should be added by 1
+if (end >= SLEEP_REFERENCE_ZERO) {
+  end -= SLEEP_REFERENCE_ZERO
+}
+hour = end / 60
+minute = end % 60
+```

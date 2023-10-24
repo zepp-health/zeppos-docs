@@ -1,0 +1,33 @@
+---
+title: DATE_POINTER 日期指针
+sidebar_label: DATE_POINTER 日期指针
+---
+
+| 值              | 说明 |
+| --------------- | ---- |
+| hmUI.date.MONTH | 月份 |
+| hmUI.date.DAY   | 日   |
+| hmUI.date.WEEK  | 星期 |
+
+## 代码示例
+
+```js
+let week = hmUI.createWidget(hmUI.widget.DATE_POINTER, {
+  scale_x: 0,
+  scale_y: 0,
+  scale_sc: 'bg.png', //背景图 可选
+  scale_tc: 'bg.png',
+  scale_en: 'bg.png',
+  center_x: 100,
+  center_y: 100,
+  src: 'pointer.png', //指针图片
+  posX: 0,
+  posY: 0,
+  cover_x: 0, //指针上面的帽子
+  cover_y: 0,
+  cover_path: 'cover.png',
+  start_angle: 0, //0点为正 可以写负数
+  end_angle: 180,
+  type: hmUI.date.WEEK //参考上方表格
+})
+```

@@ -1,0 +1,39 @@
+# mstReadDescriptor
+
+> API_LEVEL `3.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+写 characteristic 信息。
+
+## 类型
+
+```ts
+function mstReadDescriptor(profile: Profile, uuid: UUID, descUUID: DescUUID): void
+```
+
+## 参数
+
+### Profile
+
+| 类型                | 说明         |
+| ------------------- | ------------ |
+| <code>number</code> | Profile 指针 |
+
+### UUID
+
+| 类型                | 说明                       |
+| ------------------- | -------------------------- |
+| <code>string</code> | Characteristic UUID 字符串 |
+
+### DescUUID
+
+| 类型                | 说明                   |
+| ------------------- | ---------------------- |
+| <code>string</code> | Descriptor UUID 字符串 |
+
+## 代码示例
+
+```js
+import { mstReadDescriptor } from '@zos/ble'
+
+// ...
+```

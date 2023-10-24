@@ -1,0 +1,32 @@
+---
+title: hmFS.SysProSetChars(key, val)
+sidebar_label: SysProSetChars
+---
+
+存储临时字符串，系统重启将清除
+
+## 类型
+
+```ts
+(key: string, val: string) => result
+```
+
+## 参数
+
+| 参数 | 说明         | 必填 | 类型     | 默认值 |
+| ---- | ------------ | ---- | -------- | ------ |
+| key  | 键字符串     | 是   | `string` | -      |
+| val  | 存储的字符串 | 是   | `string` | -      |
+
+### result
+
+| 说明                   | 类型     |
+| ---------------------- | -------- |
+| 操作结果，`0` 表示成功 | `number` |
+
+## 用法
+
+```js
+hmFS.SysProSetChars('js_test_char', 'hello')
+console.log(hmFS.SysProGetChars('js_test_char'))
+```

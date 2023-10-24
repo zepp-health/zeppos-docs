@@ -1,0 +1,55 @@
+# assets
+
+> API_LEVEL `2.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+用于处理资源文件路径，拼接 `basePath`。并可传入参数对图片进行 rtl 路径转换，用于小程序的 RTL 适配。
+
+## 类型
+
+```ts
+function assets(basePath: BasePath): AssetsPathFunc
+```
+
+## 参数
+
+### BasePath
+
+| 类型                | 说明                               |
+| ------------------- | ---------------------------------- |
+| <code>string</code> | 基础路径，会拼接在资源文件路径之前 |
+
+### AssetsPathFunc
+
+| 类型                                                       | 说明                 |
+| ---------------------------------------------------------- | -------------------- |
+| <code>(path: Path, isRtl?: IsRtl) =&#62; ResultPath</code> | 资源文件路径构造函数 |
+
+### Path
+
+| 类型                | 说明         |
+| ------------------- | ------------ |
+| <code>string</code> | 资源文件路径 |
+
+### IsRtl
+
+| 类型                 | 说明                  |
+| -------------------- | --------------------- |
+| <code>boolean</code> | 是否需要拼接 rtl 路径 |
+
+### ResultPath
+
+| 类型                | 说明         |
+| ------------------- | ------------ |
+| <code>string</code> | 最终文件路径 |
+
+## 代码示例
+
+```js
+import { assets } from '@zos/utils'
+
+const imagePath = 'zeppos-logo.png'
+const assetsPathFunc = assets('img')
+
+console.log(assetsPathFunc(imagePath)) // img/zeppos-logo.png
+console.log(assetsPathFunc(imagePath, true)) // img/zeppos-logo@rtl.png
+```

@@ -1,0 +1,57 @@
+---
+title: QRCODE
+sidebar_label: QRCODE 二维码
+---
+
+> API_LEVEL `2.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../../guides/framework/device/compatibility.md)。
+
+二维码控件由二维码和背景（白色）组成。
+
+![qrcode_sample](/img/api/qrcode_sample.jpg)
+
+## 创建 UI 控件
+
+```js
+import { createWidget, widget } from '@zos/ui'
+
+const qrcode = createWidget(widget.QRCODE, Param)
+```
+
+## 类型
+
+### Param: object
+
+| 属性      | 说明             | 是否必须 | 类型     | 版本 |
+| --------- | ---------------- | -------- | -------- | ---- |
+| content   | 二维码文本内容   | 是       | `string` | -    |
+| x         | 二维码 x 坐标    | 是       | `number` | -    |
+| y         | 二维码 y 坐标    | 是       | `number` | -    |
+| w         | 二维码宽度       | 是       | `number` | -    |
+| h         | 二维码高度       | 是       | `number` | -    |
+| bg_x      | 背景 x 坐标      | 否       | `number` | -    |
+| bg_y      | 背景 y 坐标      | 否       | `number` | -    |
+| bg_w      | 背景宽度         | 否       | `number` | -    |
+| bg_h      | 背景高度         | 否       | `number` | -    |
+| bg_radius | 背景区域圆角半径 | 否       | `number` | 2.1  |
+
+## 代码示例
+
+```js
+import { createWidget, widget } from '@zos/ui'
+
+Page({
+  build() {
+    const qrcode = createWidget(widget.QRCODE, {
+      content: 'Hello Zepp OS',
+      x: 140,
+      y: 140,
+      w: 200,
+      h: 200,
+      bg_x: 120,
+      bg_y: 120,
+      bg_w: 240,
+      bg_h: 240
+    })
+  }
+})
+```

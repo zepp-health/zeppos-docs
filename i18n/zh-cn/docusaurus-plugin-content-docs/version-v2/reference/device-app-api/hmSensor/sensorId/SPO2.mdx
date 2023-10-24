@@ -1,0 +1,60 @@
+---
+title: SPO2
+sidebar_label: SPO2 血氧
+---
+
+## 创建传感器
+
+```js
+const spo2 = hmSensor.createSensor(hmSensor.id.SPO2)
+
+console.log(spo2.current)
+console.log(spo2.time)
+```
+
+## spo2 实例
+
+### spo2: object
+
+| 属性         | 说明                            | 类型            |
+| ------------ | ------------------------------- | --------------- |
+| current      | 血氧测量值                      | `number`        |
+| time         | 结果产生时间                    | `number`        |
+| retcode      | 结果返回码                      | `number`        |
+| hourAvgofDay | 返回小时计平均血氧数据，长度 24 | `Array<number>` |
+
+## 注册传感器实例回调事件
+
+```js
+calorie.addEventListener(event, callback: Callback)
+```
+
+### CHANGE 事件
+
+#### event 值
+
+`hmSensor.event.CHANGE`
+
+#### Callback
+
+```ts
+() => void
+```
+
+#### 事件示例
+
+```js
+spo2.addEventListener(hmSensor.event.CHANGE, function () {
+  console.log(spo2.current)
+  console.log(spo2.time)
+  console.log(spo2.retcode)
+})
+```
+
+### start
+
+启动单点测量
+
+```js
+spo2.start()
+```

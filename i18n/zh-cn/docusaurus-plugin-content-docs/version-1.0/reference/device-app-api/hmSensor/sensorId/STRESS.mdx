@@ -1,0 +1,54 @@
+---
+title: STRESS
+sidebar_label: STRESS 压力
+---
+
+:::danger
+STRESS 传感器暂不可用
+:::
+
+## 创建传感器
+
+```js
+const stress = hmSensor.createSensor(hmSensor.id.STRESS)
+
+console.log(stress.current)
+console.log(stress.time)
+```
+
+## stress 实例
+
+### stress: object
+
+| 属性    | 说明           | 类型     |
+| ------- | -------------- | -------- |
+| current | 当前压力值     | `number` |
+| time    | 压力值产生时间 | `number` |
+
+## 注册传感器实例回调事件
+
+```js
+calorie.addEventListener(event, callback: Callback)
+```
+
+### CHANGE 事件
+
+#### event 值
+
+`hmSensor.event.CHANGE`
+
+#### Callback
+
+```ts
+() => void
+```
+
+#### 事件示例
+
+```js
+stress.addEventListener(hmSensor.event.CHANGE, function () {
+  console.log(stress.current)
+
+  console.log('the stress time: ' + stress.time + ' stress: ' + stress.current + '\r\n')
+})
+```

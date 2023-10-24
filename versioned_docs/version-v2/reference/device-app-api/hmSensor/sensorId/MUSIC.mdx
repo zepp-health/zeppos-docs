@@ -1,0 +1,111 @@
+---
+title: MUSIC
+sidebar_label: MUSIC
+---
+
+## Creating Sensors
+
+```js
+const music = hmSensor.createSensor(hmSensor.id.MUSIC)
+```
+
+## MUSIC instance
+
+### music: object
+
+| Properties |               Description                | Type |
+| ---------- | ---------------------------------------- | --------- |
+|   artist   |               artist name                | `string` |
+|   title    |               music name                 | `string` |
+| isPlaying | Play status `true`: playing, `false`: not playing | `boolean` |
+
+### music.audInit()
+
+Initialize music controls
+
+#### Type
+
+```ts
+() => void
+```
+
+### music.audPlay()
+
+Play
+
+#### Type
+
+```ts
+() => void
+```
+
+### music.audPause()
+
+Pause
+
+#### Type
+
+```ts
+() => void
+```
+
+### music.audPrev()
+
+Previous
+
+#### Type
+
+```ts
+() => void
+```
+
+### music.audNext()
+
+Next
+
+#### Type
+
+```ts
+() => void
+```
+
+## Registering sensor instance callback events
+
+```js
+music.addEventListener(event, callback: Callback)
+```
+
+### The events of CHANGE
+
+#### The value of event
+
+`hmSensor.event.CHANGE`
+
+#### Callback
+
+```ts
+() => void
+```
+
+#### The example of events
+
+```js
+music.addEventListener(hmSensor.event.CHANGE, function () {
+  console.log("The current song's name: " + music.title + '\r\n')
+})
+```
+
+## Code example
+
+```js
+const music = hmSensor.createSensor(hmSensor.id.MUSIC)
+
+music.audInit()
+music.audPlay()
+music.audPause()
+music.audPrev()
+music.audNext()
+
+console.log('The artist of song: ' + music.artist)
+console.log('The name of song: ' + music.title)
+```

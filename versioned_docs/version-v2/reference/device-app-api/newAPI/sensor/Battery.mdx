@@ -1,0 +1,52 @@
+---
+title: Battery
+sidebar_label: Battery
+---
+
+> Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Battery Sensor.
+
+## Methods
+
+### getCurrent
+
+Get the current device power percentage, range 0 - 100
+
+```ts
+getCurrent(): number
+```
+
+### onChange
+
+Register the power change event callback function
+
+```ts
+onChange(callback: () => void): void
+```
+
+### offChange
+
+Cancel the power change event callback function
+
+```ts
+offChange(callback: () => void): void
+```
+
+## Example
+
+```js
+import { Battery } from '@zos/sensor'
+
+const battery = new Battery()
+const current = battery.getCurrent()
+
+const callback = () => {
+  console.log(battery.getCurrent())
+}
+
+battery.onChange(callback)
+
+// When not needed for use
+battery.offChange(callback)
+```

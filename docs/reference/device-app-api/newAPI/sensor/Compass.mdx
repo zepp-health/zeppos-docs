@@ -1,0 +1,104 @@
+---
+title: Compass
+sidebar_label: Compass
+---
+
+> Start from API_LEVEL `3.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+compass.
+
+:::info
+permission code: `device:os.compass`
+:::
+
+## Methods
+
+### start
+
+Start listening to compass data
+
+```ts
+start(): void
+```
+
+### stop
+
+Stop listening to compass data
+
+```ts
+stop(): void
+```
+
+### getStatus
+
+Get the compass calibration status, `true` means calibrated
+
+```ts
+getStatus(): boolean
+```
+
+### getDirection
+
+Get the direction of the current watch's 12-point scale, divided into eight directions, refer to `direction`
+
+```ts
+getDirection(): string
+```
+
+#### direction
+
+| Value | Type                | Description | API_LEVEL |
+| ----- | ------------------- | ----------- | --------- |
+| N     | <code>string</code> | North       | 3.0       |
+| NE    | <code>string</code> | Northeast   | 3.0       |
+| E     | <code>string</code> | East        | 3.0       |
+| SE    | <code>string</code> | Southeast   | 3.0       |
+| S     | <code>string</code> | South       | 3.0       |
+| SW    | <code>string</code> | Southwest   | 3.0       |
+| W     | <code>string</code> | West        | 3.0       |
+| NW    | <code>string</code> | Northwest   | 3.0       |
+
+### getDirectionAngle
+
+Get the current direction angle, the clockwise rotation angle of the watch's 12 o'clock scale direction relative to due north, takes the values 0 - 360, if the compass is not calibrated, returns the `INVALID` string
+
+```ts
+getDirectionAngle(): number | 'INVALID'
+```
+
+### onChange
+
+Register the compass direction change event listener callback function
+
+```ts
+onChange(callback: () => void): void
+```
+
+### offChange
+
+Cancel the compass direction change event listener callback function
+
+```ts
+offChange(callback: () => void): void
+```
+
+## Example
+
+```js
+import { Compass } from '@zos/sensor'
+
+const compass = new Compass()
+
+const callback = () => {
+  if (compass.getStatus()) {
+    console.log(compass.getDirection())
+    console.log(compass.getDirectionAngle())
+  }
+}
+compass.onChange(callback)
+compass.start()
+
+// When not needed for use
+compass.offChange()
+compass.stop()
+```

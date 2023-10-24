@@ -1,0 +1,27 @@
+---
+title: BODY_TEMP
+sidebar_label: BODY_TEMP 体温
+---
+
+## 创建传感器
+
+```js
+const thermometer = hmSensor.createSensor(hmSensor.id.BODY_TEMP)
+```
+
+### thermometer 实例
+
+### thermometer: object
+
+| 属性         | 说明           | 类型     |
+| ------------ | -------------- | -------- |
+| current      | 当前温度       | `number` |
+| timeinterval | 距出值已过时间 | `number` |
+
+## 代码示例
+
+```js
+console.log(
+  'the current temp: ' + thermometer.current + ' interval:' + thermometer.timeinterval + '\r\n'
+)
+```

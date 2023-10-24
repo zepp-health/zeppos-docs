@@ -1,0 +1,40 @@
+# getTemperatureUnit
+
+> Start from API_LEVEL `2.1` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Get the temperature units set by the user.
+
+## Type
+
+```ts
+function getTemperatureUnit(): Result
+```
+
+## Parameters
+
+### Result
+
+| Type                | Description                                                   |
+| ------------------- | ------------------------------------------------------------- |
+| <code>number</code> | Temperature units, value reference temperature unit constants |
+
+## Constants
+
+### Temperature unit constants
+
+| Constant                      | Description            | API_LEVEL |
+| ----------------------------- | ---------------------- | --------- |
+| `TEMPERATURE_UNIT_CENTIGRADE` | Celsius temperature    | 2.0       |
+| `TEMPERATURE_UNIT_FAHRENHEIT` | Fahrenheit temperature | 2.0       |
+
+## Example
+
+```js
+import { getTemperatureUnit, TEMPERATURE_UNIT_CENTIGRADE } from '@zos/settings'
+
+const temperatureUnit = getTemperatureUnit()
+
+if (temperatureUnit === TEMPERATURE_UNIT_CENTIGRADE) {
+  console.log('centigrade')
+}
+```

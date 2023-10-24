@@ -1,0 +1,23 @@
+---
+title: IMG_STATUS 系统状态
+sidebar_label: IMG_STATUS 系统状态
+---
+
+| 值                            | 说明     |
+| ----------------------------- | -------- |
+| hmUI.system_status.CLOCK      | 闹钟开启 |
+| hmUI.system_status.DISCONNECT | 蓝牙断连 |
+| hmUI.system_status.DISTURB    | 勿扰开启 |
+| hmUI.system_status.LOCK       | 锁屏开启 |
+
+## 代码示例
+
+```js
+const status = hmUI.createWidget(hmUI.widget.IMG_STATUS, {
+  x: 0,
+  y: 0,
+  // w,h为可选设置, 默认使用图片宽高
+  type: hmUI.system_status.DISCONNECT, // 数据类型, 参考上方表格
+  src: 'status.png'
+})
+```

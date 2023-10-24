@@ -1,0 +1,46 @@
+---
+title: createTimer(delay, repeat, callback, option)
+sidebar_label: createTimer
+---
+
+Create Timer
+
+## Type
+
+```ts
+(delay: number, repeat: number, callback: (option: any) => void, option: any) => timerId
+```
+
+## Parameters
+
+| Parameter|       Description     | Required |           Type          | Default |
+| -------- | --------------------- | -------- | ----------------------- | ------ |
+|   delay  |  delay (milliseconds) |    YES   |         `number`        | - |
+|  repeat  | period (milliseconds) |    YES   |         `number`        | - |
+| callback |   callback function   |    YES   | `(option: any) => void` | - |
+|  option  |  callback parameters  |    YES   |           `any`         | - |
+
+### timerId
+
+|  Description |   Type   |
+| ------------ | -------- |
+| timer handle | `number` |
+
+## Usage
+
+```js
+//Create timer, delay 500ms to trigger, then execute every 1000ms.
+const timer1 = timer.createTimer(
+  500,
+  1000,
+  function (option) {
+    //callback
+    console.log('timer callback')
+    console.log(option.hour)
+  },
+  { hour: 0, minute: 15, second: 30 }
+)
+
+//Stop timer1
+timer.stopTimer(timer1)
+```

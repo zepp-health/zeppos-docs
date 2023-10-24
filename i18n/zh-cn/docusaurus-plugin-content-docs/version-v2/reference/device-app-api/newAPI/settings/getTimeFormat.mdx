@@ -1,0 +1,40 @@
+# getTimeFormat
+
+> API_LEVEL `2.1` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+获取当前系统时间格式，12 小时/24 小时。
+
+## 类型
+
+```ts
+function getTimeFormat(): Result
+```
+
+## 参数
+
+### Result
+
+| 类型                | 说明                         |
+| ------------------- | ---------------------------- |
+| <code>number</code> | 小时格式，值参考小时格式常量 |
+
+## 常量
+
+### 小时格式常量
+
+| 常量             | 说明      | API_LEVEL |
+| ---------------- | --------- | --------- |
+| `TIME_FORMAT_12` | 12 小时制 | 2.1       |
+| `TIME_FORMAT_24` | 24 小时制 | 2.1       |
+
+## 代码示例
+
+```js
+import { getTimeFormat, TIME_FORMAT_24 } from '@zos/settings'
+
+const timeFormat = getTimeFormat()
+
+if (timeFormat === TIME_FORMAT_24) {
+  console.log('time format is 24-hour format')
+}
+```

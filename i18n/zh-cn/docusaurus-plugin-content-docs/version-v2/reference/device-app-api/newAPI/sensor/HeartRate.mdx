@@ -1,0 +1,96 @@
+---
+title: HeartRate
+sidebar_label: HeartRate 心率
+---
+
+> API_LEVEL `2.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+心率传感器。
+
+:::info
+权限代码： `data:user.hd.heart_rate`
+:::
+
+## 方法
+
+### getCurrent
+
+获取最近一次心率持续测量的测量值，此方法需要在 `onCurrentChange` 回调函数中使用，注册 `onCurrentChange` 事件后，设备会开启心率持续测量，以一定频率更新心率持续测量的测量值
+
+```ts
+getCurrent(): number
+```
+
+### getLast
+
+获取最近一次的心率测量值。设备心率自动监测会更新心率测量值，注册 `onCurrentChange` 后设备开始持续测量心率，也会更新心率测量值
+
+```ts
+getLast(): number
+```
+
+### getToday
+
+获取当日自 0 时起至当前时刻以分钟计的心率测量值数据，数组最长为 60\*24
+
+```ts
+getToday(): Array<number>
+```
+
+### onCurrentChange
+
+> API_LEVEL `2.1`
+
+调用此方法后设备开始心率持续测量，并注册回调函数，当有测量结果时调用回调函数，在回调函数中调用 `getCurrent` 方法可以获取心率持续测量的测量值，如需停止持续心率测量，需要调用 `offCurrentChange` 方法
+
+```ts
+onCurrentChange(callback: () => void): void
+```
+
+### offCurrentChange
+
+> API_LEVEL `2.1`
+
+取消持续心率测量，并取消回调函数监听
+
+```ts
+offCurrentChange(callback: () => void): void
+```
+
+### onLastChange
+
+> API_LEVEL `2.1`
+
+注册心率测量值变化事件回调函数
+
+```ts
+onLastChange(callback: () => void): void
+```
+
+### offLastChange
+
+> API_LEVEL `2.1`
+
+取消心率测量值变化事件回调函数
+
+```ts
+offLastChange(callback: () => void): void
+```
+
+## 代码示例
+
+```js
+import { HeartRate } from '@zos/sensor'
+
+const heartRate = new HeartRate()
+const lastValue = heartRate.getLast()
+
+const callback = () => {
+  console.log(heartRate.getCurrent())
+}
+
+heartRate.onCurrentChange(callback)
+
+// When not needed for use
+heartRate.offCurrentChange(callback)
+```

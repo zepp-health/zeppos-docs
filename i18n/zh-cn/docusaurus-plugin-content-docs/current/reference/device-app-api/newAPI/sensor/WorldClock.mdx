@@ -1,0 +1,59 @@
+---
+title: WorldClock
+sidebar_label: WorldClock 世界时钟
+---
+
+> API_LEVEL `3.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+世界时钟传感器。
+
+## 方法
+
+### getCount
+
+获取配置的世界时钟数量
+
+```ts
+getCount(): number
+```
+
+### getInfo
+
+根据索引获取配置的世界时钟信息
+
+```ts
+getInfo(index: number): WorldClockInfo
+```
+
+#### WorldClockInfo
+
+| 属性           | 类型                | 说明                     | API_LEVEL |
+| -------------- | ------------------- | ------------------------ | --------- |
+| city           | <code>string</code> | 城市名                   | 3.0       |
+| cityCode       | <code>string</code> | 城市代号，如旧金山 `SFO` | 3.0       |
+| hour           | <code>number</code> | 小时                     | 3.0       |
+| minute         | <code>number</code> | 分钟                     | 3.0       |
+| timeZoneHour   | <code>number</code> | 时区小时                 | 3.0       |
+| timeZoneMinute | <code>number</code> | 时区分钟                 | 3.0       |
+
+## 代码示例
+
+```js
+import { WorldClock } from '@zos/sensor'
+
+const worldClock = new WorldClock()
+const worldClockCount = worldClock.getCount()
+
+for (let i = 0; i < worldClockCount; i++) {
+  const worldClockInfo = worldClock.getInfo(i)
+  console.log(worldClockInfo.city)
+  console.log(worldClockInfo.cityCode)
+  console.log(worldClockInfo.hour)
+  console.log(worldClockInfo.minute)
+  console.log(worldClockInfo.timeZoneHour)
+  console.log(worldClockInfo.timeZoneMinute)
+}
+
+// When not needed for use
+worldClock.destroy()
+```

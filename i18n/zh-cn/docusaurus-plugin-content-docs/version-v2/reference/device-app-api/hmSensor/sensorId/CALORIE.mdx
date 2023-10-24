@@ -1,0 +1,49 @@
+---
+title: CALORIE
+sidebar_label: CALORIE 卡路里
+---
+
+## 创建传感器
+
+```js
+const calorie = hmSensor.createSensor(hmSensor.id.CALORIE)
+
+console.log(calorie.current)
+console.log(calorie.target)
+```
+
+## calorie 实例
+
+### calorie: object
+
+| 属性    | 说明       | 类型     |
+| ------- | ---------- | -------- |
+| current | 当前消耗卡路里，单位 kcal | `number` |
+| target  | 目标消耗卡路里，单位 kcal | `number` |
+
+## 注册传感器实例回调事件
+
+```js
+calorie.addEventListener(event, callback: Callback)
+```
+
+### CHANGE 事件
+
+#### event 值
+
+`hmSensor.event.CHANGE`
+
+#### Callback
+
+```ts
+() => void
+```
+
+#### 事件示例
+
+```js
+calorie.addEventListener(hmSensor.event.CHANGE, function () {
+  console.log('The current calorie is ' + calorie.current + '\r\n')
+  console.log('The calorie target is ' + calorie.target + '\r\n')
+})
+```

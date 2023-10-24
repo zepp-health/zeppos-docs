@@ -1,0 +1,46 @@
+# setLaunchAppTimeout
+
+> Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Register a timer to launch the Mini Program at a given time.
+
+## Type
+
+```ts
+function setLaunchAppTimeout(option: Option): Result
+```
+
+## Parameters
+
+### Option
+
+| Property | Type                            | Required | DefaultValue | Description                                                                                                                                                                                   | API_LEVEL |
+| -------- | ------------------------------- | -------- | ------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------- |
+| appId    | <code>number</code>             | Y        | -            | Mini Program ID                                                                                                                                                                               | 2.0       |
+| url      | <code>string</code>             | Y        | -            | path                                                                                                                                                                                          | 2.0       |
+| utc      | <code>number</code>             | N        | -            | utc timestamp(milliseconds)                                                                                                                                                                   | 2.0       |
+| params   | <code>string&#124;object</code> | N        | -            | The argument passed to the app.js lifecycle `onCreate` supports either a string or a standard JSON object. If a standard JSON object is passed, the method internally converts it to a string | 2.0       |
+
+### Result
+
+| Type                | Description                                                                                                                                                                                        |
+| ------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| <code>number</code> | The returned value is a positive integer value which identifies the timer created by the call to `setLaunchAppTimeout`. This value can be passed to `clearLaunchAppTimeout` to cancel the timeout. |
+
+## Example
+
+```js
+import { setLaunchAppTimeout, clearLaunchAppTimeout } from '@zos/router'
+import { Time } from '@zos/sensor'
+
+const time = new Time()
+const timeoutId = setLaunchAppTimeout({
+  url: 'pages/js_widget_sample',
+  appId: 1000001,
+  utc: time.getTime() + 1000,
+})
+
+clearLaunchAppTimeout({
+  timeoutId,
+})
+```

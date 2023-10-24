@@ -1,0 +1,96 @@
+---
+title: POLYLINE
+sidebar_label: POLYLINE
+---
+
+> Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](../../../../../guides/framework/device/compatibility.md).
+
+![polyline](/img/api/polyline_sample.jpg.jpg)
+
+Draws polylines that can be done on a line graph with multiple segments.
+
+## Create UI widget
+
+```js
+import { createWidget, widget } from '@zos/ui'
+
+const polyline = createWidget(widget.GRADKIENT_POLYLINE, Param)
+```
+
+## Type
+
+### Param: object
+
+| Properties | Description                    | Required | Type     |
+| ---------- | ------------------------------ | -------- | -------- |
+| x          | The x-coordinate of widget. | YES      | `number` |
+| y          | The y-coordinate of widget. | YES      | `number` |
+| w          | The width of widget.        | YES      | `number` |
+| h          | The height of the widget.   | YES      | `number` |
+| line_color | Line color, default `0xe60039` | NO       | `number` |
+| line_width | Line width, default `2` px     | NO       | `number` |
+
+### polyline instance
+
+#### polyline.clear()
+
+```ts
+() => void
+```
+
+Clear drawn lines
+
+#### polyline.addLine()
+
+```ts
+(option: Option) => void
+```
+
+##### Option: object
+
+| Properties  | Description                                          | Type              | Version |
+| ----------- | ---------------------------------------------------- | ----------------- | ------- |
+| data        | Coordinate arrays                                    | `Array<AxisItem>` | -       |
+| count       | Coordinate array length                              | `number`          | -       |
+| color_from  | Initial fill gradient color                          | `number`          | 2.1     |
+| color_to    | End fill gradient color                              | `number`          | 2.1     |
+| curve_style | Whether to use interpolation, smoothing curve effect | `boolean`         | 2.1     |
+
+##### AxisItem: object
+
+| Properties | Description                                                                             | Type     |
+| ---------- | --------------------------------------------------------------------------------------- | -------- |
+| x          | Horizontal coordinates, relative coordinates, distance from the left side of the widget | `number` |
+| y          | Vertical coordinates, relative coordinates, distance from the bottom of the widget      | `number` |
+
+## Code example
+
+```js
+import { createWidget, widget } from '@zos/ui'
+import { px } from '@zos/utils'
+
+Page({
+  build() {
+    const lineDataList = [
+      { x: 0, y: px(200) },
+      { x: px(100), y: px(10) },
+      { x: px(200), y: px(50) },
+      { x: px(300), y: px(50) },
+      { x: px(400), y: px(200) }
+    ]
+    const polyline = createWidget(widget.GRADKIENT_POLYLINE, {
+      x: 0,
+      y: px(200),
+      w: px(480),
+      h: px(200),
+      line_color: 0x00ffff,
+      line_width: 4
+    })
+    polyline.clear()
+    polyline.addLine({
+      data: lineDataList,
+      count: lineDataList.length
+    })
+  }
+})
+```

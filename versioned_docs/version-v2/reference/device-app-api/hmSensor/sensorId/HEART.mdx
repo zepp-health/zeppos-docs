@@ -1,0 +1,86 @@
+---
+title: HEART
+sidebar_label: HEART
+---
+
+## Creating Sensors
+
+```js
+const heart = hmSensor.createSensor(hmSensor.id.HEART)
+
+console.log(heart.last)
+```
+
+## HEART instance
+
+### heart: object
+
+| Properties | Description                                                                                                    | Type            |
+| ---------- | -------------------------------------------------------------------------------------------------------------- | --------------- |
+| last       | last successful heart rate measurement                                                                         | `number`        |
+| current    | current heart rate                                                                                             | `number`        |
+| today      | The current day's heart rate in minutes from 0:00 to the current moment, returning an array of js up to 60\*24 | `Array<number>` |
+
+## Registering sensor instance callback events
+
+```js
+battery.addEventListener(event, callback: Callback)
+```
+
+The heart rate sensor is special, if it uses event callbacks, it is recommended to use `removeEventListener` to unregister it in the `onDestroy` life cycle of the page.
+
+### The events of LAST
+
+#### The value of event
+
+`hmSensor.event.LAST`
+
+#### Callback
+
+```ts
+() => void
+```
+
+#### The example of events
+
+```js
+const hrLastListener = function () {
+  console.log(heart.last)
+}
+
+heart.addEventListener(heart.event.LAST, hrLastListener)
+
+// ...
+// Destroy function
+onDestroy() {
+  heart.removeEventListener(heart.event.LAST, hrLastListener)
+}
+```
+
+### The events of CURRENT
+
+#### The value of event
+
+`hmSensor.event.CURRENT`
+
+#### Callback
+
+```ts
+() => void
+```
+
+#### The example of events
+
+```js
+const hrCurrListener = function () {
+  console.log(heart.current)
+}
+
+heart.addEventListener(heart.event.CURRENT, hrCurrListener)
+
+// ...
+// Destroy function
+onDestroy() {
+  heart.removeEventListener(heart.event.CURRENT, hrCurrListener)
+}
+```

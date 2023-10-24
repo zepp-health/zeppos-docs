@@ -1,0 +1,38 @@
+{
+  "item.label.Introduction": {
+    "message": "Introduction",
+    "description": "Navbar item with label Introduction"
+  },
+  "item.label.Guides": {
+    "message": "Guides",
+    "description": "Navbar item with label Guides"
+  },
+  "item.label.App": {
+    "message": "App",
+    "description": "Navbar item with label App"
+  },
+  "item.label.Watchface": {
+    "message": "Watchface",
+    "description": "Navbar item with label Watchface"
+  },
+  "item.label.Distribute": {
+    "message": "Distribute",
+    "description": "Navbar item with label Distribute"
+  },
+  "item.label.Samples": {
+    "message": "Samples",
+    "description": "Navbar item with label Samples"
+  },
+  "item.label.Designs": {
+    "message": "Designs",
+    "description": "Navbar item with label Designs"
+  },
+  "item.label.Console": {
+    "message": "Console",
+    "description": "Navbar item with label Console"
+  },
+  "item.label.Register": {
+    "message": "Register",
+    "description": "Navbar item with label Register"
+  }
+}

@@ -1,0 +1,32 @@
+---
+title: IMG_TIME 数字时间 图片
+sidebar_label: IMG_TIME 数字时间 图片
+---
+
+## 代码示例
+
+```js
+//数组字体 图片数量必须是10个 顺序为0-9
+const timeArray = []
+let timeText = hmUI.createWidget(hmUI.widget.IMG_TIME, {
+  hour_zero: 1, // 是否补零
+  hour_startX: 205,
+  hour_startY: 184,
+  hour_array: timeArray,
+  hour_space: 8, //每个数组间的间隔
+  //单位
+  hour_unit_sc: rootPath + 'icon/colon.png',
+  hour_unit_tc: rootPath + 'icon/colon.png',
+  hour_unit_en: rootPath + 'icon/colon.png',
+  hour_align: hmUI.align.LEFT,
+  //minute second  替换hour
+  // ...
+  minute_follow: 1, // 是否跟随
+  second_follow: 1, // 是否跟随
+  am_x: 200,
+  am_y: 100,
+  am_sc_path: 'am.png',
+  am_en_path: 'am_en.png'
+  //pm 同上 前缀由 am 改为 pm
+})
+```

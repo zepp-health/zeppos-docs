@@ -1,0 +1,36 @@
+---
+title: GRADKIENT_POLYLINE 
+sidebar_label: GRADKIENT_POLYLINE 
+---
+
+![折线图](/img/api/polyline.png)
+
+## Code example
+
+```js
+//Clear the canvas each time you set_more.
+const lineDatas = [
+  { x: 0, y: 0 },
+  { x: 100, y: 10 },
+  { x: 200, y: 50 }
+]
+var widget = hmUI.createWidget(hmUI.widget.GRADKIENT_POLYLINE, {
+  x: 0,
+  y: 0,
+  w: 480,
+  h: 200,
+  type: hmUI.data_type.SLEEP //If you set the type, the function below can be used to let the firmware draw the data, currently only HEART and SLEEP are supported.
+})
+//JS draws the data.
+widget.clear() //clear the canvas
+widget.addLine({
+  //Add line.
+  data: lineDatas,
+  count: lineDatas.length
+})
+widget.addPoint({
+  //Add point.
+  data: lineDatas,
+  count: lineDatas.length
+})
+```

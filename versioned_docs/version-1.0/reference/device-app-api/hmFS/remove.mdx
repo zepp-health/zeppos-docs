@@ -1,0 +1,41 @@
+---
+title: hmFS.remove(path)
+sidebar_label: remove
+---
+
+> For an introduction to the Zepp OS Mini Program file system, please refer to [File System](../../../guides/framework/device/fs.md).
+
+Delete the file in the `/data` data directory of the Mini Program.
+
+## Type
+
+```ts
+(path: string) => result
+```
+
+## Parameters
+
+### path
+
+|     Description   | Required |   Type   | Default |
+| ----------------- | -------- | -------- | ------- |
+| Mini Program `/data` directory file name (relative path) |   yes    | `string` |    -    |
+
+### result
+
+|                   Description                  |   Type   |
+| ---------------------------------------------- | -------- |
+| The result of the operation, `0` means success | `number` |
+
+Please refer to [File System - Error Code](../../../guides/framework/device/fs.md#error-code) for the rest of the error codes.
+
+## Code example
+
+```js
+Page({
+  build() {
+    const result = hmFS.remove('path/to/test_file.txt')
+    console.log(result)
+  }
+})
+```

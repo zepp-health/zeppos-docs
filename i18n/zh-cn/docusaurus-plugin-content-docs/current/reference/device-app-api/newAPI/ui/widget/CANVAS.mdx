@@ -1,0 +1,398 @@
+---
+title: CANVAS
+sidebar_label: CANVAS 画布
+---
+
+> API_LEVEL `3.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../../guides/framework/device/compatibility.md)。
+
+![canvas_demo.jpg](/img/docs/guides/version_info/canvas_demo.jpg)
+
+Canvas 画布。
+
+当前 Canvas 的能力包括：
+
+1. 基础图形绘制，线、点、矩形、矩形填充、椭圆、扇形、多边形
+1. 图片绘制
+1. 文本绘制
+1. 画笔
+1. 画布纵向堆叠，最多可以叠加三层
+1. 清理画布
+1. 支持 `addEventListener` 方法，监听用户交互事件
+
+## 创建 UI 控件
+
+```js
+import { createWidget, widget } from '@zos/ui'
+
+const canvas = createWidget(widget.CANVAS, Param)
+```
+
+### Param: object
+
+| 属性 | 说明            | 是否必须 | 类型     |
+| ---- | --------------- | -------- | -------- |
+| x    | Canvas x 坐标   | 是       | `number` |
+| y    | Canvas y 坐标   | 是       | `number` |
+| w    | Canvas 画布宽度 | 是       | `number` |
+| h    | Canvas 画布高度 | 是       | `number` |
+
+```js
+const canvas = createWidget(widget.CANVAS, {
+  x: 0,
+  y: 0,
+  w: 100,
+  h: 100
+})
+```
+
+## canvas.setPaint
+
+设置画笔
+
+```js
+setPaint(Param: object): void
+```
+
+#### Param: object
+
+| 属性       | 说明 | 是否必须 | 类型     |
+| ---------- | ---- | -------- | -------- |
+| color      | 颜色 | 是       | `number` |
+| line_width | 线宽 | 是       | `number` |
+
+```js
+canvas.setPaint({
+  color: 0xff0000,
+  line_width: 10
+})
+```
+
+## canvas.drawPixel
+
+绘制单个像素点
+
+```js
+drawPixel(Param: object): void
+```
+
+#### Param: object
+
+| 属性  | 说明   | 是否必须 | 类型     |
+| ----- | ------ | -------- | -------- |
+| x     | x 坐标 | 是       | `number` |
+| y     | y 坐标 | 是       | `number` |
+| color | 颜色   | 否       | `number` |
+
+```js
+canvas.drawPixel({
+  x: 0,
+  y: 0,
+  color: 0xffffff
+})
+```
+
+## canvas.drawLine
+
+绘制线段，线宽和颜色通过 `setPaint` 画笔设置
+
+```js
+drawLine(Param: object): void
+```
+
+#### Param: object
+
+| 属性  | 说明          | 是否必须 | 类型     |
+| ----- | ------------- | -------- | -------- |
+| x1    | 起始点 x 坐标 | 是       | `number` |
+| y1    | 起始点 y 坐标 | 是       | `number` |
+| x2    | 结束点 x 坐标 | 是       | `number` |
+| y2    | 结束点 y 坐标 | 是       | `number` |
+| color | 颜色          | 否       | `number` |
+
+```js
+canvas.drawLine({
+  x1: 100,
+  y1: 100,
+  x2: 200,
+  y2: 100,
+  color: 0xffffff
+})
+```
+
+## Rectangle
+
+1. 绘制矩形路径，线宽和颜色通过 `setPaint` 画笔设置
+
+```js
+strokeRect(Param: object): void
+```
+
+2. 绘制矩形填充
+
+```js
+drawRect(Param: object): void
+```
+
+#### Param: object
+
+| 属性  | 说明          | 是否必须 | 类型     |
+| ----- | ------------- | -------- | -------- |
+| x1    | 起始点 x 坐标 | 是       | `number` |
+| y1    | 起始点 y 坐标 | 是       | `number` |
+| x2    | 结束点 x 坐标 | 是       | `number` |
+| y2    | 结束点 y 坐标 | 是       | `number` |
+| color | 颜色          | 否       | `number` |
+
+```js
+canvas.drawRect({
+  x1: 60,
+  y1: 20,
+  x2: 120,
+  y2: 60,
+  color: 0xff00ff
+})
+```
+
+## Circle
+
+1. 绘制圆形路径，线宽和颜色通过 `setPaint` 画笔设置
+
+```js
+strokeCircle(Param: object): void
+```
+
+2. 绘制圆形填充
+
+```js
+drawCircle(Param: object): void
+```
+
+#### Param: object
+
+| 属性     | 说明        | 是否必须 | 类型     |
+| -------- | ----------- | -------- | -------- |
+| center_x | 圆心 x 坐标 | 是       | `number` |
+| center_y | 圆心 y 坐标 | 是       | `number` |
+| radius   | 半径        | 是       | `number` |
+| color    | 颜色        | 否       | `number` |
+
+```js
+canvas.drawCircle({
+  center_x: 80,
+  center_y: 140,
+  radius: 40,
+  color: 0xfff400
+})
+```
+
+## Ellipse
+
+1. 绘制椭圆路径，线宽和颜色通过 `setPaint` 画笔设置
+
+```js
+strokeEllipse(Param: object): void
+```
+
+2. 绘制椭圆填充
+
+```js
+drawEllipse(Param: object): void
+```
+
+#### Param: object
+
+| 属性     | 说明            | 是否必须 | 类型     |
+| -------- | --------------- | -------- | -------- |
+| center_x | 椭圆中心 x 坐标 | 是       | `number` |
+| center_y | 椭圆中心 y 坐标 | 是       | `number` |
+| radius_x | x 方向轴半径    | 是       | `number` |
+| radius_y | y 方向轴半径    | 是       | `number` |
+| color    | 颜色            | 否       | `number` |
+
+```js
+canvas.drawEllipse({
+  center_x: 80,
+  center_y: 300,
+  radius_x: 60,
+  radius_y: 80,
+  color: 0xff0000
+})
+```
+
+## Arc
+
+与 Ellipse 相比多了 `start_angle` 和 `end_angle`，从椭圆中心来截取椭圆的一部分作为扇形。
+
+1. 绘制路径
+
+```js
+strokeArc(Param: object): void
+```
+
+2. 绘制填充
+
+```js
+drawArc(Param: object): void
+```
+
+#### Param: object
+
+| 属性        | 说明                          | 是否必须 | 类型     |
+| ----------- | ----------------------------- | -------- | -------- |
+| center_x    | 椭圆中心 x 坐标               | 是       | `number` |
+| center_y    | 椭圆中心 y 坐标               | 是       | `number` |
+| radius_x    | x 方向轴半径                  | 是       | `number` |
+| radius_y    | y 方向轴半径                  | 是       | `number` |
+| start_angle | 开始角度（3 点钟方向为 0 度） | 是       | `number` |
+| end_angle   | 开始角度（3 点钟方向为 0 度） | 是       | `number` |
+| color       | 颜色                          | 否       | `number` |
+
+```js
+canvas.drawArc({
+  center_x: 280,
+  center_y: 200,
+  radius_x: 60,
+  radius_y: 80,
+  start_angle: -150,
+  end_angle: -30,
+  color: 0xfff400
+})
+```
+
+## Polygon
+
+1. 绘制多边形路径，线宽和颜色通过 `setPaint` 画笔设置
+
+```js
+strokePoly(Param: object): void
+```
+
+2. 绘制多边形填充
+
+```js
+drawPoly(Param: object): void
+```
+
+#### Param: object
+
+| 属性       | 说明                         | 是否必须 | 类型         |
+| ---------- | ---------------------------- | -------- | ------------ |
+| data_array | 坐标数组，数组长度至少为 `3` | 是       | `Coordinate` |
+| color      | 颜色                         | 否       | `number`     |
+
+#### Coordinate
+
+| 属性 | 说明         | 类型     |
+| ---- | ------------ | -------- |
+| x    | `x` 方向坐标 | `number` |
+| y    | `y` 方向坐标 | `number` |
+
+```js
+const coordinateArray = [
+  { x: 233, y: 30 },
+  { x: 130, y: 230 },
+  { x: 400, y: 200 },
+  { x: 233, y: 30 }
+]
+
+canvas.strokePoly({
+  data_array: coordinateArray
+  color: 0x00ffff,
+})
+```
+
+## canvas.drawText
+
+绘制文本
+
+```js
+drawText(Param: object): void
+```
+
+#### Param: object
+
+| 属性      | 说明        | 是否必须 | 类型     |
+| --------- | ----------- | -------- | -------- |
+| x         | 文本 x 坐标 | 是       | `number` |
+| y         | 文本 y 坐标 | 是       | `number` |
+| text      | 文本内容    | 是       | `string` |
+| text_size | 文本大小    | 是       | `number` |
+| color     | 颜色        | 否       | `number` |
+
+```js
+canvas.drawText({
+  x: 200,
+  y: 260,
+  text_size: 30,
+  text: 'Hello Zepp OS'
+})
+```
+
+## canvas.drawImage
+
+绘制图片
+
+```js
+drawImage(Param: object): void
+```
+
+#### Param: object
+
+| 属性  | 说明                      | 是否必须 | 类型     |
+| ----- | ------------------------- | -------- | -------- |
+| x     | 图片 x 坐标               | 是       | `number` |
+| y     | 图片 y 坐标               | 是       | `number` |
+| w     | 图片宽度                  | 是       | `number` |
+| h     | 图片高度                  | 是       | `number` |
+| image | 图片路径                  | 是       | `string` |
+| alpha | 透明度[0-255]，0 为全透明 | 否       | `number` |
+
+```js
+canvas.drawImage({
+  x: 0,
+  y: 0,
+  w: 466,
+  h: 466,
+  alpha: 255,
+  image: 'images/canvas/background.png'
+})
+```
+
+## canvas.clear
+
+按矩形区域清理画布
+
+```js
+clear(Param: object): void
+```
+
+#### Param: object
+
+| 属性 | 说明         | 是否必须 | 类型     |
+| ---- | ------------ | -------- | -------- |
+| x    | 矩形 x 坐标  | 是       | `number` |
+| y    | 矩形 y 坐标  | 是       | `number` |
+| w    | 矩形区域宽度 | 是       | `number` |
+| h    | 矩形区域高度 | 是       | `number` |
+
+```js
+canvas.clear({
+  x: 400,
+  y: 0,
+  w: 64,
+  h: 64
+})
+```
+
+## 交互事件
+
+Canvas 支持 `widget.addEventListener` 监听交互事件，参考 [widget.addEventListener(eventId, callback)](../addEventListener.mdx)
+
+```js
+import { event } from '@zos/ui'
+
+canvas.addEventListener(event.CLICK_UP, function cb(info) {
+  console.log(info.x)
+  console.log(info.y)
+})
+```

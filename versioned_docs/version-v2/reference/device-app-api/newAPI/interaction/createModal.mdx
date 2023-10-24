@@ -1,0 +1,65 @@
+# createModal
+
+> Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+![createModal_image}](https://img-cdn.huami.com/20220927/9a9ce61a400f089c984951ca71c6f9b0.jpg)
+
+Create Modal prompt box.
+
+## Type
+
+```ts
+function createModal(option: Option): Modal
+```
+
+## Parameters
+
+### Option
+
+| Property | Type                                         | Required | DefaultValue       | Description                                                                                 | API_LEVEL |
+| -------- | -------------------------------------------- | -------- | ------------------ | ------------------------------------------------------------------------------------------- | --------- |
+| content  | <code>string</code>                          | Y        | -                  | Content of Modal                                                                            | 2.0       |
+| show     | <code>boolean</code>                         | N        | <code>false</code> | Whether to display Modal immediately after the creation is completed                        | 2.0       |
+| onClick  | <code>(keyName: ModalKey) =&#62; void</code> | N        | -                  | Whether to display Modal immediately                                                        | 2.0       |
+| autoHide | <code>boolean</code>                         | N        | <code>true</code>  | Whether to automatically close the Modal dialog after clicking the Confirm or Cancel button | 2.0       |
+
+### ModalKey
+
+| Type                | Description                                              |
+| ------------------- | -------------------------------------------------------- |
+| <code>number</code> | Modal key name, value reference Modal key name constants |
+
+### Modal
+
+| Property | Type                                       | Description        | API_LEVEL |
+| -------- | ------------------------------------------ | ------------------ | --------- |
+| show     | <code>(isShow: boolean) =&#62; void</code> | Show or hide Modal | 2.0       |
+
+## Constants
+
+### Modal key name constants
+
+| Constant        | Description          | API_LEVEL |
+| --------------- | -------------------- | --------- |
+| `MODAL_CONFIRM` | Modal Confirm button | 2.0       |
+| `MODAL_CANCEL`  | Modal Cancel button  | 2.0       |
+
+## Example
+
+```js
+import { createModal, MODAL_CONFIRM } from '@zos/interaction'
+
+const dialog = createModal({
+  content: 'hello world',
+  autoHide: false,
+  onClick: (keyName) => {
+    if (keyName === MODAL_CONFIRM) {
+      console.log('confirm')
+    } else {
+      dialog.show(false)
+    }
+  },
+})
+
+dialog.show(true)
+```

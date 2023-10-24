@@ -1,0 +1,211 @@
+---
+title: Geolocation
+sidebar_label: Geolocation
+---
+
+> Start from API_LEVEL `2.1` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Geolocation Sensor.
+
+:::info
+permission code: `device:os.geolocation`
+:::
+
+## Methods
+
+### start
+
+Start listening to location data
+
+```ts
+start(): void
+```
+
+### stop
+
+Stop listening to location data
+
+```ts
+stop(): void
+```
+
+### getStatus
+
+Get the positioning status, return `A` for positioning in progress, return `V` for invalid positioning
+
+```ts
+getStatus(): string
+```
+
+### getLatitude
+
+Get Latitude
+
+```ts
+getLatitude(option: Option): Result
+```
+
+#### Option
+
+| Property | Type                | Required | DefaultValue     | Description                                                                             | API_LEVEL |
+| -------- | ------------------- | -------- | ---------------- | --------------------------------------------------------------------------------------- | --------- |
+| format   | <code>string</code> | N        | <code>DMS</code> | Coordinate format, optionally `DD` for decimal or `DMS` in degrees, minutes and seconds | 2.1       |
+
+#### Result
+
+| Type                         | Description                                |
+| ---------------------------- | ------------------------------------------ |
+| <code>number&#124;DMS</code> | Coordinates, coordinate system type WGS-84 |
+
+#### DMS
+
+| Property  | Type                | Description                                               | API_LEVEL |
+| --------- | ------------------- | --------------------------------------------------------- | --------- |
+| direction | <code>string</code> | Direction, `N` for north latitude, `S` for south latitude | 2.1       |
+| degrees   | <code>number</code> | degree                                                    | 2.1       |
+| minutes   | <code>number</code> | minute                                                    | 2.1       |
+| seconds   | <code>number</code> | second                                                    | 2.1       |
+
+### getLongitude
+
+Get Longitude
+
+```ts
+getLongitude(option: Option): Result
+```
+
+#### Option
+
+| Property | Type                | Required | DefaultValue     | Description                                                                             | API_LEVEL |
+| -------- | ------------------- | -------- | ---------------- | --------------------------------------------------------------------------------------- | --------- |
+| format   | <code>string</code> | N        | <code>DMS</code> | Coordinate format, optionally `DD` for decimal or `DMS` in degrees, minutes and seconds | 2.1       |
+
+#### Result
+
+| Type                         | Description                                |
+| ---------------------------- | ------------------------------------------ |
+| <code>number&#124;DMS</code> | Coordinates, coordinate system type WGS-84 |
+
+#### DMS
+
+| Property  | Type                | Description                                               | API_LEVEL |
+| --------- | ------------------- | --------------------------------------------------------- | --------- |
+| direction | <code>string</code> | Direction, `E` for east longitude, `W` for west longitude | 2.1       |
+| degrees   | <code>number</code> | degree                                                    | 2.1       |
+| minutes   | <code>number</code> | minute                                                    | 2.1       |
+| seconds   | <code>number</code> | second                                                    | 2.1       |
+
+### getSetting
+
+> Start from API_LEVEL `3.0`
+
+Get the positioning settings
+
+```ts
+getSetting(): Result
+```
+
+#### Result
+
+| Property | Type                | Description                                                   | API_LEVEL |
+| -------- | ------------------- | ------------------------------------------------------------- | --------- |
+| mode     | <code>number</code> | Positioning settings, see `mode` below for value descriptions | 3.0       |
+
+#### mode
+
+| Value | Type                | Description        | API_LEVEL |
+| ----- | ------------------- | ------------------ | --------- |
+| 0     | <code>number</code> | Accuracy           | 3.0       |
+| 1     | <code>number</code> | Automation         | 3.0       |
+| 2     | <code>number</code> | Balance            | 3.0       |
+| 3     | <code>number</code> | Power Saving       | 3.0       |
+| 4     | <code>number</code> | Super Power Saving | 3.0       |
+| 5     | <code>number</code> | Custom             | 3.0       |
+
+### onChange
+
+Register a callback function to listen for location information change events
+
+```ts
+onChange(callback: () => void): void
+```
+
+### offChange
+
+Cancel the callback function for listening to the location information change event
+
+```ts
+offChange(callback: () => void): void
+```
+
+### onGnssChange
+
+> Start from API_LEVEL `3.0`
+
+Register a callback function to listen for GNSS information change events
+
+```ts
+onGnssChange(callback: (info: Info) => void): void
+```
+
+#### Info
+
+| Property           | Type                                        | Description                                                                            | API_LEVEL |
+| ------------------ | ------------------------------------------- | -------------------------------------------------------------------------------------- | --------- |
+| agps_inject_time   | <code>number</code>                         | AGPS update time UTC timestamp in milliseconds                                         | 3.0       |
+| top4_cn_val        | <code>number</code>                         | Signal strength value of the positioning satellite                                     | 3.0       |
+| is_dualband        | <code>number</code>                         | Whether dual-band                                                                      | 3.0       |
+| nb_valid_satellite | <code>number</code>                         | Number of available satellites                                                         | 3.0       |
+| nb_used_satellite  | <code>number</code>                         | Number of satellites used                                                              | 3.0       |
+| elapsed_time       | <code>number</code>                         | Time consumed from the start of satellite search to successful positioning, in seconds | 3.0       |
+| satellite_data     | <code>Array&#60;SatelliteSystem&#62;</code> | Satellite data arrays                                                                  | 3.0       |
+
+#### SatelliteSystem
+
+| Property           | Type                                  | Description                                         | API_LEVEL |
+| ------------------ | ------------------------------------- | --------------------------------------------------- | --------- |
+| gnss_id            | <code>number</code>                   | Satellite ID                                        | 3.0       |
+| sub_top4_cn_val    | <code>number</code>                   | The strongest signal value of this satellite system | 3.0       |
+| nb_valid_satellite | <code>number</code>                   | Number of available satellites that can be searched | 3.0       |
+| gsv_data           | <code>Array&#60;Satellite&#62;</code> | Single satellite data array, maximum length 32      | 3.0       |
+
+#### Satellite
+
+| Property  | Type                | Description           | API_LEVEL |
+| --------- | ------------------- | --------------------- | --------- |
+| id        | <code>number</code> | Satellite ID          | 3.0       |
+| elevation | <code>number</code> | Pitch angle           | 3.0       |
+| azimuth   | <code>number</code> | Azimuth               | 3.0       |
+| snr       | <code>number</code> | Signal-to-noise ratio | 3.0       |
+
+### offGnssChange
+
+> Start from API_LEVEL `3.0`
+
+Cancel the callback function for listening to the GNSS information change event
+
+```ts
+offGnssChange(callback: (...args: any[]) => any): void
+```
+
+## Example
+
+```js
+import { Geolocation } from '@zos/sensor'
+
+const geolocation = new Geolocation()
+
+const callback = () => {
+  if (geolocation.getStatus() === 'A') {
+    console.log(geolocation.getLatitude())
+    console.log(geolocation.getLongitude())
+  }
+}
+
+geolocation.start()
+geolocation.onChange(callback)
+
+// When not needed for use
+geolocation.offChange(callback)
+geolocation.stop()
+```

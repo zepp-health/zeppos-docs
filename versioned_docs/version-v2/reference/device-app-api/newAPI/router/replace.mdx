@@ -1,0 +1,31 @@
+# replace
+
+> Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Close the current page and jump to a page within the app.
+
+## Type
+
+```ts
+function replace(option: Option): void
+```
+
+## Parameters
+
+### Option
+
+| Property | Type                            | Required | DefaultValue | Description                                                                                                                                                                         | API_LEVEL |
+| -------- | ------------------------------- | -------- | ------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------- |
+| url      | <code>string</code>             | Y        | -            | path                                                                                                                                                                                | 2.0       |
+| params   | <code>string&#124;object</code> | N        | -            | Parameters passed to the page `onCreate` lifecycle, supporting strings or standard JSON objects. If a standard JSON object is passed, the method internally converts it to a string | 2.0       |
+
+## Example
+
+```js
+import { replace } from '@zos/router'
+
+replace({
+  url: 'page/index',
+  params: 'type=1',
+})
+```

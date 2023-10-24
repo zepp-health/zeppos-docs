@@ -1,0 +1,51 @@
+# getProfile
+
+> Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Get user information.
+
+:::info
+permission code: `data:user.info`
+:::
+
+## Type
+
+```ts
+function getProfile(): Result
+```
+
+## Parameters
+
+### Result
+
+| Property | Type                | Description                                                            | API_LEVEL |
+| -------- | ------------------- | ---------------------------------------------------------------------- | --------- |
+| age      | <code>number</code> | User age, `0` if no data                                               | 2.0       |
+| height   | <code>number</code> | User height, `0` if no data                                            | 2.0       |
+| weight   | <code>number</code> | User weight, `0` if no data                                            | 2.0       |
+| gender   | <code>number</code> | User gender, value refer to user gender constants                      | 2.0       |
+| nickName | <code>string</code> | User's nickname                                                        | 2.0       |
+| region   | <code>string</code> | ISO code of the country or region where the user account is registered | 2.0       |
+
+## Constants
+
+### User gender constants
+
+| Constant             | Description        | API_LEVEL |
+| -------------------- | ------------------ | --------- |
+| `GENDER_MALE`        | Male               | 2.0       |
+| `GENDER_FEMALE`      | Female             | 2.0       |
+| `GENDER_UNSPECIFIED` | User not specified | 2.0       |
+
+## Example
+
+```js
+import { getProfile, GENDER_MALE } from '@zos/user'
+
+const { age, gender } = getProfile()
+console.log(age)
+
+if (gender === GENDER_MALE) {
+  console.log('male')
+}
+```

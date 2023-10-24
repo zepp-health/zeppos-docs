@@ -1,0 +1,49 @@
+# readFileSync
+
+> Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Returns the entire contents of the specified file in the `/data` directory of the Mini Program.
+
+## Type
+
+```ts
+function readFileSync(option: Option): Result
+```
+
+## Parameters
+
+### Option
+
+| Property | Type                 | Required | DefaultValue | Description   | API_LEVEL |
+| -------- | -------------------- | -------- | ------------ | ------------- | --------- |
+| path     | <code>string</code>  | Y        | -            | path          | 2.0       |
+| options  | <code>Options</code> | N        | -            | Other Options | 2.0       |
+
+### Options
+
+| Property | Type                | Required | DefaultValue | Description                                                                   | API_LEVEL |
+| -------- | ------------------- | -------- | ------------ | ----------------------------------------------------------------------------- | --------- |
+| encoding | <code>string</code> | N        | -            | When the encoding method is specified, the API returns `string` as the result | 2.0       |
+
+### Result
+
+| Type                                                | Description                                                          |
+| --------------------------------------------------- | -------------------------------------------------------------------- |
+| <code>ArrayBuffer&#124;string&#124;undefined</code> | File content. If `undefined` is returned, the file failed to be read |
+
+## Example
+
+```js
+import { readFileSync } from '@zos/fs'
+
+const contentBuffer = readFileSync({
+  path: 'test.txt',
+})
+
+const contentString = readFileSync({
+  path: 'test.txt',
+  options: {
+    encoding: 'utf8',
+  },
+})
+```

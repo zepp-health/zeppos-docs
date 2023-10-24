@@ -1,0 +1,118 @@
+---
+title: WORLD_CLOCK
+sidebar_label: WORLD_CLOCK 世界时钟
+---
+
+## 创建传感器
+
+```js
+const world_clock = hmSensor.createSensor(hmSensor.id.WORLD_CLOCK)
+```
+
+## world_clock 实例
+
+### world_clock.init
+
+初始化世界时钟数据
+
+#### 类型
+
+```ts
+() => void
+```
+
+### world_clock.getWorldClockCount
+
+获取当前配置的世界时钟总数
+
+#### 类型
+
+```ts
+() => number
+```
+
+### world_clock.getWorldClockCountInfo(index)
+
+获取 `index` 索引对应的世界时钟数据
+
+#### 类型
+
+```ts
+(index: number) => wordInfo
+```
+
+##### wordInfo
+
+| 属性           | 说明     | 类型     |
+| -------------- | -------- | -------- |
+| city           | 城市名   | `string` |
+| cityCode       | 城市代号，如旧金山 `SFO` | `string` |
+| hour           | 小时     | `number` |
+| minute         | 分钟     | `number` |
+| timeZoneHour   | 时区小时 | `number` |
+| timeZoneMinute | 时区分钟 | `number` |
+
+### world_clock.uninit
+
+回收世界时钟数据，与 `init` 相对应
+
+#### 类型
+
+```js
+() => void
+```
+
+## 完整示例
+
+```js
+class TextByLine {
+  constructor(params) {
+    const { text = '', y = undefined, line = 0 } = params
+
+    this.text = text
+    this.y = y
+    this.line = line
+    this.y_computed = Number.isInteger(this.y) ? this.y : px(this.line * 60 + 120)
+  }
+
+  render() {
+    return hmUI.createWidget(hmUI.widget.TEXT, {
+      x: px(0),
+      y: this.y_computed,
+      w: px(480),
+      h: px(46),
+      color: 0xffffff,
+      text_size: px(20),
+      align_h: hmUI.align.CENTER_H,
+      align_v: hmUI.align.CENTER_V,
+      text_style: hmUI.text_style.NONE,
+      text: this.text
+    })
+  }
+}
+
+Page({
+  build() {
+    const world_clock = hmSensor.createSensor(hmSensor.id.WORLD_CLOCK)
+    world_clock.init()
+
+    const count = world_clock.getWorldClockCount()
+
+    for (let index = 0; index < count; index++) {
+      const { city, cityCode, hour, minute, timeZoneHour, timeZoneMinute } = world_clock.getWorldClockInfo(index)
+
+      new TextByLine({
+        text: `city:${city};cityCode:${cityCode};hour:${hour};minute:${minute}`,
+        line: 0 + 2 * index
+      }).render()
+
+      new TextByLine({
+        text: `timeZoneHour:${timeZoneHour};timeZoneMinute:${timeZoneMinute}`,
+        line: 1 + 2 * index
+      }).render()
+    }
+
+    world_clock.uninit()
+  }
+})
+```

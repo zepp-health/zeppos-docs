@@ -1,0 +1,68 @@
+---
+title: 小程序调试技巧
+sidebar_label: 小程序调试技巧
+---
+
+## 介绍
+
+现阶段 Zepp OS 的开发工具还不支持断点调试代码的功能，添加日志是最好的调试手段。
+
+本文会介绍如下内容：
+
+- 小程序中添加日志
+- 查看模拟器日志
+- 查看真机日志
+
+## 小程序中添加日志
+
+通过 [整体架构](../architecture/arc.mdx) 可以了解到一个完整的 Zepp OS 小程序分为「设备应用」、「设置应用」和「伴生服务」。
+
+它们在代码中添加日志的方式略有不同。
+
+对于「设备应用」，推荐使用 `@zos/utils` 模块的 [`log`](../../reference/device-app-api/newAPI/utils/log.mdx) 函数。
+
+并且可以通过不同方法，打印不同级别的日志，便于过滤日志。
+
+```js
+import { log } from '@zos/utils'
+
+const pageLogger = log.getLogger('page')
+
+pageLogger.log('page created')
+pageLogger.error('page error')
+```
+
+对于「设置应用」和「伴生服务」，根据框架接口中的介绍，使用 `console.log` 打印日志即可。
+
+## 查看模拟器日志
+
+以 [TodoList](../../samples/app/toDoList.md) 小程序在模拟器上运行的效果为例。
+
+![desk.png](/img/simulator/workspace.jpg)
+
+### 设备应用日志
+
+在模拟器主界面，点击左侧 `Console` 按钮，即可看到「设备应用」日志。
+
+![device_log](/img/docs/guides/best-practice/device_log.jpg)
+
+不同级别的日志会有明显的颜色区分显示，右上角可以根据日志等级快速过滤，并且还提供了字符串过滤规则功能。
+
+### 设置应用日志
+
+设置应用模拟器一旁的控制台可以很方便看到相关日志，同样提供过滤功能。
+
+![settings_log](/img/docs/guides/best-practice/settings_log.jpg)
+
+### 伴生服务日志
+
+伴生服务日志窗口会跟随「设备模拟器」一并启动，也具有日志过滤功能。
+
+![side_service_log](/img/docs/guides/best-practice/side_service_log.jpg)
+
+## 真机日志
+
+真机日志需要使用 Zepp App 的开发者模式查看，参考：
+
+- [Zepp App 开发者模式开启方式](../tools/zepp-app.md#开发者模式开启方式)
+- [Zepp App 查看真机日志](../tools/zepp-app.md#查看真机日志)

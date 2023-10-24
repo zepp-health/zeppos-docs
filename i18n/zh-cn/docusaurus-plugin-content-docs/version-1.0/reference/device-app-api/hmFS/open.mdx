@@ -1,0 +1,50 @@
+---
+title: hmFS.open(path, flag)
+sidebar_label: open
+---
+
+> Zepp OS 小程序文件系统介绍请参考 [文件系统](../../../guides/framework/device/fs.md)。
+
+打开小程序 `/data` 目录下的文件。
+
+## 类型
+
+```ts
+(path: string, flag: FLAG) => fileId
+```
+
+## 参数
+
+### path
+
+| 说明     | 必填 | 类型     | 默认值 |
+| -------- | ---- | -------- | ------ |
+| 小程序 `/data` 目录下文件名(相对路径) | 是   | `string` | -      |
+
+### FLAG
+
+| 可选属性 | 说明                                                    |
+| -------- | ------------------------------------------------------- |
+| O_RDONLY | 只读                                                    |
+| O_WRONLY | 只写                                                    |
+| O_RDWR   | 可读写                                                  |
+| O_APPEND | 追加模式打开                                            |
+| O_CREAT  | 若文件不存在，则新建并打开                              |
+| O_EXCL   | 与 O_CREAT 同时使用。不存在则创建并打开，存在则返回错误 |
+| O_TRUNC  | 若文件存在，则长度被截为 0                              |
+
+### fileId
+
+| 说明     | 类型     |
+| -------- | -------- |
+| 文件句柄 | `number` |
+
+## 用法
+
+```js
+Page({
+  build() {
+    const fileId = hmFS.open('test_file.txt', hmFS.O_RDWR | hmFS.O_CREAT)
+  }
+})
+```

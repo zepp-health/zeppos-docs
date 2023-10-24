@@ -1,0 +1,37 @@
+---
+title: hmApp.packageInfo()
+sidebar_label: packageInfo
+---
+
+Get the information from [Mini Program Configuration](../../app-json.mdx)
+
+## Type
+
+```ts
+() => Package
+```
+
+## Parameters
+
+### Package
+
+Only the attribute names are listed here, please refer to [Mini Program Configuration](../../app-json.mdx) for attribute descriptions and detailed types
+
+| Properties |
+| ---- |
+| name |
+| type |
+| version |
+| icon |
+| appId |
+| description |
+| vendor |
+| pages |
+
+## Code example
+
+```js
+const { name } = hmApp.packageInfo()
+
+console.log(name)
+```

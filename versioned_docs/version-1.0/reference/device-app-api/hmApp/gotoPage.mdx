@@ -1,0 +1,28 @@
+---
+title: hmApp.gotoPage(option)
+sidebar_label: gotoPage
+---
+
+Skip to next page.
+
+## Type
+
+```ts
+(option: Option) => void
+```
+
+## Parameters
+
+### Option: object
+
+| property | description                                                            | required | type     | default |
+| -------- | ---------------------------------------------------------------------- | -------- | -------- | ------- |
+| url      | jump-path                                                              | YES      | `string` | -       |
+| param    | Parameters passed to the `onInit` life cycle in the `Page` constructor | NO       | `string` | -       |
+
+## Code example
+
+```js
+// loading pages/index2.js
+hmApp.gotoPage({ url: 'pages/index2', param: '...' })
+```

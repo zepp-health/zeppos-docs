@@ -1,0 +1,211 @@
+---
+title: MUSIC
+sidebar_label: MUSIC 音乐控制
+---
+
+控制手表使用扬声器播放音乐
+
+## 创建传感器
+
+```js
+const music = hmSensor.createSensor(hmSensor.id.MUSIC)
+```
+
+:::caution
+部分设备没有扬声器，如果创建传感器报错，则说明设备不支持
+:::
+
+## music 实例
+
+### music: object
+
+| 属性      | 说明                                     | 类型      |
+| --------- | ---------------------------------------- | --------- |
+| artist    | 艺术家名称                               | `string`  |
+| title     | 音乐名称                                 | `string`  |
+| isPlaying | 播放状态 `true`: 播放中、`false`: 未播放 | `boolean` |
+
+### music.audInit()
+
+初始化音乐控制
+
+#### 类型
+
+```ts
+() => void
+```
+
+### music.audPlay()
+
+播放
+
+#### 类型
+
+```ts
+() => void
+```
+
+### music.audPause()
+
+暂停
+
+#### 类型
+
+```ts
+() => void
+```
+
+### music.audPrev()
+
+上一首
+
+#### 类型
+
+```ts
+() => void
+```
+
+### music.audNext()
+
+下一首
+
+#### 类型
+
+```ts
+() => void
+```
+
+## 注册传感器实例回调事件
+
+```js
+music.addEventListener(event, callback: Callback)
+```
+
+### CHANGE 事件
+
+#### event 值
+
+`hmSensor.event.CHANGE`
+
+#### Callback
+
+```ts
+() => void
+```
+
+#### 事件示例
+
+```js
+music.addEventListener(hmSensor.event.CHANGE, function () {
+  console.log("The current song's name: " + music.title + '\r\n')
+})
+```
+
+## 完整代码示例
+
+```js
+class TextByLine {
+  constructor(params) {
+    const { text = '', y = undefined, line = 0 } = params
+
+    this.text = text
+    this.y = y
+    this.line = line
+    this.y_computed = Number.isInteger(this.y) ? this.y : px(this.line * 60 + 120)
+  }
+
+  render() {
+    return hmUI.createWidget(hmUI.widget.TEXT, {
+      x: px(0),
+      y: this.y_computed,
+      w: px(480),
+      h: px(46),
+      color: 0xffffff,
+      text_size: px(20),
+      align_h: hmUI.align.CENTER_H,
+      align_v: hmUI.align.CENTER_V,
+      text_style: hmUI.text_style.NONE,
+      text: this.text
+    })
+  }
+}
+
+Page({
+  build() {
+    const music = hmSensor.createSensor(hmSensor.id.MUSIC)
+
+    music.audInit()
+
+    const { title, artist, isPlaying } = music
+
+    const infoText = new TextByLine({
+      text: `title:${title};artist:${artist};isPlaying:${isPlaying}`,
+      line: 0
+    }).render()
+
+    music.addEventListener(hmSensor.event.CHANGE, function () {
+      const { title, artist, isPlaying } = music
+
+      infoText.setProperty(hmUI.prop.MORE, {
+        text: `title:${title};artist:${artist};isPlaying:${isPlaying}`,
+      })
+    })
+
+    hmUI.createWidget(hmUI.widget.BUTTON, {
+      x: px(80),
+      y: px(240),
+      w: px(300),
+      h: px(60),
+      radius: px(12),
+      normal_color: 0xfc6950,
+      press_color: 0xfeb4a8,
+      text: 'PLAY',
+      click_func: () => {
+        music.audPlay()
+      }
+    })
+
+    hmUI.createWidget(hmUI.widget.BUTTON, {
+      x: px(80),
+      y: px(320),
+      w: px(300),
+      h: px(60),
+      radius: px(12),
+      normal_color: 0xfc6950,
+      press_color: 0xfeb4a8,
+      text: 'PAUSE',
+      click_func: () => {
+        music.audPause()
+      }
+    })
+
+    hmUI.createWidget(hmUI.widget.BUTTON, {
+      x: px(80),
+      y: px(400),
+      w: px(300),
+      h: px(60),
+      radius: px(12),
+      normal_color: 0xfc6950,
+      press_color: 0xfeb4a8,
+      text: 'PREV',
+      click_func: () => {
+        music.audPrev()
+      }
+    })
+
+    hmUI.createWidget(hmUI.widget.BUTTON, {
+      x: px(80),
+      y: px(480),
+      w: px(300),
+      h: px(60),
+      radius: px(12),
+      normal_color: 0xfc6950,
+      press_color: 0xfeb4a8,
+      text: 'NEXT',
+      click_func: () => {
+        music.audNext()
+      }
+    })
+  }
+})
+```

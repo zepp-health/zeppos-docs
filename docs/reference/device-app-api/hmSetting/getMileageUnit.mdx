@@ -1,0 +1,28 @@
+---
+title: hmSetting.getMileageUnit()
+sidebar_label: getMileageUnit
+---
+
+Returns whether the current distance unit is metric or imperial.
+
+This method is to get the units set by the user and does not represent the units of the data. The units of the data refer to the interface description of the corresponding data.
+
+## Type
+
+```ts
+() => result
+```
+
+## Parameters
+
+### result
+
+|                                Description                              |   Type   |
+| ----------------------------------------------------------------------- | -------- |
+| The current distance unit, `0`:metric, `1`:imperial, others are invalid | `number` |
+
+## Code example
+
+```js
+const mileageUnit = hmSetting.getMileageUnit()
+```

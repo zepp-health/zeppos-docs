@@ -1,0 +1,45 @@
+---
+title: hmFS.stat(path)
+sidebar_label: stat
+---
+
+获取文件信息
+
+## 类型
+
+```ts
+(path: string) => [stat, err]
+```
+
+## 参数
+
+### path
+
+| 说明            | 必填 | 类型     | 默认值 |
+| --------------- | ---- | -------- | ------ |
+| 文件路径/文件名 | 是   | `string` | -      |
+
+### stat
+
+| 属性  | 说明                       | 类型     |
+| ----- | -------------------------- | -------- |
+| size  | 文件大小（字节数）         | `number` |
+| mtime | 文件最后修改时间（UTC 秒） | `number` |
+
+### err
+
+| 说明                     | 类型     |
+| ------------------------ | -------- |
+| 错误码，`0` 表示获取成功 | `number` |
+
+## 用法
+
+```js
+const [fs_stat, err] = hmFS.stat('path/to/test_file.txt')
+
+if (err == 0) {
+  console.log('--->size:', fs_stat.size)
+} else {
+  console.log('err:', err)
+}
+```

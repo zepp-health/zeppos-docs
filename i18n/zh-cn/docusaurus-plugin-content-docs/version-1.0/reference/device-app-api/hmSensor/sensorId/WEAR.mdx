@@ -1,0 +1,117 @@
+---
+title: WEAR
+sidebar_label: WEAR 佩戴状态
+---
+
+:::caution
+WEAR 传感器 CHANGE 事件暂不可用，预计下一个 OTA 版本修复
+:::
+
+## 创建传感器
+
+```js
+const wear = hmSensor.createSensor(hmSensor.id.WEAR)
+```
+
+## wear 实例
+
+### wear: object
+
+| 属性    | 说明                   | 类型     |
+| ------- | ---------------------- | -------- |
+| current | 当前佩戴状态，详见下表 | `number` |
+
+| current 值 | 说明   |
+| ---------- | ------ |
+| `0`        | 未佩戴 |
+| `1`        | 佩戴   |
+| `2`        | 运动中 |
+| `3`        | 不确定 |
+
+## 注册传感器实例回调事件
+
+```js
+wear.addEventListener(event, callback: Callback)
+```
+
+### CHANGE 事件
+
+#### event 值
+
+`hmSensor.event.CHANGE`
+
+#### Callback
+
+```ts
+() => void
+```
+
+## 完整示例
+
+```js
+class TextByLine {
+  constructor(params) {
+    const { text = '', y = undefined, line = 0 } = params
+
+    this.text = text
+    this.y = y
+    this.line = line
+    this.y_computed = Number.isInteger(this.y) ? this.y : px(this.line * 60 + 120)
+  }
+
+  render() {
+    return hmUI.createWidget(hmUI.widget.TEXT, {
+      x: px(0),
+      y: this.y_computed,
+      w: px(480),
+      h: px(46),
+      color: 0xffffff,
+      text_size: px(20),
+      align_h: hmUI.align.CENTER_H,
+      align_v: hmUI.align.CENTER_V,
+      text_style: hmUI.text_style.NONE,
+      text: this.text
+    })
+  }
+}
+
+Page({
+  build() {
+    const wear = hmSensor.createSensor(hmSensor.id.WEAR)
+
+    const currentText = new TextByLine({
+      text: `current:${wear.current}`,
+      line: 0
+    }).render()
+
+    const changeEventText = new TextByLine({
+      text: `EVENT-CHANGE:${wear.current}`,
+      line: 1
+    }).render()
+
+    const changeCallback = () => {
+      const current = wear.current
+
+      changeEventText.setProperty(hmUI.prop.MORE, {
+        text: `EVENT-CHANGE: ${current}`
+      })
+    }
+
+    const wearChangeListener = () => {
+      wear.addEventListener(hmSensor.event.CHANGE, changeCallback)
+    }
+
+    hmUI.createWidget(hmUI.widget.BUTTON, {
+      x: px(80),
+      y: px(300),
+      w: px(300),
+      h: px(60),
+      radius: px(12),
+      normal_color: 0xfc6950,
+      press_color: 0xfeb4a8,
+      text: 'REGISTER_CHANGE',
+      click_func: wearChangeListener
+    })
+  }
+})
+```

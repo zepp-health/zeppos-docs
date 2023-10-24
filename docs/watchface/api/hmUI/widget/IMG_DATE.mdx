@@ -1,0 +1,32 @@
+---
+title: IMG_DATE
+sidebar_label: IMG_DATE
+---
+
+![日期文字控件](/img/api/date_text.png)
+
+## Code example
+
+```js
+const fontArray = []
+const status = hmUI.createWidget(hmUI.widget.IMG_DATE, {
+  year_startX: 0,
+  year_startY: 0,
+  year_unit_sc: 'unit.png', // Unit
+  year_unit_tc: 'unit.png',
+  year_unit_en: 'unit.png',
+  year_align: hmUI.align.LEFT,
+  year_space: 1, // Spacing of text.
+  year_zero: 1, // Whether to make up zeroes.
+  year_follow: 1, // Whether to follow.
+  year_en_array: fontArray,
+  year_sc_array: fontArray,
+  year_tc_array: fontArray,
+  year_is_character: true // This field is invalid for the year and defaults to false. When true, the incoming images are 12 for the month and 31 for the day.
+  // Month and day as above, need to replace the prefix with month/day.
+})
+```
+
+- year_is_character year set this field is invalid.
+- xx_follow is whether to follow or not. If month is set to 1, there is no need to specify x y for month. It will follow the month day after the year is drawn.
+- Once xx_is_character is set to true month must upload 12 sheets day upload 31 sheets, otherwise there will be an error.

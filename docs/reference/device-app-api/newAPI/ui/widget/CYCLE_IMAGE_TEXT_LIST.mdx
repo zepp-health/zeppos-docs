@@ -1,0 +1,144 @@
+---
+title: CYCLE_IMAGE_TEXT_LIST
+sidebar_label: CYCLE_IMAGE_TEXT_LIST
+---
+
+> Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](../../../../../guides/framework/device/compatibility.md).
+
+![cycle_image_text_list_sample](/img/api/cycle_image_text_list.jpg)
+
+Create a list that can be scrolled in a loop, and each list item can be placed with an image and text.
+
+## Create UI widget
+
+```js
+import { createWidget, widget } from '@zos/ui'
+
+const cycleImageTextList = createWidget(widget.CYCLE_IMAGE_TEXT_LIST, Param)
+```
+
+## Type
+
+### Param: object
+
+|    Properties     |                         Description                   |  Required |      Type       |
+| ----------------- | ----------------------------------------------------- | --------- | --------------- |
+| item_image_x      |  The x-coordinate of Image.(Relative coordinate)  | YES       | `number`        |
+| item_image_y      |  The y-coordinate of Image.(Relative coordinate)  | YES       | `number`        |
+| item_text_x       |  The x-coordinate of text.(Relative coordinate)   | YES       | `number`        |
+| item_text_y       |  The y-coordinate of text.(Relative coordinate)   | YES       | `number`        |
+| item_text_size    |  Font Size.                                       | YES       | `number`        |
+| item_text_color   |  Font color.                                      | YES       | `number`        |
+| item_bg_color     |  Background color.                                | YES       | `number`        |
+| item_height       |  The height of item.                              | YES       | `number`        |
+| x                 | The x-coordinate of widgets.                   | YES       | `number` |
+| y                 | The y-coordinate of widgets.                   | YES       | `number` |
+| w                 | The width of widgets.                          | YES       | `number` |
+| h                 | The height of widgets.                         | YES       | `number` |
+| data_array        | Data arrays.                                      | YES       | `Array<Data>`   |
+| data_size         | The length of the array.                          | YES       | `number`        |
+| item_text_align_h | Text horizontal orientation.Unfilled default horizontal centering.              | NO | `number` |
+| item_text_align_v | Vertical orientation of text.Unfilled defaults to vertical centering.           | NO | `number` |
+| item_text_height  | Actual display area of text.Default to item_height if not filled.               | NO | `number` |
+| item_text_width   | The actual text display area.Default to the widget display width if not filled. | NO | `number` |
+| item_image_x           | item Image x-coordinate, relative coordinates                | NO       | `number`              |
+| item_image_y           | item Image y-coordinate, relative coordinates                | NO       | `number`              |
+| item_click_func   | Callback for item click.                                                         | NO | `ItemClickFunc` |
+| item_focus_change_func | Item focus state callback.  | NO       | `ItemFocusChangeFunc` |
+
+### Data: object
+
+| Properties |      Description     | Required |   Type   |
+| --------- | -------------------- | -------- | -------- |
+|    src    | The path of image.   |    NO    | `string` |
+|   text    | The content of text. |   YES    | `string` |
+
+### ItemClickFunc: function
+
+```ts
+(cycleList: CycleList, index: number) => void
+```
+
+| Properties | Type     | Notes                      |
+| ---------- | -------- | -------------------------- |
+|  cycleList | `object` | The instance of cycleList.  |
+|  index     | `number` | Clicked item index.Starting from 0. |
+
+### ItemFocusChangeFunc: function
+
+```ts
+(cycleList: CycleList, index: number, isFocus: boolean) => void
+```
+
+| 参数      | 说明                       | 类型     |
+| --------- | -------------------------- | -------- |
+| cycleList | The instance of cycleList.             | `object` |
+| index     | Losing/getting the index of the focus item. | `number` |
+| isFocus     | Whether to get the focus. | `boolean` |
+
+## Set the properties of a single item text
+
+:::caution
+Setting the properties of a single `item` text is not stored by the widget and the changed values are not available via `getProperty`.
+:::
+
+| Properties      | Description                        | Required | Type     |
+| --------------- | ---------------------------------- | -------- | -------- |
+| index           | The index of item.Starting from 0. | YES       | `number` |
+| item_text_color | The color of the text.             | NO       | `number` |
+| item_text_size  | The size of the text.              | NO       | `number` |
+
+```js
+const widget = ...
+widget.setProperty(prop.ITEM_MORE,{
+  index:0,
+  item_text_color:0x2f4988,
+  item_text_size:50
+})
+```
+
+## Refresh ITEM
+
+- This is set for the property `ITEM_MORE`. After setting the property with `ITEM_MORE`, you can refresh `ITEM` if you want to revert to its original state.
+
+```js
+widget.setProperty(prop.ITEM_REFRESH, 0) // 0 is the index of item , starting from 0.
+```
+
+## Set the top item index of the list
+
+- Set the index value of the top `item` of the `list` with the `LIST_TOP` property to display the `list` at the specified position of the `item`.
+
+| Name   | Description                        |  Required | Type     |
+| ------ | ---------------------------------- | --------- | -------- |
+| index  | The index of item.Starting from 0. | YES       | `number` |
+
+## Code example
+
+```js
+import { createWidget, widget, prop } from '@zos/ui'
+
+const data_array = [
+  { src: rootPath + 'step/step_num_0.png', text: '1' },
+  { src: rootPath + 'step/step_num_1.png', text: '2' },
+  { src: rootPath + 'step/step_num_2.png', text: '3' }
+]
+cycleList = createWidget(widget.CYCLE_IMAGE_TEXT_LIST, {
+  x: 0,
+  y: 0,
+  w: 200,
+  h: 400,
+  data_array: data_array,
+  data_size: 3,
+  item_height: 100,
+  item_bg_color: 0xffffff,
+  item_text_color: 0x000000,
+  item_text_x: 10,
+  item_text_y: 10,
+  item_text_size: 18
+})
+
+//Get the index value of the first row.
+ret = cycleList.getProperty(prop.MORE, {})
+console.log(ret.index)
+```

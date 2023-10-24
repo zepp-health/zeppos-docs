@@ -1,0 +1,51 @@
+# mstOnCharaReadComplete
+
+> Start from API_LEVEL `3.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Register the read Characteristic completion callback function.
+
+## Type
+
+```ts
+function mstOnCharaReadComplete(callback: Callback): Result
+```
+
+## Parameters
+
+### Callback
+
+| Type                                                                    | Description                                      |
+| ----------------------------------------------------------------------- | ------------------------------------------------ |
+| <code>(profile: Profile, uuid: UUID, status: Status) =&#62; void</code> | Read Characteristic Completion Callback Function |
+
+### Profile
+
+| Type                | Description     |
+| ------------------- | --------------- |
+| <code>number</code> | Profile pointer |
+
+### UUID
+
+| Type                | Description                |
+| ------------------- | -------------------------- |
+| <code>string</code> | Characteristic UUID string |
+
+### Status
+
+| Type                | Description                   |
+| ------------------- | ----------------------------- |
+| <code>number</code> | Status, `0` indicates success |
+
+### Result
+
+| Type                 | Description                                                                  |
+| -------------------- | ---------------------------------------------------------------------------- |
+| <code>boolean</code> | The result of the function call, `true` means success, `false` means failure |
+
+## Example
+
+```js
+import { mstOnCharaReadComplete } from '@zos/ble'
+
+// ...
+```

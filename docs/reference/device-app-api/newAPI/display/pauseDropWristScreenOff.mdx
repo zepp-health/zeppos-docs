@@ -1,0 +1,35 @@
+# pauseDropWristScreenOff
+
+> Start from API_LEVEL `2.1` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Suspension of wrist resting behavior.
+
+## Type
+
+```ts
+function pauseDropWristScreenOff(option: Option): Result
+```
+
+## Parameters
+
+### Option
+
+| Property | Type                | Required | DefaultValue       | Description                                                                                                               | API_LEVEL |
+| -------- | ------------------- | -------- | ------------------ | ------------------------------------------------------------------------------------------------------------------------- | --------- |
+| duration | <code>number</code> | N        | <code>30000</code> | Duration (milliseconds), if `0` is passed, the wrist rest behavior will be suspended until `resetPalmScreenOff` is called | 2.1       |
+
+### Result
+
+| Type                | Description                              |
+| ------------------- | ---------------------------------------- |
+| <code>number</code> | If `0` is returned, success is indicated |
+
+## Example
+
+```js
+import { pauseDropWristScreenOff } from '@zos/display'
+
+pauseDropWristScreenOff({
+  duration: 60000,
+})
+```

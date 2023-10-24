@@ -1,0 +1,172 @@
+---
+title: WEATHER
+sidebar_label: WEATHER 天气
+---
+
+## 创建传感器
+
+```js
+const weather = hmSensor.createSensor(hmSensor.id.WEATHER)
+```
+
+## weather 实例
+
+### weather.getForecastWeather()
+
+#### 类型
+
+```ts
+() => ForecastWeather
+```
+
+#### ForecastWeather: object
+
+| 属性         | 说明     | 类型           |
+| ------------ | -------- | -------------- |
+| cityName     | 城市名称 | `string`       |
+| forecastData | 天气数据 | `ForecastData` |
+| tideData     | 日出/日落数据 | `TideData`     |
+
+#### ForecastData: object
+
+| 属性  | 说明             | 类型                      |
+| ----- | ---------------- | ------------------------- |
+| data  | 天气数据数组，索引 `0` 位置代表当天 | `Array<ForecastDataItem>` |
+| count | 天气数据数组长度 | `number`                  |
+
+#### ForecastDataItem: object
+
+| 属性  | 说明                 | 类型     |
+| ----- | -------------------- | -------- |
+| high  | 最高气温             | `number` |
+| low   | 最低气温             | `number` |
+| index | 天气索引，值详见下表 | `number` |
+
+| `index` 值 | 说明           |
+| ---------- | -------------- |
+| `0`        | 多云           |
+| `1`        | 阵雨           |
+| `2`        | 阵雪           |
+| `3`        | 晴             |
+| `4`        | 阴             |
+| `5`        | 小雨           |
+| `6`        | 小雪           |
+| `7`        | 中雨           |
+| `8`        | 中雪           |
+| `9`        | 大雪           |
+| `10`       | 大雨           |
+| `11`       | 沙尘暴         |
+| `12`       | 雨夹雪         |
+| `13`       | 雾             |
+| `14`       | 霾             |
+| `15`       | 雷阵雨         |
+| `16`       | 暴雪           |
+| `17`       | 浮尘           |
+| `18`       | 特大暴雨       |
+| `19`       | 雨加冰雹       |
+| `20`       | 雷阵雨伴有冰雹 |
+| `21`       | 大暴雨         |
+| `22`       | 扬尘           |
+| `23`       | 强沙尘暴       |
+| `24`       | 暴雨           |
+| `25`       | 未知天气       |
+| `26`       | 夜间多云       |
+| `27`       | 夜间阵雨       |
+| `28`       | 夜间晴         |
+
+#### TideData: object
+
+| 属性  | 说明                  | 类型                  |
+| ----- | --------------------- | --------------------- |
+| data  | 日出/日落数据数组，索引 `0` 位置代表当天     | `Array<TideDataItem>` |
+| count | 日出/日落数据数组长度 | `number`              |
+
+#### TideDataItem: object
+
+| 属性    | 说明     | 类型      |
+| ------- | -------- | --------- |
+| sunrise | 日出数据 | `Sunrise` |
+| sunset  | 日落数据 | `Sunset`  |
+
+#### Sunrise: object
+
+| 属性   | 说明 | 类型     |
+| ------ | ---- | -------- |
+| hour   | 小时 | `number` |
+| minute | 分钟 | `number` |
+
+#### Sunset: object
+
+| 属性   | 说明 | 类型     |
+| ------ | ---- | -------- |
+| hour   | 小时 | `number` |
+| minute | 分钟 | `number` |
+
+## 代码示例
+
+```js
+class TextByLine {
+  constructor(params) {
+    const { text = '', y = undefined, line = 0 } = params
+
+    this.text = text
+    this.y = y
+    this.line = line
+    this.y_computed = Number.isInteger(this.y) ? this.y : px(this.line * 60 + 120)
+  }
+
+  render() {
+    return hmUI.createWidget(hmUI.widget.TEXT, {
+      x: px(0),
+      y: this.y_computed,
+      w: px(480),
+      h: px(46),
+      color: 0xffffff,
+      text_size: px(20),
+      align_h: hmUI.align.CENTER_H,
+      align_v: hmUI.align.CENTER_V,
+      text_style: hmUI.text_style.NONE,
+      text: this.text
+    })
+  }
+}
+
+Page({
+  build() {
+    const weather = hmSensor.createSensor(hmSensor.id.WEATHER)
+    const weatherData = weather.getForecastWeather()
+    const { forecastData, tideData } = weatherData
+
+    new TextByLine({
+      text: `cityName:${weatherData.cityName}`,
+      line: 0
+    }).render()
+
+    new TextByLine({
+      text: `forecastCount:${forecastData.count};tideCount:${tideData.count}`,
+      line: 1
+    }).render()
+
+    for (let i = 0; i < forecastData.count; i++) {
+      const { index, high, low } = forecastData.data[i]
+
+      new TextByLine({
+        text: `index:${index};high:${high};low:${low}`,
+        line: 2 + i
+      }).render()
+    }
+
+    for (let i = 0; i < tideData.count; i++) {
+      const {
+        sunrise: { hour: sunriseHour, minute: sunriseMinute },
+        sunset: { hour: sunsetHour, minute: sunsetMinute }
+      } = tideData.data[i]
+
+      new TextByLine({
+        text: `sunrise:${sunriseHour}:${sunriseMinute};sunset:${sunsetHour}:${sunsetMinute}`,
+        line: 2 + i + forecastData.count
+      }).render()
+    }
+  }
+})
+```

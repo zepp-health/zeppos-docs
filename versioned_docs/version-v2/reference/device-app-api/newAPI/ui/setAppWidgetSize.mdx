@@ -1,0 +1,30 @@
+---
+title: setAppWidgetSize()
+sidebar_label: setAppWidgetSize
+---
+
+> Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Set the size of the Shortcut cards, currently only height adjustment is supported.
+
+## Type
+
+```ts
+(option: Option) => undefined
+```
+
+## Parameters
+
+### Option: object
+
+| Properties | Description          | Required | Type     |
+| ---------- | -------------------- | -------- | -------- |
+| h          | Shortcut card height | `YES`    | `number` |
+
+## Code example
+
+```js
+import { setAppWidgetSize } from '@zos/ui'
+
+setAppWidgetSize({ h: 100 })
+```

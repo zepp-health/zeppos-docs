@@ -1,0 +1,54 @@
+---
+title: PAI
+sidebar_label: PAI
+---
+
+## 创建传感器
+
+```js
+const pai = hmSensor.createSensor(hmSensor.id.PAI)
+```
+
+## pai 实例
+
+### pai: object
+
+| 属性     | 说明        | 类型     |
+| -------- | ----------- | -------- |
+| dailypai | 当天获得 PAI 值 | `number` |
+| totalpai | 当前累计总 PAI 值 | `number` |
+| prepai0  | 六日前 PAI 值 | `number` |
+| prepai1  | 五日前 PAI 值 | `number` |
+| prepai2  | 四日前 PAI 值 | `number` |
+| prepai3  | 三日前 PAI 值 | `number` |
+| prepai4  | 前天获得 PAI 值 | `number` |
+| prepai5  | 昨天获得 PAI 值 | `number` |
+| prepai6  | 当天获得 PAI 值 | `number` |
+
+## 代码示例
+
+```js
+const pai = hmSensor.createSensor(hmSensor.id.PAI)
+
+console.log(
+  'The pai dailypai: ' +
+    pai.dailypai +
+    ' totalpai:' +
+    pai.totalpai +
+    ' prepai0:' +
+    pai.prepai0 +
+    ' prepai1:' +
+    pai.prepai1 +
+    ' prepai2:' +
+    pai.prepai2 +
+    ' prepai3:' +
+    pai.prepai3 +
+    ' prepai4:' +
+    pai.prepai4 +
+    ' prepai5:' +
+    pai.prepai5 +
+    ' prepai6:' +
+    pai.prepai6 +
+    '\r\n'
+)
+```

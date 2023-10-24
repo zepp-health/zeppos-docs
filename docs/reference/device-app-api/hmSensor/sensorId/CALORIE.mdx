@@ -1,0 +1,49 @@
+---
+title: CALORIE
+sidebar_label: CALORIE
+---
+
+## Creating Sensors
+
+```js
+const calorie = hmSensor.createSensor(hmSensor.id.CALORIE)
+
+console.log(calorie.current)
+console.log(calorie.target)
+```
+
+### CALORIE instance
+
+### calorie: object
+
+| Properties |   Description    | Type |
+| ---------- | ---------------- | -------- |
+|   current  | Current calorie consumption in kcal | `number` |
+|   target   | Target calorie consumption in kcal  | `number` |
+
+## Registering sensor instance callback events
+
+```js
+calorie.addEventListener(event, callback: Callback)
+```
+
+### The events of CHANGE
+
+#### The value of event
+
+`hmSensor.event.CHANGE`
+
+#### Callback
+
+```ts
+() => void
+```
+
+#### The example of events
+
+```js
+calorie.addEventListener(hmSensor.event.CHANGE, function () {
+  console.log('The current calorie is ' + calorie.current + '\r\n')
+  console.log('The calorie target is ' + calorie.target + '\r\n')
+})
+```

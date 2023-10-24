@@ -1,0 +1,39 @@
+# readdirSync
+
+> Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Read the directory under the `/data` directory of the Mini Program synchronously.
+
+## Type
+
+```ts
+function readdirSync(option: Option): Result
+```
+
+## Parameters
+
+### Option
+
+| Property | Type                | Required | DefaultValue | Description    | API_LEVEL |
+| -------- | ------------------- | -------- | ------------ | -------------- | --------- |
+| path     | <code>string</code> | Y        | -            | Directory path | 2.0       |
+
+### Result
+
+| Type                                              | Description                                                                                           |
+| ------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
+| <code>Array&#60;string&#62;&#124;undefined</code> | If `undefined` is returned, the directory does not exist, otherwise an array of filenames is returned |
+
+## Example
+
+```js
+import { readdirSync } from '@zos/fs'
+
+const result = readdirSync({
+  path: 'content',
+})
+
+if (result === 0) {
+  console.log('readdirSync success')
+}
+```

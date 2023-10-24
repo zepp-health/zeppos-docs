@@ -1,0 +1,59 @@
+---
+title: WorldClock
+sidebar_label: WorldClock
+---
+
+> Start from API_LEVEL `3.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+World Clock Sensor.
+
+## Methods
+
+### getCount
+
+Get the number of configured world clocks
+
+```ts
+getCount(): number
+```
+
+### getInfo
+
+Get the configured world clock information according to the index
+
+```ts
+getInfo(index: number): WorldClockInfo
+```
+
+#### WorldClockInfo
+
+| Property       | Type                | Description                         | API_LEVEL |
+| -------------- | ------------------- | ----------------------------------- | --------- |
+| city           | <code>string</code> | City Name                           | 3.0       |
+| cityCode       | <code>string</code> | City code, e.g. San Francisco `SFO` | 3.0       |
+| hour           | <code>number</code> | Hour                                | 3.0       |
+| minute         | <code>number</code> | Minute                              | 3.0       |
+| timeZoneHour   | <code>number</code> | Time Zone hours                     | 3.0       |
+| timeZoneMinute | <code>number</code> | Time zone minutes                   | 3.0       |
+
+## Example
+
+```js
+import { WorldClock } from '@zos/sensor'
+
+const worldClock = new WorldClock()
+const worldClockCount = worldClock.getCount()
+
+for (let i = 0; i < worldClockCount; i++) {
+  const worldClockInfo = worldClock.getInfo(i)
+  console.log(worldClockInfo.city)
+  console.log(worldClockInfo.cityCode)
+  console.log(worldClockInfo.hour)
+  console.log(worldClockInfo.minute)
+  console.log(worldClockInfo.timeZoneHour)
+  console.log(worldClockInfo.timeZoneMinute)
+}
+
+// When not needed for use
+worldClock.destroy()
+```

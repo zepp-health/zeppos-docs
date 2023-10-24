@@ -1,0 +1,30 @@
+# getSystemInfo
+
+> Start from API_LEVEL `2.1` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Get system related information.
+
+## Type
+
+```ts
+function getSystemInfo(): Result
+```
+
+## Parameters
+
+### Result
+
+| Property        | Type                | Description             | API_LEVEL |
+| --------------- | ------------------- | ----------------------- | --------- |
+| osVersion       | <code>string</code> | Zepp OS System Version  | 2.1       |
+| firmwareVersion | <code>string</code> | Device firmware version | 2.1       |
+| minAPI          | <code>string</code> | API_LEVEL               | 2.1       |
+
+## Example
+
+```js
+import { getSystemInfo } from '@zos/settings'
+
+const { minAPI } = getSystemInfo()
+console.log(minAPI)
+```

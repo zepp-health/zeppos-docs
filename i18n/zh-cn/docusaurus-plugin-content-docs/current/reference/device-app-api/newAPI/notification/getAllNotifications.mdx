@@ -1,0 +1,23 @@
+# getAllNotifications
+
+> API_LEVEL `3.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+获取当前应用已发送的还留在通知中心里通知 ID。
+
+:::info
+权限代码： `device:os.notification`
+:::
+
+## 类型
+
+```ts
+function getAllNotifications(): Array<number>
+```
+
+## 代码示例
+
+```js
+import { getAllNotifications } from '@zos/notification'
+
+getAllNotifications()
+```

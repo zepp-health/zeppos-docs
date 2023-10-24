@@ -1,0 +1,30 @@
+---
+title: setAppWidgetSize(option)
+sidebar_label: setAppWidgetSize
+---
+
+> API_LEVEL `2.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+设置快捷卡片的尺寸，目前仅支持高度调整。
+
+## 类型
+
+```ts
+(option: Option) => undefined
+```
+
+## 参数
+
+### Option: object
+
+| 属性 | 说明         | 是否必须 | 类型     |
+| ---- | ------------ | -------- | -------- |
+| h    | 快捷卡片高度 | 是       | `number` |
+
+## 代码示例
+
+```js
+import { setAppWidgetSize } from '@zos/ui'
+
+setAppWidgetSize({ h: 100 })
+```

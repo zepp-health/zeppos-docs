@@ -1,0 +1,48 @@
+# requestPermission
+
+> Start from API_LEVEL `3.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Dynamic permission application, when querying a dynamic permission has not been authorized, you can use this interface to apply for the relevant permission. Generally, before using the system-related functional interface (such as the interface to enable app services), do the relevant permission check and application, otherwise the functional interface will not be allowed to execute due to the permission issue.
+
+## Type
+
+```ts
+function requestPermission(option: Option): Result
+```
+
+## Parameters
+
+### Option
+
+| Property    | Type                                                     | Required | DefaultValue | Description                                                          | API_LEVEL |
+| ----------- | -------------------------------------------------------- | -------- | ------------ | -------------------------------------------------------------------- | --------- |
+| permissions | <code>Array&#60;string&#62;</code>                       | Y        | -            | An array of permission strings, with an array length of at least `1` | 3.0       |
+| function    | <code>(result: Array&#60;number&#62;) =&#62; void</code> | Y        | -            | Permission request result callback function                          | 3.0       |
+
+### Result
+
+| Type                | Description                                         |
+| ------------------- | --------------------------------------------------- |
+| <code>number</code> | Method result value. See 'result' for a description |
+
+### result
+
+| Value | Type                | Description                                                                                                                                         | API_LEVEL |
+| ----- | ------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- | --------- |
+| 0     | <code>number</code> | In authorization processing, user interaction will be triggered, and the user will be informed of the authorization result in the callback function | 3.0       |
+| 1     | <code>number</code> | There are no authorization requests that can be made                                                                                                | 3.0       |
+| 2     | <code>number</code> | The requested interface is authorized and can be called immediately                                                                                 | 3.0       |
+
+## Example
+
+```js
+import { requestPermission } from '@zos/app'
+
+const result = requestPermission({
+  permissions: ['device:os.bg_service'],
+  function: (result) => {
+    console.log(result)
+  },
+})
+console.log(result)
+```

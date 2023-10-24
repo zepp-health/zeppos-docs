@@ -1,0 +1,29 @@
+# offDigitalCrown
+
+> Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Cancel the `onDigitalCrown` registration to listen for digital crown rotation events.
+
+## Type
+
+```ts
+function offDigitalCrown(): void
+```
+
+## Example
+
+```js
+import { onDigitalCrown, offDigitalCrown, KEY_HOME } from '@zos/interaction'
+
+const callback = (key, degree) => {
+  if (key === KEY_HOME) {
+    console.log(degree)
+  }
+}
+
+onDigitalCrown({
+  callback,
+})
+
+offDigitalCrown()
+```

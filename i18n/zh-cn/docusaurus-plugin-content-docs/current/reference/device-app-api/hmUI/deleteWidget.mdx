@@ -1,0 +1,36 @@
+---
+title: hmUI.deleteWidget(widget)
+sidebar_label: deleteWidget
+---
+
+删除 UI 控件。
+
+## 类型
+
+```ts
+(widget: WIDGET) => void
+```
+
+## 参数
+
+### WIDGET
+
+| 说明                                  | 类型     |
+| ------------------------------------- | -------- |
+| 控件对象，由 `hmUI.createWidget` 返回 | `number` |
+
+## 代码示例
+
+```js
+Page({
+  build() {
+    const img = hmUI.createWidget(hmUI.widget.IMG, {
+      x: 125,
+      y: 125,
+      src: 'zeppos.png'
+    })
+
+    hmUI.deleteWidget(img)
+  }
+})
+```

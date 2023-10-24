@@ -1,0 +1,172 @@
+---
+title: TransferFile
+sidebar_label: TransferFile 文件传输
+---
+
+> API_LEVEL `3.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+文件传输。
+
+## 方法
+
+### getInbox
+
+获取接收文件对象
+
+```ts
+getInbox(): Inbox
+```
+
+#### Inbox
+
+| 属性        | 类型                                                                           | 说明                                    | API_LEVEL |
+| ----------- | ------------------------------------------------------------------------------ | --------------------------------------- | --------- |
+| getNextFile | <code>() =&#62; FileObject</code>                                              | 返回 `FileObject` 接收文件对象          | 3.0       |
+| on          | <code>(eventName: InboxEventName, callback: () =&#62; void) =&#62; void</code> | 监听事件，事件名称参考 `InboxEventName` | 3.0       |
+
+#### FileObject
+
+| 属性       | 类型                                                                                                | 说明                                             | API_LEVEL |
+| ---------- | --------------------------------------------------------------------------------------------------- | ------------------------------------------------ | --------- |
+| sessionId  | <code>number</code>                                                                                 | 传输文件的会话标识                               | 3.0       |
+| fileName   | <code>string</code>                                                                                 | 文件名                                           | 3.0       |
+| filePath   | <code>string</code>                                                                                 | 文件路径                                         | 3.0       |
+| params     | <code>object</code>                                                                                 | 用户传递参数                                     | 3.0       |
+| fileSize   | <code>number</code>                                                                                 | 传输文件大小                                     | 3.0       |
+| readyState | <code>ReceiveFileState</code>                                                                       | 接收文件的状态值，见 `ReceiveFileState`          | 3.0       |
+| cancel     | <code>() =&#62; void</code>                                                                         | 取消传输文件任务                                 | 3.0       |
+| on         | <code>(eventName: FileEventName, callback: ChangeCallback&#124;ProgressCallback) =&#62; void</code> | 监听文件传输任务事件，事件名参考 `FileEventName` | 3.0       |
+
+#### InboxEventName
+
+| 值      | 类型                | 说明               | API_LEVEL |
+| ------- | ------------------- | ------------------ | --------- |
+| NEWFILE | <code>string</code> | 刚接收到文件的事件 | 3.0       |
+| FILE    | <code>string</code> | 完成接收文件的事件 | 3.0       |
+
+#### ReceiveFileState
+
+| 值           | 类型                | 说明     | API_LEVEL |
+| ------------ | ------------------- | -------- | --------- |
+| pending      | <code>string</code> | 等待     | 3.0       |
+| transferring | <code>string</code> | 传输中   | 3.0       |
+| transferred  | <code>string</code> | 传输完成 | 3.0       |
+| error        | <code>string</code> | 错误     | 3.0       |
+| canceled     | <code>string</code> | 取消     | 3.0       |
+
+#### FileEventName
+
+| 值       | 类型                | 说明                                                                     | API_LEVEL |
+| -------- | ------------------- | ------------------------------------------------------------------------ | --------- |
+| change   | <code>string</code> | 当 `readyState` 转变状态时候发生的事件名，对应 `ChangeCallback` 回调函数 | 3.0       |
+| progress | <code>string</code> | 文件传输进度发生变化时的事件，对应 `ProgressCallback` 回调函数           | 3.0       |
+
+#### ChangeCallback
+
+| 类型                                          | 说明                                           |
+| --------------------------------------------- | ---------------------------------------------- |
+| <code>(event: ChangeEvent) =&#62; void</code> | 当 `readyState` 转变状态时候发生的事件回调函数 |
+
+#### ChangeEvent
+
+| 属性      | 类型                             | 说明                                      | API_LEVEL |
+| --------- | -------------------------------- | ----------------------------------------- | --------- |
+| type      | <code>'readyStateChanged'</code> | 事件类型，值为 `readyStateChanged` 字符串 | 3.0       |
+| date      | <code>ChangeEventData</code>     | 事件数据对象，类型见 `ChangeEventData`    | 3.0       |
+| timestamp | <code>number</code>              | 事件发生时的 UTC 时间戳，单位毫秒         | 3.0       |
+
+#### ChangeEventData
+
+| 属性       | 类型                | 说明             | API_LEVEL |
+| ---------- | ------------------- | ---------------- | --------- |
+| readyState | <code>string</code> | 传输文件任务状态 | 3.0       |
+
+#### ProgressCallback
+
+| 类型                                            | 说明                               |
+| ----------------------------------------------- | ---------------------------------- |
+| <code>(event: ProgressEvent) =&#62; void</code> | 当文件传输进度变化时的事件回调函数 |
+
+#### ProgressEvent
+
+| 属性      | 类型                           | 说明                                     | API_LEVEL |
+| --------- | ------------------------------ | ---------------------------------------- | --------- |
+| type      | <code>'progress'</code>        | 事件类型，值为 `progress` 字符串         | 3.0       |
+| date      | <code>ProgressEventData</code> | 事件数据对象，类型见 `ProgressEventData` | 3.0       |
+| timestamp | <code>number</code>            | 事件发生时的 UTC 时间戳                  | 3.0       |
+
+#### ProgressEventData
+
+| 属性       | 类型                | 说明                         | API_LEVEL |
+| ---------- | ------------------- | ---------------------------- | --------- |
+| fileSize   | <code>number</code> | 文件大小，单位字节           | 3.0       |
+| loadedSize | <code>number</code> | 已经传输的文件大小，单位字节 | 3.0       |
+
+### getOutbox
+
+获取发送文件对象
+
+```ts
+getOutbox(): Outbox
+```
+
+#### Outbox
+
+| 属性        | 类型                                                                        | 说明                                                                                                                                                       | API_LEVEL |
+| ----------- | --------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | --------- |
+| enqueueFile | <code>(fileName: string, params?: object) =&#62; getInbox.FileObject</code> | 返回 `FileObject` 文件发送对象，`fileName` 为文件路径，`params` 则是自定义文件传输对象，在接收端的 `FileObject` 中获取，`getInbox.FileObject` 类型参考上文 | 3.0       |
+
+## 代码示例
+
+```js
+// Receiving File
+import TransferFile from "@zos/ble/TransferFile"
+
+const transferFile = new TransferFile()
+const inbox = transferFile.getInbox()
+
+Page({
+  onInit() {
+    inbox.on('NEWFILE', function() {
+      const fileObject = inbox.getNextFile()
+      fileObject.on('progress', (event) => {
+        console.log("progress total size",  event.data.fileSize)
+        console.log("progress total size",  event.data.loadedSize)
+      })
+
+      fileObject.on('change', (event) => {
+        if (event.data.readyState === 'transferred') {
+          console.log('transfered file success')
+        } else (event.data.readyState === 'error') {
+          console.log('error')
+        }
+      })
+    })
+  }
+})
+
+// Send File
+import TransferFile from "@zos/ble/TransferFile"
+
+const transferFile = new TransferFile()
+const outbox = transferFile.getOutbox()
+
+Page({
+  onInit() {
+    const fileObject = outbox.enqueueFile("assets://logo.png", { test: 1})
+
+    fileObject.on('progress', (event) => {
+      console.log("progress total size",  event.data.fileSize)
+      console.log("progress total size",  event.data.loadedSize)
+    })
+
+    file.on('change', (event) => {
+      if (event.data.readyState === 'transferred') {
+        console.log('transfered file success')
+      } else (event.data.readyState === 'error') {
+        console.log('error')
+      }
+    })
+  }
+})
+```

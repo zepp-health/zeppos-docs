@@ -1,0 +1,63 @@
+# onGesture
+
+> Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Listen to user gesture events, only one event is allowed to be registered, if multiple registrations will cause the last registered event to fail.
+
+## Type
+
+```ts
+function onGesture(option: Option): void
+```
+
+### Simplified calling method
+
+```ts
+function onGesture(callback: (event: GestureEvent) => PreventDefault): void
+```
+
+## Parameters
+
+### Option
+
+| Property | Type                                                     | Required | DefaultValue | Description                     | API_LEVEL |
+| -------- | -------------------------------------------------------- | -------- | ------------ | ------------------------------- | --------- |
+| callback | <code>(event: GestureEvent) =&#62; PreventDefault</code> | Y        | -            | Gesture event callback function | 2.0       |
+
+### GestureEvent
+
+| Type                | Description                                                 |
+| ------------------- | ----------------------------------------------------------- |
+| <code>number</code> | Gesture event name, value reference gesture event constants |
+
+### PreventDefault
+
+| Type                 | Description                                                                       |
+| -------------------- | --------------------------------------------------------------------------------- |
+| <code>boolean</code> | Whether to skip the default gesture behavior, `true` - skip, `false` - don't skip |
+
+## Constants
+
+### Gesture event constants
+
+| Constant        | Description         | API_LEVEL |
+| --------------- | ------------------- | --------- |
+| `GESTURE_UP`    | Gesture up slide    | 2.0       |
+| `GESTURE_DOWN`  | Gesture down slide  | 2.0       |
+| `GESTURE_LEFT`  | Gesture left slide  | 2.0       |
+| `GESTURE_RIGHT` | Gesture right slide | 2.0       |
+
+## Example
+
+```js
+import { onGesture, GESTURE_UP } from '@zos/interaction'
+
+onGesture({
+  callback: (event) => {
+    if (event === GESTURE_UP) {
+      console.log('up')
+    }
+    return true
+  },
+})
+```

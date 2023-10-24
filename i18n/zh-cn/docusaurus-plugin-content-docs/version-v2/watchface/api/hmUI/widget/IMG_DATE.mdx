@@ -1,0 +1,32 @@
+---
+title: IMG_DATE 日期文字 图片
+sidebar_label: IMG_DATE 日期文字 图片
+---
+
+![日期文字控件](/img/api/date_text.png)
+
+## 代码示例
+
+```js
+const fontArray = []
+const status = hmUI.createWidget(hmUI.widget.IMG_DATE, {
+  year_startX: 0,
+  year_startY: 0,
+  year_unit_sc: 'unit.png', // 单位
+  year_unit_tc: 'unit.png',
+  year_unit_en: 'unit.png',
+  year_align: hmUI.align.LEFT,
+  year_space: 1, // 文字间隔
+  year_zero: 1, // 是否补零
+  year_follow: 1, // 是否跟随
+  year_en_array: fontArray,
+  year_sc_array: fontArray,
+  year_tc_array: fontArray,
+  year_is_character: true // 年份此字段无效 默认为false 为true时 传入的图片为月份12张 日31张
+  // 月、日同上 需要替换前缀为 month、day
+})
+```
+
+- year_is_character 年份设置此字段无效
+- xx_follow 为是否跟随 如 month 设置此字段为 1 不需要指定 month 的 x y 它会在绘制完年份后紧跟着绘制月份 day 同理
+- xx_is_character 一旦设置为 true month 必须上传 12 张 day 上传 31 张否则会出错

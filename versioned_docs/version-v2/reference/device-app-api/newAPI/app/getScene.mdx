@@ -1,0 +1,42 @@
+# getScene
+
+> Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Get the current scene where the Mini Program is running.
+
+## Type
+
+```ts
+function getScene(): Result
+```
+
+## Parameters
+
+### Result
+
+| Type                | Description                                                                             |
+| ------------------- | --------------------------------------------------------------------------------------- |
+| <code>number</code> | The current scene in which the Mini Program is running, value reference scene constants |
+
+## Constants
+
+### Current scene running Mini Program constants
+
+| Constant          | Description                                         | API_LEVEL |
+| ----------------- | --------------------------------------------------- | --------- |
+| `SCENE_APP`       | In Mini Program                                     | 2.0       |
+| `SCENE_WATCHFACE` | In watchface interface                              | 2.0       |
+| `SCENE_SETTINGS`  | In the Mini Program configuration or dial edit page | 2.0       |
+| `SCENE_AOD`       | In the rest screen screen                           | 2.0       |
+
+## Example
+
+```js
+import { getScene, SCENE_APP } from '@zos/app'
+
+const result = getScene()
+
+if (result === SCENE_APP) {
+  console.log('in Mini Program')
+}
+```

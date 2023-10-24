@@ -1,0 +1,314 @@
+---
+title: SCROLL_LIST
+sidebar_label: SCROLL_LIST 滑动列表
+---
+
+> API_LEVEL `2.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../../guides/framework/device/compatibility.md)。
+
+## 创建 UI 控件
+
+```js
+import { createWidget, widget } from '@zos/ui'
+
+const scrollList = createWidget(widget.SCROLL_LIST, Param)
+```
+
+## 类型
+
+### Param: object
+
+| 属性                     | 说明                                                                              | 是否必须 | 类型                  |
+| ------------------------ | --------------------------------------------------------------------------------- | -------- | --------------------- |
+| x                        | 控件 x 坐标                                                                       | 是       | `number`              |
+| y                        | 控件 y 坐标                                                                       | 是       | `number`              |
+| w                        | 控件宽度                                                                          | 是       | `number`              |
+| h                        | 控件高度                                                                          | 是       | `number`              |
+| item_space               | item 之间的间距                                                                   | 否       | `number`              |
+| item_config              | item 类型配置，见 [`ItemConfig`](#itemconfig-object)                              | 是       | `Array<ItemConfig>`   |
+| item_config_count        | item_config 数组长度                                                              | 是       | `number`              |
+| data_array               | 数据数组                                                                          | 是       | `DataArray`           |
+| data_count               | 数据数组长度                                                                      | 是       | `number`              |
+| item_click_func          | item 点击回调函数，见 [`ItemClickFunc`](#itemclickfunc)                           | 否       | `ItemClickFunc`       |
+| data_type_config         | item 索引类型配置数组，见 [DataTypeConfig](#datatypeconfig-object)                      | 否       | `Array<DataTypeConfig>`  |
+| data_type_config_count   | item 索引类型配置数组长度                                                         | 否       | `number`              |
+| on_page                  | 更新数据时使用，设置为 `1` 表示列表数据更新后仍然停留在当前位置，否则回到列表顶部 | 否       | `number`              |
+| snap_to_center           | 列表是否吸附 SCROLL_LIST 高度中心位置                                             | 否       | `boolean`             |
+| item_focus_change_func   | 列表滑动焦点变化回调函数，见 [ItemFocusChangeFunc](#itemfocuschangefunc)          | 否       | `ItemFocusChangeFunc` |
+| item_enable_horizon_drag | item 水平方向是否可以滑动                                                         | 否       | `boolean`             |
+| item_drag_max_distance   | 水平滑动距离，正值代表向左滑动，负值代表向右滑动                                  | 否       | `number`              |
+
+### ItemConfig: object
+
+| 属性             | 说明                                                                 | 是否必须 | 类型               |
+| ---------------- | -------------------------------------------------------------------- | -------- | ------------------ |
+| type_id          | 当前 item 类型 ID，如果 item_config_count 为 `0` 时可不填，其他时候必填 | 否       | `number`           |
+| item_height      | item 高                                                              | 是       | `number`           |
+| item_bg_color    | item 背景色                                                          | 是       | `number`           |
+| item_bg_radius   | item 背景圆角                                                        | 是       | `number`           |
+| text_view        | textView 结构体数组，每一项为一个 `textView`，见下方说明             | 否       | `Array<TextView>`  |
+| text_view_count  | text_view 数组长度                                                   | 否       | `number`           |
+| image_view       | imageView 数组，每一项为一个 `imageView`，见下方说明                 | 否       | `Array<ImageView>` |
+| image_view_count | image_view 数组长度                                                  | 否       | `number`           |
+
+### TextView: object
+
+| 属性      | 说明                                                                                        | 是否必须 | 类型     |
+| --------- | ------------------------------------------------------------------------------------------- | -------- | -------- |
+| x         | x 坐标，相对坐标                                                                            | 是       | `number` |
+| y         | y 坐标，相对坐标                                                                            | 是       | `number` |
+| w         | 控件宽度                                                                                    | 是       | `number` |
+| h         | 控件长度                                                                                    | 是       | `number` |
+| color     | 文字颜色                                                                                    | 否       | `number` |
+| text_size | 字体大小                                                                                    | 否       | `number` |
+| key       | 数据绑定 key，详情见使用例子和 data_array 说明                                              | 是       | `string` |
+| action    | 是否响应点击事件，响应之后，可以在 `item_click_func` 中捕捉到对应的数据 `key`，默认 `false` | 否       | `boolean`  |
+
+```js
+const text_view = [
+  { x: 100, y: 0, w: 100, h: 20, key: 'name', color: 0xffffff, action: true },
+  { x: 0, y: 30, w: 100, h: 100, key: 'age', color: 0xffffff, text_size: 20 }
+]
+```
+
+### ImageView: object
+
+| 属性   | 说明                                                                                            | 是否必须 | 类型     |
+| ------ | ----------------------------------------------------------------------------------------------- | -------- | -------- |
+| x      | x 坐标，相对坐标                                                                                | 是       | `number` |
+| y      | y 坐标，相对坐标                                                                                | 是       | `number` |
+| w      | 控件宽度                                                                                        | 是       | `number` |
+| h      | 控件长度                                                                                        | 是       | `number` |
+| key    | 数据绑定 key 详情见使用例子和 data_array 说明                                                   | 是       | `string` |
+| action | 是否响应点击事件，设置响应之后，可以在 `item_click_func` 中捕捉到对应的数据 `key`，默认 `false` | 否       | `boolean`  |
+
+```js
+// 数组内的每一个结构体为一个imageView
+const image_view = [{ x: 0, y: 0, w: 20, h: 20, key: 'img_src', action: true }]
+```
+
+### data_array
+
+数据数组，TextView 和 ImageView 会根据属性名（通过 `key` 配置） 从 data_array 每一项对象上取值，再根据对应配置渲染到视图。
+
+```js
+const dataList = [
+  { img_src: rootPath + 'step/step_num_1.png', name: 'name1', age: '12' },
+  { img_src: rootPath + 'step/step_num_1.png', name: 'name1', age: '13' },
+  { img_src: rootPath + 'step/step_num_1.png', name: 'name1', age: '13' }
+]
+```
+
+### DataTypeConfig: object
+
+设置列表索引 item 的类型。
+
+每个索引项默认使用 `item_config[0]` 的配置。
+
+| 属性    | 说明                          | 是否必须 | 类型     |
+| ------- | ----------------------------- | -------- | -------- |
+| start   | 开始的索引                    | 是       | `number` |
+| end     | 结束的索引                    | 是       | `number` |
+| type_id | item_config 中类型配置对应的 `type_id` | 是       | `number` |
+
+`start` 和 `end` 的为闭区间 `[start, end]`
+
+```js
+{
+data_type_config:[
+  // 代表索引从 0 到 2 的数据条目使用 type_id 为 2 的样式配置
+  {
+  start: 0,
+  end: 2,
+  type_id: 2,
+  },
+  {
+  start: 3,
+  end: 10,
+  type_id: 1,
+  },
+],
+data_type_config_count:2
+}
+```
+
+### ItemClickFunc
+
+```ts
+(list: ScrollList, index: number, data_key: string) => void
+```
+
+| 参数     | 说明                                                 | 类型     |
+| -------- | ---------------------------------------------------- | -------- |
+| list     | SCROLL_LIST 控件                                     | `any`    |
+| index    | 点击的 item 索引                                     | `number` |
+| data_key | 点击的数据 `key` 名称，通过 `key` 可以定位到点击区域 | `string` |
+
+### ItemFocusChangeFunc
+
+```ts
+(list: ScrollList, index: number, focus: boolean) => void
+```
+
+| 参数  | 说明              | 类型      |
+| ----- | ----------------- | --------- |
+| list  | SCROLL_LIST 控件  | `any`     |
+| index | item 索引         | `number`  |
+| focus | item 是否聚焦状态 | `boolean` |
+
+## 刷新数据
+
+```js
+import { createWidget, widget, prop } from '@zos/ui'
+
+const scrollList = createWidget(widget.SCROLL_LIST, Param)
+scrollList.setProperty(prop.UPDATE_DATA, {
+  //重新设置配置信息
+  data_type_config: [
+    {
+      start: 0,
+      end: 2,
+      type_id: 2
+    }
+  ],
+  //配置信息长度
+  data_type_config_count: 1,
+  //新的数据
+  data_array: [
+    { img_src: rootPath + 'test/normalbtn_h.png', name: '姓名', age: '12', like: 'type2' },
+    { img_src: rootPath + 'test/normalbtn_h.png', name: 'namex1', age: '13', like: 'type2' },
+    { img_src: rootPath + 'test/normalbtn_h.png', name: 'namex2', age: '13', like: 'type2' },
+    { img_src: rootPath + 'test/normalbtn_h.png', name: 'namex3', age: '12', like: 'type2' },
+    { img_src: rootPath + 'test/normalbtn_h.png', name: 'name666', age: '13', like: 'type2' }
+  ],
+  //数据长度
+  data_count: 5,
+  //刷新数据后停留在当前页面，不设置或者设为0则回到list顶部
+  on_page: 1
+})
+```
+
+## 更新/删除单个 item
+
+```js
+// 更新某个数据
+scrollList.setProperty(prop.UPDATE_ITEM, {
+  index: gScrollListSelectIndex,
+  item_data: dataList2[gScrollListSelectIndex]
+})
+// 删除某个数据
+list.setProperty(prop.DELETE_ITEM, { index: delete_index })
+```
+
+## 控制单个 item 的水平滑动参数
+
+```js
+scrollList.setProperty(prop.MOVE_ITEM, {
+  start: 0, // 起始行
+  end: 0, // 终止行
+  item_enable_horizon_drag: false, // 是否可水平滑动
+  item_drag_max_distance: -200 // 水平滑动距离，只有在使能时，才会生效。
+})
+```
+
+## 代码示例
+
+```js
+import { createWidget, widget, prop } from '@zos/ui'
+
+Page({
+  build() {
+    const dataList = [
+      { name: 'Amazfit T-Rex 2', size: 454, del_img: 'btn/delete.png' },
+      { name: 'Amazfit GTR 3 Pro', size: 480, del_img: 'btn/delete.png' },
+      { name: 'Amazfit GTR 3', size: 454, del_img: 'btn/delete.png' }
+    ]
+
+    const scrollList = createWidget(widget.SCROLL_LIST, {
+      x: 0,
+      y: 120,
+      h: 300,
+      w: 480,
+      item_space: 20,
+      snap_to_center: true,
+      item_enable_horizon_drag: true,
+      item_drag_max_distance: -120,
+      item_config: [
+        {
+          type_id: 1,
+          item_bg_color: 0xef5350,
+          item_bg_radius: 10,
+          text_view: [
+            { x: 0, y: 0, w: 480, h: 80, key: 'name', color: 0xffffff, text_size: 20 },
+            { x: 0, y: 80, w: 480, h: 40, key: 'size', color: 0xffffff }
+          ],
+          text_view_count: 2,
+          image_view: [{ x: 492, y: 28, w: 64, h: 64, key: 'del_img', action: true }],
+          image_view_count: 1,
+          item_height: 120
+        },
+        {
+          type_id: 2,
+          item_bg_color: 0xef5350,
+          item_bg_radius: 10,
+          text_view: [
+            { x: 0, y: 0, w: 480, h: 80, key: 'name', color: 0x000000, text_size: 20 },
+            { x: 0, y: 80, w: 480, h: 40, key: 'size', color: 0x000000 }
+          ],
+          text_view_count: 2,
+          image_view: [{ x: 492, y: 28, w: 64, h: 64, key: 'del_img', action: true }],
+          image_view_count: 1,
+          item_height: 120
+        }
+      ],
+      item_config_count: 2,
+      data_array: dataList,
+      data_count: dataList.length,
+      item_focus_change_func: (list, index, focus) => {
+        console.log('scrollListFocusChange index=' + index)
+        console.log('scrollListFocusChange focus=' + focus)
+      },
+      item_click_func: (item, index, data_key) => {
+        console.log(`scrollListItemClick index=${index}`)
+        if (data_key === 'del_img') {
+          scrollList.setProperty(prop.DELETE_ITEM, { index })
+          dataList.splice(index, 1)
+        } else {
+          updateConfig()
+        }
+      },
+      data_type_config: [
+        {
+          start: 0,
+          end: 1,
+          type_id: 1
+        },
+        {
+          start: 1,
+          end: 2,
+          type_id: 2
+        }
+      ],
+      data_type_config_count: 2,
+      snap_to_center: true,
+      item_enable_horizon_drag: true,
+      item_drag_max_distance: -112
+    })
+
+    function updateConfig() {
+      scrollList.setProperty(prop.UPDATE_DATA, {
+        data_type_config: [
+          {
+            start: 0,
+            end: dataList.length - 1,
+            type_id: 1
+          }
+        ],
+        data_type_config_count: 1,
+        data_array: dataList,
+        data_count: dataList.length,
+        on_page: 1
+      })
+    }
+  }
+})
+```

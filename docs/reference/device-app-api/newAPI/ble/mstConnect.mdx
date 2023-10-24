@@ -1,0 +1,47 @@
+# mstConnect
+
+> Start from API_LEVEL `3.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Connecting Devices.
+
+## Type
+
+```ts
+function mstConnect(deviceAddress: DeviceAddress, callback: Callback): Result
+```
+
+## Parameters
+
+### DeviceAddress
+
+| Type                     | Description                                                   |
+| ------------------------ | ------------------------------------------------------------- |
+| <code>ArrayBuffer</code> | Device MAC address, 6 bytes long, Uint8Array view recommended |
+
+### Callback
+
+| Type                                             | Description                         |
+| ------------------------------------------------ | ----------------------------------- |
+| <code>(result: ConnectResult) =&#62; void</code> | Connection result callback function |
+
+### ConnectResult
+
+| Property   | Type                     | Description                                                                                 | API_LEVEL |
+| ---------- | ------------------------ | ------------------------------------------------------------------------------------------- | --------- |
+| connected  | <code>number</code>      | Connection status, `0` - successful connection, `1` - failed connection, `2` - disconnected | 3.0       |
+| connect_id | <code>number</code>      | The ID of the connection is returned when the connection is successful                      | 3.0       |
+| dev_addr   | <code>ArrayBuffer</code> | Device MAC address, 6 bytes long, Uint8Array view recommended                               | 3.0       |
+
+### Result
+
+| Type                 | Description                                                                  |
+| -------------------- | ---------------------------------------------------------------------------- |
+| <code>boolean</code> | The result of the function call, `true` means success, `false` means failure |
+
+## Example
+
+```js
+import { mstConnect } from '@zos/ble'
+
+// ...
+```

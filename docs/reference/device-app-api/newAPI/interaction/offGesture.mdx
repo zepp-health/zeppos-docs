@@ -1,0 +1,31 @@
+# offGesture
+
+> Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Cancel the `onGesture` registration to listen for user gesture events.
+
+## Type
+
+```ts
+function offGesture(): void
+```
+
+## Example
+
+```js
+import { onGesture, offGesture, GESTURE_UP } from '@zos/interaction'
+
+const gestureCallback = (event) => {
+  if (event === GESTURE_UP) {
+    console.log('up')
+  }
+
+  return true
+}
+
+onGesture({
+  callback: gestureCallback,
+})
+
+offGesture()
+```

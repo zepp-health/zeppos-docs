@@ -1,0 +1,19 @@
+---
+title: Modal 
+sidebar_label: Modal 
+---
+
+## Type
+
+```ts
+(props: Props, renderFuncArr?: RenderFunc | Array<RenderFunc>) => result: RenderFunc
+```
+
+## Props: object
+
+|   Properties  | Description | Required | Type | Default |
+| ------------- | ---------------------------------------------------------------------------------- | ---- | ------------ | ------ |
+|      mask     | If `TRUE`, mask is rendered | NO | `boolean` | `TRUE` |
+| maskClosable | if `TRUE`, clicking on the background will trigger `onClose` | NO | `boolean` | `TRUE` |
+| visible     | if `TRUE`, then modal is visible | NO | `boolean` | - |
+| onClose    | Triggers a callback when the component requests to be closed. Optionally, you can use the reason parameter to control the response to `onClose` | NO | `() => void` | - |

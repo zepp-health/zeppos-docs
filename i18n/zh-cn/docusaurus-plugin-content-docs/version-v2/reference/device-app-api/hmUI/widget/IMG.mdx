@@ -1,0 +1,85 @@
+---
+title: IMG
+sidebar_label: IMG 图片
+---
+
+![img_sample](/img/api/img_sample.jpg)
+
+图片控件用于展示图片，支持图片旋转。
+
+:::tip
+1. 推荐使用 24 位或 32 位，颜色方案为 RGB 或者 RGBA 的 png 格式图片。
+2. 图片控件的参数建议结合下文图片示例进行理解。
+:::
+
+## 创建 UI 控件
+
+```js
+const img = hmUI.createWidget(hmUI.widget.IMG, Param)
+```
+
+## 类型
+
+### Param: object
+
+| 属性     | 说明                                                                                        | 是否必须 | 类型     |
+| -------- | ------------------------------------------------------------------------------------------- | -------- | -------- |
+| src      | 图片路径，资源存放路径参考 [目录结构](../../../../guides/architecture/folder-structure.mdx) | 是       | `string` |
+| x        | 控件 x 坐标                                                                                 | 是       | `number` |
+| y        | 控件 y 坐标                                                                                 | 是       | `number` |
+| w        | 控件宽度，如果不传递值为图片资源的宽度                                                    | 否       | `number` |
+| h        | 控件高度，如果不传递值为图片资源的高度                                                    | 否       | `number` |
+| pos_x    | 图片相对控件坐标的水平偏移                                                                  | 否       | `number` |
+| pos_y    | 图片相对控件坐标的垂直偏移                                                                  | 否       | `number` |
+| angle    | 图片旋转角度，12 点方向为 0 度                                                              | 否       | `number` |
+| center_x | 图片旋转中心水平方向坐标                                                                    | 否       | `number` |
+| center_y | 图片旋转中心垂直方向坐标                                                                    | 否       | `number` |
+
+## 图片示例
+
+:::caution
+`w` 和 `h` 是图片控件的宽高，IMG 区域则是图片资源的显示边界，其宽高暂时无法单独设置，值取决于图片资源文件本身的尺寸，即无法实现缩放效果。
+:::
+
+![坐标图示](/img/api/img_pos.jpg)
+
+![旋转图示](/img/api/img_angle.jpg)
+
+## 代码示例
+
+```js
+Page({
+  build() {
+    const img = hmUI.createWidget(hmUI.widget.IMG, {
+      x: 125,
+      y: 125,
+      src: 'zeppos.png'
+    })
+    img.addEventListener(hmUI.event.CLICK_DOWN, (info) => {
+      img.setProperty(hmUI.prop.MORE, {
+        y: 200
+      })
+    })
+  }
+})
+```
+
+```js
+Page({
+  build() {
+    const img_hour = hmUI.createWidget(hmUI.widget.IMG)
+    img_hour.setProperty(hmUI.prop.MORE, {
+      x: 0,
+      y: 0,
+      w: 454,
+      h: 454,
+      pos_x: 454 / 2 - 27,
+      pos_y: 50 + 50,
+      center_x: 454 / 2,
+      center_x: 454 / 2,
+      src: 'hour.png',
+      angle: 30
+    })
+  }
+})
+```

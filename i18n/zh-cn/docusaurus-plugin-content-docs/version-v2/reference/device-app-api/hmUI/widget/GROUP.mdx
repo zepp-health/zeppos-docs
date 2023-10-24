@@ -1,0 +1,32 @@
+---
+title: GROUP
+sidebar_label: GROUP 组
+---
+
+GROUP 组控件用于将一系列控件分组，便于统一控制显示/隐藏，注册事件等。
+
+返回的 `group` 实例有实例方法 `createWidget`，用于创建属于 `group` 组的 UI 控件，子控件需要使用相对位置来进行布局。
+
+:::caution
+`group` 实例的 `createWidget` 无法创建子 `GROUP` 控件，即 `GROUP` 控件无法嵌套
+:::
+
+## 创建 UI 控件
+
+```js
+const group = hmUI.createWidget(hmUI.widget.GROUP, Param)
+
+// 创建子 UI 控件
+group.createWidget(xxx, xxx)
+```
+
+## 类型
+
+### Param: object
+
+| 属性 | 说明              | 是否必须 | 类型     |
+| ---- | ----------------- | -------- | -------- |
+| x    | 控件 x 坐标 "x":0 | 是       | `number` |
+| y    | 控件 y 坐标       | 是       | `number` |
+| w    | 控件显示宽度      | 是       | `number` |
+| h    | 控件显示高度      | 是       | `number` |

@@ -1,0 +1,78 @@
+---
+title: TIME
+sidebar_label: TIME
+---
+
+## Creating Sensors
+
+```js
+const time = hmSensor.createSensor(hmSensor.id.TIME)
+```
+
+## TIME instance
+
+### time: object
+
+| Properties       | Description                                             | Type     |
+| ---------------- | ------------------------------------------------------- | -------- |
+| utc              | Timestamp, milliseconds from January 1, 1970 to present | `number` |
+| year             | year                                                    | `number` |
+| month            | month                                                   | `number` |
+| day              | day                                                     | `number` |
+| hour             | hour                                                    | `number` |
+| minute           | minute                                                  | `number` |
+| second           | second                                                  | `number` |
+| week             | week `1` - `7`                                          | `number` |
+| lunar_year       | Traditional Chinese Calendar Year                       | `number` |
+| lunar_month      | Traditional Chinese Calendar Month                      | `number` |
+| lunar_day        | Traditional Chinese Calendar Day                        | `number` |
+| lunar_festival   | Traditional Chinese Festival                            | `string` |
+| lunar_solar_term | Traditional Chinese Solar Terms                      | `string` |
+| solar_festival   | Gregorian Holidays                                      | `string` |
+
+### time.getLunarMonthCalendar
+
+Get information about the Chinese Lunar Calendar.
+
+```js
+const lunar_month_cal = time.getLunarMonthCalendar()
+
+for (let i = 0; i < lunar_month_cal.day_count; i++) {
+  console.log('lunar_day : ' + lunar_month_cal.lunar_days_array[i])
+}
+```
+
+### time.getShowFestival
+
+Get the holidays displayed on that day (priority: Gregorian holidays, Chinese lunar holidays, Traditional Chinese Solar Terms).
+
+The API only works when the watch language is set to Chinese.
+
+```js
+const current_festival = time.getShowFestival()
+```
+
+## Code example
+
+```js
+// Creating Sensors
+const jstime = hmSensor.createSensor(hmSensor.id.TIME)
+
+console.log(
+  'The time utc: ' +
+    jstime.utc +
+    ' year: ' +
+    jstime.year +
+    ' month: ' +
+    jstime.month +
+    ' day: ' +
+    jstime.day +
+    ' hour: ' +
+    jstime.hour +
+    ' minute: ' +
+    jstime.minute +
+    ' second: ' +
+    jstime.second +
+    '\r\n'
+)
+```

@@ -1,0 +1,40 @@
+---
+title: widget.addEventListener(eventId, callback)
+sidebar_label: addEventListener
+---
+
+给 UI 控件注册事件监听器，当触发指定事件时，给定的回调函数就会被执行。
+
+## 类型
+
+```ts
+(eventId: EventId, callback: (event: Event) => void) => void
+```
+
+## 参数
+
+| 参数    | 说明                               | 类型      |
+| ------- | ---------------------------------- | --------- |
+| eventId | 事件类型（如：滑动、按下、抬起等） | `EventId` |
+| event   | 事件详情，具体参考不同事件         | `object`  |
+
+### EventId
+
+| 值                      | 说明 |
+| ----------------------- | ---- |
+| `hmUI.event.MOVE`       | 滑动 |
+| `hmUI.event.CLICK_DOWN` | 按下 |
+| `hmUI.event.CLICK_UP`   | 抬起 |
+| `hmUI.event.MOVE_IN`    | 划入 |
+| `hmUI.event.MOVE_OUT`   | 划出 |
+
+## 代码示例
+
+```js
+const img_bkg = hmUI.createWidget(hmUI.widget.IMG)
+
+img_bkg.addEventListener(hmUI.event.CLICK_DOWN, function (info) {
+  //控件注册事件监听
+  console.log(info.x)
+})
+```

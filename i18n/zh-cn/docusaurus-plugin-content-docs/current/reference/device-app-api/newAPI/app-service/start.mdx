@@ -1,0 +1,58 @@
+# start
+
+> API_LEVEL `3.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+启动指定的设备应用服务，启动结果通过回调函数返回。
+
+:::info
+权限代码： `device:os.bg_service`
+:::
+
+## 类型
+
+```ts
+function start(option: Option): Result
+```
+
+## 参数
+
+### Option
+
+| 属性          | 类型                                                      | 必填 | 默认值 | 说明                                                                         | API_LEVEL |
+| ------------- | --------------------------------------------------------- | ---- | ------ | ---------------------------------------------------------------------------- | --------- |
+| file          | <code>string</code>                                       | 是   | -      | 设备应用服务 js 文件，必须是在 app.json module 中 app-service 字段配置的文件 | 3.0       |
+| param         | <code>string</code>                                       | 否   | -      | 设备应用服务 js 文件加载时，传入的参数                                       | 3.0       |
+| complete_func | <code>(callbackOption: CallbackOption) =&#62; void</code> | 是   | -      | 设备应用服务启动完成回调函数                                                 | 3.0       |
+
+### CallbackOption
+
+| 属性   | 类型                 | 说明                                                    | API_LEVEL |
+| ------ | -------------------- | ------------------------------------------------------- | --------- |
+| file   | <code>string</code>  | 设备应用服务 js 文件，与 `start` 传入参数相同           | 3.0       |
+| result | <code>boolean</code> | 设备应用服务启动结果，`true` 代表成功，`false` 代表失败 | 3.0       |
+
+### Result
+
+| 类型                 | 说明                                                                 |
+| -------------------- | -------------------------------------------------------------------- |
+| <code>boolean</code> | 如果返回 `0` 则表明设备应用服务启动成功，其余值的含义参考 ERROR_CODE |
+
+### ERROR_CODE
+
+| 值  | 类型                | 说明                 | API_LEVEL |
+| --- | ------------------- | -------------------- | --------- |
+| 0   | <code>number</code> | 成功                 | 3.0       |
+| 1   | <code>number</code> | 参数错误             | 3.0       |
+| 2   | <code>number</code> | 服务状态错误         | 3.0       |
+| 3   | <code>number</code> | 无权限               | 3.0       |
+| 4   | <code>number</code> | 内存不足             | 3.0       |
+| 5   | <code>number</code> | 不支持               | 3.0       |
+| 6   | <code>number</code> | 服务被禁止           | 3.0       |
+| 7   | <code>number</code> | 服务数量已达系统限制 | 3.0       |
+| 255 | <code>number</code> | 未知错误             | 3.0       |
+
+## 代码示例
+
+```js
+import { start } from '@zos/app-service'
+```

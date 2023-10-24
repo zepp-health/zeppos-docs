@@ -1,0 +1,37 @@
+---
+title: hmApp.packageInfo()
+sidebar_label: packageInfo
+---
+
+获取 [小程序配置](../../app-json.mdx) `app.json` 中的信息
+
+## 类型
+
+```ts
+() => Package
+```
+
+## 参数
+
+### Package
+
+此处只列举属性名，属性说明和详细类型请参考 [小程序配置](../../app-json.mdx)
+
+| 属性 |
+| ---- |
+| name |
+| type |
+| version |
+| icon |
+| appId |
+| description |
+| vendor |
+| pages |
+
+## 代码示例
+
+```js
+const { name } = hmApp.packageInfo()
+
+console.log(name)
+```

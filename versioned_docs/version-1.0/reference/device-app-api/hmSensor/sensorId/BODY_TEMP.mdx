@@ -1,0 +1,27 @@
+---
+title: BODY_TEMP
+sidebar_label: BODY_TEMP
+---
+
+## Creating Sensors
+
+```js
+const thermometer = hmSensor.createSensor(hmSensor.id.BODY_TEMP)
+```
+
+### BODY_TEMP instance
+
+### thermometer: object
+
+|   Properties |              Description             |   Type   |
+| ------------ | ------------------------------------ | -------- |
+|    current   |          current temperature         | `number` |
+| timeinterval | time elapsed since the value was set | `number` |
+
+## Code example
+
+```js
+console.log(
+  'the current temp: ' + thermometer.current + ' interval:' + thermometer.timeinterval + '\r\n'
+)
+```

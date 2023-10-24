@@ -1,0 +1,39 @@
+# mstOnServiceChangeBegin
+
+> Start from API_LEVEL `3.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Register the Service start change callback function.
+
+## Type
+
+```ts
+function mstOnServiceChangeBegin(callback: Callback): Result
+```
+
+## Parameters
+
+### Callback
+
+| Type                                        | Description                            |
+| ------------------------------------------- | -------------------------------------- |
+| <code>(profile: Profile) =&#62; void</code> | Service start change callback function |
+
+### Profile
+
+| Type                | Description     |
+| ------------------- | --------------- |
+| <code>number</code> | Profile pointer |
+
+### Result
+
+| Type                 | Description                                                                  |
+| -------------------- | ---------------------------------------------------------------------------- |
+| <code>boolean</code> | The result of the function call, `true` means success, `false` means failure |
+
+## Example
+
+```js
+import { mstOnServiceChangeBegin } from '@zos/ble'
+
+// ...
+```

@@ -1,0 +1,63 @@
+---
+title: Stress
+sidebar_label: Stress
+---
+
+> Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Stress Sensor.
+
+:::info
+permission code: `data:user.hd.stress`
+:::
+
+## Methods
+
+### getCurrent
+
+Get the current pressure measurement
+
+```ts
+getCurrent(): Result
+```
+
+#### Result
+
+| Property | Type                | Description                       | API_LEVEL |
+| -------- | ------------------- | --------------------------------- | --------- |
+| value    | <code>number</code> | Stress measurement values         | 2.0       |
+| time     | <code>number</code> | Time to obtain the measured value | 2.0       |
+
+### onChange
+
+Register a callback function to listen for stress measurement change events
+
+```ts
+onChange(callback: () => void): void
+```
+
+### offChange
+
+Cancel a callback function to listen for stress measurement change events
+
+```ts
+offChange(callback: () => void): void
+```
+
+## Example
+
+```js
+import { Stress } from '@zos/sensor'
+
+const stress = new Stress()
+const { value } = stress.getCurrent()
+
+const callback = () => {
+  console.log(stress.getCurrent())
+}
+
+stress.onChange(callback)
+
+// When not needed for use
+stress.offChange(callback)
+```

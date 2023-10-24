@@ -1,0 +1,34 @@
+---
+title: hmApp.alarmCancel(alarmId)
+sidebar_label: alarmCancel
+---
+
+Cancel timed wake-up
+
+## Type
+
+```ts
+(alarmId: number) => void
+```
+
+## Parameter
+
+### alarmId
+
+|                     Description                 |   Type   |
+| ----------------------------------------------- | -------- |
+| Handle to return when creating a wake-up object | `number` |
+
+## Code example
+
+```js
+const alarm = hmApp.alarmNew({
+  file: 'pages/js_widget_sample',
+  appid: 1000001,
+  delay: 10
+})
+
+//Cancel wake-up
+
+hmApp.alarmCancel(alarm)
+```

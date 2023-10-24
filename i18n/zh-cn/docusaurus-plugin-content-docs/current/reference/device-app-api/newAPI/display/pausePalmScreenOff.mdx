@@ -1,0 +1,35 @@
+# pausePalmScreenOff
+
+> API_LEVEL `2.1` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+暂停覆掌息屏行为。
+
+## 类型
+
+```ts
+function pausePalmScreenOff(option: Option): Result
+```
+
+## 参数
+
+### Option
+
+| 属性     | 类型                | 必填 | 默认值             | 说明                                                                                | API_LEVEL |
+| -------- | ------------------- | ---- | ------------------ | ----------------------------------------------------------------------------------- | --------- |
+| duration | <code>number</code> | 否   | <code>30000</code> | 持续时间（毫秒），如果传 `0`，则一直暂停覆掌息屏行为，直到调用 `resetPalmScreenOff` | 2.1       |
+
+### Result
+
+| 类型                | 说明                    |
+| ------------------- | ----------------------- |
+| <code>number</code> | 如果返回 `0` 则表明成功 |
+
+## 代码示例
+
+```js
+import { pausePalmScreenOff } from '@zos/display'
+
+pausePalmScreenOff({
+  duration: 60000,
+})
+```

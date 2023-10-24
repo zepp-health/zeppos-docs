@@ -1,0 +1,108 @@
+---
+title: 1. Environmental Preparation
+sidebar_label: 1. Environmental Preparation
+---
+
+In this section, we will complete the following environment preparations.
+
+- Node.js
+- npm
+- Zeus CLI
+- TUN/TAP Network for simulator
+
+We provide two ways to prepare the environment. We recommend using the env-setup-script provided by Zepp OS for one-click installation, or following the documentation to prepare the environment manually.
+
+## Install the environment using the env-setup-script script
+
+### Download the env-setup-script project
+
+The developer downloads the corresponding installation packages according to different operating systems.
+
+- [Win10-11](https://bundle-cdn.huami.com/20231024/win10-11.zip)
+- [MacOS](https://bundle-cdn.huami.com/20231024/macos.zip)
+- [Linux](https://bundle-cdn.huami.com/20231024/linux.zip)
+
+Project source code is hosted at [Zepp Health Github env-setup-script](https://github.com/zepp-health/env-setup-script).
+
+### Executing script
+
+During this phase, the procedure varies depending on the operating system being used. Therefore, please refer to the relevant sections for your specific operating system.
+
+Execute the script, you can complete the installation of the environment, when the script appears the following prompt indicates that the installation is successful.
+
+![Environment](/img/docs/quick-start/environment.png)
+
+#### Windows
+
+In Windows, it is recommended to use the built-in `PowerShell` terminal to execute commands as an administrator.
+
+Go to the `/win10-11` directory and execute the `. \env-helper.ps1` command.
+
+```sh
+.\env-helper.ps1
+```
+
+:::info
+If you encounter an error message like this.
+
+```sh
+File .\env-helper.ps1 cannot be loaded because running scripts is disabled on this system. For more information, see about_Execution_Policies at http://go.microsoft.com/fwlink/?LinkID=135170.
+
++ CategoryInfo : SecurityError: (:) [], ParentContainsErrorRecordException
++ FullyQualifiedErrorId : UnauthorizedAccess
+
+The script doesn’t run because the PowerShell Execution Policy is set to the default of Restricted.
+```
+
+Please execute the following command in the terminal first:
+
+```sh
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned
+```
+
+And then run the script again.
+
+:::
+
+#### macOS
+
+In macOS, it is recommended to use the built-in `Terminal` or `iTerm2` to execute commands.
+
+Go to the `/macOS` directory and execute the script.
+
+```sh
+cd macOS
+bash env-helper.sh
+```
+
+:::info
+- If prompted for a password, enter the current user's password and confirm it.
+
+```sh
+Extension with identifiers xxxxxx not approved to load. Please approve using System Preferences.
+```
+- If you get this error, manually grant permissions in Privacy and Security in System Preferences.
+- For Apple Silicon models, please refer to the [Enable System Extensions or Kernel Extension on Apple Silicon Mac](../../guides/faq/apple-silicon.md) for setup first.
+:::
+
+#### Linux
+
+In Linux, it is recommended to use the built-in `Terminal` terminal to execute commands.
+
+Go to the `/linux` directory and execute the script.
+
+```sh
+cd linux
+bash env-helper.sh
+```
+
+## Manual Installation
+
+Please refer to the following documents to complete the environment preparation.
+
+- Installing Node.js (LTS version is recommended)
+  - See [Official Node.js Documentation](https://nodejs.org/)
+- [Zeus CLI Command Line Tools](../tools/cli/index.md)
+  - Completing the Zeus CLI command-line tool installation
+- [Simulator - Installation and Startup](../tools/simulator/setup.md)
+  - Completing the TUN/TAP Installation

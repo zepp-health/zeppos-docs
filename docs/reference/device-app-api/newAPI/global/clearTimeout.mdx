@@ -1,0 +1,29 @@
+# clearTimeout
+
+> Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Cancel the timer registered by `setTimeout`.
+
+## Type
+
+```ts
+function clearTimeout(timeoutID: TimeoutID): void
+```
+
+## Parameters
+
+### TimeoutID
+
+| Type                | Description  |
+| ------------------- | ------------ |
+| <code>number</code> | Timer number |
+
+## Example
+
+```js
+const timeoutID = setTimeout(() => {
+  console.log('Hello Zepp OS')
+}, 1000)
+
+clearTimeout(timeoutID)
+```

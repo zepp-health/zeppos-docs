@@ -1,0 +1,52 @@
+# getDeviceInfo
+
+> Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Gets device information.
+
+:::info
+permission code: `data:os.device.info`
+:::
+
+## Type
+
+```ts
+function getDeviceInfo(): Result
+```
+
+## Parameters
+
+### Result
+
+| Property     | Type                | Description                                         | API_LEVEL |
+| ------------ | ------------------- | --------------------------------------------------- | --------- |
+| width        | <code>number</code> | Device screen width                                 | 2.0       |
+| height       | <code>number</code> | Device screen height                                | 2.0       |
+| screenShape  | <code>number</code> | Screen shape, value refer to screen shape constants | 2.0       |
+| deviceName   | <code>number</code> | Device name                                         | 2.0       |
+| keyNumber    | <code>number</code> | Number of keys                                      | 2.0       |
+| deviceSource | <code>number</code> | Device Plain Numeric Designators                    | 2.0       |
+| keyType      | <code>string</code> | Device physical button type                         | 2.0       |
+| deviceColor  | <code>number</code> | Device color identification                         | 2.0       |
+
+## Constants
+
+### Screen shape
+
+| Constant              | Description   | API_LEVEL |
+| --------------------- | ------------- | --------- |
+| `SCREEN_SHAPE_SQUARE` | Square Screen | 2.0       |
+| `SCREEN_SHAPE_ROUND`  | Round Screen  | 2.0       |
+
+## Example
+
+```js
+import { getDeviceInfo, SCREEN_SHAPE_SQUARE } from '@zos/device'
+
+const { width, screenShape } = getDeviceInfo()
+console.log(width)
+
+if (screenShape === SCREEN_SHAPE_SQUARE) {
+  console.log('Square Screen')
+}
+```

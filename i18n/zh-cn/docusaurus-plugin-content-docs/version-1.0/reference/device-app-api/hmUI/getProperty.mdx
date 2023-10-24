@@ -1,0 +1,52 @@
+---
+title: widget.getProperty(key)
+sidebar_label: getProperty
+---
+
+获取 UI 控件属性，可以使用 `widget.getProperty(hmUI.prop.MORE, {})` 获取 UI 控件的全部属性。
+
+## 类型
+
+```ts
+(key: any) => result
+```
+
+## 参数
+
+| 参数 | 说明   | 类型  |
+| ---- | ------ | ----- |
+| key  | 属性值 | `any` |
+
+## 代码示例
+
+```js
+const img_bkg = hmUI.createWidget(hmUI.widget.IMG) //创建图形控件
+const prop = img_bkg.getProperty(hmUI.prop.MORE, {})
+const { angle, w, h } = prop
+
+const imgHeight = img_bkg.getProperty(hmUI.prop.H)
+```
+
+:::caution
+现阶段部分控件暂不支持属性获取，建议先获取尝试，如果取不到值，可以参考下方代码片段，在当前页面中手动维护一个变量来记录对应的属性变化
+:::
+
+```js
+Page({
+  state: {
+    buttonY: 0
+  },
+  build() {
+    this.state.buttonY = 300
+
+    hmUI.createWidget(hmUI.widget.BUTTON, {
+      y: this.state.buttonY,
+      // ...
+    })
+
+    hmUI.showToast({
+      text: this.state.buttonY
+    })
+  }
+})
+```

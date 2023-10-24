@@ -1,0 +1,65 @@
+# createModal
+
+> API_LEVEL `2.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+![createModal_image}](https://img-cdn.huami.com/20220927/9a9ce61a400f089c984951ca71c6f9b0.jpg)
+
+创建 Modal 确认提示框。
+
+## 类型
+
+```ts
+function createModal(option: Option): Modal
+```
+
+## 参数
+
+### Option
+
+| 属性     | 类型                                         | 必填 | 默认值             | 说明                                              | API_LEVEL |
+| -------- | -------------------------------------------- | ---- | ------------------ | ------------------------------------------------- | --------- |
+| content  | <code>string</code>                          | 是   | -                  | Modal 对话框的内容                                | 2.0       |
+| show     | <code>boolean</code>                         | 否   | <code>false</code> | 完成创建后是否立即显示 Modal 对话框               | 2.0       |
+| onClick  | <code>(keyName: ModalKey) =&#62; void</code> | 否   | -                  | 点击确认或者取消的回调函数                        | 2.0       |
+| autoHide | <code>boolean</code>                         | 否   | <code>true</code>  | 点击确认或者取消按钮后，是否自动关闭 Modal 对话框 | 2.0       |
+
+### ModalKey
+
+| 类型                | 说明                                  |
+| ------------------- | ------------------------------------- |
+| <code>number</code> | Modal 按键名，值参考 Modal 按键名常量 |
+
+### Modal
+
+| 属性 | 类型                                       | 说明                    | API_LEVEL |
+| ---- | ------------------------------------------ | ----------------------- | --------- |
+| show | <code>(isShow: boolean) =&#62; void</code> | 显示或隐藏 Modal 对话框 | 2.0       |
+
+## 常量
+
+### Modal 按键名常量
+
+| 常量            | 说明           | API_LEVEL |
+| --------------- | -------------- | --------- |
+| `MODAL_CONFIRM` | Modal 确认按键 | 2.0       |
+| `MODAL_CANCEL`  | Modal 取消按键 | 2.0       |
+
+## 代码示例
+
+```js
+import { createModal, MODAL_CONFIRM } from '@zos/interaction'
+
+const dialog = createModal({
+  content: 'hello world',
+  autoHide: false,
+  onClick: (keyName) => {
+    if (keyName === MODAL_CONFIRM) {
+      console.log('confirm')
+    } else {
+      dialog.show(false)
+    }
+  },
+})
+
+dialog.show(true)
+```

@@ -1,0 +1,32 @@
+---
+title: hmFS.SysProSetDouble(key, val)
+sidebar_label: SysProSetDouble
+---
+
+Store temporary double precision floating point numbers, system reboot will clear.
+
+## Type
+
+```ts
+(key: string, val: number) => result
+```
+
+## Parameters
+
+| Parameters |                      Description                    | Required | Type | Default |
+| ---------- | --------------------------------------------------- | ---- | -------- | ------ |
+|    key     |                      key string                     | yes | `string` | - |
+|    val     | The double-precision floating point number to store | Yes | `number` | -
+
+### result
+
+|                   Description                  | Type |
+| ---------------------------------------------- | -------- |
+| The result of the operation, `0` means success | `number` |
+
+## Usage
+
+```js
+hmFS.SysProSetDouble('js_test_double', 3.14)
+console.log(hmFS.SysProGetDouble('js_test_double'))
+```

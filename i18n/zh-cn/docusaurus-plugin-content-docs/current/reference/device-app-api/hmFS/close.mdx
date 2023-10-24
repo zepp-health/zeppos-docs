@@ -1,0 +1,35 @@
+---
+title: hmFS.close(fileId)
+sidebar_label: close
+---
+
+关闭文件
+
+## 类型
+
+```ts
+(fileId: number) => result
+```
+
+## 参数
+
+### fileId
+
+| 说明                         | 类型     |
+| ---------------------------- | -------- |
+| 文件句柄，打开文件时返回 | `number` |
+
+### result
+
+| 说明                         | 类型     |
+| ---------------------------- | -------- |
+| 结果，`0` 获取成功 | `number` |
+
+## 代码示例
+
+```js
+const fileId = hmFS.open("test_file.txt", hmFS.O_RDWR | hmFS.O_CREAT)
+
+//关闭文件
+hmFS.close(fileId)
+```

@@ -1,0 +1,71 @@
+# onKey
+
+> API_LEVEL `2.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+监听按键事件，只允许注册一个事件，如果多次注册会导致上一次注册的事件失效。
+
+## 类型
+
+```ts
+function onKey(option: Option): void
+```
+
+### 简化调用方式
+
+```ts
+function onKey(callback: (key: Key, event: KeyEvent) => PreventDefault): void
+```
+
+## 参数
+
+### Option
+
+| 属性     | 类型                                                           | 必填 | 默认值 | 说明             | API_LEVEL |
+| -------- | -------------------------------------------------------------- | ---- | ------ | ---------------- | --------- |
+| callback | <code>(key: Key, event: KeyEvent) =&#62; PreventDefault</code> | 是   | -      | 按键事件回调函数 | 2.0       |
+
+### Key
+
+| 类型                | 说明                     |
+| ------------------- | ------------------------ |
+| <code>number</code> | 按键名，值参考按键名常量 |
+
+### KeyEvent
+
+| 类型                | 说明                           |
+| ------------------- | ------------------------------ |
+| <code>number</code> | 按键事件名，值参考按键事件常量 |
+
+### PreventDefault
+
+| 类型                 | 说明                                                  |
+| -------------------- | ----------------------------------------------------- |
+| <code>boolean</code> | 是否跳过默认按键行为，`true` - 跳过，`false` - 不跳过 |
+
+## 常量
+
+### 按键名常量
+
+| 常量           | 说明          | API_LEVEL |
+| -------------- | ------------- | --------- |
+| `KEY_BACK`     | BACK 按键     | 2.0       |
+| `KEY_SELECT`   | SELECT 按键   | 2.0       |
+| `KEY_HOME`     | HOME 按键     | 2.0       |
+| `KEY_UP`       | UP 按键       | 2.0       |
+| `KEY_DOWN`     | DOWN 按键     | 2.0       |
+| `KEY_SHORTCUT` | SHORTCUT 按键 | 2.0       |
+
+## 代码示例
+
+```js
+import { onKey, KEY_UP, KEY_EVENT_CLICK } from '@zos/interaction'
+
+onKey({
+  callback: (key, keyEvent) => {
+    if (key === KEY_UP && keyEvent === KEY_EVENT_CLICK) {
+      console.log('up click')
+    }
+    return true
+  },
+})
+```

@@ -1,0 +1,45 @@
+# getCurrentPage
+
+> Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Get the page instance object.
+
+## Type
+
+```ts
+function getCurrentPage(): Result
+```
+
+## Parameters
+
+### Result
+
+| Property  | Type                 | Description            | API_LEVEL |
+| --------- | -------------------- | ---------------------- | --------- |
+| \_options | <code>Options</code> | page instance property | 2.0       |
+
+### Options
+
+| Property | Type                | Required | DefaultValue | Description                            | API_LEVEL |
+| -------- | ------------------- | -------- | ------------ | -------------------------------------- | --------- |
+| state    | <code>object</code> | N        | -            | mounted data objects on page instances | 2.0       |
+
+## Example
+
+```js title="page.js"
+Page({
+  state: {
+    text: 'Hello Zepp OS',
+  },
+  onInit() {
+    console.log('onInit')
+  },
+  build() {
+    console.log('build')
+    console.log(this.state.text)
+  },
+})
+
+const page = getCurrentPage()
+console.log(page._options.state.text)
+```

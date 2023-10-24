@@ -1,0 +1,47 @@
+# AppWidget
+
+> Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Register AppWidget, specify the lifecycle callback for the current AppWidget, etc. Each AppWidget file must call the `AppWidget()` constructor only once.
+
+## Type
+
+```ts
+function AppWidget(option: Option): Result
+```
+
+## Parameters
+
+### Option
+
+| Property  | Type                                       | Required | DefaultValue | Description                                                                                                | API_LEVEL |
+| --------- | ------------------------------------------ | -------- | ------------ | ---------------------------------------------------------------------------------------------------------- | --------- |
+| state     | <code>object</code>                        | N        | -            | A data object mounted on a AppWidget instance that can be used to store the state of the current AppWidget | 2.0       |
+| onInit    | <code>(params?: string) =&#62; void</code> | N        | -            | It is triggered once per AppWidget and can be used to initialize the AppWidget state                       | 2.0       |
+| build     | <code>(params?: string) =&#62; void</code> | N        | -            | Triggered after `onInit` execution completes, recommended for UI drawing in the `build` lifecycle          | 2.0       |
+| onResume  | <code>() =&#62; void</code>                | N        | -            | Triggered when the screen focus is on this AppWidget                                                       | 2.0       |
+| onPause   | <code>() =&#62; void</code>                | N        | -            | Triggered when the screen focus leaves this AppWidget                                                      | 2.0       |
+| onDestroy | <code>() =&#62; void</code>                | N        | -            | The `onDestroy` lifecycle function is triggered when the AppWidget is destroyed                            | 2.0       |
+
+### Result
+
+| Type                 | Description        |
+| -------------------- | ------------------ |
+| <code>unknown</code> | AppWidget instance |
+
+## Example
+
+```js title="appWidget.js"
+AppWidget({
+  state: {
+    text: 'Hello Zepp OS',
+  },
+  onInit() {
+    console.log('onInit')
+  },
+  build() {
+    console.log('build')
+    console.log(this.state.text)
+  },
+})
+```

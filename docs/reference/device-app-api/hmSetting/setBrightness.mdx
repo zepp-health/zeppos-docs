@@ -1,0 +1,36 @@
+---
+title: hmSetting.setBrightness(brightness)
+sidebar_label: setBrightness
+---
+
+Sets the screen brightness of the current device, in the range [0, 100].
+
+If auto-brightness is currently turned on and the brightness is automatically adjusted by the light sensor, the `setBrightness` function will have no real effect. You need to turn off auto-brightness first and then set the screen brightness.
+
+If you exit the page, you need to consider whether you need to set the brightness back to the original one.
+
+## Type
+
+```ts
+(brightness: number) => result
+```
+
+## Parameters
+
+### brightness
+
+|                           Description                    | Required |   Type   | Default |
+| -------------------------------------------------------- | -------- | -------- | ------ |
+| Set the brightness of the current device, range [0, 100] |    Yes   | `number` |   -    |
+
+### result
+
+|                     Description             |   Type   |
+| ------------------------------------------- | -------- |
+| result, `0` means the setting is successful | `number` |
+
+## Code example
+
+```js
+const result = hmSetting.setBrightness(50)
+```

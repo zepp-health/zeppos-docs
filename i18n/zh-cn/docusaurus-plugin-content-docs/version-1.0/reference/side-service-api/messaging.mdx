@@ -1,0 +1,49 @@
+---
+title: Messaging API
+sidebar_label: Messaging API
+---
+
+伴生服务通过 `Messaging API` 模块使用 Zepp 蓝牙通信的能力，与设备应用进行通信。
+
+> 目前只支持二进制数据，需要开发者自行转换数据结构
+
+:::tip
+蓝牙通信完整示例请参考 [蓝牙通信](../../guides/best-practice/bluetooth-communication.mdx)
+:::
+
+## addListener
+
+对消息进行监听
+
+### 代码示例
+
+```js
+messaging.peerSocket.addListener('message', (payload) => {
+  // 此处的 Buffer 做了 polyfill
+  const message = JSON.parse(Buffer.from(payload).toString('utf-8'))
+
+  if (message.type === 'command') {
+    switch (message.name) {
+      case GET_NOTE_LIST:
+        const notes = settings.settingsStorage.getItem('notes')
+        const noteBuffer = Buffer.from(notes)
+        messaging.peerSocket.send(noteBuffer.buffer)
+        break
+    }
+  }
+})
+```
+
+## send
+
+建立连接之后，发送消息
+
+### 代码示例
+
+```js
+if (key === 'notes') {
+  const notes = settings.settingsStorage.getItem('notes')
+  const noteBuffer = Buffer.from(notes)
+  messaging.peerSocket.send(noteBuffer.buffer)
+}
+```

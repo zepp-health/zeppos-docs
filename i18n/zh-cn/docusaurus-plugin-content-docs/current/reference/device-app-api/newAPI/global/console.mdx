@@ -1,0 +1,24 @@
+---
+title: console
+sidebar_label: console 控制台打印日志
+---
+
+> API_LEVEL `2.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+控制台打印日志。
+
+## 方法
+
+### log
+
+打印 log 等级的日志，可传入任意多个参数。每条日志打印长度有限，超出部分会被截断，如需打印完整内容，需要开发者将内容分多次打印
+
+```ts
+log(...data: any[]): void
+```
+
+## 代码示例
+
+```js
+console.log('Hello Zepp OS')
+```

@@ -1,0 +1,28 @@
+# getScrollTop
+
+> API_LEVEL `2.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+获取页面当前滚动位置的垂直坐标。
+
+## 类型
+
+```ts
+function getScrollTop(): Result
+```
+
+## 参数
+
+### Result
+
+| 类型                | 说明     |
+| ------------------- | -------- |
+| <code>number</code> | 垂直坐标 |
+
+## 代码示例
+
+```js
+import { getScrollTop } from '@zos/page'
+
+const top = getScrollTop()
+console.log(top)
+```

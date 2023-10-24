@@ -1,0 +1,32 @@
+---
+title: GROUP
+sidebar_label: GROUP
+---
+
+GROUP group widget is used to group a series of widgets together for unified widget of show/hide, registering events, etc.
+
+The returned `group` instance has the method `createWidget`, which is used to Create UI widget belonging to the `group` group, and the sub-widgets need to use relative positions for layout.
+
+:::caution
+The `group` instance of `createWidget` cannot create child `GROUP` widgets, i.e. `GROUP` widgets cannot be nested.
+:::
+
+## Create UI widget
+
+```js
+const group = hmUI.createWidget(hmUI.widget.GROUP, Param)
+
+// Creating UI sub-widgets
+group.createWidget(xxx, xxx)
+```
+
+## Type
+
+### Param: object
+
+| Properties |            Description           | Required | Type |
+| --------- | --------------------------------- | -------- | -------- |
+|     x     | The x-coordinate of widget.    | YES | `number` |
+|     y     | The y-coordinate of widget.    | YES | `number` |
+|     w     | The width of widget.           | YES | `number` |
+|     h     | The height of the widget.      | YES | `number` |

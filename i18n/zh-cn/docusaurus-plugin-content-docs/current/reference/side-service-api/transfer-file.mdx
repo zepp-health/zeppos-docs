@@ -1,0 +1,104 @@
+---
+title: TransferFile 文件传输
+sidebar_label: TransferFile 文件传输
+---
+
+`TransferFile` 文件传输模块可以将文件从小程序的「伴生服务」传递到「设备应用」
+
+## getOnbox
+
+返回 `Onbox` 对象，用于发送文件。
+
+### 类型
+
+```ts
+() => Onbox
+```
+
+### 示例
+
+```js
+const outbox = transferFile.getOutbox()
+```
+
+### `Onbox` 对象
+
+#### enqueFile
+
+##### 类型
+
+```ts
+(fileName: string, params: object) => FileObject
+```
+
+| 属性     | 说明                     | 是否必须 | 类型     |
+| -------- | ------------------------ | -------- | -------- |
+| fileName | 文件路径                 | 否       | `string` |
+| params   | 传递给「设备应用」的参数 | 否       | `object` |
+
+`FileObject` 类型参考 [`FileObject` 类型定义](../../reference/device-app-api/newAPI/transfer-file/TransferFile.mdx#fileobject)
+
+##### 代码示例
+
+```js
+const fileObject = onbox.enqueueFile('data://download/test.png', { type: 'image', name: 'fdsa' })
+```
+
+## getInbox
+
+返回 `Inbox` 对象，用于接收文件。
+
+### 类型
+
+```ts
+() => Inbox
+```
+
+### 示例
+
+```js
+const inbox = transferFile.getInbox()
+```
+
+### `Inbox` 对象
+
+#### getNextFile
+
+##### 类型
+
+```ts
+() => FileObject
+```
+
+`FileObject` 类型参考 [`FileObject` 类型定义](../../reference/device-app-api/newAPI/transfer-file/TransferFile.mdx#fileobject)
+
+##### 代码示例
+
+```js
+const fileObject = onbox.enqueueFile('data://download/test.png', { type: 'image', name: 'fdsa' })
+```
+
+## 完整示例
+
+```js
+const outbox = transferFile.getOutBox()
+
+AppSideService({
+  onInit() {
+    const fileObject = outbox.enqueueFile('data://download/1.png', {type: "image", name: "fdsa"})
+
+    file.on('progress', (event) => {
+        console.log("progress total size",  event.data.fileSize)
+        console.log("progress total size",  event.data.loadedSize)
+    })
+
+    file.on('change', (event) => {
+        if (event.data.readyState === 'transferred') {
+          console.log('transfered file success')
+        } else (event.data.readyState === 'error') {
+          console.log('error')
+        }
+    })
+  }
+})
+```

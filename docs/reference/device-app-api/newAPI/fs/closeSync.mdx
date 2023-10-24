@@ -1,0 +1,49 @@
+# closeSync
+
+> Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Close the file handle synchronously.
+
+## Type
+
+```ts
+function closeSync(option: Option): Result
+```
+
+### Simplified calling method
+
+```ts
+function closeSync(fd: number): Result
+```
+
+## Parameters
+
+### Option
+
+| Property | Type                | Required | DefaultValue | Description                                                              | API_LEVEL |
+| -------- | ------------------- | -------- | ------------ | ------------------------------------------------------------------------ | --------- |
+| fd       | <code>number</code> | Y        | -            | File handle, returned by the `openSync`, `openAssetsSync` and other APIs | 2.0       |
+
+### Result
+
+| Type                | Description                              |
+| ------------------- | ---------------------------------------- |
+| <code>number</code> | If `0` is returned, success is indicated |
+
+## Example
+
+```js
+import { openSync, closeSync, O_RDONLY } from '@zos/fs'
+
+const fd = openSync({
+  path: 'test.txt',
+  flag: O_RDONLY,
+})
+const result = closeSync({
+  fd,
+})
+
+if (result === 0) {
+  console.log('file descriptor closed')
+}
+```

@@ -1,0 +1,109 @@
+---
+title: BloodOxygen
+sidebar_label: BloodOxygen 血氧
+---
+
+> API_LEVEL `2.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+血氧传感器。
+
+:::info
+权限代码： `data:user.hd.spo2`
+:::
+
+## 方法
+
+### getCurrent
+
+获取当前测量的血氧结果
+
+```ts
+getCurrent(): Result
+```
+
+#### Result
+
+| 属性    | 类型                | 说明                          | API_LEVEL |
+| ------- | ------------------- | ----------------------------- | --------- |
+| value   | <code>number</code> | 血氧测量值                    | 2.0       |
+| time    | <code>number</code> | 测量时间                      | 2.0       |
+| retCode | <code>number</code> | 结果返回码，参考 retCode 描述 | 2.0       |
+
+#### retCode
+
+| 值  | 类型                | 说明       | API_LEVEL |
+| --- | ------------------- | ---------- | --------- |
+| 0   | <code>number</code> | 测量无效   | 2.0       |
+| 1   | <code>number</code> | 继续测量   | 2.0       |
+| 2   | <code>number</code> | 测量成功   | 2.0       |
+| 3   | <code>number</code> | 测量失败   | 2.0       |
+| 4   | <code>number</code> | 没有佩戴   | 2.0       |
+| 5   | <code>number</code> | 测量超时   | 2.0       |
+| 6   | <code>number</code> | 无效佩戴   | 2.0       |
+| 7   | <code>number</code> | 信号无效   | 2.0       |
+| 8   | <code>number</code> | 血氧值偏低 | 2.0       |
+| 9   | <code>number</code> | 血氧值偏高 | 2.0       |
+| 10  | <code>number</code> | 测量无效   | 2.0       |
+
+### getLastDay
+
+返回过去 24 小时平均血氧数据，数组长度为 24
+
+```ts
+getLastDay(): Array<number>
+```
+
+### start
+
+> API_LEVEL `2.1`
+
+开始血氧测量，建议在调用 `start` 方法前，调用 `stop` 来停止上一次测量
+
+```ts
+start(): void
+```
+
+### stop
+
+> API_LEVEL `2.1`
+
+停止血氧测量
+
+```ts
+stop(): void
+```
+
+### onChange
+
+注册血氧测量值变化事件监听回调函数
+
+```ts
+onChange(callback: () => void): void
+```
+
+### offChange
+
+取消血氧测量值变化事件监听回调函数
+
+```ts
+offChange(callback: () => void): void
+```
+
+## 代码示例
+
+```js
+import { BloodOxygen } from '@zos/sensor'
+
+const bloodOxygen = new BloodOxygen()
+const { value } = bloodOxygen.getCurrent()
+const lastDay = bloodOxygen.getLastDay()
+const callback = () => {
+  console.log(bloodOxygen.getCurrent())
+}
+
+bloodOxygen.onChange(callback)
+bloodOxygen.stop()
+bloodOxygen.start()
+// When not needed for use
+bloodOxygen.offChange(callback)
+```

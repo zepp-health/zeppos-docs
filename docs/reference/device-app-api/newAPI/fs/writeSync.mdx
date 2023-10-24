@@ -1,0 +1,56 @@
+# writeSync
+
+> Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Synchronously write ArrayBuffer to the file specified by fd.
+
+## Type
+
+```ts
+function writeSync(option: Option): Result
+```
+
+## Parameters
+
+### Option
+
+| Property | Type                     | Required | DefaultValue | Description                                                              | API_LEVEL |
+| -------- | ------------------------ | -------- | ------------ | ------------------------------------------------------------------------ | --------- |
+| fd       | <code>number</code>      | Y        | -            | File handle, returned by the `openSync`, `openAssetsSync` and other APIs | 2.0       |
+| buffer   | <code>ArrayBuffer</code> | Y        | -            | The buffer that the data will be written to                              | 2.0       |
+| options  | <code>Options</code>     | N        | -            | Other Options                                                            | 2.0       |
+
+### Options
+
+| Property | Type                          | Required | DefaultValue                   | Description                                                                                                                                                                                  | API_LEVEL |
+| -------- | ----------------------------- | -------- | ------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------- |
+| offset   | <code>number</code>           | N        | <code>0</code>                 | Based on first address offset in ArrayBuffer to write the data                                                                                                                               | 2.0       |
+| length   | <code>number</code>           | N        | <code>buffer.byteLength</code> | The number of bytes to write, the default is the length of the incoming buffer                                                                                                               | 2.0       |
+| position | <code>number&#124;null</code> | N        | <code>null</code>              | Position refers to the offset from the beginning of the file where this data should be written. If position is 'null', the data will be written at the and the file position will be updated | 2.0       |
+
+### Result
+
+| Type                | Description                 |
+| ------------------- | --------------------------- |
+| <code>number</code> | The number of bytes written |
+
+## Example
+
+```js
+import { openSync, writeSync, O_RDWR, O_CREAT } from '@zos/fs'
+
+const fd = openSync({
+  path: 'test.txt',
+  flag: O_RDWR | O_CREAT,
+})
+
+const buffer = new ArrayBuffer(4)
+const result = writeSync({
+  fd,
+  buffer,
+})
+
+if (result === 0) {
+  console.log('writeSync success')
+}
+```

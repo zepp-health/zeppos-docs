@@ -1,0 +1,36 @@
+---
+title: hmFS.seek(fileId, position, whence)
+sidebar_label: seek
+---
+
+> Zepp OS 小程序文件系统介绍请参考 [文件系统](../../../guides/framework/device/fs.md)。
+
+移动文件指针。
+
+## 类型
+
+```ts
+(fileId: number, position: number, whence: number) => void
+```
+
+## 参数
+
+| 参数     | 说明                 | 必填 | 类型     | 默认值 |
+| -------- | -------------------- | ---- | -------- | ------ |
+| fileId   | 文件句柄             | 是   | `number` | -      |
+| position | 基于 `whence` 的偏移 | 是   | `number` | -      |
+| whence   | 文件位置             | 是   | `number` | -      |
+
+## 代码示例
+
+```js
+Page({
+  build() {
+    // 打开/创建文件
+    const fileId = hmFS.open('test_file.txt', hmFS.O_RDWR | hmFS.O_CREAT)
+
+    //定位到文件开始位置
+    hmFS.seek(file, 0, hmFS.SEEK_SET)
+  }
+})
+```

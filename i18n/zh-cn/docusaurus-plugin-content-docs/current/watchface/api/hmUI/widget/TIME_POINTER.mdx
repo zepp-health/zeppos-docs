@@ -1,0 +1,24 @@
+---
+title: TIME_POINTER 指针时钟
+sidebar_label: TIME_POINTER 指针时钟
+---
+
+![指针时钟](/img/api/image_pointer.png)
+
+## 代码示例
+
+```js
+let timePointer = hmUI.createWidget(hmUI.widget.TIME_POINTER, {
+  hour_centerX: 240, // 指针旋转中心 对应 centerX
+  hour_centerY: 240, // 指针旋转中心 对应 centerY
+  hour_posX: 19, // 指针自身旋转中心 对应 position 中的 x
+  hour_posY: 100, // 指针自身旋转中心 对应 position 中的 y
+  hour_path: 'pointer.png', // 指针路径
+  hour_cover_path: 'cover.png', // 指针圆心图片
+  hour_cover_y: 0,
+  hour_cover_x: 0
+  // 分针 秒针同上，只需要把 hour 替换成 minute/second 即可
+})
+```
+
+- xx_cover 为非必须字段

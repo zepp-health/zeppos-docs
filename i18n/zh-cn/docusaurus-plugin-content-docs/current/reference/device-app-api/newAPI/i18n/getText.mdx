@@ -1,0 +1,33 @@
+# getText
+
+> API_LEVEL `2.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+根据国际化 key 从国际化资源文件（.po）中获取对应的字符串。
+
+## 类型
+
+```ts
+function getText(key: Key): Result
+```
+
+## 参数
+
+### Key
+
+| 类型                | 说明       |
+| ------------------- | ---------- |
+| <code>string</code> | 国际化 key |
+
+### Result
+
+| 类型                | 说明                    |
+| ------------------- | ----------------------- |
+| <code>string</code> | 国际化 key 对应的字符串 |
+
+## 代码示例
+
+```js
+import { getText } from '@zos/i18n'
+
+getText('name')
+```

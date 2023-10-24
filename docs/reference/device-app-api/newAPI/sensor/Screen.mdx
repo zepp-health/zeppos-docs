@@ -1,0 +1,59 @@
+---
+title: Screen
+sidebar_label: Screen
+---
+
+> Start from API_LEVEL `3.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Screen Status Sensor.
+
+## Methods
+
+### getStatus
+
+Get the screen status, `1`: On, `2`: Off
+
+```ts
+getStatus(): number
+```
+
+### getAodMode
+
+Whether to turn on the AOD rest screen display function
+
+```ts
+getAodMode(): number
+```
+
+### onChange
+
+Register a callback function to listen to screen display change events
+
+```ts
+onChange(callback: (status: number) => void): void
+```
+
+### offChange
+
+Cancel a callback function to listen to screen display change events
+
+```ts
+offChange(callback: (status: number) => void): void
+```
+
+## Example
+
+```js
+import { Screen } from '@zos/sensor'
+
+const screen = new Screen()
+const status = screen.getStatus()
+const callback = () => {
+  console.log(screen.getStatus())
+}
+
+screen.onChange(callback)
+
+// When not needed for use
+screen.offChange(callback)
+```

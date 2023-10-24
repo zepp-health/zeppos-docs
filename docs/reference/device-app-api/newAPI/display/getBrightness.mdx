@@ -1,0 +1,28 @@
+# getBrightness
+
+> Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Get the screen brightness of the current device.
+
+## Type
+
+```ts
+function getBrightness(): Result
+```
+
+## Parameters
+
+### Result
+
+| Type                | Description                            |
+| ------------------- | -------------------------------------- |
+| <code>number</code> | Screen brightness value, range 0 - 100 |
+
+## Example
+
+```js
+import { getBrightness } from '@zos/display'
+
+const result = getBrightness()
+console.log(`current brightness ${result}`)
+```

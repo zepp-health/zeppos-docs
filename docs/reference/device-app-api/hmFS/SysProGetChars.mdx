@@ -1,0 +1,33 @@
+---
+title: hmFS.SysProGetChars(key)
+sidebar_label: SysProGetChars
+---
+
+Get the temporarily stored string, system reboot will clear it.
+
+## Type
+
+```ts
+(key: string) => result
+```
+
+## Parameters
+
+### key
+
+| Description | Required |   Type   | Default |
+| ----------- | -------- | -------- | ------ |
+| key string  |    yes   | `string` | - |
+
+### result
+
+|  Description  |    Type   |
+| ------------- | --------- |
+| stored string | `string` |
+
+## Usage  
+
+```js
+hmFS.SysProSetChars('js_test_char', 'hello')
+console.log(hmFS.SysProGetChars('js_test_char'))
+```

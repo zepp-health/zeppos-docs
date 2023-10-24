@@ -1,0 +1,33 @@
+# px
+
+> Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Pixel scaling calculation. The `designWidth` of each model in the `targets` object in the `app.json` is used as the base..
+
+## Type
+
+```ts
+function px(value: PxValue): Result
+```
+
+## Parameters
+
+### PxValue
+
+| Type                | Description                         |
+| ------------------- | ----------------------------------- |
+| <code>number</code> | Pixel values based on `designWidth` |
+
+### Result
+
+| Type                | Description                            |
+| ------------------- | -------------------------------------- |
+| <code>string</code> | Pixel values after scaling calculation |
+
+## Example
+
+```js
+import { px } from '@zos/utils'
+
+px(480)
+```

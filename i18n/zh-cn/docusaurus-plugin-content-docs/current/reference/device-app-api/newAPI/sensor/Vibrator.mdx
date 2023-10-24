@@ -1,0 +1,89 @@
+---
+title: Vibrator
+sidebar_label: Vibrator 振动马达
+---
+
+> API_LEVEL `2.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+振动马达。
+
+## 方法
+
+### start
+
+开始振动，传入的 `option` 参数，只对此次振动生效
+
+```ts
+start(option?: Option): void
+```
+
+#### Option
+
+| 属性 | 类型                | 必填 | 默认值                                   | 说明                             | API_LEVEL |
+| ---- | ------------------- | ---- | ---------------------------------------- | -------------------------------- | --------- |
+| mode | <code>number</code> | 否   | <code>VIBRATOR_SCENE_SHORT_MIDDLE</code> | 振动模式，值参考振动马达模式常量 | 2.0       |
+
+#### 常量
+
+##### 振动马达模式常量
+
+| 常量                             | 说明                                                                                             | API_LEVEL |
+| -------------------------------- | ------------------------------------------------------------------------------------------------ | --------- |
+| `VIBRATOR_SCENE_SHORT_LIGHT`     | 振动强度轻，时间较短（20ms）                                                                     | 2.0       |
+| `VIBRATOR_SCENE_SHORT_MIDDLE`    | 振动强度中等，时间较短（20ms）                                                                   | 2.0       |
+| `VIBRATOR_SCENE_SHORT_STRONG`    | 振动强度高，时间较短（20ms）                                                                     | 2.0       |
+| `VIBRATOR_SCENE_DURATION`        | 振动强度高，持续 600ms                                                                           | 2.0       |
+| `VIBRATOR_SCENE_DURATION_LONG`   | 振动强度高，持续 1000ms                                                                          | 2.0       |
+| `VIBRATOR_SCENE_STRONG_REMINDER` | 振动强度高，1200ms 内振动四次，用于较强提醒                                                      | 2.0       |
+| `VIBRATOR_SCENE_NOTIFICATION`    | 短促振动两次，与手表消息通知振动反馈一致                                                         | 2.0       |
+| `VIBRATOR_SCENE_CALL`            | 振动强度高，单次 500ms 内振动两次，持续振动，需要手动 `stop` 才会停止，与手表来电振动反馈一致    | 2.0       |
+| `VIBRATOR_SCENE_TIMER`           | 振动强度高，单次长振动 500ms，持续振动，需要手动 `stop` 才会停止，与手表闹钟、倒计时振动反馈一致 | 2.0       |
+
+### stop
+
+停止振动
+
+```ts
+stop(): void
+```
+
+### setMode
+
+设置振动模式，设置成功后调用 `start()`，会依照设置的模式进行振动
+
+```ts
+setMode(option: Option): void
+```
+
+#### Option
+
+| 属性 | 类型                | 必填 | 默认值 | 说明                             | API_LEVEL |
+| ---- | ------------------- | ---- | ------ | -------------------------------- | --------- |
+| mode | <code>number</code> | 是   | -      | 振动模式，值参考振动马达模式常量 | 2.0       |
+
+### getConfig
+
+获取振动马达配置
+
+```ts
+getConfig(): Option
+```
+
+#### Option
+
+| 属性 | 类型                | 说明                             | API_LEVEL |
+| ---- | ------------------- | -------------------------------- | --------- |
+| mode | <code>number</code> | 振动模式，值参考振动马达模式常量 | 2.0       |
+
+## 代码示例
+
+```js
+import { Vibrator, VIBRATOR_SCENE_DURATION } from '@zos/sensor'
+
+const vibrator = new Vibrator()
+vibrator.start()
+
+// set scene
+vibrator.setMode(VIBRATOR_SCENE_DURATION)
+vibrator.start()
+```

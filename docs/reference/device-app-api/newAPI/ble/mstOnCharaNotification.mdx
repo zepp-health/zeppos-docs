@@ -1,0 +1,57 @@
+# mstOnCharaNotification
+
+> Start from API_LEVEL `3.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Register Characteristic Notification to reach the callback function.
+
+## Type
+
+```ts
+function mstOnCharaNotification(callback: Callback): Result
+```
+
+## Parameters
+
+### Callback
+
+| Type                                                                                | Description                                                  |
+| ----------------------------------------------------------------------------------- | ------------------------------------------------------------ |
+| <code>(profile: Profile, uuid: UUID, data: Data, length: Length) =&#62; void</code> | Characteristic Notification arrives at the callback function |
+
+### Profile
+
+| Type                | Description     |
+| ------------------- | --------------- |
+| <code>number</code> | Profile pointer |
+
+### UUID
+
+| Type                | Description                |
+| ------------------- | -------------------------- |
+| <code>string</code> | Characteristic UUID string |
+
+### Data
+
+| Type                     | Description                                                   |
+| ------------------------ | ------------------------------------------------------------- |
+| <code>ArrayBuffer</code> | It is recommended to use the Uint8Array view to read the data |
+
+### Length
+
+| Type                | Description |
+| ------------------- | ----------- |
+| <code>number</code> | Data length |
+
+### Result
+
+| Type                 | Description                                                                  |
+| -------------------- | ---------------------------------------------------------------------------- |
+| <code>boolean</code> | The result of the function call, `true` means success, `false` means failure |
+
+## Example
+
+```js
+import { mstOnCharaNotification } from '@zos/ble'
+
+// ...
+```

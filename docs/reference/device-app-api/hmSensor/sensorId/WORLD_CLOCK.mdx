@@ -1,0 +1,77 @@
+---
+title: WORLD_CLOCK
+sidebar_label: WORLD_CLOCK
+---
+
+## Creating Sensors
+
+```js
+const world_clock = hmSensor.createSensor(hmSensor.id.WORLD_CLOCK)
+```
+
+## WORLD_CLOCK instance
+
+### world_clock.init
+
+Initialize world clock data
+
+#### Type
+
+```ts
+() => void
+```
+
+### world_clock.getWorldClockCount
+
+Get the total number of currently configured world clocks
+
+#### Type
+
+```ts
+() => number
+```
+
+### world_clock.getWorldClockCountInfo(index)
+
+Get the world clock data corresponding to `index`
+
+#### Type
+
+```ts
+(index: number) => wordInfo
+```
+
+##### wordInfo
+
+|   Properties   |   Description    |   Type   |
+| -------------- | ---------------- | -------- |
+| city           |       city       | `string` |
+| hour           |       hour       | `number` |
+| minute         |      minute      | `number` |
+| timeZoneHour   | Time Zone Hours  | `number` |
+| timeZoneMinute | Time zone minutes | `number` |
+
+### world_clock.uninit
+
+Recycle world clock data, corresponding to `init`
+
+#### Type
+
+```js
+() => void
+```
+
+## Code example
+
+```js
+const world_clock = hmSensor.createSensor(hmSensor.id.WORLD_CLOCK)
+world_clock.init()
+const count = world_clock.getWorldClockCount()
+if (count > 0) {
+  const worldData = world_clock.getWorldClockInfo(0)
+  console.log('worldName=' + worldData.city)
+  console.log('worldHour=' + worldData.hour)
+  console.log('worldMinute=' + worldData.minute)
+}
+world_clock.uninit()
+```

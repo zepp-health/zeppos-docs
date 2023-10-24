@@ -1,0 +1,39 @@
+---
+title: IMG_PROGRESS
+sidebar_label: IMG_PROGRESS 图片连续进度
+---
+
+根据给定的顺序依次展示图片。
+
+## 创建 UI 控件
+
+```js
+const imgProgress = hmUI.createWidget(hmUI.widget.IMG_PROGRESS, Param)
+```
+
+## 类型
+
+### Param: object
+
+| 属性         | 说明                      | 是否必须 | 类型     |
+| ------------ | ------------------------- | -------- | -------- |
+| x            | 图片 x 坐标数组           | 是       | `array`  |
+| y            | 图片 y 坐标数组           | 是       | `array`  |
+| image_array  | 图片数组                  | 是       | `array`  |
+| image_length | 数组长度                  | 是       | `number` |
+| level        | 进度等级 [1-image_length] | 否       | `number` |
+
+## 代码示例
+
+```js
+const xArray = [100, 200, 300]
+const yArray = [100, 200, 300]
+const imgArray = ['1.png', '2.png', '3.png']
+const imgProgress = hmUI.createWidget(hmUI.widget.IMG_PROGRESS, {
+  x: xArray,
+  y: yArray,
+  image_array: imgArray,
+  image_length: 3,
+  level: 2 //level为2 会依次绘制第一张图 第二张图
+})
+```

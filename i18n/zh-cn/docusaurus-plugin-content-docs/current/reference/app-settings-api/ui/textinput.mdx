@@ -1,0 +1,27 @@
+---
+title: TextInput 文本输入弹窗
+sidebar_label: TextInput 文本输入弹窗
+---
+
+## 类型
+
+```ts
+(props: Props) => result: RenderFunc
+```
+
+## Props: object
+
+| 名称        | 说明                                | 必填 | 类型                      | 默认值 |
+| ----------- | ----------------------------------- | ---- | ------------------------- | ------ |
+| label       | 文本标签                            | 否   | `string`                  | -      |
+| disabled    | 是否禁用输入框                      | 否   | `boolean`                 | -      |
+| multiline   | 是否多行                            | 否   | `boolean`                 | -      |
+| placeholder | 输入框提示占位文字                  | 否   | `string`                  | -      |
+| rows        | 行数                                | 否   | `number`                  | -      |
+| bold        | 加粗                                | 否   | `boolean`                 | -      |
+| value       | 文本框的值                          | 否   | `string`                  | -      |
+| rows        | 行数                                | 否   | `string`                  | -      |
+| onChange    | 输入事件                            | 否   | `(value: string) => void` | -      |
+| settingsKey | Settings Storage API 中存储值的 key | 否   | `string`                  | -      |
+| labelStyle  | 文字的样式，支持 CSS 属性           | 否   | `object`                  | -      |
+| subStyle    | 底部文字的样式对象，支持 CSS 属性   | 否   | `object`                  | -      |

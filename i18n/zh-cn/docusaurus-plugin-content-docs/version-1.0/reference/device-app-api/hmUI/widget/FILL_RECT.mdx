@@ -1,0 +1,58 @@
+---
+title: FILL_RECT
+sidebar_label: FILL_RECT 填充矩形
+---
+
+![fill_rect_sample](/img/api/fill_rect_sample.jpg)
+
+填充矩形控件用于绘制一个纯色矩形区域。
+
+:::caution
+现阶段如果通过 `setProperty(hmUI.prop.MORE, Params)` 的方式来改变控件属性，必须传递 `x`、`y`，`w`、`h` 属性，具体参考示例代码
+:::
+
+## 创建 UI 控件
+
+```js
+const fillRect = hmUI.createWidget(hmUI.widget.FILL_RECT, Param)
+```
+
+## 类型
+
+### Param: object
+
+| 属性   | 备注         | 是否必须 | 类型     |
+| ------ | ------------ | -------- | -------- |
+| x      | 控件 x 坐标  | 是       | `number` |
+| y      | 控件 y 坐标  | 是       | `number` |
+| w      | 控件显示宽度 | 是       | `number` |
+| h      | 控件显示高度 | 是       | `number` |
+| color  | 控件颜色     | 是       | `number` |
+| radius | 矩形圆角     | 否       | `number` |
+| angle  | 旋转角度     | 否       | `number` |
+
+## 代码示例
+
+```js
+Page({
+  build() {
+    const fill_rect = hmUI.createWidget(hmUI.widget.FILL_RECT, {
+      x: 125,
+      y: 125,
+      w: 230,
+      h: 150,
+      radius: 20,
+      color: 0xfc6950
+    })
+
+    fill_rect.addEventListener(hmUI.event.CLICK_DOWN, (info) => {
+      fill_rect.setProperty(hmUI.prop.MORE, {
+        x: 125,
+        y: 200,
+        w: 230,
+        h: 150
+      })
+    })
+  }
+})
+```

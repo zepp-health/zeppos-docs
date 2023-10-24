@@ -1,0 +1,59 @@
+---
+title: Screen
+sidebar_label: Screen 屏幕状态
+---
+
+> API_LEVEL `3.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+屏幕状态传感器。
+
+## 方法
+
+### getStatus
+
+获取屏幕状态，`1`: 亮屏、`2`: 息屏
+
+```ts
+getStatus(): number
+```
+
+### getAodMode
+
+是否开启 AOD 息屏显示功能
+
+```ts
+getAodMode(): number
+```
+
+### onChange
+
+注册屏幕显示变化事件监听回调函数
+
+```ts
+onChange(callback: (status: number) => void): void
+```
+
+### offChange
+
+取消屏幕显示变化事件监听回调函数
+
+```ts
+offChange(callback: (status: number) => void): void
+```
+
+## 代码示例
+
+```js
+import { Screen } from '@zos/sensor'
+
+const screen = new Screen()
+const status = screen.getStatus()
+const callback = () => {
+  console.log(screen.getStatus())
+}
+
+screen.onChange(callback)
+
+// When not needed for use
+screen.offChange(callback)
+```

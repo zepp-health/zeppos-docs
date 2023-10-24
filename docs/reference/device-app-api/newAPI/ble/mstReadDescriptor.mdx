@@ -1,0 +1,39 @@
+# mstReadDescriptor
+
+> Start from API_LEVEL `3.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Write characteristic information.
+
+## Type
+
+```ts
+function mstReadDescriptor(profile: Profile, uuid: UUID, descUUID: DescUUID): void
+```
+
+## Parameters
+
+### Profile
+
+| Type                | Description     |
+| ------------------- | --------------- |
+| <code>number</code> | Profile pointer |
+
+### UUID
+
+| Type                | Description                |
+| ------------------- | -------------------------- |
+| <code>string</code> | Characteristic UUID string |
+
+### DescUUID
+
+| Type                | Description            |
+| ------------------- | ---------------------- |
+| <code>string</code> | Descriptor UUID string |
+
+## Example
+
+```js
+import { mstReadDescriptor } from '@zos/ble'
+
+// ...
+```

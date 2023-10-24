@@ -1,0 +1,137 @@
+---
+title: 蓝牙通信
+sidebar_label: 蓝牙通信
+---
+
+首先回顾一下 Zepp OS 小程序的 [整体架构](../architecture/arc.mdx)。
+
+在「设备应用」和「伴生服务」之间通过蓝牙进行通信。
+
+「设备应用」通过 [`ble` API](../../reference/device-app-api/newAPI/ble.mdx) 来使用蓝牙能力，「伴生服务」通过 `Messaging API` 来使用蓝牙能力，目前两者都只能够操作二进制数据，对开发者来说数据结构的组织较为繁琐。
+
+参考示例 [ToDoList](../../samples/app/toDoList.md)，其中 `/shared/message.js` 中对蓝牙通信过程进行封装，更加便于开发者开发应用。
+
+本文分享使用 `MessageBuilder` 即 `message.js` 过程中的经验，打通「设备应用」和「伴生服务」之间完整的通信链路。
+
+:::tip
+「设备应用」依赖的通信库是 `/shared/message.js`
+
+「伴生服务」依赖的通信库是 `/shared/message-side.js`
+:::
+
+## 使用方法
+
+### 1. 环境准备
+
+`/shared/message.js` 依赖了较多宿主环境没有的方法，需要对环境做 polyfill，会用到 `/shared` 目录中所有文件，在 app.js 中导入。
+
+```js title=app.js
+import './shared/device-polyfill'
+```
+
+### 2. 建立连接
+
+在「设备应用」和「伴生服务」中分别对 `MessageBuilder` 进行实例化，在各自的生命周期中进行蓝牙通道连接的建立。
+
+:::caution
+在「设备应用」的 `onDestroy` 生命周期，需要进行连接的销毁，防止内存泄露。
+:::
+
+```js title=app.js
+import './shared/device-polyfill'
+import { MessageBuilder } from './shared/message'
+
+// need to pass in the appId
+const appId = 27280
+const messageBuilder = new MessageBuilder({ appId })
+
+App({
+  globalData: {
+    messageBuilder: messageBuilder,
+  },
+  onCreate(options) {
+    console.log('app on create invoke')
+    // establish connection
+    messageBuilder.connect()
+  },
+
+  onDestroy(options) {
+    console.log('app on destroy invoke')
+    messageBuilder.disConnect()
+  }
+})
+```
+
+```js title=app-side/index.js
+import { MessageBuilder } from '../shared/message-side'
+
+const messageBuilder = new MessageBuilder()
+
+AppSideService({
+  onInit() {
+    // establish connection
+    messageBuilder.listen(() => {})
+  },
+})
+```
+
+### 3. 基于事件机制的通信
+
+连接建立之后，后续的通信基于事件机制，两端都有监听和派发的方法，参考代码示例即可。
+
+```js title=page.js
+import { log } from '@zos/utils'
+
+const { messageBuilder } = getApp()._options.globalData
+const logger = log.getLogger('demo')
+
+Page({
+  build() {
+    // receive a message from the Side Service
+    messageBuilder.on('call', ({ payload: buf }) => {
+      // call the messageBuilder.buf2Json method to convert the buffer to a JS JSON object
+      const data = messageBuilder.buf2Json(buf)
+      logger.log('data', data)
+    })
+
+    // send a message to Side Service
+    messageBuilder.request({
+      method: 'GET',
+      params: {
+        index: 0
+      }
+    }).then(data => {
+      // process Side Service responses
+      const { result } = data
+      logger.log(result)
+    })
+  }
+})
+```
+
+```js title=app-side/index.js
+import { MessageBuilder } from '../shared/message-side'
+
+const messageBuilder = new MessageBuilder()
+
+AppSideService({
+  onInit() {
+    messageBuilder.listen(() => {})
+
+    // send a message to Device App
+    messageBuilder.call({ text: 'Hello Zepp OS' })
+
+    // receive a message from Device App
+    messageBuilder.on('request', (ctx) => {
+      const payload = messageBuilder.buf2Json(ctx.request.payload)
+      const { method, params } = payload
+
+      if (method === 'GET') {
+        ctx.response({
+          data: { result : 0 }
+        })
+      }
+    })
+  },
+})
+```

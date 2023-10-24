@@ -1,0 +1,45 @@
+# getApp
+
+> Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Get the app instance object.
+
+## Type
+
+```ts
+function getApp(): Result
+```
+
+## Parameters
+
+### Result
+
+| Property  | Type                 | Description           | API_LEVEL |
+| --------- | -------------------- | --------------------- | --------- |
+| \_options | <code>Options</code> | app instance property | 2.0       |
+
+### Options
+
+| Property   | Type                | Description                           | API_LEVEL |
+| ---------- | ------------------- | ------------------------------------- | --------- |
+| globalData | <code>object</code> | mounted data objects on app instances | 2.0       |
+
+## Example
+
+```js
+App({
+  globalData: {
+    text: 'Hello Zepp OS',
+  },
+  onCreate() {
+    console.log('onCreate')
+    console.log(this.globalData.text)
+  },
+  onDestroy() {
+    console.log('onDestroy')
+  },
+})
+
+const app = getApp()
+console.log(app._options.globalData.text)
+```

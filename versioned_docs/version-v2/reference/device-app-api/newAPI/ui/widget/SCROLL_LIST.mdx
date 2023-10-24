@@ -1,0 +1,299 @@
+---
+title: SCROLL_LIST
+sidebar_label: SCROLL_LIST
+---
+
+> Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](../../../../../guides/framework/device/compatibility.md).
+
+![scroll_list_sample](/img/api/scroll_list_sample.png)
+
+Create a list area with sliding support, where each item item can have an image and text, and support horizontal sliding.
+
+## Create UI widget
+
+```js
+import { createWidget, widget } from '@zos/ui'
+
+const scrollList = createWidget(widget.SCROLL_LIST, Param)
+```
+
+## Type
+
+### Param: object
+
+| Properties               | Description                                                                                                                                               | Required | Type                    |
+| ------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- | ----------------------- |
+| x                        | The x-coordinate of the widget.                                                                                                                        | YES      | `number`                |
+| y                        | The y-coordinate of the widget.                                                                                                                        | YES      | `number`                |
+| w                        | Width of the widget.                                                                                                                                   | YES      | `number`                |
+| h                        | The height of the widget.                                                                                                                              | YES      | `number`                |
+| item_space               | Space between each item.                                                                                                                                  | NO       | `number`                |
+| item_config              | item type configuration, see [`ItemConfig`](#itemconfig-object)                                                                                           | YES      | `Array<ItemConfig>`     |
+| item_config_count        | The length of the item_config array.                                                                                                                      | YES      | `number`                |
+| data_array               | Data Array.                                                                                                                                               | YES      | `DataArray`             |
+| data_count               | Data array length.                                                                                                                                        | YES      | `number`                |
+| item_click_func          | item Click callback function, see [`ItemClickFunc`](#itemclickfunc)                                                                                       | NO       | `ItemClickFunc`         |
+| data_type_config         | The index type configuration array for item, see [DataTypeConfig](#datatypeconfig-object)                                                                 | NO       | `Array<DataTypeConfig>` |
+| data_type_config_count   | The length of `data_type_config`.                                                                                                                         | NO       | `number`                |
+| on_page                  | Used when updating data, set to `1` means that the list data remains at the current position after updating, otherwise it returns to the top of the list. | NO       | `number`                |
+| snap_to_center           | Is the list attached to the SCROLL_LIST height center position                                                                                            | NO       | `boolean`               |
+| item_focus_change_func   | The list sliding focus change callback function, see [ItemFocusChangeFunc](#itemfocuschangefunc)                                                          | NO       | `ItemFocusChangeFunc`   |
+| item_enable_horizon_drag | Whether the item can be slid in the horizontal direction                                                                                                  | NO       | `boolean`               |
+| item_drag_max_distance   | Horizontal sliding distance, positive value means sliding to the left, negative value means sliding to the right                                          | NO       | `number`                |
+
+### ItemConfig: object
+
+| Properties       | Description                                                                            | Required | Type               |
+| ---------------- | -------------------------------------------------------------------------------------- | -------- | ------------------ |
+| type_id          | The type ID of the item, not required if item_config_count is `0`, otherwise required. | NO       | `number`           |
+| item_height      | Item's height.                                                                         | YES      | `number`           |
+| item_bg_color    | Item's background color.                                                               | YES      | `number`           |
+| item_bg_radius   | The rounded corners of the item's background.                                          | YES      | `number`           |
+| text_view        | The structure array of textView, each item is a textView. See the description below.   | NO       | `Array<TextView>`  |
+| text_view_count  | Array's length of text_view.                                                           | NO       | `number`           |
+| image_view       | Array of imageView, each item is an imageView.See description below.                   | NO       | `Array<ImageView>` |
+| image_view_count | The length of the image_view array.                                                    | NO       | `number`           |
+
+### TextView: object
+
+All relative coordinates involving location information.
+
+| Properties | Description                                                                                                                                        | Required | Type      |
+| ---------- | -------------------------------------------------------------------------------------------------------------------------------------------------- | -------- | --------- |
+| x          | x coordinate, relative coordinate.                                                                                                                 | YES      | `number`  |
+| y          | y-coordinate, relative coordinate.                                                                                                                 | YES      | `number`  |
+| w          | The width of widget.                                                                                                                            | YES      | `number`  |
+| h          | The length of the widget.                                                                                                                       | YES      | `number`  |
+| color      | The color of text.                                                                                                                                 | NO       | `number`  |
+| text_size  | The size of text.                                                                                                                                  | NO       | `number`  |
+| key        | Data binding.See usage examples and data_array descriptions for details.                                                                           | YES      | `string`  |
+| action     | Whether or not to respond to the click event, after responding, the corresponding data `key` can be captured in `item_click_func`, default `false` | NO       | `boolean` |
+
+```js
+// Each structure in the array is a textView.
+const text_view = [
+  { x: 100, y: 0, w: 100, h: 20, key: 'name', color: 0xffffff },
+  { x: 0, y: 30, w: 100, h: 100, key: 'age', color: 0xffffff, text_size: 20 }
+]
+```
+
+### ImageView: object
+
+All relative coordinates involving location information.
+
+| Properties | Description                                                                                                                                        | Required | Type      |
+| ---------- | -------------------------------------------------------------------------------------------------------------------------------------------------- | -------- | --------- |
+| x          | x-coordinate, relative coordinate.                                                                                                                 | YES      | `number`  |
+| y          | y-coordinate, relative coordinate.                                                                                                                 | YES      | `number`  |
+| w          | The width of widget.                                                                                                                            | YES      | `number`  |
+| h          | The length of the widget.                                                                                                                       | YES      | `number`  |
+| color      | The color of text.                                                                                                                                 | NO       | `number`  |
+| key        | Data binding.See usage examples and data_array descriptions for details.                                                                           | YES      | `string`  |
+| action     | Whether or not to respond to the click event, after responding, the corresponding data `key` can be captured in `item_click_func`, default `false` | NO       | `boolean` |
+
+```js
+// Each structure in the array is an imageView.
+const image_view = [{ x: 0, y: 0, w: 20, h: 20, key: 'img_src' }]
+```
+
+### data_array Configuration
+
+The data arrays, TextView and ImageView, take values from each of the data_array objects based on the property name (configured via `key`) and render them to the view based on the corresponding configuration.
+
+```js
+const dataList = [
+  { img_src: rootPath + 'step/step_num_1.png', name: 'name1', age: '12' },
+  { img_src: rootPath + 'step/step_num_1.png', name: 'name1', age: '13' },
+  { img_src: rootPath + 'step/step_num_1.png', name: 'name1', age: '13' }
+]
+```
+
+### DataTypeConfig: object
+
+Set the item type of the list index.
+
+| Properties | Description                                                    | Required | Type     |
+| ---------- | -------------------------------------------------------------- | -------- | -------- |
+| start      | Index of start                                                 | YES      | `number` |
+| end        | Index of the end                                               | YES      | `number` |
+| type_id    | The type configuration in item_config corresponds to `type_id` | YES      | `number` |
+
+The relationship between `start` and `end` is the closed interval `[start, end]`.
+
+```js
+{
+data_type_config:[
+  //The data representing the index from 0 to 2 uses the style with type_id of 2.
+  {
+  start: 0,
+  end: 2,
+  type_id: 2,
+  },
+  {
+  start: 3,
+  end: 10,
+  type_id: 1,
+  },
+],
+data_type_config_count:2
+}
+```
+
+### ItemClickFunc
+
+```ts
+(list: ScrollList, index: number, data_key: string) => void
+```
+
+| Parameters | description                                          | Type     |
+| ---------- | ---------------------------------------------------- | -------- |
+| list       | SCROLL_LIST Widget                                    | `any`    |
+| index      | Clicked item index                                     | `number` |
+| data_key   | Clicked data `key` name, by `key` can be located to the clicked area | `string` |
+
+### ItemFocusChangeFunc
+
+```ts
+(list: ScrollList, index: number, focus: boolean) => void
+```
+
+| Parameters  | description              | Type      |
+| ----- | ----------------- | --------- |
+| list  | SCROLL_LIST Widget  | `any`     |
+| index | item index         | `number`  |
+| focus | item is in focus or not | `boolean` |
+
+## Refresh data
+
+```js
+import { createWidget, widget, prop } from '@zos/ui'
+
+const scrollList = createWidget(widget.SCROLL_LIST, Param)
+scrollList.setProperty(prop.UPDATE_DATA, {
+  //Reset configuration information
+  data_type_config: [
+    {
+      start: 0,
+      end: 2,
+      type_id: 2
+    }
+  ],
+  //Configuration the length of information
+  data_type_config_count: 1,
+  //New data
+  data_array: [
+    { img_src: rootPath + 'test/NOrmalbtn_h.png', name: 'Name', age: '12', like: 'type2' },
+    { img_src: rootPath + 'test/NOrmalbtn_h.png', name: 'namex1', age: '13', like: 'type2' },
+    { img_src: rootPath + 'test/NOrmalbtn_h.png', name: 'namex2', age: '13', like: 'type2' },
+    { img_src: rootPath + 'test/NOrmalbtn_h.png', name: 'namex3', age: '12', like: 'type2' },
+    { img_src: rootPath + 'test/NOrmalbtn_h.png', name: 'name666', age: '13', like: 'type2' }
+  ],
+  //The length of the data
+  data_count: 5,
+  //Refresh the data and stay on the current page. If it is not set or set to 0, it will return to the top of the list.
+  on_page: 1
+})
+```
+
+## Code example
+
+```js
+import { createWidget, widget, prop } from '@zos/ui'
+
+Page({
+  build() {
+    const dataList = [
+      { name: 'Amazfit T-Rex 2', size: 454, del_img: 'btn/delete.png' },
+      { name: 'Amazfit GTR 3 Pro', size: 480, del_img: 'btn/delete.png' },
+      { name: 'Amazfit GTR 3', size: 454, del_img: 'btn/delete.png' }
+    ]
+
+    const scrollList = createWidget(widget.SCROLL_LIST, {
+      x: 0,
+      y: 120,
+      h: 300,
+      w: 480,
+      item_space: 20,
+      snap_to_center: true,
+      item_enable_horizon_drag: true,
+      item_drag_max_distance: -120,
+      item_config: [
+        {
+          type_id: 1,
+          item_bg_color: 0xef5350,
+          item_bg_radius: 10,
+          text_view: [
+            { x: 0, y: 0, w: 480, h: 80, key: 'name', color: 0xffffff, text_size: 20 },
+            { x: 0, y: 80, w: 480, h: 40, key: 'size', color: 0xffffff }
+          ],
+          text_view_count: 2,
+          image_view: [{ x: 492, y: 28, w: 64, h: 64, key: 'del_img', action: true }],
+          image_view_count: 1,
+          item_height: 120
+        },
+        {
+          type_id: 2,
+          item_bg_color: 0xef5350,
+          item_bg_radius: 10,
+          text_view: [
+            { x: 0, y: 0, w: 480, h: 80, key: 'name', color: 0x000000, text_size: 20 },
+            { x: 0, y: 80, w: 480, h: 40, key: 'size', color: 0x000000 }
+          ],
+          text_view_count: 2,
+          image_view: [{ x: 492, y: 28, w: 64, h: 64, key: 'del_img', action: true }],
+          image_view_count: 1,
+          item_height: 120
+        }
+      ],
+      item_config_count: 2,
+      data_array: dataList,
+      data_count: dataList.length,
+      item_focus_change_func: (list, index, focus) => {
+        console.log('scrollListFocusChange index=' + index)
+        console.log('scrollListFocusChange focus=' + focus)
+      },
+      item_click_func: (item, index, data_key) => {
+        console.log(`scrollListItemClick index=${index}`)
+        if (data_key === 'del_img') {
+          scrollList.setProperty(prop.DELETE_ITEM, { index })
+          dataList.splice(index, 1)
+        } else {
+          updateConfig()
+        }
+      },
+      data_type_config: [
+        {
+          start: 0,
+          end: 1,
+          type_id: 1
+        },
+        {
+          start: 1,
+          end: 2,
+          type_id: 2
+        }
+      ],
+      data_type_config_count: 2,
+      snap_to_center: true,
+      item_enable_horizon_drag: true,
+      item_drag_max_distance: -112
+    })
+
+    function updateConfig() {
+      scrollList.setProperty(prop.UPDATE_DATA, {
+        data_type_config: [
+          {
+            start: 0,
+            end: dataList.length - 1,
+            type_id: 1
+          }
+        ],
+        data_type_config_count: 1,
+        data_array: dataList,
+        data_count: dataList.length,
+        on_page: 1
+      })
+    }
+  }
+})
+```

@@ -1,0 +1,41 @@
+# getDateFormat
+
+> API_LEVEL `2.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+获取当前系统日期格式。
+
+## 类型
+
+```ts
+function getDateFormat(): Result
+```
+
+## 参数
+
+### Result
+
+| 类型                | 说明                         |
+| ------------------- | ---------------------------- |
+| <code>number</code> | 日期格式，值参考日期格式常量 |
+
+## 常量
+
+### 日期格式常量
+
+| 常量              | 说明     | API_LEVEL |
+| ----------------- | -------- | --------- |
+| `DATE_FORMAT_YMD` | 年-月-日 | 2.0       |
+| `DATE_FORMAT_DMY` | 日-月-年 | 2.0       |
+| `DATE_FORMAT_MDY` | 月-日-年 | 2.0       |
+
+## 代码示例
+
+```js
+import { getDateFormat, DATE_FORMAT_YMD } from '@zos/settings'
+
+const currentDateFormat = getDateFormat()
+
+if (currentDateFormat === DATE_FORMAT_YMD) {
+  console.log('date format is YYYY-MM-DD')
+}
+```

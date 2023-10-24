@@ -1,0 +1,186 @@
+---
+title: Download File
+sidebar_label: Download File
+---
+
+The file download module `network.downloader` can download network files to a Side Service.
+
+## network.downloader module
+
+### downloadFile
+
+return `DownloadTask` object
+
+### Types
+
+```ts
+(options: Options) => DownloadTask
+```
+
+### Parameters
+
+### Options: object
+
+| Property | Description                                                                                 | Required | Type     |
+| -------- | ------------------------------------------------------------------------------------------- | -------- | -------- |
+| url      | File URL                                                                                    | YES      | `string` |
+| timeout  | timeout                                                                                     | YES      | `number` |
+| headers  | Customizing the HTTP Request Header field                                                   | NO       | `object` |
+| filePath | File download path, if not specified, defaults to the Side Service's `data://download` path | NO       | `string` |
+
+### DownloadTask: object
+
+#### cancel
+
+Cancel the current download task
+
+##### Types
+
+```ts
+() => void
+```
+
+##### Code Example
+
+```js
+const downloadTask = network.downloader.downloadFile({
+  url: 'https://docs.zepp.com/zh-cn/img/logo.png',
+  headers: { key: 121 },
+  timeout: 60000
+})
+
+downloadTask.cancel()
+```
+
+#### onProgress
+
+Specify the download progress callback function via the `onProgress` attribute to return the progress of the download task.
+
+##### Types
+
+```ts
+(event: ProgressEvent) => void
+```
+
+**ProgressEvent**
+
+| Property | Description                                          | Type     |
+| -------- | ---------------------------------------------------- | -------- |
+| progress | Progress in downloading the file, values `1` - `100` | `number` |
+| total    | Total file size in bytes                             | `number` |
+| loaded   | Size of downloaded file in bytes                     | `number` |
+
+##### Code Example
+
+```js
+const downloadTask = network.downloader.downloadFile({
+  url: 'https://docs.zepp.com/zh-cn/img/logo.png',
+  headers: { key: 121 },
+  timeout: 60000
+})
+
+downloadTask.onProgress = (ev) => {
+  console.log(ev.progress)
+  console.log(ev.total)
+  console.log(ev.loaded)
+}
+```
+
+#### onSuccess
+
+Specify the download success callback function via the `onSuccess` attribute to return the progress of the download task.
+
+##### Type
+
+```ts
+(event: SuccessEvent) => void
+```
+
+**SuccessEvent**
+
+| Property     | Description                                                                                             | Type     |
+| ------------ | ------------------------------------------------------------------------------------------------------- | -------- |
+| filePath     | Returns `filePath` if `filePath` is passed in `downloadFile`, or `tempFilePath` if no path is specified | `string` |
+| tempFilePath | Temporary file path for downloaded files                                                                | `string` |
+| statusCode   | HTTP Status Code                                                                                        | `number` |
+
+##### Code Example
+
+```js
+const downloadTask = network.downloader.downloadFile({
+  url: 'https://docs.zepp.com/zh-cn/img/logo.png',
+  headers: {},
+  timeout: 60000,
+  filePath: 'data://download/1.png'
+})
+
+downloadTask.onSuccess = (event) => {
+  console.log(event.filePath) // data://download/1.png
+  console.log(event.tempFilePath) // undefined
+  console.log(event.statusCode) // 200
+}
+
+const downloadTask2 = network.downloader.downloadFile({
+  url: 'https://docs.zepp.com/zh-cn/img/logo.png',
+  headers: { key: 121 },
+  timeout: 60000
+})
+
+downloadTask2.onSuccess = (event) => {
+  console.log(event.filePath) // undefined
+  console.log(event.tempFilePath) // data://download/logo.png
+  console.log(event.statusCode) // 200
+}
+```
+
+#### onFail
+
+```ts
+(event: FailEvent) => void
+```
+
+**FailEvent**
+
+| Property | Description             | Type     |
+| -------- | ----------------------- | -------- |
+| code     | Error code              | `number` |
+| message  | Detailed error contents | `string` |
+
+##### Code Example
+
+```js
+const downloadTask = network.downloader.downloadFile({
+  url: 'https://docs.zepp.com/zh-cn/img/logo.png',
+  headers: {},
+  timeout: 60000,
+  filePath: 'data://download/1.png'
+})
+
+downloadTask.onFail = (event) => {
+  console.log(event.code)
+  console.log(event.message)
+}
+```
+
+#### onComplete
+
+This callback function is called regardless of the success of the download task.
+
+```ts
+() => void
+```
+
+##### Code Example
+
+```js
+const downloadTask = network.downloader.downloadFile({
+  url: 'https://docs.zepp.com/zh-cn/img/logo.png',
+  headers: {},
+  timeout: 60000,
+  filePath: 'data://download/1.png'
+})
+
+downloadTask.onComplete = () => {
+  console.log('do something when success or fail')
+}
+```

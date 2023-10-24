@@ -1,0 +1,44 @@
+# App
+
+> API_LEVEL `2.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+注册小程序，指定小程序的生命周期回调等。`App()` 必须在 `app.js` 中调用，且只能调用一次。
+
+## 类型
+
+```ts
+function App(option: Option): Result
+```
+
+## 参数
+
+### Option
+
+| 属性       | 类型                                       | 必填 | 默认值 | 说明                                                                                                                                      | API_LEVEL |
+| ---------- | ------------------------------------------ | ---- | ------ | ----------------------------------------------------------------------------------------------------------------------------------------- | --------- |
+| globalData | <code>object</code>                        | 否   | -      | App 实例上的挂载的数据对象，可用于存储小程序全局状态                                                                                      | 2.0       |
+| onCreate   | <code>(params?: string) =&#62; void</code> | 否   | -      | App onCreate 生命周期函数，如果是通过 router 模块中相关方法打开小程序，并且携带 params 参数，则在 onCreate 方法中可以获取到 params 字符串 | 2.0       |
+| onDestroy  | <code>() =&#62; void</code>                | 否   | -      | 小程序销毁时触发 `onDestroy` 生命周期函数                                                                                                 | 2.0       |
+
+### Result
+
+| 类型                 | 说明     |
+| -------------------- | -------- |
+| <code>unknown</code> | App 实例 |
+
+## 代码示例
+
+```js title="app.js"
+App({
+  globalData: {
+    text: 'Hello Zepp OS',
+  },
+  onCreate() {
+    console.log('onCreate')
+    console.log(this.globalData.text)
+  },
+  onDestroy() {
+    console.log('onDestroy')
+  },
+})
+```

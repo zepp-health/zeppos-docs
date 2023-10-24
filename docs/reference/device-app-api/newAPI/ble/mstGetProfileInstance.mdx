@@ -1,0 +1,39 @@
+# mstGetProfileInstance
+
+> Start from API_LEVEL `3.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Destroy Profile.
+
+## Type
+
+```ts
+function mstGetProfileInstance(profileName: ProfileName, connectId: ConnectId): Result
+```
+
+## Parameters
+
+### ProfileName
+
+| Type                | Description  |
+| ------------------- | ------------ |
+| <code>string</code> | Profile name |
+
+### ConnectId
+
+| Type                | Description                                |
+| ------------------- | ------------------------------------------ |
+| <code>number</code> | The ID returned on a successful connection |
+
+### Result
+
+| Type                               | Description                                                                          |
+| ---------------------------------- | ------------------------------------------------------------------------------------ |
+| <code>number&#124;undefined</code> | A successful search returns the Profile pointer, a failed search returns `undefined` |
+
+## Example
+
+```js
+import { mstGetProfileInstance } from '@zos/ble'
+
+// ...
+```

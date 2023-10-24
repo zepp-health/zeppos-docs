@@ -1,0 +1,46 @@
+---
+title: BATTERY
+sidebar_label: BATTERY
+---
+
+## Creating Sensors
+
+```js
+const battery = hmSensor.createSensor(hmSensor.id.BATTERY)
+
+console.log('The current battery level is ' + battery.current + '\r\n')
+```
+
+## Battery instance
+
+### battery: object
+
+| Properties |  Description  | Type |
+| ---------- | ------------- | -------- |
+|  current-  | current power | `number` |
+
+## Registering sensor instance callback events.
+
+```js
+battery.addEventListener(event, callback: Callback)
+```
+
+### the events of CHANGE
+
+#### The value of events
+
+`hmSensor.event.CHANGE`
+
+#### Callback
+
+```ts
+() => void
+```
+
+#### The example of events
+
+```js
+battery.addEventListener(hmSensor.event.CHANGE, function () {
+  console.log('The current battery level is ' + battery.current + '\r\n')
+})
+```

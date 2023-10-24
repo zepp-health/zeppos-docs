@@ -1,0 +1,97 @@
+---
+title: 基础环境搭建
+sidebar_label: 基础环境搭建
+---
+
+## 介绍
+
+本文会引导开发者快速搭建 Zepp OS 开发环境，包括 Node.js 的安装和代码编辑器的安装。
+
+## 安装 Node.js
+
+Node.js 是一个跨平台的 JavaScript 运行时环境，npm 是 Node.js 模块的包管理器。
+
+nvm 是一个 Node.js 的版本管理工具。通过它可以安装和切换不同版本的 Node.js。推荐使用 nvm 来下载和安装 Node.js。
+
+### 安装 nvm
+
+nvm 的安装需要区分环境
+
+#### Windows 请看
+
+> 官方文档：https://github.com/coreybutler/nvm-windows
+
+建议在 [nvm-windows Releases](https://github.com/coreybutler/nvm-windows/releases) 中下载 `nvm-setup.exe` 安装包进行安装。
+
+![nvm release](/img/docs/guides/best-practice/nvm_release.jpg)
+
+#### Mac OS 和 Linux 请看
+
+> 官方文档：https://github.com/nvm-sh/nvm
+
+1.打开终端运行下面两行命令中的任意一个。
+
+```sh
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh
+
+// or
+
+wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh
+```
+
+2.配置环境变量。
+
+- 执行指令`vim ~/.bashrc`进入文件。
+
+![image1](/img/docs/guides/best-practice/image1.png)
+
+- 按下 i 进入输入模式(也称为编辑模式)，开始编辑文字，移动游标到最后一行，添加如下字段：
+
+```txt
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+```
+
+![image2](/img/docs/guides/best-practice/image2.png)
+
+- 按下`esc`键保存后，`:wq`退出。
+
+3.验证是否安装成功。
+
+执行`nvm -v`，若输出版本号则表示安装成功。
+
+![image3](/img/docs/guides/best-practice/image3.png)
+
+或者执行`command -v nvm`，若输出 nvm 则表示安装成功。
+
+![image4](/img/docs/guides/best-practice/image4.png)
+
+### 使用 nvm 安装和切换 Node.js 版本
+
+打开终端命令行（Windows 推荐 PowerShell），按照以下步骤执行命令。
+
+1.输入 `nvm install --lts` 安装 Node.js 的最新 LTS 版本。
+
+![image5](/img/docs/guides/best-practice/image5.png)
+
+2.使用 `nvm ls` 查看已经安装的 Node.js 版本
+
+3.使用 `nvm use <version>` 命令切换至任意版本。
+
+![image6](/img/docs/guides/best-practice/image6.png)
+
+4.在命令行运行 `node -v`，如果输出版本号，则说明 Node.js 安装成功。
+
+## 代码编辑器
+
+有非常多的代码编辑器可以选择，我们推荐开发者使用 Visual Studio Code 编辑器。
+
+### VS Code 简介
+
+Visual Studio Code（简称 VS Code）是一款由微软开发且跨平台的免费源代码编辑器。 该软件支持语法高亮、代码自动补全（又称 IntelliSense）、代码重构功能，并且内置了命令行工具和 Git 版本控制系统。推荐使用 VS Code 进行软件开发。
+
+### VS Code 下载
+
+建议在 VS Code 官方网站根据操作系统下载对应安装包，安装完成即可使用。
+
+https://code.visualstudio.com/download

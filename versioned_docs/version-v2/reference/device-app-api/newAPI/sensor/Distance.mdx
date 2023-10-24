@@ -1,0 +1,55 @@
+---
+title: Distance
+sidebar_label: Distance
+---
+
+> Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Distance Sensor.
+
+:::info
+permission code: `data:user.hd.distance`
+:::
+
+## Methods
+
+### getCurrent
+
+Get the current distance
+
+```ts
+getCurrent(): number
+```
+
+### onChange
+
+Register the distance change event callback function
+
+```ts
+onChange(callback: () => void): void
+```
+
+### offChange
+
+Cancel the distance change event callback function
+
+```ts
+offChange(callback: () => void): void
+```
+
+## Example
+
+```js
+import { Distance } from '@zos/sensor'
+
+const distance = new Distance()
+const current = distance.getCurrent()
+const callback = () => {
+  console.log(distance.getCurrent())
+}
+
+distance.onChange(callback)
+
+// When not needed for use
+distance.offChange(callback)
+```

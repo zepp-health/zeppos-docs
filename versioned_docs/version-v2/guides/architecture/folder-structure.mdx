@@ -1,0 +1,61 @@
+---
+title: Folder Structure
+sidebar_label: Folder Structure
+---
+
+Take the directory structure of the sample Mini Program [Calories](../../samples/app/calories.md) as an example:
+
+```tree
+.
+├── app-side // Side Service Directory
+│   └── index.js // Side Service logic as an entry file (path can be configured in app.json)
+├── setting // Settings App Directory
+│   ├── i18n // Settings App i18n Directory
+│   │   └── en-US.po
+│   └── index.js // Settings App logic as an entry file (path can be configured in app.json)
+├── app-widget // Shortcut Card widget Directory
+│   └── index.js // Shortcut Card logic as an entry file (path can be configured in app.json)
+├── secondary-widget // SecondaryWidget Directory
+│   └── index.js // SecondaryWidget logic as an entry file (path can be configured in app.json)
+├── app.js // Mini Program logic
+├── app.json // Mini Program configuration
+├── assets // The directory where the resource files for different devices are stored is named after the key of the targets object in app.json
+│   ├── gtr-3
+│   │   ├── icon.png
+│   │   ├── fonts
+│   │   │   └── custom.ttf
+│   │   └── image
+│   │       └── logo.png
+│   ├── gtr-3-pro
+│   │   ├── icon.png
+│   │   ├── fonts
+│   │   │   └── custom.ttf
+│   │   └── image
+│   │       └── logo.png
+│   └── gts-3
+│       ├── icon.png
+│       ├── fonts
+│       │   └── custom.ttf
+│       └── image
+│           └── logo.png
+├── page // Device application page
+│   ├── home // device application home directory (one directory for one page is recommended)
+│   │   ├── index.page.js // page logic
+│   │   └── index.style.js // page style
+│   └── i18n // Device application multilingual directory
+│       └── en-US.po
+└── utils // Tools and functions directory
+    ├── constants.js
+    ├── fs.js
+    └── index.js
+```
+
+## Separate style files
+
+It is recommended to follow the principle of separating "style" and "behavior" in the organization of the page code, so that the style configuration can be separated into a separate `style.js` file to reduce the code of the page logic, and it is convenient to do the [screen adaptation](../best-practice/multi-screen-adaption.mdx) work in `styles.js`.
+
+## i18n Multilingual
+
+Files in the `/i18n` directory must meet the file naming convention of `${key}.po`, where `key` is the country code abbreviation.
+
+Please refer to [Multilingual Mapping](../../reference/related-resources/language-list.mdx) for the multilingual-country reference relationship.

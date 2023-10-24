@@ -1,0 +1,30 @@
+---
+title: PAGE_SCROLLBAR
+sidebar_label: PAGE_SCROLLBAR 滚动条
+---
+
+> API_LEVEL `2.1` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../../guides/framework/device/compatibility.md)。
+
+页面滚动条。
+
+## 创建 UI 控件
+
+```js
+import { createWidget, widget } from '@zos/ui'
+
+const scrollBar = createWidget(widget.PAGE_SCROLLBAR, Param)
+```
+
+### Param: object
+
+| 属性   | 说明                                                 | 是否必须 | 类型     |
+| ------ | ---------------------------------------------------- | -------- | -------- |
+| target | 需要绑定的 `VIEW_CONTAINER` 控件，默认为整个页面滚动条，传入则为 `VIEW_CONTAINER` 滚动条 | 否       | `object` |
+
+## 完整示例
+
+```js
+import { createWidget, widget } from '@zos/ui'
+
+const scrollBar = createWidget(widget.PAGE_SCROLLBAR)
+```

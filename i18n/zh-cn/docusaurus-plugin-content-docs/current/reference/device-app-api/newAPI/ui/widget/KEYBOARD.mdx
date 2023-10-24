@@ -1,0 +1,280 @@
+---
+title: KEYBOARD
+sidebar_label: KEYBOARD 数字键盘
+---
+
+> API_LEVEL `3.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../../guides/framework/device/compatibility.md)。
+
+Keyboard 数字键盘。
+
+## 创建 UI 控件
+
+```js
+import { createWidget, widget, prop } from '@zos/ui'
+
+const keyboard = createWidget(widget.KEYBOARD, Param)
+```
+
+### Param: object
+
+| 属性       | 说明                                                           | 是否必须 | 类型             |
+| ---------- | -------------------------------------------------------------- | -------- | ---------------- |
+| x          | 控件 x 坐标，默认 `0`                                          | 否       | `number`         |
+| y          | 控件 y 坐标，默认 `0`                                          | 否       | `number`         |
+| click_func | 按键点击回调函数                                               | 是       | `ClickFunc`      |
+| key_attr   | 按键属性设置，如果不传入按键属性设置，则使用默认配置的数字键盘 | 否       | `Array<KeyAttr>` |
+
+#### ClickFunc: function
+
+```ts
+click_func(keyboard: WIDGET, id: number, value: number): void
+```
+
+| 参数     | 说明                  |
+| -------- | --------------------- |
+| keyboard | 数字键盘控件实例 |
+| id       | 按键编号 id |
+| value    | 按键键值      |
+
+#### KeyAttr: object
+
+| 属性  | 说明                                          | 是否必须 | 类型     |
+| ----- | --------------------------------------------- | -------- | -------- |
+| id    | 按键编号 id                                   | 否       | `number` |
+| x     | 按键 x 坐标                                   | 是       | `number` |
+| y     | 按键 y 坐标                                   | 是       | `number` |
+| text  | 按键显示文本，仅支持传入单个 ASCII 字符       | 否       | `string` |
+| image | 按键显示图片路径，此处图片推荐尺寸 64 x 64 px | 否       | `string` |
+| value | 按键键值                                      | 否       | `number` |
+
+## 属性操作
+
+属性操作即通过 `widget.setProperty` 来设置属性
+
+```js
+keyboard.setProperty(prop, Param)
+```
+
+### `prop.ADD_KEY`
+
+新增按键，Param 类型参考上文 `KeyAttr` 类型
+
+```js
+keyboard.setProperty(prop.ADD_KEY, {
+  id: 100,
+  x: 280,
+  y: 350,
+  text: '!'
+})
+```
+
+### `prop.DEL_KEY`
+
+删除按键
+
+#### Param: object
+
+| 属性 | 说明        | 是否必须 | 类型     |
+| ---- | ----------- | -------- | -------- |
+| id   | 按键编号 id | 否       | `number` |
+
+```js
+keyboard.setProperty(prop.DEL_KEY, {
+  id: 20
+})
+```
+
+### `prop.KEY_PARA`
+
+修改某个按键属性，Param 类型参考上文 `KeyAttr` 类型
+
+```js
+keyboard.setProperty(prop.KEY_PARA, {
+  id: 1,
+  x: 50,
+  y: 30,
+  image: 'images/common/widgetsbc/phoneCall/phone call_ic_answer_64px.png',
+  text: 'c',
+  value: 98
+})
+```
+
+### `prop.TEXT_STYLE`
+
+文本框属性设置
+
+#### Param: object
+
+| 属性    | 说明                                 | 是否必须 | 类型      |
+| ------- | ------------------------------------ | -------- | --------- |
+| x       | 文本框 x 坐标                        | 是       | `number`  |
+| w       | 文本框宽度                           | 是       | `number`  |
+| align_h | 文本对齐方式，对齐方式见 `TEXT` 控件 | 否       | `number`  |
+| alpha   | 文本透明度[0-255]，0 为全透明        | 否       | `number`  |
+| color   | 文本颜色                             | 否       | `number`  |
+| show    | 是否显示文本                         | 否       | `boolean` |
+
+```js
+keyboard.setProperty(prop.TEXT_STYLE, {
+  x: 0,
+  w: 480,
+  align_h: align.CENTER,
+  alpha: 255,
+  color: 0xff0000,
+  show: 1
+})
+```
+
+### `prop.TEXT`
+
+更新文本，`Param` 类型 `string`
+
+```js
+keyboard.setProperty(prop.TEXT, 'hello rose !')
+```
+
+### `prop.X` 和 `prop.Y`
+
+调整键盘整体位置，`Param` 类型 `number`
+
+```js
+keyboard.setProperty(prop.X, 0)
+keyboard.setProperty(prop.Y, 10)
+```
+
+## 完整示例
+
+```js
+import { createWidget, widget, prop, align } from '@zos/ui'
+
+function callback(keyboard, id, value) {
+  console.log(`id:${id} char:${value}`)
+  keyboard.setProperty(prop.TEXT, `id:${id} char:${value}`)
+
+  ret = keyboard.getProperty(prop.KEY_PARA, id)
+  if (ret !== undefined) {
+    console.log(id)
+    console.log(ret.value)
+    console.log(ret.x)
+    console.log(ret.y)
+  }
+}
+
+const keyboard = createWidget(widget.KEYBOARD, {
+  click_func: callback,
+  key_attr: [
+    {
+      id: 0,
+      x: 0,
+      y: 150,
+      text: 'H',
+      value: 1
+    },
+    {
+      id: 1,
+      x: 90,
+      y: 150,
+      text: 'E',
+      value: 2
+    },
+    {
+      id: 20,
+      x: 180,
+      y: 150,
+      text: 'L',
+      value: 3
+    },
+    {
+      id: 3,
+      x: 270,
+      y: 150,
+      text: 'L',
+      value: 4
+    },
+    {
+      id: 4,
+      x: 360,
+      y: 150,
+      text: 'O',
+      value: 5
+    },
+    {
+      id: 6,
+      x: 45,
+      y: 250,
+      text: 'R',
+      value: 6
+    },
+    {
+      id: 7,
+      x: 135,
+      y: 250,
+      text: 'O',
+      value: 7
+    },
+    {
+      id: 8,
+      x: 225,
+      y: 250,
+      text: 'S',
+      value: 8
+    },
+    {
+      id: 9,
+      x: 315,
+      y: 250,
+      text: 'E',
+      value: 9
+    },
+
+    {
+      id: 10,
+      x: 180,
+      y: 350,
+      image: 'images/common/widgetsbc/phoneCall/phone call_ic_answer_64px.png',
+      text: ' ',
+      value: 10
+    }
+  ]
+})
+
+keyboard.setProperty(prop.TEXT_STYLE, {
+  x: 0,
+  w: 480,
+  align_h: align.CENTER,
+  alpha: 255,
+  color: 0xff0000,
+  show: 1
+})
+
+keyboard.setProperty(prop.TEXT, 'hello rose !')
+
+keyboard.setProperty(prop.X, 0)
+keyboard.setProperty(prop.Y, 10)
+
+keyboard.setProperty(prop.KEY_PARA, {
+  id: 1,
+  text: 'c',
+  value: 98
+})
+
+keyboard.setProperty(prop.DEL_KEY, {
+  id: 20
+})
+
+keyboard.setProperty(prop.ADD_KEY, {
+  id: 100,
+  x: 280,
+  y: 350,
+  text: '!',
+  value: 11
+})
+
+keyboard.setProperty(prop.ADD_KEY, {
+  id: 99,
+  x: 80,
+  y: 350,
+  text: '!',
+  value: 11
+})
+```

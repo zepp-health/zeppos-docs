@@ -1,0 +1,51 @@
+# getProfile
+
+> API_LEVEL `2.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+获取用户信息。
+
+:::info
+权限代码： `data:user.info`
+:::
+
+## 类型
+
+```ts
+function getProfile(): Result
+```
+
+## 参数
+
+### Result
+
+| 属性     | 类型                | 说明                           | API_LEVEL |
+| -------- | ------------------- | ------------------------------ | --------- |
+| age      | <code>number</code> | 用户年龄，无数据时为 `0`       | 2.0       |
+| height   | <code>number</code> | 用户身高，无数据时为 `0`       | 2.0       |
+| weight   | <code>number</code> | 用户体重，无数据时为 `0`       | 2.0       |
+| gender   | <code>number</code> | 用户性别，值参考用户性别常量   | 2.0       |
+| nickName | <code>string</code> | 用户昵称                       | 2.0       |
+| region   | <code>string</code> | 用户账号注册国家/地区 ISO 代码 | 2.0       |
+
+## 常量
+
+### 用户性别常量
+
+| 常量                 | 说明       | API_LEVEL |
+| -------------------- | ---------- | --------- |
+| `GENDER_MALE`        | 男性       | 2.0       |
+| `GENDER_FEMALE`      | 女性       | 2.0       |
+| `GENDER_UNSPECIFIED` | 用户未指定 | 2.0       |
+
+## 代码示例
+
+```js
+import { getProfile, GENDER_MALE } from '@zos/user'
+
+const { age, gender } = getProfile()
+console.log(age)
+
+if (gender === GENDER_MALE) {
+  console.log('male')
+}
+```

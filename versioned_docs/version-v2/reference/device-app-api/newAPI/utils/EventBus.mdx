@@ -1,0 +1,72 @@
+---
+title: EventBus
+sidebar_label: EventBus
+---
+
+> Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+EventBus is a tool class that provides event publishing/subscription.
+
+## Methods
+
+### on
+
+Adds the listener function to the end of the listeners array for the event named eventName
+
+```ts
+on(eventName: string, listener: (...args: any[]) => void): void
+```
+
+### off
+
+Removes the specified listener from the listener array for the event named eventName
+
+```ts
+off(eventName: string, listener: (...args: any[]) => void): void
+```
+
+### emit
+
+Triggers the listener functions for the event named eventName
+
+```ts
+emit(eventName: string, ...args: any[]): void
+```
+
+### once
+
+Adds a one-time listener function for the event named eventName
+
+```ts
+once(eventName: string, listener: (...args: any[]) => void): void
+```
+
+### clear
+
+Removes all listeners, or those of the specified eventName
+
+```ts
+clear(): void
+```
+
+### count
+
+Gets the number of registered event listeners corresponding to `eventName`. If `eventName` is not passed, get the number of registered `eventName` types
+
+```ts
+count(eventName?: string): number
+```
+
+## Example
+
+```js
+import { EventBus } from '@zos/utils'
+
+const eventBus = new EventBus()
+
+eventBus.on('data', (data) => {
+  console.log(data)
+})
+
+eventBus.emit('data', 'Hello Zepp OS!')
+```

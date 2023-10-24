@@ -1,0 +1,50 @@
+---
+title: hmFS.open(path, flag)
+sidebar_label: open
+---
+
+> For an introduction to the Zepp OS Mini Program file system, please refer to [File System](../../../guides/framework/device/fs.md).
+
+Open the file in the `/data` directory of the Mini Program.
+
+## Type
+
+```ts
+(path: string, flag: FLAG) => fileId
+```
+
+## Parameters
+
+### path
+
+| Description                                              | Required | Type     | Default |
+| -------------------------------------------------------- | -------- | -------- | ------- |
+| Mini Program `/data` directory file name (relative path) | yes      | `string` | -       |
+
+### FLAG
+
+| Optional Properties | Description                                                                                                    |
+| ------------------- | -------------------------------------------------------------------------------------------------------------- |
+| O_RDONLY            | read-only                                                                                                      |
+| O_WRONLY            | write-only                                                                                                     |
+| O_RDWR              | read-write                                                                                                     |
+| O_APPEND            | Append mode on.                                                                                                |
+| O_CREAT             | If file does not exist, create and open.                                                                       |
+| O_EXCL              | Used in conjunction with O_CREAT. If it does not exist, create and open it, if it does exist, return an error. |
+| O_TRUNC             | If the file exists, the length is truncated to 0.                                                              |
+
+### fileId
+
+| Description | Type     |
+| ----------- | -------- |
+| file handle | `number` |
+
+## Usage
+
+```js
+Page({
+  build() {
+    const fileId = hmFS.open('test_file.txt', hmFS.O_RDWR | hmFS.O_CREAT)
+  }
+})
+```

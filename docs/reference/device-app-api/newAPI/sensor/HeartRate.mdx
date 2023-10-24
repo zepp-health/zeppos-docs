@@ -1,0 +1,176 @@
+---
+title: HeartRate
+sidebar_label: HeartRate
+---
+
+> Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+HeartRate Sensor.
+
+:::info
+permission code: `data:user.hd.heart_rate`
+:::
+
+## Methods
+
+### getCurrent
+
+Get the current heart rate measurement, this method needs to be used in the `onCurrentChange` callback function
+
+```ts
+getCurrent(): number
+```
+
+### getLast
+
+Get the most recent heart rate measurement (single measurement or heart rate monitoring measurement, continuous heart rate measurement `onCurrentChange` results are not counted)
+
+```ts
+getLast(): number
+```
+
+### getToday
+
+Get the heart rate measurement data in minutes from 0:00 to the current moment of the day, the longest array is 60\*24
+
+```ts
+getToday(): Array<number>
+```
+
+### onCurrentChange
+
+> Start from API_LEVEL `2.1`
+
+Call this method and start measuring heart rate continuously, call the callback function when there is a measurement result, call the `getCurrent` method in the callback function to get the heart rate measurement value, if you want to stop the heart rate measurement, you need to call the `offCurrentChange` method
+
+```ts
+onCurrentChange(callback: () => void): void
+```
+
+### offCurrentChange
+
+> Start from API_LEVEL `2.1`
+
+Cancel continuous heart rate measurement and cancel callback function listeners
+
+```ts
+offCurrentChange(callback: () => void): void
+```
+
+### onLastChange
+
+> Start from API_LEVEL `2.1`
+
+Register the heart rate single measurement change event callback function
+
+```ts
+onLastChange(callback: () => void): void
+```
+
+### offLastChange
+
+> Start from API_LEVEL `2.1`
+
+Cancel the heart rate single measurement change event callback function
+
+```ts
+offLastChange(callback: () => void): void
+```
+
+### getDailySummary
+
+> Start from API_LEVEL `3.0`
+
+Get daily heart rate statistics
+
+```ts
+getDailySummary(): Result
+```
+
+#### Result
+
+| Property | Type                 | Description                    | API_LEVEL |
+| -------- | -------------------- | ------------------------------ | --------- |
+| maximum  | <code>Maximum</code> | Maximum heart rate information | 3.0       |
+
+#### Maximum
+
+| Property | Type                | Description                            | API_LEVEL |
+| -------- | ------------------- | -------------------------------------- | --------- |
+| hr_value | <code>number</code> | Maximum heart rate value               | 3.0       |
+| time     | <code>number</code> | Measurement time of maximum heart rate | 3.0       |
+
+### getResting
+
+> Start from API_LEVEL `3.0`
+
+Get current resting heart rate
+
+```ts
+getResting(): number
+```
+
+### getAFibRecord
+
+> Start from API_LEVEL `3.0`
+
+Get Atrial Fibrillation Data Array
+
+```ts
+getAFibRecord(): Result
+```
+
+#### Result
+
+| Type                                 | Description                           |
+| ------------------------------------ | ------------------------------------- |
+| <code>Array&#60;AfibInfo&#62;</code> | Atrial Fibrillation Information Array |
+
+#### AfibInfo
+
+| Property | Type                | Description                                                                                                  | API_LEVEL |
+| -------- | ------------------- | ------------------------------------------------------------------------------------------------------------ | --------- |
+| flag     | <code>number</code> | Atrial fibrillation test results, `0` - normal, `1` - high alert, `2` - low alert, `3` - atrial fibrillation | 3.0       |
+| val      | <code>number</code> | Atrial fibrillation data value, integer value 0 - 255                                                        | 3.0       |
+| maxValue | <code>number</code> | Atrial fibrillation data maximum value, integer value 0 - 255                                                | 3.0       |
+| minValue | <code>number</code> | Atrial fibrillation data minimum value, integer value 0 - 255                                                | 3.0       |
+| time     | <code>number</code> | Time of Atrial fibrillation data acquisition, UTC seconds                                                    | 3.0       |
+| duration | <code>number</code> | Duration in seconds                                                                                          | 3.0       |
+
+### onRestingChange
+
+> Start from API_LEVEL `3.0`
+
+After calling this method, the device starts real-time resting heart rate measurement and registers a callback function, which is called when there is a measurement result, in which the `getResting` method can be called to get the resting heart rate measurement value, and if you need to stop the resting heart rate measurement, you need to call the `offRestingChange` method
+
+```ts
+onRestingChange(callback: () => void): void
+```
+
+### offRestingChange
+
+> Start from API_LEVEL `3.0`
+
+Cancel continuous resting heart rate measurement and cancel callback function listeners
+
+```ts
+offRestingChange(callback: () => void): void
+```
+
+## Example
+
+```js
+import { HeartRate } from '@zos/sensor'
+
+const heartRate = new HeartRate()
+const lastValue = heartRate.getLast()
+
+const callback = () => {
+  console.log(heartRate.getCurrent())
+}
+
+heartRate.onCurrentChange(callback)
+
+// When not needed for use
+heartRate.offCurrentChange(callback)
+```

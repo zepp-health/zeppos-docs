@@ -1,0 +1,88 @@
+---
+title: PAGE_INDICATOR
+sidebar_label: PAGE_INDICATOR 页面指示器
+---
+
+> API_LEVEL `2.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../../guides/framework/device/compatibility.md)。
+
+当使用 `@zos/page setScrollMode` 方法将页面设置为 Swiper 滚动模式，在页面创建指示器控件用来表示页面总数量和指示当前停留的页面。
+
+## 创建 UI 控件
+
+```js
+import { createWidget, widget } from '@zos/ui'
+
+const pageIndicator = createWidget(widget.PAGE_INDICATOR, Param)
+```
+
+## 类型
+
+### Param: object
+
+| 属性         | 说明                                                                                                           | 是否必须 | 类型     |
+| ------------ | -------------------------------------------------------------------------------------------------------------- | -------- | -------- |
+| x            | 控件 x 坐标                                                                                                    | 是       | `number` |
+| y            | 控件 y 坐标                                                                                                    | 是       | `number` |
+| w            | 控件显示宽度                                                                                                   | 是       | `number` |
+| h            | 控件显示高度                                                                                                   | 是       | `number` |
+| align_h      | 水平对齐方式（值见 ALIGN）                                                                                     | 否       | `ALIGN`  |
+| h_space      | 水平间距                                                                                                       | 否       | `number` |
+| select_src   | 指示器当前页高亮图片路径，资源存放路径参考 [目录结构](../../../../../guides/architecture/folder-structure.mdx) | 是       | `string` |
+| unselect_src | 指示器非当前页图片路径，资源存放路径参考 [目录结构](../../../../../guides/architecture/folder-structure.mdx)   | 是       | `string` |
+
+### ALIGN 对齐方式
+
+| 值             | 说明        |
+| -------------- | ----------- |
+| align.LEFT     | 横轴-左对齐 |
+| align.RIGHT    | 横轴-右对齐 |
+| align.CENTER_H | 横轴-居中   |
+
+## 代码示例
+
+```js
+import { createWidget, widget, align } from '@zos/ui'
+import { setScrollMode, SCROLL_MODE_SWIPER_HORIZONTAL } from '@zos/page'
+import { px } from '@zos/utils'
+
+Page({
+  build() {
+    const itemCount = 10
+    const pageSize = px(480)
+
+    setScrollMode({
+      mode: SCROLL_MODE_SWIPER_HORIZONTAL,
+      options: {
+        height: pageSize,
+        count: itemCount
+      }
+    })
+
+    const pageIndicator = createWidget(widget.PAGE_INDICATOR, {
+      x: 0,
+      y: px(470),
+      w: px(480),
+      h: px(10),
+      align_h: align.CENTER_H,
+      h_space: 8,
+      select_src: 'images/test/select/select.png',
+      unselect_src: 'images/test/select/unselect.png'
+    })
+
+    for (let i = 0; i < itemCount; i++) {
+      let xPos = 0
+      let yPos = px(400) + pageSize * i
+      createWidget(widget.TEXT, {
+        x: xPos,
+        y: yPos,
+        w: px(480),
+        h: px(120),
+        text_size: 35,
+        color: 0xffffff,
+        align_h: align.CENTER_H,
+        text: `PAGE ${i}`
+      })
+    }
+  }
+})
+```

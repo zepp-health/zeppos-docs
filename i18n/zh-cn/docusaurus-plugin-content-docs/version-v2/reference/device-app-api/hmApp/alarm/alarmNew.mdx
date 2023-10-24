@@ -1,0 +1,44 @@
+---
+title: hmApp.alarmNew(option)
+sidebar_label: alarmNew
+---
+
+定时唤醒
+
+## 类型
+
+```ts
+(option: Option) => alarmID
+```
+
+## 参数
+
+### Option
+
+| 参数           | 说明                                              | 必填 | 类型     | 默认值 |
+| -------------- | ------------------------------------------------- | ---- | -------- | ------ |
+| appid          | appid                                             | 是   | `number` | -      |
+| url(同名 file) |                                                   | 否   | `string` | -      |
+| date           | UTC 时间戳（秒）                                  | 否   | `number` | -      |
+| delay          | 延时（秒）                                        | 否   | `number` | -      |
+| param          | 传递给 `App` 构造函数中 `onCreate` 生命周期的参数 | 否   | `string` | -      |
+
+### alarmID
+
+| 说明     | 类型     |
+| -------- | -------- |
+| 文件句柄 | `number` |
+
+## 代码示例
+
+```js
+// 10 秒后唤醒应用
+const alarm = hmApp.alarmNew({
+  file: 'pages/js_widget_sample',
+  appid: 1000001,
+  delay: 10
+})
+
+//取消唤醒
+hmApp.alarmCancel(alarm)
+```

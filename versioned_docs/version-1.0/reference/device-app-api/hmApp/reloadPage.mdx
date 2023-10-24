@@ -1,0 +1,28 @@
+---
+title: hmApp.reloadPage(option)
+sidebar_label: reloadPage
+---
+
+Current screen reloads the page. 
+
+## Type
+
+```ts
+(option: Option) => void
+```
+
+## Parameters
+
+### Option
+
+| Parameters | Description | Required | Type | Default |
+| ---------- | ----------- | -------- | -------- | ------ |
+|    url     |  jump path  |    yes   | `string` | - |
+|   param    | parameters  |    no    | `string` | - |
+
+## Code example
+
+```js
+// Loading pages/index3.js 
+hmApp.reloadPage({ url: 'pages/index3', param: '...' })
+```

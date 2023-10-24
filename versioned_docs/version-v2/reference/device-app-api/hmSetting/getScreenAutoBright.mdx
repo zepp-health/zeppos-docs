@@ -1,0 +1,28 @@
+---
+title: hmSetting.getScreenAutoBright()
+sidebar_label: getScreenAutoBright
+---
+
+Returns whether the current device has auto-brightness enabled.
+
+If auto-brightness is currently turned on and the brightness is automatically adjusted by the light sensor, the `setBrightness` function will have no real effect.
+
+## Type
+
+```ts
+() => result
+```
+
+## Return value
+
+### result
+
+|                                   Description                                        |   Type    |
+| ------------------------------------------------------------------------------------ | --------- |
+| Returns whether auto-brightness is enabled for the current device, `true` is enabled | `boolean` |
+
+## Code example
+
+```js
+const isAutoBright = hmSetting.getScreenAutoBright()
+```

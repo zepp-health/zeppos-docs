@@ -1,0 +1,68 @@
+---
+title: Debug Mini Program
+sidebar_label: Debug Mini Program
+---
+
+## Introduction
+
+At this stage Zepp OS development tools do not support breakpoint debugging code, adding logging is the best debugging tool.
+
+This article will cover the following.
+
+- Adding logs in the Mini Program
+- Simulator to view logs
+- Viewing the real machine logs
+
+## Add logs in the Mini Program
+
+The [Overall Architecture](../architecture/arc.mdx), you can understand that a complete Zepp OS Mini Program is divided into "Device App", "Settings App" and "Side Service".
+
+They have a slightly different way of adding logs to the code.
+
+For "Device App" it is recommended to use the [`log`](../../reference/device-app-api/newAPI/utils/log.mdx) function of the `@zos/utils` module.
+
+And you can print different levels of logs by different methods to facilitate filtering logs.
+
+```js
+import { log } from '@zos/utils'
+
+const pageLogger = log.getLogger('page')
+
+pageLogger.log('page created')
+pageLogger.error('page error')
+```
+
+For "Settings App" and "Side Service", you can use `console.log` to print the logs as described in the framework interface.
+
+## View Simulator Log
+
+Take the effect of the [TodoList](../../samples/app/toDoList.md) Mini Program running on the simulator as an example.
+
+![desk.png](/img/simulator/workspace.jpg)
+
+### Device App Log
+
+In the main screen of the simulator, click the `Console` button on the left side to see the "Device App" log.
+
+![device_log](/img/docs/guides/best-practice/device_log.jpg)
+
+Different levels of logs are displayed with clear color distinction, the upper right corner can be quickly filtered according to the log level, and a string filtering rule function is also provided.
+
+### Settings App Log
+
+The console next to the "Settings App" simulator makes it easy to see the relevant logs, which also provide filtering capabilities.
+
+![settings_log](/img/docs/guides/best-practice/settings_log.jpg)
+
+### Side Service Log
+
+The Side Service log window is launched along with the Device Simulator and also has a log filtering function.
+
+![side_service_log](/img/docs/guides/best-practice/side_service_log.jpg)
+
+## Real Machine Log
+
+The real machine logs need to be viewed using the developer mode of the Zepp App, refer to.
+
+- [Open Zepp App Developer Mode](../tools/zepp-app.md#developer-mode-opening-method)
+- [Zepp App View real machine logs](../tools/zepp-app.md#view-real-machine-logs)

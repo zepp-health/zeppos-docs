@@ -1,0 +1,46 @@
+---
+title: DISTANCE
+sidebar_label: DISTANCE 里程
+---
+
+## 创建传感器
+
+```js
+const distance = hmSensor.createSensor(hmSensor.id.DISTANCE)
+
+console.log(distance.current)
+```
+
+## distance 实例
+
+### distance: object
+
+| 属性    | 说明     | 类型     |
+| ------- | -------- | -------- |
+| current | 当前里程 | `number` |
+
+## 注册传感器实例回调事件
+
+```js
+calorie.addEventListener(event, callback: Callback)
+```
+
+### CHANGE 事件
+
+#### event 值
+
+`hmSensor.event.CHANGE`
+
+#### Callback
+
+```ts
+() => void
+```
+
+#### 事件示例
+
+```js
+distance.addEventListener(hmSensor.event.CHANGE, function () {
+  console.log('The current distance is ' + distance.current + '\r\n')
+})
+```

@@ -1,0 +1,80 @@
+# setScrollMode
+
+> Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Set the scroll mode of the page.
+
+## Type
+
+```ts
+function setScrollMode(option: Option): Result
+```
+
+## Parameters
+
+### Option
+
+| Property | Type                 | Required | DefaultValue | Description                                                  | API_LEVEL |
+| -------- | -------------------- | -------- | ------------ | ------------------------------------------------------------ | --------- |
+| mode     | <code>string</code>  | Y        | -            | Page scroll mode, value reference page scroll mode constants | 2.0       |
+| options  | <code>Options</code> | N        | -            | Other Options                                                | 2.0       |
+
+### Options
+
+| Property   | Type                                             | Required | DefaultValue | Description                                                                                                                             | API_LEVEL |
+| ---------- | ------------------------------------------------ | -------- | ------------ | --------------------------------------------------------------------------------------------------------------------------------------- | --------- |
+| height     | <code>number</code>                              | N        | -            | Specify the height of a single item in Swiper, effective only if the scroll mode is `SCROLL_MODE_SWIPER`                                | 2.0       |
+| count      | <code>number</code>                              | N        | -            | Specify the number of items in the Swiper, effective only if the scroll mode is `SCROLL_MODE_SWIPER` or `SCROLL_MODE_SWIPER_HORIZONTAL` | 2.0       |
+| width      | <code>number</code>                              | N        | -            | Specify the width of a single item in Swiper, effective only if the scroll mode is `SCROLL_MODE_SWIPER_HORIZONTAL`                      | 2.1       |
+| modeParams | <code>FreeModeParams&#124;SwipeModeParams</code> | N        | -            | Parameters for the scroll mode                                                                                                          | 3.0       |
+
+### FreeModeParams
+
+| Property             | Type                                         | Description                                           | API_LEVEL |
+| -------------------- | -------------------------------------------- | ----------------------------------------------------- | --------- |
+| scroll_frame_func    | <code>(params: ScrollObj) =&#62; void</code> | The callback function for each frame during scrolling | 3.0       |
+| scroll_complete_func | <code>(params: ScrollObj) =&#62; void</code> | The end of the scroll callback function               | 3.0       |
+
+### ScrollObj
+
+| Property | Type                | Description                | API_LEVEL |
+| -------- | ------------------- | -------------------------- | --------- |
+| type     | <code>number</code> | Todo                       | 3.0       |
+| yoffset  | <code>number</code> | Pixel offset on the y axis | 3.0       |
+
+### SwipeModeParams
+
+| Property     | Type                                         | Description                                                                                                             | API_LEVEL |
+| ------------ | -------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | --------- |
+| on_page      | <code>(pageIndex: number) =&#62; void</code> | Callback function after page flipping, `pageIndex` is the page index after page flipping, and the index starts from `0` | 3.0       |
+| crown_enable | <code>boolean</code>                         | Whether to respond to crown events, the default response, you can use the crown to control page turning                 | 3.0       |
+
+### Result
+
+| Type                | Description                                 |
+| ------------------- | ------------------------------------------- |
+| <code>number</code> | If `true` is returned, success is indicated |
+
+## Constants
+
+### Page scroll mode constants
+
+| Constant                        | Description                                                                                                                                                 | API_LEVEL |
+| ------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- | --------- |
+| `SCROLL_MODE_FREE`              | Free scrolling mode, system default scrolling mode                                                                                                          | 2.0       |
+| `SCROLL_MODE_SWIPER`            | Swiper mode, vertical rotating map, walking lights, by configuring the height and number of individual pages can achieve the whole screen scrolling effect  | 2.0       |
+| `SCROLL_MODE_SWIPER_HORIZONTAL` | Swiper mode, horizontal rotating map, walking lights, by configuring the width and number of individual pages can achieve the whole screen scrolling effect | 2.1       |
+
+## Example
+
+```js
+import { setScrollMode, SCROLL_MODE_SWIPER } from '@zos/page'
+
+setScrollMode({
+  mode: SCROLL_MODE_SWIPER,
+  options: {
+    height: 480,
+    count: 10,
+  },
+})
+```

@@ -1,0 +1,120 @@
+---
+title: Sleep
+sidebar_label: Sleep 睡眠
+---
+
+> API_LEVEL `2.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+睡眠传感器。
+
+:::info
+权限代码： `data:user.hd.sleep`
+:::
+
+## 方法
+
+### updateInfo
+
+系统默认每 `30` 分钟更新一次睡眠数据,`updateInfo` 方法用来主动触发更新睡眠数据
+
+```ts
+updateInfo(): void
+```
+
+### getInfo
+
+获取睡眠信息
+
+```ts
+getInfo(): SleepInfo
+```
+
+#### SleepInfo
+
+| 属性      | 类型                | 说明                                | API_LEVEL |
+| --------- | ------------------- | ----------------------------------- | --------- |
+| score     | <code>number</code> | 睡眠得分                            | 2.0       |
+| deepTime  | <code>number</code> | 深睡眠时间（分钟）                  | 2.0       |
+| startTime | <code>number</code> | 睡眠起始时间，基于当天 0 点的分钟数 | 2.0       |
+| endTime   | <code>number</code> | 睡眠结束时间，基于当天 0 点的分钟数 | 2.0       |
+| totalTime | <code>number</code> | 获取睡眠总时间（分钟）              | 2.0       |
+
+### getStageConstantObj
+
+获取睡眠阶段的常量值，用于在 `getSleepStageData` 返回值中判断睡眠阶段
+
+```ts
+getStageConstantObj(): StageConstants
+```
+
+#### StageConstants
+
+| 属性        | 类型                | 说明       | API_LEVEL |
+| ----------- | ------------------- | ---------- | --------- |
+| WAKE_STAGE  | <code>number</code> | 清醒阶段   | 2.0       |
+| REM_STAGE   | <code>number</code> | REM 阶段   | 2.0       |
+| LIGHT_STAGE | <code>number</code> | 浅睡眠阶段 | 2.0       |
+| DEEP_STAGE  | <code>number</code> | 深睡眠阶段 | 2.0       |
+
+### getStage
+
+获取睡眠分阶段数据
+
+```ts
+getStage(): Array<StageInfo>
+```
+
+#### StageInfo
+
+| 属性  | 类型                | 说明                                                        | API_LEVEL |
+| ----- | ------------------- | ----------------------------------------------------------- | --------- |
+| model | <code>number</code> | 睡眠阶段类型，值的含义参考 `getStageConstantObj` 返回的常量 | 2.0       |
+| start | <code>number</code> | 睡眠阶段起始时间，基于当天 0 点的分钟数                     | 2.0       |
+| stop  | <code>number</code> | 睡眠阶段结束时间，基于当天 0 点的分钟数                     | 2.0       |
+
+### getSleepingStatus
+
+> API_LEVEL `3.0`
+
+获取当前睡眠状态，`0` 醒着，`1` 正在睡眠
+
+```ts
+getSleepingStatus(): number
+```
+
+### getNap
+
+> API_LEVEL `3.0`
+
+获取零星小睡数据
+
+```ts
+getNap(): Array<NapInfo>
+```
+
+#### NapInfo
+
+| 属性   | 类型                | 说明                                | API_LEVEL |
+| ------ | ------------------- | ----------------------------------- | --------- |
+| length | <code>number</code> | 小睡时长（分钟）                    | 3.0       |
+| start  | <code>number</code> | 小睡起始时间，基于当天 0 点的分钟数 | 3.0       |
+| stop   | <code>number</code> | 小睡结束时间，基于当天 0 点的分钟数 | 3.0       |
+
+## 代码示例
+
+```js
+import { Sleep } from '@zos/sensor'
+
+const sleep = new Sleep()
+const { score } = sleep.getInfo()
+const sleepStageConstants = sleep.getStageConstantObj()
+const stage = sleep.getStage()
+
+stage.forEach((i) => {
+  const { model } = i
+
+  if (model === sleepStageConstants.WAKE_STAGE) {
+    console.log('This stage is awake stage')
+  }
+})
+```

@@ -1,0 +1,32 @@
+---
+title: hmFS.rename(oldPath, newPath)
+sidebar_label: rename
+---
+
+重命名文件
+
+## 类型
+
+```ts
+(oldPath: string, newPath: string) => result
+```
+
+## 参数
+
+| 参数    | 说明       | 必填 | 类型     | 默认值 |
+| ------- | ---------- | ---- | -------- | ------ |
+| oldPath | 旧文件路径 | 是   | `string` | -      |
+| newPath | 新文件路径 | 是   | `string` | -      |
+
+### result
+
+| 说明                   | 类型     |
+| ---------------------- | -------- |
+| 操作结果，`0` 表示成功 | `number` |
+
+## 代码示例
+
+```js
+const result = hmFS.rename('path/to/old_file.txt', 'path/to/new_file.txt')
+console.log(result)
+```

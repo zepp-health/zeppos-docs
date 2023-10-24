@@ -1,0 +1,40 @@
+---
+title: hmApp.registerSpinEvent(callback)
+sidebar_label: registerSpinEvent
+---
+
+Registry crown rotation event listener.
+
+## Type
+
+```ts
+(callback: (key: Key, degree: Degree) => boolean) => void
+```
+
+## Parameters
+
+### Callback
+
+| Description                                                                                                                         |  Required  |                        Type             | Default |
+| ----------------------------------------------------------------------------------------------------------------------------------- | ---------- | --------------------------------------- | ------ |
+| Crown rotation event callback function, return value `false` does not skip the default behavior, `true` skips the default behavior. |     YES    | `(key: Key, degree: Degree) => boolean` | -      |
+
+### Key
+
+|              Description            |
+| ----------------------------------- |
+| Currently, only `HOME` is supported.|
+
+### Degree
+
+| Description                                                                                                                                                                             |    Type  |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
+| Positive numbers are counterclockwise rotations, negative numbers are clockwise rotations. The value is the angle turned, the faster the rotation speed, the larger the absolute value. | `number` |
+
+## Code example
+
+```js
+hmApp.registerSpinEvent(function (key, degree) {
+  console.log('receive key:' + key + ' degree:' + degree) //The key here can only be HOME at the moment, and can be used without judgment.
+})
+```
