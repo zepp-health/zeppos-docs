@@ -74,8 +74,7 @@ module.exports = {
               banner: 'unmaintained'
             }
           },
-          // TODO: 填写真实 github 仓库地址
-          editUrl: 'https://github.com/orgs/zepp-health/discussions/categories/blog',
+          editUrl: 'https://github.com/zepp-health/zeppos-docs/edit/main/',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.scss')
