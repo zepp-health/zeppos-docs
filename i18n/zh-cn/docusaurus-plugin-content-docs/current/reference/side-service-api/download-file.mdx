@@ -1,0 +1,186 @@
+---
+title: Downloader 文件下载
+sidebar_label: Downloader 文件下载
+---
+
+文件下载模块 `network.downloader` 可以将网络文件下载至伴生服务。
+
+## network.downloader 模块
+
+### downloadFile
+
+返回 `DownloadTask` 对象
+
+### 类型
+
+```ts
+(options: Options) => DownloadTask
+```
+
+### 参数
+
+### Options: object
+
+| 属性     | 说明                                                                  | 是否必须 | 类型     |
+| -------- | --------------------------------------------------------------------- | -------- | -------- |
+| url      | 文件 URL                                                              | 是       | `string` |
+| timeout  | 超时时间                                                              | 是       | `number` |
+| headers  | 自定义 HTTP Request Header 字段                                       | 否       | `object` |
+| filePath | 文件下载路径，如果没有指定，默认在伴生服务的 `data://download` 路径下 | 否       | `string` |
+
+### DownloadTask: object
+
+#### cancel
+
+取消当前下载任务
+
+##### 类型
+
+```ts
+() => void
+```
+
+##### 代码示例
+
+```js
+const downloadTask = network.downloader.downloadFile({
+  url: 'https://docs.zepp.com/zh-cn/img/logo.png',
+  headers: { key: 121 },
+  timeout: 60000
+})
+
+downloadTask.cancel()
+```
+
+#### onProgress
+
+通过 `onProgress` 属性指定下载文件进度回调函数，返回下载任务进度
+
+##### 类型
+
+```ts
+(event: ProgressEvent) => void
+```
+
+**ProgressEvent**
+
+| 属性     | 说明                       | 类型     |
+| -------- | -------------------------- | -------- |
+| progress | 下载文件进度，值 `1` - `100`   | `number` |
+| total    | 文件总大小，单位字节       | `number` |
+| loaded   | 已经下载文件大小，单位字节 | `number` |
+
+##### 代码示例
+
+```js
+const downloadTask = network.downloader.downloadFile({
+  url: 'https://docs.zepp.com/zh-cn/img/logo.png',
+  headers: { key: 121 },
+  timeout: 60000
+})
+
+downloadTask.onProgress = (ev) => {
+  console.log(ev.progress)
+  console.log(ev.total)
+  console.log(ev.loaded)
+}
+```
+
+#### onSuccess
+
+通过 `onSuccess` 属性指定下载文件成功回调函数，返回下载任务进度
+
+##### 类型
+
+```ts
+(event: SuccessEvent) => void
+```
+
+**SuccessEvent**
+
+| 属性         | 说明                                                                                          | 类型     |
+| ------------ | --------------------------------------------------------------------------------------------- | -------- |
+| filePath     | 如果在 `downloadFile` 中传入 `filePath`，此处返回 `filePath`，未指定路径则返回 `tempFilePath` | `string` |
+| tempFilePath | 下载文件的临时文件路径                                                                        | `string` |
+| statusCode   | HTTP 状态码                                                                                   | `number` |
+
+##### 代码示例
+
+```js
+const downloadTask = network.downloader.downloadFile({
+  url: 'https://docs.zepp.com/zh-cn/img/logo.png',
+  headers: {},
+  timeout: 60000,
+  filePath: 'data://download/1.png'
+})
+
+downloadTask.onSuccess = (event) => {
+  console.log(event.filePath) // data://download/1.png
+  console.log(event.tempFilePath) // undefined
+  console.log(event.statusCode) // 200
+}
+
+const downloadTask2 = network.downloader.downloadFile({
+  url: 'https://docs.zepp.com/zh-cn/img/logo.png',
+  headers: { key: 121 },
+  timeout: 60000
+})
+
+downloadTask2.onSuccess = (event) => {
+  console.log(event.filePath) // undefined
+  console.log(event.tempFilePath) // data://download/logo.png
+  console.log(event.statusCode) // 200
+}
+```
+
+#### onFail
+
+```ts
+(event: FailEvent) => void
+```
+
+**FailEvent**
+
+| 属性    | 说明         | 类型     |
+| ------- | ------------ | -------- |
+| code    | 错误码       | `number` |
+| message | 错误详细内容 | `string` |
+
+##### 代码示例
+
+```js
+const downloadTask = network.downloader.downloadFile({
+  url: 'https://docs.zepp.com/zh-cn/img/logo.png',
+  headers: {},
+  timeout: 60000,
+  filePath: 'data://download/1.png'
+})
+
+downloadTask.onFail = (event) => {
+  console.log(event.code)
+  console.log(event.message)
+}
+```
+
+#### onComplete
+
+不论下载任务是否成功，都会调用这个回调函数
+
+```ts
+() => void
+```
+
+##### 代码示例
+
+```js
+const downloadTask = network.downloader.downloadFile({
+  url: 'https://docs.zepp.com/zh-cn/img/logo.png',
+  headers: {},
+  timeout: 60000,
+  filePath: 'data://download/1.png'
+})
+
+downloadTask.onComplete = () => {
+  console.log('do something when success or fail')
+}
+```

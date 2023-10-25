@@ -1,0 +1,29 @@
+---
+title: hmSetting.getScreenType()
+sidebar_label: getScreenType
+---
+
+Get the current screen Screen information.
+
+## Type
+
+```ts
+() => screenType
+```
+
+## Parameters
+
+### screenType: number
+
+|                 Value             |                      Description                      |
+| --------------------------------- | ----------------------------------------------------- |
+|     `hmSetting.screen_type.APP`   |               Within the js application               |
+| `hmSetting.screen_type.WATCHFACE` |               In the js table main screen             |
+| `hmSetting.screen_type.SETTINGS`  | In the js application configuration or Watchface edit page |
+|     `hmSetting.screen_type.AOD`   |               In the hibernation screen               |
+
+## Code examples
+
+```js
+const screenType = hmSetting.getScreenType()
+```

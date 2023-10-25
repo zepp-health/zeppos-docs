@@ -1,0 +1,45 @@
+---
+title: hmFS.write(fileId, buffer, position, length)
+sidebar_label: write
+---
+
+> For an introduction to the Zepp OS Mini Program file system, please refer to [File System](../../../guides/framework/device/fs.md).
+
+Write buffer to the file.
+
+## Type
+
+```ts
+(fileId: number, buffer: ArrayBuffer, position: number, length: number) => result
+```
+
+## Parameters
+
+| Parameters | Description                                            | Required | Type          | Default |
+| ---------- | ------------------------------------------------------ | -------- | ------------- | ------- |
+| fileId     | file handle                                            | yes      | `number`      | -       |
+| buffer       | The buffer that will be filled with the read file data | yes      | `ArrayBuffer` | -       |
+| position        | Offset based on `buffer` first address                   | yes      | `number`      | -       |
+| length        | the number of bytes to write                           | yes      | `number`      | -       |
+
+### result
+
+| Parameters | Description                                    | Type     |
+| ---------- | ---------------------------------------------- | -------- |
+| result     | The result of the operation, `0` means success | `number` |
+
+Please refer to [File System - Error Code](../../../guides/framework/device/fs.md#error-code) for the rest of the error codes.
+
+## Code example
+
+```js
+Page({
+  build() {
+    const test_buf = new Uint8Array(10)
+    const test_buf2 = new Uint8Array(test_buf.length)
+
+    const file = hmFS.open('test_file.txt', hmFS.O_RDWR | hmFS.O_CREAT)
+    hmFS.write(file, test_buf.buffer, 0, test_buf.length)
+  }
+})
+```

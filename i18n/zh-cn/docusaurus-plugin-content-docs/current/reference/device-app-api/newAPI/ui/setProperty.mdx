@@ -1,0 +1,61 @@
+---
+title: widget.setProperty(propertyId, val)
+sidebar_label: setProperty
+---
+
+> API_LEVEL `2.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+设置 UI 控件属性。
+
+## 类型
+
+```ts
+(propertyId: string, val: any) => void
+```
+
+## 参数
+
+| 参数       | 说明                                                                                           | 类型         |
+| ---------- | ---------------------------------------------------------------------------------------------- | ------------ |
+| propertyId | 属性 id                                                                                        | `PropertyId` |
+| val        | 设置值(当 property 为 `prop.MORE` 时， val 与 createWidget 的 option 用法一致，可设置多个参数) | `any`        |
+
+### PropertyId
+
+列举控件通用支持的属性
+
+| 属性    | 说明                                                                                                                                 | 类型      |
+| ------- | ------------------------------------------------------------------------------------------------------------------------------------ | --------- |
+| x       | 控件 x 坐标                                                                                                                          | `number`  |
+| y       | 控件 y 坐标                                                                                                                          | `number`  |
+| w       | 控件显示宽度                                                                                                                         | `number`  |
+| h       | 控件显示高度                                                                                                                         | `number`  |
+| VISIBLE | 控件是否可见，`true` 为可见、`false` 不可见，该属性不支持 `setProperty(prop.MORE, {})`，只支持 `setProperty` 单独设置 `VISIBLE` 属性 | `boolean` |
+| DATASET | 开发者自定义控件属性，通过 `widget.getProperty(prop.DATASET)` 获取                                                                   | `any`     |
+
+## 代码示例
+
+```js
+import { createWidget, widget, prop, align } from '@zos/ui'
+
+// 设置 widegt 隐藏/显示
+const button = createWidget(widget.BUTTON, Param)
+button.setProperty(prop.VISIBLE, false)
+
+const text = createWidget(widget.TEXT, Param)
+text.setProperty(prop.MORE, {
+  x: 0,
+  y: 0,
+  w: 200,
+  h: 200,
+  text: 'hello',
+  color: 0x34e073,
+  align_h: align.LEFT
+})
+
+text.setProperty(prop.DATASET, {
+  name: 'text1'
+})
+
+const dataset = text.getProperty(prop.DATASET)
+```

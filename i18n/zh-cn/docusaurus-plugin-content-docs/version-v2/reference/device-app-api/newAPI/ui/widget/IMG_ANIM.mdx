@@ -1,0 +1,107 @@
+---
+title: IMG_ANIM
+sidebar_label: IMG_ANIM 图片帧动画
+---
+
+> API_LEVEL `2.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../../guides/framework/device/compatibility.md)。
+
+![img_anim_sample](/img/api/img_anim_sample.gif)
+
+按照设置的帧率播放预先给定的图片，形成动画效果。
+
+## 创建 UI 控件
+
+```js
+import { createWidget, widget } from '@zos/ui'
+
+const imgAnim = createWidget(widget.IMG_ANIM, Param)
+```
+
+## 类型
+
+### Param: object
+
+| 属性               | 说明                                                                                             | 是否必须 | 类型       |
+| ------------------ | ------------------------------------------------------------------------------------------------ | -------- | ---------- |
+| x                  | 动画 x 坐标                                                                                      | 是       | `number`   |
+| y                  | 动画 y 坐标                                                                                      | 是       | `number`   |
+| anim_path          | 图片帧所在路径，通常为目录名称                                                                   | 是       | `string`   |
+| anim_prefix        | 图片名前缀                                                                                       | 是       | `string`   |
+| anim_ext           | 图片扩展名                                                                                       | 是       | `string`   |
+| anim_fps           | 动画帧数                                                                                         | 是       | `number`   |
+| repeat_count       | 动画重复次数，可设置 `0`：无限重复、`1`: 单次重复                                                | 是       | `number`   |
+| anim_size          | 图片数量                                                                                         | 是       | `number`   |
+| anim_status        | 动画状态，参考 `anim_status`                                                                     | 是       | `number`   |
+| anim_complete_call | 动画完成回调，动画执行成功后会回调此函数 `repeat_count` 为 `0` 时无效 参数 `anim` 创建动画的实例 | 否       | `function` |
+| step               | 帧动画步长，大于 `1` 时会跳帧                                                                    | 否       | `number`   |
+
+### 支持设置的属性 anim_status
+
+设置动画属性请注意当前设置的动画顺序，widget 内部已经做了保护处理
+
+| 值                 | 说明                                     |
+| ------------------ | ---------------------------------------- |
+| anim_status.START  | 开始动画 开始动画后只允许调用 pause stop |
+| anim_status.PAUSE  | 暂停动画 只能在开始动画 恢复动画后调用   |
+| anim_status.RESUME | 恢复动画 只能在暂停动画后调用            |
+| anim_status.STOP   | 停止动画 只能在开始动画 恢复动画后调用   |
+
+### 获取动画状态 返回类型 boolean
+
+| 值                   | 说明           |
+| -------------------- | -------------- |
+| prop.ANIM_IS_RUNINNG | 动画是否在运行 |
+| prop.ANIM_IS_PAUSE   | 动画是否暂停   |
+| prop.ANIM_IS_STOP    | 动画是否停止   |
+
+## 代码示例
+
+:::tip
+代码示例中的图片资源请参考 [设计资源](../../../../related-resources/design-resources.mdx)
+:::
+
+```tree
+// 资源存放目录
+.
+└── assets
+        └── gtr-3
+                └── anim
+                        ├── animation_0.png
+                        ├── animation_1.png
+                        ├── animation_2.png
+                        ├── animation_3.png
+                        ├── animation_4.png
+                        └── animation_5.png
+```
+
+```js
+import { createWidget, widget, prop, anim_status } from '@zos/ui'
+
+Page({
+  build() {
+    const imgAnimation = createWidget(widget.IMG_ANIM, {
+      anim_path: 'anim',
+      anim_prefix: 'animation',
+      anim_ext: 'png',
+      anim_fps: 60,
+      anim_size: 36,
+      repeat_count: 1,
+      anim_status: 3,
+      x: 208,
+      y: 230,
+      anim_complete_call: () => {
+        console.log('animation complete')
+      }
+    })
+
+    imgAnimation.setProperty(prop.ANIM_STATUS, anim_status.START)
+    imgAnimation.addEventListener(event.CLICK_DOWN, () => {
+      const isRunning = imgAnimation.getProperty(prop.ANIM_IS_RUNINNG)
+
+      if (!isRunning) {
+        imgAnimation.setProperty(prop.ANIM_STATUS, anim_status.START)
+      }
+    })
+  }
+})
+```

@@ -1,0 +1,43 @@
+# stop
+
+> Start from API_LEVEL `3.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Shutdown the specified backend service, called asynchronously, with the shutdown result returned via a callback function.
+
+:::info
+permission code: `device:os.bg_service`
+:::
+
+## Type
+
+```ts
+function stop(option: Option): Result
+```
+
+## Parameters
+
+### Option
+
+| Property      | Type                                                      | Required | DefaultValue | Description                                                                          | API_LEVEL |
+| ------------- | --------------------------------------------------------- | -------- | ------------ | ------------------------------------------------------------------------------------ | --------- |
+| file          | <code>string</code>                                       | Y        | -            | The App Service js file must be the one configured in the service module in app.json | 3.0       |
+| complete_func | <code>(callbackOption: CallbackOption) =&#62; void</code> | Y        | -            | Callback function for the completion of the backend service stop                     | 3.0       |
+
+### CallbackOption
+
+| Property | Type                 | Description                                                          | API_LEVEL |
+| -------- | -------------------- | -------------------------------------------------------------------- | --------- |
+| file     | <code>string</code>  | App service js file, same as `stop` incoming parameters              | 3.0       |
+| result   | <code>boolean</code> | App service stop result, `true` means success, `false` means failure | 3.0       |
+
+### Result
+
+| Type                 | Description                                                |
+| -------------------- | ---------------------------------------------------------- |
+| <code>boolean</code> | If `0` is returned, The App Service is closed successfully |
+
+## Example
+
+```js
+import { stop } from '@zos/app-service'
+```

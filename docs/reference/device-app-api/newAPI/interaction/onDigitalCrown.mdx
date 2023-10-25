@@ -1,0 +1,64 @@
+# onDigitalCrown
+
+> Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Listen to the digital crown rotation event, only one event is allowed to be registered, if multiple registrations will cause the last registered event to fail.
+
+## Type
+
+```ts
+function onDigitalCrown(option: Option): void
+```
+
+### Simplified calling method
+
+```ts
+function onDigitalCrown(callback: (key: Key, degree: Degree) => void): void
+```
+
+## Parameters
+
+### Option
+
+| Property | Type                                                | Required | DefaultValue | Description                                    | API_LEVEL |
+| -------- | --------------------------------------------------- | -------- | ------------ | ---------------------------------------------- | --------- |
+| callback | <code>(key: Key, degree: Degree) =&#62; void</code> | Y        | -            | Digital crown rotation event callback function | 2.0       |
+
+### Key
+
+| Type                | Description                                                                          |
+| ------------------- | ------------------------------------------------------------------------------------ |
+| <code>number</code> | Key name, value reference key name constants, currently only `KEY_HOME` is supported |
+
+### Degree
+
+| Type                | Description                                                                                                                                                                                               |
+| ------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| <code>number</code> | The rotation angle, positive number is counterclockwise rotation, negative number is clockwise rotation. The value is the angle of rotation, the faster the rotation speed, the larger the absolute value |
+
+## Constants
+
+### Key name constants
+
+| Constant       | Description  | API_LEVEL |
+| -------------- | ------------ | --------- |
+| `KEY_BACK`     | BACK KEY     | 2.0       |
+| `KEY_SELECT`   | SELECT KEY   | 2.0       |
+| `KEY_HOME`     | HOME KEY     | 2.0       |
+| `KEY_UP`       | UP KEY       | 2.0       |
+| `KEY_DOWN`     | SHORTCUT KEY | 2.0       |
+| `KEY_SHORTCUT` | SHORTCUT KEY | 2.0       |
+
+## Example
+
+```js
+import { onDigitalCrown, KEY_HOME } from '@zos/interaction'
+
+onDigitalCrown({
+  callback: (key, degree) => {
+    if (key === KEY_HOME) {
+      console.log(degree)
+    }
+  },
+})
+```

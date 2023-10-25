@@ -1,0 +1,135 @@
+---
+title: CYCLE_IMAGE_TEXT_LIST
+sidebar_label: CYCLE_IMAGE_TEXT_LIST 循环列表（文字+图片）
+---
+
+![cycle_image_text_list_sample](/img/api/cycle_image_text_list.jpg)
+
+创建一个可以循环滚动的列表，其中可以填充图片和文字。
+
+## 创建 UI 控件
+
+```js
+const cycleImageTextList = hmUI.createWidget(hmUI.widget.CYCLE_IMAGE_TEXT_LIST, Param)
+```
+
+:::caution
+现阶段此控件的图片路径解析存在问题，无法正确显示图片，只可设置文字相关属性
+:::
+
+## 类型
+
+### Param: object
+
+| 属性              | 说明                                       | 是否必须 | 类型            |
+| ----------------- | ------------------------------------------ | -------- | --------------- |
+| x                 | 控件 x 坐标                                | 是       | `number`        |
+| y                 | 控件 y 坐标                                | 是       | `number`        |
+| w                 | 控件显示宽度                               | 是       | `number`        |
+| h                 | 控件显示高度                               | 是       | `number`        |
+| item_image_x      | item 图片 x 坐标，相对坐标                 | 是       | `number`        |
+| item_image_y      | item 图片 y 坐标，相对坐标                 | 是       | `number`        |
+| item_text_x       | item 字体 x 坐标，相对坐标                 | 是       | `number`        |
+| item_text_y       | item 字体 y 坐标，相对坐标                 | 是       | `number`        |
+| item_text_size    | item 字体大小                              | 是       | `number`        |
+| item_text_color   | item 字体颜色                              | 是       | `number`        |
+| item_bg_color     | item 背景色                                | 是       | `number`        |
+| item_height       | item 高度                                  | 是       | `number`        |
+| data_array        | 数据数组                                   | 是       | `Array<Data>`   |
+| data_size         | 数组长度                                   | 是       | `number`        |
+| item_text_align_h | 文字横轴方向，不填默认横向居中             | 否       | `number`        |
+| item_text_align_v | 文字竖轴方向，不填默认竖向居中             | 否       | `number`        |
+| item_text_height  | 文本实际显示区域，不填则默认为 item_height | 否       | `number`        |
+| item_text_width   | 文本实际显示区域，不填则默认为控件显示宽度 | 否       | `number`        |
+| item_click_func   | 点击 item 的回调                           | 否       | `ItemClickFunc` |
+
+### Data: object
+
+| 属性 | 说明     | 是否必填 | 类型     |
+| ---- | -------- | -------- | -------- |
+| src  | 图片路径 | 否       | `string` |
+| text | 文本内容 | 是       | `string` |
+
+### ItemClickFunc: function
+
+```ts
+(cycleList: CycleList, index: number) => void
+```
+
+| 参数      | 类型     | 备注                       |
+| --------- | -------- | -------------------------- |
+| cycleList | `object` | cycleList 实例             |
+| index     | `number` | 点击的 item 索引 从 0 开始 |
+
+## 设置单个 item 文字的属性
+
+:::caution
+设置单个 `item` 文字的属性，控件并不会保存这些信息，通过 `getProperty` 无法获取变更后的值
+:::
+
+| 属性            | 说明                | 是否必填 | 类型     |
+| --------------- | ------------------- | -------- | -------- |
+| index           | item 索引 从 0 开始 | 是       | `number` |
+| item_text_color | 文本颜色            | 否       | `number` |
+| item_text_size  | 文本大小            | 否       | `number` |
+
+```js
+const widget = ...
+widget.setProperty(hmUI.prop.ITEM_MORE,{
+  index: 0,
+  item_text_color: 0x2f4988,
+  item_text_size: 50
+})
+```
+
+## 刷新 ITEM
+
+- 这里是为 `ITEM_MORE` 这个属性设置的 通过 `ITEM_MORE` 设置属性后 如果想恢复原样 可以调刷新 `ITEM`
+
+```js
+widget.setProperty(hmUI.prop.ITEM_REFRESH, 0) // 0 是 item 索引，从 0 开始
+```
+
+## 设置 list 的顶部 item 索引
+
+- 通过 `LIST_TOP` 属性设置 `list` 的顶部 `item` 的索引值，以便将 `list` 显示在指定位置的 `item`
+
+| 字段名 | 说明                | 是否必填 | 类型     |
+| ------ | ------------------- | -------- | -------- |
+| index  | item 索引 从 0 开始 | 是       | `number` |
+
+## 代码示例
+
+```js
+const dataArray = [
+  { text: '0' },
+  { text: '1' },
+  { text: '2' },
+  { text: '3' },
+  { text: '4' },
+  { text: '5' },
+  { text: '6' },
+  { text: '7' },
+  { text: '8' },
+  { text: '9' }
+]
+
+cycleImageTextList = hmUI.createWidget(hmUI.widget.CYCLE_IMAGE_TEXT_LIST, {
+  x: 0,
+  y: 0,
+  w: 480,
+  h: 300,
+  data_array: dataArray,
+  data_size: 10,
+  item_height: 50,
+  item_text_color: 0xffffff,
+  item_text_size: 18
+})
+
+// 获取滚动列表顶部的索引
+result = cycleImageTextList.getProperty(hmUI.prop.MORE, {})
+console.log(result.index)
+
+// 设置滚动列表顶部的索引
+cycleImageTextList.setProperty(hmUI.prop.LIST_TOP, { index: 3 })
+```

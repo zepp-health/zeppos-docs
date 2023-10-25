@@ -1,0 +1,52 @@
+# getDeviceInfo
+
+> API_LEVEL `2.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+获取设备信息。
+
+:::info
+权限代码： `data:os.device.info`
+:::
+
+## 类型
+
+```ts
+function getDeviceInfo(): Result
+```
+
+## 参数
+
+### Result
+
+| 属性         | 类型                | 说明                         | API_LEVEL |
+| ------------ | ------------------- | ---------------------------- | --------- |
+| width        | <code>number</code> | 设备屏幕宽度                 | 2.0       |
+| height       | <code>number</code> | 设备屏幕高度                 | 2.0       |
+| screenShape  | <code>number</code> | 屏幕形状，值参考屏幕形状常量 | 2.0       |
+| deviceName   | <code>number</code> | 设备名称                     | 2.0       |
+| keyNumber    | <code>number</code> | 按键数目                     | 2.0       |
+| deviceSource | <code>number</code> | 设备纯数字代号               | 2.0       |
+| keyType      | <code>string</code> | 设备实体按键类型             | 2.0       |
+| deviceColor  | <code>number</code> | 设备颜色标识                 | 2.0       |
+
+## 常量
+
+### 屏幕形状
+
+| 常量                  | 说明     | API_LEVEL |
+| --------------------- | -------- | --------- |
+| `SCREEN_SHAPE_SQUARE` | 方形屏幕 | 2.0       |
+| `SCREEN_SHAPE_ROUND`  | 圆形屏幕 | 2.0       |
+
+## 代码示例
+
+```js
+import { getDeviceInfo, SCREEN_SHAPE_SQUARE } from '@zos/device'
+
+const { width, screenShape } = getDeviceInfo()
+console.log(width)
+
+if (screenShape === SCREEN_SHAPE_SQUARE) {
+  console.log('Square Screen')
+}
+```

@@ -1,0 +1,118 @@
+---
+title: WORLD_CLOCK
+sidebar_label: WORLD_CLOCK
+---
+
+## Creating Sensors
+
+```js
+const world_clock = hmSensor.createSensor(hmSensor.id.WORLD_CLOCK)
+```
+
+## WORLD_CLOCK instance
+
+### world_clock.init
+
+Initialize world clock data
+
+#### Type
+
+```ts
+() => void
+```
+
+### world_clock.getWorldClockCount
+
+Get the total number of currently configured world clocks
+
+#### Type
+
+```ts
+() => number
+```
+
+### world_clock.getWorldClockCountInfo(index)
+
+Get the world clock data corresponding to `index`
+
+#### Type
+
+```ts
+(index: number) => wordInfo
+```
+
+##### wordInfo
+
+|   Properties   |   Description    |   Type   |
+| -------------- | ---------------- | -------- |
+| city           |       city       | `string` |
+| cityCode       | City code, e.g. San Francisco `SFO` | `string` |
+| hour           |       hour       | `number` |
+| minute         |      minute      | `number` |
+| timeZoneHour   | Time Zone Hours  | `number` |
+| timeZoneMinute | Time zone minutes | `number` |
+
+### world_clock.uninit
+
+Recycle world clock data, corresponding to `init`
+
+#### Type
+
+```js
+() => void
+```
+
+## Full Example
+
+```js
+class TextByLine {
+  constructor(params) {
+    const { text = '', y = undefined, line = 0 } = params
+
+    this.text = text
+    this.y = y
+    this.line = line
+    this.y_computed = Number.isInteger(this.y) ? this.y : px(this.line * 60 + 120)
+  }
+
+  render() {
+    return hmUI.createWidget(hmUI.widget.TEXT, {
+      x: px(0),
+      y: this.y_computed,
+      w: px(480),
+      h: px(46),
+      color: 0xffffff,
+      text_size: px(20),
+      align_h: hmUI.align.CENTER_H,
+      align_v: hmUI.align.CENTER_V,
+      text_style: hmUI.text_style.NONE,
+      text: this.text
+    })
+  }
+}
+
+Page({
+  build() {
+    const world_clock = hmSensor.createSensor(hmSensor.id.WORLD_CLOCK)
+    world_clock.init()
+
+    const count = world_clock.getWorldClockCount()
+
+    for (let index = 0; index < count; index++) {
+      const { city, cityCode, hour, minute, timeZoneHour, timeZoneMinute } = world_clock.getWorldClockInfo(index)
+
+      new TextByLine({
+        text: `city:${city};cityCode:${cityCode};hour:${hour};minute:${minute}`,
+        line: 0 + 2 * index
+      }).render()
+
+      new TextByLine({
+        text: `timeZoneHour:${timeZoneHour};timeZoneMinute:${timeZoneMinute}`,
+        line: 1 + 2 * index
+      }).render()
+    }
+
+    world_clock.uninit()
+  }
+})
+```

@@ -1,0 +1,33 @@
+---
+title: hmFS.SysProGetInt64(key)
+sidebar_label: SysProGetInt64
+---
+
+Get a 64-bit integer for temporary storage, which will be cleared by system reboot.
+
+## Type
+
+```ts
+(key: string) => result
+```
+
+## Parameters
+
+### key
+
+| Description| Required |   Type   | Default |
+| ---------- | -------- | -------- | ------ |
+| key string |    yes   | `string` |   -    |
+
+### result
+
+|      Description      |   Type   |
+| --------------------- | -------- |
+| stored 64-bit integer | `number` |
+
+## Usage
+
+```js
+hmFS.SysProSetInt64('js_test_int64', 200)
+console.log(hmFS.SysProGetInt64('js_test_int64'))
+```

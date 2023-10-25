@@ -1,0 +1,40 @@
+# getSwiperIndex
+
+> API_LEVEL `2.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+获取当前页面的滚动位置，仅当页面滚动模式为 `SCROLL_MODE_SWIPER` 或 `SCROLL_MODE_SWIPER_HORIZONTAL` 返回当前项目的索引（从 `1` 开始），否则返回 `undefined`。
+
+## 类型
+
+```ts
+function getSwiperIndex(): Result
+```
+
+## 参数
+
+### Result
+
+| 类型                               | 说明                                                                                                                             |
+| ---------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
+| <code>number&#124;undefined</code> | 页面滚动模式为 `SCROLL_MODE_SWIPER` 或 `SCROLL_MODE_SWIPER_HORIZONTAL` 时，值为当前项目的索引（从 `1` 开始）。否则为 `undefined` |
+
+## 代码示例
+
+```js
+import { setScrollMode, swipeToIndex, getSwiperIndex, SCROLL_MODE_SWIPER } from '@zos/page'
+
+setScrollMode({
+  mode: SCROLL_MODE_SWIPER,
+  options: {
+    height: 480,
+    count: 10,
+  },
+})
+
+swipeToIndex({
+  index: 5,
+})
+
+const currentIndex = getSwiperIndex()
+console.log(currentIndex)
+```

@@ -1,0 +1,120 @@
+---
+title: Gyroscope
+sidebar_label: Gyroscope
+---
+
+> Start from API_LEVEL `3.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+gyroscope.
+
+:::info
+permission code: `device:os.gyroscope`
+:::
+
+## Methods
+
+### start
+
+Start listening to gyroscope data
+
+```ts
+start(): void
+```
+
+### stop
+
+Stop listening to gyroscope data
+
+```ts
+stop(): void
+```
+
+### getCurrent
+
+Get current gyroscope data
+
+```ts
+getCurrent(): Result
+```
+
+#### Result
+
+| Property | Type                | Description                                           | API_LEVEL |
+| -------- | ------------------- | ----------------------------------------------------- | --------- |
+| x        | <code>number</code> | Angular velocity of x-axis in DPS, degrees per second | 3.0       |
+| y        | <code>number</code> | Angular velocity of y-axis in DPS, degrees per second | 3.0       |
+| z        | <code>number</code> | Angular velocity of z-axis in DPS, degrees per second | 3.0       |
+
+### onChange
+
+Register the gyroscope data change event listener callback function
+
+```ts
+onChange(callback: () => void): void
+```
+
+### offChange
+
+Cancel the gyroscope data change event listener callback function
+
+```ts
+offChange(callback: () => void): void
+```
+
+### setFreqMode
+
+> Start from API_LEVEL `3.0`
+
+Set the mode of trigger frequency, `mode` value reference frequency mode constant
+
+```ts
+setFreqMode(mode: number): void
+```
+
+#### Constants
+
+##### Frequency Mode
+
+| Constant           | Description                                             | API_LEVEL |
+| ------------------ | ------------------------------------------------------- | --------- |
+| `FREQ_MODE_LOW`    | Low power mode with low trigger frequency               | 3.0       |
+| `FREQ_MODE_NORMAL` | Normal power consumption mode, medium trigger frequency | 3.0       |
+| `FREQ_MODE_HIGH`   | High power consumption mode with high trigger frequency | 3.0       |
+
+### getFreqMode
+
+> Start from API_LEVEL `3.0`
+
+Get the mode of trigger frequency, result value reference frequency mode constant
+
+```ts
+getFreqMode(): number
+```
+
+#### Constants
+
+##### Frequency Mode
+
+| Constant           | Description                                             | API_LEVEL |
+| ------------------ | ------------------------------------------------------- | --------- |
+| `FREQ_MODE_LOW`    | Low power mode with low trigger frequency               | 3.0       |
+| `FREQ_MODE_NORMAL` | Normal power consumption mode, medium trigger frequency | 3.0       |
+| `FREQ_MODE_HIGH`   | High power consumption mode with high trigger frequency | 3.0       |
+
+## Example
+
+```js
+import { Gyroscope } from '@zos/sensor'
+
+const gyroscope = new Gyroscope()
+
+const callback = () => {
+  console.log(gyroscope.getCurrent())
+}
+gyroscope.onChange(callback)
+gyroscope.start()
+
+// When not needed for use
+gyroscope.offChange()
+gyroscope.stop()
+```

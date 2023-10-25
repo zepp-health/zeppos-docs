@@ -1,0 +1,64 @@
+---
+title: Step
+sidebar_label: Step 步数
+---
+
+> API_LEVEL `2.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+步数传感器。
+
+:::info
+权限代码： `data:user.hd.step`
+:::
+
+## 方法
+
+### getCurrent
+
+获取当前步数
+
+```ts
+getCurrent(): number
+```
+
+### getTarget
+
+获取步数目标
+
+```ts
+getTarget(): number
+```
+
+### onChange
+
+注册步数变化事件监听回调函数
+
+```ts
+onChange(callback: () => void): void
+```
+
+### offChange
+
+取消步数变化事件监听回调函数
+
+```ts
+offChange(callback: () => void): void
+```
+
+## 代码示例
+
+```js
+import { Step } from '@zos/sensor'
+
+const step = new Step()
+const current = step.getCurrent()
+const target = step.getTarget()
+const callback = () => {
+  console.log(step.getCurrent())
+}
+
+step.onChange(callback)
+
+// When not needed for use
+step.offChange(callback)
+```

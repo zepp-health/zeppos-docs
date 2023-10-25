@@ -1,0 +1,28 @@
+---
+title: hmUI.updateStatusBarTitle(title)
+sidebar_label: updateStatusBarTitle
+---
+
+This interface is only available on square screen devices, set the status bar to display text content.
+
+For square screen title bar, refer to [Screen Adaptation](../../../guides/best-practice/multi-screen-adaption.mdx).
+
+## Type
+
+```ts
+(title: string) => void
+```
+
+## Parameters
+
+| parameter | description | type |
+| ----- | -------------- | -------- |
+| title | Status bar display text | `string` |
+
+## Code example
+
+```js
+const title = 'Mini Program Title'
+
+hmUI.updateStatusBarTitle(title)
+```

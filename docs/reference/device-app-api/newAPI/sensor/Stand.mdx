@@ -1,0 +1,64 @@
+---
+title: Stand
+sidebar_label: Stand
+---
+
+> Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Standing behavior Sensor.
+
+:::info
+permission code: `data:user.hd.stand`
+:::
+
+## Methods
+
+### getCurrent
+
+Get the current number of hours with standing behavior
+
+```ts
+getCurrent(): number
+```
+
+### getTarget
+
+Get the number of hours with standing behavior targets
+
+```ts
+getTarget(): number
+```
+
+### onChange
+
+Register a callback function to listen for changes in the number of hours of standing behavior
+
+```ts
+onChange(callback: () => void): void
+```
+
+### offChange
+
+Cancel a callback function to listen for changes in the number of hours of standing behavior
+
+```ts
+offChange(callback: () => void): void
+```
+
+## Example
+
+```js
+import { Stand } from '@zos/sensor'
+
+const stand = new Stand()
+const current = stand.getCurrent()
+const target = stand.getTarget()
+const callback = () => {
+  console.log(stand.getCurrent())
+}
+
+stand.onChange(callback)
+
+// When not needed for use
+stand.offChange(callback)
+```

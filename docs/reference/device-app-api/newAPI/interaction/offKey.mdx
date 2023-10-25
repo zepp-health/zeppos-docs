@@ -1,0 +1,30 @@
+# offKey
+
+> Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Cancel the keystroke event registered by `onKey`..
+
+## Type
+
+```ts
+function offKey(): void
+```
+
+## Example
+
+```js
+import { onKey, offKey, KEY_UP, KEY_EVENT_CLICK } from '@zos/interaction'
+
+const keyCallback = (key, keyEvent) => {
+  if (key === KEY_UP && keyEvent === KEY_EVENT_CLICK) {
+    console.log('up click')
+  }
+  return true
+}
+
+onKey({
+  callback: keyCallback,
+})
+
+offKey()
+```

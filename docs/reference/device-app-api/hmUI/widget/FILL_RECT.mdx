@@ -1,0 +1,58 @@
+---
+title: FILL_RECT
+sidebar_label: FILL_RECT
+---
+
+![fill_rect_sample](/img/api/fill_rect_sample.jpg)
+
+The Fill Rectangle widget is used to draw a solid color rectangular area.
+
+:::caution
+At this stage, if you change the properties of the widget by means of `setProperty(hmUI.prop.MORE, Params)`, you must pass `x`, `y`, `w`, `h` properties, see the sample code for details.
+:::
+
+## Create UI widget
+
+```js
+const fillRect = hmUI.createWidget(hmUI.widget.FILL_RECT, Param)
+```
+
+## Type
+
+### Param: object
+
+| Properties | Description                    | Required | Type     |
+| ---------- | ------------------------------ | -------- | -------- |
+| x          | The x-coordinate of component. | YES      | `number` |
+| y          | The y-coordinate of component. | YES      | `number` |
+| w          | The width of component.        | YES      | `number` |
+| h          | The height of the component.   | YES      | `number` |
+| color      | The color of component.        | YES      | `number` |
+| radius     | The radius of component.       | NO       | `number` |
+| angle      | The angle of component.        | NO       | `number` |
+
+## Code example
+
+```js
+Page({
+  build() {
+    const fill_rect = hmUI.createWidget(hmUI.widget.FILL_RECT, {
+      x: 125,
+      y: 125,
+      w: 230,
+      h: 150,
+      radius: 20,
+      color: 0xfc6950
+    })
+
+    fill_rect.addEventListener(hmUI.event.CLICK_DOWN, (info) => {
+      fill_rect.setProperty(hmUI.prop.MORE, {
+        x: 125,
+        y: 200,
+        w: 230,
+        h: 150
+      })
+    })
+  }
+})
+```

@@ -1,0 +1,45 @@
+# mkdirSync
+
+> Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Synchronously create a directory in the `/data` directory of the Mini Program.
+
+## Type
+
+```ts
+function mkdirSync(option: Option): Result
+```
+
+### Simplified calling method
+
+```ts
+function mkdirSync(path: string): Result
+```
+
+## Parameters
+
+### Option
+
+| Property | Type                | Required | DefaultValue | Description    | API_LEVEL |
+| -------- | ------------------- | -------- | ------------ | -------------- | --------- |
+| path     | <code>string</code> | Y        | -            | Directory path | 2.0       |
+
+### Result
+
+| Type                | Description                              |
+| ------------------- | ---------------------------------------- |
+| <code>number</code> | If `0` is returned, success is indicated |
+
+## Example
+
+```js
+import { mkdirSync } from '@zos/fs'
+
+const result = mkdirSync({
+  path: 'content',
+})
+
+if (result === 0) {
+  console.log('mkdirSync success')
+}
+```

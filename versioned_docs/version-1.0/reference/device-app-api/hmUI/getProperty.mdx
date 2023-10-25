@@ -1,0 +1,52 @@
+---
+title: widget.getProperty(key)
+sidebar_label: getProperty
+---
+
+Get the UI widget properties, use `widget.getProperty(hmUI.prop.MORE, {})` to get all the properties of the widget.
+
+## Type
+
+```ts
+(key: any) => result
+```
+
+## Parameters
+
+| Parameter | Description            | Type |
+| --------- | ---------------------- | ----- |
+| key       | The value of property. | `any` |
+
+## Code example
+
+```js
+const img_bkg = hmUI.createWidget(hmUI.widget.IMG)
+const prop = img_bkg.getProperty(hmUI.prop.MORE, {})
+const { angle, w, h } = prop
+
+const imgHeight = img_bkg.getProperty(hmUI.prop.H)
+```
+
+:::caution
+At this stage, some widgets do not support property acquisition, it is recommended to try to get first, if you can not get the value, you can refer to the following code snippet, manually maintain a variable in the current page to record the corresponding property changes
+:::
+
+```js
+Page({
+  state: {
+    buttonY: 0
+  },
+  build() {
+    this.state.buttonY = 300
+
+    hmUI.createWidget(hmUI.widget.BUTTON, {
+      y: this.state.buttonY,
+      // ...
+    })
+
+    hmUI.showToast({
+      text: this.state.buttonY
+    })
+  }
+})
+```

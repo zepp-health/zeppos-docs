@@ -1,0 +1,89 @@
+---
+title: TEXT_IMG
+sidebar_label: TEXT_IMG
+---
+
+Support displaying text as images, you need to pass in the image font array `font_array`.
+
+## Create UI widget
+
+```js
+const textImg = hmUI.createWidget(hmUI.widget.TEXT_IMG, Param)
+```
+
+## Type
+
+### Param: object
+
+| Properties       | Description                                                                                                                                              | Required | Type     |
+| ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- | -------- |
+| x                | The x-axis coordinate of the widget.                                                                                                                  | YES      | `number` |
+| y                | The y-axis coordinate of the widget.                                                                                                                  | YES      | `number` |
+| w                | The width of the widget.It will be calculated automatically according to the type if not written.                                                     | YES      | `number` |
+| h                | The height of the widget.It will be calculated automatically according to the type if not written.                                                    | YES      | `number` |
+| font_array       | Image font array.To sort by 0-9.                                                                                                                         | YES      | `array`  |
+| type             | The type of data. See the [data_type](../../../../watchface/api/hmUI/widget/data_type.mdx).                                                              | NO       | `number` |
+| text             | It is used to specify the text content to be displayed; the type attribute will be disabled when this field is specified; the content only supports 0-9. | NO       | `string` |
+| unit_sc          | Simplified Chinese Units.                                                                                                                                | NO       | `string` |
+| unit_en          | English Units.                                                                                                                                           | NO       | `string` |
+| unit_tc          | Traditional Chinese Unit.                                                                                                                                | NO       | `string` |
+| imperial_unit_sc | Chinese Simplified (English Units).                                                                                                                      | NO       | `string` |
+| imperial_unit_en | English imperial units.                                                                                                                                  | NO       | `string` |
+| imperial_unit_tc | Traditional Chinese (English Units).                                                                                                                     | NO       | `string` |
+| negative_image   | Negative sign picture.                                                                                                                                   | NO       | `string` |
+| dont_path        | Decimal-point-pictures can be used as separators.                                                                                                        | NO       | `string` |
+| h_space          | The font of space.                                                                                                                                       | NO       | `number` |
+| align_h          | Horizontal axis alignment (see ALIGN for values).                                                                                                        | NO       | `ALIGN`  |
+
+### ALIGN alignment
+
+| Value               | Description                  |
+| ------------------- | ---------------------------- |
+| hmUI.align.LEFT     | Horizontal axis-left aligned |
+| hmUI.align.RIGHT    | Horizontal axis-align right  |
+| hmUI.align.CENTER_H | Horizontal axis-centered     |
+
+### Text field binding unit minus sign decimal point resource picture.
+
+| Characters | Corresponding Resources                |
+| ---------- | -------------------------------------- |
+| u          | International units and imperial units |
+| -          | Negative Sign Picture                  |
+| .          | Decimal point picture                  |
+
+If the text field is set to "12u", the preceding 12 will go to the picture array to fetch the corresponding picture. When it encounters u, it will be automatically converted to a unit picture for drawing.
+
+## Update Text
+
+```js
+const widget = hmUI.createWidget(hmUI.widget.TEXT_IMG, Param)
+const text = '12' //If you want to not display the data write "" directly.
+widget.setProperty(hmUI.prop.TEXT, text)
+```
+
+## Code example
+
+```js
+const fontArray = [
+  fontRootPath + '00.png',
+  fontRootPath + '01.png',
+  fontRootPath + '02.png',
+  fontRootPath + '03.png',
+  fontRootPath + '04.png',
+  fontRootPath + '05.png',
+  fontRootPath + '06.png',
+  fontRootPath + '07.png',
+  fontRootPath + '08.png',
+  fontRootPath + '09.png'
+]
+
+const dayText = hmUI.createWidget(hmUI.widget.TEXT_IMG, {
+  x: 207,
+  y: 340,
+  type: hmUI.data_type.BATTERY,
+  font_array: fontArray,
+  h_space: 1,
+  align_h: 16,
+  text: '123'
+})
+```

@@ -1,0 +1,35 @@
+---
+title: getImageInfo(img_path)
+sidebar_label: getImageInfo
+---
+
+> API_LEVEL `2.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+获取 `/assets` 资源目录下图片资源的信息。
+
+## 类型
+
+```ts
+(img_path: string) => result
+```
+
+## 参数
+
+| 参数     | 说明                                              | 必填 | 类型     |
+| -------- | ------------------------------------------------- | ---- | -------- |
+| img_path | 图片文件路径，相对 `/assets` 资源目录下的相对路径 | 是   | `string` |
+
+### result: object
+
+| 属性   | 说明       | 类型     |
+| ------ | ---------- | -------- |
+| width  | 图片宽度值 | `number` |
+| height | 图片高度值 | `number` |
+
+## 代码示例
+
+```js
+import { getImageInfo } from '@zos/ui'
+
+getImageInfo('test.png')
+```

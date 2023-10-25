@@ -1,0 +1,242 @@
+{
+  "version.label": {
+    "message": "v3",
+    "description": "The label for version current"
+  },
+  "sidebar.guides.category.Mini Program Architecture": {
+    "message": "Mini Program Architecture",
+    "description": "The label for category Mini Program Architecture in sidebar guides"
+  },
+  "sidebar.guides.category.Framework Introduction": {
+    "message": "Framework Introduction",
+    "description": "The label for category Framework Introduction in sidebar guides"
+  },
+  "sidebar.guides.category.Device App": {
+    "message": "Device App",
+    "description": "The label for category Device App in sidebar guides"
+  },
+  "sidebar.guides.category.Settings App": {
+    "message": "Settings App",
+    "description": "The label for category Settings App in sidebar guides"
+  },
+  "sidebar.guides.category.Side Service": {
+    "message": "Side Service",
+    "description": "The label for category Side Service in sidebar guides"
+  },
+  "sidebar.guides.category.Tools": {
+    "message": "Tools",
+    "description": "The label for category Tools in sidebar guides"
+  },
+  "sidebar.guides.category.CLI": {
+    "message": "CLI",
+    "description": "The label for category CLI in sidebar guides"
+  },
+  "sidebar.guides.category.VS Code Extension": {
+    "message": "VS Code Extension",
+    "description": "The label for category VS Code Extension in sidebar guides"
+  },
+  "sidebar.guides.category.Simulator": {
+    "message": "Simulator",
+    "description": "The label for category Simulator in sidebar guides"
+  },
+  "sidebar.guides.category.Watchface Maker": {
+    "message": "Watchface Maker",
+    "description": "The label for category Watchface Maker in sidebar guides"
+  },
+  "sidebar.guides.category.Getting Started": {
+    "message": "Getting Started",
+    "description": "The label for category Getting Started in sidebar guides"
+  },
+  "sidebar.guides.category.Version v2": {
+    "message": "Version v2",
+    "description": "The label for category Version v2 in sidebar guides"
+  },
+  "sidebar.guides.category.Best practice": {
+    "message": "Best practice",
+    "description": "The label for category Best practice in sidebar guides"
+  },
+  "sidebar.guides.category.polyfill": {
+    "message": "polyfill",
+    "description": "The label for category polyfill in sidebar guides"
+  },
+  "sidebar.guides.category.FAQ": {
+    "message": "FAQ",
+    "description": "The label for category FAQ in sidebar guides"
+  },
+  "sidebar.reference.category.Device App API": {
+    "message": "Device App API",
+    "description": "The label for category Device App API in sidebar reference"
+  },
+  "sidebar.reference.category.UI": {
+    "message": "UI",
+    "description": "The label for category UI in sidebar reference"
+  },
+  "sidebar.reference.category.WIDGETS": {
+    "message": "WIDGETS",
+    "description": "The label for category WIDGETS in sidebar reference"
+  },
+  "sidebar.reference.category.Basic Widgets": {
+    "message": "Basic Widgets",
+    "description": "The label for category Basic Widgets in sidebar reference"
+  },
+  "sidebar.reference.category.Form Widgets": {
+    "message": "Form Widgets",
+    "description": "The label for category Form Widgets in sidebar reference"
+  },
+  "sidebar.reference.category.Layout Widgets": {
+    "message": "Layout Widgets",
+    "description": "The label for category Layout Widgets in sidebar reference"
+  },
+  "sidebar.reference.category.Widget General Methods": {
+    "message": "Widget General Methods",
+    "description": "The label for category Widget General Methods in sidebar reference"
+  },
+  "sidebar.reference.category.Frame Interface": {
+    "message": "Frame Interface",
+    "description": "The label for category Frame Interface in sidebar reference"
+  },
+  "sidebar.reference.category.Sensor": {
+    "message": "Sensor",
+    "description": "The label for category Sensor in sidebar reference"
+  },
+  "sidebar.reference.category.Mini Program related": {
+    "message": "Mini Program related",
+    "description": "The label for category Mini Program related in sidebar reference"
+  },
+  "sidebar.reference.category.Page related": {
+    "message": "Page related",
+    "description": "The label for category Page related in sidebar reference"
+  },
+  "sidebar.reference.category.Router": {
+    "message": "Router",
+    "description": "The label for category Router in sidebar reference"
+  },
+  "sidebar.reference.category.Interaction": {
+    "message": "Interaction",
+    "description": "The label for category Interaction in sidebar reference"
+  },
+  "sidebar.reference.category.System Settings": {
+    "message": "System Settings",
+    "description": "The label for category System Settings in sidebar reference"
+  },
+  "sidebar.reference.category.Display": {
+    "message": "Display",
+    "description": "The label for category Display in sidebar reference"
+  },
+  "sidebar.reference.category.Device": {
+    "message": "Device",
+    "description": "The label for category Device in sidebar reference"
+  },
+  "sidebar.reference.category.User": {
+    "message": "User",
+    "description": "The label for category User in sidebar reference"
+  },
+  "sidebar.reference.category.File System": {
+    "message": "File System",
+    "description": "The label for category File System in sidebar reference"
+  },
+  "sidebar.reference.category.Storage": {
+    "message": "Storage",
+    "description": "The label for category Storage in sidebar reference"
+  },
+  "sidebar.reference.category.I18n": {
+    "message": "I18n",
+    "description": "The label for category I18n in sidebar reference"
+  },
+  "sidebar.reference.category.Utils": {
+    "message": "Utils",
+    "description": "The label for category Utils in sidebar reference"
+  },
+  "sidebar.reference.category.Settings App API": {
+    "message": "Settings App API",
+    "description": "The label for category Settings App API in sidebar reference"
+  },
+  "sidebar.reference.category.UI Components": {
+    "message": "UI Components",
+    "description": "The label for category UI Components in sidebar reference"
+  },
+  "sidebar.reference.category.Side Service API": {
+    "message": "Side Service API",
+    "description": "The label for category Side Service API in sidebar reference"
+  },
+  "sidebar.reference.category.Related Resources": {
+    "message": "Related Resources",
+    "description": "The label for category Related Resources in sidebar reference"
+  },
+  "sidebar.watchface.category.Watchface API": {
+    "message": "Watchface API",
+    "description": "The label for category Watchface API in sidebar watchface"
+  },
+  "sidebar.watchface.category.hmUI Components Module": {
+    "message": "hmUI Components Module",
+    "description": "The label for category hmUI Components Module in sidebar watchface"
+  },
+  "sidebar.watchface.category.Widget": {
+    "message": "Widget",
+    "description": "The label for category Widget in sidebar watchface"
+  },
+  "sidebar.watchface.category.hmSetting OS Module": {
+    "message": "hmSetting OS Module",
+    "description": "The label for category hmSetting OS Module in sidebar watchface"
+  },
+  "sidebar.watchface.category.hmSensor Sensor Module": {
+    "message": "hmSensor Sensor Module",
+    "description": "The label for category hmSensor Sensor Module in sidebar watchface"
+  },
+  "sidebar.watchface.category.Sensor": {
+    "message": "Sensor",
+    "description": "The label for category Sensor in sidebar watchface"
+  },
+  "sidebar.watchface.category.hmFS File System Module": {
+    "message": "hmFS File System Module",
+    "description": "The label for category hmFS File System Module in sidebar watchface"
+  },
+  "sidebar.watchface.category.Timer Module": {
+    "message": "Timer Module",
+    "description": "The label for category Timer Module in sidebar watchface"
+  },
+  "sidebar.samples.category.App": {
+    "message": "App",
+    "description": "The label for category App in sidebar samples"
+  },
+  "sidebar.samples.category.Watchface": {
+    "message": "Watchface",
+    "description": "The label for category Watchface in sidebar samples"
+  },
+  "sidebar.designs.category.Design Concept": {
+    "message": "Design Concept",
+    "description": "The label for category Design Concept in sidebar designs"
+  },
+  "sidebar.designs.category.Structure": {
+    "message": "Structure",
+    "description": "The label for category Structure in sidebar designs"
+  },
+  "sidebar.designs.category.Interaction": {
+    "message": "Interaction",
+    "description": "The label for category Interaction in sidebar designs"
+  },
+  "sidebar.designs.category.Visual": {
+    "message": "Visual",
+    "description": "The label for category Visual in sidebar designs"
+  },
+  "sidebar.designs.category.Templates": {
+    "message": "Templates",
+    "description": "The label for category Templates in sidebar designs"
+  },
+  "sidebar.designs.category.Elements": {
+    "message": "Elements",
+    "description": "The label for category Elements in sidebar designs"
+  },
+  "sidebar.designs.category.Watchface Design Specifications": {
+    "message": "Watchface Design Specifications",
+    "description": "The label for category Watchface Design Specifications in sidebar designs"
+  },
+  "sidebar.designs.category.Internationalization": {
+    "message": "Internationalization",
+    "description": "The label for category Internationalization in sidebar designs"
+  },
+  "sidebar.designs.category.Accessibility Design": {
+    "message": "Accessibility Design",
+    "description": "The label for category Accessibility Design in sidebar designs"
+  }
+}

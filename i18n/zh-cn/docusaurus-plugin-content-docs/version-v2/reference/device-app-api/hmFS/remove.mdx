@@ -1,0 +1,33 @@
+---
+title: hmFS.remove(path)
+sidebar_label: remove
+---
+
+删除文件
+
+## 类型
+
+```ts
+(path: string) => result
+```
+
+## 参数
+
+### path
+
+| 说明           | 必填 | 类型     | 默认值 |
+| -------------- | ---- | -------- | ------ |
+| 删除的文件路径 | 是   | `string` | -      |
+
+### result
+
+| 说明                   | 类型     |
+| ---------------------- | -------- |
+| 操作结果，`0` 表示成功 | `number` |
+
+## 代码示例
+
+```js
+const result = hmFS.remove('path/to/test_file.txt')
+console.log(result)
+```

@@ -1,0 +1,23 @@
+# cancel
+
+> Start from API_LEVEL `3.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Delete the notification message identified by the specified ID in the notification center.
+
+:::info
+permission code: `device:os.notification`
+:::
+
+## Type
+
+```ts
+function cancel(alarmId: number | Array<number>): void
+```
+
+## Example
+
+```js
+import { cancel } from '@zos/notification'
+
+cancel(alarmID)
+```

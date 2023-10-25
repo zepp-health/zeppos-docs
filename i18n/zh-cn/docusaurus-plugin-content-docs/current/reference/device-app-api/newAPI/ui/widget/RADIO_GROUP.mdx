@@ -1,0 +1,114 @@
+---
+title: RADIO_GROUP
+sidebar_label: RADIO_GROUP 单选框
+---
+
+> API_LEVEL `2.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../../guides/framework/device/compatibility.md)。
+
+![radio_group_sample](/img/api/radio_group_sample.jpg)
+
+用于在多个选项中选择单个选项。每个单独的选项是 `STATE_BUTTON` 控件，需要单独创建。
+
+## 创建 UI 控件
+
+```js
+import { createWidget, widget } from '@zos/ui'
+
+const radioGroup = createWidget(widget.RADIO_GROUP, radioGroupParam)
+const stateButton = createWidget(widget.STATE_BUTTON, stateButtonParam)
+```
+
+## 类型
+
+### radioGroupParam: object
+
+| 属性         | 说明                       | 是否必须 | 类型        |
+| ------------ | -------------------------- | -------- | ----------- |
+| x            | 控件 x 坐标                | 是       | `number`    |
+| y            | 控件 y 坐标                | 是       | `number`    |
+| w            | 控件显示宽度               | 是       | `number`    |
+| h            | 控件显示高度               | 是       | `number`    |
+| select_src   | 控件选中状态所显示的图片   | 是       | `string`    |
+| unselect_src | 控件未选中状态所显示的图片 | 是       | `string`    |
+| check_func   | 按钮状态改变时的回调       | 否       | `CheckFunc` |
+
+### CheckFunc: function
+
+```js
+(radioGroup: RadioGroup, index: number, checked: boolean) => void
+```
+
+| 参数       | 说明              | 类型         |
+| ---------- | ----------------- | ------------ |
+| radioGroup | `radioGroup` 实例 | `RadioGroup` |
+| index      | 单个选项的索引    | `number`     |
+| checked    | 是否选中          | `boolean`    |
+
+### StateButton: object
+
+| 属性 | 说明                                    | 是否必须 | 类型     |
+| ---- | --------------------------------------- | -------- | -------- |
+| x    | 控件 x 坐标，相对于 `radioGroup` 的坐标 | 是       | `number` |
+| y    | 控件 y 坐标, 相对于 `radioGroup` 的坐标 | 是       | `number` |
+| w    | 控件显示宽度                            | 是       | `number` |
+| h    | 控件显示高度                            | 是       | `number` |
+
+:::caution
+必须要对控件进行一次初始化设置 `prop.INIT`，才能渲染视图
+:::
+
+### Prop 属性
+
+| 属性                  | 支持 get/set | 类型     | 备注                                                                           |
+| --------------------- | ------------ | -------- | ------------------------------------------------------------------------------ |
+| `prop.INIT`      | set          | `object` | 初始化组件，并且设置默认的选中项                                               |
+| `prop.CHECKED`   | set/get      | `object` | 设置选中子控件为选中状态，或者用于获取子控件的选中状态，值的类型为 `boolean`   |
+| `prop.UNCHECKED` | get          | `object` | 设置选中子控件为未选中状态，或者用于获取子控件的选中状态，值的类型为 `boolean` |
+
+## 代码示例
+
+:::tip
+代码示例中的图片资源请参考 [设计资源](../../../../related-resources/design-resources.mdx)
+:::
+
+```js
+import { createWidget, widget } from '@zos/ui'
+
+Page({
+  build() {
+    const radioGroup = createWidget(widget.RADIO_GROUP, {
+      x: 0,
+      y: 0,
+      w: 480,
+      h: 64,
+      select_src: 'selected.png',
+      unselect_src: 'unselected.png',
+      check_func: (group, index, checked) => {
+        console.log('index', index)
+        console.log('checked', checked)
+      }
+    })
+
+    const button1 = radioGroup.createWidget(widget.STATE_BUTTON, {
+      x: 40,
+      y: 200,
+      w: 64,
+      h: 64
+    })
+    const button2 = radioGroup.createWidget(widget.STATE_BUTTON, {
+      x: 190,
+      y: 200,
+      w: 64,
+      h: 64
+    })
+    const button3 = radioGroup.createWidget(widget.STATE_BUTTON, {
+      x: 340,
+      y: 200,
+      w: 64,
+      h: 64
+    })
+
+    radioGroup.setProperty(prop.INIT, button3)
+  }
+})
+```

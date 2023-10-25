@@ -1,0 +1,45 @@
+# setBrightness
+
+> API_LEVEL `2.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+设置当前设备的屏幕亮度。如果当前开启了自动亮度设置，亮度由光线传感器自动调节，此时调用 `setBrightness` 不会生效，需要使用 `setAutoBrightness` 关闭自动亮度后再进行设置。注意事项：如果退出当前页面，需要考虑是否需要设置回原来的亮度。
+
+## 类型
+
+```ts
+function setBrightness(option: Option): Result
+```
+
+### 简化调用方式
+
+```ts
+function setBrightness(brightness: number): Result
+```
+
+## 参数
+
+### Option
+
+| 属性       | 类型                | 必填 | 默认值 | 说明                       | API_LEVEL |
+| ---------- | ------------------- | ---- | ------ | -------------------------- | --------- |
+| brightness | <code>number</code> | 是   | -      | 屏幕亮度数值，范围 0 - 100 | 2.0       |
+
+### Result
+
+| 类型                | 说明                    |
+| ------------------- | ----------------------- |
+| <code>number</code> | 如果返回 `0` 则表明成功 |
+
+## 代码示例
+
+```js
+import { setBrightness } from '@zos/display'
+
+const result = setBrightness({
+  brightness: 50,
+})
+
+if (result === 0) {
+  console.log('setBrightness success')
+}
+```

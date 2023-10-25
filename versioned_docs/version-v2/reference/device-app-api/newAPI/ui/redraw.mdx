@@ -1,0 +1,22 @@
+---
+title: redraw()
+sidebar_label: redraw
+---
+
+> Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+In some boundary cases, after `deleteWidget`, the view may not be updated in time, need to call `redraw()` manually to update the view
+
+## Type
+
+```ts
+() => undefined
+```
+
+## Code example
+
+```js
+import { redraw } from '@zos/ui'
+
+redraw()
+```

@@ -1,0 +1,269 @@
+---
+title: media
+sidebar_label: Media
+---
+
+> Start from API_LEVEL `3.0` . Please refer to [API_LEVEL](../../../guides/framework/device/compatibility.md).
+
+The Media multimedia module includes a player and recorder with the ability to record and play audio.
+
+## create
+
+Creating multimedia control objects
+
+Pass in the creation type to create a Player object or a Recorder Record object
+
+```ts
+create(id: number): Player | Record
+```
+
+| id Value      | Description |
+| ------------- | ----------- |
+| `id.PLAYER`   | Player      |
+| `id.RECORDER` | Recorder    |
+
+```js
+import { create, id } from '@zos/media'
+
+const player = create(id.PLAYER)
+```
+
+## General methods and properties
+
+:::tip
+Player and Recorder have common general methods and properties
+:::
+
+### start
+
+Start playback/recording
+
+```ts
+start(): void
+```
+
+### stop
+
+Stop playback/recording
+
+```ts
+stop(): void
+```
+
+### addEventListener
+
+Event listener, used to listen to the status of the player/recorder, when the status changes, it will trigger the `callback` callback function
+
+```ts
+addEventListener(callback: function): void
+```
+
+## Player Interface
+
+### setSource
+
+Before starting playback, set the playback parameters and related encoding parameters
+
+```ts
+setSource(source: number, obj: object): void
+```
+
+The value of source supports `player.source.FILE`.
+
+`player.source.FILE` plays the specified file, which supports `MP3` format and `OPUS` format recorded using the Media API, with the following obj parameter type.
+
+| Properties | Description                                                                                                                                                         | Required | Type     |
+| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- | -------- |
+| file       | File path, default relative to the Mini Program assets directory. You can play the audio files downloaded by the Mini Program via data:// directed to the Mini Program data directory | YES      | `string` |
+
+### prepare
+
+Set up the player to enter the preparation phase, cache multimedia data, etc., and return the results via the status listener
+
+```ts
+prepare(): void
+```
+
+```js
+import { create, id } from '@zos/media'
+
+const player = create(id.PLAYER)
+
+player.addEventListener(player.event.PREPARE, function (result) {
+  if (result) {
+    console.log('=== prepare succeed ===')
+    player.start()
+  } else {
+    console.log('=== prepare fail ===')
+    player.release()
+  }
+})
+```
+
+### getDuration
+
+Get the total duration of the currently playing media file, in seconds, return `0` means invalid
+
+```ts
+getDuration(): number
+```
+
+### getVolume
+
+Get the current playback volume value, range [0 - 100]
+
+```ts
+getVolume(): number
+```
+
+### setVolume
+
+Set the playback volume value, the range [0 - 100], the result range whether the setting is successful, `true` means the setting is successful
+
+```ts
+setVolume(vol: number): boolean
+```
+
+### getTitle
+
+Gets the title of the currently playing media file and returns' undefined 'when the call fails
+
+```ts
+getTitle(): string | undefined
+```
+
+### getArtist
+
+Gets the artist of the currently playing media file and returns' undefined 'when the call fails
+
+```ts
+getArtist(): string | undefined
+```
+
+### getMediaInfo
+
+Get the title, artist, and duration of the current media file
+
+```ts
+getMediaInfo(): MediaInfo
+```
+
+| Property | Description                                                                        | Type                                 |
+| -------- | ---------------------------------------------------------------------------------- | ------------------------------------ |
+| title    | File name                                                                          | <code>string&#124;undefined</code> |
+| artist   | Artist                                                                             | <code>string&#124;undefined</code> |
+| duration | File duration, which can be obtained only if the player is in the 'PREPARED' state | `number`                             |
+
+### release
+
+Release player hardware resources after playback has stopped
+
+```ts
+release(): void
+```
+
+### getStatus
+
+Get player status
+
+```ts
+getStatus(): number
+```
+
+Return value meaning refer to `player.state`
+
+### player.event
+
+Types of events that the player supports to listen to
+
+| Event Value             | Description                                                                                                                                              |
+| ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `player.event.PREPARE`  | Asynchronous result listener for the `prepare` interface, callback function `(result: boolean) => void`, parameter `result` indicates success or failure |
+| `player.event.COMPLETE` | After the audio starts playing normally, the `COMPLETE` event can be listened to when the audio file or audio data has finished playing                  |
+
+### player.state
+
+Player Status Enumeration
+
+| State Value                | Description                                        |
+| -------------------------- | -------------------------------------------------- |
+| `player.state.IDLE`        | Initial state                                      |
+| `player.state.INITIALIZED` | The state after `setSource`                        |
+| `player.state.PREPARING`   | Status after the `prepare` call, before `PREPARED` |
+| `player.state.PREPARED`    | `prepare` status after success                     |
+| `player.state.STARTED`     | Status after starting playback                     |
+| `player.state.PAUSED`      | Status when playback is paused                     |
+| `player.state.STOPPED`     | Status after stopping playback                     |
+
+## Record Interface
+
+Audio recorder supports recording audio to files
+
+### setFormat
+
+```js
+setFormat(codec: number, param: object): void
+```
+
+codec Reference codec value
+
+| codec Value  | Description    |
+| ------------ | -------------- |
+| `codec.OPUS` | Opus Code Type |
+
+param Type
+
+| Properties  | Description                                                                                                                                  | Required | Type     |
+| ----------- | -------------------------------------------------------------------------------------------------------------------------------------------- | -------- | -------- |
+| target_file | When recording to a file, specify the path to save the audio, support the `data` directory of the Mini Program, such as: `data://record_file.opus` | YES      | `string` |
+
+## Code Examples
+
+```js
+// Player
+import { create, id } from '@zos/media'
+
+const player = create(id.PLAYER)
+
+player.addEventListener(player.event.PREPARE, function (result) {
+  if (result) {
+    console.log('=== prepare succeed ===')
+    player.start()
+  } else {
+    console.log('=== prepare fail ===')
+    player.release()
+  }
+})
+
+player.addEventListener(player.event.COMPLETE, function (result) {
+  console.log('=== play end ===')
+  player.stop()
+  player.release()
+})
+
+player.setSource(player.source.FILE, { file: '08-15s-16000-1ch.opus' })
+
+// User control
+player.prepare()
+player.pause()
+player.resume()
+player.stop()
+player.release()
+```
+
+```js
+// Recorder
+import { create, id, codec } from '@zos/media'
+
+const recorder = create(id.RECORDER)
+
+recorder.setFormat(codec.OPUS, {
+  target_file: 'data://record_file.opus'
+})
+
+// start
+recorder.start()
+
+// stop
+recorder.stop()
+```

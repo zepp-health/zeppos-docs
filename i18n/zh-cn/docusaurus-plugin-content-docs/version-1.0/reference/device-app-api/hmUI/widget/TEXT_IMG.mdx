@@ -1,0 +1,89 @@
+---
+title: TEXT_IMG
+sidebar_label: TEXT_IMG 文本+图片
+---
+
+支持以图片的方式显示文本，需要传入图片字体数组 `font_array`。
+
+## 创建 UI 控件
+
+```js
+const textImg = hmUI.createWidget(hmUI.widget.TEXT_IMG, Param)
+```
+
+## 类型
+
+### Param: object
+
+| 属性             | 说明                                                                                          | 是否必须 | 类型     |
+| ---------------- | --------------------------------------------------------------------------------------------- | -------- | -------- |
+| x                | 控件 x 坐标 "x":0                                                                             | 是       | `number` |
+| y                | 控件 y 坐标                                                                                   | 是       | `number` |
+| w                | 控件宽度 （不写会根据 type 自动计算）                                                         | 否       | `number` |
+| h                | 控件高度 （不写会根据 type 自动计算）                                                         | 否       | `number` |
+| font_array       | 图片字体数组 要 0-9 排序                                                                      | 是       | `array`  |
+| type             | 数据类型，详见[data_type](../../../../watchface/api/hmUI/widget/data_type.mdx)                | 否       | `number` |
+| text             | 指定显示的文本内容 指定此字段后 type 属性将失效 内容只支持 0-9 显示单位 负号 小数点图片见下表 | 否       | `string` |
+| unit_sc          | 中文简体单位                                                                                  | 否       | `string` |
+| unit_en          | 英文单位                                                                                      | 否       | `string` |
+| unit_tc          | 中文繁体单位                                                                                  | 否       | `string` |
+| imperial_unit_sc | 中文简体英制单位                                                                              | 否       | `string` |
+| imperial_unit_en | 英文英制单位                                                                                  | 否       | `string` |
+| imperial_unit_tc | 中文繁体英制单位                                                                              | 否       | `string` |
+| negative_image   | 负号图片                                                                                      | 否       | `string` |
+| dont_path        | 小数点图片 可以当分隔符使用                                                                   | 否       | `string` |
+| h_space          | 字体间隔                                                                                      | 否       | `number` |
+| align_h          | 横轴对齐方式（值见 ALIGN）                                                                    | 否       | `ALIGN`  |
+
+### ALIGN 对齐方式
+
+| 值                  | 说明        |
+| ------------------- | ----------- |
+| hmUI.align.LEFT     | 横轴-左对齐 |
+| hmUI.align.RIGHT    | 横轴-右对齐 |
+| hmUI.align.CENTER_H | 横轴-居中   |
+
+### Text 字段绑定单位 负号 小数点资源图片
+
+| 字符 | 对应资源           |
+| ---- | ------------------ |
+| u    | 国际单位和英制单位 |
+| -    | 负号图片           |
+| .    | 小数点图片         |
+
+如果 text 字段设置为 "12u" 前面的 12 会去图片数组里取对应的图片 遇到 u 会自动转为单位图片绘制
+
+## 更新 Text
+
+```js
+const widget = hmUI.createWidget(hmUI.widget.TEXT_IMG, Param)
+const text = '12' //如果要不显示数据 直接写""
+widget.setProperty(hmUI.prop.TEXT, text)
+```
+
+## 代码示例
+
+```js
+const fontArray = [
+  fontRootPath + '00.png',
+  fontRootPath + '01.png',
+  fontRootPath + '02.png',
+  fontRootPath + '03.png',
+  fontRootPath + '04.png',
+  fontRootPath + '05.png',
+  fontRootPath + '06.png',
+  fontRootPath + '07.png',
+  fontRootPath + '08.png',
+  fontRootPath + '09.png'
+]
+
+const dayText = hmUI.createWidget(hmUI.widget.TEXT_IMG, {
+  x: 207,
+  y: 340,
+  type: hmUI.data_type.BATTERY,
+  font_array: fontArray,
+  h_space: 1,
+  align_h: 16,
+  text: '123'
+})
+```

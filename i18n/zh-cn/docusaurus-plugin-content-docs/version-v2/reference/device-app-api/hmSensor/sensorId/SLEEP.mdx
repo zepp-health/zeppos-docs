@@ -1,0 +1,154 @@
+---
+title: SLEEP
+sidebar_label: SLEEP 睡眠阶段
+---
+
+## 创建传感器
+
+```js
+const sleep = hmSensor.createSensor(hmSensor.id.SLEEP)
+```
+
+## sleep 实例
+
+### sleep.updateInfo()
+
+主动更新睡眠信息
+
+#### 类型
+
+```ts
+() => void
+```
+
+### sleep.getSleepStageData()
+
+获取阶段睡眠信息
+
+#### 类型
+
+```ts
+() => Array<SleepInfo>
+```
+
+##### SleepInfo
+
+| 属性  | 说明                            | 类型     |
+| ----- | ------------------------------- | -------- |
+| model | 模式                            | `number` |
+| start | 开始时间，基于当天 0 点的分钟数 | `number` |
+| stop  | 结束事件，基于当天 0 点的分钟数 | `number` |
+
+##### model:number
+
+`modelData` 见 `sleep.getSleepStageModel()`
+
+| 值                      | 说明       |
+| ----------------------- | ---------- |
+| `modelData.WAKE_STAGE`  | 清醒       |
+| `modelData.REM_STAGE`   | REM 阶段   |
+| `modelData.LIGHT_STAGE` | 浅睡眠阶段 |
+| `modelData.DEEP_STAGE`  | 深睡眠阶段 |
+
+#### 示例用法
+
+```js
+const sleepStageArray = sleep.getSleepStageData()
+
+for (int i = 0; i < sleepStageArray.length; i++) {
+  const data = sleepStageArray[i];
+  console.log(data.model)
+  console.log(data.start)
+  console.log(data.stop)
+}
+```
+
+### sleep.getSleepStageModel()
+
+获取睡眠模式
+
+#### 类型
+
+```ts
+() => modelData
+```
+
+#### 示例用法
+
+```js
+const modelData = sleep.getSleepStageModel()
+console.log(modelData.WAKE_STAGE)
+console.log(modelData.REM_STAGE)
+console.log(modelData.LIGHT_STAGE)
+console.log(modelData.DEEP_STAGE)
+```
+
+### sleep.getSleepHrData()
+
+获取睡眠心率
+
+#### 类型
+
+```ts
+() => void
+```
+
+### sleep.getTotalTime()
+
+获取睡眠总时间
+
+#### 类型
+
+```ts
+() => number
+```
+
+#### 代码示例
+
+```js
+const totalTime = sleep.getTotalTime()
+```
+
+### sleep.getBasicInfo()
+
+#### 类型
+
+```ts
+() => BasicInfo
+```
+
+##### BasicInfo
+
+| 属性      | 说明                                   | 类型     |
+| --------- | -------------------------------------- | -------- |
+| score     | 睡眠得分                               | `number` |
+| deepMin   | 深睡时间 单位分                        | `number` |
+| startTime | 睡眠起始时间, 基于当天 0 点的分钟数    | `number` |
+| endTime   | 睡眠结束时间, 和起始时间同基点的分钟数 | `number` |
+
+#### 代码示例
+
+```js
+const basicInfo = sleep.getBasicInfo()
+console.log('basicInfo score=' + basicInfo.score) //睡眠得分
+console.log('basicInfo deepMin=' + basicInfo.deepMin) //深睡时间 单位分
+console.log('basicInfo startTime=' + basicInfo.startTime) // 睡眠起始时间, 基于当天0点的分钟数
+console.log('basicInfo endTime=' + basicInfo.endTime) // 睡眠结束时间, 和起始时间同基点的分钟数
+// 睡眠totalTime = endTime - startTime + 1;
+
+let start = basicInfo.startTime
+if (start >= SLEEP_REFERENCE_ZERO) {
+  // SLEEP_REFERENCE_ZERO 是一天的分钟数, 即 24*60
+  start -= SLEEP_REFERENCE_ZERO
+}
+
+hour = start / 60
+minute = start % 60
+
+const end = basicInfo.endTime + 1 // 和副屏中对齐的话,, 结束时间需要加1
+if (end >= SLEEP_REFERENCE_ZERO) {
+  end -= SLEEP_REFERENCE_ZERO
+}
+hour = end / 60
+minute = end % 60
+```

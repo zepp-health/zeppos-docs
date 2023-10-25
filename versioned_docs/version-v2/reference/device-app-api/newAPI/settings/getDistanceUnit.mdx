@@ -1,0 +1,40 @@
+# getDistanceUnit
+
+> Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Returns whether the current distance unit is metric or imperial. This method is to get the units set by the user, not to represent the units of the data, the data units refer to the interface description of the corresponding data.
+
+## Type
+
+```ts
+function getDistanceUnit(): Result
+```
+
+## Parameters
+
+### Result
+
+| Type                | Description                                            |
+| ------------------- | ------------------------------------------------------ |
+| <code>number</code> | Distance units, value refer to distance unit constants |
+
+## Constants
+
+### Distance unit constants
+
+| Constant                 | Description     | API_LEVEL |
+| ------------------------ | --------------- | --------- |
+| `DISTANCE_UNIT_METRIC`   | metric system   | 2.0       |
+| `DISTANCE_UNIT_IMPERIAL` | imperial system | 2.0       |
+
+## Example
+
+```js
+import { getDistanceUnit, DISTANCE_UNIT_METRIC } from '@zos/settings'
+
+const distanceUnit = getDistanceUnit()
+
+if (distanceUnit === DISTANCE_UNIT_METRIC) {
+  console.log('metric')
+}
+```

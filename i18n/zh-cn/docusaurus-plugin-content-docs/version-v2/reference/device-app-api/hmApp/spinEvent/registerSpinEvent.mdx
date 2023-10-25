@@ -1,0 +1,40 @@
+---
+title: hmApp.registerSpinEvent(callback)
+sidebar_label: registerSpinEvent
+---
+
+注册表冠旋转事件监听
+
+## 类型
+
+```ts
+(callback: (key: Key, degree: Degree) => boolean) => void
+```
+
+## 参数
+
+### Callback
+
+| 说明                                                                     | 必填 | 类型                        | 默认值 |
+| ------------------------------------------------------------------------ | ---- | --------------------------- | ------ |
+| 表冠旋转事件回调函数，返回值 `false` 不跳过默认行为，`true` 跳过默认行为 | 是   | `(key: Key, degree: Degree) => boolean` | -      |
+
+### Key
+
+| 说明                           |
+| ------------------------------ |
+| 目前仅支持 `HOME`|
+
+### Degree
+
+| 说明                                                                           | 类型     |
+| ------------------------------------------------------------------------------ | -------- |
+| 正数为逆时针旋转，负数为顺时针旋转。数值为转过的角度，旋转速度越快，绝对值越大 | `number` |
+
+## 代码示例
+
+```js
+hmApp.registerSpinEvent(function (key, degree) {
+  console.log('receive key:' + key + ' degree:' + degree) //这里的 key 目前只能是 HOME，可以不用判断
+})
+```

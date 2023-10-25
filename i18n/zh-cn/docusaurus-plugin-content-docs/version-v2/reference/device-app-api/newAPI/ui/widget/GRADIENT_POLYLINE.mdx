@@ -1,0 +1,96 @@
+---
+title: POLYLINE
+sidebar_label: POLYLINE 折线图
+---
+
+> API_LEVEL `2.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../../guides/framework/device/compatibility.md)。
+
+![polyline](/img/api/polyline_sample.jpg.jpg)
+
+绘制多段线，可做于折线图上的多段线条。
+
+## 创建 UI 控件
+
+```js
+import { createWidget, widget } from '@zos/ui'
+
+const polyline = createWidget(widget.GRADKIENT_POLYLINE, Param)
+```
+
+## 类型
+
+### Param: object
+
+| 属性       | 说明                      | 是否必须 | 类型     |
+| ---------- | ------------------------- | -------- | -------- |
+| x          | 控件 x 坐标               | 是       | `number` |
+| y          | 控件 y 坐标               | 是       | `number` |
+| w          | 控件宽度                  | 是       | `number` |
+| h          | 控件高度                  | 是       | `number` |
+| line_color | 线条颜色，默认 `0xe60039` | 否       | `number` |
+| line_width | 线条宽度，默认 `2` px     | 否       | `number` |
+
+### polyline 实例
+
+#### polyline.clear()
+
+```ts
+() => void
+```
+
+清除绘制的线条
+
+#### polyline.addLine()
+
+```ts
+(option: Option) => void
+```
+
+##### Option: object
+
+| 属性        | 说明                       | 类型              | 版本 |
+| ----------- | -------------------------- | ----------------- | ---- |
+| data        | 坐标数组                   | `Array<AxisItem>` | -    |
+| count       | 坐标数组长度               | `number`          | -    |
+| color_from  | 初始填充渐变色             | `number`          | 2.1  |
+| color_to    | 结束填充渐变色             | `number`          | 2.1  |
+| curve_style | 是否采用插值，平滑曲线效果 | `boolean`         | 2.1  |
+
+##### AxisItem: object
+
+| 属性 | 说明                                   | 类型     |
+| ---- | -------------------------------------- | -------- |
+| x    | 横向坐标，相对坐标，距离控件左侧的距离 | `number` |
+| y    | 纵向坐标，相对坐标，距离控件底部的距离 | `number` |
+
+## 代码示例
+
+```js
+import { createWidget, widget } from '@zos/ui'
+import { px } from '@zos/utils'
+
+Page({
+  build() {
+    const lineDataList = [
+      { x: 0, y: px(200) },
+      { x: px(100), y: px(10) },
+      { x: px(200), y: px(50) },
+      { x: px(300), y: px(50) },
+      { x: px(400), y: px(200) }
+    ]
+    const polyline = createWidget(widget.GRADKIENT_POLYLINE, {
+      x: 0,
+      y: px(200),
+      w: px(480),
+      h: px(200),
+      line_color: 0x00ffff,
+      line_width: 4
+    })
+    polyline.clear()
+    polyline.addLine({
+      data: lineDataList,
+      count: lineDataList.length
+    })
+  }
+})
+```

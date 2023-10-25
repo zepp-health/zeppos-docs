@@ -1,0 +1,19 @@
+---
+title: Modal 弹窗
+sidebar_label: Modal 弹窗
+---
+
+## 类型
+
+```ts
+(props: Props, renderFuncArr?: RenderFunc | Array<RenderFunc>) => result: RenderFunc
+```
+
+## Props: object
+
+| 属性         | 说明                                                                               | 必填 | 类型         | 默认值 |
+| ------------ | ---------------------------------------------------------------------------------- | ---- | ------------ | ------ |
+| mask         | 如果为 `true`，mask 就被渲染                                                       | 否   | `boolean`    | `true` |
+| maskClosable | 如果为 `true`，单击背景将触发 `onClose`                                            | 否   | `boolean`    | `true` |
+| visible      | 如果为 `true`，则 modal 可见                                                       | 否   | `boolean`    | -      |
+| onClose      | 当组件请求关闭时触发回调。 可以选择使用 reason parameter 来控制对 `onClose` 的响应 | 否   | `() => void` | -      |

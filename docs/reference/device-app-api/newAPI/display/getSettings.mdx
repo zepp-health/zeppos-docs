@@ -1,0 +1,63 @@
+# getSettings
+
+> Start from API_LEVEL `3.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Get system display related information.
+
+## Type
+
+```ts
+function getSettings(): Result
+```
+
+## Parameters
+
+### Result
+
+| Property | Type                    | Required | DefaultValue | Description                     | API_LEVEL |
+| -------- | ----------------------- | -------- | ------------ | ------------------------------- | --------- |
+| screen   | <code>ScreenObj</code>  | Y        | -            | Screen Status                   | 3.0       |
+| wrist    | <code>WristObj</code>   | Y        | -            | Lift wrist to view info setting | 3.0       |
+| standby  | <code>StandbyObj</code> | Y        | -            | Rest screen display settings    | 3.0       |
+
+### ScreenObj
+
+| Property | Type                | Required | DefaultValue | Description                              | API_LEVEL |
+| -------- | ------------------- | -------- | ------------ | ---------------------------------------- | --------- |
+| status   | <code>number</code> | Y        | -            | Current screen status, `1`: On, `2`: Off | 3.0       |
+| duration | <code>number</code> | Y        | -            | Screen light-up time, in seconds         | 3.0       |
+
+### WristObj
+
+| Property  | Type                | Required | DefaultValue | Description                                                   | API_LEVEL |
+| --------- | ------------------- | -------- | ------------ | ------------------------------------------------------------- | --------- |
+| speed     | <code>number</code> | Y        | -            | Response speed                                                | 3.0       |
+| model     | <code>number</code> | Y        | -            | Mode, see `model` for value                                   | 3.0       |
+| startTime | <code>number</code> | Y        | -            | Start time, based on the number of minutes at 0:00 of the day | 3.0       |
+| endTime   | <code>number</code> | Y        | -            | End time, based on the number of minutes at 0:00 of the day   | 3.0       |
+
+### StandbyObj
+
+| Property  | Type                | Required | DefaultValue | Description                                                                    | API_LEVEL |
+| --------- | ------------------- | -------- | ------------ | ------------------------------------------------------------------------------ | --------- |
+| style     | <code>number</code> | Y        | -            | Rest screen Watchface style, `0`: system default, `1`: follow the current dial | 3.0       |
+| model     | <code>number</code> | Y        | -            | Mode, see `model` for value                                                    | 3.0       |
+| startTime | <code>number</code> | Y        | -            | Start time, based on the number of minutes at 0:00 of the day                  | 3.0       |
+| endTime   | <code>number</code> | Y        | -            | End time, based on the number of minutes at 0:00 of the day                    | 3.0       |
+
+### mode
+
+| Value | Type                | Description         | API_LEVEL |
+| ----- | ------------------- | ------------------- | --------- |
+| 0     | <code>number</code> | Measurement invalid | 3.0       |
+| 1     | <code>number</code> | Measurement invalid | 3.0       |
+| 2     | <code>number</code> | Measurement invalid | 3.0       |
+| 3     | <code>number</code> | Measurement invalid | 3.0       |
+
+## Example
+
+```js
+import { getSettings } from '@zos/display'
+
+console.log(getSettings())
+```

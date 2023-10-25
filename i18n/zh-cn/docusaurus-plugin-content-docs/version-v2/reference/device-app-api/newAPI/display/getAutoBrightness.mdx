@@ -1,0 +1,31 @@
+# getAutoBrightness
+
+> API_LEVEL `2.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+获取是否开启屏幕自动亮度设置。
+
+## 类型
+
+```ts
+function getAutoBrightness(): Result
+```
+
+## 参数
+
+### Result
+
+| 类型                 | 说明                                                              |
+| -------------------- | ----------------------------------------------------------------- |
+| <code>boolean</code> | `true` - 自动亮度设置为开启状态，`false` - 自动亮度设置为关闭状态 |
+
+## 代码示例
+
+```js
+import { getAutoBrightness } from '@zos/display'
+
+const result = getAutoBrightness()
+
+if (result) {
+  console.log('Auto brightness setting is turned on')
+}
+```

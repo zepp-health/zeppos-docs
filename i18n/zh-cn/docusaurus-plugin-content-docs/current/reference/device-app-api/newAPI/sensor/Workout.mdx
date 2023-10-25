@@ -1,0 +1,56 @@
+---
+title: Workout
+sidebar_label: Workout 运动记录
+---
+
+> API_LEVEL `3.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+运动记录传感器。
+
+:::info
+权限代码： `data:user.hd.workout`
+:::
+
+## 方法
+
+### getStatus
+
+获取运动状态
+
+```ts
+getStatus(): Status
+```
+
+#### Status
+
+| 属性             | 类型                | 说明         | API_LEVEL |
+| ---------------- | ------------------- | ------------ | --------- |
+| vo2Max           | <code>number</code> | 最大摄氧量   | 3.0       |
+| trainingLoad     | <code>number</code> | 运动负荷     | 3.0       |
+| fullRecoveryTime | <code>number</code> | 完全恢复时间 | 3.0       |
+
+### getHistory
+
+获取运动记录时长
+
+```ts
+getHistory(): Array<History>
+```
+
+#### History
+
+| 属性      | 类型                | 说明         | API_LEVEL |
+| --------- | ------------------- | ------------ | --------- |
+| startTime | <code>number</code> | 运动开始时间 | 3.0       |
+| duration  | <code>number</code> | 时长，单位秒 | 3.0       |
+
+## 代码示例
+
+```js
+import { Workout } from '@zos/sensor'
+
+const workout = new Workout()
+
+const status = workout.getStatus()
+const history = workout.getHistory()
+```

@@ -1,0 +1,547 @@
+---
+title: Mini Program Configuration
+sidebar_label: Mini Program Configuration
+---
+
+The `app.json` file in the root of the Mini Program provides global configuration of the Mini Program.
+
+## Configuration items
+
+| Properties      | Type            | Required | Description                                                                                                                                                                                                         | Minimum Version |
+| --------------- | --------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| configVersion   | `string`        | YES      | Configuration file version number, supports the following values: `v1` deprecated, `v2` currently used.                                                                                                             | -               |
+| app             | `object`        | YES      | Mini Program configuration information.                                                                                                                                                                             | -               |
+| runtime         | `object`        | YES      | Mini Program runtime settings.                                                                                                                                                                                      | -               |
+| permissions     | `Array<string>` | YES      | List of Mini Program permissions.                                                                                                                                                                                   | -               |
+| targets         | `object`        | YES      | Build Mini Program installer setup.                                                                                                                                                                                 | -               |
+| i18n            | `object`        | YES      | Mini Program internationalization configuration.                                                                                                                                                                    | -               |
+| defaultLanguage | `string`        | YES      | The default language setting for the Mini Program. This value is used as the language of the program when the system cannot find a suitable language to set the program. This value is not recommended to be empty. | -               |
+| debug           | `boolean`       | NO       | Mini Program debugging function, supports the following values: `true` Enable debugging function; `false` Default value. Turn off the debugging function.                                                           | -               |
+
+### configVersion
+
+configVersion is the version of the JSON file and is used for parsing distinctions. The format is lowercase v + a number, e.g., v1, v2.
+
+Examples are as follows：
+
+```js
+{
+  "configVersion": "v2"
+}
+```
+
+### app
+
+`app` indicates program configuration information.
+
+| Properties  | Type            | Required | Description                                                                                                                           | Minimum Version |
+| ----------- | --------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| appId       | `number`        | YES      | The Mini Program "id", "id" is the unique identification of the Mini Program.                                                         | v2              |
+| appName     | `string`        | YES      | Mini Program Name.                                                                                                                    | v2              |
+| appType     | `string`        | YES      | Mini Program type. The following values are supported: `app` Mini Program; `watchface` dial.                                          | v2              |
+| version     | `object`        | YES      | Mini Program version information.                                                                                                     | v2              |
+| icon        | `string`        | NO       | The path to the Mini Program icon. Reference [Design Specifications - app icons](../designs/visual/icons.md#app-icons). If not passed, use the default icon. | v2              |
+| vender      | `string`        | YES      | Developer Name.                                                                                                                       | v2              |
+| venderId    | `number`        | NO       | Developer id.                                                                                                                         | -               |
+| cover       | `Array<string>` | NO       | Matching images for Mini Program display. In general, dials are used.                                                                 | -               |
+| description | `string`        | YES      | Short description of the Mini Program.                                                                                                | v2              |
+
+#### version: object
+
+`version` indicates the version information of the Mini Program.
+
+| Properties | Type     | Required | Description                                                                                                                                                        | Minimum Version |
+| ---------- | -------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------- |
+| code       | `number` | YES      | Mini Program program version number. The default starts from `1`. Note: Each version should be larger than the previous one. For example: `12`, `13`, `2001`, etc. | -               |
+| name       | `string` | YES      | Semantic version of the Mini Program. It is recommended that versions be recorded in the format x.x.x. For example: `1.0.1`.                                       | -               |
+
+Examples are as follows:
+
+```js
+{
+  "app": {
+    "appId": 1000089,
+    "appName": "······",
+    "appType": "app",
+    "version": {
+      "code": 5,
+      "name": "0.0.5"
+    },
+    "icon": "logo.png",
+    "vender": "······",
+    "description": "······"
+    }
+}
+```
+
+### runtime: object
+
+`runtime` indicates the Mini Program runtime configuration.
+
+| Properties | Type     | Required | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                  | Minimum Version |
+| ---------- | -------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| apiVersion | `object` | YES      | Runtime API Versions.                                                                                                                                                                                                                                                                                                                                                                                                                                                        | v2              |
+| type       | `number` | NO       | The loader type for loading Mini Programs at runtime, supporting the following values: `0` Current value YES Default value. It indicates that the Mini Program is loaded with the loader of the QuickJS-js interpreter, with the suffix .js, `1` indicates that the Mini Program is loaded with the loader of the C interpreter, with the suffix .c, `2` indicates that the Mini Program is loaded with the loader of the QuickJS-bytecode interpreter, with the suffix .bin | v2              |
+
+#### apiVersion: object
+
+`apiVersion` indicates API version information, Minimum Version, Target Version, Adopted Version, etc.
+
+When the APP-side Mini Program installs or upgrades the device-side Mini Program via Bluetooth, you need to get the JS-SDK version number of the device-side Mini Program, and then further compare it with this field.
+
+| Properties | Type     | Required | Description                                                                                                                                                           | Minimum Version |
+| ---------- | -------- | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| minVersion | `string` | YES      | Runtime requirements, this field YES is required to determine the current runtime requirements of the Mini Program; v <= minVersion, cannot be upgraded or installed. | v2              |
+| compatible | `string` | NO       | Compatible version, optional.                                                                                                                                         | v2              |
+| target     | `string` | NO       | This is the version of the target SDK, runtime, optionally.                                                                                                           | v2              |
+
+Examples are as follows:
+
+```js
+{
+  "runtime": {
+    "apiVersion": {
+      "compatible": "1.0.0",
+      "target": "1.0.1",
+      "minVersion": "1.0.0"
+    }，
+  "type": "0"
+  }
+}
+```
+
+### permissions: Array
+
+`permissions` indicates a list of permissions, if the user applies for a permission that is not in the list, the application is invalid, `permissions` supports dynamic application of permissions.
+
+```js
+{
+  "permissions": []
+}
+```
+
+### targets: object
+
+The targets allow you to distinguish between devices to pass in different build configurations.
+
+:::caution
+The key name of the targets object is the name of the subdirectory in the /assets directory, which needs to be consistent, see [directory structure](../guides/architecture/folder-structure.mdx).
+:::
+
+| Properties  | Type            | Required | Description                                                                                                  | Minimum Version |
+| ----------- | --------------- | -------- | ------------------------------------------------------------------------------------------------------------ | --------------- |
+| module      | `object`        | YES      | Mini Program function module configuration.                                                                  | v2              |
+| platforms   | `Array<object>` | YES      | Mini Program running platform device selection.                                                              | v2              |
+| designWidth | `number`        | YES      | The design width of the current view, adjusted using the px runtime; this value depends on the design drafts | v2              |
+
+As the latest known device names are as follows：
+
+```js
+{
+  "targets": {
+    "gtr-3-pro": {
+      "module": {
+        // ...
+      }
+    },
+    "gtr-3": {
+      "module": {
+        // ...
+      }
+    },
+    "gts-3": {
+      "module": {
+        // ...
+      }
+    },
+ }
+```
+
+### module: object
+
+| Properties       | Type     | Required                                     | Description                                      | Minimum Version |
+| ---------------- | -------- | -------------------------------------------- | ------------------------------------------------ | --------------- |
+| shortcut         | `object` | NO, only valid if `appType` is `app`.        | The description of jumping to the Mini Program.  | v2              |
+| page             | `object` | YES, required when `appType` is `app`.       | The configuration of page in Device App module . | v2              |
+| app-widget       | `object` | NO                                           | The configuration of Shortcut Cards.             | v2              |
+| secondary-widget | `object` | NO                                           | The configuration of SecondaryWidget.            | v2              |
+| watch-widget     | `object` | NO                                           | The configuration of watchface component module. | v2              |
+| watchface        | `object` | YES, required when `appType` is `watchface`. | The configuration of watchface module.           | v2              |
+| app-side         | `object` | NO                                           | The configuration of companion module.           | v2              |
+| setting          | `object` | NO                                           | The configuration of Settings App module.        | v2              |
+
+Examples are as follows:
+
+```json
+{
+  "module": {
+    "page": {
+      "pages": ["page/gtr-3-pro/loading"],
+      "window": {
+        "navigationBarBackgroundColor": "#ffffff",
+        "navigationBarTextStyle": "black",
+        "navigationBarTitleText": "Home Connect",
+        "backgroundColor": "#eeeeee",
+        "backgroundTextStyle": "light"
+      },
+      "app-side": {
+        "path": "app-side/index"
+      },
+      "setting": {
+        "path": "setting/index"
+      },
+      "app-widget": {
+        "widgets": [
+          {
+            "path": "app-widget/index",
+            "icon": "icon.png",
+            "name": "app-widget-demo",
+            "runtime": {
+              "type": "js"
+            }
+          }
+        ]
+      },
+      "secondary-widget": {
+        "widgets": [
+          {
+            "path": "secondary-widget/index",
+            "icon": "icon.png",
+            "name": "secondary-widget-demo",
+            "runtime": {
+              "type": "js"
+            }
+          }
+        ]
+      }
+    }
+  }
+}
+```
+
+#### shortcut: object
+
+`shortcut` indicates the description of jumping to the Mini Program. This attribute is mutually exclusive with the `page` attribute and will not exist together in a package.
+
+| Properties  | Type     | Required                         | Description                                                              | Minimum Version |
+| ----------- | -------- | -------------------------------- | ------------------------------------------------------------------------ | --------------- |
+| scheme      | `string` | YES                              | Protocol type: Support type dapp.                                        | v2              |
+| appLangType | `number` | YES                              | Jump to target Mini Program type: `0`: js Mini Program; `1`: native app. | v2              |
+| appId       | `number` | Required if `appLangType` is js. | The appid of the Mini Program.                                           | v2              |
+| path        | `string` | YES                              | File's path/native app's name.                                           | v2              |
+| params      | `string` | NO                               | The parameters for jumping.                                              | v2              |
+
+#### page: object
+
+`page` indicates the configuration of page in Device App module. This attribute is mutually exclusive with the `shortcut` attribute and will not exist in a package.
+
+| Properties | Type            | Required | Description                                                              | Minimum Version |
+| ---------- | --------------- | -------- | ------------------------------------------------------------------------ | --------------- |
+| pages      | `Array<string>` | YES      | Page path, at least one; the default is the first Mini Program entrance. | v2              |
+
+#### app-widget: object
+
+The `app-widget` represents a third-party App component.
+
+| Properties | Type            | Required | Description                  | Minimum Version |
+| ---------- | --------------- | -------- | ---------------------------- | --------------- |
+| widgets    | `Array<string>` | YES      | Component path, can be none. | v2              |
+
+#### watch-widget: object
+
+`watch-widget` represents the watchface component.
+
+| Properties | Type            | Required | Description                  | Minimum Version |
+| ---------- | --------------- | -------- | ---------------------------- | --------------- |
+| widgets    | `Array<string>` | YES      | Component path, can be none. | v2              |
+
+#### watchface: object
+
+`watchface` represents the watchface.
+
+| Properties  | Type     | Required                                   | Description                                        | Minimum Version |
+| ----------- | -------- | ------------------------------------------ | -------------------------------------------------- | --------------- |
+| path        | `string` | YES                                        | The path of watchface.                             | v2              |
+| main        | `number` | NO(If you don't add it, the default is 1.) | The watchface which displays in home page.(0:none) | v2              |
+| editable    | `number` | NO(If you don't add it, the default is 0.) | Editable watchface (0: not supported)              | v2              |
+| lockscreen  | `number` | NO(If you don't add it, the default is 0.) | Lock screen(0:none)                                | v2              |
+| photoscreen | `number` | NO(If you don't add it, the default is 0.) | Photo watchface (0: not supported)                 | v2              |
+
+#### app-side: object
+
+`app-side` represents a Side Service.
+
+| Properties | Type     | Required | Description               | Minimum Version |
+| ---------- | -------- | -------- | ------------------------- | --------------- |
+| path       | `string` | NO       | The path of Side Service. | v2              |
+
+#### setting: object
+
+`setting` represents the page of Settings App.
+
+| Properties | Type     | Required | Description               | Minimum Version |
+| ---------- | -------- | -------- | ------------------------- | --------------- |
+| path       | `string` | YES      | The path of Settings App. | v2              |
+
+#### platforms: object
+
+`platforms` indicates the target platform selection. Need to follow the developer to choose the type: `target.platforms` specification to take the value specification.
+
+The value reference of `deviceSource` [List of ZeppOS-enabled Devices](./related-resources/device-list.mdx)
+
+| Properties   | Type     | Required | Description                                 | Minimum Version |
+| ------------ | -------- | -------- | ------------------------------------------- | --------------- |
+| name         | `string` | NO       | Device description, named by the developer. | v2              |
+| deviceSource | `number` | YES      | Number of the equipment.                    | v2              |
+
+Examples are as follows：
+
+```js
+{
+  "platforms": [{
+    "name": "gts-3",
+    "deviceSource": 229
+  }, {
+    "name": "gts-3",
+    "deviceSource": 230
+  }]
+}
+```
+
+#### designWidth
+
+`designWidth` indicates the design width, provided to the global `px` function as the size calculation base, refer to [Screen Adaptation](../guides/best-practice/multi-screen-adaption.mdx).
+
+```js
+{
+  "designWidth": 390
+}
+```
+
+### i18n: object
+
+The `i18n` role is to configure multilingual processing.
+
+The abbreviations of the corresponding codes for each country region, refer to [Multilingual Mapping](./related-resources/language-list.mdx).
+
+Examples are as follows:
+
+```js
+{
+  "i18n": {
+    "en-US": {
+      "appName": "······"
+    },
+    "en-ES": {
+      "appName": "······"
+    }
+  }
+}
+```
+
+### defaultLanguage: string
+
+Examples are as follows:
+
+```js
+{
+  "defaultLanguage": "zh-cn"
+}
+```
+
+## Complete app.json example
+
+Take the `app.json` of the sample application Calories as an example:
+
+:::caution
+This example only configures `deviceSource` for Amazfit GTR 3 Pro, Amazfit GTR 3 and Amazfit GTS 3 devices.
+
+If you want to support the rest of the devices, please refer to the configuration of the targets field and add them yourself.
+:::
+
+```js
+{
+  "configVersion": "v2",
+  "app": {
+    "appId": 1000000,
+    "appName": "Calories",
+    "appType": "app",
+    "version": {
+      "code": 1,
+      "name": "1.0.0"
+    },
+    "icon": "icon.png",
+    "vender": "huami",
+    "description": ""
+  },
+  "permissions": [],
+  "runtime": {
+    "apiVersion": {
+      "compatible": "1.0.0",
+      "target": "1.0.1",
+      "minVersion": "1.0.0"
+    }
+  },
+  "targets": {
+    "gtr-3-pro": {
+      "module": {
+        "page": {
+          "pages": [
+            "page/gtr-3/index",
+            "page/gtr-3/foodList"
+          ]
+        }
+      },
+      "platforms": [{
+        "name": "gtr3pro",
+        "deviceSource": 229
+      }, {
+        "name": "gtr3pro",
+        "deviceSource": 230
+      }],
+      "designWidth": 480
+    },
+    "gtr-3": {
+      "module": {
+        "page": {
+          "pages": [
+            "page/gtr-3/index",
+            "page/gtr-3/foodList"
+          ]
+        }
+      },
+      "platforms": [{
+        "name": "gtr3",
+        "deviceSource": 226
+      }, {
+        "name": "gtr3",
+        "deviceSource": 227
+      }],
+      "designWidth": 480
+    },
+    "gts-3": {
+      "module": {
+        "page": {
+          "pages": [
+            "page/gts-3/index",
+            "page/gts-3/foodList"
+          ]
+        }
+      },
+      "platforms": [{
+        "name": "gts3",
+        "deviceSource": 224
+      }, {
+        "name": "gts3",
+        "deviceSource": 225
+      }],
+      "designWidth": 390
+    }
+  },
+  "i18n": {
+    "zh-CN": {
+      "appName": "卡路里"
+    },
+    "ar-EG": {
+      "appName": "السعرات الحرارية"
+    },
+    "ca-ES": {
+      "appName": "Calories"
+    },
+    "cs": {
+      "appName": "Kalorie"
+    },
+    "da-DK": {
+      "appName": "Kalorier"
+    },
+    "de-DE": {
+      "appName": "Kalorien"
+    },
+    "el": {
+      "appName": "Θερμίδες"
+    },
+    "en-US": {
+      "appName": "Calories"
+    },
+    "es-ES": {
+      "appName": "Calorías"
+    },
+    "fi": {
+      "appName": "Kalorit"
+    },
+    "fr-FR": {
+      "appName": "Calories"
+    },
+    "he": {
+      "appName": "קלוריות"
+    },
+    "hi": {
+      "appName": "कैलोरी"
+    },
+    "hu-HU": {
+      "appName": "Kalória"
+    },
+    "id-ID": {
+      "appName": "Kalori"
+    },
+    "it-IT": {
+      "appName": "Calorie"
+    },
+    "ja-JP": {
+      "appName": "カロリー"
+    },
+    "ko-KR": {
+      "appName": "칼로리"
+    },
+    "mr": {
+      "appName": "कॅलरीज"
+    },
+    "nb-NO": {
+      "appName": "Kalorier"
+    },
+    "nl": {
+      "appName": "Calorieën"
+    },
+    "pl-PL": {
+      "appName": "Kalorie"
+    },
+    "pt": {
+      "appName": "Calorias"
+    },
+    "pt-BR": {
+      "appName": "Calorias"
+    },
+    "ro": {
+      "appName": "Calorii"
+    },
+    "ru-RU": {
+      "appName": "Калории"
+    },
+    "sk": {
+      "appName": "Kalórie"
+    },
+    "sr": {
+      "appName": "Калорије"
+    },
+    "sv-SE": {
+      "appName": "Kalorier"
+    },
+    "th-TH": {
+      "appName": "แคลอรี"
+    },
+    "tr-TR": {
+      "appName": "Kalori"
+    },
+    "uk": {
+      "appName": "Калорії"
+    },
+    "vi": {
+      "appName": "Calo"
+    },
+    "zh-TW": {
+      "appName": "卡路里"
+    }
+  },
+  "defaultLanguage": "en-US"
+}
+```

@@ -1,0 +1,34 @@
+---
+title: hmSetting.setScreenAutoBright(isAutoBright)
+sidebar_label: setScreenAutoBright
+---
+
+设置是否开启自动亮度。
+
+如果当前开启了自动亮度，亮度由光线传感器自动调节，则 `setBrightness` 函数不会起到实质效果。
+
+## 类型
+
+```ts
+(isAutoBright: boolean) => result
+```
+
+## 参数
+
+### isAutoBright
+
+| 说明             | 必填 | 类型      | 默认值 |
+| ---------------- | ---- | --------- | ------ |
+| 是否开启自动亮度 | 是   | `boolean` | -      |
+
+### result
+
+| 说明                   | 类型     |
+| ---------------------- | -------- |
+| 操作结果，`0` 表示设置成功 | `number` |
+
+## 代码示例
+
+```js
+const result = hmSetting.setScreenAutoBright(true)
+```

@@ -1,0 +1,60 @@
+---
+title: widget.setProperty(propertyId, val)
+sidebar_label: setProperty
+---
+
+> Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Set the properties of the UI widget.
+
+## Type
+
+```ts
+(propertyId: string, val: any) => void
+```
+
+## Parameters
+
+| Parameter  | Description                                                                                                                             | Type         |
+| ---------- | --------------------------------------------------------------------------------------------------------------------------------------- | ------------ |
+| propertyId | The property of ID.                                                                                                                     | `PropertyId` |
+| val        | Set the value. (when property is `prop.MORE`, val is used in the same way as createWidget's option, which can set multiple parameters.) | `any`        |
+
+### PropertyId
+
+List the properties commonly supported by the widgets.
+
+| Properties | Description                                                                                                                                                                                | Type      |
+| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------- |
+| x          | The x-axis coordinate of the widget.                                                                                                                                                    | `number`  |
+| y          | The y-axis coordinate of the widget.                                                                                                                                                    | `number`  |
+| w          | The width of the widget.                                                                                                                                                                | `number`  |
+| h          | The height of the widget.                                                                                                                                                               | `number`  |
+| VISIBLE    | Whether the widget is visible or not, `true` is visible, `false` is not, this property does not support `setProperty(prop.MORE, {})`, only `setProperty` sets the `VISIBLE` property alone | `boolean` |
+| DATASET    | Developer-defined properties of the widget, obtained via `widget.getProperty(prop.DATASET)`                                                                                                | `any`     |
+
+## Code example
+
+```js
+import { createWidget, widget, prop, align } from '@zos/ui'
+
+const button = createWidget(widget.BUTTON, Param)
+button.setProperty(prop.VISIBLE, false)
+
+const text = createWidget(widget.TEXT, Param)
+text.setProperty(prop.MORE, {
+  x: 0,
+  y: 0,
+  w: 200,
+  h: 200,
+  text: 'hello',
+  color: 0x34e073,
+  align_h: align.LEFT
+})
+
+text.setProperty(prop.DATASET, {
+  name: 'text1'
+})
+
+const dataset = text.getProperty(prop.DATASET)
+```

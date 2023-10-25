@@ -1,0 +1,70 @@
+# mstBuildProfile
+
+> Start from API_LEVEL `3.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Creating a Profile connection.
+
+## Type
+
+```ts
+function mstBuildProfile(profile: ProfileObj): Result
+```
+
+## Parameters
+
+### ProfileObj
+
+| Property | Type                                    | Required | DefaultValue | Description                                                   | API_LEVEL |
+| -------- | --------------------------------------- | -------- | ------------ | ------------------------------------------------------------- | --------- |
+| pair     | <code>boolean</code>                    | Y        | -            | Whether to pair automatically                                 | 3.0       |
+| id       | <code>number</code>                     | Y        | -            | Connection ID                                                 | 3.0       |
+| profile  | <code>string</code>                     | Y        | -            | Profile Name                                                  | 3.0       |
+| dev      | <code>ArrayBuffer</code>                | Y        | -            | Device MAC address, 6 bytes long, Uint8Array view recommended | 3.0       |
+| len      | <code>number</code>                     | Y        | -            | `list` array length                                           | 3.0       |
+| list     | <code>Array&#60;ServicesObj&#62;</code> | Y        | -            | Services list array                                           | 3.0       |
+
+### ServicesObj
+
+| Property | Type                                   | Required | DefaultValue | Description         | API_LEVEL |
+| -------- | -------------------------------------- | -------- | ------------ | ------------------- | --------- |
+| len      | <code>number</code>                    | Y        | -            | `list` array length | 3.0       |
+| list     | <code>Array&#60;ServiceObj&#62;</code> | Y        | -            | Service array       | 3.0       |
+
+### ServiceObj
+
+| Property   | Type                                          | Required | DefaultValue   | Description                                | API_LEVEL |
+| ---------- | --------------------------------------------- | -------- | -------------- | ------------------------------------------ | --------- |
+| uuid       | <code>string</code>                           | Y        | -              | Service UUID                               | 3.0       |
+| permission | <code>number</code>                           | N        | <code>0</code> | Permission control, default `0` No control | 3.0       |
+| len1       | <code>number</code>                           | Y        | -              | Characteristic array length                | 3.0       |
+| list       | <code>Array&#60;CharacteristicObj&#62;</code> | Y        | -              | Characteristic length                      | 3.0       |
+
+### CharacteristicObj
+
+| Property   | Type                                      | Required | DefaultValue   | Description                                | API_LEVEL |
+| ---------- | ----------------------------------------- | -------- | -------------- | ------------------------------------------ | --------- |
+| uuid       | <code>string</code>                       | Y        | -              | Characteristic UUID                        | 3.0       |
+| permission | <code>number</code>                       | N        | <code>0</code> | Permission control, default `0` No control | 3.0       |
+| len        | <code>number</code>                       | Y        | -              | Descriptor array length                    | 3.0       |
+| list       | <code>Array&#60;DescriptorObj&#62;</code> | Y        | -              | Descriptor array                           | 3.0       |
+
+### DescriptorObj
+
+| Property   | Type                | Required | DefaultValue   | Description                                | API_LEVEL |
+| ---------- | ------------------- | -------- | -------------- | ------------------------------------------ | --------- |
+| uuid       | <code>string</code> | Y        | -              | Descriptor UUID                            | 3.0       |
+| permission | <code>number</code> | N        | <code>0</code> | Permission control, default `0` No control | 3.0       |
+
+### Result
+
+| Type                 | Description                                                                  |
+| -------------------- | ---------------------------------------------------------------------------- |
+| <code>boolean</code> | The result of the function call, `true` means success, `false` means failure |
+
+## Example
+
+```js
+import { mstGetConnIdByRemoteAddr } from '@zos/ble'
+
+// ...
+```

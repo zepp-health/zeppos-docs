@@ -1,0 +1,203 @@
+---
+title: Time
+sidebar_label: Time
+---
+
+> Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Time/Date Sensor.
+
+## Methods
+
+### getTime
+
+Gets the UTC timestamp in milliseconds
+
+```ts
+getTime(): number
+```
+
+### getFullYear
+
+Get the year of the current date
+
+```ts
+getFullYear(): number
+```
+
+### getMonth
+
+Get the month of the current date, range 1 - 12, return `1` for January
+
+```ts
+getMonth(): number
+```
+
+### getDate
+
+Get the number of days of the current date, i.e. the day of the month, in the range 1 - 31
+
+```ts
+getDate(): number
+```
+
+### getHours
+
+Get the number of hours of the current time
+
+```ts
+getHours(): number
+```
+
+### getMinutes
+
+Get the number of minutes of the current time
+
+```ts
+getMinutes(): number
+```
+
+### getSeconds
+
+Get the number of seconds of the current time
+
+```ts
+getSeconds(): number
+```
+
+### getDay
+
+Get the current time corresponding to the day of the week, range 1 - 7, return `1` for Monday
+
+```ts
+getDay(): number
+```
+
+### getHourFormat
+
+> Start from API_LEVEL `2.1`
+
+Get the current system time format, 12-hour format or 24-hour format，value reference hour format constants
+
+```ts
+getHourFormat(): number
+```
+
+#### Constants
+
+##### Hour format constants
+
+| Constant              | Description    | API_LEVEL |
+| --------------------- | -------------- | --------- |
+| `TIME_HOUR_FORMAT_12` | 12-hour format | 2.1       |
+| `TIME_HOUR_FORMAT_24` | 24-hour format | 2.1       |
+
+### getFormatHour
+
+> Start from API_LEVEL `2.1`
+
+Get the number of hours in the current time format (12-hour format or 24-hour format)
+
+```ts
+getFormatHour(): number
+```
+
+### onPerMinute
+
+> Start from API_LEVEL `2.1`
+
+Register end-of-minute event listener callback function
+
+```ts
+onPerMinute(callback: () => void): void
+```
+
+### onPerDay
+
+> Start from API_LEVEL `2.1`
+
+Register the end-of-day event listener callback function
+
+```ts
+onPerDay(callback: () => void): void
+```
+
+### getFestival
+
+Get gregorian holidays, or return the string `'INVALID'` if there is no holiday
+
+```ts
+getFestival(): string
+```
+
+### getLunarYear
+
+Get Chinese lunar year, only works when system language is set to Chinese
+
+```ts
+getLunarYear(): number
+```
+
+### getLunarMonth
+
+Get Chinese lunar month, only works when system language is set to Chinese
+
+```ts
+getLunarMonth(): number
+```
+
+### getLunarDay
+
+Get Chinese lunar day, only works when system language is set to Chinese
+
+```ts
+getLunarDay(): number
+```
+
+### getLunarFestival
+
+Get Chinese lunar holidays, only works when system language is set to Chinese, or return the string `'INVALID'` if there is no holiday
+
+```ts
+getLunarFestival(): string
+```
+
+### getSolarTerm
+
+Get Traditional Chinese Solar Terms, only works when system language is set to Chinese, or return the string `'INVALID'` if there is no Solar Term
+
+```ts
+getSolarTerm(): string
+```
+
+### getShowFestival
+
+Get the holiday strings displayed on that day, the priority is Gregorian holidays, Chinese lunar holidays, Chinese lunar festivals in that order, only when the system language is set to Chinese
+
+```ts
+getShowFestival(): string
+```
+
+### getLunarMonthCalendar
+
+Get the monthly calendar information of the current month of Chinese lunar calendar, only works when the system language is set to Chinese
+
+```ts
+getLunarMonthCalendar(): LunarMonthCalendar
+```
+
+#### LunarMonthCalendar
+
+| Property         | Type                               | Description                                                                                                         | API_LEVEL |
+| ---------------- | ---------------------------------- | ------------------------------------------------------------------------------------------------------------------- | --------- |
+| day_count        | <code>number</code>                | Number of days in the current month                                                                                 | 2.0       |
+| lunar_days_array | <code>Array&#60;string&#62;</code> | Array of display content for each day of the current month, display content priority for holidays, Solar Term, date | 2.0       |
+
+## Example
+
+```js
+import { Time } from '@zos/sensor'
+
+const time = new Time()
+const currentTime = time.getTime()
+```

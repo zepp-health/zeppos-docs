@@ -1,0 +1,33 @@
+---
+title: hmApp.alarmCancel(alarmId)
+sidebar_label: alarmCancel
+---
+
+取消定时唤醒
+
+## 类型
+
+```ts
+(alarmId: number) => void
+```
+
+## 参数
+
+### alarmId
+
+| 说明                         | 类型     |
+| ---------------------------- | -------- |
+| 句柄，创建唤醒对象时返回 | `number` |
+
+## 代码示例
+
+```js
+const alarm = hmApp.alarmNew({
+  file: 'pages/js_widget_sample',
+  appid: 1000001,
+  delay: 10
+})
+
+//取消唤醒
+hmApp.alarmCancel(alarm)
+```

@@ -1,0 +1,92 @@
+---
+title: Sleep
+sidebar_label: Sleep
+---
+
+> Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Sleep Sensor.
+
+:::info
+permission code: `data:user.hd.sleep`
+:::
+
+## Methods
+
+### updateInfo
+
+By default, the system updates the sleep data every `30` minutes, the `updateInfo` method is used to actively trigger the update of the sleep data
+
+```ts
+updateInfo(): void
+```
+
+### getInfo
+
+Get sleep information
+
+```ts
+getInfo(): SleepInfo
+```
+
+#### SleepInfo
+
+| Property  | Type                | Description                                                         | API_LEVEL |
+| --------- | ------------------- | ------------------------------------------------------------------- | --------- |
+| score     | <code>number</code> | Sleep score                                                         | 2.0       |
+| deepTime  | <code>number</code> | Deep sleep time (minutes)                                           | 2.0       |
+| startTime | <code>number</code> | Sleep onset time, based on the number of minutes at 0:00 of the day | 2.0       |
+| endTime   | <code>number</code> | Sleep end time, based on the number of minutes at 0:00 of the day   | 2.0       |
+| totalTime | <code>number</code> | Get total sleep time (minutes)                                      | 2.0       |
+
+### getStageConstantObj
+
+Get the constant value of the sleep stage, used to determine the sleep stage in the `getSleepStageData` return value
+
+```ts
+getStageConstantObj(): StageConstants
+```
+
+#### StageConstants
+
+| Property    | Type                | Description               | API_LEVEL |
+| ----------- | ------------------- | ------------------------- | --------- |
+| WAKE_STAGE  | <code>number</code> | Awake stage               | 2.0       |
+| REM_STAGE   | <code>number</code> | Deep sleep time (minutes) | 2.0       |
+| LIGHT_STAGE | <code>number</code> | Light Sleep stage         | 2.0       |
+| DEEP_STAGE  | <code>number</code> | Deep Sleep stage          | 2.0       |
+
+### getStage
+
+Get Sleep Staging Data
+
+```ts
+getStage(): Array<StageInfo>
+```
+
+#### StageInfo
+
+| Property | Type                | Description                                                                                             | API_LEVEL |
+| -------- | ------------------- | ------------------------------------------------------------------------------------------------------- | --------- |
+| model    | <code>number</code> | Sleep stage type, refer to the constants returned by `getStageConstantObj` for the meaning of the value | 2.0       |
+| start    | <code>number</code> | Sleep stage onset time, based on the number of minutes at 0:00 of the day                               | 2.0       |
+| stop     | <code>number</code> | Sleep stage end time, based on the number of minutes at 0:00 of the day                                 | 2.0       |
+
+## Example
+
+```js
+import { Sleep } from '@zos/sensor'
+
+const sleep = new Sleep()
+const { score } = sleep.getInfo()
+const sleepStageConstants = sleep.getStageConstantObj()
+const stage = sleep.getStage()
+
+stage.forEach((i) => {
+  const { model } = i
+
+  if (model === sleepStageConstants.WAKE_STAGE) {
+    console.log('This stage is awake stage')
+  }
+})
+```

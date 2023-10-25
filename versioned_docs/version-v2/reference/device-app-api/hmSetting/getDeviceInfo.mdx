@@ -1,0 +1,31 @@
+---
+title: hmSetting.getDeviceInfo()
+sidebar_label: getDeviceInfo
+---
+
+Gets the device information.
+
+## Type
+
+```ts
+() => deviceInfo
+```
+
+## Parameters
+
+### deviceInfo: object
+
+| Property     | Description                                       | Type     |
+| ------------ | ------------------------------------------------- | -------- |
+| width        | width of the device screen                        | `number` |
+| height       | device screen height                              | `number` |
+| screenShape  | Screen shape, `0`-square screen, `1`-round screen | `number` |
+| deviceName   | device name                                       | `string` |
+| keyNumber    | number of keys                                    | `number` |
+| deviceSource | device code                                       | `number` |
+
+## Code example
+
+```js
+const deviceInfo = hmSetting.getDeviceInfo()
+```

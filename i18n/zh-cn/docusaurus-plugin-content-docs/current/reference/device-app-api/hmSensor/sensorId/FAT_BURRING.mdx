@@ -1,0 +1,48 @@
+---
+title: FAT_BURRING
+sidebar_label: FAT_BURRING 脂肪燃烧
+---
+
+## 创建传感器
+
+```js
+const fatburn = hmSensor.createSensor(hmSensor.id.FAT_BURRING)
+
+console.log(fatburn.current)
+console.log(fatburn.target)
+```
+
+## fatburn 实例
+
+### fatburn: object
+
+| 属性    | 说明               | 类型     |
+| ------- | ------------------ | -------- |
+| current | 当前燃脂分钟数     | `number` |
+| target  | 燃脂目标，单位分钟 | `number` |
+
+## 注册传感器实例回调事件
+
+```js
+fatburn.addEventListener(event, callback: Callback)
+```
+
+### CHANGE 事件
+
+#### event 值
+
+`hmSensor.event.CHANGE`
+
+#### Callback
+
+```ts
+() => void
+```
+
+#### 事件示例
+
+```js
+fatburn.addEventListener(hmSensor.event.CHANGE, function () {
+  console.log('the current fatburn: ' + fatburn.current + ' target: ' + fatburn.target + '\r\n')
+})
+```

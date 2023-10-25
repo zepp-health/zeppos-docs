@@ -1,0 +1,91 @@
+---
+title: hmApp.registerKeyEvent(callback)
+sidebar_label: registerKeyEvent
+---
+
+Register keystroke event listener.
+
+## Type
+
+```ts
+(callback: (key: Key, action: Action) => boolean) => void
+```
+
+## Parameters
+
+### Callback
+
+| Description                                                                                                                                               | Required |                     Type                     | Default |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- | -------------------------------------------- | ------ |
+| Keystroke event callback function, return value `false` does not skip the default behavior, `true` skips the default behavior.              |   YES    | `(key: Key, action: Action) => boolean`      | -      |
+
+### Key
+
+| Description                                                                                              |
+| -------------------------------------------------------------------------------------------------------- |
+| Support `BACK`, `SELECT`, `HOME`, `UP`, `DOWN`, `SHORTCUT`, refer to the code example for specific usage, Key layout position reference [Physical keys](../../../related-resources/physical-keys.mdx)|
+
+### Action
+
+| Description                                                                                                     |
+| --------------------------------------------------------------------------------------------------------------- |
+| Support `CLICK`, `LONG_PRESS`, `DOUBLE_CLICK`, `RELEASE`, `PRESS`, refer to the code example for specific usage |
+
+## Code example
+
+```js
+//Registering a key listener Repeated registration of a JsApp will cause the last registered callback to fail.
+hmApp.registerKeyEvent(function (key, action) {
+  console.log('receive key code:' + code + ' action:' + action)
+  let msg = ''
+  let ret = false
+  switch (key) {
+    case hmApp.key.BACK:
+      msg = 'back.'
+      break
+    case hmApp.key.SELECT:
+      msg = 'select.'
+      break
+    case hmApp.key.HOME:
+      msg = 'home.'
+      ret = true //Skip the default home button handling.
+      break
+    case hmApp.key.UP:
+      msg = 'up.'
+      break
+    case hmApp.key.DOWN:
+      msg = 'down.'
+      break
+    case hmApp.key.SHORTCUT:
+      msg = 'shortcut.'
+      break
+    default:
+      msg = 'none.'
+      break
+  }
+
+  switch (action) {
+    case hmApp.action.CLICK:
+      msg = msg + 'click'
+      break
+    case hmApp.action.LONG_PRESS:
+      msg = msg + 'longPress'
+      break
+    case hmApp.action.DOUBLE_CLICK:
+      msg = msg + 'doubleClick'
+      break
+    case hmApp.action.RELEASE:
+      msg = msg + 'release'
+      break
+    case hmApp.action.PRESS:
+      msg = msg + 'press'
+      break
+    default:
+      msg = msg + 'none'
+      break
+  }
+
+  console.log('receive key:' + msg)
+  return ret
+})
+```

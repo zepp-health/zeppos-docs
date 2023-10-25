@@ -1,0 +1,61 @@
+---
+title: 目录结构
+sidebar_label: 目录结构
+---
+
+以示例小程序「[Calories](../../samples/app/calories.md)」的目录结构举例：
+
+```tree
+.
+├── app-side // 伴生服务目录
+│   └── index.js // 伴生服务逻辑，作为入口文件（路径可以在 app.json 中配置）
+├── setting // 设置应用目录
+│   ├── i18n // 设置应用多语言目录
+│   │   └── en-US.po
+│   └── index.js // 设置应用逻辑，作为入口文件（路径可以在 app.json 中配置）
+├── app-widget // 快捷卡片目录
+│   └── index.js // 快捷卡片逻辑，作为入口文件（路径可以在 app.json 中配置）
+├── secondary-widget // 副屏应用目录
+│   └── index.js // 副屏应用逻辑，作为入口文件（路径可以在 app.json 中配置）
+├── app.js // 小程序逻辑
+├── app.json // 小程序配置
+├── assets // 不同设备的资源文件存放目录，以 app.json 中 targets 对象的键来命名
+│   ├── gtr-3
+│   │   ├── icon.png
+│   │   ├── fonts
+│   │   │   └── custom.ttf
+│   │   └── image
+│   │       └── logo.png
+│   ├── gtr-3-pro
+│   │   ├── icon.png
+│   │   ├── fonts
+│   │   │   └── custom.ttf
+│   │   └── image
+│   │       └── logo.png
+│   └── gts-3
+│       ├── icon.png
+│       ├── fonts
+│       │   └── custom.ttf
+│       └── image
+│           └── logo.png
+├── page // 设备应用页面
+│   ├── home // 设备应用 home 目录（推荐一个页面一个目录）
+│   │   ├── index.page.js // 页面逻辑
+│   │   └── index.style.js // 页面样式
+│   └── i18n // 设备应用多语言目录
+│       └── en-US.po
+└── utils // 工具函数目录
+    ├── constants.js
+    ├── fs.js
+    └── index.js
+```
+
+## 独立的样式文件
+
+推荐在页面代码的组织遵循「样式」、「行为」分离的原则，这样一来可以将样式配置抽离到单独的 `style.js` 文件中，减少页面逻辑的代码，二来方便在 `styles.js` 中去做多设备的屏幕适配工作，多设备（屏幕）的适配参考 [屏幕适配](../best-practice/multi-screen-adaption.mdx)。
+
+## i18n 多语言
+
+`/i18n` 目录下的文件必须满足 `${key}.po` 的文件命名约定，`key` 就是国家代码缩写。
+
+多语言与国家的参考关系请参考 [多语言映射](../../reference/related-resources/language-list.mdx)。

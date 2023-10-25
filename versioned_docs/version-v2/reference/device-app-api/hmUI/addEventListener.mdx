@@ -1,0 +1,40 @@
+---
+title: widget.addEventListener(eventId, callback)
+sidebar_label: addEventListener
+---
+
+Register a listener to the UI widget and the given callback function will be executed when the specified event is triggered.
+
+## Type
+
+```ts
+(eventId: EventId, callback: (event: Event) => void) => void
+```
+
+## Parameters
+
+| Parameter | Description                                         |   Type    |
+| --------- | --------------------------------------------------- | --------- |
+| eventId   | Event type. (e.g., `hmUI.event.MOVE`, `hmUI.event.CLICK_DOWN`, etc.) | `EventId` |
+| event     | Event details, refer to different events.           | `object` |
+
+### EventId
+
+| Value                   | Description |
+| ----------------------- | ----------- |
+| `hmUI.event.MOVE`       | Slide       |
+| `hmUI.event.CLICK_DOWN` | Press       |
+| `hmUI.event.CLICK_UP`   | Lift up     |
+| `hmUI.event.MOVE_IN`    | Move in     |
+| `hmUI.event.MOVE_OUT`   | Move out    |
+
+## Code example
+
+```js
+const img_bkg = hmUI.createWidget(hmUI.widget.IMG)
+
+img_bkg.addEventListener(hmUI.event.CLICK_DOWN, function (info) {
+  //Registering event listeners.
+  console.log(info.x)
+})
+```

@@ -1,0 +1,28 @@
+# getPackageInfo
+
+> API_LEVEL `2.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+获取小程序配置 `app.json` 中的部分字段。
+
+## 类型
+
+```ts
+function getPackageInfo(): Result
+```
+
+## 参数
+
+### Result
+
+| 类型                | 说明                                     |
+| ------------------- | ---------------------------------------- |
+| <code>object</code> | 此处不一一列举，请参考 `app.json` 中字段 |
+
+## 代码示例
+
+```js
+import { getPackageInfo } from '@zos/app'
+
+const packageInfo = getPackageInfo()
+console.log(packageInfo.name)
+```

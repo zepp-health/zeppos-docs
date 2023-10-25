@@ -1,0 +1,178 @@
+---
+title: HISTOGRAM
+sidebar_label: HISTOGRAM 直方图
+---
+
+> API_LEVEL `2.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../../guides/framework/device/compatibility.md)。
+
+![histogram](/img/api/histogram_sample.jpg)
+
+绘制直方图。
+
+## 创建 UI 控件
+
+```js
+import { createWidget, widget } from '@zos/ui'
+
+const histoGram = createWidget(widget.HISTOGRAM, Param)
+```
+
+## 类型
+
+### Param: object
+
+| 属性            | 说明                                | 是否必须 | 类型            |
+| --------------- | ----------------------------------- | -------- | --------------- |
+| x               | 控件 x 坐标 "x":0                   | 是       | `number`        |
+| y               | 控件 y 坐标                         | 是       | `number`        |
+| w               | 控件宽                              | 是       | `number`        |
+| h               | 控件高                              | 是       | `number`        |
+| item_width      | 柱子宽                              | 是       | `number`        |
+| item_space      | 柱子间距                            | 是       | `number`        |
+| item_radius     | 柱子圆角                            | 是       | `number`        |
+| item_start_y    | 柱子起始 Y 点 相对坐标 不填默认为 0 | 否       | `number`        |
+| item_max_height | 柱子最大高度 不填默认为控件高       | 否       | `number`        |
+| item_color      | 柱子颜色                            | 是       | `number`        |
+| data_min_value  | 柱子最小值 用于计算柱子实际高度     | 是       | `number`        |
+| data_max_value  | 柱子最大值 用于计算柱子实际高度     | 是       | `number`        |
+| data_array      | 柱子数据数组                        | 是       | `Array<number>` |
+| data_count      | 数据长度                            | 是       | `number`        |
+| xline           | x 轴配置对象                        | 是       | `XLine`         |
+| xText           | x 轴文字配置对象                    | 是       | `XText`         |
+| yline           | y 轴配置对象                        | 是       | `YLine`         |
+| yText           | y 轴文字配置对象                    | 是       | `YText`         |
+
+### XLine: object
+
+| 属性   | 说明                                         | 是否必须 | 类型     |
+| ------ | -------------------------------------------- | -------- | -------- |
+| pading | 分割线基于 x 轴的边距                        | 是       | `number` |
+| space  | 分割线间隔                                   | 是       | `number` |
+| start  | 分割线开始的 y 轴坐标                        | 是       | `number` |
+| end    | 分割线结束的 y 轴坐标 end-start 为分割线宽度 | 是       | `number` |
+| width  | 分割线高度                                   | 是       | `number` |
+| count  | 分割线数量                                   | 是       | `number` |
+| color  | 分割线颜色                                   | 是       | `number` |
+
+### YLine: object
+
+| 属性   | 说明                                         | 是否必须 | 类型     |
+| ------ | -------------------------------------------- | -------- | -------- |
+| pading | 分割线基于 y 轴的边距                        | 是       | `number` |
+| space  | 分割线间隔                                   | 是       | `number` |
+| start  | 分割线开始的 x 轴坐标                        | 是       | `number` |
+| end    | 分割线结束的 x 轴坐标 end-start 为分割线宽度 | 是       | `number` |
+| width  | 分割线高度                                   | 是       | `number` |
+| count  | 分割线数量                                   | 是       | `number` |
+| color  | 分割线颜色                                   | 是       | `number` |
+
+### XText: object
+
+| 属性       | 说明                                                       | 是否必须 | 类型            |
+| ---------- | ---------------------------------------------------------- | -------- | --------------- |
+| x          | 文字初始的 x 坐标                                          | 是       | `number`        |
+| y          | 文字初始的 y 坐标                                          | 是       | `number`        |
+| w          | 文字宽度                                                   | 是       | `number`        |
+| h          | 文字高度                                                   | 是       | `number`        |
+| space      | 文字间隔 第 n 个文字的 x 坐标 = x +（w + space）\* (n - 1) | 是       | `number`        |
+| color      | 文字颜色                                                   | 是       | `number`        |
+| data_array | 文字数组                                                   | 是       | `Array<string>` |
+| count      | 数组长度                                                   | 是       | `number`        |
+
+### yText: object
+
+| 属性       | 说明                                                       | 是否必须 | 类型            |
+| ---------- | ---------------------------------------------------------- | -------- | --------------- |
+| x          | 文字初始的 x 坐标                                          | 是       | `number`        |
+| y          | 文字初始的 y 坐标                                          | 是       | `number`        |
+| w          | 文字宽度                                                   | 是       | `number`        |
+| h          | 文字高度                                                   | 是       | `number`        |
+| space      | 文字间隔 第 n 个文字的 x 坐标 = y +（h + space）\* (n - 1) | 是       | `number`        |
+| color      | 文字颜色                                                   | 是       | `number`        |
+| data_array | 文字数组                                                   | 是       | `Array<string>` |
+| count      | 数组长度                                                   | 是       | `number`        |
+
+## 更新 item 数据
+
+```js
+const view = ......;
+  view.setProperty(prop.UPDATE_DATA, {
+  data_array: [100, 100, 0, 0, 0, 100],
+  data_count: 6
+})
+```
+
+## 代码示例
+
+```js
+import { createWidget, widget, align } from '@zos/ui'
+
+Page({
+  build() {
+    const fillRect = createWidget(widget.FILL_RECT, {
+      x: 100,
+      y: 120,
+      w: 300,
+      h: 300,
+      color: 0xffffff
+    })
+
+    const view = createWidget(widget.HISTOGRAM, {
+      x: 100,
+      y: 120,
+      h: 300,
+      w: 300,
+      item_width: 20,
+      item_space: 10,
+      item_radius: 10,
+      item_start_y: 50,
+      item_max_height: 230,
+      item_color: 0x304ffe,
+      data_array: [20, 30, 40, 50, 60, 100, 80, 90, 20, 30],
+      data_count: 10,
+      data_min_value: 10,
+      data_max_value: 100,
+      xline: {
+        pading: 20,
+        space: 20,
+        start: 0,
+        end: 300,
+        color: 0x00c853,
+        width: 1,
+        count: 15
+      },
+      yline: {
+        pading: 10,
+        space: 10,
+        start: 0,
+        end: 300,
+        color: 0xff6d00,
+        width: 1,
+        count: 30
+      },
+      xText: {
+        x: 12,
+        y: 270,
+        w: 20,
+        h: 50,
+        space: 10,
+        align: align.LEFT,
+        color: 0x000000,
+        count: 10,
+        data_array: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10']
+      },
+      yText: {
+        x: 0,
+        y: 20,
+        w: 50,
+        h: 50,
+        space: 10,
+        align: align.LEFT,
+        color: 0x000000,
+        count: 6,
+        data_array: ['a', 'b', 'c', 'd', 'e', 'f']
+      }
+    })
+  }
+})
+```

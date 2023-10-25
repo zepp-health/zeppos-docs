@@ -1,0 +1,213 @@
+---
+title: Editable watchface
+sidebar_label: Editable watchface
+---
+
+## Editable Widget
+
+| Value                             | Description                                              |
+| --------------------------------- | -------------------------------------------------------- | 
+| hmUI.data_type.BATTERY            | Electricity                                              |
+| hmUI.data_type.STEP               | Current Step Count                                       | 
+| hmUI.data_type.STEP_TARGET        | Target number of steps                                   |         
+| hmUI.data_type.CAL                | Current Calories                                         |             
+| hmUI.data_type.CAL_TARGET         | Target Calories                                          |           
+| hmUI.data_type.HEART              | Current heart rate                                       |   
+| hmUI.data_type.PAI_DAILY          | Today PAI                                                |           
+| hmUI.data_type.PAI_WEEKLY         | Total PAI                                                |
+| hmUI.data_type.DISTANCE           | Distance                                                 | 
+| hmUI.data_type.STAND              | Current stand                                            | 
+| hmUI.data_type.STAND_TARGET       | Target stand                                             | 
+| hmUI.data_type.WEATHER_CURRENT    | Current temperature                                      | 
+| hmUI.data_type.WEATHER_LOW        | Current low temperature                                  | 
+| hmUI.data_type.WEATHER_HIGH       | Current high temperature                                 | 
+| hmUI.data_type.UVI                | Ultraviolet light                                        | 
+| hmUI.data_type.AQI                | Air Quality                                              | 
+| hmUI.data_type.HUMIDITY           | Humidity                                                 | 
+| hmUI.data_type.FAT_BURNING        | Fat Burning                                              | 
+| hmUI.data_type.FAT_BURNING_TARGET | Fat Burning Goals                                        | 
+| hmUI.data_type.SUN_CURRENT        | Sunrise and sunset will be displayed according to the time | 
+| hmUI.data_type.SUN_RISE           | Sunrise                                                  | 
+| hmUI.data_type.SUN_SET            | Sunset                                                   | 
+| hmUI.data_type.WIND               | Wind Power                                               | 
+| hmUI.data_type.STRESS             | Pressure                                                 | 
+| hmUI.data_type.SPO2               | Blood oxygen                                             | 
+| hmUI.data_type.BODY_TEMP          | Temperature                                              | 
+| hmUI.data_type.ALTIMETER          | Pneumatic pressure                                       | 
+| hmUI.data_type.MOON               | Moon phase. Only progress is supported                   | 
+| hmUI.data_type.FLOOR              | Climbing a building                                      | 
+| hmUI.data_type.ALARM_CLOCK        | Alarm Clock                                              | 
+| hmUI.data_type.COUNT_DOWN         | Countdown                                                | 
+| hmUI.data_type.STOP_WATCH         | Stopwatch                                                | 
+| hmUI.data_type.SLEEP              | Sleep                                                    |
+
+## Levels
+
+![图层1](/img/api/edit_layer1.png)
+
+![图层2](/img/api/edit_layer2.png)
+
+- Note that the tips_x tips_y coordinates are relative to the x y inside the component, so if the tips are above the component, you need to write negative values.
+
+`getProperty(hmUI.prop.CURRENT_TYPE)`
+
+Calling this property returns the `type` type selected by the current user Use this `type` to draw different components.
+
+```js
+const groupX = 153
+const groupY = 246
+
+editGroup = hmUI.createWidget(hmUI.widget.WATCHFACE_EDIT_GROUP, {
+  edit_id: 101,
+  x: groupX,
+  y: groupY,
+  w: 148,
+  h: 148,
+  select_image: rootPath + 'mask/select.png',
+  un_select_image: rootPath + 'mask/select.png',
+  default_type: hmUI.edit_type.HEART,
+  optional_types: [{ type: hmUI.edit_type.HEART, preview: rootPath + 'preview/bat.png' }],
+  count: 1,
+  tips_BG: rootPath + 'mask/text_tag.png',
+  tips_x: 172 - groupX,
+  tips_y: 210 - groupY,
+  tips_width: 110,
+  tips_margin: 10 // optional, default value: 0
+})
+const editType = editGroup.getProperty(hmUI.prop.CURRENT_TYPE)
+switch (editType) {
+  case hmUI.data_type.HEART:
+    this.drawHeartWidget(groupX, groupY)
+    break
+  case hmUI.data_type.BATTERY:
+    break
+}
+//100%mask
+maskCover = hmUI.createWidget(hmUI.widget.WATCHFACE_EDIT_MASK, {
+  x: 0,
+  y: 0,
+  w: 454,
+  h: 454,
+  src: rootPath + 'mask/mask100.png',
+  show_level: hmUI.show_level.ONLY_EDIT
+})
+//70%msk
+mask = hmUI.createWidget(hmUI.widget.WATCHFACE_EDIT_FG_MASK, {
+  x: 0,
+  y: 0,
+  w: 454,
+  h: 454,
+  src: rootPath + 'mask/mask70.png',
+  show_level: hmUI.show_level.ONLY_EDIT
+})
+```
+
+## Advanced Usage Customizing editType
+
+If the `editType` supported by the current firmware is incomplete (possibly a new product requirement) and does not support the current dial, you can customize the `type`.
+
+Custom `type` range 0x186a0 - UINT32_MAX
+
+`title` must be written.
+
+```js
+const optional_types = [
+  {
+    type: 100001,
+    preview: rootPath + 'preview/bat.png',
+    title_sc: '标题',
+    title_tc: '标题',
+    title_en: 'title'
+  }
+]
+```
+
+## Editable backgrounds
+
+- When editable background + editable widget, widget omits 100%mask
+- If only editable background, just remove the top two layers
+
+Just write your own ids and don't repeat them.
+
+![background](/img/api/edit_background.png)
+
+```js
+const editBg = hmUI.createWidget(hmUI.widget.WATCHFACE_EDIT_BG, {
+  edit_id: 103,
+  x: 0,
+  y: 0,
+  bg_config: [
+    { id: 1, preview: BGROOT + 'bg_edit_1.png', path: BGROOT + 'preview_1.png' },
+    { id: 2, preview: BGROOT + 'bg_edit_2.png', path: BGROOT + 'preview_2.png' },
+    { id: 3, preview: BGROOT + 'bg_edit_3.png', path: BGROOT + 'preview_3.png' },
+    { id: 4, preview: BGROOT + 'bg_edit_4.png', path: BGROOT + 'preview_4.png' },
+    { id: 5, preview: BGROOT + 'bg_edit_5.png', path: BGROOT + 'preview_5.png' }
+  ],
+  count: 5,
+  default_id: 1,
+  fg: BGROOT + 'fg.png',
+  tips_x: 178,
+  tips_y: 428,
+  tips_bg: TIPS_ROOT + 'bg_tips.png'
+})
+```
+
+## Editable pointers
+
+![pointer](/img/api/edit_pointer.png)
+
+- 100%Cover cannot be omitted if there is no editable background.
+
+ID Do not repeat.
+
+`pointerEdit.getProperty(hmUI.prop.CURRENT_CONFIG,true)` //The second parameter is whether to export the second hand property.
+
+This function returns the configuration of the user-selected pointer style attribute and assigns it directly to `TIME_POINTER`.
+
+```js
+const pointerConfig = [
+  {
+    id: 1,
+    hour: {
+      centerX: centerXValue,
+      centerY: centerYValue,
+      posX: 12,
+      posY: 172,
+      path: pointPath + 'hand_4_h.png'
+    },
+    minute: {
+      centerX: centerXValue,
+      centerY: centerYValue,
+      posX: 18,
+      posY: 229,
+      path: pointPath + 'hand_4_m.png'
+    },
+    second: {
+      centerX: centerXValue,
+      centerY: centerYValue,
+      posX: 13,
+      posY: 245,
+      path: pointPath + 'hand_all_s.png'
+    },
+    preview: pointPath + 'preview1.png'
+  }
+  // ...
+]
+
+const pointerEdit = hmUI.createWidget(hmUI.widget.WATCHFACE_EDIT_POINTER, {
+  edit_id: 120,
+  x: 0,
+  y: 0,
+  config: pointerConfig,
+  count: pointerConfig.length,
+  default_id: 1,
+  fg: ROOTPATH + 'pointer/fg.png',
+  tips_x: 178,
+  tips_y: 428,
+  tips_bg: TIPS_ROOT + 'bg_tips.png'
+})
+const screenType = hmSetting.getScreenType()
+const aodModel = screenType == hmSetting.screen_type.AOD
+const pointerProp = pointerEdit.getProperty(hmUI.prop.CURRENT_CONFIG, !aodModel)
+pointer = hmUI.createWidget(hmUI.widget.TIME_POINTER, pointerProp)
+```

@@ -1,0 +1,81 @@
+# checkSystemApp
+
+> Start from API_LEVEL `3.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Check if the system application supports jumping.
+
+## Type
+
+```ts
+function checkSystemApp(option: Option): void
+```
+
+### Simplified calling method
+
+```ts
+function checkSystemApp(appId: number): void
+```
+
+## Parameters
+
+### Option
+
+| Property | Type                | Required | DefaultValue | Description                                                                      | API_LEVEL |
+| -------- | ------------------- | -------- | ------------ | -------------------------------------------------------------------------------- | --------- |
+| appId    | <code>number</code> | Y        | -            | ID of the system App to be jumped to, value refers to the system App ID constant | 3.0       |
+
+## Constants
+
+### System App ID constants
+
+| Constant                      | Description       | API_LEVEL |
+| ----------------------------- | ----------------- | --------- |
+| `SYSTEM_APP_STATUS`           | Activity          | 3.0       |
+| `SYSTEM_APP_HR`               | Heart Rate        | 3.0       |
+| `SYSTEM_APP_SPORT`            | Workout           | 3.0       |
+| `SYSTEM_APP_WEATHER`          | Weather           | 3.0       |
+| `SYSTEM_APP_ALARM`            | Alarm             | 3.0       |
+| `SYSTEM_APP_CAMERA`           | Camera Remote     | 3.0       |
+| `SYSTEM_APP_MUSIC`            | Music             | 3.0       |
+| `SYSTEM_APP_STOPWATCH`        | Stopwatch         | 3.0       |
+| `SYSTEM_APP_COUNTDOWN`        | Timer             | 3.0       |
+| `SYSTEM_APP_FINE_PHONE`       | Find My Phone     | 3.0       |
+| `SYSTEM_APP_CARD`             | Cards             | 3.0       |
+| `SYSTEM_APP_ALIPAY`           | Alipay            | 3.0       |
+| `SYSTEM_APP_SETTING`          | Settings          | 3.0       |
+| `SYSTEM_APP_SPORT_HISTORY`    | Workout History   | 3.0       |
+| `SYSTEM_APP_COMPASS`          | Compass           | 3.0       |
+| `SYSTEM_APP_PAI`              | PAI               | 3.0       |
+| `SYSTEM_APP_WORLD_CLOCK`      | World Clock       | 3.0       |
+| `SYSTEM_APP_PRESSURE`         | Stress            | 3.0       |
+| `SYSTEM_APP_MENSTRUAL`        | Cycle Tracking    | 3.0       |
+| `SYSTEM_APP_SPORT_STATUS`     | Workout Status    | 3.0       |
+| `SYSTEM_APP_CALENDAR`         | Calendar          | 3.0       |
+| `SYSTEM_APP_SLEEP`            | Sleep             | 3.0       |
+| `SYSTEM_APP_SPO2`             | Blood Oxygen      | 3.0       |
+| `SYSTEM_APP_PHONE`            | Phone             | 3.0       |
+| `SYSTEM_APP_NETEASE_MUSIC`    | NetEase Music     | 3.0       |
+| `SYSTEM_APP_WEPAY`            | Weixin Pay        | 3.0       |
+| `SYSTEM_APP_BREATH`           | Breathe           | 3.0       |
+| `SYSTEM_APP_POMODORO`         | Pomodoro Timer    | 3.0       |
+| `SYSTEM_APP_ALEAX`            | Alexa             | 3.0       |
+| `SYSTEM_APP_THERMOMETER`      | Thermometer       | 3.0       |
+| `SYSTEM_APP_TODO_LIST`        | To Do             | 3.0       |
+| `SYSTEM_APP_ALTIMETER`        | Barometer         | 3.0       |
+| `SYSTEM_APP_VOICE_MEMO`       | Voice Memos       | 3.0       |
+| `SYSTEM_APP_SUN_AND_MOON`     | Sun & Moon        | 3.0       |
+| `SYSTEM_APP_MEASUREMENT`      | One-tap Measuring | 3.0       |
+| `SYSTEM_APP_ZEPP_COACH`       | Zepp Coach        | 3.0       |
+| `SYSTEM_APP_CLUB_CARD`        | Membership Card   | 3.0       |
+| `SYSTEM_APP_BODY_COMPOSITION` | Body Composition  | 3.0       |
+| `SYSTEM_APP_READINESS`        | Readiness         | 3.0       |
+
+## Example
+
+```js
+import { checkSystemApp, SYSTEM_APP_STATUS } from '@zos/router'
+
+checkSystemApp({
+  appId: SYSTEM_APP_STATUS,
+})
+```

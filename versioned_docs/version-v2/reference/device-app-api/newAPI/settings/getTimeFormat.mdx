@@ -1,0 +1,40 @@
+# getTimeFormat
+
+> Start from API_LEVEL `2.1` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Get the current system time format, 12-hour format or 24-hour format.
+
+## Type
+
+```ts
+function getTimeFormat(): Result
+```
+
+## Parameters
+
+### Result
+
+| Type                | Description                                       |
+| ------------------- | ------------------------------------------------- |
+| <code>number</code> | Hour format, value refer to hour format constants |
+
+## Constants
+
+### Hour format constants
+
+| Constant         | Description    | API_LEVEL |
+| ---------------- | -------------- | --------- |
+| `TIME_FORMAT_12` | 12-hour format | 2.1       |
+| `TIME_FORMAT_24` | 24-hour format | 2.1       |
+
+## Example
+
+```js
+import { getTimeFormat, TIME_FORMAT_24 } from '@zos/settings'
+
+const timeFormat = getTimeFormat()
+
+if (timeFormat === TIME_FORMAT_24) {
+  console.log('time format is 24-hour format')
+}
+```

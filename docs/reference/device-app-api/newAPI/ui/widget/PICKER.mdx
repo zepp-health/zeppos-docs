@@ -1,0 +1,159 @@
+---
+title: PICKER
+sidebar_label: PICKER
+---
+
+> Start from API_LEVEL `3.0`. Please refer to [API_LEVEL](../../../../../guides/framework/device/compatibility.md)。
+
+An universal selector, use to text and number list selection
+
+## Create UI widget
+
+```js
+import { createWidget, widget, prop } from '@zos/ui'
+
+const keyboard = createWidget(widget.WIDGET_PICKER, Param)
+```
+
+### Param: object
+
+| Properties     | Description                                          | Required | Type                |
+| -------------- | ---------------------------------------------------- | -------- | ------------------- |
+| nb_of_columns  | Maximum Picker columns (Maximum number is 5)         | YES      | `number`            |
+| data_config    | Array of column configuration, refer to `DataConfig` | YES      | `Array<DataConfig>` |
+| title          | Title of Picker                                      | NO       | `string`            |
+| subtitle       | Subtitle of Picker                                   | NO       | `string`            |
+| done_icon      | Resource path of icon about done status              | NO       | `number`            |
+| picker_cb      | Callback function of Picker                          | NO       | `CallBack`          |
+| init_col_index | Initialize the index of the focused column           | NO       | `number`            |
+| normal_color   | Color value of unselected item                       | NO       | `number`            |
+| select_color   | Color value of selected item                         | NO       | `number`            |
+
+#### DataConfig: object
+
+| Properties          | Description                                     | Required | Type                                   |
+| ------------------- | ----------------------------------------------- | -------- | -------------------------------------- |
+| data_array          | Data array of column                            | YES      | <code>Array<number&#124;string></code> |
+| support_loop        | support circular drag and drop                  | YES      | `boolean`                              |
+| unit                | Unit                                            | NO       | `string`                               |
+| connector           | Data separator                                  | NO       | `string`                               |
+| font_name           | Path of font file, refer to `TEXT`              | NO       | `string`                               |
+| font_size           | Font size                                       | NO       | `number`                               |
+| select_font_size    | Font size of selected item                      | NO       | `number`                               |
+| connector_font_size | Font size of separator                          | NO       | `number`                               |
+| unit_font_size      | Font size of unit                               | NO       | `number`                               |
+| init_val_index      | Default selected index                          | NO       | `number`                               |
+| col_width           | Column width, all columns need to be configured | NO       | `number`                               |
+
+#### CallBack: function
+
+Callback function of Picker
+
+```ts
+picker_cb(picker: WIDGET, event_type: number, column_index: number, select_index: index): void
+```
+
+| Properties   | Description                               |
+| ------------ | ----------------------------------------- |
+| picker       | The Picker instance                       |
+| event_type   | Event type of Picker, see `EVENT_TYPE`    |
+| column_index | Column index for triggering Picker events |
+| select_index | The index of selected item                |
+
+| EVENT_TYPE value | Description               |
+| ---------------- | ------------------------- |
+| `0`              | Lose focus                |
+| `1`              | Get focus                 |
+| `2`              | Selected item has a value |
+
+```js
+function picker_cb(picker, event_type, column_index, select_index) {
+  if (event_type == 2) {
+    picker.setProperty(prop.TITLE, 'End Date')
+    picker.setProperty(prop.SUBTITLE, '3 days in totals')
+
+    picker.setProperty(prop.UPDATE_DATA, {
+      col_index: 0,
+      val_index: 5,
+      data_array: new Array(10).fill(0).map((d, index) => index + 1)
+    })
+
+    picker.setProperty(prop.CUR_COLUMN, 1)
+  }
+}
+```
+
+## Property Operations
+
+The `SET` and `GET` means `widget.setProperty` and `widget.getProperty`
+
+| Property Name      | SET/GET   | Description               |
+| ------------------ | --------- | ------------------------- |
+| `prop.TITLE`       | `SET`     | Update `title`            |
+| `prop.SUBTITLE`    | `SET`     | Update `subtitle`         |
+| `prop.UPDATE_DATA` | `SET`     | Update data of a column   |
+| `prop.CUR_COLUMN`  | `SET/GET` | Update the current column |
+
+## Code example
+
+```js
+import { Time } from '@zos/sensor'
+import { widget, createWidget } from '@zos/ui'
+
+const time = new Time()
+
+picker_widget = createWidget(widget.WIDGET_PICKER, {
+  title: 'Start Date',
+  subtitle: '',
+  nb_of_columns: 3,
+  single_wide: true,
+  init_col_index: 1,
+  data_config: [
+    {
+      data_array: new Array(12).fill(0).map((d, index) => index + 1),
+      init_val_index: time.getMonth() - 1,
+      unit: 'Month',
+      support_loop: true,
+      font_name: 'fonts/x.ttf',
+      font_size: 24,
+      select_font_size: 48,
+      connector_font_size: 18,
+      unit_font_size: 18,
+      col_width: 80
+    },
+    {
+      data_array: new Array(31).fill(0).map((d, index) => index + 1),
+      init_val_index: time.getDate() - 1,
+      unit: 'Day',
+      support_loop: true,
+      font_name: 'fonts/x.ttf',
+      font_size: 24,
+      select_font_size: 48,
+      connector_font_size: 36,
+      unit_font_size: 36,
+      col_width: 80
+    },
+    {
+      data_array: new Array(100).fill(0).map((d, index) => index + 1970),
+      init_val_index: time.getFullYear() - 1970,
+      unit: 'Year',
+      support_loop: true,
+      font_name: 'fonts/x.ttf',
+      font_size: 24,
+      select_font_size: 48,
+      connector_font_size: 36,
+      unit_font_size: 36,
+      col_width: 80
+    }
+  ],
+  picker_cb
+})
+
+function picker_cb(picker, event_type, column_index, select_index) {
+  console.log(
+    'timePickerCb: ' + event_type,
+    'column_index: ' + column_index,
+    'select_index: ' + select_index
+  )
+}
+```

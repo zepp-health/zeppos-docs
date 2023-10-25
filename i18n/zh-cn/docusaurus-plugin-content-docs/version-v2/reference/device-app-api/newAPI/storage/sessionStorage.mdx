@@ -1,0 +1,55 @@
+---
+title: sessionStorage
+sidebar_label: sessionStorage
+---
+
+> API_LEVEL `2.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+键值对存储，数据在退出小程序后清除。
+
+## 方法
+
+### setItem
+
+保存数据
+
+```ts
+setItem(key: string, value: any): void
+```
+
+### getItem
+
+读取数据，指定默认值 `defaultValue` 后，如果没有获取到指定 `key` 上的值，返回 `defaultValue`
+
+```ts
+getItem(key: string, defaultValue?: any): void
+```
+
+### removeItem
+
+删除所指定 `key` 的数据
+
+```ts
+removeItem(key: string): void
+```
+
+### clear
+
+清空 sessionStorage 中所有数据
+
+```ts
+clear(): void
+```
+
+## 代码示例
+
+```js
+import { sessionStorage } from '@zos/storage'
+
+sessionStorage.setItem('test', 'test value')
+const val = sessionStorage.getItem('test')
+const defaultValue = sessionStorage.getItem('none_key', 'defaultValue')
+
+sessionStorage.removeItem('test')
+sessionStorage.clear()
+```

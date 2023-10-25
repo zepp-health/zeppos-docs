@@ -1,0 +1,29 @@
+---
+title: Select 选择框
+sidebar_label: Select 选择框
+---
+
+## 类型
+
+```ts
+(props: Props) => result: RenderFunc
+```
+
+### Props: object
+
+| 名称     | 说明                           | 必填 | 类型                        | 默认值  |
+| -------- | ------------------------------ | ---- | --------------------------- | ------- |
+| label    | 选择标签                       | 否   | `string`                    | -       |
+| options  | 选择选项                       | 否   | `Array<SelectOption>`       | -       |
+| multiple | 多选设置                       | 否   | `boolean`                   | `false` |
+| value    | 选定值                         | 否   | `string` 或 `Array<string>` | -       |
+| onChange | `(value: SelectValue) => void` | 否   | `function`                  | -       |
+| title    | 标题                           | 否   | `string`                    | -       |
+| settingsKey    | Settings Storage API 中存储值的 key                           | 否   | `string`                    | -       |
+
+### SelectOption: object
+
+| 名称  | 说明     | 必填 | 类型     | 默认值 |
+| ----- | -------- | ---- | -------- | ------ |
+| name  | 选项名称 | 否   | `string` | -      |
+| value | 选项值   | 否   | `string` | -      |

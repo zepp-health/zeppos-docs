@@ -1,0 +1,32 @@
+# getAllAppServices
+
+> Start from API_LEVEL `3.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Get the list of running App services, used to query the service status.
+
+:::info
+permission code: `device:os.bg_service`
+:::
+
+## Type
+
+```ts
+function getAllAppServices(): Result
+```
+
+## Parameters
+
+### Result
+
+| Type                               | Description                                    |
+| ---------------------------------- | ---------------------------------------------- |
+| <code>Array&#60;string&#62;</code> | Get the list of currently running App services |
+
+## Example
+
+```js
+import { getAllAppServices } from '@zos/app-service'
+
+const serviceList = getAllAppServices()
+console.log(serviceList)
+```

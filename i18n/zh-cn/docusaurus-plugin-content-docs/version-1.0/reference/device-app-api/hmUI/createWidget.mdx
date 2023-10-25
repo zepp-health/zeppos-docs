@@ -1,0 +1,38 @@
+---
+title: hmUI.createWidget(widgetId, option)
+sidebar_label: createWidget
+---
+
+创建 UI 控件。
+
+## 类型
+
+```ts
+(widgetId: WIDGET_ID, option?: Option) => widget: WIDGET
+```
+
+## 参数
+
+| 参数     | 说明                               | 必填 | 类型 |
+| -------- | ---------------------------------- | ---- | ---- |
+| widgetId | 待创建控件类型（值参考 WIDGET_ID） | 是   | -    |
+| option   | 参数                               | 否   | -    |
+| widget   | 控件实例                           | -    | -    |
+
+### WIDGET_ID
+
+| 值                   | 说明                                 |
+| -------------------- | ------------------------------------ |
+| `hmUI.widget.BUTTON` | 按钮控件                             |
+| `hmUI.widget.IMG`    | 图片控件                             |
+| ...                  | 其余值不一一列举，参考 `widget` 目录 |
+
+### WIDGET
+
+| 说明     | 类型     |
+| -------- | -------- |
+| UI 控件对象 | `object` |
+
+## 代码示例
+
+> 参考具体 UI 控件的代码示例

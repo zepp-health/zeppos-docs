@@ -1,0 +1,65 @@
+---
+title: 错误捕获
+sidebar_label: 错误捕获
+---
+
+## 介绍
+
+在小程序过程开发过程中，模拟器预览或者真机运行往往会遇到程序执行错误，此时需要对日志进行排查，由于日志长度做了限制，且没有 source-map 工具，代码报错行数与原始代码无法对应上，导致定位错误效率较低。
+
+设备端小程序框架目前无法捕获生命周期中的错误，本文提供一些思路，供开发者进行参考。
+
+## 思路
+
+在生命周期中加入 `try...catch` 语句来捕获错误。
+
+看一个简单的例子
+
+```js title="page.js"
+Page({
+  build() {
+    const a = undefined
+    const b = () => {
+      a()
+    }
+    const c = () => {
+      b()
+    }
+    c()
+  }
+})
+```
+
+在模拟器上运行，得到以下错误信息：
+
+![error-log](/img/docs/guides/best-practice/error_message.jpg)
+
+由于日志长度限制被截断，有部分堆栈信息缺失。
+
+我们在 `build` 生命周期代码中加入 `try...catch` 语句，将错误日志分行打印，就可以获得完整的报错信息。
+
+```js
+Page({
+  build() {
+    try {
+      const a = undefined
+      const b = () => {
+        a()
+      }
+      const c = () => {
+        b()
+      }
+      c()
+    } catch (e) {
+      console.log('LifeCycle Error', e)
+      e && e.stack && e.stack.split(/\n/).forEach((i) => console.log('error stack', i))
+    }
+  }
+})
+```
+
+![error-log](/img/docs/guides/best-practice/error_message_full.jpg)
+
+这样我们就可以看到更为完整的报错信息。
+
+在每个页面的生命周期中手动捕获错误较为繁琐，也可以对 `Page`，`App` 等构造函数直接进行封装，思路可以参考 [showcase - PageAdvanced](https://github.com/zepp-health/zeppos-samples/blob/main/application/2.0/showcase/utils/template/PageAdvanced.js)。

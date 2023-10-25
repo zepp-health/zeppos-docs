@@ -1,0 +1,97 @@
+---
+title: IMG
+sidebar_label: IMG 图片
+---
+
+> API_LEVEL `2.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../../guides/framework/device/compatibility.md)。
+
+![img_sample](/img/api/img_sample.jpg)
+
+图片控件用于展示图片，支持图片旋转。
+
+:::tip
+
+1. 推荐使用 24 位或 32 位，颜色方案为 RGB 或者 RGBA 的 png 格式图片。
+
+:::
+
+## 创建 UI 控件
+
+```js
+import { createWidget, widget } from '@zos/ui'
+
+const img = createWidget(widget.IMG, Param)
+```
+
+## 类型
+
+### Param: object
+
+| 属性               | 说明                                                                                       | 是否必须 | 类型      | 版本 |
+| ------------------ | ------------------------------------------------------------------------------------------ | -------- | --------- | ---- |
+| src                | 图片路径，资源存放路径参考 [目录结构](../../../../../guides/architecture/folder-structure.mdx)               | 是       | `string`  | -    |
+| x                  | 控件 x 坐标                                                                                | 是       | `number`  | -    |
+| y                  | 控件 y 坐标                                                                                | 是       | `number`  | -    |
+| w                  | 控件宽度，如果不传递值为图片资源的宽度                                                     | 否       | `number`  | -    |
+| h                  | 控件高度，如果不传递值为图片资源的高度                                                     | 否       | `number`  | -    |
+| pos_x              | 图片相对控件坐标的水平偏移                                                                 | 否       | `number`  | -    |
+| pos_y              | 图片相对控件坐标的垂直偏移                                                                 | 否       | `number`  | -    |
+| angle              | 图片旋转角度，12 点方向为 0 度                                                             | 否       | `number`  | -    |
+| center_x           | 图片旋转中心水平方向坐标                                                                   | 否       | `number`  | -    |
+| center_y           | 图片旋转中心垂直方向坐标                                                                   | 否       | `number`  | -    |
+| alpha              | 透明度，取值 0 - 255，默认值为 255 不透明，0 为全透明                                      | 否       | `number`  | -    |
+| auto_scale         | 图片区域是否跟随控件宽高进行缩放，默认图片区域的尺寸为资源文件本身尺寸                         | 否       | `boolean` | -    |
+| auto_scale_obj_fit | 仅当 `auto_scale` 为 `true` 时该字段生效，表示图片是否填充整个控件区域（不保持图片宽高比） | 否       | `boolean` | -    |
+
+## 图片示例
+
+:::caution
+`w` 和 `h` 是图片控件的宽高，IMG 区域则是图片资源的显示边界
+:::
+
+![坐标图示](/img/api/img_pos.jpg)
+
+![旋转图示](/img/api/img_angle.jpg)
+
+## 代码示例
+
+```js
+import { createWidget, widget, prop } from '@zos/ui'
+
+Page({
+  build() {
+    const img = createWidget(widget.IMG, {
+      x: 125,
+      y: 125,
+      src: 'zeppos.png'
+    })
+    img.addEventListener(event.CLICK_DOWN, (info) => {
+      img.setProperty(prop.MORE, {
+        y: 200
+      })
+    })
+  }
+})
+```
+
+```js
+import { createWidget, widget, prop } from '@zos/ui'
+
+Page({
+  build() {
+    const img_hour = createWidget(widget.IMG)
+    img_hour.setProperty(prop.MORE, {
+      x: 0,
+      y: 0,
+      w: 454,
+      h: 454,
+      pos_x: 454 / 2 - 27,
+      pos_y: 50 + 50,
+      center_x: 454 / 2,
+      center_x: 454 / 2,
+      src: 'hour.png',
+      angle: 30
+    })
+  }
+})
+```

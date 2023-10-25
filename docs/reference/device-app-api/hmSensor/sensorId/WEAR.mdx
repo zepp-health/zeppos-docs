@@ -1,0 +1,53 @@
+---
+title: WEAR
+sidebar_label: WEAR
+---
+
+## Creating Sensors
+
+```js
+const wear = hmSensor.createSensor(hmSensor.id.WEAR)
+
+console.log(wear.current)
+```
+
+## WEAR instance
+
+### wear: object
+
+| Properties |                Description           | Type |
+| ---------- | ------------------------------------ | -------- |
+|  current   | Current wear status, see table below | `number` |
+
+| Current value | Description |
+| ------------- | ----------- |
+|      `0`      |  Not worn   |
+|      `1`      |   Wearing   |
+|      `2`      |  In motion  |
+|      `3`      |   Not sure  |
+
+## Registering sensor instance callback events.
+
+```js
+wear.addEventListener(event, callback: Callback)
+```
+
+### The events of CHANGE
+
+#### The value of event
+
+`hmSensor.event.CHANGE`
+
+#### Callback
+
+```ts
+() => void
+```
+
+#### The example of events
+
+```js
+wear.addEventListener(hmSensor.event.CHANGE, function () {
+  console.log('The current wear statusis ' + wear.current + '\r\n')
+})
+```

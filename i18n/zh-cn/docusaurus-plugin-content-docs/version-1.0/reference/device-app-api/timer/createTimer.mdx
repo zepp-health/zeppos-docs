@@ -1,0 +1,46 @@
+---
+title: createTimer(delay, repeat, callback, option)
+sidebar_label: createTimer
+---
+
+创建定时器
+
+## 类型
+
+```ts
+(delay: number, repeat: number, callback: (option: any) => void, option: any) => timerId
+```
+
+## 参数
+
+| 参数     | 说明         | 必填 | 类型                    | 默认值 |
+| -------- | ------------ | ---- | ----------------------- | ------ |
+| delay    | 延时（毫秒） | 是   | `number`                | -      |
+| repeat   | 周期（毫秒） | 是   | `number`                | -      |
+| callback | 回调函数     | 是   | `(option: any) => void` | -      |
+| option   | 回调函数参数 | 是   | `any`                   | -      |
+
+### timerId
+
+| 说明       | 类型     |
+| ---------- | -------- |
+| 定时器句柄 | `number` |
+
+## 用法
+
+```js
+//创建timer，延时500ms触发，之后每1000ms执行一次
+const timer1 = timer.createTimer(
+  500,
+  1000,
+  function (option) {
+    //回调
+    console.log('timer callback')
+    console.log(option.hour)
+  },
+  { hour: 0, minute: 15, second: 30 }
+)
+
+//停止timer1
+timer.stopTimer(timer1)
+```

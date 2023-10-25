@@ -1,0 +1,27 @@
+# createConnect
+
+> Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Create connection.
+
+## Type
+
+```ts
+function createConnect(callback: Callback): void
+```
+
+## Parameters
+
+### Callback
+
+| Type                                                                    | Description                                                                          |
+| ----------------------------------------------------------------------- | ------------------------------------------------------------------------------------ |
+| <code>(index?: number, data?: object, size?: number) =&#62; void</code> | Connection callback function, `index` packet number, `data` data, `size` data length |
+
+## Example
+
+```js
+import { createConnect } from '@zos/ble'
+
+// ...
+```

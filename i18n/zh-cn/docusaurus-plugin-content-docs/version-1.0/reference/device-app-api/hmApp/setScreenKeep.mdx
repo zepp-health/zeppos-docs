@@ -1,0 +1,28 @@
+---
+title: hmApp.setScreenKeep(option)
+sidebar_label: setScreenKeep
+---
+
+默认情况下，在小程序某个页面中触发系统息屏，10s 后系统会退出该小程序，再次唤醒手表时进入表盘页面。
+
+当设置了 `hmApp.setScreenKeep(true)`，在小程序某个页面中触发系统息屏，10s 后系统会退出该小程序，再次唤醒手表后会重新打开该小程序，并进入到对应页面。
+
+## 类型
+
+```ts
+(option: boolean) => void
+```
+
+## 参数
+
+### option
+
+| 说明                        | 必填 | 类型      | 默认值 |
+| --------------------------- | ---- | --------- | ------ |
+| 息屏 10s 后是否回到小程序，`true` 为是 | 是   | `boolean` | -      |
+
+## 代码示例
+
+```js
+hmApp.setScreenKeep(true)
+```

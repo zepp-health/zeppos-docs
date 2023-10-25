@@ -1,0 +1,29 @@
+# clearInterval
+
+> Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Cancel the timer registered by `setInterval`.
+
+## Type
+
+```ts
+function clearInterval(intervalID: IntervalID): void
+```
+
+## Parameters
+
+### IntervalID
+
+| Type                | Description  |
+| ------------------- | ------------ |
+| <code>number</code> | Timer number |
+
+## Example
+
+```js
+const intervalID = setInterval(() => {
+  console.log('Hello Zepp OS')
+}, 1000)
+
+clearInterval(intervalID)
+```

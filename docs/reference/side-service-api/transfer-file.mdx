@@ -1,0 +1,104 @@
+---
+title: TransferFile
+sidebar_label: TransferFile
+---
+
+The `TransferFile` file transfer module can transfer files from the "Side Service" of the Mini Program to the "Device App".
+
+## getOnbox
+
+Returns an `Onbox` object for sending files.
+
+### Types
+
+```ts
+() => Onbox
+```
+
+### Example
+
+```js
+const outbox = transferFile.getOutbox()
+```
+
+### `Onbox` object
+
+#### enqueFile
+
+##### Types
+
+```ts
+(fileName: string, params: object) => FileObject
+```
+
+| Properties     | Description                     | Required | Type    |
+| -------- | ------------------------ | -------- | -------- |
+| fileName | File Path                 | NO       | `string` |
+| params   | Parameters passed to Device App | NO       | `object` |
+
+`FileObject` reference [`FileObject` Type definition](../../reference/device-app-api/newAPI/transfer-file/TransferFile.mdx#fileobject)
+
+##### Example
+
+```js
+const fileObject = onbox.enqueueFile('data://download/test.png', { type: 'image', name: 'fdsa' })
+```
+
+## getInbox
+
+Returns an `Inbox` object for receiving files.
+
+### Types
+
+```ts
+() => Inbox
+```
+
+### Example
+
+```js
+const inbox = transferFile.getInbox()
+```
+
+#### `Inbox` Object
+
+#### getNextFile
+
+##### Types
+
+```ts
+() => FileObject
+```
+
+`FileObject` type reference [`FileObject` type definition](../../reference/device-app-api/newAPI/transfer-file/TransferFile.mdx#fileobject)
+
+##### Code Example
+
+```js
+const fileObject = onbox.enqueueFile('data://download/test.png', { type: 'image', name: 'fdsa' })
+```
+
+## Full Example
+
+```js
+const outbox = tranfserFile.getOutBox()
+
+AppSideService({
+  onInit() {
+    const fileObject = outbox.enqueueFile('data://download/1.png', {type: "image", name: "fdsa"})
+
+    file.on('progress', (event) => {
+        console.log("progress total size",  event.data.fileSize)
+        console.log("progress total size",  event.data.loadedSize)
+    })
+
+    file.on('change', (event) => {
+        if (event.data.readyState === 'transferred') {
+          console.log('transfered file success')
+        } else (event.data.readyState === 'error') {
+          console.log('error')
+        }
+    })
+  }
+})
+```

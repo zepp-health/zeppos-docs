@@ -1,0 +1,104 @@
+---
+title: Compass
+sidebar_label: Compass 指南针
+---
+
+> API_LEVEL `3.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+指南针。
+
+:::info
+权限代码： `device:os.compass`
+:::
+
+## 方法
+
+### start
+
+开始监听指南针数据
+
+```ts
+start(): void
+```
+
+### stop
+
+停止监听指南针数据
+
+```ts
+stop(): void
+```
+
+### getStatus
+
+获取指南针校准状态，`true` 代表已校准
+
+```ts
+getStatus(): boolean
+```
+
+### getDirection
+
+获取当前手表 12 点刻度的方向指向，一共分为八个方向，参考 `direction`
+
+```ts
+getDirection(): string
+```
+
+#### direction
+
+| 值  | 类型                | 说明 | API_LEVEL |
+| --- | ------------------- | ---- | --------- |
+| N   | <code>string</code> | 北   | 3.0       |
+| NE  | <code>string</code> | 东北 | 3.0       |
+| E   | <code>string</code> | 东   | 3.0       |
+| SE  | <code>string</code> | 东南 | 3.0       |
+| S   | <code>string</code> | 南   | 3.0       |
+| SW  | <code>string</code> | 西南 | 3.0       |
+| W   | <code>string</code> | 西   | 3.0       |
+| NW  | <code>string</code> | 西北 | 3.0       |
+
+### getDirectionAngle
+
+获取当前方向角，手表 12 点刻度方向相对正北方向的顺时针旋转角度，取值 0 - 360，如果指南针未校准，返回 `INVALID` 字符串
+
+```ts
+getDirectionAngle(): number | 'INVALID'
+```
+
+### onChange
+
+注册指南针方向变化事件监听回调函数
+
+```ts
+onChange(callback: () => void): void
+```
+
+### offChange
+
+取消指南针方向变化事件监听回调函数
+
+```ts
+offChange(callback: () => void): void
+```
+
+## 代码示例
+
+```js
+import { Compass } from '@zos/sensor'
+
+const compass = new Compass()
+
+const callback = () => {
+  if (compass.getStatus()) {
+    console.log(compass.getDirection())
+    console.log(compass.getDirectionAngle())
+  }
+}
+compass.onChange(callback)
+compass.start()
+
+// When not needed for use
+compass.offChange()
+compass.stop()
+```

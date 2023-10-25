@@ -1,0 +1,211 @@
+---
+title: 可编辑表盘
+sidebar_label: 可编辑表盘
+---
+
+## 可编辑 Widget
+
+| 值                            | 说明             |
+| ----------------------------- | ---------------- |
+| hmUI.edit_type.STEP           | 步数             |
+| hmUI.edit_type.BATTERY        | 电量             |
+| hmUI.edit_type.HEART          | 心率             |
+| hmUI.edit_type.CAL            | 消耗             |
+| hmUI.edit_type.PAI            | PAI              |
+| hmUI.edit_type.DISTANCE       | 距离             |
+| hmUI.edit_type.AQI            | 空气质量         |
+| hmUI.edit_type.HUMIDITY       | 湿度             |
+| hmUI.edit_type.UVI            | 紫外线           |
+| hmUI.edit_type.DATE           | 日期             |
+| hmUI.edit_type.WEEK           | 星期             |
+| hmUI.edit_type.WEATHER        | 天气             |
+| hmUI.edit_type.TEMPERATURE    | 温度             |
+| hmUI.edit_type.SUN            | 日出日落         |
+| hmUI.edit_type.STAND          | 站立             |
+| hmUI.edit_type.SUN_RISE       | 日出             |
+| hmUI.edit_type.SUN_SET        | 日落             |
+| hmUI.edit_type.WIND           | 风力             |
+| hmUI.edit_type.WIND_DIRECTION | 风向             |
+| hmUI.edit_type.SPO2           | 血氧             |
+| hmUI.edit_type.STRESS         | 压力             |
+| hmUI.edit_type.FAT_BURN       | 燃脂             |
+| hmUI.edit_type.FLOOR          | 爬楼             |
+| hmUI.edit_type.ALTIMETER      | 压强             |
+| hmUI.edit_type.BODY_TEMP      | 温度             |
+| hmUI.edit_type.MOON           | 月相             |
+| hmUI.edit_type.APP_PAI        | APP_PAI 暂时无用 |
+| hmUI.edit_type.COUNT_DOWN     | 倒计时           |
+| hmUI.edit_type.STOP_WATCH     | 秒表             |
+| hmUI.edit_type.SLEEP          | 睡眠             |
+| hmUI.edit_type.ALARM_CLOCK    | 闹钟             |
+
+## 层级
+
+![图层1](/img/api/edit_layer1.png)
+
+![图层2](/img/api/edit_layer2.png)
+
+- 注意 tips_x tips_y 的坐标是相对于组件内的 x y 所以 如果 tips 在组件上方 需要写负值
+
+`getProperty(hmUI.prop.CURRENT_TYPE)`
+
+调用此属性会返回当前用户选择 `type` 类型 使用此 `type` 来绘制不同的组件
+
+```js
+const groupX = 153
+const groupY = 246
+
+editGroup = hmUI.createWidget(hmUI.widget.WATCHFACE_EDIT_GROUP, {
+  edit_id: 101,
+  x: groupX,
+  y: groupY,
+  w: 148,
+  h: 148,
+  select_image: rootPath + 'mask/select.png',
+  un_select_image: rootPath + 'mask/select.png',
+  default_type: hmUI.edit_type.HEART,
+  optional_types: [{ type: hmUI.edit_type.HEART, preview: rootPath + 'preview/bat.png' }],
+  count: 1,
+  tips_BG: rootPath + 'mask/text_tag.png',
+  tips_x: 172 - groupX,
+  tips_y: 210 - groupY,
+  tips_width: 110,
+  tips_margin: 10 // optional, default value: 0
+})
+const editType = editGroup.getProperty(hmUI.prop.CURRENT_TYPE)
+switch (editType) {
+  case hmUI.data_type.HEART:
+    this.drawHeartWidget(groupX, groupY)
+    break
+  case hmUI.data_type.BATTERY:
+    break
+}
+//100%mask
+maskCover = hmUI.createWidget(hmUI.widget.WATCHFACE_EDIT_MASK, {
+  x: 0,
+  y: 0,
+  w: 454,
+  h: 454,
+  src: rootPath + 'mask/mask100.png',
+  show_level: hmUI.show_level.ONLY_EDIT
+})
+//70%msk
+mask = hmUI.createWidget(hmUI.widget.WATCHFACE_EDIT_FG_MASK, {
+  x: 0,
+  y: 0,
+  w: 454,
+  h: 454,
+  src: rootPath + 'mask/mask70.png',
+  show_level: hmUI.show_level.ONLY_EDIT
+})
+```
+
+## 高级用法 自定义 editType
+
+如果当前固件所支持的 `editType` 不全（可能产品新需求）不支持当前表盘 可以自定义 `type`
+
+自定义的 `type` 范围 0x186a0 - UINT32_MAX
+
+`title` 必须写
+
+```js
+const optional_types = [
+  {
+    type: 100001,
+    preview: rootPath + 'preview/bat.png',
+    title_sc: '标题',
+    title_tc: '标题',
+    title_en: 'title'
+  }
+]
+```
+
+## 可编辑背景
+
+- 可编辑背景+可编辑 widget 时 widget 省略 100%mask
+- 只有可编辑背景时 上面的两层去掉即可
+
+id 自己写 别重复即可
+
+![背景](/img/api/edit_background.png)
+
+```js
+const editBg = hmUI.createWidget(hmUI.widget.WATCHFACE_EDIT_BG, {
+  edit_id: 103,
+  x: 0,
+  y: 0,
+  bg_config: [
+    { id: 1, preview: BGROOT + 'bg_edit_1.png', path: BGROOT + 'preview_1.png' },
+    { id: 2, preview: BGROOT + 'bg_edit_2.png', path: BGROOT + 'preview_2.png' },
+    { id: 3, preview: BGROOT + 'bg_edit_3.png', path: BGROOT + 'preview_3.png' },
+    { id: 4, preview: BGROOT + 'bg_edit_4.png', path: BGROOT + 'preview_4.png' },
+    { id: 5, preview: BGROOT + 'bg_edit_5.png', path: BGROOT + 'preview_5.png' }
+  ],
+  count: 5,
+  default_id: 1,
+  fg: BGROOT + 'fg.png',
+  tips_x: 178,
+  tips_y: 428,
+  tips_bg: TIPS_ROOT + 'bg_tips.png'
+})
+```
+
+## 可编辑指针
+
+![指针](/img/api/edit_pointer.png)
+
+- 如果没有可编辑背景 不可省略 100%Cover
+
+id 不要重复
+
+`pointerEdit.getProperty(hmUI.prop.CURRENT_CONFIG,true)` //第二个参数是是否导出秒针属性
+
+此函数返回的时用户选择指针样式属性配置 直接把它赋值给 `TIME_POINTER` 即可
+
+```js
+const pointerConfig = [
+  {
+    id: 1,
+    hour: {
+      centerX: centerXValue,
+      centerY: centerYValue,
+      posX: 12,
+      posY: 172,
+      path: pointPath + 'hand_4_h.png'
+    },
+    minute: {
+      centerX: centerXValue,
+      centerY: centerYValue,
+      posX: 18,
+      posY: 229,
+      path: pointPath + 'hand_4_m.png'
+    },
+    second: {
+      centerX: centerXValue,
+      centerY: centerYValue,
+      posX: 13,
+      posY: 245,
+      path: pointPath + 'hand_all_s.png'
+    },
+    preview: pointPath + 'preview1.png'
+  }
+  // ...
+]
+
+const pointerEdit = hmUI.createWidget(hmUI.widget.WATCHFACE_EDIT_POINTER, {
+  edit_id: 120,
+  x: 0,
+  y: 0,
+  config: pointerConfig,
+  count: pointerConfig.length,
+  default_id: 1,
+  fg: ROOTPATH + 'pointer/fg.png',
+  tips_x: 178,
+  tips_y: 428,
+  tips_bg: TIPS_ROOT + 'bg_tips.png'
+})
+const screenType = hmSetting.getScreenType()
+const aodModel = screenType == hmSetting.screen_type.AOD
+const pointerProp = pointerEdit.getProperty(hmUI.prop.CURRENT_CONFIG, !aodModel)
+pointer = hmUI.createWidget(hmUI.widget.TIME_POINTER, pointerProp)
+```

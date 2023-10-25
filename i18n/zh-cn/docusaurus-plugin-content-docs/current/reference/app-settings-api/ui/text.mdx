@@ -1,0 +1,20 @@
+---
+title: Text 文字
+sidebar_label: Text 文字
+---
+
+## 类型
+
+```ts
+(props: Props, renderFuncArr?: RenderFunc | Array<RenderFunc>) => result: RenderFunc
+```
+
+## Props: object
+
+| 名称      | 说明                                         | 必填 | 类型      | 默认值  |
+| --------- | -------------------------------------------- | ---- | --------- | ------- |
+| style     | 样式属性，支持 CSS 属性                      | 否   | `object`  | -       |
+| align     | 水平对齐方式，支持 `left`、`center`、`right` | 否   | `string`  | `left`  |
+| bold      | 加粗                                         | 否   | `boolean` | `false` |
+| italic    | 斜体                                         | 否   | `boolean` | `false` |
+| paragraph | 是否作为段落                                 | 否   | `boolean` | `false` |

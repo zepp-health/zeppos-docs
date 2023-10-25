@@ -1,0 +1,40 @@
+# getTemperatureUnit
+
+> API_LEVEL `2.1` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+获取用户设置的温度单位。
+
+## 类型
+
+```ts
+function getTemperatureUnit(): Result
+```
+
+## 参数
+
+### Result
+
+| 类型                | 说明                         |
+| ------------------- | ---------------------------- |
+| <code>number</code> | 温度单位，值参考温度单位常量 |
+
+## 常量
+
+### 温度单位常量
+
+| 常量                          | 说明     | API_LEVEL |
+| ----------------------------- | -------- | --------- |
+| `TEMPERATURE_UNIT_CENTIGRADE` | 摄氏温度 | 2.0       |
+| `TEMPERATURE_UNIT_FAHRENHEIT` | 华氏温度 | 2.0       |
+
+## 代码示例
+
+```js
+import { getTemperatureUnit, TEMPERATURE_UNIT_CENTIGRADE } from '@zos/settings'
+
+const temperatureUnit = getTemperatureUnit()
+
+if (temperatureUnit === TEMPERATURE_UNIT_CENTIGRADE) {
+  console.log('centigrade')
+}
+```

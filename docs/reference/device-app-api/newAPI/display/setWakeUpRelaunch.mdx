@@ -1,0 +1,41 @@
+# setWakeUpRelaunch
+
+> Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+By default, the system will off the screen in one page of the Mini Program, and the system will exit the Mini Program after 10s, and enter the dial page when the watch is woken up again. If `relaunch` is set to `true`, the Mini Program will reopen and enter the corresponding page when the watch is woken up again..
+
+## Type
+
+```ts
+function setWakeUpRelaunch(option: Option): void
+```
+
+### Simplified calling method
+
+```ts
+function setWakeUpRelaunch(relaunch: boolean): void
+```
+
+## Parameters
+
+### Option
+
+| Type                              | Description                                                                    |
+| --------------------------------- | ------------------------------------------------------------------------------ |
+| <code>Options&#124;boolean</code> | `true` - auto-brightness is set to on, `false` - auto-brightness is set to off |
+
+### Options
+
+| Property | Type                 | Required | DefaultValue | Description                                                                             | API_LEVEL |
+| -------- | -------------------- | -------- | ------------ | --------------------------------------------------------------------------------------- | --------- |
+| relaunch | <code>boolean</code> | Y        | -            | Whether to reopen the Mini Program after waking up the watch again after a screen break | 2.0       |
+
+## Example
+
+```js
+import { setWakeUpRelaunch } from '@zos/display'
+
+setWakeUpRelaunch({
+  relaunch: true,
+})
+```

@@ -1,0 +1,40 @@
+---
+title: hmSetting.getDiskInfo()
+sidebar_label: getDiskInfo
+---
+
+Get disk information.
+
+## Type
+
+```ts
+() => diskInfo
+```
+
+## Parameters
+
+### diskInfo: object
+
+|  Property |         Description       |   Type   |
+| --------- | ------------------------- | -------- |
+|   total   |           total space     | `number` |
+|   free    |           free space      | `number` |
+|    app    | js application space used | `number` |
+| watchface |         watchface         | `number` |
+|   music   |     space used for music  | `number` |
+|   system  |       system used space   | `number` |
+
+## Code example
+
+```js
+const diskInfo = hmSetting.getDiskInfo()
+console.log(
+  'disk Info:',
+  diskInfo.total / 1024 / 1024,
+  diskInfo.free / 1024 / 1024,
+  diskInfo.app / 1024 / 1024,
+  diskInfo.watchface / 1024 / 1024,
+  diskInfo.music,
+  diskInfo.system / 1024 / 1024
+)
+```

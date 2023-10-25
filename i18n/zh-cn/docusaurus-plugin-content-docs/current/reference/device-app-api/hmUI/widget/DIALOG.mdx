@@ -1,0 +1,89 @@
+---
+title: DIALOG
+sidebar_label: DIALOG 弹窗
+---
+
+![dialog_sample.jpg](/img/api/dialog_sample.jpg)
+
+对话弹窗由一段文本和两个按钮构成，点击按钮后弹框会消失。
+
+:::caution
+现阶段 `DIALOG` 需要分两次设置属性，第一次设置 `ok` 和 `cancel` 按钮的文字，第二次设置 `text` 和 `DIALOG` 控件对齐的属性，具体请参考使用示例
+:::
+
+## 创建 UI 控件
+
+```js
+const dialog = hmUI.createWidget(hmUI.widget.DIALOG, Param)
+```
+
+## 类型
+
+### Param: object
+
+| 属性                 | 说明                              | 是否必须 | 类型                       |
+| -------------------- | --------------------------------- | -------- | -------------------------- |
+| text                 | dialog 内容                       | 是       | `string`                   |
+| content_text_size    | dialog 内容文本尺寸                | 否       | `number`                   |
+| content_text_color   | dialog 内容文本颜色               | 否       | `number`                   |
+| content_bg_color     | dialog 内容背景颜色               | 否       | `number`                   |
+| content_text_align_h | dialog 内容文字的对齐方式（横轴） | 否       | `string`                   |
+| content_text_align_v | dialog 内容文字的对齐方式（竖轴） | 否       | `string`                   |
+| ok_text              | 确认按钮的文字                    | 否       | `string`                   |
+| ok_text_color        | 确认按钮文字颜色                  | 否       | `number`                   |
+| ok_press_color       | 确认按钮按下背景色                | 否       | `number`                   |
+| ok_nomal_color       | 确认按钮正常状态背景色            | 否       | `number`                   |
+| ok_press_src         | 确认按钮按下背景图片              | 否       | `string`                   |
+| ok_nomal_src         | 确认按钮正常状态背景图片          | 否       | `string`                   |
+| cancel_text          | 取消按钮的文字                    | 否       | `string`                   |
+| cancel_text_color    | 取消按钮文字颜色                  | 否       | `number`                   |
+| cancel_press_color   | 取消按钮按下背景色                | 否       | `number`                   |
+| cancel_nomal_color   | 取消按钮正常状态背景色            | 否       | `number`                   |
+| cancel_press_src     | 取消按钮按下背景图片              | 否       | `string`                   |
+| cancel_nomal_src     | 取消按钮正常状态背景图片          | 否       | `string`                   |
+| dialog_align_h       | dialog 横轴方向                   | 否       | `number`                   |
+| dialog_align_v       | dialog 竖轴方向                   | 否       | `number`                   |
+| ok_func              | dialog 点击确认按钮的回调         | 否       | `(dialog: Dialog) => void` |
+| cancel_func          | dialog 点击取消按钮的回调         | 否       | `(dialog: Dialog) => void` |
+
+### Dialog: object
+
+| 属性    | 说明                           | 类型     |
+| ------- | ------------------------------ | -------- |
+| text    | dialog 内容                    | `string` |
+| ...省略 | 参考设置字段中 dialog 相关属性 |
+
+### prop 属性
+
+| 属性 | 支持 get/set | 类型      | 备注            |
+| ---- | ------------ | --------- | --------------- |
+| hmUI.prop.SHOW | set          | `boolean` | dialog 是否显示 |
+
+## 代码示例
+
+```js
+Page({
+  build() {
+    const dialog = hmUI.createWidget(hmUI.widget.DIALOG, {
+      ok_text: 'OK',
+      cancel_text: 'CANCEL'
+    })
+    dialog.setProperty(hmUI.prop.MORE, {
+      text: 'DIALOG',
+      content_text_size: 40,
+      content_bg_color: 0x000000,
+      content_text_color: 0xffffff,
+      dialog_align_h: hmUI.align.CENTER_H,
+      content_text_align_h: hmUI.align.CENTER_H,
+      content_text_align_v: hmUI.align.CENTER_V,
+      ok_func: () => {
+        console.log('OK')
+      },
+      cancel_func: () => {
+        console.log('CANCEL')
+      }
+    })
+    dialog.setProperty(hmUI.prop.SHOW, true)
+  }
+})
+```

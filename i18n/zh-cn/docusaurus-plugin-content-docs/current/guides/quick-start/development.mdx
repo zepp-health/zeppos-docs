@@ -1,0 +1,79 @@
+---
+title: 4. 编码调试
+sidebar_label: 4. 编码调试
+---
+
+在这一步中，我们会完成以下任务
+
+- 安装编辑器
+- 修改代码，模拟器实时预览
+- 模拟器控制台查看日志
+
+## 安装编辑器
+
+推荐使用 VSCode 代码编辑器，访问官网进行安装 [https://code.visualstudio.com/download](https://code.visualstudio.com/download)
+
+安装完成后，我们使用 VSCode 打开项目 `hello-world`。
+
+## 修改代码，模拟器实时预览
+
+首先我们在控制台执行 `zeus dev` 命令，Zeus CLI 会对项目代码进行监听，如果有代码变更，会立即编译项目，模拟器实时刷新预览小程序。
+
+对 `page/gt/home/index.page.js` 进行如下修改
+
+```js
+import * as hmUI from "@zos/ui";
+import { log as Logger } from "@zos/utils";
+import { TEXT_STYLE } from "zosLoader:./index.page.[pf].layout.js";
+
+const logger = Logger.getLogger("helloworld");
+Page({
+  onInit() {
+    // add log
+    logger.log("test")
+    logger.debug("page onInit invoked");
+  },
+  build() {
+    logger.debug("page build invoked");
+    hmUI.createWidget(hmUI.widget.TEXT, TEXT_STYLE);
+  },
+  onDestroy() {
+    logger.debug("page onDestroy invoked");
+  },
+});
+```
+
+对 `page/gt/home/index.page.r.layout.js` 进行如下修改
+
+```js
+import * as hmUI from "@zos/ui";
+import { getText } from "@zos/i18n";
+import { getDeviceInfo } from "@zos/device";
+import { px } from "@zos/utils";
+
+export const { width: DEVICE_WIDTH, height: DEVICE_HEIGHT } = getDeviceInfo();
+
+export const TEXT_STYLE = {
+  // modify value
+  text: "Hello Zepp OS"
+  x: px(42),
+  y: px(200),
+  w: DEVICE_WIDTH - px(42) * 2,
+  h: px(100),
+  color: 0xffffff,
+  text_size: px(36),
+  align_h: hmUI.align.CENTER_H,
+  align_v: hmUI.align.CENTER_V,
+  text_style: hmUI.text_style.WRAP,
+};
+```
+
+保存文件，等待模拟器刷新，小程序重新打开之后，我们看到字样变成了 `Hello Zepp OS`，代码修改成功。
+
+![simulator_helloworld](/img/docs/quick-start/simulator_hello_world.jpg)
+
+## 模拟器控制台查看日志
+
+我们使用 `logger.log` API 打印的语句，可以在控制台中进行查看，打印语句是非常实用的程序调试方法。
+
+![applist.png](/img/simulator/5.png)

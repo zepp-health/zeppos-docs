@@ -1,0 +1,43 @@
+# cancel
+
+> Start from API_LEVEL `3.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Cancels the set timer, if the timer is set to persist and also cancels the persistence.
+
+:::info
+permission code: `device:os.alarm`
+:::
+
+## Type
+
+```ts
+function cancel(option: Option): Result
+```
+
+### Simplified calling method
+
+```ts
+function cancel(id: number): Result
+```
+
+## Parameters
+
+### Option
+
+| Property | Type                | Required | DefaultValue | Description                           | API_LEVEL |
+| -------- | ------------------- | -------- | ------------ | ------------------------------------- | --------- |
+| id       | <code>number</code> | Y        | -            | Vertical axis coordinates of the page | 3.0       |
+
+### Result
+
+| Type                | Description                              |
+| ------------------- | ---------------------------------------- |
+| <code>number</code> | If `0` is returned, success is indicated |
+
+## Example
+
+```js
+import { cancel } from '@zos/alarm'
+
+cancel(id)
+```

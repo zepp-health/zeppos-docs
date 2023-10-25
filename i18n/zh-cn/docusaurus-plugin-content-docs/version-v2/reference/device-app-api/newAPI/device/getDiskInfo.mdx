@@ -1,0 +1,33 @@
+# getDiskInfo
+
+> API_LEVEL `2.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+获取磁盘信息。
+
+## 类型
+
+```ts
+function getDiskInfo(): Result
+```
+
+## 参数
+
+### Result
+
+| 属性      | 类型                | 说明                   | API_LEVEL |
+| --------- | ------------------- | ---------------------- | --------- |
+| total     | <code>number</code> | 总空间（字节）         | 2.0       |
+| free      | <code>number</code> | 可用空间（字节）       | 2.0       |
+| app       | <code>number</code> | 小程序占用空间（字节） | 2.0       |
+| watchface | <code>number</code> | 表盘占用空间（字节）   | 2.0       |
+| music     | <code>number</code> | 音乐占用空间（字节）   | 2.0       |
+| system    | <code>number</code> | 系统占用空间（字节）   | 2.0       |
+
+## 代码示例
+
+```js
+import { getDiskInfo } from '@zos/device'
+
+const { total } = getDiskInfo()
+console.log(total)
+```

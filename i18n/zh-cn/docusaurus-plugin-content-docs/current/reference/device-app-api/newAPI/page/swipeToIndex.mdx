@@ -1,0 +1,47 @@
+# swipeToIndex
+
+> API_LEVEL `2.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+将页面滚动至 Swiper 的目标项目，仅当当前页面滚动模式为 `SCROLL_MODE_SWIPER` 的时候生效。
+
+## 类型
+
+```ts
+function swipeToIndex(option: Option): void
+```
+
+## 参数
+
+### Option
+
+| 属性      | 类型                | 必填 | 默认值                                 | 说明                             | API_LEVEL |
+| --------- | ------------------- | ---- | -------------------------------------- | -------------------------------- | --------- |
+| index     | <code>number</code> | 是   | -                                      | 目标项目的索引                   | 2.0       |
+| animation | <code>string</code> | 否   | <code>`SCROLL_ANIMATION_SMOOTH`</code> | 滚动动画，值参考页面滚动动画常量 | 2.0       |
+
+## 常量
+
+### 页面滚动模式常量
+
+| 常量                      | 说明                       | API_LEVEL |
+| ------------------------- | -------------------------- | --------- |
+| `SCROLL_ANIMATION_SMOOTH` | 平滑滚动至对应位置         | 2.0       |
+| `SCROLL_ANIMATION_NONE`   | 无动画，直接滚动至对应位置 | 2.0       |
+
+## 代码示例
+
+```js
+import { setScrollMode, swipeToIndex, SCROLL_MODE_SWIPER } from '@zos/page'
+
+setScrollMode({
+  mode: SCROLL_MODE_SWIPER,
+  options: {
+    height: 480,
+    count: 10,
+  },
+})
+
+swipeToIndex({
+  index: 5,
+})
+```

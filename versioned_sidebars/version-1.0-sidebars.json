@@ -1,0 +1,649 @@
+{
+  "guides": [
+    "intro",
+    "guides/quick-start",
+    {
+      "type": "category",
+      "label": "Mini Program Architecture",
+      "items": ["guides/architecture/arc", "guides/architecture/folder-structure"]
+    },
+    {
+      "type": "category",
+      "label": "Framework Introduction",
+      "items": [
+        {
+          "type": "category",
+          "label": "Device App",
+          "items": [
+            "guides/framework/device/intro",
+            "guides/framework/device/js-support",
+            "guides/framework/device/app",
+            "guides/framework/device/page",
+            "guides/framework/device/life-cycle",
+            "guides/framework/device/router",
+            "guides/framework/device/fs"
+          ]
+        },
+        {
+          "type": "category",
+          "label": "Settings App",
+          "items": [
+            "guides/framework/app-settings/intro",
+            "guides/framework/app-settings/js-support",
+            "guides/framework/app-settings/register",
+            "guides/framework/app-settings/ui-intro"
+          ]
+        },
+        {
+          "type": "category",
+          "label": "Side Service",
+          "items": ["guides/framework/side-service/intro", "guides/framework/side-service/register"]
+        }
+      ]
+    },
+    {
+      "type": "category",
+      "label": "Tools",
+      "items": [
+        {
+          "type": "category",
+          "label": "CLI",
+          "items": ["guides/tools/cli/index", "guides/tools/cli/release-note"]
+        },
+        {
+          "type": "category",
+          "label": "Simulator",
+          "items": [
+            "guides/tools/simulator/index",
+            "guides/tools/simulator/setup",
+            "guides/tools/simulator/download",
+            "guides/tools/simulator/release-note"
+          ]
+        },
+        "guides/tools/zepp-app",
+        {
+          "type": "category",
+          "label": "Watchface Maker",
+          "items": [
+            {
+              "id": "guides/tools/watchface/index",
+              "type": "doc",
+              "label": "Overview"
+            },
+            {
+              "type": "category",
+              "label": "Getting Started",
+              "items": [
+                {
+                  "id": "guides/tools/watchface/guides/create",
+                  "type": "doc",
+                  "label": "Create a Watchface"
+                },
+                {
+                  "id": "guides/tools/watchface/guides/scanCode",
+                  "type": "doc",
+                  "label": "Install through scanning QR code"
+                },
+                {
+                  "id": "guides/tools/watchface/guides/simulator",
+                  "type": "doc",
+                  "label": "Preview through simulator"
+                },
+                {
+                  "id": "guides/tools/watchface/guides/test",
+                  "type": "doc",
+                  "label": "Watchface Test"
+                },
+                {
+                  "id": "guides/tools/watchface/guides/background",
+                  "type": "doc",
+                  "label": "Background"
+                },
+                {
+                  "id": "guides/tools/watchface/guides/time",
+                  "type": "doc",
+                  "label": "Time"
+                },
+                {
+                  "id": "guides/tools/watchface/guides/text",
+                  "type": "doc",
+                  "label": "Text"
+                },
+                {
+                  "id": "guides/tools/watchface/guides/date",
+                  "type": "doc",
+                  "label": "Date"
+                }
+              ]
+            },
+            {
+              "id": "guides/tools/watchface/release-note",
+              "type": "doc",
+              "label": "Release Notes"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "category",
+      "label": "Best practice",
+      "items": [
+        "guides/best-practice/Basic-environment-construction",
+        "guides/best-practice/debug",
+        "guides/best-practice/Installation-time-list",
+        "guides/best-practice/multi-screen-adaption",
+        "guides/best-practice/code-adaptations-for-new-devices",
+        "guides/best-practice/code-organization",
+        "guides/best-practice/cross-page-communications",
+        "guides/best-practice/bluetooth-communication",
+        "guides/best-practice/widget-group",
+        "guides/best-practice/persistence-storage",
+        {
+          "type": "category",
+          "label": "polyfill",
+          "items": [
+            "guides/best-practice/polyfill/utils-lib",
+            "guides/best-practice/polyfill/promise",
+            "guides/best-practice/polyfill/setTimeout"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "category",
+      "label": "FAQ",
+      "items": [
+        "guides/faq/watchface-maker",
+        "guides/faq/simulator-4-4k",
+        "guides/faq/developer-bridge-mode",
+        "guides/faq/apple-silicon"
+      ]
+    },
+    "guides/community"
+  ],
+  "reference": [
+    "reference/app-json",
+    {
+      "type": "category",
+      "label": "Device App API",
+      "items": [
+        "reference/device-app-api/global",
+        {
+          "type": "category",
+          "label": "hmUI Components Module",
+          "items": [
+            {
+              "type": "category",
+              "label": "Widget",
+              "items": [
+                "reference/device-app-api/hmUI/widget/IMG",
+                "reference/device-app-api/hmUI/widget/TEXT",
+                "reference/device-app-api/hmUI/widget/ARC",
+                "reference/device-app-api/hmUI/widget/FILL_RECT",
+                "reference/device-app-api/hmUI/widget/STROKE_RECT",
+                "reference/device-app-api/hmUI/widget/IMG_ANIM",
+                "reference/device-app-api/hmUI/widget/CIRCLE",
+                "reference/device-app-api/hmUI/widget/BUTTON",
+                "reference/device-app-api/hmUI/widget/RADIO_GROUP",
+                "reference/device-app-api/hmUI/widget/CHECKBOX_GROUP",
+                "reference/device-app-api/hmUI/widget/SLIDE_SWITCH",
+                "reference/device-app-api/hmUI/widget/DIALOG",
+                "reference/device-app-api/hmUI/widget/SCROLL_LIST",
+                "reference/device-app-api/hmUI/widget/CYCLE_LIST",
+                "reference/device-app-api/hmUI/widget/CYCLE_IMAGE_TEXT_LIST",
+                "reference/device-app-api/hmUI/widget/HISTOGRAM",
+                "reference/device-app-api/hmUI/widget/GROUP",
+                "reference/device-app-api/hmUI/widget/PICK_DATE",
+                "reference/device-app-api/hmUI/widget/QRCODE"
+              ]
+            },
+            "reference/device-app-api/hmUI/createWidget",
+            "reference/device-app-api/hmUI/addEventListener",
+            "reference/device-app-api/hmUI/removeEventListener",
+            "reference/device-app-api/hmUI/setProperty",
+            "reference/device-app-api/hmUI/getProperty",
+            "reference/device-app-api/hmUI/getType",
+            "reference/device-app-api/hmUI/setEnable",
+            "reference/device-app-api/hmUI/deleteWidget",
+            "reference/device-app-api/hmUI/createDialog",
+            "reference/device-app-api/hmUI/setScrollView",
+            "reference/device-app-api/hmUI/getScrollCurrentPage",
+            "reference/device-app-api/hmUI/scrollToPage",
+            "reference/device-app-api/hmUI/showToast",
+            "reference/device-app-api/hmUI/setLayerScrolling",
+            "reference/device-app-api/hmUI/getTextLayout",
+            "reference/device-app-api/hmUI/setStatusBarVisible",
+            "reference/device-app-api/hmUI/updateStatusBarTitle"
+          ]
+        },
+        {
+          "type": "category",
+          "label": "hmApp Device Module",
+          "items": [
+            "reference/device-app-api/hmApp/startApp",
+            "reference/device-app-api/hmApp/gotoPage",
+            "reference/device-app-api/hmApp/reloadPage",
+            "reference/device-app-api/hmApp/setLayerY",
+            "reference/device-app-api/hmApp/getLayerY",
+            "reference/device-app-api/hmApp/gotoHome",
+            "reference/device-app-api/hmApp/exit",
+            "reference/device-app-api/hmApp/goBack",
+            "reference/device-app-api/hmApp/setScreenKeep",
+            "reference/device-app-api/hmApp/packageInfo",
+            {
+              "type": "category",
+              "label": "gestureEvent",
+              "items": [
+                "reference/device-app-api/hmApp/gestureEvent/registerGestureEvent",
+                "reference/device-app-api/hmApp/gestureEvent/unregisterGestureEvent"
+              ]
+            },
+            {
+              "type": "category",
+              "label": "alarm",
+              "items": [
+                "reference/device-app-api/hmApp/alarm/alarmNew",
+                "reference/device-app-api/hmApp/alarm/alarmCancel"
+              ]
+            },
+            {
+              "type": "category",
+              "label": "keyEvent",
+              "items": [
+                "reference/device-app-api/hmApp/keyEvent/registerKeyEvent",
+                "reference/device-app-api/hmApp/keyEvent/unregisterKeyEvent"
+              ]
+            },
+            {
+              "type": "category",
+              "label": "spinEvent",
+              "items": [
+                "reference/device-app-api/hmApp/spinEvent/registerSpinEvent",
+                "reference/device-app-api/hmApp/spinEvent/unregisterSpinEvent"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "category",
+          "label": "hmSetting OS Module",
+          "items": [
+            "reference/device-app-api/hmSetting/setScreenAutoBright",
+            "reference/device-app-api/hmSetting/getScreenAutoBright",
+            "reference/device-app-api/hmSetting/setBrightness",
+            "reference/device-app-api/hmSetting/getBrightness",
+            "reference/device-app-api/hmSetting/setBrightScreen",
+            "reference/device-app-api/hmSetting/setBrightScreenCancel",
+            "reference/device-app-api/hmSetting/setScreenOff",
+            "reference/device-app-api/hmSetting/getUserData",
+            "reference/device-app-api/hmSetting/getMileageUnit",
+            "reference/device-app-api/hmSetting/getLanguage",
+            "reference/device-app-api/hmSetting/getDateFormat",
+            "reference/device-app-api/hmSetting/getTimeFormat",
+            "reference/device-app-api/hmSetting/getDiskInfo",
+            "reference/device-app-api/hmSetting/getDeviceInfo",
+            "reference/device-app-api/hmSetting/getWeightTarget",
+            "reference/device-app-api/hmSetting/getSleepTarget",
+            "reference/device-app-api/hmSetting/getWeightUnit",
+            "reference/device-app-api/hmSetting/getScreenType"
+          ]
+        },
+        {
+          "type": "category",
+          "label": "hmSensor Sensor Module",
+          "items": [
+            {
+              "type": "category",
+              "label": "Sensor",
+              "items": [
+                "reference/device-app-api/hmSensor/sensorId/TIME",
+                "reference/device-app-api/hmSensor/sensorId/BATTERY",
+                "reference/device-app-api/hmSensor/sensorId/STEP",
+                "reference/device-app-api/hmSensor/sensorId/CALORIE",
+                "reference/device-app-api/hmSensor/sensorId/HEART",
+                "reference/device-app-api/hmSensor/sensorId/PAI",
+                "reference/device-app-api/hmSensor/sensorId/DISTANCE",
+                "reference/device-app-api/hmSensor/sensorId/STAND",
+                "reference/device-app-api/hmSensor/sensorId/WEATHER",
+                "reference/device-app-api/hmSensor/sensorId/FAT_BURRING",
+                "reference/device-app-api/hmSensor/sensorId/SPO2",
+                "reference/device-app-api/hmSensor/sensorId/BODY_TEMP",
+                "reference/device-app-api/hmSensor/sensorId/STRESS",
+                "reference/device-app-api/hmSensor/sensorId/VIBRATE",
+                "reference/device-app-api/hmSensor/sensorId/WEAR",
+                "reference/device-app-api/hmSensor/sensorId/WORLD_CLOCK",
+                "reference/device-app-api/hmSensor/sensorId/SLEEP",
+                "reference/device-app-api/hmSensor/sensorId/MUSIC"
+              ]
+            },
+            "reference/device-app-api/hmSensor/createSensor",
+            "reference/device-app-api/hmSensor/addEventListener"
+          ]
+        },
+        "reference/device-app-api/hmBle",
+        {
+          "type": "category",
+          "label": "hmFS File System Module",
+          "items": [
+            "reference/device-app-api/hmFS/stat_asset",
+            "reference/device-app-api/hmFS/stat",
+            "reference/device-app-api/hmFS/open_asset",
+            "reference/device-app-api/hmFS/open",
+            "reference/device-app-api/hmFS/close",
+            "reference/device-app-api/hmFS/seek",
+            "reference/device-app-api/hmFS/read",
+            "reference/device-app-api/hmFS/write",
+            "reference/device-app-api/hmFS/remove",
+            "reference/device-app-api/hmFS/rename",
+            "reference/device-app-api/hmFS/SysProSetBool",
+            "reference/device-app-api/hmFS/SysProGetBool",
+            "reference/device-app-api/hmFS/SysProSetInt",
+            "reference/device-app-api/hmFS/SysProGetInt",
+            "reference/device-app-api/hmFS/SysProSetInt64",
+            "reference/device-app-api/hmFS/SysProGetInt64",
+            "reference/device-app-api/hmFS/SysProSetDouble",
+            "reference/device-app-api/hmFS/SysProGetDouble",
+            "reference/device-app-api/hmFS/SysProSetChars",
+            "reference/device-app-api/hmFS/SysProGetChars"
+          ]
+        },
+        {
+          "type": "category",
+          "label": "Timer Module",
+          "items": [
+            "reference/device-app-api/timer/createTimer",
+            "reference/device-app-api/timer/stopTimer"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "category",
+      "label": "Side App API",
+      "items": [
+        {
+          "type": "category",
+          "label": "Settings App API",
+          "items": [
+            "reference/app-settings-api/global",
+            {
+              "type": "category",
+              "label": "UI Components",
+              "items": [
+                {
+                  "type": "autogenerated",
+                  "dirName": "reference/app-settings-api/ui"
+                }
+              ]
+            },
+            "reference/app-settings-api/settings-storage"
+          ]
+        },
+        {
+          "type": "category",
+          "label": "Side Service API",
+          "items": [
+            "reference/side-service-api/global",
+            "reference/side-service-api/messaging",
+            "reference/side-service-api/fetch",
+            "reference/side-service-api/settings-storage"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "category",
+      "label": "Related Resources",
+      "items": [
+        "reference/related-resources/device-list",
+        "reference/related-resources/language-list",
+        "reference/related-resources/physical-keys",
+        "reference/related-resources/design-resources"
+      ]
+    },
+    {
+      "type": "category",
+      "label": "App",
+      "items": ["samples/app/calories", "samples/app/toDoList", "samples/app/fetchAPI"]
+    },
+    "distribute/index",
+    "reference/revision-history"
+  ],
+  "watchface": [
+    "watchface/app-json",
+    {
+      "type": "category",
+      "label": "Watchface API",
+      "items": [
+        {
+          "type": "category",
+          "label": "hmUI Components Module",
+          "items": [
+            {
+              "type": "category",
+              "label": "Widget",
+              "items": [
+                "watchface/api/hmUI/widget/IMG",
+                "watchface/api/hmUI/widget/TEXT_IMG",
+                "watchface/api/hmUI/widget/ARC_PROGRESS",
+                "watchface/api/hmUI/widget/IMG_PROGRESS",
+                "watchface/api/hmUI/widget/IMG_LEVEL",
+                "watchface/api/hmUI/widget/IMG_ANIM",
+                "watchface/api/hmUI/widget/IMG_POINTER",
+                "watchface/api/hmUI/widget/IMG_STATUS",
+                "watchface/api/hmUI/widget/IMG_TIME",
+                "watchface/api/hmUI/widget/TIME_POINTER",
+                "watchface/api/hmUI/widget/IMG_DATE",
+                "watchface/api/hmUI/widget/IMG_WEEK",
+                "watchface/api/hmUI/widget/DATE_POINTER",
+                "watchface/api/hmUI/widget/data_type",
+                "watchface/api/hmUI/widget/IMG_CLICK",
+                "watchface/api/hmUI/widget/GRADKIENT_POLYLINE",
+                "watchface/api/hmUI/widget/edit_watchface"
+              ]
+            },
+            "watchface/api/hmUI/createWidget",
+            "watchface/api/hmUI/setProperty",
+            "watchface/api/hmUI/getProperty",
+            "watchface/api/hmUI/deleteWidget"
+          ]
+        },
+        {
+          "type": "category",
+          "label": "hmSetting OS Module",
+          "items": [
+            "watchface/api/hmSetting/setScreenAutoBright",
+            "watchface/api/hmSetting/getScreenAutoBright",
+            "watchface/api/hmSetting/setBrightness",
+            "watchface/api/hmSetting/getBrightness",
+            "watchface/api/hmSetting/setBrightScreen",
+            "watchface/api/hmSetting/setBrightScreenCancel",
+            "watchface/api/hmSetting/setScreenOff",
+            "watchface/api/hmSetting/getUserData",
+            "watchface/api/hmSetting/getMileageUnit",
+            "watchface/api/hmSetting/getLanguage",
+            "watchface/api/hmSetting/getDateFormat",
+            "watchface/api/hmSetting/getTimeFormat",
+            "watchface/api/hmSetting/getDiskInfo",
+            "watchface/api/hmSetting/getDeviceInfo",
+            "watchface/api/hmSetting/getWeightTarget",
+            "watchface/api/hmSetting/getSleepTarget",
+            "watchface/api/hmSetting/getWeightUnit",
+            "watchface/api/hmSetting/getScreenType"
+          ]
+        },
+        {
+          "type": "category",
+          "label": "hmSensor Sensor Module",
+          "items": [
+            {
+              "type": "category",
+              "label": "Sensor",
+              "items": [
+                "watchface/api/hmSensor/sensorId/TIME",
+                "watchface/api/hmSensor/sensorId/BATTERY",
+                "watchface/api/hmSensor/sensorId/STEP",
+                "watchface/api/hmSensor/sensorId/CALORIE",
+                "watchface/api/hmSensor/sensorId/HEART",
+                "watchface/api/hmSensor/sensorId/PAI",
+                "watchface/api/hmSensor/sensorId/DISTANCE",
+                "watchface/api/hmSensor/sensorId/STAND",
+                "watchface/api/hmSensor/sensorId/WEATHER",
+                "watchface/api/hmSensor/sensorId/FAT_BURRING",
+                "watchface/api/hmSensor/sensorId/SPO2",
+                "watchface/api/hmSensor/sensorId/BODY_TEMP",
+                "watchface/api/hmSensor/sensorId/STRESS",
+                "watchface/api/hmSensor/sensorId/VIBRATE",
+                "watchface/api/hmSensor/sensorId/WEAR",
+                "watchface/api/hmSensor/sensorId/WORLD_CLOCK",
+                "watchface/api/hmSensor/sensorId/SLEEP",
+                "watchface/api/hmSensor/sensorId/MUSIC"
+              ]
+            },
+            "watchface/api/hmSensor/createSensor",
+            "watchface/api/hmSensor/addEventListener"
+          ]
+        },
+        {
+          "type": "category",
+          "label": "hmFS File System Module",
+          "items": [
+            "watchface/api/hmFS/stat_asset",
+            "watchface/api/hmFS/stat",
+            "watchface/api/hmFS/open_asset",
+            "watchface/api/hmFS/open",
+            "watchface/api/hmFS/close",
+            "watchface/api/hmFS/seek",
+            "watchface/api/hmFS/read",
+            "watchface/api/hmFS/write",
+            "watchface/api/hmFS/remove",
+            "watchface/api/hmFS/rename",
+            "watchface/api/hmFS/SysProSetBool",
+            "watchface/api/hmFS/SysProGetBool",
+            "watchface/api/hmFS/SysProSetInt",
+            "watchface/api/hmFS/SysProGetInt",
+            "watchface/api/hmFS/SysProSetInt64",
+            "watchface/api/hmFS/SysProGetInt64",
+            "watchface/api/hmFS/SysProSetDouble",
+            "watchface/api/hmFS/SysProGetDouble",
+            "watchface/api/hmFS/SysProSetChars",
+            "watchface/api/hmFS/SysProGetChars"
+          ]
+        },
+        {
+          "type": "category",
+          "label": "Timer Module",
+          "items": ["watchface/api/timer/createTimer", "watchface/api/timer/stopTimer"]
+        }
+      ]
+    },
+    "watchface/specification",
+    "watchface/design-resources",
+    {
+      "type": "category",
+      "label": "Watchface",
+      "items": [
+        "samples/watchface/colorWorld",
+        "samples/watchface/basketball",
+        "samples/watchface/timer"
+      ]
+    },
+    "distribute/watchface",
+    "watchface/revision-history"
+  ],
+  "designs": [
+    "designs/index",
+    {
+      "type": "category",
+      "label": "Design Concept",
+      "items": ["designs/concept/values", "designs/concept/principles"]
+    },
+    {
+      "type": "category",
+      "label": "Structure",
+      "items": [
+        "designs/structure/page-types",
+        "designs/structure/switching-pages",
+        "designs/structure/interface-framework"
+      ]
+    },
+    {
+      "type": "category",
+      "label": "Interaction",
+      "items": [
+        "designs/interaction/screen-touch-control",
+        "designs/interaction/physical-buttons",
+        "designs/interaction/definition",
+        "designs/interaction/digital-crown"
+      ]
+    },
+    {
+      "type": "category",
+      "label": "Visual",
+      "items": [
+        "designs/visual/color",
+        "designs/visual/font",
+        "designs/visual/icons",
+        "designs/visual/illustrations",
+        "designs/visual/animations"
+      ]
+    },
+    {
+      "type": "category",
+      "label": "Templates",
+      "items": [
+        "designs/template/list",
+        "designs/template/pop-up-windows",
+        "designs/template/cards",
+        "designs/template/empty-pages"
+      ]
+    },
+    {
+      "type": "category",
+      "label": "Elements",
+      "items": [
+        "designs/elements/text",
+        "designs/elements/progress",
+        "designs/elements/loading",
+        "designs/elements/charts",
+        "designs/elements/status-bars",
+        "designs/elements/page-indicators",
+        "designs/elements/operations",
+        "designs/elements/input"
+      ]
+    },
+    {
+      "type": "category",
+      "label": "Watchface Design Specifications",
+      "items": [
+        "designs/specifications/index",
+        "designs/specifications/composition",
+        "designs/specifications/safe-area",
+        "designs/specifications/screen-off-mode"
+      ]
+    },
+    {
+      "type": "category",
+      "label": "Internationalization",
+      "items": [
+        "designs/internationalization/index",
+        "designs/internationalization/languages",
+        "designs/internationalization/interface-layouts",
+        "designs/internationalization/visual-graphics",
+        "designs/internationalization/regional-standards"
+      ]
+    },
+    {
+      "type": "category",
+      "label": "Accessibility Design",
+      "items": [
+        "designs/accessibility/index",
+        "designs/accessibility/color",
+        "designs/accessibility/contrast-ratio"
+      ]
+    },
+    "designs/self-checklist",
+    "designs/download"
+  ]
+}

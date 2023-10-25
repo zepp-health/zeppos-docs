@@ -1,0 +1,72 @@
+---
+title: VIBRATE
+sidebar_label: VIBRATE 振动
+---
+
+## 创建传感器
+
+```js
+const vibrate = hmSensor.createSensor(hmSensor.id.VIBRATE)
+```
+
+## vibrate 实例
+
+:::caution
+每个页面只能创建一个 `VIBRATE` 传感器实例，不能反复创建
+:::
+
+### vibrate: object
+
+| 属性  | 说明         | 类型     |
+| ----- | ------------ | -------- |
+| scene | 振动模式设置 | `number` |
+
+#### scene: number
+
+| 值   | 说明                                                                         |
+| ---- | ---------------------------------------------------------------------------- |
+| `23` | 振动强度轻，时间较短（20ms）                                                 |
+| `24` | 振动强度中等，时间较短（20ms）                                               |
+| `25` | 振动强度高，时间较短（20ms）                                                 |
+| `27` | 振动强度高，持续 1000ms                                                      |
+| `28` | 振动强度高，持续 600ms                                                       |
+| `0`  | 短促振动两次，与手表消息通知振动反馈一致                                     |
+| `1`  | 振动强度高，单次 500ms 内振动两次，持续振动，需要手动 stop 才会停止，与手表来电振动反馈一致         |
+| `5`  | 振动强度高，单次长振动 500ms，持续振动，需要手动 stop 才会停止，与手表闹钟、倒计时振动反馈一致 |
+| `9`  | 振动强度高，1200ms 内振动四次，可用于较强提醒                                |
+
+### vibrate.start
+
+`vibrate` 实例根据设置的振动模式开始振动，在调用 `start` 之后等待振动完成后必须调用 `stop`，否则下次调用 `start` 无法振动
+
+```js
+vibrate.start()
+```
+
+### vibrate.stop
+
+实例停止振动，建议在页面的 `onDestroy` 中调用 `stop`
+
+```js
+vibrate.stop()
+```
+
+## 代码示例
+
+```js
+const vibrate = hmSensor.createSensor(hmSensor.id.VIBRATE)
+
+function click() {
+  vibrate.stop()
+  vibrate.scene = 25
+  vibrate.start()
+}
+
+click()
+
+Page({
+  onDestroy() {
+    vibrate && vibrate.stop()
+  }
+})
+```

@@ -1,0 +1,47 @@
+# writeFileSync
+
+> Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Synchronously write data to a file in the `/data` directory of the Mini Program, replacing the file if it already exists, or creating a new file if it doesn't.
+
+## Type
+
+```ts
+function writeFileSync(option: Option): void
+```
+
+## Parameters
+
+### Option
+
+| Property | Type                                               | Required | DefaultValue | Description                           | API_LEVEL |
+| -------- | -------------------------------------------------- | -------- | ------------ | ------------------------------------- | --------- |
+| path     | <code>string&#124;number</code>                    | Y        | -            | File path or file descriptor          | 2.0       |
+| data     | <code>ArrayBuffer&#124;string&#124;DataView</code> | Y        | -            | Data to be written to the target file | 2.0       |
+| options  | <code>Options</code>                               | N        | -            | Other Options                         | 2.0       |
+
+### Options
+
+| Property | Type                | Required | DefaultValue      | Description                                                               | API_LEVEL |
+| -------- | ------------------- | -------- | ----------------- | ------------------------------------------------------------------------- | --------- |
+| encoding | <code>string</code> | N        | <code>utf8</code> | If the `data` format is `string`, you need to specify the encoding method | 2.0       |
+
+## Example
+
+```js
+import { writeFileSync } from '@zos/fs'
+
+const buffer = new ArrayBuffer(4)
+writeFileSync({
+  path: 'test.txt',
+  data: buffer,
+})
+
+writeFileSync({
+  path: 'content.txt',
+  data: 'some content...',
+  options: {
+    encoding: 'utf8',
+  },
+})
+```

@@ -1,0 +1,30 @@
+---
+title: hmApp.startApp(option)
+sidebar_label: startApp
+---
+
+启动 app
+
+## 类型
+
+```ts
+(option: Option) => void
+```
+
+## 参数
+
+### Option: object
+
+| 属性   | 说明                                              | 必填 | 类型      | 默认值  |
+| ------ | ------------------------------------------------- | ---- | --------- | ------- |
+| appid  | 应用 id                                           | 是   | `number`  | -       |
+| url    | 跳转路径                                          | 是   | `string`  | -       |
+| native | -                                                 | 否   | `boolean` | `false` |
+| param  | 传递给 `App` 构造函数中 `onCreate` 生命周期的参数 | 否   | `string`  | -       |
+
+## 代码示例
+
+```js
+// 启动appid为1000001的app
+hmApp.startApp({ appid: 1000001, url: 'pages/index2', param: '...' })
+```

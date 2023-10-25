@@ -1,0 +1,29 @@
+---
+title: hmSetting.getScreenType()
+sidebar_label: getScreenType
+---
+
+获取当前界面 Screen 信息。
+
+## 类型
+
+```ts
+() => screenType
+```
+
+## 参数
+
+### screenType: number
+
+| 值                                | 说明                       |
+| --------------------------------- | -------------------------- |
+| `hmSetting.screen_type.APP`       | 在 js 应用内               |
+| `hmSetting.screen_type.WATCHFACE` | 在 js 表盘主界面           |
+| `hmSetting.screen_type.SETTINGS`  | 在 js 应用配置或表盘编辑页 |
+| `hmSetting.screen_type.AOD`       | 在息屏界面                 |
+
+## 代码示例
+
+```js
+const screenType = hmSetting.getScreenType()
+```

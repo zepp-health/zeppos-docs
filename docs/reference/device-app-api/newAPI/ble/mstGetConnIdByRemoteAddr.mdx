@@ -1,0 +1,33 @@
+# mstGetConnIdByRemoteAddr
+
+> Start from API_LEVEL `3.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Look up the connection Id based on the Peripheral MAC address.
+
+## Type
+
+```ts
+function mstGetConnIdByRemoteAddr(deviceAddress: DeviceAddress): Result
+```
+
+## Parameters
+
+### DeviceAddress
+
+| Type                     | Description                                                   |
+| ------------------------ | ------------------------------------------------------------- |
+| <code>ArrayBuffer</code> | Device MAC address, 6 bytes long, Uint8Array view recommended |
+
+### Result
+
+| Type                               | Description                                                                                                    |
+| ---------------------------------- | -------------------------------------------------------------------------------------------------------------- |
+| <code>number&#124;undefined</code> | The result of the function call returns `connectId` for a successful query and `undefined` for a failed query. |
+
+## Example
+
+```js
+import { mstGetConnIdByRemoteAddr } from '@zos/ble'
+
+// ...
+```

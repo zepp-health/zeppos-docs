@@ -1,0 +1,45 @@
+# getApp
+
+> API_LEVEL `2.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+获取 app 实例对象。
+
+## 类型
+
+```ts
+function getApp(): Result
+```
+
+## 参数
+
+### Result
+
+| 属性      | 类型                 | 说明         | API_LEVEL |
+| --------- | -------------------- | ------------ | --------- |
+| \_options | <code>Options</code> | app 实例属性 | 2.0       |
+
+### Options
+
+| 属性       | 类型                | 说明                       | API_LEVEL |
+| ---------- | ------------------- | -------------------------- | --------- |
+| globalData | <code>object</code> | app 实例上的挂载的数据对象 | 2.0       |
+
+## 代码示例
+
+```js
+App({
+  globalData: {
+    text: 'Hello Zepp OS',
+  },
+  onCreate() {
+    console.log('onCreate')
+    console.log(this.globalData.text)
+  },
+  onDestroy() {
+    console.log('onDestroy')
+  },
+})
+
+const app = getApp()
+console.log(app._options.globalData.text)
+```

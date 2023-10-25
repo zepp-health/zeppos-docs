@@ -1,0 +1,53 @@
+---
+title: STROKE_RECT
+sidebar_label: STROKE_RECT 描边矩形
+---
+
+![stroke_rect_sample](/img/api/stroke_rect_sample.jpg)
+
+描边矩形控件在填充矩形控件的基础上加入了描边。
+
+## 创建 UI 控件
+
+```js
+const strokeRect = hmUI.createWidget(hmUI.widget.STROKE_RECT, Param)
+```
+
+## 类型
+
+### Param: object
+
+| 属性       | 备注         | 是否必须 | 类型     |
+| ---------- | ------------ | -------- | -------- |
+| x          | 控件 x 坐标  | 是       | `number` |
+| y          | 控件 y 坐标  | 是       | `number` |
+| w          | 控件显示宽度 | 是       | `number` |
+| h          | 控件显示高度 | 是       | `number` |
+| color      | 控件颜色     | 是       | `number` |
+| radius     | 矩形圆角     | 否       | `number` |
+| line_width | 描边宽度     | 否       | `number` |
+| angle      | 旋转角度     | 否       | `number` |
+
+## 代码示例
+
+```js
+Page({
+  build() {
+    const strokeRect = hmUI.createWidget(hmUI.widget.STROKE_RECT, {
+      x: 125,
+      y: 125,
+      w: 230,
+      h: 150,
+      radius: 20,
+      line_width: 4,
+      color: 0xfc6950
+    })
+
+    strokeRect.addEventListener(hmUI.event.CLICK_DOWN, (info) => {
+      strokeRect.setProperty(hmUI.prop.MORE, {
+        y: 200
+      })
+    })
+  }
+})
+```

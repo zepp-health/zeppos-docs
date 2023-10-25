@@ -1,0 +1,33 @@
+# getDiskInfo
+
+> Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Gets disk information.
+
+## Type
+
+```ts
+function getDiskInfo(): Result
+```
+
+## Parameters
+
+### Result
+
+| Property  | Type                | Description                              | API_LEVEL |
+| --------- | ------------------- | ---------------------------------------- | --------- |
+| total     | <code>number</code> | Total Space in bytes                     | 2.0       |
+| free      | <code>number</code> | Available Space in bytes                 | 2.0       |
+| app       | <code>number</code> | Space occupied by Mini Programs in bytes | 2.0       |
+| watchface | <code>number</code> | Space occupied by watchfaces in bytes    | 2.0       |
+| music     | <code>number</code> | Space occupied by musics in bytes        | 2.0       |
+| system    | <code>number</code> | Space occupied by system in bytes        | 2.0       |
+
+## Example
+
+```js
+import { getDiskInfo } from '@zos/device'
+
+const { total } = getDiskInfo()
+console.log(total)
+```

@@ -1,0 +1,22 @@
+---
+title: Slider 滑块
+sidebar_label: Slider 滑块
+---
+
+## 类型
+
+```ts
+(props: Props) => result: RenderFunc
+```
+
+## Props: object
+
+| 名称        | 说明                                | 必填 | 类型       | 默认值 |
+| ----------- | ----------------------------------- | ---- | ---------- | ------ |
+| label       | 滑块标签文本                        | 否   | `string`   | -      |
+| max         | 最大值                              | 否   | `number`   | -      |
+| min         | 最小值                              | 否   | `number`   | -      |
+| step        | 步长                                | 否   | `number`   | -      |
+| value       | 值                                  | 否   | `number`   | -      |
+| onChange    | `(value: SelectValue) => void`      | 否   | `function` | -      |
+| settingsKey | Settings Storage API 中存储值的 key | 否   | `string`   | -      |

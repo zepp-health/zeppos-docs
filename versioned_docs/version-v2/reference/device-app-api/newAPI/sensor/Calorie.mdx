@@ -1,0 +1,64 @@
+---
+title: Calorie
+sidebar_label: Calorie
+---
+
+> Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Calorie Sensor.
+
+:::info
+permission code: `data:user.hd.calorie`
+:::
+
+## Methods
+
+### getCurrent
+
+Get the current calorie consumption in kcal
+
+```ts
+getCurrent(): number
+```
+
+### getTarget
+
+Get the target calorie consumption in kcal
+
+```ts
+getTarget(): number
+```
+
+### onChange
+
+Register the calories change event callback function
+
+```ts
+onChange(callback: () => void): void
+```
+
+### offChange
+
+Cancel the calories change event callback function
+
+```ts
+offChange(callback: () => void): void
+```
+
+## Example
+
+```js
+import { Calorie } from '@zos/sensor'
+
+const calorie = new Calorie()
+const current = calorie.getCurrent()
+const target = calorie.getTarget()
+const callback = () => {
+  console.log(calorie.getCurrent())
+}
+
+calorie.onChange(callback)
+
+// When not needed for use
+calorie.offChange(callback)
+```

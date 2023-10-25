@@ -1,0 +1,47 @@
+# clearLaunchAppTimeout
+
+> Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Cancel the wakeup Mini Program timer created by `setLaunchAppTimeout`.
+
+## Type
+
+```ts
+function clearLaunchAppTimeout(option: Option): void
+```
+
+### Simplified calling method
+
+```ts
+function clearLaunchAppTimeout(timeoutId: number): void
+```
+
+## Parameters
+
+### Option
+
+| Property  | Type                | Required | DefaultValue | Description                                                                                                                 | API_LEVEL |
+| --------- | ------------------- | -------- | ------------ | --------------------------------------------------------------------------------------------------------------------------- | --------- |
+| timeoutId | <code>number</code> | Y        | -            | The identifier of the timeout you want to cancel. This ID was returned by the corresponding call to `setLaunchAppTimeout`() | 2.0       |
+
+### Result
+
+| Type                | Description                                                                                                                                                                                       |
+| ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| <code>number</code> | The returned value is a positive integer value which identifies the timer created by the call to `setLaunchAppTimeout`. This value can be passed to `clearLaunchAppTimeout` to cancel the timeout |
+
+## Example
+
+```js
+import { setLaunchAppTimeout, clearLaunchAppTimeout } from '@zos/router'
+
+const timeoutId = setLaunchAppTimeout({
+  url: 'pages/js_widget_sample',
+  appId: 1000001,
+  delay: 10000,
+})
+
+clearLaunchAppTimeout({
+  timeoutId,
+})
+```

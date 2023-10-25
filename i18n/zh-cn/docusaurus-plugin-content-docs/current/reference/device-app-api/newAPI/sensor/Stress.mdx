@@ -1,0 +1,117 @@
+---
+title: Stress
+sidebar_label: Stress 压力
+---
+
+> API_LEVEL `2.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+压力传感器。
+
+:::info
+权限代码： `data:user.hd.stress`
+:::
+
+## 方法
+
+### getCurrent
+
+获取当前压力测量值
+
+```ts
+getCurrent(): Result
+```
+
+#### Result
+
+| 属性  | 类型                | 说明             | API_LEVEL |
+| ----- | ------------------- | ---------------- | --------- |
+| value | <code>number</code> | 压力测量值       | 2.0       |
+| time  | <code>number</code> | 得出测量值的时间 | 2.0       |
+
+### onChange
+
+注册压力测量值变化事件监听回调函数
+
+```ts
+onChange(callback: () => void): void
+```
+
+### offChange
+
+取消压力测量值变化事件监听回调函数
+
+```ts
+offChange(callback: () => void): void
+```
+
+### getToday
+
+> API_LEVEL `3.0`
+
+获取全天的压力测量值，每分钟记录一次，返回值为不定长数组，数组长度最大 24 \* 60
+
+```ts
+getToday(): Array<number>
+```
+
+#### StressInfo
+
+| 属性   | 类型                | 说明                               | API_LEVEL |
+| ------ | ------------------- | ---------------------------------- | --------- |
+| second | <code>number</code> | 压力值测量时间，UTC 时间戳，单位秒 | 3.0       |
+| stress | <code>number</code> | 压力值，`0` 代表无效               | 3.0       |
+
+### getTodayByHour
+
+> API_LEVEL `3.0`
+
+获取全天的压力均值，返回值为定长数组，为每小时的平均压力，数组长度为 24
+
+```ts
+getTodayByHour(): Array<number>
+```
+
+### getLastWeek
+
+> API_LEVEL `3.0`
+
+获取过去一周每天的压力均值，返回值为定长数组，为每天平均压力，数组长度为 7，索引 0 的位置代表六天前，索引 6 的位置代表今天
+
+```ts
+getLastWeek(): Array<number>
+```
+
+### getLastWeekByHour
+
+> API_LEVEL `3.0`
+
+获取过去一周每小时的压力平均值，返回值为定长数组，数组长度为 7 \* 24
+
+```ts
+getLastWeekByHour(): Array<StressInfo>
+```
+
+#### StressInfo
+
+| 属性   | 类型                | 说明                               | API_LEVEL |
+| ------ | ------------------- | ---------------------------------- | --------- |
+| second | <code>number</code> | 压力值测量时间，UTC 时间戳，单位秒 | 3.0       |
+| stress | <code>number</code> | 压力值，`0` 代表无效               | 3.0       |
+
+## 代码示例
+
+```js
+import { Stress } from '@zos/sensor'
+
+const stress = new Stress()
+const { value } = stress.getCurrent()
+
+const callback = () => {
+  console.log(stress.getCurrent())
+}
+
+stress.onChange(callback)
+
+// When not needed for use
+stress.offChange(callback)
+```

@@ -1,0 +1,100 @@
+---
+title: Settings Storage API
+sidebar_label: Settings Storage API
+---
+
+`settingsStorage` API 可以将数据持久化存储于 Zepp App 中。
+
+:::tip
+「伴生服务」与「设置应用」均可访问通过 `settingsStorage` 进行存储的数据。
+
+两端之间可以借助 `settingsStorage` 的事件系统进行通信。
+
+通信方式请参考 [整体架构-通信关系](../../guides/architecture/arc.mdx)
+:::
+
+## setItem
+
+存储键值对。
+
+### 类型
+
+```ts
+(key: string, value: string) => void
+```
+
+## getItem
+
+通过键名获取存储的值。
+
+### 类型
+
+```ts
+(key: string) => result: string | undefined
+```
+
+### 代码示例
+
+```js
+settings.settingsStorage.setItem('text', 'Hello Zepp OS')
+const result = settings.settingsStorage.getItem('text')
+```
+
+## length: number
+
+`settings.settingsStorage.length` 返回 `settingsStorage` 中的成员数量
+
+## removeItem
+
+删除键名存储的值。
+
+### 类型
+
+```ts
+(key: string) => void
+```
+
+## clear
+
+删除所有的键值对。
+
+```ts
+() => void
+```
+
+## toObject
+
+将 `settingsStorage` 中存储的内容转换为对象的形式。
+
+### 类型
+
+```ts
+() => Record<string, any>
+```
+
+### 代码示例
+
+```js
+const storageObj = settings.settingsStorage.toObject()
+
+console.log(storageObj)
+```
+
+## addListener
+
+:::caution
+此 API 只需在「伴生服务」中使用。「设置应用」对 `settingsStorage` 中的数据变化做了“响应式”处理，无需手动监听数据变化。
+:::
+
+监听存储的变化，约定事件名为 `change`，可用于在「伴生服务」中监听「设置应用」对于 `settingsStorage` 中数据的修改。
+
+### 代码示例
+
+```js
+settings.settingsStorage.addListener('change', async ({ key, newValue, oldValue }) => {
+  if (key === 'token' && newValue) {
+    // ...
+    await reLogin()
+  }
+})
+```

@@ -1,0 +1,44 @@
+# AppService
+
+> API_LEVEL `3.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+注册设备应用服务，指定当前服务的生命周期回调等。每个设备应用服务都必须调用 `AppService()` 构造函数且只能调用一次。
+
+:::info
+权限代码： `device:os.bg_service`
+:::
+
+## 类型
+
+```ts
+function AppService(option: Option): Result
+```
+
+## 参数
+
+### Option
+
+| 属性      | 类型                                       | 必填 | 默认值 | 说明                                                                                               | API_LEVEL |
+| --------- | ------------------------------------------ | ---- | ------ | -------------------------------------------------------------------------------------------------- | --------- |
+| state     | <code>object</code>                        | 否   | -      | appService 实例上挂载的数据对象，可用于存储当前服务的状态                                          | 3.0       |
+| onInit    | <code>(params?: string) =&#62; void</code> | 否   | -      | 启动服务的时候触发该函数，如果启动服务携带 params 参数，则在 onInit 方法中可以获取到 params 字符串 | 3.0       |
+| onDestroy | <code>() =&#62; void</code>                | 否   | -      | 服务销毁时触发 `onDestroy` 生命周期函数                                                            | 3.0       |
+
+### Result
+
+| 类型                 | 说明            |
+| -------------------- | --------------- |
+| <code>unknown</code> | AppService 实例 |
+
+## 代码示例
+
+```js title="appService.js"
+AppService({
+  state: {
+    text: 'Hello Zepp OS',
+  },
+  onInit() {
+    console.log('onInit')
+  },
+})
+```

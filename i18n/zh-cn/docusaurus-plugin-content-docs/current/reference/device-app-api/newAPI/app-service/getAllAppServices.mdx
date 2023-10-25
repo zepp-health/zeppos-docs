@@ -1,0 +1,32 @@
+# getAllAppServices
+
+> API_LEVEL `3.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+获取当前应用在运行的设备应用服务列表，用于查询服务状态。
+
+:::info
+权限代码： `device:os.bg_service`
+:::
+
+## 类型
+
+```ts
+function getAllAppServices(): Result
+```
+
+## 参数
+
+### Result
+
+| 类型                               | 说明                               |
+| ---------------------------------- | ---------------------------------- |
+| <code>Array&#60;string&#62;</code> | 获取当前正在运行的设备应用服务列表 |
+
+## 代码示例
+
+```js
+import { getAllAppServices } from '@zos/app-service'
+
+const serviceList = getAllAppServices()
+console.log(serviceList)
+```

@@ -1,0 +1,22 @@
+---
+title: widget.setEnable()
+sidebar_label: setEnable
+---
+
+设置控件是否响应屏幕手势交互事件，默认为响应。
+
+如果控件出现 Z 轴方向的堆叠，则堆叠在上方的控件会将事件进行拦截，下方的控件接收不到入 `CLICK_DOWN`、`CLICK_UP` 等事件。如果想要下方的控件接收到手势交互事件，对堆叠在上方的控件设置 `widget.setEnable(false)` 即可。
+
+## 类型
+
+```ts
+(response: boolean) => void
+```
+
+## 参数
+
+### response
+
+| 说明    | 类型     |
+| ------- | -------- |
+| 控件是否响应手势交互事件，`true` 响应，`false` 不响应 | `boolean` |

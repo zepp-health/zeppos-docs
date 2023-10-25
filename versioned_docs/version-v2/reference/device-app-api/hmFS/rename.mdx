@@ -1,0 +1,32 @@
+---
+title: hmFS.rename(oldPath, newPath)
+sidebar_label: rename
+---
+
+Rename file
+
+## Type
+
+```ts
+(oldPath: string, newPath: string) => result
+```
+
+## Parameters
+
+| Parameters | Description | Required | Type | Default |
+| ------- | ---------- | ---- | -------- | ------ |
+| oldPath | old file path | yes | `string` | - | 
+| newPath | new file path | yes | `string` | - |
+
+### result
+
+|                 Description                    |   Type   |
+| ---------------------------------------------- | -------- |
+| The result of the operation, `0` means success | `number` |
+
+## Code example
+
+```js
+const result = hmFS.rename('path/to/old_file.txt', 'path/to/new_file.txt')
+console.log(result)
+```

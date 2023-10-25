@@ -1,0 +1,35 @@
+---
+title: getImageInfo(img_path)
+sidebar_label: getImageInfo
+---
+
+> Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Get information about the image resources in the `/assets` resource directory.
+
+## Type
+
+```ts
+(img_path: string) => result
+```
+
+## Parameters
+
+| Parameter | Description                                                              | Required | Type     |
+| --------- | ------------------------------------------------------------------------ | -------- | -------- |
+| img_path  | The path to the image file, relative to the `/assets` resource directory | YES      | `string` |
+
+### result: object
+
+| Parameter | Description        | Type     |
+| --------- | ------------------ | -------- |
+| width     | Image width value  | `number` |
+| height    | Image height value | `number` |
+
+## Code example
+
+```js
+import { getImageInfo } from '@zos/ui'
+
+getImageInfo('test.png')
+```

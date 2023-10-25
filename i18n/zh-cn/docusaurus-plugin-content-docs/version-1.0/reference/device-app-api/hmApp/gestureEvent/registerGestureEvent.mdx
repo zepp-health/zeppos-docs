@@ -1,0 +1,63 @@
+---
+title: hmApp.registerGestureEvent(callback)
+sidebar_label: registerGestureEvent
+---
+
+注册手势监听事件。
+
+部分手势事件会有默认行为，参照下表：
+
+手势|默认行为
+---|---
+`RIGHT`|`hmApp.goBack`
+
+以 `RIGHT` 手势为例，如果 `callback` 返回的是 `false`，则在 `callback` 函数执行完毕之后，会执行 `hmApp.goBack()`。如果 `callback` 的返回值是 `true`，则会跳过执行 `hmApp.goBack()`
+
+## 类型
+
+```ts
+(callback: (event: Event) => boolean) => void
+```
+
+## 参数
+
+### Callback
+
+| 说明                                                                         | 必填 | 类型                        | 默认值 |
+| ---------------------------------------------------------------------------- | ---- | --------------------------- | ------ |
+| 手势事件回调函数，返回值 `false` 不跳过默认行为，`true` 跳过默认行为 | 是   | `(event: Event) => boolean` | -      |
+
+### Event
+
+| 说明                                                     |
+| -------------------------------------------------------- |
+| 支持 `UP`、`DOWN`、`LEFT`、`RIGHT`，具体用法参考代码示例 |
+
+## 代码示例
+
+```js
+//注册手势监听 一个 JsApp 重复注册会导致上一个注册的回调失效
+hmApp.registerGestureEvent(function (event) {
+  let msg = 'none'
+  switch (event) {
+    case hmApp.gesture.UP:
+      msg = 'up'
+      break
+    case hmApp.gesture.DOWN:
+      msg = 'down'
+      break
+    case hmApp.gesture.LEFT:
+      msg = 'left'
+      break
+    case hmApp.gesture.RIGHT:
+      msg = 'right'
+      break
+    default:
+      break
+  }
+  console.log(`receive gesture event ${msg}`)
+
+  //不跳过默认手势
+  return false
+})
+```

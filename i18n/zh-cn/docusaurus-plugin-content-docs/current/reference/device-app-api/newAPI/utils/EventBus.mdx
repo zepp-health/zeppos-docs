@@ -1,0 +1,72 @@
+---
+title: EventBus
+sidebar_label: EventBus
+---
+
+> API_LEVEL `2.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+EventBus 是一个提供事件发布/订阅的工具类。
+
+## 方法
+
+### on
+
+为 `eventName` 对应的的监听器数组中添加一个事件监听器
+
+```ts
+on(eventName: string, listener: (...args: any[]) => void): void
+```
+
+### off
+
+移除 `eventName` 对应的的监听器数组中的一个事件监听器
+
+```ts
+off(eventName: string, listener: (...args: any[]) => void): void
+```
+
+### emit
+
+触发 `eventName` 对应的的监听器数组中的所有事件监听器
+
+```ts
+emit(eventName: string, ...args: any[]): void
+```
+
+### once
+
+为 `eventName` 添加一个仅生效一次的事件监听器
+
+```ts
+once(eventName: string, listener: (...args: any[]) => void): void
+```
+
+### clear
+
+移除所有事件监听器
+
+```ts
+clear(): void
+```
+
+### count
+
+获取对应 `eventName` 对应的注册事件监听器的数量。不传递 `eventName` 则获取所注册 `eventName` 种类的数量
+
+```ts
+count(eventName?: string): number
+```
+
+## 代码示例
+
+```js
+import { EventBus } from '@zos/utils'
+
+const eventBus = new EventBus()
+
+eventBus.on('data', (data) => {
+  console.log(data)
+})
+
+eventBus.emit('data', 'Hello Zepp OS!')
+```

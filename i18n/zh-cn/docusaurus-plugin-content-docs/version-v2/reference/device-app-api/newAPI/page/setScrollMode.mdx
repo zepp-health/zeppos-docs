@@ -1,0 +1,58 @@
+# setScrollMode
+
+> API_LEVEL `2.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+设置页面的滚动模式。
+
+## 类型
+
+```ts
+function setScrollMode(option: Option): Result
+```
+
+## 参数
+
+### Option
+
+| 属性    | 类型                 | 必填 | 默认值 | 说明                                 | API_LEVEL |
+| ------- | -------------------- | ---- | ------ | ------------------------------------ | --------- |
+| mode    | <code>string</code>  | 是   | -      | 页面滚动模式，值参考页面滚动模式常量 | 2.0       |
+| options | <code>Options</code> | 否   | -      | 其他选项                             | 2.0       |
+
+### Options
+
+| 属性   | 类型                | 必填 | 默认值 | 说明                                                                                                      | API_LEVEL |
+| ------ | ------------------- | ---- | ------ | --------------------------------------------------------------------------------------------------------- | --------- |
+| height | <code>number</code> | 否   | -      | 指定 Swiper 中单个项目的高度，仅当页面滚动模式为 `SCROLL_MODE_SWIPER` 生效                                | 2.0       |
+| count  | <code>number</code> | 否   | -      | 指定 Swiper 中项目的数量，仅当页面滚动模式为 `SCROLL_MODE_SWIPER` 和 `SCROLL_MODE_SWIPER_HORIZONTAL` 生效 | 2.0       |
+| width  | <code>number</code> | 否   | -      | 指定 Swiper 中单个项目的宽度，仅当页面滚动模式为 `SCROLL_MODE_SWIPER_HORIZONTAL` 生效                     | 2.1       |
+
+### Result
+
+| 类型                | 说明                       |
+| ------------------- | -------------------------- |
+| <code>number</code> | 如果返回 `true` 则表明成功 |
+
+## 常量
+
+### 页面滚动模式常量
+
+| 常量                            | 说明                                                                            | API_LEVEL |
+| ------------------------------- | ------------------------------------------------------------------------------- | --------- |
+| `SCROLL_MODE_FREE`              | 自由滚动，系统默认滚动模式                                                      | 2.0       |
+| `SCROLL_MODE_SWIPER`            | Swiper 模式，竖向轮播图、走马灯，通过配置单个页面高度和数量可以做到整屏滚动效果 | 2.0       |
+| `SCROLL_MODE_SWIPER_HORIZONTAL` | Swiper 模式，横向轮播图、走马灯，通过配置单个页面宽度和数量可以做到整屏滚动效果 | 2.1       |
+
+## 代码示例
+
+```js
+import { setScrollMode, SCROLL_MODE_SWIPER } from '@zos/page'
+
+setScrollMode({
+  mode: SCROLL_MODE_SWIPER,
+  options: {
+    height: 480,
+    count: 10,
+  },
+})
+```

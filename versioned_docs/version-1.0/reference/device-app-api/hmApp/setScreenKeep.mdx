@@ -1,0 +1,29 @@
+---
+title: hmApp.setScreenKeep(option)
+sidebar_label: setScreenKeep
+---
+
+By default, the system will exit the Mini Program after 10s, and the watch will enter the watchface page when it is woken up again.
+
+When `hmApp.setScreenKeep(true)` is set, the system will exit the Mini Program after 10s when the system is triggered to screen off in a page of the Mini Program, and the Mini Program will be reopened and enter the corresponding page when the watch is woken up again.
+
+## Type
+
+```ts
+(option: boolean) => void
+```
+
+## Parameters
+
+### option
+
+|                     Description                      | Required |    Type   | Default |
+| ---------------------------------------------------- |  ------  | --------- | ------ |
+| Whether to return to the Mini Program after the screen off for 10s, `true` is yes |   Yes    | `boolean` | - |
+
+## Code examples
+
+```js
+// Screen hold
+hmApp.setScreenKeep(true)
+```

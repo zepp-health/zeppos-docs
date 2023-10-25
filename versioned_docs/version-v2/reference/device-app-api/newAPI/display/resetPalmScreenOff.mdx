@@ -1,0 +1,33 @@
+# resetPalmScreenOff
+
+> Start from API_LEVEL `2.1` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Recovery of overlapping palm resting screen behavior.
+
+## Type
+
+```ts
+function resetPalmScreenOff(): Result
+```
+
+## Parameters
+
+### Result
+
+| Type                | Description                              |
+| ------------------- | ---------------------------------------- |
+| <code>number</code> | If `0` is returned, success is indicated |
+
+## Example
+
+```js
+import { pausePalmScreenOff, resetPalmScreenOff } from '@zos/display'
+
+pausePalmScreenOff({
+  duration: 0,
+})
+
+setTimeout(() => {
+  resetPalmScreenOff()
+}, 3000)
+```

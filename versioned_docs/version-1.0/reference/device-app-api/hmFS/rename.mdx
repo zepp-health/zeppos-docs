@@ -1,0 +1,40 @@
+---
+title: hmFS.rename(oldPath, newPath)
+sidebar_label: rename
+---
+
+> For an introduction to the Zepp OS Mini Program file system, please refer to [File System](../../../guides/framework/device/fs.md).
+
+Rename the file in the `/data` data directory of the Mini Program.
+
+## Type
+
+```ts
+(oldPath: string, newPath: string) => result
+```
+
+## Parameters
+
+| Parameters | Description | Required | Type | Default |
+| ------- | ---------- | ---- | -------- | ------ |
+| oldPath | old file path (relative path) | yes | `string` | - |
+| newPath | new file path (relative path) | yes | `string` | - |
+
+### result
+
+|                 Description                    |   Type   |
+| ---------------------------------------------- | -------- |
+| The result of the operation, `0` means success | `number` |
+
+Please refer to [File System - Error Code](../../../guides/framework/device/fs.md#error-code) for the rest of the error codes.
+
+## Code example
+
+```js
+Page({
+  build() {
+    const result = hmFS.rename('path/to/old_file.txt', 'path/to/new_file.txt')
+    console.log(result)
+  }
+})
+```

@@ -1,0 +1,107 @@
+---
+title: 1. 环境准备
+sidebar_label: 1. 环境准备
+---
+
+在本章节中，我们将完成以下环境准备工作
+
+- Node.js
+- npm
+- Zeus CLI
+- TUN/TAP Network for simulator
+
+我们提供了两种方式来完成环境准备，建议使用 Zepp OS 官方提供的 env-setup-script 脚本来实现一键安装，或者根据文档提示，手动完成环境准备。
+
+## 使用 env-setup-script 脚本安装环境
+
+### 下载 env-setup-script 安装包
+
+开发者根据不同操作系统，下载对应安装包。
+
+- [Win10-11](https://bundle-cdn.huami.com/20231024/win10-11.zip)
+- [MacOS](https://bundle-cdn.huami.com/20231024/macos.zip)
+- [Linux](https://bundle-cdn.huami.com/20231024/linux.zip)
+
+项目源码托管在 [Zepp Health Github env-setup-script](https://github.com/zepp-health/env-setup-script)。
+
+### 执行脚本
+
+在这一步骤中，不同操作系统的操作有差异，请参考操作系统对应的内容进行操作。
+
+执行脚本，即可完成环境安装，当脚本出现以下提示表明安装成功。
+
+![Environment](/img/docs/quick-start/environment.png)
+
+#### Windows
+
+在 Windows 中推荐使用系统内置的 `PowerShell` 终端来执行命令，以管理员方式运行。
+
+进入 `/win10-11` 目录中，执行 `.\env-helper.ps1` 命令。
+
+```sh
+.\env-helper.ps1
+```
+
+:::info
+如果遇到了这样的错误提示消息
+
+```sh
+File .\env-helper.ps1 cannot be loaded because running scripts is disabled on this system. For more information, see about_Execution_Policies at http://go.microsoft.com/fwlink/?LinkID=135170.
+
++ CategoryInfo : SecurityError: (:) [], ParentContainsErrorRecordException
++ FullyQualifiedErrorId : UnauthorizedAccess
+
+The script doesn’t run because the PowerShell Execution Policy is set to the default of Restricted.
+```
+
+请先在终端执行如下命令
+
+```sh
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned
+```
+
+之后重新执行 `.\env-helper.ps1` 命令
+:::
+
+#### macOS
+
+在 macOS 中推荐使用系统内置的 `Terminal` 或者 `iTerm2` 终端来执行命令。
+
+进入 `/macOS` 目录下，执行脚本。
+
+```sh
+cd macOS
+bash env-helper.sh
+```
+
+:::info
+- 如果提示输入密码，输入当前用户的密码并确认
+
+```sh
+Extension with identifiers xxxxxx not approved to load. Please approve using System Preferences.
+```
+- 如果收到这样的错误提示，在「系统偏好设置」的「隐私与安全性」中手动授予权限
+- 对于 Apple Silicon 机型，请先参考文档进行设置 [Apple Silicon 机型开启系统扩展](../../guides/faq/apple-silicon.md)
+:::
+
+#### Linux
+
+在 Linux 中推荐使用系统内置的 `Terminal` 终端执行命令。
+
+进入 `/linux` 目录下，执行脚本。
+
+```sh
+cd linux
+bash env-helper.sh
+```
+
+## 手动安装
+
+请参考以下文档，完成环境准备
+
+- 安装 Node.js（推荐 LTS 版本）
+  - 参考 [Node.js 官方文档](https://nodejs.org/)
+- [Zeus CLI 命令行工具](../tools/cli/index.md)
+  - 完成 Zeus CLI 命令行工具安装
+- [模拟器 - 安装与启动](../tools/simulator/setup.md)
+  - 完成 TUN/TAP 安装

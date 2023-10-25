@@ -1,0 +1,90 @@
+---
+title: Cross-Page Communications
+sidebar_label: Cross-Page Communications
+---
+
+When a Mini Program has more than one page, how should the pages communicate with each other?
+
+This article gives some solution ideas for some common scenarios.
+
+- Page jumping
+- Communication through the global `app` object
+- Via the storage module's [`sessionStorage`](../../reference/device-app-api/newAPI/storage/sessionStorage.mdx) API
+
+## Page Jumping
+
+When jumping from `pageA.js` page to `pageB.js` page, use the [`push`](../../reference/device-app-api/newAPI/router/push.mdx) API to pass parameters to the `pageB.js` page via the `param` parameter.
+
+```js title=pageA.js
+import { push } from '@zos/router'
+
+push({
+  url: 'path/to/pageB',
+  params: {
+    id: '0',
+    type: 'normal'
+  }
+})
+```
+
+```js title=pageB.js
+Page({
+  onInit(params) {
+    const paramsObj = JSON.parse(params)
+    const { id, type } = paramsObj
+    console.log(id === '0') // true
+    console.log(type === 'normal') // true
+  }
+})
+```
+
+This solution can only be used for one-way passing of page jumps, if you do some operations in `pageB.js` and then return to the `pageA.js` page, calling the [`back`](../../reference/device-app-api/newAPI/router/back.mdx) API does not support parameter passing, in this case you need to use the global `app` object to communicate.
+
+## Communicating through the global `app` object
+
+In the `app.js` constructor parameter, pass in the `globalData` object
+
+```js title=app.js
+App({
+  globalData: {
+    type: 'normal'
+  }
+})
+```
+
+```js title=pageA.js
+Page({
+  build() {
+    console.log(getApp()._options.globalData.type)
+  }
+})
+```
+
+```js title=pageB.js
+import { back } from '@zos/router'
+
+// ...
+getApp()._options.globalData.type = 'classic'
+
+back()
+```
+
+Our page jump is still from `PageA.js` to `PageB.js`
+
+The `globalData` object mounted on the global `app` object is modified in `pageB.js`, and when we call `back` to return from the `pageB.js` page to the `pageA.js` page, we can get the modified `type` value
+
+## Via [sessionStorage API](../../reference/device-app-api/newAPI/storage/sessionStorage.mdx)
+
+`sessionStorage` provides key-value pair storage, similar to the way global `app` objects communicate, with the difference that the data is mounted to the `sessionStorage` object.
+
+```js title=pageA.js
+import { sessionStorage } from '@zos/storage'
+
+sessionStorage.setItem('test', 'test value')
+```
+
+```js title=pageB.js
+import { sessionStorage } from '@zos/storage'
+
+sessionStorage.getItem('test')
+```

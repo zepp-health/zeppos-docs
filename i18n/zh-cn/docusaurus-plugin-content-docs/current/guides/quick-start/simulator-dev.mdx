@@ -1,0 +1,101 @@
+---
+title: 3. 模拟器预览
+sidebar_label: 3. 模拟器预览
+---
+
+在这一步中，我们会完成以下任务
+
+- 安装 Zepp OS 模拟器
+- 安装 Amazfit Balance 手表设备模拟器
+- 在模拟器预览 Zepp OS 小程序
+
+## 安装并运行 Zepp OS 模拟器
+
+根据系统版本，下载对应的模拟器安装包，根据提示进行安装，[模拟器下载](../tools/simulator/download.md)
+
+接下来我们运行模拟器，在这一步骤中，不同操作系统的操作有差异，请参考操作系统对应的内容进行操作。
+
+### 在 Windows 运行模拟器
+
+双击模拟器图标即可启动模拟器。
+
+![simulator_icon.jpg](/img/simulator/simulator_icon.jpg)
+
+### 在 MacOS 运行模拟器
+
+在终端执行如下命令，给模拟器启动脚本添加可执行权限。
+
+```sh
+cd /Applications/simulator.app/Contents/Resources/firmware && chmod +x ./start_qemu.sh
+```
+
+重新开启一个终端，运行如下命令，启动模拟器。
+
+```sh
+cd /Applications/simulator.app/Contents/MacOS && sudo -s ./simulator
+```
+
+输入密码后回车确定，控制栏出现模拟器图标，模拟器启动成功。
+
+:::info
+
+- 点击模拟器的 simulator 按钮，尝试打开手表模拟器，如果点击没有反应，建议查看系统偏好设置中的「安全性与隐私」是否有提示
+- 如果终端需要输入密码，输入密码即可
+- 退出模拟器，在终端按 control + c 或者点击控制栏图标退出
+:::
+
+### 在 Linux 运行模拟器
+
+在启动模拟器之前需要获取管理员权限。`$` 是普通权限， `#` 是管理员权限。
+
+或者执行：
+
+```bash
+sudo chmod -R 777 /dir
+```
+
+- `-R` 是指级联应用到目录里的所有子目录和文件
+- `777` 是所有用户都拥有最高权限
+- `/dir` 是目标文件夹，这里可以是模拟器安装目录，一般为 `/opt/simulator`
+
+如果你的安装目录在 `/opt` 接下来可以在终端执行，如果不是，需要你在自己的安装目录执行，来安装环境。
+
+```sh
+cd /opt/simulator/resources/firmware/ && sudo ./setup_for_linux.sh
+```
+
+执行命令即可启动。
+
+```sh
+cd /opt/simulator/ && ./simulator
+```
+
+## 安装手表设备模拟器
+
+启动模拟器后，我们会看到下图这样的界面。
+
+点击下图标记 「7」 位置的下载按钮，进入手表设备模拟器下载列表界面
+
+![desk.png](/img/simulator/interface.png)
+
+定位到 Balance 模拟器，并且点击下载按钮
+
+![download.jpg](/img/docs/quick-start/simulator_download.jpg)
+
+下载完成后，点击顶部 Simulator 图标或者模拟器下拉框选中 Amazfit Balance，启动手表设备模拟器。
+
+![device_simulator.jpg](/img/docs/quick-start/simulator_run.jpg)
+
+更多模拟器的介绍，请参考 [模拟器 - 使用说明](../../guides/tools/simulator/index.md)
+
+## 模拟器预览
+
+我们使用终端进入到 `hello-world` 目录下，执行 [`zeus dev` 编译预览命令](../../guides/tools/cli/index.md#zeus-dev-编译预览模拟器)，Zeus CLI 会对项目代码进行编译并通过模拟器预览。
+
+```sh
+zeus dev
+```
+
+等待小程序安装完成，就可以在「Amazfit Balance 设备模拟器」中预览到我们的 `hello-world` 小程序。
+
+![hello world 预览](/img/docs/quick-start/simulator_project_preview.jpg)

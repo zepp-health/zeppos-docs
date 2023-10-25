@@ -1,0 +1,27 @@
+# addListener
+
+> Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Registering connection status listening callback function.
+
+## Type
+
+```ts
+function addListener(callback: Callback): void
+```
+
+## Parameters
+
+### Callback
+
+| Type                                        | Description                                              |
+| ------------------------------------------- | -------------------------------------------------------- |
+| <code>(status?: boolean) =&#62; void</code> | Connection callback function, `status` Connection status |
+
+## Example
+
+```js
+import { addListener } from '@zos/ble'
+
+// ...
+```

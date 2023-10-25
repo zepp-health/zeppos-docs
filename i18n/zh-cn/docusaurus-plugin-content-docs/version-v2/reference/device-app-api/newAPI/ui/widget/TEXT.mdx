@@ -1,0 +1,104 @@
+---
+title: TEXT
+sidebar_label: TEXT 文本
+---
+
+> API_LEVEL `2.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../../guides/framework/device/compatibility.md)。
+
+![text_sample](/img/api/text_sample.jpg)
+
+文本控件用于展示文本。支持设置文本大小、颜色、对齐方式、字体。
+
+## 创建 UI 控件
+
+```js
+import { createWidget, widget } from '@zos/ui'
+
+const text = createWidget(widget.TEXT, Param)
+```
+
+## 类型
+
+## Param: object
+
+| 属性       | 备注                                                                                                                                  | 是否必须 | 类型         |
+| ---------- | ------------------------------------------------------------------------------------------------------------------------------------- | -------- | ------------ |
+| x          | 控件 x 坐标                                                                                                                           | 是       | `number`     |
+| y          | 控件 y 坐标                                                                                                                           | 是       | `number`     |
+| w          | 控件显示宽度                                                                                                                          | 是       | `number`     |
+| h          | 控件显示高度                                                                                                                          | 是       | `number`     |
+| color      | 文本颜色                                                                                                                              | 否       | `number`     |
+| align_h    | 横轴对齐方式（值见 ALIGN）                                                                                                            | 否       | `ALIGN`      |
+| align_v    | 竖轴对齐方式（值见 ALIGN）                                                                                                            | 否       | `ALIGN`      |
+| text       | 文本                                                                                                                                  | 否       | `string`     |
+| text_size  | 字体大小                                                                                                                              | 否       | `number`     |
+| text_style | 文本超长处理方式 默认为跑马灯（值见 TEXT_STYLE）                                                                                      | 否       | `TEXT_STYLE` |
+| line_space | 行间距                                                                                                                                | 否       | `number`     |
+| char_space | 字符间距                                                                                                                              | 否       | `number`     |
+| font       | 字体路径，资源存放路径参考 [目录结构](../../../../../guides/architecture/folder-structure.mdx)                                                          | 否       | `string`     |
+| text_i18n  | 多国语言文本支持，参考代码示例，其中 'en-US' 字段必填，当没有配置当前国家语言，会使用 'en-US' 的值，以此方式传入时，`text` 属性失效， | 否       | `object`     |
+
+### ALIGN 对齐方式
+
+| 值             | 说明        |
+| -------------- | ----------- |
+| align.LEFT     | 横轴-左对齐 |
+| align.RIGHT    | 横轴-右对齐 |
+| align.CENTER_H | 横轴-居中   |
+| align.TOP      | 竖轴-最上端 |
+| align.BOTTOM   | 竖轴-最底端 |
+| align.CENTER_V | 竖轴-居中   |
+
+### TEXT_STYLE 文本排版
+
+| 值                  | 说明                |
+| ------------------- | ------------------- |
+| text_style.ELLIPSIS | 单行溢出字符显示... |
+| text_style.NONE     | 跑马灯              |
+| text_style.WRAP     | 换行              |
+
+## 代码示例
+
+```js
+import { createWidget, widget, align, prop, text_style, event } from '@zos/ui'
+
+Page({
+  build() {
+    const text = createWidget(widget.TEXT, {
+      x: 96,
+      y: 120,
+      w: 288,
+      h: 46,
+      color: 0xffffff,
+      text_size: 36,
+      align_h: align.CENTER_H,
+      align_v: align.CENTER_V,
+      text_style: text_style.NONE,
+      text: 'HELLO, Zepp OS',
+    })
+
+    text.addEventListener(event.CLICK_DOWN, (info) => {
+      text.setProperty(prop.MORE, {
+        y: 200
+      })
+    })
+
+    const textWithFont = createWidget(widget.TEXT, {
+      x: 96,
+      y: 300,
+      w: 288,
+      h: 46,
+      color: 0xffffff,
+      text_size: 36,
+      align_h: align.CENTER_H,
+      align_v: align.CENTER_V,
+      text_style: text_style.NONE,
+      font: 'fonts/custom.ttf',
+      text_i18n: {
+        'en-US': 'Hello Zepp OS'
+        'zh-CN': '你好 Zepp OS'
+      }
+    })
+  }
+})
+```

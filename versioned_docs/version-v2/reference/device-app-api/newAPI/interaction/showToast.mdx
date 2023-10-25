@@ -1,0 +1,31 @@
+# showToast
+
+> Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+![showToast_image}](https://img-cdn.huami.com/20220927/d53c5278ad075cdabc9bcf4e359d3d5c.jpg)
+
+Display Message Prompt Box.
+
+## Type
+
+```ts
+function showToast(option: Option): void
+```
+
+## Parameters
+
+### Option
+
+| Property | Type                | Required | DefaultValue | Description           | API_LEVEL |
+| -------- | ------------------- | -------- | ------------ | --------------------- | --------- |
+| content  | <code>string</code> | Y        | -            | Content of the prompt | 2.0       |
+
+## Example
+
+```js
+import { showToast } from '@zos/interaction'
+
+showToast({
+  content: 'hello world',
+})
+```

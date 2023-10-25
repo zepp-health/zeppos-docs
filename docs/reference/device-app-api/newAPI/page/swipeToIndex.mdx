@@ -1,0 +1,47 @@
+# swipeToIndex
+
+> Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Scrolls the page to the Swiper's target item, only if the current page scroll mode is `SCROLL_MODE_SWIPER`.
+
+## Type
+
+```ts
+function swipeToIndex(option: Option): void
+```
+
+## Parameters
+
+### Option
+
+| Property  | Type                | Required | DefaultValue                           | Description                                                             | API_LEVEL |
+| --------- | ------------------- | -------- | -------------------------------------- | ----------------------------------------------------------------------- | --------- |
+| index     | <code>number</code> | Y        | -                                      | Target Swiper Item Index                                                | 2.0       |
+| animation | <code>string</code> | N        | <code>`SCROLL_ANIMATION_SMOOTH`</code> | Scrolling animation, value reference page scrolling animation constants | 2.0       |
+
+## Constants
+
+### Page scroll mode constants
+
+| Constant                  | Description                                                 | API_LEVEL |
+| ------------------------- | ----------------------------------------------------------- | --------- |
+| `SCROLL_ANIMATION_SMOOTH` | Scroll smoothly to the corresponding position               | 2.0       |
+| `SCROLL_ANIMATION_NONE`   | No animation, scroll directly to the corresponding position | 2.0       |
+
+## Example
+
+```js
+import { setScrollMode, swipeToIndex, SCROLL_MODE_SWIPER } from '@zos/page'
+
+setScrollMode({
+  mode: SCROLL_MODE_SWIPER,
+  options: {
+    height: 480,
+    count: 10,
+  },
+})
+
+swipeToIndex({
+  index: 5,
+})
+```

@@ -1,0 +1,45 @@
+# Page
+
+> API_LEVEL `2.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+注册小程序中的一个页面，指定当前页面的生命周期回调等。每个页面文件都必须调用 `Page()` 构造函数且只能调用一次。
+
+## 类型
+
+```ts
+function Page(option: Option): Result
+```
+
+## 参数
+
+### Option
+
+| 属性      | 类型                                       | 必填 | 默认值 | 说明                                                                                                                                                                           | API_LEVEL |
+| --------- | ------------------------------------------ | ---- | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------- |
+| state     | <code>object</code>                        | 否   | -      | page 实例上挂载的数据对象，可用于存储当前页面的状态                                                                                                                            | 2.0       |
+| onInit    | <code>(params?: string) =&#62; void</code> | 否   | -      | 页面初始化完成时触发，每个页面只触发一次，可以用来初始化 page 状态。如果是通过 router 模块中相关方法打开页面，并且携带 params 参数，则在 onInit 方法中可以获取到 params 字符串 | 2.0       |
+| build     | <code>(params?: string) =&#62; void</code> | 否   | -      | 在 `onInit` 执行完成后触发，推荐在 `build` 生命周期中进行 UI 绘制                                                                                                              | 2.0       |
+| onDestroy | <code>() =&#62; void</code>                | 否   | -      | 页面销毁时触发 `onDestroy` 生命周期函数                                                                                                                                        | 2.0       |
+
+### Result
+
+| 类型                 | 说明      |
+| -------------------- | --------- |
+| <code>unknown</code> | Page 实例 |
+
+## 代码示例
+
+```js title="page.js"
+Page({
+  state: {
+    text: 'Hello Zepp OS',
+  },
+  onInit() {
+    console.log('onInit')
+  },
+  build() {
+    console.log('build')
+    console.log(this.state.text)
+  },
+})
+```

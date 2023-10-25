@@ -1,0 +1,35 @@
+---
+title: widget.removeEventListener(eventId, function)
+sidebar_label: removeEventListener
+---
+
+删除 UI 控件使用 `widget.addEventListener` 方法注册的事件监听器。
+
+## 类型
+
+```ts
+(eventId: EventId, callback) => void
+```
+
+## 参数
+
+| 参数     | 说明                               | 类型       |
+| -------- | ---------------------------------- | ---------- |
+| eventId  | 事件类型（如：滑动、按下、抬起等） | `number`   |
+| callback | 注册的回调函数                     | `function` |
+
+### EventId
+
+参考 `addEventListener` 的 `EventId`
+
+## 代码示例
+
+```js
+const img_bkg = hmUI.createWidget(hmUI.widget.IMG)
+const listenerFunc = (info) => {
+  console.log(info.x)
+}
+
+img_bkg.addEventListener(hmUI.event.DOWN, listenerFunc)
+img_bkg.removeEventListener(hmUI.event.DOWN, listenerFunc)
+```

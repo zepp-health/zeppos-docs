@@ -1,0 +1,35 @@
+# scrollTo
+
+> Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Scroll the page to the specified position.
+
+## Type
+
+```ts
+function scrollTo(option: Option): void
+```
+
+### Simplified calling method
+
+```ts
+function scrollTo(y: number): void
+```
+
+## Parameters
+
+### Option
+
+| Property | Type                | Required | DefaultValue | Description                           | API_LEVEL |
+| -------- | ------------------- | -------- | ------------ | ------------------------------------- | --------- |
+| y        | <code>number</code> | Y        | -            | Vertical axis coordinates of the page | 2.0       |
+
+## Example
+
+```js
+import { scrollTo } from '@zos/page'
+
+scrollTo({
+  y: 200,
+})
+```

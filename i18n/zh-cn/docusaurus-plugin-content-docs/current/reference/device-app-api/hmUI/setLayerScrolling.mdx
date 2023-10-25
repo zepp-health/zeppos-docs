@@ -1,0 +1,26 @@
+---
+title: hmUI.setLayerScrolling(enable)
+sidebar_label: setLayerScrolling
+---
+
+设置默认 layer 的 scrolling
+
+此接口设置的是 js 控件的默认 layer 的可滑动(连续滑动), 优先级低于 `setScrollView`, 后者是设置按页面滑动。前者打开的话以前者为准。
+
+## 类型
+
+```ts
+(enable: boolean) => void
+```
+
+## 参数
+
+| 参数   | 说明                | 类型      |
+| ------ | ------------------- | --------- |
+| enable | `true` 为设置可滑动 | `boolean` |
+
+## 代码示例
+
+```js
+hmUI.setLayerScrolling(false) //关闭默认layer的scrolling
+```

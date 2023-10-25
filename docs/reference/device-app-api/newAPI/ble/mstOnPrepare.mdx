@@ -1,0 +1,45 @@
+# mstOnPrepare
+
+> Start from API_LEVEL `3.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Register the prepare operation callback function.
+
+## Type
+
+```ts
+function mstOnPrepare(callback: Callback): Result
+```
+
+## Parameters
+
+### Callback
+
+| Type                                                        | Description                                      |
+| ----------------------------------------------------------- | ------------------------------------------------ |
+| <code>(profile: Profile, status: Status) =&#62; void</code> | Listening to the prepare event callback function |
+
+### Profile
+
+| Type                | Description     |
+| ------------------- | --------------- |
+| <code>number</code> | Profile pointer |
+
+### Status
+
+| Type                | Description                   |
+| ------------------- | ----------------------------- |
+| <code>number</code> | Status, `0` indicates success |
+
+### Result
+
+| Type                 | Description                                                                  |
+| -------------------- | ---------------------------------------------------------------------------- |
+| <code>boolean</code> | The result of the function call, `true` means success, `false` means failure |
+
+## Example
+
+```js
+import { mstOnPrepare } from '@zos/ble'
+
+// ...
+```

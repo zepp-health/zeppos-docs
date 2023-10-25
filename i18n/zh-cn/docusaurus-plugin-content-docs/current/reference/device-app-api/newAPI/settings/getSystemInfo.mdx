@@ -1,0 +1,30 @@
+# getSystemInfo
+
+> API_LEVEL `2.1` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+获取系统相关信息。
+
+## 类型
+
+```ts
+function getSystemInfo(): Result
+```
+
+## 参数
+
+### Result
+
+| 属性            | 类型                | 说明             | API_LEVEL |
+| --------------- | ------------------- | ---------------- | --------- |
+| osVersion       | <code>string</code> | Zepp OS 系统版本 | 2.1       |
+| firmwareVersion | <code>string</code> | 设备固件版本     | 2.1       |
+| minAPI          | <code>string</code> | API_LEVEL 版本   | 2.1       |
+
+## 代码示例
+
+```js
+import { getSystemInfo } from '@zos/settings'
+
+const { minAPI } = getSystemInfo()
+console.log(minAPI)
+```

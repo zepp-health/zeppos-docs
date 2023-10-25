@@ -1,0 +1,67 @@
+---
+title: hmFS.stat_asset(path)
+sidebar_label: stat_asset
+---
+
+> For an introduction to the Zepp OS Mini Program file system, please refer to [File System](../../../guides/framework/device/fs.md).
+
+Get information about the files in the Mini Program `/assets` directory.
+
+## Type
+
+```ts
+(path: string) => [stat, err]
+```
+
+## Parameters
+
+### path
+
+| Description                                       | Required | Type     | Default |
+| ------------------------------------------------- | -------- | -------- | ------- |
+| Mini Program's `/assets` directory file name (relative path) | yes      | `string` | -       |
+
+### stat
+
+| Properties | Description                            | Type     |
+| ---------- | -------------------------------------- | -------- |
+| size       | Number of bytes of the file            | `number` |
+| mtime      | File last modified time in UTC seconds | `number` |
+
+### err
+
+| Description                       | Type     |
+| --------------------------------- | -------- |
+| Error code, `0` means get success | `number` |
+
+Please refer to [File System - Error Code](../../../guides/framework/device/fs.md#error-code) for the rest of the error codes.
+
+## Usage
+
+```js
+Page({
+  build() {
+    const [fs_stat, err] = hmFS.stat_asset('raw/test_file.txt')
+
+    if (err === 0) {
+      const { size, mtime } = fs_stat
+
+      const text = hmUI.createWidget(hmUI.widget.TEXT, {
+        x: px(0),
+        y: px(120),
+        w: px(480),
+        h: px(46),
+        color: 0xffffff,
+        text_size: px(20),
+        align_h: hmUI.align.CENTER_H,
+        align_v: hmUI.align.CENTER_V,
+        text_style: hmUI.text_style.NONE,
+        text: `size: ${size}; mtime: ${mtime}`
+      })
+
+    } else {
+      console.log('err:', err)
+    }
+  }
+})
+```

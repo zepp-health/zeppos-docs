@@ -1,0 +1,37 @@
+---
+title: hmFS.write(fileId, buffer, position, length)
+sidebar_label: write
+---
+
+写入文件
+
+## 类型
+
+```ts
+(fileId: number, buff: ArrayBuffer, pos: number, len: number) => result
+```
+
+## 参数
+
+| 参数   | 说明                         | 必填 | 类型          | 默认值 |
+| ------ | ---------------------------- | ---- | ------------- | ------ |
+| fileId | 文件句柄                     | 是   | `number`      | -      |
+| buff   | 将填充读取的文件数据的缓冲区 | 是   | `ArrayBuffer` | -      |
+| pos    | 基于 `buff` 首地址的偏移         | 是   | `number`      | -      |
+| len    | 写入的字节数                 | 是   | `number`      | -      |
+
+### result
+
+| 参数 | 说明                     | 类型     |
+| ---- | ------------------------ | -------- |
+| result  | 操作结果，`0` 表示成功 | `number` |
+
+## 代码示例
+
+```js
+const test_buf = new Uint8Array(10)
+const test_buf2 = new Uint8Array(test_buf.length)
+
+const file = hmFS.open('test_file.txt', hmFS.O_RDWR | hmFS.O_CREAT)
+hmFS.write(file, test_buf.buffer, 0, test_buf.length);
+```

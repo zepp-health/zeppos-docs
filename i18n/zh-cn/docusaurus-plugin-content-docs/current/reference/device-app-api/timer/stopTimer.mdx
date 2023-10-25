@@ -1,0 +1,39 @@
+---
+title: stopTimer(timerID)
+sidebar_label: stopTimer
+---
+
+删除计时器
+
+## 类型
+
+```ts
+(timerId: number) => void
+```
+
+## 参数
+
+### timerId
+
+| 说明                             | 类型     |
+| -------------------------------- | -------- |
+| 计时器句柄，创建计时器对象时返回 | `number` |
+
+## 代码示例
+
+```js
+//创建timer，延时500ms触发，之后每1000ms执行一次
+const timer1 = timer.createTimer(
+  500,
+  1000,
+  function (option) {
+    //回调
+    console.log('timer callback')
+    console.log(option.hour)
+  },
+  { hour: 0, minute: 15, second: 30 }
+)
+
+//停止timer1
+timer.stopTimer(timer1)
+```

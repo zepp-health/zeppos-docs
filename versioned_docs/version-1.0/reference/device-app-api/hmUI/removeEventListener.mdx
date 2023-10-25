@@ -1,0 +1,35 @@
+---
+title: widget.removeEventListener(eventId, function)
+sidebar_label: removeEventListener
+---
+
+Remove event listeners registered by the UI widget using the `widget.addEventListener` method.
+
+## Type
+
+```ts
+(eventId: EventId, callback) => void
+```
+
+## Parameters
+
+| Parameter | Description                                |    Type    |
+| --------- | ------------------------------------------ | ---------- |
+| eventId   | Event type (e.g., swipe, press, lift, etc.)| `number` |
+| callback  | The callback function to register.         | `function` |
+
+### EventId
+
+Refer to the `EventId` of `addEventListener`.
+
+## Code example
+
+```js
+const img_bkg = hmUI.createWidget(hmUI.widget.IMG)
+const listenerFunc = (info) => {
+  console.log(info.x)
+}
+
+img_bkg.addEventListener(hmUI.event.DOWN, listenerFunc)
+img_bkg.removeEventListener(hmUI.event.DOWN, listenerFunc)
+```

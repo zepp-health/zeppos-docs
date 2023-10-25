@@ -1,0 +1,44 @@
+---
+title: ARC_PROGRESS
+sidebar_label: ARC_PROGRESS 圆弧进度
+---
+
+圆弧进度控件绘制圆弧进度，支持开始角度、线宽、结束角度、颜色、进度比例。
+
+## 创建 UI 控件
+
+```js
+const arcProgress = hmUI.createWidget(hmUI.widget.ARC_PROGRESS, Param)
+```
+
+## 类型
+
+### Param: object
+
+| 属性        | 说明                           | 是否必须 | 类型     |
+| ----------- | ------------------------------ | -------- | -------- |
+| center_x    | 圆心 x                         | 是       | `number` |
+| center_y    | 圆心 y                         | 是       | `number` |
+| radius      | 半径                           | 是       | `number` |
+| start_angle | 圆弧开始角度 0 度为正 3 点方向 | 是       | `number` |
+| end_angle   | 圆弧结束角度 0 度为正 3 点方向 | 是       | `number` |
+| line_width  | 圆弧线宽                       | 是       | `number` |
+| color       | 圆弧颜色                       | 是       | `number` |
+| src_bg      | 背景图片                       | 否       | `string` |
+| level       | 圆弧进度比例 [0-100]           | 否       | `number` |
+
+## 代码示例
+
+```js
+const arcProgress = hmUI.createWidget(hmUI.widget.ARC_PROGRESS)
+arcProgress.setProperty(hmUI.prop.MORE, {
+  center_x: 100,
+  center_y: 100,
+  radius: 200,
+  start_angle: -90,
+  end_angle: 90,
+  color: 0x34e073,
+  line_width: 10,
+  level: 50
+})
+```

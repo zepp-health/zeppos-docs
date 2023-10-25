@@ -1,0 +1,30 @@
+---
+title: setStatusBarVisible(visible)
+sidebar_label: setStatusBarVisible
+---
+
+> API_LEVEL `2.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+该接口只在方屏设备上有效，设置状态栏是否可见
+
+方屏标题栏，参考 [屏幕适配](../../../../guides/best-practice/multi-screen-adaption.mdx)
+
+## 类型
+
+```ts
+(visible: boolean) => void
+```
+
+## 参数
+
+| 参数    | 说明                                    | 类型      |
+| ------- | --------------------------------------- | --------- |
+| visible | `true`: 状态栏显示；`false`: 隐藏状态栏 | `boolean` |
+
+## 代码示例
+
+```js
+import { setStatusBarVisible } from '@zos/ui'
+
+setStatusBarVisible(false)
+```

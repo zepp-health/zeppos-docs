@@ -1,0 +1,40 @@
+# getSwiperIndex
+
+> Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Get the scroll position of the current page, only if the page scroll mode is `SCROLL_MODE_SWIPER` or `SCROLL_MODE_SWIPER_HORIZONTAL` return the index of the current item (starting from `1`), otherwise return `undefined`.
+
+## Type
+
+```ts
+function getSwiperIndex(): Result
+```
+
+## Parameters
+
+### Result
+
+| Type                               | Description                                                                                                                                                                       |
+| ---------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| <code>number&#124;undefined</code> | If the page scroll mode is `SCROLL_MODE_SWIPER` or `SCROLL_MODE_SWIPER_HORIZONTAL`, the value is the index of the current item (starting from `1`). Otherwise, it is `undefined`. |
+
+## Example
+
+```js
+import { setScrollMode, swipeToIndex, getSwiperIndex, SCROLL_MODE_SWIPER } from '@zos/page'
+
+setScrollMode({
+  mode: SCROLL_MODE_SWIPER,
+  options: {
+    height: 480,
+    count: 10,
+  },
+})
+
+swipeToIndex({
+  index: 5,
+})
+
+const currentIndex = getSwiperIndex()
+console.log(currentIndex)
+```

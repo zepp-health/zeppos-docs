@@ -1,0 +1,63 @@
+# mstWriteDescriptor
+
+> Start from API_LEVEL `3.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Register the Characteristic notification arrival callback function.
+
+## Type
+
+```ts
+function mstWriteDescriptor(
+  profile: Profile,
+  uuid: UUID,
+  descUUID: DescUUID,
+  data: Data,
+  length: Length,
+): Result
+```
+
+## Parameters
+
+### Profile
+
+| Type                | Description     |
+| ------------------- | --------------- |
+| <code>number</code> | Profile pointer |
+
+### UUID
+
+| Type                | Description                |
+| ------------------- | -------------------------- |
+| <code>string</code> | Characteristic UUID string |
+
+### DescUUID
+
+| Type                | Description            |
+| ------------------- | ---------------------- |
+| <code>string</code> | Descriptor UUID string |
+
+### Data
+
+| Type                     | Description                              |
+| ------------------------ | ---------------------------------------- |
+| <code>ArrayBuffer</code> | Reads the data using the Uint8Array view |
+
+### Length
+
+| Type                | Description |
+| ------------------- | ----------- |
+| <code>number</code> | Data length |
+
+### Result
+
+| Type                 | Description                                                                  |
+| -------------------- | ---------------------------------------------------------------------------- |
+| <code>boolean</code> | The result of the function call, `true` means success, `false` means failure |
+
+## Example
+
+```js
+import { mstOnCharaNotification } from '@zos/ble'
+
+// ...
+```

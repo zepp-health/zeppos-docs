@@ -1,0 +1,59 @@
+---
+title: STROKE_RECT
+sidebar_label: STROKE_RECT
+---
+
+> Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](../../../../../guides/framework/device/compatibility.md).
+
+![stroke_rect_sample](/img/api/stroke_rect_sample.jpg)
+
+The stroked rectangle widget adds a stroke on the basis of the filled rectangle widget.
+
+## Create UI widget
+
+```js
+import { createWidget, widget } from '@zos/ui'
+
+const strokeRect = createWidget(widget.STROKE_RECT, Param)
+```
+
+## Type
+
+### Param: object
+
+| Properties | Description                             | Required | Type     |
+| ---------- | --------------------------------------- | -------- | -------- |
+| x          | The x-axis coordinate of the widget. | YES      | `number` |
+| y          | The y-axis coordinate of the widget. | YES      | `number` |
+| w          | The width of the widget.             | YES      | `number` |
+| h          | The height of the widget.            | YES      | `number` |
+| color      | The widget's color.                  | YES      | `number` |
+| radius     | The rectangle's rounded corners.        | NO       | `number` |
+| line_width | The width of stroke.                    | NO       | `number` |
+| angle      | Rotation angle.                         | NO       | `number` |
+
+## Code example
+
+```js
+import { createWidget, widget, prop } from '@zos/ui'
+
+Page({
+  build() {
+    const strokeRect = createWidget(widget.STROKE_RECT, {
+      x: 125,
+      y: 125,
+      w: 230,
+      h: 150,
+      radius: 20,
+      line_width: 4,
+      color: 0xfc6950
+    })
+
+    strokeRect.addEventListener(event.CLICK_DOWN, (info) => {
+      strokeRect.setProperty(prop.MORE, {
+        y: 200
+      })
+    })
+  }
+})
+```

@@ -1,0 +1,55 @@
+---
+title: Distance
+sidebar_label: Distance 里程
+---
+
+> API_LEVEL `2.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+里程传感器。
+
+:::info
+权限代码： `data:user.hd.distance`
+:::
+
+## 方法
+
+### getCurrent
+
+获取当前里程
+
+```ts
+getCurrent(): number
+```
+
+### onChange
+
+注册里程变化事件监听回调函数
+
+```ts
+onChange(callback: () => void): void
+```
+
+### offChange
+
+取消里程变化事件监听回调函数
+
+```ts
+offChange(callback: () => void): void
+```
+
+## 代码示例
+
+```js
+import { Distance } from '@zos/sensor'
+
+const distance = new Distance()
+const current = distance.getCurrent()
+const callback = () => {
+  console.log(distance.getCurrent())
+}
+
+distance.onChange(callback)
+
+// When not needed for use
+distance.offChange(callback)
+```

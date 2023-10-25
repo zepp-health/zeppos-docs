@@ -1,0 +1,45 @@
+---
+title: hmApp.alarmNew(option)
+sidebar_label: alarmNew
+---
+
+Timed wake-up
+
+## Type
+
+```ts
+(option: Option) => alarmID
+```
+
+## Parameter
+
+### Option
+
+| Parameters             | Description                                                             | Required | Type     | Default |
+| ---------------------- | ----------------------------------------------------------------------- | -------- | -------- | ------- |
+| appid                  | appid                                                                   | YES      | `number` | -       |
+| url(same name as file) |                                                                         | NO       | `string` | -       |
+| date                   | UTC timestamp (in seconds)                                              | NO       | `number` | -       |
+| delay                  | delay (in seconds)                                                      | NO       | `number` | -       |
+| param                  | Parameters passed to the `onCreate` life cycle in the `App` constructor | NO       | `string` | -       |
+
+### alarmID
+
+| Description | Type     |
+| ----------- | -------- |
+| file handle | `number` |
+
+## Code example
+
+```js
+// Wake up the application after 10 seconds.
+const alarm = hmApp.alarmNew({
+  file: 'pages/js_widget_sample',
+  appid: 1000001,
+  delay: 10
+})
+
+//Cancel wake-up
+
+hmApp.alarmCancel(alarm)
+```

@@ -1,0 +1,45 @@
+# notify
+
+> API_LEVEL `3.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+发送通知到手表通知中心。
+
+:::info
+权限代码： `device:os.notification`
+:::
+
+## 类型
+
+```ts
+function notify(option: Option): Result
+```
+
+## 参数
+
+### Option
+
+| 属性    | 类型                               | 必填 | 默认值 | 说明         | API_LEVEL |
+| ------- | ---------------------------------- | ---- | ------ | ------------ | --------- |
+| title   | <code>string</code>                | 是   | -      | 通知标题文本 | 3.0       |
+| content | <code>string</code>                | 是   | -      | 通知内容文本 | 3.0       |
+| actions | <code>Array&#60;Action&#62;</code> | 是   | -      | 定制按钮数组 | 3.0       |
+
+### Action
+
+| 属性  | 类型                | 必填 | 默认值 | 说明                                 | API_LEVEL |
+| ----- | ------------------- | ---- | ------ | ------------------------------------ | --------- |
+| text  | <code>string</code> | 是   | -      | 按钮文本                             | 3.0       |
+| file  | <code>string</code> | 是   | -      | 按钮点击要启动的「设备应用服务」文件 | 3.0       |
+| param | <code>string</code> | 否   | -      | 文件加载时传入的参数                 | 3.0       |
+
+### Result
+
+| 类型                | 说明                                                              |
+| ------------------- | ----------------------------------------------------------------- |
+| <code>number</code> | 通知发送的结果，返回 `0` 代表发送失败，其余结果表明通知的 ID 标识 |
+
+## 代码示例
+
+```js
+import { notify } from '@zos/notification'
+```

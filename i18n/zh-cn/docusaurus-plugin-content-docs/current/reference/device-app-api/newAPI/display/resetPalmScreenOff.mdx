@@ -1,0 +1,33 @@
+# resetPalmScreenOff
+
+> API_LEVEL `2.1` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+恢复覆掌息屏行为。
+
+## 类型
+
+```ts
+function resetPalmScreenOff(): Result
+```
+
+## 参数
+
+### Result
+
+| 类型                | 说明                    |
+| ------------------- | ----------------------- |
+| <code>number</code> | 如果返回 `0` 则表明成功 |
+
+## 代码示例
+
+```js
+import { pausePalmScreenOff, resetPalmScreenOff } from '@zos/display'
+
+pausePalmScreenOff({
+  duration: 0,
+})
+
+setTimeout(() => {
+  resetPalmScreenOff()
+}, 3000)
+```

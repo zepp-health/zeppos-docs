@@ -1,0 +1,34 @@
+---
+title: hmFS.seek(fileId, position, whence)
+sidebar_label: seek
+---
+
+> For an introduction to the Zepp OS Mini Program file system, please refer to [File System](../../../guides/framework/device/fs.md).
+
+Move file pointer.
+
+## Type
+
+```ts
+(fileId: number, position: number, whence: number) => void
+```
+
+## Parameters
+
+| Parameter | Description              | Required | Type     | Default |
+| --------- | ------------------------ | -------- | -------- | ------- |
+| fileId    | file handle              | yes      | `number` | -       |
+| position  | Offset based on `whence` | yes      | `number` | -       |
+| whence    | file location            | yes      | `number` | -       |
+
+## Code example
+
+```js
+Page({
+  build() {
+    const fileId = hmFS.open('test_file.txt', hmFS.O_RDWR | hmFS.O_CREAT)
+
+    hmFS.seek(file, 0, hmFS.SEEK_SET)
+  }
+})
+```

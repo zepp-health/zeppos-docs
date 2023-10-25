@@ -1,0 +1,48 @@
+---
+title: FAT_BURRING
+sidebar_label: FAT_BURRING
+---
+
+## Creating Sensors
+
+```js
+const fatburn = hmSensor.createSensor(hmSensor.id.FAT_BURRING)
+
+console.log(fatburn.current)
+console.log(fatburn.target)
+```
+
+## FAT_BURRING instance
+
+### fatburn: object
+
+| Properties |     Description     | Type |
+| ---------- | ------------------- | -------- |
+|   current  | Current fat burning minutes | `number` |
+|   target   | Fat burning target in minutes  | `number` |
+
+## Registering sensor instance callback events
+
+```js
+fatburn.addEventListener(event, callback: Callback)
+```
+
+### The events of CHANGE
+
+#### The value of event
+
+`hmSensor.event.CHANGE`
+
+#### Callback
+
+```ts
+() => void
+```
+
+#### The example of the events
+
+```js
+fatburn.addEventListener(hmSensor.event.CHANGE, function () {
+  console.log('the current fatburn: ' + fatburn.current + ' target: ' + fatburn.target + '\r\n')
+})
+```

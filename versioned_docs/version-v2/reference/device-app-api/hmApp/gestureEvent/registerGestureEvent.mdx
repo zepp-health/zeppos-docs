@@ -1,0 +1,63 @@
+---
+title: hmApp.registerGestureEvent(callback)
+sidebar_label: registerGestureEvent
+---
+
+Register gesture listener events.
+
+Some gesture events will have default behaviors, refer to the following table.
+
+Gestures|Default Behavior
+---|--
+`RIGHT`|`hmApp.goBack`
+
+If `callback` returns `false`, then `hmApp.goBack()` will be executed after the `callback` function finishes executing. If `callback` returns `true`, execution of `hmApp.goBack()` will be skipped
+
+## Type
+
+```ts
+(callback: (event: Event) => boolean) => void
+```
+
+## Parameters
+
+### Callback
+
+| Description                                                                                                                                      | Required | Type                        | Default |
+| ------------------------------------------------------------------------------------------------------------------------------------------------ |  ------- | --------------------------- | ------ |
+| Gesture event callback function, return value `false` does not skip the default behavior, `true` skips the default behavior.     |     YES  | `(event: Event) => boolean`  | -      |
+
+### Event
+
+| Description                                                                         |
+| ----------------------------------------------------------------------------------- |
+| Support `UP`, `DOWN`, `LEFT`, `RIGHT`, refer to the code example for specific usage |
+
+## Code example
+
+```js
+//Registering a gesture listener Repeated registration of a JsApp will cause the last registered callback to fail.
+hmApp.registerGestureEvent(function (event) {
+  let msg = 'none'
+  switch (event) {
+    case hmApp.gesture.UP:
+      msg = 'up'
+      break
+    case hmApp.gesture.DOWN:
+      msg = 'down'
+      break
+    case hmApp.gesture.LEFT:
+      msg = 'left'
+      break
+    case hmApp.gesture.RIGHT:
+      msg = 'right'
+      break
+    default:
+      break
+  }
+  console.log(`receive gesture event ${msg}`)
+
+  //Not skipping default behavior
+  return false
+})
+```

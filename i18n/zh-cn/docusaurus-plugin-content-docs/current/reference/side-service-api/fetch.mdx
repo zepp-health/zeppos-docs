@@ -1,0 +1,40 @@
+---
+title: Fetch API
+sidebar_label: Fetch API
+---
+
+Fetch API 可以用于在 JS 中发送 HTTP 请求，「伴生服务」中的 `fetch()` 用法可以参考 [Fetch API - MDN](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API)。
+
+当传入 `URL` 地址字符串进行调用时，为 `GET` 请求。
+
+```js
+const url = 'https://xxx.com/api/xxx'
+const res = await fetch(url)
+```
+
+当需要传递更多请求参数的时候，行为与标准的 Fetch API 有差异，所有参数都在一个对象中，只支持 `url`，`method`、`headers`、`body` 属性。
+
+```js
+const res = await fetch({
+  url: 'https://xxx.com/api/xxx',
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({
+    text: 'Hello Zepp OS'
+  })
+})
+
+const data = typeof res.body === 'string' ?  JSON.parse(res.body) : res.body
+```
+
+:::caution
+由于机型兼容性问题，部分机型上 `res.body` 为 `JSON` 字符串，建议开发者在处理返回数据的时候加上兼容性判断
+
+`const data = typeof res.body === 'string' ?  JSON.parse(res.body) : res.body`
+:::
+
+:::tip
+Fetch API 在小程序中使用的例子请参考 [FetchAPI](../../samples/app/fetchAPI.md)。
+:::

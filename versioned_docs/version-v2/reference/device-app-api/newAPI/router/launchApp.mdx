@@ -1,0 +1,35 @@
+# launchApp
+
+> Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Open Mini Program.
+
+## Type
+
+```ts
+function launchApp(option: Option): void
+```
+
+## Parameters
+
+### Option
+
+| Property | Type                            | Required | DefaultValue | Description                                                                                                                                                                                   | API_LEVEL |
+| -------- | ------------------------------- | -------- | ------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------- |
+| appId    | <code>number</code>             | Y        | -            | Mini Program ID                                                                                                                                                                               | 2.0       |
+| url      | <code>string</code>             | Y        | -            | path                                                                                                                                                                                          | 2.0       |
+| params   | <code>string&#124;object</code> | N        | -            | The argument passed to the app.js lifecycle `onCreate` supports either a string or a standard JSON object. If a standard JSON object is passed, the method internally converts it to a string | 2.0       |
+
+## Example
+
+```js
+import { launchApp } from '@zos/router'
+
+launchApp({
+  appId: 1000001,
+  url: 'pages/js_widget_sample',
+  params: {
+    type: 1,
+  },
+})
+```

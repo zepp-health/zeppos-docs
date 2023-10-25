@@ -1,0 +1,44 @@
+---
+title: IMG_POINTER
+sidebar_label: IMG_POINTER
+---
+
+The widget area is full screen. The widget uses a picture to achieve a pointer rotation effect by setting its rotation center and rotation angle.
+
+The data progress can be displayed by binding the data type `hmUI.data_type.*`.
+
+## Create UI widget
+
+```js
+const imgPointer = hmUI.createWidget(hmUI.widget.IMG_POINTER, Param)
+```
+
+## Type
+
+### Param: object
+
+| Properties      | Description                                                                                   | Required | Type     |
+| --------------- | --------------------------------------------------------------------------------------------- | -------- | -------- |
+| src             | Image path, the name of the file in the `/assets` directory (relative path)                   | YES      | `string` |
+| x               | Pointer to the image's own center of rotation x coordinates                                   | YES      | `number` |
+| y               | The y-coordinate of the center of rotation of the pointer image itself                        | YES      | `number` |
+| center_x        | Widget rotation center x coordinates                                                          | YES      | `number` |
+| center_y        | Widget rotation center y coordinates                                                          | YES      | `number` |
+| angle           | Image rotation angle, 0 degrees in 12-point direction                                         | NO       | `number` |
+| start_angle     | Start angle of the rotation range, default `0`                                                | NO       | `number` |
+| end_angle       | End angle of the rotation range, default `360`                                                | NO       | `number` |
+| type            | Binding data type, see [`hmUI.data_type`](./data_type.mdx)                                    | NO       | `number` |
+| invalid_visible | When setting `type`, whether or not to show the pointer if it is invalid data, default `true` | NO       | `number` |
+
+## Code example
+
+```js
+const imgPointer = hmUI.createWidget(hmUI.widget.IMG_POINTER, {
+  src: rootPath + 'hour.png',
+  center_x: 227,
+  center_y: 227,
+  x: 22,
+  y: 121,
+  angle: 245
+})
+```

@@ -1,0 +1,27 @@
+# mstStopScan
+
+> API_LEVEL `3.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+停止设备扫描，与 `mstStartScan` 配套使用。
+
+## 类型
+
+```ts
+function mstStopScan(): Result
+```
+
+## 参数
+
+### Result
+
+| 类型                 | 说明                                            |
+| -------------------- | ----------------------------------------------- |
+| <code>boolean</code> | 函数调用结果，`true` 表示成功、`false` 表示失败 |
+
+## 代码示例
+
+```js
+import { mstStopScan } from '@zos/ble'
+
+mstStopScan()
+```

@@ -1,0 +1,29 @@
+# offDigitalCrown
+
+> API_LEVEL `2.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+取消 `onDigitalCrown` 注册的监听数字表冠旋转事件。
+
+## 类型
+
+```ts
+function offDigitalCrown(): void
+```
+
+## 代码示例
+
+```js
+import { onDigitalCrown, offDigitalCrown, KEY_HOME } from '@zos/interaction'
+
+const callback = (key, degree) => {
+  if (key === KEY_HOME) {
+    console.log(degree)
+  }
+}
+
+onDigitalCrown({
+  callback,
+})
+
+offDigitalCrown()
+```

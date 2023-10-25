@@ -1,0 +1,33 @@
+# mstDisconnect
+
+> Start from API_LEVEL `3.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Disconnecting devices.
+
+## Type
+
+```ts
+function mstDisconnect(connectId: ConnectId): Result
+```
+
+## Parameters
+
+### ConnectId
+
+| Type                | Description                                                                             |
+| ------------------- | --------------------------------------------------------------------------------------- |
+| <code>number</code> | The connection ID returned when the connection is successful using the `mstConnect` API |
+
+### Result
+
+| Type                 | Description                                                                  |
+| -------------------- | ---------------------------------------------------------------------------- |
+| <code>boolean</code> | The result of the function call, `true` means success, `false` means failure |
+
+## Example
+
+```js
+import { mstDisconnect } from '@zos/ble'
+
+// ...
+```

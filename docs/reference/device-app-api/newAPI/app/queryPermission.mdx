@@ -1,0 +1,34 @@
+# queryPermission
+
+> Start from API_LEVEL `3.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Check the authorization status of Mini Program permissions.
+
+## Type
+
+```ts
+function queryPermission(option: Option): Result
+```
+
+## Parameters
+
+### Option
+
+| Property    | Type                               | Required | DefaultValue | Description                                                          | API_LEVEL |
+| ----------- | ---------------------------------- | -------- | ------------ | -------------------------------------------------------------------- | --------- |
+| permissions | <code>Array&#60;string&#62;</code> | Y        | -            | An array of permission strings, with an array length of at least `1` | 3.0       |
+
+### Result
+
+| Type                               | Description                                                                                                                                       |
+| ---------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+| <code>Array&#60;number&#62;</code> | Permissions query result array, corresponding to the order of `permissions` array, `0`: not authorized, `1`: unknown permissions, `2`: authorized |
+
+## Example
+
+```js
+import { queryPermission } from '@zos/app'
+
+const result = queryPermission()
+console.log(result)
+```

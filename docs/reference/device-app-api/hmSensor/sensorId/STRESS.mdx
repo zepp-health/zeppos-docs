@@ -1,0 +1,50 @@
+---
+title: STRESS
+sidebar_label: STRESS
+---
+
+## Creating Sensors
+
+```js
+const stress = hmSensor.createSensor(hmSensor.id.STRESS)
+
+console.log(stress.current)
+console.log(stress.time)
+```
+
+### STRESS instance
+
+### stress: object
+
+| Properties |                    Description             | Type |
+| ---------- | ------------------------------------------ | -------- |
+|   current  |                current pressure value      | `number` |
+|    time    | time when the pressure value was generated | `number` |
+
+## Registering sensor instance callback events
+
+```js
+calorie.addEventListener(event, callback: Callback)
+```
+
+### The events of CHANGE
+
+#### The value of event
+
+`hmSensor.event.CHANGE`
+
+#### Callback
+
+```ts
+() => void
+```
+
+#### The example of events
+
+```js
+stress.addEventListener(hmSensor.event.CHANGE, function () {
+  console.log(stress.current)
+
+  console.log('the stress time: ' + stress.time + ' stress: ' + stress.current + '\r\n')
+})
+```

@@ -1,0 +1,47 @@
+---
+title: STAND
+sidebar_label: STAND
+---
+
+## Creating Sensors
+
+```js
+const stand = hmSensor.createSensor(hmSensor.id.STAND)
+
+console.log(stand.current)
+```
+
+## STAND instance
+
+### stand: object
+
+| Properties |      Description       | Type |
+| ---------- | ---------------------- | -------- |
+|   current  | current standing hours | `number` |
+|   target   | standing hours target  | `number` |
+
+## Registering sensor instance callback events
+
+```js
+calorie.addEventListener(event, callback: Callback)
+```
+
+### The events of CHANGE
+
+#### The value of event
+
+`hmSensor.event.CHANGE`
+
+#### Callback
+
+```ts
+() => void
+```
+
+#### The example of events
+
+```js
+stand.addEventListener(hmSensor.event.CHANGE, function () {
+  console.log('the current stand: ' + stand.current + ' target: ' + stand.target + '\r\n')
+})
+```

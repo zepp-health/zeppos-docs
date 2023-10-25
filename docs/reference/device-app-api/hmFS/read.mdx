@@ -1,0 +1,43 @@
+---
+title: hmFS.read(fileId, buffer, position, length)
+sidebar_label: read
+---
+
+Read file
+
+## Type
+
+```ts
+(fileId: number, buffer: ArrayBuffer, position: number, length: number) => [fileList, err]
+```
+
+## Parameters
+
+| Parameters | Description                                            | Required | Type          | Default |
+| ---------- | ------------------------------------------------------ | -------- | ------------- | ------- |
+| fileId     | file handle                                            | yes      | `number`      | -       |
+| buff       | The buffer that will be filled with the read file data | yes      | `ArrayBuffer` | -       |
+| pos        | Offset based on `buff` first address                   | yes      | `number`      | -       |
+| len        | the number of bytes to read                            | yes      | `number`      | -       |
+
+### fileList
+
+| Description        | Type            |
+| ------------------ | --------------- |
+| Array of filenames | `Array<string>` |
+
+### err
+
+| Description                       | Type     |
+| --------------------------------- | -------- |
+| Error code, `0` means get success | `number` |
+
+## Code example
+
+```js
+const test_buf = new Uint8Array(10)
+const test_buf2 = new Uint8Array(test_buf.length)
+
+const file = hmFS.open('test_file.txt', hmFS.O_RDWR | hmFS.O_CREAT)
+hmFS.read(file, test_buf2.buffer, 0, test_buf2.length)
+```

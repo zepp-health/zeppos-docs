@@ -1,0 +1,269 @@
+---
+title: media
+sidebar_label: Media 多媒体
+---
+
+> API_LEVEL `3.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../guides/framework/device/compatibility.md)。
+
+Media 多媒体模块包括播放器和录制器，有录制和播放音频的能力。
+
+## create
+
+创建多媒体控制对象
+
+传入创建的类型，创建播放器 Player 对象或者录制器 Record 对象
+
+```ts
+create(id: number): Player | Record
+```
+
+| id 取值       | 说明   |
+| ------------- | ------ |
+| `id.PLAYER`   | 播放器 |
+| `id.RECORDER` | 录制器 |
+
+```js
+import { create, id } from '@zos/media'
+
+const player = create(id.PLAYER)
+```
+
+## 通用方法和属性
+
+:::tip
+Player 和 Record 具有公共的通用方法和属性
+:::
+
+### start
+
+开始播放/录制
+
+```ts
+start(): void
+```
+
+### stop
+
+停止播放/录制
+
+```ts
+stop(): void
+```
+
+### addEventListener
+
+事件监听，用于播放/录制器状态监听，当状态发生变化的时候，会触发 `callback` 回调函数
+
+```ts
+addEventListener(callback: function): void
+```
+
+## Player 接口
+
+### setSource
+
+在开始播放之前，设置播放参数，以及相关编码参数
+
+```ts
+setSource(source: number, obj: object): void
+```
+
+source 的取值支持 `player.source.FILE`
+
+`player.source.FILE` 播放指定文件，支持 `MP3` 格式，以及使用音频 API 录制的 `OPUS` 格式，对应的 obj 参数类型如下
+
+| 属性 | 说明                                                                                               | 是否必须 | 类型     |
+| ---- | -------------------------------------------------------------------------------------------------- | -------- | -------- |
+| file | 文件路径，默认相对小程序 assets 目录。可通过 data://定向到小程序 data 目录播放小程序下载的音频文件 | 是       | `string` |
+
+### prepare
+
+设置播放器进入准备阶段，缓存多媒体数据等等，通过状态监听返回结果
+
+```ts
+prepare(): void
+```
+
+```js
+import { create, id } from '@zos/media'
+
+const player = create(id.PLAYER)
+
+player.addEventListener(player.event.PREPARE, function (result) {
+  if (result) {
+    console.log('=== prepare succeed ===')
+    player.start()
+  } else {
+    console.log('=== prepare fail ===')
+    player.release()
+  }
+})
+```
+
+### getDuration
+
+获取当前播放的媒体文件总时长，单位秒，返回 `0` 代表无效，需要播放器处于 `PREPARED` 状态才可以获取到值
+
+```ts
+getDuration(): number
+```
+
+### getVolume
+
+获取当前系统音量值，范围 [0 - 100]
+
+```ts
+getVolume(): number
+```
+
+### setVolume
+
+设置系统音量值，范围 [0 - 100]，结果代表是否设置成功，`true` 表示设置成功
+
+```ts
+setVolume(vol: number): boolean
+```
+
+### getTitle
+
+获取当前播放媒体文件标题，调用失败时返回 `undefined`
+
+```ts
+getTitle(): string | undefined
+```
+
+### getArtist
+
+获取当前播放媒体文件艺术家信息，调用失败时返回 `undefined`
+
+```ts
+getArtist(): string | undefined
+```
+
+### getMediaInfo
+
+获取当前播放媒体文件文件标题、艺术家、时长信息
+
+```ts
+getMediaInfo(): MediaInfo
+```
+
+| 属性  | 说明   | 类型     |
+| ----- | ------ | -------- |
+| title | 文件名 | <code>string&#124;undefined</code> |
+| artist | 艺术家 | <code>string&#124;undefined</code> |
+| duration | 文件时长，需要播放器处于 `PREPARED` 状态才可以获取到值 | `number` |
+
+### release
+
+在播放停止后，释放播放器硬件资源
+
+```ts
+release(): void
+```
+
+### getStatus
+
+获取播放器状态
+
+```ts
+getStatus(): number
+```
+
+返回值含义参考 `player.state`
+
+### player.event
+
+播放器支持监听的事件类型
+
+| 事件值                  | 说明                                                                                           |
+| ----------------------- | ---------------------------------------------------------------------------------------------- |
+| `player.event.PREPARE`  | `prepare` 接口的异步结果监听，回调函数 `(result: boolean) => void`, 参数 `result` 表示是否成功 |
+| `player.event.COMPLETE` | 音频正常开始播放后，待音频文件或音频数据播放结束时，可以监听到 `COMPLETE` 事件                 |
+
+### player.state
+
+播放器状态枚举
+
+| 状态值                     | 说明                                       |
+| -------------------------- | ------------------------------------------ |
+| `player.state.IDLE`        | 初始状态                                   |
+| `player.state.INITIALIZED` | `setSource` 后的状态                       |
+| `player.state.PREPARING`   | `prepare` 调用后，还未 `PREPARED` 时的状态 |
+| `player.state.PREPARED`    | `prepare` 成功后的状态                     |
+| `player.state.STARTED`     | 开始播放后的状态                           |
+| `player.state.PAUSED`      | 播放暂停时的状态                           |
+| `player.state.STOPPED`     | 停止播放后的状态                           |
+
+## Record 接口
+
+录音器支持录制音频到文件
+
+### setFormat
+
+```js
+setFormat(codec: number, param: object): void
+```
+
+codec 参考 codec 值
+
+| codec 取值   | 说明          |
+| ------------ | ------------- |
+| `codec.OPUS` | Opus 编码类型 |
+
+param 类型
+
+| 属性        | 说明                                                                                      | 是否必须 | 类型     |
+| ----------- | ----------------------------------------------------------------------------------------- | -------- | -------- |
+| target_file | 录制到文件时，指定保存音频的路径，支持小程序的 `data` 目录，如：`data://record_file.opus` | 是       | `string` |
+
+## 代码示例
+
+```js
+// Player
+import { create, id } from '@zos/media'
+
+const player = create(id.PLAYER)
+
+player.addEventListener(player.event.PREPARE, function (result) {
+  if (result) {
+    console.log('=== prepare succeed ===')
+    player.start()
+  } else {
+    console.log('=== prepare fail ===')
+    player.release()
+  }
+})
+
+player.addEventListener(player.event.COMPLETE, function (result) {
+  console.log('=== play end ===')
+  player.stop()
+  player.release()
+})
+
+player.setSource(player.source.FILE, { file: '08-15s-16000-1ch.opus' })
+
+// User control
+player.prepare()
+player.pause()
+player.resume()
+player.stop()
+player.release()
+```
+
+```js
+// Recorder
+import { create, id, codec } from '@zos/media'
+
+const recorder = create(id.RECORDER)
+
+recorder.setFormat(codec.OPUS, {
+  target_file: 'data://record_file.opus'
+})
+
+// start
+recorder.start()
+
+// stop
+recorder.stop()
+```

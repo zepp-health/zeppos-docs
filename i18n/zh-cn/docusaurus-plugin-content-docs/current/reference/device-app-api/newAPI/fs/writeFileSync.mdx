@@ -1,0 +1,47 @@
+# writeFileSync
+
+> API_LEVEL `2.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+同步地将数据写入小程序 `/data` 目录下的文件，如果文件已存在则替换文件，不存在则新建文件。
+
+## 类型
+
+```ts
+function writeFileSync(option: Option): void
+```
+
+## 参数
+
+### Option
+
+| 属性    | 类型                                               | 必填 | 默认值 | 说明                 | API_LEVEL |
+| ------- | -------------------------------------------------- | ---- | ------ | -------------------- | --------- |
+| path    | <code>string&#124;number</code>                    | 是   | -      | 文件路径或者文件句柄 | 2.0       |
+| data    | <code>ArrayBuffer&#124;string&#124;DataView</code> | 是   | -      | 写入目标文件的数据   | 2.0       |
+| options | <code>Options</code>                               | 否   | -      | 其他选项             | 2.0       |
+
+### Options
+
+| 属性     | 类型                | 必填 | 默认值            | 说明                                      | API_LEVEL |
+| -------- | ------------------- | ---- | ----------------- | ----------------------------------------- | --------- |
+| encoding | <code>string</code> | 否   | <code>utf8</code> | 如果数据格式为 `string`，需要指定编码方式 | 2.0       |
+
+## 代码示例
+
+```js
+import { writeFileSync } from '@zos/fs'
+
+const buffer = new ArrayBuffer(4)
+writeFileSync({
+  path: 'test.txt',
+  data: buffer,
+})
+
+writeFileSync({
+  path: 'content.txt',
+  data: 'some content...',
+  options: {
+    encoding: 'utf8',
+  },
+})
+```

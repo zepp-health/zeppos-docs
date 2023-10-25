@@ -1,0 +1,44 @@
+---
+title: hmFS.open(path, flag)
+sidebar_label: open
+---
+
+Open file
+
+## Type
+
+```ts
+(path: string, flag: FLAG) => fileId
+```
+
+## Parameters
+
+### path
+
+|  Description | Required |   Type   | Default |
+| ------------ | -------- | -------- | ------- |
+|  file path   |    yes   | `string` |    -    |
+
+### FLAG
+
+| Optional Properties | Description |
+| ------------------- | ------------------------------------------------------- |
+|       O_RDONLY      | read-only |
+|       O_WRONLY      | write-only |
+|       O_RDWR        | read-write|
+|       O_APPEND      | Append mode on. |
+|       O_CREAT       | If file does not exist, create and open. |
+|       O_EXCL        | Used in conjunction with O_CREAT. If it does not exist, create and open it, if it does exist, return an error.|
+|       O_TRUNC       | If the file exists, the length is truncated to 0.|
+
+### fileId
+
+| Description |   Type   |
+| ----------- | -------- |
+| file handle | `number` |
+
+## Usage
+
+```js
+const fileId = hmFS.open('test_file.txt', hmFS.O_RDWR | hmFS.O_CREAT)
+```

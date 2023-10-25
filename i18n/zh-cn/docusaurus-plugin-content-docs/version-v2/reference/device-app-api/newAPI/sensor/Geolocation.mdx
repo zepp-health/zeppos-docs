@@ -1,0 +1,134 @@
+---
+title: Geolocation
+sidebar_label: Geolocation 定位
+---
+
+> API_LEVEL `2.1` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+定位传感器。
+
+:::info
+权限代码： `device:os.geolocation`
+:::
+
+## 方法
+
+### start
+
+开始监听定位数据
+
+```ts
+start(): void
+```
+
+### stop
+
+停止监听定位数据
+
+```ts
+stop(): void
+```
+
+### getStatus
+
+获取定位状态，返回 `A` 代表定位中，返回 `V` 代表无效定位
+
+```ts
+getStatus(): string
+```
+
+### getLatitude
+
+获取纬度
+
+```ts
+getLatitude(option: Option): Result
+```
+
+#### Option
+
+| 属性   | 类型                | 必填 | 默认值           | 说明                                                  | API_LEVEL |
+| ------ | ------------------- | ---- | ---------------- | ----------------------------------------------------- | --------- |
+| format | <code>string</code> | 否   | <code>DMS</code> | 坐标格式，可选 `DD` 代表十进制或者 `DMS` 度分秒的形式 | 2.1       |
+
+#### Result
+
+| 类型                         | 说明                    |
+| ---------------------------- | ----------------------- |
+| <code>number&#124;DMS</code> | 坐标，坐标系类型 WGS-84 |
+
+#### DMS
+
+| 属性      | 类型                | 说明                             | API_LEVEL |
+| --------- | ------------------- | -------------------------------- | --------- |
+| direction | <code>string</code> | 方向，`N` 代表北纬，`S` 代表南纬 | 2.1       |
+| degrees   | <code>number</code> | 度                               | 2.1       |
+| minutes   | <code>number</code> | 分                               | 2.1       |
+| seconds   | <code>number</code> | 秒                               | 2.1       |
+
+### getLongitude
+
+获取经度
+
+```ts
+getLongitude(option: Option): Result
+```
+
+#### Option
+
+| 属性   | 类型                | 必填 | 默认值           | 说明                                                  | API_LEVEL |
+| ------ | ------------------- | ---- | ---------------- | ----------------------------------------------------- | --------- |
+| format | <code>string</code> | 否   | <code>DMS</code> | 坐标格式，可选 `DD` 代表十进制或者 `DMS` 度分秒的形式 | 2.1       |
+
+#### Result
+
+| 类型                         | 说明                    |
+| ---------------------------- | ----------------------- |
+| <code>number&#124;DMS</code> | 坐标，坐标系类型 WGS-84 |
+
+#### DMS
+
+| 属性      | 类型                | 说明                             | API_LEVEL |
+| --------- | ------------------- | -------------------------------- | --------- |
+| direction | <code>string</code> | 方向，`E` 代表东经，`W` 代表西经 | 2.1       |
+| degrees   | <code>number</code> | 度                               | 2.1       |
+| minutes   | <code>number</code> | 分                               | 2.1       |
+| seconds   | <code>number</code> | 秒                               | 2.1       |
+
+### onChange
+
+注册定位信息变化事件监听回调函数
+
+```ts
+onChange(callback: () => void): void
+```
+
+### offChange
+
+取消定位信息变化事件监听回调函数
+
+```ts
+offChange(callback: () => void): void
+```
+
+## 代码示例
+
+```js
+import { Geolocation } from '@zos/sensor'
+
+const geolocation = new Geolocation()
+
+const callback = () => {
+  if (geolocation.getStatus() === 'A') {
+    console.log(geolocation.getLatitude())
+    console.log(geolocation.getLongitude())
+  }
+}
+
+geolocation.start()
+geolocation.onChange(callback)
+
+// When not needed for use
+geolocation.offChange(callback)
+geolocation.stop()
+```

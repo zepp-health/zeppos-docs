@@ -1,0 +1,66 @@
+---
+title: Image Convert
+sidebar_label: Image Convert
+---
+
+The "Device App" can not show png images due to the limitation of device. The image can be shown normally after converting by `image` module.
+
+## image module
+
+### convert
+
+Converting png images to image formats supported by the "Device App".
+
+### Types
+
+```ts
+(options: Options) => Promise<Result>
+```
+
+### Parameters
+
+### Options: object
+
+| Property       | Description                                                                                                                                                                                   | Required | Type     |
+| -------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- | -------- |
+| filePath       | Path to the image that needs to be converted                                                                                                                                                  | YES      | `string` |
+| targetFilePath | If not filled, the rule for the path of the converted image is `${filePath}_converted`. For example given the `filePath` value `data://1.png`, the converted path is `data://1.png_converted` | NO       | `string` |
+
+### Result: object
+
+| Property       | Description                  | Type           |
+| -------------- | ---------------------------- | -------------- |
+| filePath       | Original Image Path          | `string`       |
+| targetFilePath | Converted Image Path         | `string`       |
+| options        | Image Conversion Information | `ResultOption` |
+
+### ResultOption: object
+
+| Property | Description                  | Type     |
+| -------- | ---------------------------- | -------- |
+| size     | Converted file size in bytes | `number` |
+
+## Code Example
+
+```js
+AppSideService({
+  onInit() {
+    image
+      .convert({
+        filePath: 'data://download/test.png'
+      })
+      .then((result) => {
+        console.log(reslut.targetFilePath) // data://download/test.png_converted
+      })
+
+    image
+      .convert({
+        filePath: 'data://download/test.png',
+        targetFilePath: 'data://download/converted_test.png'
+      })
+      .then((result) => {
+        console.log(reslut.targetFilePath) // data://download/converted_test.pang
+      })
+  }
+})
+```

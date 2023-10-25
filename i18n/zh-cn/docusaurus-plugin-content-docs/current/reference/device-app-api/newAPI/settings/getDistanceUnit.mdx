@@ -1,0 +1,40 @@
+# getDistanceUnit
+
+> API_LEVEL `2.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+返回当前的距离单位是公制还是英制。该方法是获取的是用户设置的单位，不代表数据的单位，数据单位参考相应数据的接口说明。
+
+## 类型
+
+```ts
+function getDistanceUnit(): Result
+```
+
+## 参数
+
+### Result
+
+| 类型                | 说明                         |
+| ------------------- | ---------------------------- |
+| <code>number</code> | 距离单位，值参考距离单位常量 |
+
+## 常量
+
+### 距离单位常量
+
+| 常量                     | 说明 | API_LEVEL |
+| ------------------------ | ---- | --------- |
+| `DISTANCE_UNIT_METRIC`   | 公制 | 2.0       |
+| `DISTANCE_UNIT_IMPERIAL` | 英制 | 2.0       |
+
+## 代码示例
+
+```js
+import { getDistanceUnit, DISTANCE_UNIT_METRIC } from '@zos/settings'
+
+const distanceUnit = getDistanceUnit()
+
+if (distanceUnit === DISTANCE_UNIT_METRIC) {
+  console.log('metric')
+}
+```

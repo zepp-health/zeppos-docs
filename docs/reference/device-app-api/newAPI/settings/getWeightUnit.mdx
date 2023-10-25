@@ -1,0 +1,42 @@
+# getWeightUnit
+
+> Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Gets the weight unit set by the user.
+
+## Type
+
+```ts
+function getWeightUnit(): Result
+```
+
+## Parameters
+
+### Result
+
+| Type                | Description                                        |
+| ------------------- | -------------------------------------------------- |
+| <code>number</code> | Weight units, value refer to weight unit constants |
+
+## Constants
+
+### Weight unit constants
+
+| Constant               | Description | API_LEVEL |
+| ---------------------- | ----------- | --------- |
+| `WEIGHT_UNIT_KILOGRAM` | Kilogram    | 2.0       |
+| `WEIGHT_UNIT_JIN`      | Jin         | 2.0       |
+| `WEIGHT_UNIT_POUND`    | Pound       | 2.0       |
+| `WEIGHT_UNIT_STONE`    | Stone       | 2.0       |
+
+## Example
+
+```js
+import { getWeightUnit, WEIGHT_UNIT_KILOGRAM } from '@zos/settings'
+
+const weightUnit = getWeightUnit()
+
+if (weightUnit === WEIGHT_UNIT_KILOGRAM) {
+  console.log('Kilogram')
+}
+```

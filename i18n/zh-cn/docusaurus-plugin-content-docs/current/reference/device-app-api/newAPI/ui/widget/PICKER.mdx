@@ -1,0 +1,159 @@
+---
+title: PICKER
+sidebar_label: PICKER 通用选择器
+---
+
+> API_LEVEL `3.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../../guides/framework/device/compatibility.md)。
+
+通用的选择器，支持文字和数字列表选择
+
+## 创建 UI 控件
+
+```js
+import { createWidget, widget, prop } from '@zos/ui'
+
+const keyboard = createWidget(widget.WIDGET_PICKER, Param)
+```
+
+### Param: object
+
+| 属性           | 说明                               | 是否必须 | 类型                |
+| -------------- | ---------------------------------- | -------- | ------------------- |
+| nb_of_columns  | 选择器最大列数（最多支持 5 列）    | 是       | `number`            |
+| data_config    | 列配置信息数组，参考 `DataConfig`  | 是       | `Array<DataConfig>` |
+| title          | 选择器的标题                       | 否       | `string`            |
+| subtitle       | 选择器的副标题                     | 否       | `string`            |
+| done_icon      | 完成图标的资源路径                 | 否       | `number`            |
+| picker_cb      | 选择器的回调函数                   | 否       | `CallBack`          |
+| init_col_index | 初始化 focus 的所在列的 index 索引 | 否       | `number`            |
+| normal_color   | 未选中的数据的颜色值               | 否       | `number`            |
+| select_color   | 选中的数据的颜色值                 | 否       | `number`            |
+
+#### DataConfig: object
+
+| 属性                | 说明                                   | 是否必须 | 类型                                   |
+| ------------------- | -------------------------------------- | -------- | -------------------------------------- |
+| data_array          | 待选择的列数据                         | 是       | <code>Array<number&#124;string></code> |
+| support_loop        | 是否支持循环拖拽                       | 是       | `boolean`                              |
+| unit                | 单位                                   | 否       | `string`                               |
+| connector           | 列与列的连接器                         | 否       | `string`                               |
+| font_name           | 字体文件路径，参考 `TEXT` 控件字体设置 | 否       | `string`                               |
+| font_size           | 字体大小                               | 否       | `number`                               |
+| select_font_size    | 选中字体大小                           | 否       | `number`                               |
+| connector_font_size | 连接器的大小                           | 否       | `number`                               |
+| unit_font_size      | 单位的字体大小                         | 否       | `number`                               |
+| init_val_index      | 所在列默认的选中索引                   | 否       | `number`                               |
+| col_width           | 所在列宽度，需要所有列都配置才生效     | 否       | `number`                               |
+
+#### CallBack: function
+
+选择器回调函数
+
+```ts
+picker_cb(picker: WIDGET, event_type: number, column_index: number, select_index: index): void
+```
+
+| 参数         | 说明                              |
+| ------------ | --------------------------------- |
+| picker       | 选择器控件实例                    |
+| event_type   | 选择器回调事件类型，见 EVENT_TYPE |
+| column_index | 触发选择器事件的列索引            |
+| select_index | 当前列的选中项索引                |
+
+| EVENT_TYPE 值 | 说明           |
+| ------------- | -------------- |
+| `0`           | 当前列失去焦点 |
+| `1`           | 当前列获得焦点 |
+| `2`           | 当前列有值选中 |
+
+```js
+function picker_cb(picker, event_type, column_index, select_index) {
+  if (event_type == 2) {
+    picker.setProperty(prop.TITLE, 'End Date')
+    picker.setProperty(prop.SUBTITLE, '3 days in totals')
+
+    picker.setProperty(prop.UPDATE_DATA, {
+      col_index: 0,
+      val_index: 5,
+      data_array: new Array(10).fill(0).map((d, index) => index + 1)
+    })
+
+    picker.setProperty(prop.CUR_COLUMN, 1)
+  }
+}
+```
+
+## 属性操作
+
+此处的 `SET` 和 `GET` 代表是否支持 `widget.setProperty` 和 `widget.getProperty`
+
+| 属性名             | SET/GET   | 说明                  |
+| ------------------ | --------- | --------------------- |
+| `prop.TITLE`       | `SET`     | 更新标题 `title`      |
+| `prop.SUBTITLE`    | `SET`     | 更新副标题 `subtitle` |
+| `prop.UPDATE_DATA` | `SET`     | 更新某一列数据        |
+| `prop.CUR_COLUMN`  | `SET/GET` | 更新获取当前列        |
+
+## 代码示例
+
+```js
+import { Time } from '@zos/sensor'
+import { widget, createWidget } from '@zos/ui'
+
+const time = new Time()
+
+picker_widget = createWidget(widget.WIDGET_PICKER, {
+  title: 'Start Date',
+  subtitle: '',
+  nb_of_columns: 3,
+  single_wide: true,
+  init_col_index: 1,
+  data_config: [
+    {
+      data_array: new Array(12).fill(0).map((d, index) => index + 1),
+      init_val_index: time.getMonth() - 1,
+      unit: 'Month',
+      support_loop: true,
+      font_name: 'fonts/x.ttf',
+      font_size: 24,
+      select_font_size: 48,
+      connector_font_size: 18,
+      unit_font_size: 18,
+      col_width: 80
+    },
+    {
+      data_array: new Array(31).fill(0).map((d, index) => index + 1),
+      init_val_index: time.getDate() - 1,
+      unit: 'Day',
+      support_loop: true,
+      font_name: 'fonts/x.ttf',
+      font_size: 24,
+      select_font_size: 48,
+      connector_font_size: 36,
+      unit_font_size: 36,
+      col_width: 80
+    },
+    {
+      data_array: new Array(100).fill(0).map((d, index) => index + 1970),
+      init_val_index: time.getFullYear() - 1970,
+      unit: 'Year',
+      support_loop: true,
+      font_name: 'fonts/x.ttf',
+      font_size: 24,
+      select_font_size: 48,
+      connector_font_size: 36,
+      unit_font_size: 36,
+      col_width: 80
+    }
+  ],
+  picker_cb
+})
+
+function picker_cb(picker, event_type, column_index, select_index) {
+  console.log(
+    'timePickerCb: ' + event_type,
+    'column_index: ' + column_index,
+    'select_index: ' + select_index
+  )
+}
+```

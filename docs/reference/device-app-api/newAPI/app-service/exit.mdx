@@ -1,0 +1,23 @@
+# exit
+
+> Start from API_LEVEL `3.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Called in The App Service, it will exit the service and will not affect the foreground page.
+
+:::info
+permission code: `device:os.bg_service`
+:::
+
+## Type
+
+```ts
+function exit(): void
+```
+
+## Example
+
+```js
+import { exit } from '@zos/app-service'
+
+exit()
+```

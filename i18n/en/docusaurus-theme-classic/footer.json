@@ -1,0 +1,38 @@
+{
+  "link.title.Docs": {
+    "message": "Docs",
+    "description": "The title of the footer links column with title=Docs in the footer"
+  },
+  "link.title.Community": {
+    "message": "Community",
+    "description": "The title of the footer links column with title=Community in the footer"
+  },
+  "link.title.More": {
+    "message": "More",
+    "description": "The title of the footer links column with title=More in the footer"
+  },
+  "link.item.label.Guides": {
+    "message": "Guides",
+    "description": "The label of footer link with label=Guides linking to /docs/guides/architecture/arc"
+  },
+  "link.item.label.References": {
+    "message": "References",
+    "description": "The label of footer link with label=References linking to /docs/reference/app-json"
+  },
+  "link.item.label.Samples": {
+    "message": "Samples",
+    "description": "The label of footer link with label=Samples linking to /docs/samples"
+  },
+  "link.item.label.Designs": {
+    "message": "Designs",
+    "description": "The label of footer link with label=Designs linking to /docs/designs"
+  },
+  "link.item.label.GitHub": {
+    "message": "GitHub",
+    "description": "The label of footer link with label=GitHub linking to https://github.com/zepp-health"
+  },
+  "link.item.label.Youtube": {
+    "message": "Youtube",
+    "description": "The label of footer link with label=Youtube linking to https://www.youtube.com/channel/UCU8LoAkoGotUNL82arnib5w"
+  }
+}

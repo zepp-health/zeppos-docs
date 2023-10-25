@@ -1,0 +1,84 @@
+---
+title: 数据持久化
+sidebar_label: 数据持久化
+---
+
+## 介绍
+
+部分场景下，我们希望能够对小程序一部分数据状态进行持久化存储。
+
+简单来说，持久化就是将数据保存到可永久保存的存储设备中。结合一个例子来看一下实际的应用。
+
+以示例应用的 [calories](./../../samples/app/calories.md) 举例，这个小程序可以读取当天的卡路里消耗，并且计算卡路里数值与不同食物间的关系，提供了 10 种食物供用户选择，默认选择巧克力。如果用户想换成汉堡，需要去选择页面进行操作，假设程序没有做持久化处理，用户退出小程序再次进入该小程序后，所选择的食物仍然是巧克力。如果做了持久化处理，则在每次进入小程序的时候，都能获取到之前保存的应用状态，所选择的食物就成了汉堡。
+
+## 思路
+
+目前想要在小程序中实现持久化，需要借助 `hmFS` 相关 API。
+
+本文提供了一个思路，实现了 `LocalStorage` 工具类对一系列文件操作进行封装，可以方便地对一个标准 `JSON` 对象进行读写操作。
+
+```js title="storage.js"
+function str2ab(str) {
+  const buf = new ArrayBuffer(str.length * 2) // 2 bytes for each char
+  const bufView = new Uint16Array(buf)
+  for (let i = 0, strLen = str.length; i < strLen; i++) {
+    bufView[i] = str.charCodeAt(i)
+  }
+  return buf
+}
+
+export default class LocalStorage {
+  constructor (fileName = '') {
+    this.fileName = fileName
+    this.contentObj = {}
+  }
+
+  set(obj) {
+    const file = hmFS.open(this.fileName, hmFS.O_RDWR | hmFS.O_TRUNC)
+    const contentBuffer = str2ab(JSON.stringify(obj))
+
+    hmFS.write(file, contentBuffer, 0, contentBuffer.byteLength)
+    hmFS.close(file)
+  }
+
+  get() {
+    const [fsStat, err] = hmFS.stat(this.fileName)
+    if (err === 0) {
+      const { size } = fsStat
+      const fileContentUnit = new Uint16Array(new ArrayBuffer(size))
+      const file = hmFS.open(this.fileName, hmFS.O_RDONLY | hmFS.O_CREAT)
+      hmFS.seek(file, 0, hmFS.SEEK_SET)
+      hmFS.read(file, fileContentUnit.buffer, 0, size)
+      hmFS.close(file)
+
+      try {
+        const val = String.fromCharCode.apply(null, fileContentUnit)
+        this.contentObj = val ? JSON.parse(val) : {}
+      } catch (error) {
+        this.contentObj = {}
+      }
+    }
+
+    return this.contentObj
+  }
+}
+```
+
+```js title="page.js"
+import LocalStorage from './storage'
+
+const localStorage = new LocalStorage('local_storage.txt')
+
+Page({
+  state: {
+    data: null
+  },
+  build() {
+    this.state.data = localStorage.get()
+    // ...
+  },
+  onDestroy() {
+    localStorage.set(this.state.data)
+  }
+})
+```

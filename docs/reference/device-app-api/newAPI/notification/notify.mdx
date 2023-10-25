@@ -1,0 +1,45 @@
+# notify
+
+> Start from API_LEVEL `3.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Send notifications to the Watch Notification Center.
+
+:::info
+permission code: `device:os.notification`
+:::
+
+## Type
+
+```ts
+function notify(option: Option): Result
+```
+
+## Parameters
+
+### Option
+
+| Property | Type                               | Required | DefaultValue | Description          | API_LEVEL |
+| -------- | ---------------------------------- | -------- | ------------ | -------------------- | --------- |
+| title    | <code>string</code>                | Y        | -            | Notice title text    | 3.0       |
+| content  | <code>string</code>                | Y        | -            | Text of the notice   | 3.0       |
+| actions  | <code>Array&#60;Action&#62;</code> | Y        | -            | Custom button arrays | 3.0       |
+
+### Action
+
+| Property | Type                | Required | DefaultValue | Description                              | API_LEVEL |
+| -------- | ------------------- | -------- | ------------ | ---------------------------------------- | --------- |
+| text     | <code>string</code> | Y        | -            | Button Text                              | 3.0       |
+| file     | <code>string</code> | Y        | -            | The App Service file to be started       | 3.0       |
+| param    | <code>string</code> | N        | -            | Parameters passed in during file loading | 3.0       |
+
+### Result
+
+| Type                | Description                                                                                                                            |
+| ------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
+| <code>number</code> | The result of the notification delivery, returns `0` for delivery failure, the rest of the result indicates the ID of the notification |
+
+## Example
+
+```js
+import { notify } from '@zos/notification'
+```

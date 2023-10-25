@@ -1,0 +1,89 @@
+---
+title: Vibrator
+sidebar_label: Vibrator
+---
+
+> Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Vibrator.
+
+## Methods
+
+### start
+
+Start vibration, if the `option` parameter is passed, it will only work for this vibration
+
+```ts
+start(option?: Option): void
+```
+
+#### Option
+
+| Property | Type                | Required | DefaultValue                             | Description                                                   | API_LEVEL |
+| -------- | ------------------- | -------- | ---------------------------------------- | ------------------------------------------------------------- | --------- |
+| mode     | <code>number</code> | N        | <code>VIBRATOR_SCENE_SHORT_MIDDLE</code> | Vibration mode, Value refer to Vibration motor mode constants | 2.0       |
+
+#### Constants
+
+##### Vibration motor mode constants
+
+| Constant                         | Description                                                                                                                                                               | API_LEVEL |
+| -------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------- |
+| `VIBRATOR_SCENE_SHORT_LIGHT`     | Light vibration intensity and short time (20ms)                                                                                                                           | 2.0       |
+| `VIBRATOR_SCENE_SHORT_MIDDLE`    | Medium vibration intensity, short time (20ms)                                                                                                                             | 2.0       |
+| `VIBRATOR_SCENE_SHORT_STRONG`    | High vibration intensity and short time (20ms)                                                                                                                            | 2.0       |
+| `VIBRATOR_SCENE_DURATION`        | High vibration intensity, lasting 600ms                                                                                                                                   | 2.0       |
+| `VIBRATOR_SCENE_DURATION_LONG`   | High vibration intensity, lasting 1000ms                                                                                                                                  | 2.0       |
+| `VIBRATOR_SCENE_STRONG_REMINDER` | High vibration intensity, four vibrations in 1200ms, can be used for stronger reminders                                                                                   | 2.0       |
+| `VIBRATOR_SCENE_NOTIFICATION`    | Two short, continuous vibrations, consistent with the watch message notification vibration feedback                                                                       | 2.0       |
+| `VIBRATOR_SCENE_CALL`            | High vibration intensity, single vibration twice in 500ms, continuous vibration, need to manually `stop`, consistent with the watch call vibration feedback               | 2.0       |
+| `VIBRATOR_SCENE_TIMER`           | High vibration intensity, single long vibration 500ms, continuous vibration, need to manually `stop`, consistent with the watch alarm clock, countdown vibration feedback | 2.0       |
+
+### stop
+
+Stop vibration
+
+```ts
+stop(): void
+```
+
+### setMode
+
+Set the vibration mode, call `start()` after successful setting, it will vibrate according to the set mode
+
+```ts
+setMode(option: Option): void
+```
+
+#### Option
+
+| Property | Type                | Required | DefaultValue | Description                                                   | API_LEVEL |
+| -------- | ------------------- | -------- | ------------ | ------------------------------------------------------------- | --------- |
+| mode     | <code>number</code> | Y        | -            | Vibration mode, Value refer to Vibration motor mode constants | 2.0       |
+
+### getConfig
+
+Get Vibration Motor Configuration
+
+```ts
+getConfig(): Option
+```
+
+#### Option
+
+| Property | Type                | Description                                                   | API_LEVEL |
+| -------- | ------------------- | ------------------------------------------------------------- | --------- |
+| mode     | <code>number</code> | Vibration mode, Value refer to Vibration motor mode constants | 2.0       |
+
+## Example
+
+```js
+import { Vibrator, VIBRATOR_SCENE_DURATION } from '@zos/sensor'
+
+const vibrator = new Vibrator()
+vibrator.start()
+
+// set scene
+vibrator.setMode(VIBRATOR_SCENE_DURATION)
+vibrator.start()
+```

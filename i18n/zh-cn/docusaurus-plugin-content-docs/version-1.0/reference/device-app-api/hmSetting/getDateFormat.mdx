@@ -1,0 +1,28 @@
+---
+title: hmSetting.getDateFormat()
+sidebar_label: getDateFormat
+---
+
+返回当前的年月日顺序。
+
+## 类型
+
+```ts
+() => result
+```
+
+## 参数
+
+### result: number
+
+| 值  | 格式     |
+| --- | -------- |
+| `0` | 年-月-日 |
+| `1` | 日-月-年 |
+| `2` | 月-日-年 |
+
+## 代码示例
+
+```js
+const dateFormat = hmSetting.getDateFormat()
+```

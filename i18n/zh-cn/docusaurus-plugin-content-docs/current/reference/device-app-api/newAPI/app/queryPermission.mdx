@@ -1,0 +1,34 @@
+# queryPermission
+
+> API_LEVEL `3.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+查询小程序权限的授权状态。
+
+## 类型
+
+```ts
+function queryPermission(option: Option): Result
+```
+
+## 参数
+
+### Option
+
+| 属性        | 类型                               | 必填 | 默认值 | 说明                               | API_LEVEL |
+| ----------- | ---------------------------------- | ---- | ------ | ---------------------------------- | --------- |
+| permissions | <code>Array&#60;string&#62;</code> | 是   | -      | 权限字符串数组，数组长度至少为 `1` | 3.0       |
+
+### Result
+
+| 类型                               | 说明                                                                                         |
+| ---------------------------------- | -------------------------------------------------------------------------------------------- |
+| <code>Array&#60;number&#62;</code> | 权限查询结果数组，与 `permissions` 数组顺序一一对应，`0`: 未授权、`1`: 未知权限、`2`：已授权 |
+
+## 代码示例
+
+```js
+import { queryPermission } from '@zos/app'
+
+const result = queryPermission()
+console.log(result)
+```

@@ -1,0 +1,49 @@
+---
+title: Pai
+sidebar_label: Pai PAI
+---
+
+> API_LEVEL `2.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+PAI 传感器。
+
+:::info
+权限代码： `data:user.hd.pai`
+:::
+
+## 方法
+
+### getTotal
+
+获取当前累计的 PAI 值
+
+```ts
+getTotal(): number
+```
+
+### getToday
+
+获取今日获取的 PAI 值
+
+```ts
+getToday(): number
+```
+
+### getLastWeek
+
+获取一周的 PAI 数据，返回值为长度为 `7` 的数组，数组索引 `0` 的位置为今天的 PAI 值，索引 `1` 的位置为前 1 天的 PAI 值，以此类推
+
+```ts
+getLastWeek(): Array<number>
+```
+
+## 代码示例
+
+```js
+import { Pai } from '@zos/sensor'
+
+const pai = new Pai()
+const total = pai.getTotal()
+const today = pai.getToday()
+const lastWeek = pai.getLastWeek()
+```

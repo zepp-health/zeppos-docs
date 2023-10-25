@@ -1,0 +1,125 @@
+---
+title: ble
+sidebar_label: BLE
+---
+
+> Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](../../../guides/framework/device/compatibility.md).
+
+The "Device App" communicates with the "Side Service" through the `ble` module using the device's Bluetooth communication capabilities.
+
+:::tip
+For a complete example of Bluetooth communication, please refer to [Bluetooth Communication](../../../guides/best-practice/bluetooth-communication.mdx)
+:::
+
+## Method
+
+### createConnect(callback)
+
+Create connection
+
+#### Type
+
+```ts
+(callback: (index: number, data: object, size: number) => void) => void
+```
+
+#### Parameters
+
+| Callback parameter |       Description       | Required |   Type   |
+| ------------------ | ----------------------- | -------- | -------- |
+|       index        |     subpackage number   |    NO    | `number` |
+|       data         |      received data      |    NO    | `object` |
+|       size         | length of data received |    NO    | `number` |
+
+### disConnect()
+
+Disconnects
+
+#### Type
+
+```ts
+() => void
+```
+
+### send(data, size)
+
+Send a message
+
+#### Type
+
+```ts
+(data: object, size: number) => void
+```
+
+#### Parameters
+
+| Parameters |          Description      | Required | Type |
+| ---------- | ------------------------- | -------- | -------- |
+|    data    |        data to be sent    |    NO    | `object` |
+|    size    | length of data to be sent |    NO    | `number` |
+
+### connectStatus()
+
+Query connection status
+
+#### Type
+
+```ts
+() => Result
+```
+
+#### Result
+
+|                              Description                  |   Type    |
+| --------------------------------------------------------- | --------- |
+| connection status `true` connected, `false` not connected | `boolean` |
+
+### addListener(callback)
+
+Register a connection status listener
+
+#### type
+
+```ts
+(callback: (status: boolean) => void) => void
+```
+
+#### Parameters
+
+| Callback parameter |    Description    |   Type    |
+| ------------------ | ----------------- | --------- |
+|       status       | connection status | `boolean` |
+
+### removeListener
+
+Cancel the connection status listener
+
+#### type
+
+```ts
+() => void
+```
+
+## Code example
+
+```js
+import { createConnect, send, disConnect, connectStatus, addListener } from '@zos/ble'
+
+// Create Connection
+createConnect(function (index, data, size) {
+  // Receive message callback, return the received message as it is
+  send(data, size)
+})
+
+// Disconnection
+disConnect()
+
+// Print Bluetooth connection status
+console.log(connectStatus())
+
+// Register to listen for connection status
+addListener(function (status) {
+  // Print connection status
+  console.log(status)
+})
+```

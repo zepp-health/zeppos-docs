@@ -1,0 +1,47 @@
+# clearLaunchAppTimeout
+
+> API_LEVEL `2.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+取消 `setLaunchAppTimeout` 创建的唤醒小程序定时器。
+
+## 类型
+
+```ts
+function clearLaunchAppTimeout(option: Option): void
+```
+
+### 简化调用方式
+
+```ts
+function clearLaunchAppTimeout(timeoutId: number): void
+```
+
+## 参数
+
+### Option
+
+| 属性      | 类型                | 必填 | 默认值 | 说明                                                                    | API_LEVEL |
+| --------- | ------------------- | ---- | ------ | ----------------------------------------------------------------------- | --------- |
+| timeoutId | <code>number</code> | 是   | -      | 需要取消的唤醒小程序定时器的编号，这个值通过 `setLaunchAppTimeout` 返回 | 2.0       |
+
+### Result
+
+| 类型                | 说明                                                                    |
+| ------------------- | ----------------------------------------------------------------------- |
+| <code>number</code> | 表示定时器的编号，这个值可以传递给 `clearLaunchAppTimeout` 来取消定时器 |
+
+## 代码示例
+
+```js
+import { setLaunchAppTimeout, clearLaunchAppTimeout } from '@zos/router'
+
+const timeoutId = setLaunchAppTimeout({
+  url: 'pages/js_widget_sample',
+  appId: 1000001,
+  delay: 10000,
+})
+
+clearLaunchAppTimeout({
+  timeoutId,
+})
+```

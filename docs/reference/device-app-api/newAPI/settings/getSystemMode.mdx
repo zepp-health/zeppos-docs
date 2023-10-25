@@ -1,0 +1,36 @@
+# getSystemMode
+
+> Start from API_LEVEL `3.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Get the system mode setting information.
+
+## Type
+
+```ts
+function getSystemMode(): Result
+```
+
+## Parameters
+
+### Result
+
+| Property         | Type                 | Description                   | API_LEVEL |
+| ---------------- | -------------------- | ----------------------------- | --------- |
+| DND              | <code>boolean</code> | State of Do Not Disturb Mode  | 3.0       |
+| sleep            | <code>boolean</code> | State of Sleep Mode           | 3.0       |
+| theater          | <code>boolean</code> | State of Sleep Mode           | 3.0       |
+| systemLock       | <code>boolean</code> | State of Screen Lock Mode     | 3.0       |
+| lowTemperature   | <code>boolean</code> | State of Low Temperature Mode | 3.0       |
+| powerSaving      | <code>boolean</code> | State of Power Saving Mode    | 3.0       |
+| ultraPowerSaving | <code>boolean</code> | State of Clock Mode           | 3.0       |
+| button           | <code>boolean</code> | State of Button Mode          | 3.0       |
+| accessibleSwitch | <code>boolean</code> | State of Accessible           | 3.0       |
+
+## Example
+
+```js
+import { getSystemMode } from '@zos/settings'
+
+const mode = getSystemMode()
+console.log(mode)
+```

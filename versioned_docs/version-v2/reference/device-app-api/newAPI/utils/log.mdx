@@ -1,0 +1,69 @@
+---
+title: log
+sidebar_label: log
+---
+
+> Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+The `log` instance is used for log printing and has multiple levels of logging methods for easy filtering in the console.
+
+## Methods
+
+### getLogger
+
+Returns a new `log` instance with the `name` tag, which is added when the print log method is executed to make it easier to distinguish
+
+```ts
+getLogger(name: string): log
+```
+
+### log
+
+Print log level logs
+
+```ts
+log(...args: string[]): void
+```
+
+### warn
+
+Print warn level logs
+
+```ts
+warn(...args: string[]): void
+```
+
+### debug
+
+Print debug level logs
+
+```ts
+debug(...args: string[]): void
+```
+
+### error
+
+Print error level logs
+
+```ts
+error(...args: string[]): void
+```
+
+### info
+
+Print info level logs
+
+```ts
+info(...args: string[]): void
+```
+
+## Example
+
+```js
+import { log } from '@zos/utils'
+
+const pageLogger = log.getLogger('page')
+
+pageLogger.log('page created')
+pageLogger.error('page error')
+```

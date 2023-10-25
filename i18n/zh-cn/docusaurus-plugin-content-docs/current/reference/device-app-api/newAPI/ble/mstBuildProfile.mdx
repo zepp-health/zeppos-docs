@@ -1,0 +1,70 @@
+# mstBuildProfile
+
+> API_LEVEL `3.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+创建 Profile 连接。
+
+## 类型
+
+```ts
+function mstBuildProfile(profile: ProfileObj): Result
+```
+
+## 参数
+
+### ProfileObj
+
+| 属性    | 类型                                    | 必填 | 默认值 | 说明                                                 | API_LEVEL |
+| ------- | --------------------------------------- | ---- | ------ | ---------------------------------------------------- | --------- |
+| pair    | <code>boolean</code>                    | 是   | -      | 是否自动配对                                         | 3.0       |
+| id      | <code>number</code>                     | 是   | -      | 连接 ID                                              | 3.0       |
+| profile | <code>string</code>                     | 是   | -      | Profile 名称                                         | 3.0       |
+| dev     | <code>ArrayBuffer</code>                | 是   | -      | 设备 MAC 地址，长度 6 字节，建议使用 Uint8Array 视图 | 3.0       |
+| len     | <code>number</code>                     | 是   | -      | `list` 数组长度                                      | 3.0       |
+| list    | <code>Array&#60;ServicesObj&#62;</code> | 是   | -      | Services list 数组                                   | 3.0       |
+
+### ServicesObj
+
+| 属性 | 类型                                   | 必填 | 默认值 | 说明            | API_LEVEL |
+| ---- | -------------------------------------- | ---- | ------ | --------------- | --------- |
+| len  | <code>number</code>                    | 是   | -      | `list` 数组长度 | 3.0       |
+| list | <code>Array&#60;ServiceObj&#62;</code> | 是   | -      | Service 数组    | 3.0       |
+
+### ServiceObj
+
+| 属性       | 类型                                          | 必填 | 默认值         | 说明                      | API_LEVEL |
+| ---------- | --------------------------------------------- | ---- | -------------- | ------------------------- | --------- |
+| uuid       | <code>string</code>                           | 是   | -              | Service UUID              | 3.0       |
+| permission | <code>number</code>                           | 否   | <code>0</code> | 权限控制，默认 `0` 不控制 | 3.0       |
+| len1       | <code>number</code>                           | 是   | -              | Characteristic 数组长度   | 3.0       |
+| list       | <code>Array&#60;CharacteristicObj&#62;</code> | 是   | -              | Characteristic 数组       | 3.0       |
+
+### CharacteristicObj
+
+| 属性       | 类型                                      | 必填 | 默认值         | 说明                      | API_LEVEL |
+| ---------- | ----------------------------------------- | ---- | -------------- | ------------------------- | --------- |
+| uuid       | <code>string</code>                       | 是   | -              | Characteristic UUID       | 3.0       |
+| permission | <code>number</code>                       | 否   | <code>0</code> | 权限控制，默认 `0` 不控制 | 3.0       |
+| len        | <code>number</code>                       | 是   | -              | Descriptor 数组长度       | 3.0       |
+| list       | <code>Array&#60;DescriptorObj&#62;</code> | 是   | -              | Descriptor 数组           | 3.0       |
+
+### DescriptorObj
+
+| 属性       | 类型                | 必填 | 默认值         | 说明                      | API_LEVEL |
+| ---------- | ------------------- | ---- | -------------- | ------------------------- | --------- |
+| uuid       | <code>string</code> | 是   | -              | Descriptor UUID           | 3.0       |
+| permission | <code>number</code> | 否   | <code>0</code> | 权限控制，默认 `0` 不控制 | 3.0       |
+
+### Result
+
+| 类型                 | 说明                                            |
+| -------------------- | ----------------------------------------------- |
+| <code>boolean</code> | 函数调用结果，`true` 表示成功、`false` 表示失败 |
+
+## 代码示例
+
+```js
+import { mstGetConnIdByRemoteAddr } from '@zos/ble'
+
+// ...
+```

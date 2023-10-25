@@ -1,0 +1,47 @@
+---
+title: deleteWidget(widget)
+sidebar_label: deleteWidget
+---
+
+> API_LEVEL `2.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+删除 UI 控件。
+
+## 类型
+
+```ts
+(widget: WIDGET) => void
+```
+
+## 参数
+
+### WIDGET
+
+| 说明                         | 类型     |
+| ---------------------------- | -------- |
+| 控件对象，由 `createWidget` 返回 | `number` |
+
+## 代码示例
+
+```js
+import { createWidget, widget, align, text_style, deleteWidget } from '@zos/ui'
+
+Page({
+  build() {
+    const textWidget = createWidget(widget.TEXT, {
+      x: 96,
+      y: 120,
+      w: 288,
+      h: 46,
+      color: 0xffffff,
+      text_size: 36,
+      align_h: align.CENTER_H,
+      align_v: align.CENTER_V,
+      text_style: text_style.NONE,
+      text: 'HELLO ZEPPOS'
+    })
+
+    deleteWidget(textWidget)
+  }
+})
+```

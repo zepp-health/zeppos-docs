@@ -1,0 +1,33 @@
+---
+title: hmFS.SysProGetBool(key)
+sidebar_label: SysProGetBool
+---
+
+Get the temporarily stored boolean value, which will be cleared by system reboot.
+
+## Type
+
+```ts
+(key: string) => result
+```
+
+## Parameters
+
+### key
+
+| Description | Required |   Type   | Default |
+| ----------- | -------- | -------- | ------ |
+|  key string |   yes    | `string` | - |
+
+### result
+
+|       Description     | Type |
+| --------------------- | --------- |
+| Stored boolean values | `boolean` |
+
+## Usage
+
+```js
+const result = hmFS.SysProGetBool('test_key')
+console.log(result)
+```

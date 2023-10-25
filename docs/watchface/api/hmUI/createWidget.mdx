@@ -1,0 +1,67 @@
+## Display levels of controls
+The table has three states: rest screen, normal display, and editable.
+To simplify the Js logic, you can set the control display level when creating the control, instead of js to control whether it needs to be created or not, reducing judgments and errors occurring.
+**key：show_level **
+
+| Status        | Properties                |
+|---------------|---------------------------|
+|normal_display |hmUI.show_level.ONLY_NORMAL|
+|dropout        |hmUI.show_level.ONAL_AOD|
+|edit           |hmUI.show_level.ONLY_EDIT|
+### Code example
+**Must be passed in at create time for this to work**
+```js
+  const widget = hmUI.createWidget(hmUI.widget.IMG, {
+    x: 158,
+    y: 218,
+    w: 112,
+    h: 136,
+    alpha: 100,
+    src: "a.png",
+    //It means that it will only be displayed under the normal Watchface and rest screen, and will not be created under editable.
+    show_level: hmUI.show_level.ONLY_NORMAL | hmUI.show_level.ONAL_AOD,
+})
+```
+**Set hidden controls to show**
+```js
+widget.setProperty(hmUI.prop.VISIBLE,false); //false: hide; true: show.
+```
+**Set whether the control is clickable or not**
+There are two options for setting.
+- Pass in the 'enable' property value when creating the widget.
+```js
+hmUI.createWidget(hmUI.widget.IMG, {
+x: 158,
+y: 218,
+w: 112,
+h: 136,
+alpha: 100,
+src: "a.png",
+enable：false，//False does not receive click events.
+})
+```
+- Call the control function setEnable()
+```js
+widget.setEnable(true);//Set the control clickable.
+```
+## UI lifecycle proxy
+Currently data update and timer recovery are done inside the firmware, but part of the Watchface depends on the UI lifecycle, so a new virtual control has been added to sense the lifecycle.
+- This control will not draw any content, only do lifecycle sensing.
+- No need for js destruction, it is automatically released when the js interface is destroyed.
+
+| Callbacks   | Firmware Internal Operations             | Trigger Timing                                                                                            |
+|-------------|------------------------------------------|-----------------------------------------------------------------------------------------------------------|
+| resume_call | Resume all data listeners, resume timer. | Watchface first start; other screens back to watchface.                                                   |
+| pause_call  | Pause all data listening, pause timer    | Swipe to subscreen、notifications control center enter, access to other applications from the watchface.  |
+
+### Code example
+```js
+const widgetDelegate = hmUI.createWidget(hmUI.widget.WIDGET_DELEGATE, {
+resume_call: (function () {
+    console.log('ui resume');
+}),
+pause_call: (function () {
+    console.log('ui pause');
+}),
+})
+```

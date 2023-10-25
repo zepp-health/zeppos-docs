@@ -1,0 +1,169 @@
+---
+title: TIME
+sidebar_label: TIME
+---
+
+## Creating Sensors
+
+```js
+const time = hmSensor.createSensor(hmSensor.id.TIME)
+```
+
+## TIME instance
+
+### time: object
+
+| Properties       | Description                                             | Type     |
+| ---------------- | ------------------------------------------------------- | -------- |
+| utc              | Timestamp, milliseconds from January 1, 1970 to present | `number` |
+| year             | year                                                    | `number` |
+| month            | month                                                   | `number` |
+| day              | day                                                     | `number` |
+| hour             | hour                                                    | `number` |
+| minute           | minute                                                  | `number` |
+| second           | second                                                  | `number` |
+| week             | Week `1` - `7`, `1` stands for Monday                                          | `number` |
+| is24Hour         | Whether 24-hour system                                    | `boolean` |
+| format_hour      | Hours in the current time system                                | `number` |
+| lunar_year       | Traditional Chinese Calendar Year                       | `number` |
+| lunar_month      | Traditional Chinese Calendar Month                      | `number` |
+| lunar_day        | Traditional Chinese Calendar Day                        | `number` |
+| lunar_festival   | Traditional Chinese Festival                            | `string` |
+| lunar_solar_term | Traditional Chinese Solar Terms                      | `string` |
+| solar_festival   | Gregorian Holidays                                      | `string` |
+
+### time.getLunarMonthCalendar
+
+Get information about the Chinese Lunar Calendar.
+
+```js
+const lunar_month_cal = time.getLunarMonthCalendar()
+
+for (let i = 0; i < lunar_month_cal.day_count; i++) {
+  console.log('lunar_day : ' + lunar_month_cal.lunar_days_array[i])
+}
+```
+
+### time.getShowFestival
+
+Get the holidays displayed on that day (priority: Gregorian holidays, Chinese lunar holidays, Traditional Chinese Solar Terms).
+
+The API only works when the watch language is set to Chinese.
+
+```js
+const current_festival = time.getShowFestival()
+```
+
+## Registering sensor instance callback events
+
+```js
+time.addEventListener(event, callback: Callback)
+```
+
+### MINUTEEND event
+
+Events at the end of each minute
+
+#### event value
+
+`time.event.MINUTEEND`
+
+#### Callback
+
+```ts
+() => void
+```
+
+### DAYCHANGE event
+
+Events at the end of each day
+
+#### event value
+
+`time.event.MINUTEEND`
+
+#### Callback
+
+```ts
+() => void
+```
+
+## Full Example
+
+```js
+class TextByLine {
+  constructor(params) {
+    const { text = '', y = undefined, line = 0 } = params
+
+    this.text = text
+    this.y = y
+    this.line = line
+    this.y_computed = Number.isInteger(this.y) ? this.y : px(this.line * 60 + 120)
+  }
+
+  render() {
+    return hmUI.createWidget(hmUI.widget.TEXT, {
+      x: px(0),
+      y: this.y_computed,
+      w: px(480),
+      h: px(46),
+      color: 0xffffff,
+      text_size: px(20),
+      align_h: hmUI.align.CENTER_H,
+      align_v: hmUI.align.CENTER_V,
+      text_style: hmUI.text_style.NONE,
+      text: this.text
+    })
+  }
+}
+
+Page({
+  build() {
+    const time = hmSensor.createSensor(hmSensor.id.TIME)
+
+    new TextByLine({
+      text: `utc:${time.utc};year:${time.year};month:${time.month};day:${time.day}`,
+      line: 0
+    }).render()
+
+    new TextByLine({
+      text: `hour:${time.hour};minute:${time.minute};second:${time.second};week:${time.week}`,
+      line: 1
+    }).render()
+
+    new TextByLine({
+      text: `format_hour:${time.format_hour};is24Hour:${time.is24Hour}`,
+      line: 2
+    }).render()
+
+    new TextByLine({
+      text: `lunar_year:${time.lunar_year};lunar_month:${time.lunar_month};`,
+      line: 3
+    }).render()
+
+    new TextByLine({
+      text: `lunar_year:${time.lunar_year};lunar_month:${time.lunar_month};lunar_day:${time.lunar_day}`,
+      line: 4
+    }).render()
+
+    new TextByLine({
+      text: `lunar_festival:${time.lunar_festival};lunar_solar_term:${time.lunar_solar_term};solar_festival:${time.solar_festival}`,
+      line: 5
+    }).render()
+
+    new TextByLine({
+      text: `getShowFestival:${time.getShowFestival()}`,
+      line: 6
+    }).render()
+
+    const lunar_month_cal = time.getLunarMonthCalendar()
+
+    for (let i = 0; i < lunar_month_cal.day_count; i++) {
+      new TextByLine({
+        text: `index:${i};lunar_day:${lunar_month_cal.lunar_days_array[i]}`,
+        line: 7 + i
+      }).render()
+    }
+  }
+})
+```

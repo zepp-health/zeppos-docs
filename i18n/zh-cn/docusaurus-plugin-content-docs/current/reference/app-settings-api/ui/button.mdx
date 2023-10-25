@@ -1,0 +1,19 @@
+---
+title: Button 按钮
+sidebar_label: Button 按钮
+---
+
+## 类型
+
+```ts
+(props: Props) => result: RenderFunc
+```
+
+## Props: object
+
+| 属性    | 说明                                                   | 必填 | 类型         | 默认值值  |
+| ------- | ------------------------------------------------------ | ---- | ------------ | --------- |
+| color   | 设置组件的颜色，支持 `default`、`primary`、`secondary` | 否   | `string`     | `default` |
+| style   | 样式属性，支持 CSS 属性                                | 否   | `object`     | -         |
+| label   | 按钮上的内容                                           | 否   | `string`     | -         |
+| onClick | 点击按钮                                               | 否   | `() => void` | -         |

@@ -1,0 +1,38 @@
+---
+title: hmUI.createWidget(widgetId, option)
+sidebar_label: createWidget
+---
+
+Create UI widgets.
+
+## Type
+
+```ts
+(widgetId: WIDGET_ID, option?: Option) => widget: WIDGET
+```
+
+## Parameters
+
+| Parameter | Description                                                  | Required | Type |
+| --------- | ------------------------------------------------------------ | -------- | ---- |
+| widgetId  | The ID of the widget to be created. (Reference WIDGET_ID) | YES      | -    |
+| option    | Parameters.                                                  | NO       | -    |
+| widget    | The instance of widget.                                   | -        | -    |
+
+### WIDGET_ID
+
+| Value                | Description                                                             |
+| -------------------- | ----------------------------------------------------------------------- |
+| `hmUI.widget.BUTTON` | Button widget ID.                                                       |
+| IMG`                 | Image widget ID.                                                        |
+| ...                  | The rest of the values are not listed, refer to the `widget` directory. |
+
+### WIDGET
+
+| Description          | Type     |
+| -------------------- | -------- |
+| Widget object | `object` |
+
+## Code examples
+
+> Reference to a widget example.

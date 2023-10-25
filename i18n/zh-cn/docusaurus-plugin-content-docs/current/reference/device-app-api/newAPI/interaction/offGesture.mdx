@@ -1,0 +1,31 @@
+# offGesture
+
+> API_LEVEL `2.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+取消 `onGesture` 注册的监听用户手势事件。
+
+## 类型
+
+```ts
+function offGesture(): void
+```
+
+## 代码示例
+
+```js
+import { onGesture, offGesture, GESTURE_UP } from '@zos/interaction'
+
+const gestureCallback = (event) => {
+  if (event === GESTURE_UP) {
+    console.log('up')
+  }
+
+  return true
+}
+
+onGesture({
+  callback: gestureCallback,
+})
+
+offGesture()
+```

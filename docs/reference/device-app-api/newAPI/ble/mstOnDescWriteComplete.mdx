@@ -1,0 +1,57 @@
+# mstOnDescWriteComplete
+
+> Start from API_LEVEL `3.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Register Descriptor data write completion callback function.
+
+## Type
+
+```ts
+function mstOnDescWriteComplete(callback: Callback): Result
+```
+
+## Parameters
+
+### Callback
+
+| Type                                                                                        | Description                                        |
+| ------------------------------------------------------------------------------------------- | -------------------------------------------------- |
+| <code>(profile: Profile, uuid: UUID, descUUID: DescUUID, status: Status) =&#62; void</code> | Descriptor Data write completion callback function |
+
+### Profile
+
+| Type                | Description     |
+| ------------------- | --------------- |
+| <code>number</code> | Profile pointer |
+
+### UUID
+
+| Type                | Description                |
+| ------------------- | -------------------------- |
+| <code>string</code> | Characteristic UUID string |
+
+### DescUUID
+
+| Type                | Description            |
+| ------------------- | ---------------------- |
+| <code>string</code> | Descriptor UUID string |
+
+### Status
+
+| Type                | Description                   |
+| ------------------- | ----------------------------- |
+| <code>number</code> | Status, `0` indicates success |
+
+### Result
+
+| Type                 | Description                                                                  |
+| -------------------- | ---------------------------------------------------------------------------- |
+| <code>boolean</code> | The result of the function call, `true` means success, `false` means failure |
+
+## Example
+
+```js
+import { mstOnDescWriteComplete } from '@zos/ble'
+
+// ...
+```

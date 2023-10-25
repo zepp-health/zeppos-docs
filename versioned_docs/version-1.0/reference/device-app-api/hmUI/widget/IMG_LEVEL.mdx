@@ -1,0 +1,43 @@
+---
+title: IMG_LEVEL
+sidebar_label: IMG_LEVEL
+---
+
+Given an array of pictures, display the corresponding pictures according to the progress (the `level` property).
+
+## Create UI widget
+
+```js
+const imgLevel = hmUI.createWidget(hmUI.widget.IMG_LEVEL, Param)
+```
+
+## Type
+
+### Param: object
+
+| Properties   | Description                            | Required | Type |
+| ------------ | ---------------------------------------| -------- | -------- |
+| x            | The x-coordinate of widget.         | Yes | `number` |
+| y            | The y-coordinate of widget.         | Yes | `number` |
+| image_array  | Array of images.                       | Yes | `Array<string>` |
+| image_length | Size of array.                         | yes | `number` |
+| w            | The width of the widget.(optional)  | NO | `number` |
+| h            | The height of the widget.(optional) | NO | `number` |
+| level        | Picture drawn [0-image_length]         | NO | `number` |
+
+-If one of w / h is not written, it will go to image_array to read the width and height of the image as the width and height of the widget.
+
+## Code example
+
+```js
+const imgArray = ['1.png', '2.png', '3.png']
+const imgLevel = hmUI.createWidget(hmUI.widget.IMG_LEVEL, {
+  x: 0,
+  y: 0,
+  w: 480,
+  h: 480,
+  image_array: imgArray,
+  image_length: 3,
+  level: 2 //level is 2.Draw the second picture.
+})
+```

@@ -1,0 +1,31 @@
+---
+title: hmSetting.getDeviceInfo()
+sidebar_label: getDeviceInfo
+---
+
+获取设备信息。
+
+## 类型
+
+```ts
+() => deviceInfo
+```
+
+## 参数
+
+### deviceInfo: object
+
+| 属性         | 说明                         | 类型     |
+| ------------ | ---------------------------- | -------- |
+| width        | 设备屏幕宽度                 | `number` |
+| height       | 设备屏幕高度                 | `number` |
+| screenShape  | 屏幕形状，`0`-方屏、`1`-圆屏 | `number` |
+| deviceName   | 设备名称                     | `string` |
+| keyNumber    | 按键数目                     | `number` |
+| deviceSource | 设备代号                     | `number` |
+
+## 代码示例
+
+```js
+const deviceInfo = hmSetting.getDeviceInfo()
+```

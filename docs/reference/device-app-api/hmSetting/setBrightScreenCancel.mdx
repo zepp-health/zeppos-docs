@@ -1,0 +1,29 @@
+---
+title: hmSetting.setBrightScreenCancel()
+sidebar_label: setBrightScreenCancel
+---
+
+Cancel the bright screen time.
+
+You need to call `setBrightScreenCancel` method in the app destroy function after you have called `setBrightScreen` method to set the bright screen time.
+
+## Type
+
+```ts
+() => result
+```
+
+## Parameters
+
+### result
+
+|                           Description                             |   Type   |
+| ----------------------------------------------------------------- | -------- |
+| The result of the operation, `0` means the setting was successful | `number` |
+
+## Code example
+
+```js
+hmSetting.setBrightScreen(10)
+hmSetting.setBrightScreenCancel()
+```

@@ -1,0 +1,141 @@
+---
+title: 分组管理控件
+sidebar_label: 分组管理控件
+---
+
+本文主要介绍了在一些合适的场景下，通过使用 `GROUP` 控件来对一系列控件分组、统一管理，做到更优雅的代码实现。
+
+针对如下场景进行举例说明，期待社区的朋友们挖掘更多使用场景
+
+- 场景一：对一个矩形区域中的控件统一控制显示/隐藏，修改位置等
+- 场景二：对一个矩形区域中的控件注册同样的点击事件，并扩大用户交互的点击区域
+
+## 场景一：对一个矩形区域中的控件统一控制显示/隐藏，修改位置等
+
+下图是「Holiday Calendar」小程序在模拟器中运行的截图。
+
+![holidays screenshot](/img/docs/guides/best-practice/widget-group1.jpg)
+
+拿界面中的一部分来举例。
+
+![holidays screenshot](/img/docs/guides/best-practice/widget-group2.jpg)
+
+这一部分界面包括两个 `IMG` 和一个 `TEXT` 控件，如果要对这整个区域进行隐藏，代码该如何实现？
+
+```js
+import { createWidget, widget, prop } from '@zos/ui'
+
+const img_icon_widget = createWidget(widget.IMG, {
+  // ...
+})
+
+const img_arrow_widget = createWidget(widget.IMG, {
+  // ...
+})
+
+const text_name_widget = createWidget(widget.TEXT, {
+  // ...
+})
+
+img_icon_widget.setProperty(prop.VISIBLE, false)
+img_arrow_widget.setProperty(prop.VISIBLE, false)
+text_name_widget.setProperty(prop.VISIBLE, false)
+```
+
+需要对这个区域中的每个控件都进行一次属性 `prop.VISIBLE` 的设置，这样的代码维护性不好，使用 `GROUP` 控件对代码进行改造。
+
+```js
+import { createWidget, widget, prop } from '@zos/ui'
+
+const group_widget = createWidget(widget.GROUP , {
+  // ...
+})
+
+const img_icon_widget = group_widget.createWidget(widget.IMG, {
+  // ...
+})
+
+const img_arrow_widget = group_widget.createWidget(widget.IMG, {
+  // ...
+})
+
+const text_name_widget = group_widget.createWidget(widget.TEXT, {
+  // ...
+})
+
+group_widget.setProperty(prop.VISIBLE, false)
+```
+
+可以看到，所有使用 `GROUP` 创建的控件都被以 `GROUP` 管理了起来，通过 `GROUP` 控件统一控制显示和隐藏，代码变得更加精简。
+
+:::caution
+需要注意的是，使用 `group.createWidget` 创建的控件使用相对坐标来布局，布局坐标系的原点位于 `group` 控件的左上角。
+:::
+
+## 场景二：对一个矩形区域中的控件注册同样的点击事件，并扩大用户交互的点击区域
+
+![holidays screenshot](/img/docs/guides/best-practice/widget-group2.jpg)
+
+还是以这个界面举例，希望点击这个区域内的每一个控件都能够触发函数 `callback`，通常这样实现代码
+
+```js
+import { createWidget, widget, event } from '@zos/ui'
+
+const callback = () => {
+  console.log('callback')
+}
+
+const img_icon_widget = createWidget(widget.IMG, {
+  // ...
+})
+
+img_icon_widget.addEventListener(event.CLICK_DOWN, callback)
+
+const img_arrow_widget = createWidget(widget.IMG, {
+  // ...
+})
+
+img_arrow_widget.addEventListener(event.CLICK_DOWN, callback)
+
+const text_name_widget = createWidget(widget.TEXT, {
+  // ...
+})
+
+text_name_widget.addEventListener(event.CLICK_DOWN, callback)
+```
+
+通过对每个控件注册相同的事件，达到了目的，下图中标注的区域表示可以触发点击事件的可交互区域。
+
+![holidays screenshot](/img/docs/guides/best-practice/widget-group3.jpg)
+
+可以观察到，这个可交互区域太狭窄了，在手表设备上很难点击，导致用户体验不佳，使用 `GROUP` 控件对代码进行改造。
+
+```js
+import { createWidget, widget, event } from '@zos/ui'
+
+const callback = () => {
+  console.log('callback')
+}
+
+const group_widget = createWidget(widget.GROUP , {
+  // ...
+})
+
+const img_icon_widget = group_widget.createWidget(widget.IMG, {
+  // ...
+})
+
+const img_arrow_widget = group_widget.createWidget(widget.IMG, {
+  // ...
+})
+
+const text_name_widget = group_widget.createWidget(widget.TEXT, {
+  // ...
+})
+
+group_widget.addEventListener(event.CLICK_DOWN, callback)
+```
+
+![holidays screenshot](/img/docs/guides/best-practice/widget-group4.jpg)
+
+只需要注册一次事件，并且可以观察到可点击的区域变大了！

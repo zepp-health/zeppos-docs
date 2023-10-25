@@ -1,0 +1,39 @@
+---
+title: IMG_PROGRESS
+sidebar_label: IMG_PROGRESS
+---
+
+Display the images sequentially according to the given order.
+
+## Create UI widget
+
+```js
+const imgProgress = hmUI.createWidget(hmUI.widget.IMG_PROGRESS, Param)
+```
+
+## Type
+
+### Param: object
+
+| Properties   | Description                            | Required | Type |
+| ------------ | -------------------------------------- | -------- | -------- |
+| x            | 	Array of x-coordinates of the images. | YES | `array` |
+| y            | 	Array of y-coordinates of the images. | YES | `array` |
+| image_array  |  Array of images                       | YES | `array` |
+| image_length | The length of the array.               | YES | `number` |
+| level        | Progress level [1-image_length].       | NO | `number` |
+
+## Code example
+
+```js
+const xArray = [100, 200, 300]
+const yArray = [100, 200, 300]
+const imgArray = ['1.png', '2.png', '3.png']
+const imgProgress = hmUI.createWidget(hmUI.widget.IMG_PROGRESS, {
+  x: xArray,
+  y: yArray,
+  image_array: imgArray,
+  image_length: 3,
+  level: 2 //level is 2.Draw the second picture.
+})
+```

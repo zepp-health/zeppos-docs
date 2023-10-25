@@ -1,0 +1,49 @@
+---
+title: Pai
+sidebar_label: Pai
+---
+
+> Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+PAI Sensor.
+
+:::info
+permission code: `data:user.hd.pai`
+:::
+
+## Methods
+
+### getTotal
+
+Get the current cumulative PAI value
+
+```ts
+getTotal(): number
+```
+
+### getToday
+
+Get the PAI values obtained today
+
+```ts
+getToday(): number
+```
+
+### getLastWeek
+
+Get the PAI data for a week, the return value is an array of length `7`, the position of index `0` is the PAI value of today, the position of index `1` is the PAI value of the previous day, and so on
+
+```ts
+getLastWeek(): Array<number>
+```
+
+## Example
+
+```js
+import { Pai } from '@zos/sensor'
+
+const pai = new Pai()
+const total = pai.getTotal()
+const today = pai.getToday()
+const lastWeek = pai.getLastWeek()
+```

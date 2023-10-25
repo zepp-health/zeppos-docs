@@ -1,0 +1,95 @@
+---
+title: WEATHER
+sidebar_label: WEATHER 天气
+---
+
+## 创建传感器
+
+```js
+const weather = hmSensor.createSensor(hmSensor.id.WEATHER)
+```
+
+## weather 实例
+
+### weather.getForecastWeather()
+
+#### 类型
+
+```ts
+() => ForecastWeather
+```
+
+#### ForecastWeather: object
+
+| 属性         | 说明     | 类型           |
+| ------------ | -------- | -------------- |
+| cityName     | 城市名称 | `string`       |
+| forecastData | 天气数据 | `ForecastData` |
+| tideData     | 潮汐数据 | `TideData`     |
+
+#### ForecastData: object
+
+| 属性  | 说明             | 类型                      |
+| ----- | ---------------- | ------------------------- |
+| data  | 天气数据数组     | `Array<ForecastDataItem>` |
+| count | 天气数据数组长度 | `number`                  |
+
+#### ForecastDataItem: object
+
+| 属性  | 说明     | 类型     |
+| ----- | -------- | -------- |
+| high  | 最高气温 | `number` |
+| low   | 最低气温 | `number` |
+| index | 索引     | `number` |
+
+#### TideData: object
+
+| 属性  | 说明             | 类型                  |
+| ----- | ---------------- | --------------------- |
+| data  | 潮汐数据数组     | `Array<TideDataItem>` |
+| count | 潮汐数据数组长度 | `number`              |
+
+#### TideDataItem: object
+
+| 属性    | 说明     | 类型      |
+| ------- | -------- | --------- |
+| sunrise | 日出数据 | `Sunrise` |
+| sunset  | 日落数据 | `Sunset`  |
+
+#### Sunrise: object
+
+| 属性   | 说明 | 类型     |
+| ------ | ---- | -------- |
+| hour   | 小时 | `number` |
+| minute | 分钟 | `number` |
+
+#### Sunset: object
+
+| 属性   | 说明 | 类型     |
+| ------ | ---- | -------- |
+| hour   | 小时 | `number` |
+| minute | 分钟 | `number` |
+
+## 代码示例
+
+```js
+// 创建传感器
+const weatherData = weather.getForecastWeather()
+
+console.log(weatherData.cityName)
+
+const forecastData = weatherData.forecastData
+for (let i = 0; i < forecastData.count; i++) {
+  const element = forecastData.data[i] // i:0是当日天气
+  console.log('天气索引' + element.index)
+  console.log('高温' + element.high)
+  console.log('低温' + element.low)
+}
+
+const tideData = weatherData.tideData
+for (let i = 0; i < tideData.count; i++) {
+  const element = tideData.data[i] // i:0是当日
+  console.log('日出' + element.sunrise.hour + element.sunrise.minute)
+  console.log('日落' + element.sunset.hour + element.sunset.minute)
+}
+```

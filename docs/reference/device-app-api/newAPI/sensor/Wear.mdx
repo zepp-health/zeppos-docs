@@ -1,0 +1,51 @@
+---
+title: Wear
+sidebar_label: Wear
+---
+
+> Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Wearing status sensor.
+
+## Methods
+
+### getStatus
+
+Get the current device wearing status, `0`: not wearing, `1`: wearing, `2`: in motion, `3`: not sure
+
+```ts
+getStatus(): number
+```
+
+### onChange
+
+Register the device wear status change event listening callback function
+
+```ts
+onChange(callback: () => void): void
+```
+
+### offChange
+
+Cancel the device wear status change event listening callback function
+
+```ts
+offChange(callback: () => void): void
+```
+
+## Example
+
+```js
+import { Wear } from '@zos/sensor'
+
+const wear = new Wear()
+const status = wear.getStatus()
+const callback = () => {
+  console.log(wear.getStatus())
+}
+
+wear.onChange(callback)
+
+// When not needed for use
+wear.offChange(callback)
+```

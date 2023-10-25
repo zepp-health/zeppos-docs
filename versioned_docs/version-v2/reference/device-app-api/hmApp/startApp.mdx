@@ -1,0 +1,30 @@
+---
+title: hmApp.startApp(option)
+sidebar_label: startApp
+---
+
+Start the app
+
+## Type
+
+```ts
+(option: Option) => void
+```
+
+## Parameters
+
+### Option: object
+
+| Attribute | Description                                                             | Required | Type      | Default value |
+| --------- | ----------------------------------------------------------------------- | -------- | --------- | ------------- |
+| appid     | Application ID                                                          | YES      | `number`  | -             |
+| url       | Jump path                                                               | YES      | `string`  | -             |
+| native    | -                                                                       | NO       | `boolean` | `false`       |
+| param     | Parameters passed to the `onCreate` life cycle in the `App` constructor | NO       | `string`  | -             |
+
+## Code examples
+
+```js
+// Start the app with appid 1000001
+hmApp.startApp({ appid: 1000001, url: 'pages/index2', param: '...' })
+```

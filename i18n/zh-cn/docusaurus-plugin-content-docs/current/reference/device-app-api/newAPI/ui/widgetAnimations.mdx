@@ -1,0 +1,115 @@
+---
+title: 控件动画
+sidebar_label: 控件动画
+---
+
+> API_LEVEL `2.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+![widget_anim](/img/api/widget_anim.gif)
+
+控件动画可以对控件部分属性变化添加动画效果，上图就是对 TEXT 控件的 `x` 和 `y` 属性同时进行变化，形成了移动的动画效果。
+
+## 支持动画的属性 anim_prop
+
+目前支持设置动画的属性有
+
+| anim_prop  |
+| ---------- |
+| prop.X     |
+| prop.Y     |
+| prop.W     |
+| prop.H     |
+| prop.ALPHA |
+
+## 单个属性动画配置 anim_config
+
+| 属性名        | 类型     | 说明                                                                                                                     |
+| ------------- | -------- | ------------------------------------------------------------------------------------------------------------------------ |
+| anim_prop     | `number` | 添加动画的属性，参考 [anim_prop](#支持动画的属性-anim_prop)                                                              |
+| anim_from     | `number` | 动画开始时属性的值                                                                                                       |
+| anim_to       | `number` | 动画结束时属性的值                                                                                                       |
+| anim_rate     | `string` | 动画曲线，可选值 `linear`, `easein`, `easeout`, `easeinout`, `bounce`，参考 [https://easings.net/](https://easings.net/) |
+| anim_duration | `number` | 动画时长，单位毫秒                                                                                                       |
+| anim_offset   | `number` | 动画开始之前的延时，单位毫秒                                                                                             |
+
+## 动画配置
+
+| 属性名             | 类型                 | 说明                                                                                    |
+| ------------------ | -------------------- | --------------------------------------------------------------------------------------- |
+| anim_steps         | `Array<anim_config>` | 属性动画配置数组，参考 [anim_config](#单个属性动画配置-anim_config)，可同时进行多组动画 |
+| anim_fps           | `number`             | 动画帧率，默认 `25`                                                                     |
+| anim_auto_start    | `number`             | 动画是否自动播放，默认 `1`，`0`：不自动播放；`1`：自动播放                              |
+| anim_auto_destroy  | `number`             | 动画是否自动销毁，默认 `1`，`0`: 不自动销毁；`1`：自动销毁                              |
+| anim_repeat        | `number`             | 动画循环播放，默认 `1` 次，`-1`: 无限循环；`0`：播放一次；或者直接指定播放次数          |
+| anim_frame_func    | `() => void`         | 动画播放每一帧回调函数                                                                  |
+| anim_complete_func | `() => void`         | 动画播放结束回调函数                                                                    |
+
+## 动画状态 anim_status
+
+- 使用 `widget.setProperty` 来设置动画播放状态
+- 使用 `widget.getProperty` 来获取动画播放状态
+
+| anim_status        | 说明 |
+| ------------------ | ---- |
+| anim_status.START  | 开始 |
+| anim_status.STOP   | 停止 |
+| anim_status.PAUSE  | 暂停 |
+| anim_status.RESUME | 继续 |
+| anim_status.UNKNOW | 未知 |
+
+## 示例
+
+```js
+import { createWidget, widget, align, text_style, prop, anim_status } from '@zos/ui'
+import { px } from '@zos/utils'
+
+Page({
+  build() {
+    const textWidget = createWidget(widget.TEXT, {
+      x: px(96),
+      y: px(120),
+      w: px(288),
+      h: px(46),
+      color: 0xffffff,
+      text_size: px(36),
+      align_h: align.CENTER_H,
+      align_v: align.CENTER_V,
+      text_style: text_style.NONE,
+      text: 'HELLO ZEPPOS'
+    })
+
+    const anim_step1 = {
+      anim_rate: 'linear',
+      anim_duration: 2000,
+      anim_from: px(10),
+      anim_to: px(110),
+      anim_prop: prop.X
+    }
+
+    const anim_step2 = {
+      anim_rate: 'linear',
+      anim_duration: 2000,
+      anim_from: px(120),
+      anim_to: px(300),
+      anim_prop: prop.Y
+    }
+
+    const animId = textWidget.setProperty(prop.ANIM, {
+      anim_steps: [anim_step1, anim_step2],
+      anim_fps: 25
+    })
+
+    textWidget.setProperty(prop.ANIM_STATUS, {
+      anim_id: animId,
+      anim_status: anim_status.PAUSE
+    })
+
+    textWidget.setProperty(prop.ANIM_STATUS, {
+      anim_id: animId,
+      anim_status: anim_status.RESUME
+    })
+
+    const currentStatus = textWidget.getProperty(prop.ANIM_STATUS, animId)
+  }
+})
+```

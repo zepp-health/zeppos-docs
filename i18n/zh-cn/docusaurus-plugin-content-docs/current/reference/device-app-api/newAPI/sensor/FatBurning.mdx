@@ -1,0 +1,64 @@
+---
+title: FatBurning
+sidebar_label: FatBurning 脂肪燃烧
+---
+
+> API_LEVEL `2.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+脂肪燃烧传感器。
+
+:::info
+权限代码： `data:user.hd.fat_burning`
+:::
+
+## 方法
+
+### getCurrent
+
+获取当前燃脂分钟数
+
+```ts
+getCurrent(): number
+```
+
+### getTarget
+
+获取当前燃脂目标分钟数
+
+```ts
+getTarget(): number
+```
+
+### onChange
+
+注册燃脂分钟数变化事件监听回调函数
+
+```ts
+onChange(callback: () => void): void
+```
+
+### offChange
+
+取消燃脂分钟数变化事件监听回调函数
+
+```ts
+offChange(callback: () => void): void
+```
+
+## 代码示例
+
+```js
+import { FatBurning } from '@zos/sensor'
+
+const fatBurning = new FatBurning()
+const current = fatBurning.getCurrent()
+const target = fatBurning.getTarget()
+const callback = () => {
+  console.log(fatBurning.getCurrent())
+}
+
+fatBurning.onChange(callback)
+
+// When not needed for use
+fatBurning.offChange(callback)
+```

@@ -1,0 +1,86 @@
+---
+title: HEART
+sidebar_label: HEART 心率
+---
+
+## 创建传感器
+
+```js
+const heart = hmSensor.createSensor(hmSensor.id.HEART)
+
+console.log(heart.last)
+```
+
+## heart 实例
+
+### heart: object
+
+| 属性    | 说明                                                                 | 类型            |
+| ------- | -------------------------------------------------------------------- | --------------- |
+| last    | 最后一次成功测量的心率                                               | `number`        |
+| current | 当前心率                                                             | `number`        |
+| today   | 当日自 0 时起至当前时刻以分钟计的心率数据，返回 js 数组最长为 60\*24 | `Array<number>` |
+
+## 注册传感器实例回调事件
+
+```js
+battery.addEventListener(event, callback: Callback)
+```
+
+心率传感器较为特殊，如果使用了事件回调，建议在页面的 `onDestroy` 生命周期使用 `removeEventListener` 进行解除注册。
+
+### LAST 事件
+
+#### event 值
+
+`hmSensor.event.LAST`
+
+#### Callback
+
+```ts
+() => void
+```
+
+#### 事件示例
+
+```js
+const hrLastListener = function () {
+  console.log(heart.last)
+}
+
+heart.addEventListener(heart.event.LAST, hrLastListener)
+
+// ...
+// 销毁函数
+onDestroy() {
+  heart.removeEventListener(heart.event.LAST, hrLastListener)
+}
+```
+
+### CURRENT 事件
+
+#### event 值
+
+`hmSensor.event.CURRENT`
+
+#### Callback
+
+```ts
+() => void
+```
+
+#### 事件示例
+
+```js
+const hrCurrListener = function () {
+  console.log(heart.current)
+}
+
+heart.addEventListener(heart.event.CURRENT, hrCurrListener)
+
+// ...
+// 销毁函数
+onDestroy() {
+  heart.removeEventListener(heart.event.CURRENT, hrCurrListener)
+}
+```

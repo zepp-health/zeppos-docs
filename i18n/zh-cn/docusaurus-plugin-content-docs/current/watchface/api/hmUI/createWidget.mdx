@@ -1,0 +1,66 @@
+## 控件显示级别
+表盘有三种状态：息屏、正常显示、可编辑
+为了简化Js逻辑，创建控件时可以设置控件显示级别，而不需要js来控制是否需要创建，减少判断和错误发生。
+**key：show_level **
+
+|  状态  |           属性             |
+|--------|---------------------------|
+|正常显示 |hmUI.show_level.ONLY_NORMAL|
+|息屏    |hmUI.show_level.ONAL_AOD|
+|编辑    |hmUI.show_level.ONLY_EDIT|
+### 示例代码
+**必须在create的时候传入才管用**
+```js
+  const widget = hmUI.createWidget(hmUI.widget.IMG, {
+    x: 158,
+    y: 218,
+    w: 112,
+    h: 136,
+    alpha: 100,
+    src: "a.png",
+    //表示只在正常表盘和息屏下显示 在可编辑下会不创建 会返回一个虚拟控件 保证js不报错
+    show_level:hmUI.show_level.ONLY_NORMAL | hmUI.show_level.ONAL_AOD,
+})
+```
+**设置隐藏控件显示**
+```js
+widget.setProperty(hmUI.prop.VISIBLE,false); //false隐藏 true显示
+```
+**设置控件是否可点击**
+有两种设置方案
+- createWidget的时候传入'enable'属性值
+```js
+hmUI.createWidget(hmUI.widget.IMG, {
+x: 158,
+y: 218,
+w: 112,
+h: 136,
+alpha: 100,
+src: "a.png",
+enable：false，//false不接收点击事件
+})
+```
+- 调用控件函数setEnable()
+```js
+widget.setEnable(true);//设置控件可点击
+```
+## UI生命周期代理
+目前数据的更新、timer的恢复都在固件内部完成，但部分表盘依赖UI的生命周期，所以新增了一个虚拟控件来感知生命周期。
+- 此控件不会绘制任何内容，仅做生命周期感知
+- 不需要js销毁，在js界面销毁时自动释放
+
+|     回调    |       固件内部操作         |            触发时机        |
+|-------------|---------------------------|---------------------------|
+| resume_call | 恢复所有数据监听 恢复timer  |表盘首次启动 其他界面回到表盘 |
+| pause_call  | 暂停所有数据监听 暂停timer  |滑动到副屏、通知 控制中心 进入applist 从表盘进入其他应用|
+### 示例代码
+```js
+const widgetDelegate = hmUI.createWidget(hmUI.widget.WIDGET_DELEGATE, {
+resume_call: (function () {
+    console.log('ui resume');
+}),
+pause_call: (function () {
+    console.log('ui pause');
+}),
+})
+```

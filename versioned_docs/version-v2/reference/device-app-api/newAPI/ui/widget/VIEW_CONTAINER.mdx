@@ -1,0 +1,138 @@
+---
+title: VIEW_CONTAINER
+sidebar_label: VIEW_CONTAINER
+---
+
+> Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](../../../../../guides/framework/device/compatibility.md).
+
+![view_container_sample](/img/api/view_container_sample.gif)
+
+The VIEW_CONTAINER widget container is a very powerful layout widget with the following features.
+
+- It is a rectangular layout container that can create child widgets by its instance method
+- The `z_index` property controls the cascading order of the widget container, allowing for vertical cascading of widgets. And you can create multiple VIEW_CONTAINER widgets in the same page.
+- The VIEW_CONTAINER widget container itself supports scrolling and can be used as a scrolling container.
+
+## Create UI widget
+
+```js
+import { createWidget, widget } from '@zos/ui'
+
+const viewContainer = createWidget(widget.VIEW_CONTAINER, Param)
+
+// Creating UI sub-widgets
+viewContainer.createWidget(xxx, xxx)
+```
+
+## Type
+
+## Param: object
+
+| Properties           | Description                                                                                                                                    | Required | Type       |
+| -------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- | -------- | ---------- |
+| x                    | Widget x-coordinate, default `0`                                                                                                                          | NO       | `number`   |
+| y                    | Widget y-coordinate, default `0`                                                                                                                          | NO       | `number`   |
+| w                    | Widget width, default screen width                                                                                                                         | NO       | `number`   |
+| h                    | Widget height, default screen height                                                                                                                     | NO       | `number`   |
+| scroll_enable        | When the layout of widgets in VIEW_CONTAINER exceeds the width/height, it is considered a long page. `0`: disable scrolling, you can set container scroll position offset by `pos_x` or `pos_y`; `1`: allow scrolling (default) | NO       | `number`   |
+| pos_x                | When VIEW_CONTAINER is a long horizontal page layout, you can read/set the horizontal offset                                                                                     | NO       | `number`   |
+| pos_y                | When VIEW_CONTAINER is a long vertical page layout, you can read/set the vertical offset                                                                                    | NO       | `number`   |
+| z_index              | When using multiple VIEW_CONTAINER widgets, the cascading relationship can be controlled by this field, with `0` at the bottom by default                                                                | NO       | `number`   |
+| scroll_frame_func    | During scrolling, a callback function is triggered for each frame                                                                                                               | NO       | `function` |
+| scroll_complete_func | Callback function at the end of scrolling                                                                                                                             | NO       | `function` |
+
+## Code example
+
+The code runs as shown in the image at the top of the document, creating two VIEW_CONTAINER widgets
+
+```js
+import { createWidget, widget, text_style, align } from '@zos/ui'
+import { px } from '@zos/utils'
+
+const getRandomColor = () => {
+  const randomArr = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f']
+
+  function getRandomFromSection(low, high) {
+    const RANDOM = Math.random()
+    const RANGE = high - low + 1
+
+    return Math.floor(RANDOM * RANGE) + low
+  }
+
+  const colorStr = Array.from({ length: 6 }).reduce((prev, curr) => {
+    const random = getRandomFromSection(0, 15)
+    return prev + randomArr[random]
+  }, '0x')
+
+  return Number(colorStr)
+}
+
+Page({
+  build() {
+    createWidget(widget.TEXT, {
+      x: px(96),
+      y: px(40),
+      w: px(288),
+      h: px(46),
+      color: 0xffffff,
+      text_size: px(36),
+      align_h: align.CENTER_H,
+      align_v: align.CENTER_V,
+      text_style: text_style.NONE,
+      text: 'VIEW_CONTAINER'
+    })
+
+    const viewContainer = createWidget(widget.VIEW_CONTAINER, {
+      x: px(0),
+      y: px(86),
+      w: px(480),
+      h: px(400)
+    })
+
+    Array.from({ length: 5 }).forEach((_, index) => {
+      viewContainer.createWidget(widget.FILL_RECT, {
+        x: 0,
+        y: px(index * 400),
+        w: px(480),
+        h: px(400),
+        color: getRandomColor()
+      })
+
+      viewContainer.createWidget(widget.TEXT, {
+        x: px(96),
+        y: px(170) + px(index * 400),
+        w: px(288),
+        h: px(46),
+        text_size: px(36),
+        color: 0xffffff,
+        align_h: align.CENTER_H,
+        align_v: align.CENTER_V,
+        text: `INDEX: ${index}`
+      })
+    })
+
+    const viewContainerButton = createWidget(widget.VIEW_CONTAINER, {
+      x: px(0),
+      y: px(86),
+      w: px(480),
+      h: px(400),
+      z_index: 1,
+      scroll_enable: false
+    })
+
+    viewContainerButton.createWidget(widget.BUTTON, {
+      x: 0,
+      y: px(50),
+      w: px(200),
+      h: px(100),
+      text: 'Click',
+      radius: px(12),
+      normal_color: DEFAULT_COLOR,
+      press_color: DEFAULT_COLOR_TRANSPARENT,
+      click_func: () => {
+        console.log('click button')
+      }
+    })
+  }
+})
+```

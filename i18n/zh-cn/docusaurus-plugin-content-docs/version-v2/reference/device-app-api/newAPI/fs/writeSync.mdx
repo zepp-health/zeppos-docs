@@ -1,0 +1,56 @@
+# writeSync
+
+> API_LEVEL `2.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+同步地将 ArrayBuffer 写入文件句柄指定的文件。
+
+## 类型
+
+```ts
+function writeSync(option: Option): Result
+```
+
+## 参数
+
+### Option
+
+| 属性    | 类型                     | 必填 | 默认值 | 说明                                                  | API_LEVEL |
+| ------- | ------------------------ | ---- | ------ | ----------------------------------------------------- | --------- |
+| fd      | <code>number</code>      | 是   | -      | 文件句柄，由 `openSync`、`openAssetsSync` 等 API 返回 | 2.0       |
+| buffer  | <code>ArrayBuffer</code> | 是   | -      | 将写入文件的 ArrayBuffer                              | 2.0       |
+| options | <code>Options</code>     | 否   | -      | 其他选项                                              | 2.0       |
+
+### Options
+
+| 属性     | 类型                          | 必填 | 默认值                         | 说明                                                                                                                  | API_LEVEL |
+| -------- | ----------------------------- | ---- | ------------------------------ | --------------------------------------------------------------------------------------------------------------------- | --------- |
+| offset   | <code>number</code>           | 否   | <code>0</code>                 | 基于要写入文件的 ArrayBuffer 首地址偏移量                                                                             | 2.0       |
+| length   | <code>number</code>           | 否   | <code>buffer.byteLength</code> | 写入的字节数，默认为传入 buffer 的字节长度                                                                            | 2.0       |
+| position | <code>number&#124;null</code> | 否   | <code>null</code>              | 指定文件中开始写入的位置，表示从文件开头的偏移量。如果 `position` 为 `null`，则从当前文件位置写入数据，并更新文件位置 | 2.0       |
+
+### Result
+
+| 类型                | 说明         |
+| ------------------- | ------------ |
+| <code>number</code> | 写入的字节数 |
+
+## 代码示例
+
+```js
+import { openSync, writeSync, O_RDWR, O_CREAT } from '@zos/fs'
+
+const fd = openSync({
+  path: 'test.txt',
+  flag: O_RDWR | O_CREAT,
+})
+
+const buffer = new ArrayBuffer(4)
+const result = writeSync({
+  fd,
+  buffer,
+})
+
+if (result === 0) {
+  console.log('writeSync success')
+}
+```

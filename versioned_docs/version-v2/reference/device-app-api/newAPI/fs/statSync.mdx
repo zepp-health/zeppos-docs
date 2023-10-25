@@ -1,0 +1,47 @@
+# statSync
+
+> Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Get information about the files in the `/data` directory of the Mini Program synchronously.
+
+## Type
+
+```ts
+function statSync(option: Option): Result
+```
+
+## Parameters
+
+### Option
+
+| Property | Type                | Required | DefaultValue | Description | API_LEVEL |
+| -------- | ------------------- | -------- | ------------ | ----------- | --------- |
+| path     | <code>string</code> | Y        | -            | path        | 2.0       |
+
+### Result
+
+| Type                               | Description                                                                                                   |
+| ---------------------------------- | ------------------------------------------------------------------------------------------------------------- |
+| <code>FSStat&#124;undefined</code> | If `undefined` is returned, the target file does not exist, otherwise the file information object is returned |
+
+### FSStat
+
+| Property | Type                | Description                                                                                                   | API_LEVEL |
+| -------- | ------------------- | ------------------------------------------------------------------------------------------------------------- | --------- |
+| size     | <code>number</code> | The size of the file in bytes                                                                                 | 2.0       |
+| mtimeMs  | <code>number</code> | The timestamp indicating the last time this file was modified expressed in milliseconds since the POSIX Epoch | 2.0       |
+
+## Example
+
+```js
+import { statSync } from '@zos/fs'
+
+const result = statSync({
+  path: 'test.txt',
+})
+
+if (result) {
+  const { size } = result
+  console.log(size)
+}
+```

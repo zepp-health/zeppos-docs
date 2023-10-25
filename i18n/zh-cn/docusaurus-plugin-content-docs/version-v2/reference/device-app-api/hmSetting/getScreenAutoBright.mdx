@@ -1,0 +1,28 @@
+---
+title: hmSetting.getScreenAutoBright()
+sidebar_label: getScreenAutoBright
+---
+
+返回当前设备是否开启了自动亮度。
+
+如果当前开启了自动亮度，亮度由光线传感器自动调节，则 `setBrightness` 函数不会起到实质效果。
+
+## 类型
+
+```ts
+() => result
+```
+
+## 返回值
+
+### result
+
+| 说明                                        | 类型      |
+| ------------------------------------------- | --------- |
+| 返回当前设备是否开启自动亮度，`true` 为开启 | `boolean` |
+
+## 代码示例
+
+```js
+const isAutoBright = hmSetting.getScreenAutoBright()
+```

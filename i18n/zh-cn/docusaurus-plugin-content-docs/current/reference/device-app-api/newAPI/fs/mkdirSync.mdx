@@ -1,0 +1,45 @@
+# mkdirSync
+
+> API_LEVEL `2.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+同步地在小程序 `/data` 目录下创建目录。
+
+## 类型
+
+```ts
+function mkdirSync(option: Option): Result
+```
+
+### 简化调用方式
+
+```ts
+function mkdirSync(path: string): Result
+```
+
+## 参数
+
+### Option
+
+| 属性 | 类型                | 必填 | 默认值 | 说明     | API_LEVEL |
+| ---- | ------------------- | ---- | ------ | -------- | --------- |
+| path | <code>string</code> | 是   | -      | 目录路径 | 2.0       |
+
+### Result
+
+| 类型                | 说明                    |
+| ------------------- | ----------------------- |
+| <code>number</code> | 如果返回 `0` 则表明成功 |
+
+## 代码示例
+
+```js
+import { mkdirSync } from '@zos/fs'
+
+const result = mkdirSync({
+  path: 'content',
+})
+
+if (result === 0) {
+  console.log('mkdirSync success')
+}
+```

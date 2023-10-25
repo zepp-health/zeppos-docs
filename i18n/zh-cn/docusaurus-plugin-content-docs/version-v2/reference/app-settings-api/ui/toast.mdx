@@ -1,0 +1,21 @@
+---
+title: Toast 提示
+sidebar_label: Toast 提示
+---
+
+## 类型
+
+```ts
+(props: Props, renderFuncArr?: RenderFunc | Array<RenderFunc>) => result: RenderFunc
+```
+
+## Props: object
+
+| 名称       | 说明                       | 必填 | 类型       | 默认值   |
+| ---------- | -------------------------- | ---- | ---------- | -------- |
+| duration   | 弹窗提示持续时间           | 否   | number     | `2000`   |
+| horizontal | Toast 的水平位置           | 否   | `string`   | `center` |
+| message    | 要显示的消息               | 否   | `string`   | -        |
+| vertical   | Toast 的垂直位置           | 否   | `string`   | `top`    |
+| visible    | 如果为 true，则 Toast 可见 | 否   | `boolean`  | -        |
+| onClose    | 当组件请求关闭时触发回调   | 否   | `function` | -        |

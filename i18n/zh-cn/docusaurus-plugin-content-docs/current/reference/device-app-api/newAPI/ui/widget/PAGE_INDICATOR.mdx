@@ -1,0 +1,48 @@
+---
+title: PAGE_INDICATOR
+sidebar_label: PAGE_INDICATOR 页面指示器
+---
+
+> API_LEVEL `2.1` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../../guides/framework/device/compatibility.md)。
+
+页面指示器，指示当前页面位置。
+
+## 创建 UI 控件
+
+```js
+import { createWidget, widget } from '@zos/ui'
+
+const scrollBar = createWidget(widget.PAGE_INDICATOR, Param)
+```
+
+### Param: object
+
+| 属性         | 说明                                               | 是否必须 | 类型      | API_LEVEL |
+| ------------ | -------------------------------------------------- | -------- | --------- | --------- |
+| x            | 控件 x 坐标                                        | 是       | `number`  | 2.1       |
+| y            | 控件 y 坐标                                        | 是       | `number`  | 2.1       |
+| w            | 控件宽度                                           | 是       | `number`  | 2.1       |
+| h            | 控件高度                                           | 是       | `number`  | 2.1       |
+| align_h      | 水平对齐方式                                       | 否       | `number`  | 2.1       |
+| h_space      | 水平间距                                           | 否       | `number`  | 2.1       |
+| v_space      | 垂直间距                                           | 否       | `number`  | 3.0       |
+| select_src   | 指示器当前高亮图标路径                             | 是       | `string`  | 2.1       |
+| unselect_src | 指示器未选中图标路径                               | 是       | `string`  | 2.1       |
+| horizontal   | 是否水平布局，默认 `true`，设置 `false` 为垂直布局 | 否       | `boolean` | 3.0       |
+
+## 完整示例
+
+```js
+import { createWidget, widget, align } from '@zos/ui'
+
+const pageIndicator = createWidget(widget.PAGE_INDICATOR, {
+  x: 0,
+  y: 470,
+  w: 480,
+  h: 100,
+  align_h: align.CENTER_H,
+  h_space: 8,
+  select_src: 'images/test/select/select.png',
+  unselect_src: 'images/test/select/unselect.png'
+})
+```

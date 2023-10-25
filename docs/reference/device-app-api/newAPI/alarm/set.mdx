@@ -1,0 +1,102 @@
+# set
+
+> Start from API_LEVEL `3.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Support for persistent timers to wake up pages of Mini Program.
+
+:::info
+permission code: `device:os.alarm`
+:::
+
+## Type
+
+```ts
+function set(option: Option): Result
+```
+
+## Parameters
+
+### Option
+
+| Property        | Type                 | Required | DefaultValue       | Description                                                                                                                                                                                                                                                                           | API_LEVEL |
+| --------------- | -------------------- | -------- | ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------- |
+| appid           | <code>number</code>  | N        | -                  | App ID of the Mini Program, default current Mini Program ID                                                                                                                                                                                                                           | 3.0       |
+| file            | <code>string</code>  | Y        | -                  | File path to wake up Mini Program, supporting App Service                                                                                                                                                                                                                             | 3.0       |
+| time            | <code>number</code>  | N        | -                  | Timer execution time, UTC timestamp, in seconds, this field has higher priority than `delay`                                                                                                                                                                                          | 3.0       |
+| delay           | <code>number</code>  | N        | -                  | How many seconds of delay based on the current time after the execution, in seconds                                                                                                                                                                                                   | 3.0       |
+| store           | <code>boolean</code> | N        | <code>false</code> | Does the timer need persistent storage (can still be executed successfully after device reboot)                                                                                                                                                                                       | 3.0       |
+| repeat_type     | <code>number</code>  | N        | -                  | Timer repetition type, refer to timer periodic repetition constants                                                                                                                                                                                                                   | 3.0       |
+| repeat_period   | <code>number</code>  | N        | -                  | Effective when repeat_type is set to `REPEAT_MINUTE`, `REPEAT_HOUR`, `REPEAT_DAY`, used in conjunction with repeat_duration to set a repeat period, one repeat period in the current `repeat_type`, containing `repeat_period` times, and `repeat_duration` times before the reminder | 3.0       |
+| repeat_duration | <code>number</code>  | N        | -                  | When repeat_type is set to `REPEAT_MINUTE`, `REPEAT_HOUR`, `REPEAT_DAY`, the number of reminders in a period of the timer, used with `repeat_duration`, a period of the current `repeat_type`, including repeat_period times, `repeat_duration` times before the reminder             | 3.0       |
+| week_days       | <code>number</code>  | N        | -                  | Effective when `repeat_type` is `REPEAT_WEEK`, you can customize which days of the week are repeated, refer to the timer week constants                                                                                                                                               | 3.0       |
+| start_time      | <code>number</code>  | N        | -                  | The time when the repeat reminder starts, in UTC seconds, and the repeat reminder only takes effect during the repeat time period                                                                                                                                                     | 3.0       |
+| end_time        | <code>number</code>  | N        | -                  | The time when the repeat reminder ends, in UTC seconds, and the repeat reminder only takes effect during the repeat time period                                                                                                                                                       | 3.0       |
+
+### Result
+
+| Type                | Description                                                                                                                                                                                  |
+| ------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| <code>number</code> | The id returned by the timer creation, `0` is an invalid ID, which means the timer creation failed, and the ID remains the same after the system restart for timers that support persistence |
+
+## Constants
+
+### Timer repeats constants
+
+| Constant        | Description            | API_LEVEL |
+| --------------- | ---------------------- | --------- |
+| `REPEAT_ONCE`   | Repeat once            | 3.0       |
+| `REPEAT_MINUTE` | Repeat once per minute | 3.0       |
+| `REPEAT_HOUR`   | Repeat once per hour   | 3.0       |
+| `REPEAT_DAY`    | Repeat once per day    | 3.0       |
+| `REPEAT_WEEK`   | Repeat once per week   | 3.0       |
+| `REPEAT_MONTH`  | Repeat once per month  | 3.0       |
+| `REPEAT_YEAR`   | Repeat once per year   | 3.0       |
+
+### Timer weekly constants
+
+| Constant   | Description | API_LEVEL |
+| ---------- | ----------- | --------- |
+| `WEEK_MON` | Monday      | 3.0       |
+| `WEEK_TUE` | Tuesday     | 3.0       |
+| `WEEK_WED` | Wednesday   | 3.0       |
+| `WEEK_THU` | Thursday    | 3.0       |
+| `WEEK_FRI` | Friday      | 3.0       |
+| `WEEK_SAT` | Saturday    | 3.0       |
+| `WEEK_SUN` | Sunday      | 3.0       |
+
+## Example
+
+```js
+// At a certain time each day
+import { set, REPEAT_DAY } from '@zos/alarm'
+
+const option = {
+  file: 'pages/index.js',
+  time: 12345678,
+  repeat_type: REPEAT_DAY,
+}
+const id = set(option)
+
+// Every Monday and Wednesday
+import { set, REPEAT_WEEK, WEEK_MON, WEEK_WED } from '@zos/alarm'
+
+const option = {
+  file: 'pages/index.js',
+  time: 12345678,
+  repeat_type: REPEAT_WEEK,
+  week_days: WEEK_MON | WEEK_WED,
+}
+const id = set(option)
+
+// Reminder every 21 days
+import { set, REPEAT_DAY } from '@zos/alarm'
+
+const option = {
+  file: 'pages/index.js',
+  time: 12345678,
+  repeat_type: REPEAT_DAY,
+  repeat_period: 20,
+  repeat_duration: 1,
+}
+const id = set(option)
+```

@@ -1,0 +1,76 @@
+---
+title: TIME
+sidebar_label: TIME 时间/日期
+---
+
+## 创建传感器
+
+```js
+const time = hmSensor.createSensor(hmSensor.id.TIME)
+```
+
+## time 实例
+
+### time: object
+
+| 属性             | 说明                                  | 类型     |
+| ---------------- | ------------------------------------- | -------- |
+| utc              | 时间戳, 1970 年 1 月 1 日至今的毫秒数 | `number` |
+| year             | 年                                    | `number` |
+| month            | 月                                    | `number` |
+| day              | 日                                    | `number` |
+| hour             | 小时                                  | `number` |
+| minute           | 分钟                                  | `number` |
+| second           | 秒                                    | `number` |
+| week             | 星期 `1` - `7`                        | `number` |
+| lunar_year       | 中国农历年份                          | `number` |
+| lunar_month      | 中国农历月份                          | `number` |
+| lunar_day        | 中国农历日期                          | `number` |
+| lunar_festival   | 中国农历节日                          | `string` |
+| lunar_solar_term | 中国农历节气                          | `string` |
+| solar_festival   | 公历节日                              | `string` |
+
+### time.getLunarMonthCalendar
+
+获取中国农历月历信息
+
+```js
+const lunar_month_cal = time.getLunarMonthCalendar()
+
+for (let i = 0; i < lunar_month_cal.day_count; i++) {
+  console.log('lunar_day : ' + lunar_month_cal.lunar_days_array[i])
+}
+```
+
+### time.getShowFestival
+
+获取当天显示的节日（优先级依次是 公历节日、中国农历节日、中国农历节气）
+
+```js
+const current_festival = time.getShowFestival()
+```
+
+## 代码示例
+
+```js
+// 创建传感器
+const jstime = hmSensor.createSensor(hmSensor.id.TIME)
+
+console.log(
+  'The time utc: ' +
+    jstime.utc +
+    ' year: ' +
+    jstime.year +
+    ' month: ' +
+    jstime.month +
+    ' day: ' +
+    jstime.day +
+    ' hour: ' +
+    jstime.hour +
+    ' minute: ' +
+    jstime.minute +
+    ' second: ' +
+    jstime.second +
+    '\r\n'
+)
+```

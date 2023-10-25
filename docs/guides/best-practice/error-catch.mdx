@@ -1,0 +1,65 @@
+---
+title: Error Capture
+sidebar_label: Error Capture
+---
+
+## Introduction
+
+During the development of the Mini Program process, the simulator preview or real machine will often encounter program execution errors, when the need to troubleshoot the logs, due to the length of the logs do limit, and no source-map tool, resulting in low efficiency in locating errors.
+
+The device app framework is currently unable to capture errors in the lifecycle, and this article provides some ideas for developers to follow.
+
+## Thinking
+
+Add `try....catch` statements to the lifecycle to catch errors.
+
+A simple example.
+
+```js title="page.js"
+Page({
+  build() {
+    const a = undefined
+    const b = () => {
+      a()
+    }
+    const c = () => {
+      b()
+    }
+    c()
+  }
+})
+```
+
+Running on the simulator, the following error message is obtained.
+
+![error-log](/img/docs/guides/best-practice/error_message.jpg)
+
+Some stack information is missing due to truncated log length limit.
+
+We add a `try...catch` statement to the `build` lifecycle code to print the error log by line and get a more complete error message.
+
+```js
+Page({
+  build() {
+    try {
+      const a = undefined
+      const b = () => {
+        a()
+      }
+      const c = () => {
+        b()
+      }
+      c()
+    } catch (e) {
+      console.log('LifeCycle Error', e)
+      e && e.stack && e.stack.split(/\n/).forEach((i) => console.log('error stack', i))
+    }
+  }
+})
+```
+
+![error-log](/img/docs/guides/best-practice/error_message_full.jpg)
+
+This allows us to see a more complete error message.
+
+It is tedious to catch errors manually in the lifecycle of each page, but you can also wrap constructors like `Page`, `App` directly, see [showcase - PageAdvanced](https://github.com/zepp-health/zeppos-samples/blob/main/application/2.0/showcase/utils/template/PageAdvanced.js) for ideas.

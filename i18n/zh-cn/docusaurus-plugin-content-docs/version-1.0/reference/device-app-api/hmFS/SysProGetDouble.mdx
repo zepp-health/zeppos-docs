@@ -1,0 +1,33 @@
+---
+title: hmFS.SysProGetDouble(key)
+sidebar_label: SysProGetDouble
+---
+
+获取临时存储的双精度符点数，系统重启将清除
+
+## 类型
+
+```ts
+(key: string) => result
+```
+
+## 参数
+
+### key
+
+| 说明     | 必填 | 类型     | 默认值 |
+| -------- | ---- | -------- | ------ |
+| 键字符串 | 是   | `string` | -      |
+
+### result
+
+| 说明         | 类型      |
+| ------------ | --------- |
+| 存储的双精度浮点数 | `number` |
+
+## 用法
+
+```js
+hmFS.SysProSetDouble('js_test_double', 3.14)
+console.log(hmFS.SysProGetDouble('js_test_double'))
+```

@@ -1,0 +1,65 @@
+---
+title: getTextLayout(text_string, options)
+sidebar_label: getTextLayout
+---
+
+> Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Calculate the height and width of the target text after the layout is completed, and does not actually render it, only performs the layout calculation.
+
+Can be used to calculate the height of a multi-line text layout with a fixed width, or the width of a single-line text layout.
+
+## Type
+
+```ts
+(text_string: string, options: object) => result
+```
+
+## Parameters
+
+| Parameter   | Description                                 | Required | Type      |
+| ----------- | ------------------------------------------- | -------- | --------- |
+| text_string | Text content of the layout to be calculated | YES      | `string`  |
+| options     | Options                                     | YES      | `Options` |
+
+### Options
+
+| Properties | Description                    | Required | Type     |
+| ---------- | ------------------------------ | -------- | -------- |
+| text_size  | Text size                      | YES      | `number` |
+| text_width | Width of a single line of text | YES      | `number` |
+| wrapped | whether the text is line feed, `0`: no line feed; `1`: line feed | NO | `number` |
+
+### result: object
+
+| Properties | Description        | Type     |
+| ---------- | ------------------ | -------- |
+| width      | Width pixel value  | `number` |
+| height     | Height pixel value | `number` |
+
+## Code example
+
+```js
+import { getTextLayout } from '@zos/ui'
+
+const { width, height } = getTextLayout('turn right and go alone the road', {
+  text_size: 30,
+  text_width: 200
+})
+
+console.log('width', width)
+console.log('height', height)
+```
+
+```js
+import { getTextLayout } from '@zos/ui'
+
+const { width, height } = getTextLayout('turn right and go alone the road', {
+  text_size: 30,
+  text_width: 0,
+  wrapped: 0
+})
+
+console.log('width', width)
+console.log('height', height)
+```

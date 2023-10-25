@@ -1,0 +1,30 @@
+---
+title: PAGE_SCROLLBAR
+sidebar_label: PAGE_SCROLLBAR
+---
+
+> Start from API_LEVEL `3.0`. Please refer to [API_LEVEL](../../../../../guides/framework/device/compatibility.md)。
+
+Page Scrollbar.
+
+## Create UI widget
+
+```js
+import { createWidget, widget } from '@zos/ui'
+
+const scrollBar = createWidget(widget.PAGE_SCROLLBAR, Param)
+```
+
+### Param: object
+
+| Properties   | Description                                                 | Required | Type     |
+| ------ | ---------------------------------------------------- | -------- | -------- |
+| target | The `VIEW_CONTAINER` widget that needs to be bound is the whole page scroll bar by default, and the `VIEW_CONTAINER` scroll bar is passed in | NO       | `object` |
+
+## Code example
+
+```js
+import { createWidget, widget } from '@zos/ui'
+
+const scrollBar = createWidget(widget.PAGE_SCROLLBAR)
+```

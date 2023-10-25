@@ -1,0 +1,31 @@
+# getAutoBrightness
+
+> Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Get whether to turn on the screen auto brightness setting.
+
+## Type
+
+```ts
+function getAutoBrightness(): Result
+```
+
+## Parameters
+
+### Result
+
+| Type                 | Description                                                                    |
+| -------------------- | ------------------------------------------------------------------------------ |
+| <code>boolean</code> | `true` - auto-brightness is set to on, `false` - auto-brightness is set to off |
+
+## Example
+
+```js
+import { getAutoBrightness } from '@zos/display'
+
+const result = getAutoBrightness()
+
+if (result) {
+  console.log('Auto brightness setting is turned on')
+}
+```

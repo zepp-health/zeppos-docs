@@ -1,0 +1,125 @@
+---
+title: ble
+sidebar_label: BLE 通信
+---
+
+> API_LEVEL `2.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../guides/framework/device/compatibility.md)。
+
+设备应用通过 `ble` 模块使用设备蓝牙通信的能力，与伴生服务进行通信。
+
+:::tip
+蓝牙通信完整示例请参考 [蓝牙通信](../../../guides/best-practice/bluetooth-communication.mdx)
+:::
+
+## 方法
+
+### createConnect(callback)
+
+创建连接
+
+#### 类型
+
+```ts
+(callback: (index: number, data: object, size: number) => void) => void
+```
+
+#### 参数
+
+| callback 参数 | 说明           | 必填 | 类型     |
+| ------------- | -------------- | ---- | -------- |
+| index         | 分包号         | 否   | `number` |
+| data          | 收到的数据     | 否   | `object` |
+| size          | 收到的数据长度 | 否   | `number` |
+
+### disConnect()
+
+断开连接
+
+#### 类型
+
+```ts
+() => void
+```
+
+### send(data, size)
+
+发送消息
+
+#### 类型
+
+```ts
+(data: object, size: number) => void
+```
+
+#### 参数
+
+| 参数 | 说明           | 必填 | 类型     |
+| ---- | -------------- | ---- | -------- |
+| data | 待发送数据     | 否   | `object` |
+| size | 待发送数据长度 | 否   | `number` |
+
+### connectStatus()
+
+查询连接状态
+
+#### 类型
+
+```ts
+() => Result
+```
+
+#### Result
+
+| 说明                                 | 类型      |
+| ------------------------------------ | --------- |
+| 连接状态 `true` 连接，`false` 未连接 | `boolean` |
+
+### addListener(callback)
+
+注册连接状态监听
+
+#### 类型
+
+```ts
+(callback: (status: boolean) => void) => void
+```
+
+#### 参数
+
+| callback 参数 | 说明     | 类型      |
+| ------------- | -------- | --------- |
+| status        | 连接状态 | `boolean` |
+
+### removeListener
+
+取消连接状态监听
+
+#### 类型
+
+```ts
+() => void
+```
+
+## 代码示例
+
+```js
+import { createConnect, send, disConnect, connectStatus, addListener } from '@zos/ble'
+
+// 创建连接
+createConnect(function (index, data, size) {
+  // 收到消息回调，将收到的消息原路返回
+  send(data, size)
+})
+
+// 断开连接
+disConnect()
+
+// 打印蓝牙连接状态
+console.log(connectStatus())
+
+// 注册连接状态监听
+addListener(function (status) {
+  // 打印连接状态
+  console.log(status)
+})
+```

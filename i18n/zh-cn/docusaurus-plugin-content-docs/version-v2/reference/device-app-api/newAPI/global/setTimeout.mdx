@@ -1,0 +1,39 @@
+# setTimeout
+
+> API_LEVEL `2.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+设置一个定时器，在定时器到期之后执行注册的回调函数。
+
+## 类型
+
+```ts
+function setTimeout(callback: Callback, delay?: Delay): TimeoutID
+```
+
+## 参数
+
+### Callback
+
+| 类型                           | 说明                       |
+| ------------------------------ | -------------------------- |
+| <code>() =&#62; unknown</code> | 定时器到期后执行的回调函数 |
+
+### Delay
+
+| 类型                | 说明                       |
+| ------------------- | -------------------------- |
+| <code>number</code> | 函数延迟的毫秒数，默认 1ms |
+
+### TimeoutID
+
+| 类型                | 说明         |
+| ------------------- | ------------ |
+| <code>number</code> | 定时器的编号 |
+
+## 代码示例
+
+```js
+setTimeout(() => {
+  console.log('Hello Zepp OS')
+}, 1000)
+```

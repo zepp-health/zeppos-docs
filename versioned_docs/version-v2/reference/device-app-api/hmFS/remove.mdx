@@ -1,0 +1,33 @@
+---
+title: hmFS.remove(path)
+sidebar_label: remove
+---
+
+Delete file
+
+## Type
+
+```ts
+(path: string) => result
+```
+
+## Parameters
+
+### path
+
+|     Description   | Required |   Type   | Default |
+| ----------------- | -------- | -------- | ------- |
+| Deleted file path |   yes    | `string` |    -    |
+
+### result
+
+|                   Description                  |   Type   |
+| ---------------------------------------------- | -------- |
+| The result of the operation, `0` means success | `number` |
+
+## Code example
+
+```js
+const result = hmFS.remove('path/to/test_file.txt')
+console.log(result)
+```

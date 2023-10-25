@@ -1,0 +1,52 @@
+---
+title: Battery
+sidebar_label: Battery 电量
+---
+
+> API_LEVEL `2.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+电量传感器。
+
+## 方法
+
+### getCurrent
+
+获取当前设备电量百分比，范围 0 - 100
+
+```ts
+getCurrent(): number
+```
+
+### onChange
+
+注册电量变化事件监听回调函数
+
+```ts
+onChange(callback: () => void): void
+```
+
+### offChange
+
+取消电量变化事件监听回调函数
+
+```ts
+offChange(callback: () => void): void
+```
+
+## 代码示例
+
+```js
+import { Battery } from '@zos/sensor'
+
+const battery = new Battery()
+const current = battery.getCurrent()
+
+const callback = () => {
+  console.log(battery.getCurrent())
+}
+
+battery.onChange(callback)
+
+// When not needed for use
+battery.offChange(callback)
+```

@@ -1,0 +1,26 @@
+---
+title: Auth OAUTH 授权
+sidebar_label: Auth OAUTH 授权
+---
+
+## 类型
+
+```ts
+(props: Props) => result: RenderFunc
+```
+
+## Props: object
+
+| 名称            | 说明                                                                                                                                      | 必填 | 类型       | 默认值 |
+| --------------- | ----------------------------------------------------------------------------------------------------------------------------------------- | ---- | ---------- | ------ |
+| title           | OAuth 组件的标题                                                                                                                          | 否   | `string`   | -      |
+| label           | OAuth 组件的标签文本                                                                                                                      | 否   | `string`   | -      |
+| description     | OAuth 组件的描述                                                                                                                          | 否   | `string`   | -      |
+| authorizeUrl    | 请求用户对 Token 进行授权的 Url                                                                                                           | 否   | `string`   | -      |
+| requestTokenUrl | 获取未授权的 Token 的 Url                                                                                                                 | 否   | `string`   | -      |
+| clientId        | 在授权提供商帐户上指定的客户 ID                                                                                                           | 否   | `string`   | -      |
+| clientSecret    | 授权提供商帐户上指定客户 ID 对应的密码                                                                                                    | 否   | `string`   | -      |
+| scope           | 正在请求的范围                                                                                                                            | 否   | `string`   | -      |
+| pkce            | 保护授权代码授权。这其实是通过一种密码学手段确保恶意第三方即使截获 Authorization Code 或者其他密钥，也无法向认证服务器交换 Access Token。 | 否   | `boolean`  | -      |
+| onAccessToken   | 接收 accessToken 和 OAuth 提供的任何内容（如刷新令牌和过期时间）的函数                                                                    | 否   | `function` | -      |
+| onReturn        | 接收 oauthCode 的函数                                                                                                                     | 否   | `function` | -      |

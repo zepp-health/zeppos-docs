@@ -1,0 +1,27 @@
+# createConnect
+
+> API_LEVEL `2.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+创建连接。
+
+## 类型
+
+```ts
+function createConnect(callback: Callback): void
+```
+
+## 参数
+
+### Callback
+
+| 类型                                                                    | 说明                                                       |
+| ----------------------------------------------------------------------- | ---------------------------------------------------------- |
+| <code>(index?: number, data?: object, size?: number) =&#62; void</code> | 连接回调函数，`index` 分包号、`data` 数据、`size` 数据长度 |
+
+## 代码示例
+
+```js
+import { createConnect } from '@zos/ble'
+
+// ...
+```

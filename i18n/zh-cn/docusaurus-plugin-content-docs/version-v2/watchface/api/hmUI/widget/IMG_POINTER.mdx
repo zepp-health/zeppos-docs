@@ -1,0 +1,44 @@
+---
+title: IMG_POINTER
+sidebar_label: IMG_POINTER 指针控件
+---
+
+该控件区域为全屏，该控件使用一张图片，通过设定其旋转中心与旋转角度，实现一个指针旋转效果。
+
+通过绑定数据类型 `hmUI.data_type.*`，可以展示数据进度。
+
+## 创建 UI 控件
+
+```js
+const imgPointer = hmUI.createWidget(hmUI.widget.IMG_POINTER, Param)
+```
+
+## 类型
+
+### Param: object
+
+| 属性            | 说明                                                        | 是否必须 | 类型     |
+| --------------- | ----------------------------------------------------------- | -------- | -------- |
+| src             | 图片路径，`/assets` 目录下文件名(相对路径)                  | 是       | `string` |
+| x               | 指针图片自身旋转中心 x 坐标                                 | 是       | `number` |
+| y               | 指针图片自身旋转中心 y 坐标                                 | 是       | `number` |
+| center_x        | 控件旋转中心 x 坐标                                         | 是       | `number` |
+| center_y        | 控件旋转中心 y 坐标                                         | 是       | `number` |
+| angle           | 图片旋转角度 12 点方向为 0 度                               | 否       | `number` |
+| start_angle     | 旋转范围的起始角度，默认 `0`                                | 否       | `number` |
+| end_angle       | 旋转范围的结束角度，默认 `360`                              | 否       | `number` |
+| type            | 绑定数据类型，取值见 [`hmUI.data_type`](./data_type.mdx)    | 否       | `number` |
+| invalid_visible | 当设置 `type` 时，如果为无效数据，是否显示指针，默认 `true` | 否       | `number` |
+
+## 代码示例
+
+```js
+const imgPointer = hmUI.createWidget(hmUI.widget.IMG_POINTER, {
+  src: 'hour.png',
+  center_x: 227,
+  center_y: 227,
+  x: 22,
+  y: 121,
+  angle: 245
+})
+```

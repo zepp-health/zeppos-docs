@@ -1,0 +1,60 @@
+# mstStartScan
+
+> Start from API_LEVEL `3.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Scan and discover Bluetooth peripherals, which can be filtered according to filter conditions.
+
+## Type
+
+```ts
+function mstStartScan(callback: Callback, filter?: Filter): Result
+```
+
+## Parameters
+
+### Callback
+
+| Type                                                           | Description                                  |
+| -------------------------------------------------------------- | -------------------------------------------- |
+| <code>(result: ScanResult, filter?: Filter) =&#62; void</code> | Callback function for receiving scan results |
+
+### ScanResult
+
+| Property           | Type                                    | Description                                                   | API_LEVEL |
+| ------------------ | --------------------------------------- | ------------------------------------------------------------- | --------- |
+| dev_name           | <code>string</code>                     | Device name                                                   | 3.0       |
+| dev_addr           | <code>ArrayBuffer</code>                | Device MAC address, 6 bytes long, Uint8Array view recommended | 3.0       |
+| rssi               | <code>number</code>                     | RSSI Signal Strength                                          | 3.0       |
+| service_uuid_array | <code>Array&#60;string&#62;</code>      | Service UUID array in broadcast data                          | 3.0       |
+| service_data_array | <code>Array&#60;ServiceData&#62;</code> | Array of Service Data Objects in Broadcast Data               | 3.0       |
+
+### ServiceData
+
+| Property     | Type                     | Description  | API_LEVEL |
+| ------------ | ------------------------ | ------------ | --------- |
+| uuid         | <code>string</code>      | Service UUID | 3.0       |
+| service_data | <code>ArrayBuffer</code> | Service data | 3.0       |
+
+### Filter
+
+| Property          | Type                | Required | DefaultValue | Description                                        | API_LEVEL |
+| ----------------- | ------------------- | -------- | ------------ | -------------------------------------------------- | --------- |
+| device_name       | <code>string</code> | N        | -            | Device name                                        | 3.0       |
+| fuzzy_mode        | <code>string</code> | N        | -            | Whether to use fuzzy mode for device name matching | 3.0       |
+| service_uuid      | <code>string</code> | N        | -            | Service UUID                                       | 3.0       |
+| service_data_uuid | <code>string</code> | N        | -            | Service data UUID                                  | 3.0       |
+| manufacturer_id   | <code>number</code> | N        | -            | Manufacturer ID                                    | 3.0       |
+
+### Result
+
+| Type                 | Description                                                                  |
+| -------------------- | ---------------------------------------------------------------------------- |
+| <code>boolean</code> | The result of the function call, `true` means success, `false` means failure |
+
+## Example
+
+```js
+import { mstStartScan } from '@zos/ble'
+
+// ...
+```

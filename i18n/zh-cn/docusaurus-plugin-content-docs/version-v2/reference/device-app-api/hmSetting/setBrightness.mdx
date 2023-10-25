@@ -1,0 +1,36 @@
+---
+title: hmSetting.setBrightness(brightness)
+sidebar_label: setBrightness
+---
+
+设置当前设备的屏幕亮度，范围 [0, 100]。
+
+如果当前开启了自动亮度，亮度由光线传感器自动调节，则 `setBrightness` 函数不会起到实质效果。需要先关闭自动亮度，再设置屏幕亮度。
+
+如果退出页面，需要考虑是否需要设置回原来的亮度。
+
+## 类型
+
+```ts
+(brightness: number) => result
+```
+
+## 参数
+
+### brightness
+
+| 说明                                 | 必填 | 类型     | 默认值 |
+| ------------------------------------ | ---- | -------- | ------ |
+| 设置当前设备的屏幕亮度,范围 [0, 100] | 是   | `number` | -      |
+
+### result
+
+| 说明                       | 类型     |
+| -------------------------- | -------- |
+| 操作结果，`0` 表示设置成功 | `number` |
+
+## 代码示例
+
+```js
+const result = hmSetting.setBrightness(50)
+```

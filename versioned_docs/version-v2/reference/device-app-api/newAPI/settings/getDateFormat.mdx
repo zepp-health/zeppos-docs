@@ -1,0 +1,41 @@
+# getDateFormat
+
+> Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Get the current system date format.
+
+## Type
+
+```ts
+function getDateFormat(): Result
+```
+
+## Parameters
+
+### Result
+
+| Type                | Description                                       |
+| ------------------- | ------------------------------------------------- |
+| <code>number</code> | Date format, value refer to date format constants |
+
+## Constants
+
+### Date format constants
+
+| Constant          | Description    | API_LEVEL |
+| ----------------- | -------------- | --------- |
+| `DATE_FORMAT_YMD` | year-month-day | 2.0       |
+| `DATE_FORMAT_DMY` | day-month-year | 2.0       |
+| `DATE_FORMAT_MDY` | month-day-year | 2.0       |
+
+## Example
+
+```js
+import { getDateFormat, DATE_FORMAT_YMD } from '@zos/settings'
+
+const currentDateFormat = getDateFormat()
+
+if (currentDateFormat === DATE_FORMAT_YMD) {
+  console.log('date format is YYYY-MM-DD')
+}
+```

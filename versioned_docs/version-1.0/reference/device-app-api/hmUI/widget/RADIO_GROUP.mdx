@@ -1,0 +1,108 @@
+---
+title: RADIO_GROUP
+sidebar_label: RADIO_GROUP
+---
+
+![radio_group_sample](/img/api/radio_group_sample.jpg)
+
+Used to select a single result among multiple options. Each individual option needs to be created using `STATE_BUTTON`.
+
+## Create UI widget
+
+```js
+const radioGroup = hmUI.createWidget(hmUI.widget.RADIO_GROUP, radioGroupParam)
+const stateButton = hmUI.createWidget(hmUI.widget.STATE_BUTTON, stateButtonParam)
+```
+
+## Type
+
+### radioGroupParam: object
+
+| Properties   | Description                               | Required | Type        |
+| ------------ | ----------------------------------------- | -------- | ----------- |
+| x            | The x-coordinate of the widget.        | YES      | `number`    |
+| y            | The y-coordinate of the widget.        | YES      | `number`    |
+| w            | Width of the widget.                   | YES      | `number`    |
+| h            | The height of the widget.              | YES      | `number`    |
+| select_src   | The selected image of the widget.      | YES      | `string`    |
+| unselect_src | Unselected image of the widget.        | YES      | `string`    |
+| check_func   | Callback when the button's state changes. | NO       | `CheckFunc` |
+
+### CheckFunc: function
+
+```js
+(radioGroup: RadioGroup, index: number, checked: boolean) => void
+```
+
+| Parameters | Description                 | Type         |
+| ---------- | --------------------------- | ------------ |
+| radioGroup | The instance of radioGroup. | `RadioGroup` |
+| index      | The index of state change.  | `number`     |
+| checked    | Whether to check.           | `boolean`    |
+
+### StateButton: object
+
+| Properties | Description                                                              | Required | Type     |
+| ---------- | ------------------------------------------------------------------------ | -------- | -------- |
+| x          | The x-coordinate of the widget. Coordinates relative to `radioGroup`. | YES      | `number` |
+| y          | The y-coordinate of the widget. Coordinates relative to `radioGroup`. | YES      | `number` |
+| w          | Width of the widget.                                                  | YES      | `number` |
+| h          | The height of the widget.                                             | YES      | `number` |
+
+:::caution
+The widget must be initialized once with `hmUI.prop.INIT` to render the view
+:::
+
+### Prop Properties
+
+| Properties            | Support get/set | Type                               | Notes                                                                                                                                      |
+| --------------------- | --------------- | ---------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| `hmUI.prop.INIT`      | set             | `object`                           | Initialize the widget and set the default selected items.                                                                               |
+| `hmUI.prop.CHECKED`   | set/get         | `object` Return `boolean` when get | Set the selected child widget to the selected state, or use to get the selected state of the child widget, the value is of type `boolean`. |
+| `hmUI.prop.UNCHECKED` | get             | `object`                           | Set the selected child widget to unselected state, or use to get the selected state of the child widget, the value is of type `boolean`.   |
+
+## Code example
+
+:::tip
+Please refer to [Design Resources](../../../related-resources/design-resources.mdx) for the image resources in the code example
+:::
+
+```js
+Page({
+  build() {
+    const radioGroup = hmUI.createWidget(hmUI.widget.RADIO_GROUP, {
+      x: 0,
+      y: 0,
+      w: 480,
+      h: 64,
+      select_src: 'selected.png',
+      unselect_src: 'unselected.png',
+      check_func: (group, index, checked) => {
+        console.log('index', index)
+        console.log('checked', checked)
+      }
+    })
+
+    const button1 = radioGroup.createWidget(hmUI.widget.STATE_BUTTON, {
+      x: 40,
+      y: 200,
+      w: 64,
+      h: 64
+    })
+    const button2 = radioGroup.createWidget(hmUI.widget.STATE_BUTTON, {
+      x: 190,
+      y: 200,
+      w: 64,
+      h: 64
+    })
+    const button3 = radioGroup.createWidget(hmUI.widget.STATE_BUTTON, {
+      x: 340,
+      y: 200,
+      w: 64,
+      h: 64
+    })
+
+    radioGroup.setProperty(hmUI.prop.INIT, button3)
+  }
+})
+```

@@ -1,0 +1,48 @@
+---
+title: STEP
+sidebar_label: STEP 步数
+---
+
+## 创建传感器
+
+```js
+const step = hmSensor.createSensor(hmSensor.id.STEP)
+
+console.log(step.current)
+```
+
+## step 实例
+
+### step: object
+
+| 属性    | 说明     | 类型     |
+| ------- | -------- | -------- |
+| current | 当前步数 | `number` |
+| target  | 目标步数 | `number` |
+
+## 注册传感器实例回调事件
+
+```js
+step.addEventListener(event, callback: Callback)
+```
+
+### CHANGE 事件
+
+#### event 值
+
+`hmSensor.event.CHANGE`
+
+#### Callback
+
+```ts
+() => void
+```
+
+#### 事件示例
+
+```js
+step.addEventListener(hmSensor.event.CHANGE, function () {
+  console.log('The current step is ' + step.current + '\r\n')
+  console.log('The step target is ' + step.target + '\r\n')
+})
+```

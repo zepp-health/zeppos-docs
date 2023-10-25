@@ -1,0 +1,233 @@
+---
+title: Time
+sidebar_label: Time 时间/日期
+---
+
+> API_LEVEL `2.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+时间/日期传感器。
+
+## 方法
+
+### getTime
+
+获取 UTC 时间戳，单位毫秒
+
+```ts
+getTime(): number
+```
+
+### getFullYear
+
+获取当前日期的年份
+
+```ts
+getFullYear(): number
+```
+
+### getMonth
+
+获取当前日期的月份，范围 1 - 12，返回 `1` 代表 1 月
+
+```ts
+getMonth(): number
+```
+
+### getDate
+
+获取当前日期的天数，即一个月中的哪一天，范围 1 - 31
+
+```ts
+getDate(): number
+```
+
+### getHours
+
+获取当前时间的小时数
+
+```ts
+getHours(): number
+```
+
+### getMinutes
+
+获取当前时间的分钟数
+
+```ts
+getMinutes(): number
+```
+
+### getSeconds
+
+获取当前时间的秒数
+
+```ts
+getSeconds(): number
+```
+
+### getDay
+
+获取当前时间对应一周中的第几天，范围 1 - 7，返回 `1` 代表星期一
+
+```ts
+getDay(): number
+```
+
+### getHourFormat
+
+> API_LEVEL `2.1`
+
+获取当前系统时间格式，12 小时/24 小时，值参考小时格式常量
+
+```ts
+getHourFormat(): number
+```
+
+#### 常量
+
+##### 小时格式常量
+
+| 常量                  | 说明      | API_LEVEL |
+| --------------------- | --------- | --------- |
+| `TIME_HOUR_FORMAT_12` | 12 小时制 | 2.1       |
+| `TIME_HOUR_FORMAT_24` | 24 小时制 | 2.1       |
+
+### getFormatHour
+
+> API_LEVEL `2.1`
+
+获取当前时间格式（12 小时/24 小时）下的小时数
+
+```ts
+getFormatHour(): number
+```
+
+### onPerMinute
+
+> API_LEVEL `2.1`
+
+注册每分钟结束事件监听回调函数
+
+```ts
+onPerMinute(callback: () => void): void
+```
+
+### onPerDay
+
+> API_LEVEL `2.1`
+
+注册每天结束事件监听回调函数
+
+```ts
+onPerDay(callback: () => void): void
+```
+
+### getFestival
+
+获取公历节日，如果没有节日，则返回字符串 `'INVALID'`
+
+```ts
+getFestival(): string
+```
+
+### getLunarYear
+
+获取中国农历年份，仅在系统语言设置为中文时生效
+
+```ts
+getLunarYear(): number
+```
+
+### getLunarMonth
+
+获取中国农历月份，仅在系统语言设置为中文时生效
+
+```ts
+getLunarMonth(): number
+```
+
+### getLunarDay
+
+获取中国农历日期，仅在系统语言设置为中文时生效
+
+```ts
+getLunarDay(): number
+```
+
+### getLunarFestival
+
+获取中国农历节日，仅在系统语言设置为中文时生效，如果没有节日，则返回字符串 `'INVALID'`
+
+```ts
+getLunarFestival(): string
+```
+
+### getSolarTerm
+
+获取中国农历节气，仅在系统语言设置为中文时生效，如果没有节气，则返回字符串 `'INVALID'`
+
+```ts
+getSolarTerm(): string
+```
+
+### getShowFestival
+
+获取当天显示的节日字符串，仅在系统语言设置为中文时生效，优先级依次是公历节日、中国农历节日、中国农历节气，
+
+```ts
+getShowFestival(): string
+```
+
+### getLunarMonthCalendar
+
+获取中国农历当前月的月历信息，仅在系统语言设置为中文时生效
+
+```ts
+getLunarMonthCalendar(): LunarMonthCalendar
+```
+
+#### LunarMonthCalendar
+
+| 属性             | 类型                               | 说明                                                       | API_LEVEL |
+| ---------------- | ---------------------------------- | ---------------------------------------------------------- | --------- |
+| day_count        | <code>number</code>                | 当前月的天数                                               | 2.0       |
+| lunar_days_array | <code>Array&#60;string&#62;</code> | 当前月每一天展示内容数组，展示内容优先级为节日、节气、日期 | 2.0       |
+
+### onSunrise
+
+> API_LEVEL `3.0`
+
+注册日出事件监听回调函数，仅当设备天气信息时才会生效
+
+```ts
+onSunrise(callback: () => void): void
+```
+
+### onSunset
+
+> API_LEVEL `3.0`
+
+注册日落事件监听回调函数，仅当设备天气信息时才会生效
+
+```ts
+onSunset(callback: () => void): void
+```
+
+### onPhoneTimeSetting
+
+> API_LEVEL `3.0`
+
+注册手机修改时间事件监听回调函数
+
+```ts
+onPhoneTimeSetting(callback: () => void): void
+```
+
+## 代码示例
+
+```js
+import { Time } from '@zos/sensor'
+
+const time = new Time()
+const currentTime = time.getTime()
+```

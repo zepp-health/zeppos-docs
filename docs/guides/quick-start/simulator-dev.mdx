@@ -1,0 +1,95 @@
+---
+title: 3. Running Simulator
+sidebar_label: 3. Running Simulator
+---
+
+In this step, we will accomplish the following tasks
+
+- Install Zepp OS Simulator
+- Installation of Amazfit Balance Watch device Simulator
+- Preview Zepp OS Mini Program on a Simulator
+
+## Install and run the Zepp OS Simulator
+
+Depending on your operating system, download the corresponding Simulator installation package. Then follow the prompts to install it, [Simulator Download](../tools/simulator/download.md)
+
+Next, we'll launch the Simulator. Please note that the process may differ depending on your operating system. Therefore, make sure to follow the instructions specific to your operating system.
+
+### Running the Simulator on Windows
+
+Double-click the Simulator icon to launch the Simulator.
+
+![simulator_icon.jpg](/img/simulator/simulator_icon.jpg)
+
+### Running the Simulator on MacOS
+
+Execute the following command in the terminal to add executable permissions to the Simulator startup script.
+
+```sh
+cd /Applications/simulator.app/Contents/Resources/firmware && chmod +x ./start_qemu.sh
+```
+
+Reopen a terminal and run the following command to start the Simulator.
+
+```sh
+cd /Applications/simulator.app/Contents/MacOS && sudo -s ./simulator
+```
+
+Enter the password and then enter OK. The Simulator icon should appear in the control bar and the Simulator should start successfully.
+
+:::info
+
+- Attempt to launch the watch simulator by clicking the simulator button at the top-left corner. If there's no response upon clicking, it is recommended to check if there is a prompt under the "Security and Privacy" in the System Preferences.
+- If the terminal requires a password, enter it
+- To exit the simulator, press control + c in the terminal or click on the control bar icon.
+:::
+
+### Running the Simulator on Linux
+
+You need to get administrator privileges before starting the simulator. `$` is normal privileges and `#` is administrator privileges.
+
+Or execute the following command.
+
+```bash
+sudo chmod -R 777 /dir
+```
+
+- `-R` means that the cascade is applied to all subdirectories and files in the directory
+- `777` means that all users have the highest privileges
+- `/dir` is the target folder, this can be the simulator installation directory, usually `/opt/simulator`
+
+If your installation directory is in `/opt` you can execute it in the terminal next, if not, you need to execute it in your own installation directory to install the environment.
+
+```sh
+cd /opt/simulator/resources/firmware/ && sudo ./setup_for_linux.sh
+```
+
+## Installation of watch device Simulator
+
+After launching the Simulator, we will see a screen like the one shown below.
+
+Click on the download button labeled "7" in the image below to enter the watch device Simulator download list screen and click on Download Amazfit Balance Simulator.
+
+![desk.png](/img/simulator/interface.png)
+
+Now that you've opened a screen that contains all Amazfit devices, locate the "Balance" simulator and download it.
+
+![download.jpg](/img/docs/quick-start/simulator_download.jpg)
+
+Once the download is complete, launch the watch device simulator by clicking on the Simulator icon at the top or selecting Amazfit Balance in the Simulator drop-down box.
+
+![device_simulator.jpg](/img/docs/quick-start/simulator_run.jpg)
+
+For more information about the Simulator, please refer to [Guide to using the simulator](../../guides/tools/simulator/index.md).
+
+## Simulator Preview
+
+Let's navigate to the `hello-world` directory using the terminal. Once there, run the [`zeus dev` compile preview command](../../guides/tools/cli/index.md#zeus-dev-compilation-preview-simulator) compile preview command. This instructs the Zeus CLI to compile the project code and initiate a preview via the simulator.
+
+```sh
+zeus dev
+```
+
+Wait for the Mini Program to finish installing and preview our `hello-world` Mini Program in the Amazfit Balance Device Simulator.
+
+![hello world preview](/img/docs/quick-start/simulator_project_preview.jpg)

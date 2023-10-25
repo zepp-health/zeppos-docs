@@ -1,0 +1,23 @@
+# exit
+
+> API_LEVEL `3.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+在设备应用服务中调用，会退出该服务，不会影响前台页面。
+
+:::info
+权限代码： `device:os.bg_service`
+:::
+
+## 类型
+
+```ts
+function exit(): void
+```
+
+## 代码示例
+
+```js
+import { exit } from '@zos/app-service'
+
+exit()
+```

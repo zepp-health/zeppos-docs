@@ -1,0 +1,42 @@
+# getScene
+
+> API_LEVEL `2.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+获取当前小程序运行的场景。
+
+## 类型
+
+```ts
+function getScene(): Result
+```
+
+## 参数
+
+### Result
+
+| 类型                | 说明                                 |
+| ------------------- | ------------------------------------ |
+| <code>number</code> | 当前小程序运行的场景，值参考场景常量 |
+
+## 常量
+
+### 打开小程序场景常量
+
+| 常量              | 说明                         | API_LEVEL |
+| ----------------- | ---------------------------- | --------- |
+| `SCENE_APP`       | 在小程序内                   | 2.0       |
+| `SCENE_WATCHFACE` | 在表盘主界面                 | 2.0       |
+| `SCENE_SETTINGS`  | 在小程序配置或者表盘编辑页面 | 2.0       |
+| `SCENE_AOD`       | 在息屏界面                   | 2.0       |
+
+## 代码示例
+
+```js
+import { getScene, SCENE_APP } from '@zos/app'
+
+const result = getScene()
+
+if (result === SCENE_APP) {
+  console.log('in Mini Program')
+}
+```

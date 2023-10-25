@@ -1,0 +1,69 @@
+---
+title: log
+sidebar_label: log
+---
+
+> API_LEVEL `2.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+`log` 实例用于日志打印，有多种等级的日志方法，方便在控制台进行过滤。
+
+## 方法
+
+### getLogger
+
+返回一个新的 `log` 实例，带有 `name` 标记，在执行打印日志方法时，会加入 `name` 标记，便于区分
+
+```ts
+getLogger(name: string): log
+```
+
+### log
+
+打印 log 级别的日志
+
+```ts
+log(...args: string[]): void
+```
+
+### warn
+
+打印 warn 级别的日志
+
+```ts
+warn(...args: string[]): void
+```
+
+### debug
+
+打印 debug 级别的日志
+
+```ts
+debug(...args: string[]): void
+```
+
+### error
+
+打印 error 级别的日志
+
+```ts
+error(...args: string[]): void
+```
+
+### info
+
+打印 info 级别的日志
+
+```ts
+info(...args: string[]): void
+```
+
+## 代码示例
+
+```js
+import { log } from '@zos/utils'
+
+const pageLogger = log.getLogger('page')
+
+pageLogger.log('page created')
+pageLogger.error('page error')
+```

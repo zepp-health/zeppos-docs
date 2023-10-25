@@ -1,0 +1,33 @@
+---
+title: hmFS.SysProGetDouble(key)
+sidebar_label: SysProGetDouble
+---
+
+Get the temporarily stored double precision character points, system reboot will clear.
+
+## Type
+
+```ts
+(key: string) => result
+```
+
+## Parameters
+
+### key
+
+| Description | Required |    Type   | Default |
+| -----=----- | -------- | --------  | ------ |
+| key string  |    yes   | `string`  | - |
+
+### result
+
+|                   Description                 | Type |
+| --------------------------------------------- | --------- |
+| stored double-precision floating-point number | `number` |
+
+## Usage
+
+```js
+hmFS.SysProSetDouble('js_test_double', 3.14)
+console.log(hmFS.SysProGetDouble('js_test_double'))
+```

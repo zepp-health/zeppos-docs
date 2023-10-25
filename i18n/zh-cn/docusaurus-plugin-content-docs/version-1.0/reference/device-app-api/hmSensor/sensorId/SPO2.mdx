@@ -1,0 +1,169 @@
+---
+title: SPO2
+sidebar_label: SPO2 血氧
+---
+
+## 创建传感器
+
+```js
+const spo2 = hmSensor.createSensor(hmSensor.id.SPO2)
+```
+
+## spo2 实例
+
+### spo2: object
+
+| 属性         | 说明                              | 类型            |
+| ------------ | --------------------------------- | --------------- |
+| current      | 血氧测量值                        | `number`        |
+| time         | 结果产生时间，UTC 秒                      | `number`        |
+| retcode      | 结果返回码                        | `number`        |
+| hourAvgofDay | 返回以小时计平均血氧数据，长度 24 | `Array<number>` |
+
+| `retcode` 值 | 说明       |
+| ------------ | ---------- |
+| `0`          | 测量无效   |
+| `1`          | 继续测量   |
+| `2`          | 测量成功   |
+| `3`          | 测量失败   |
+| `4`          | 没有佩戴   |
+| `5`          | 测量超时   |
+| `6`          | 无效佩戴   |
+| `7`          | 信号无效   |
+| `8`          | 血氧值偏低 |
+| `9`          | 血氧值偏高 |
+| `10`         | 测量无效   |
+
+### start
+
+启动血氧测量
+
+```js
+spo2.start()
+```
+
+:::info
+建议在调用 `start` 方法前调用 `stop` 来停止上一次测量
+:::
+
+### stop
+
+取消血氧测量
+
+```js
+spo2.stop()
+```
+
+## 注册传感器实例回调事件
+
+```js
+calorie.addEventListener(event, callback: Callback)
+```
+
+### CHANGE 事件
+
+#### event 值
+
+`hmSensor.event.CHANGE`
+
+#### Callback
+
+```ts
+() => void
+```
+
+#### 完整示例
+
+```js
+class TextByLine {
+  constructor(params) {
+    const { text = '', y = undefined, line = 0 } = params
+
+    this.text = text
+    this.y = y
+    this.line = line
+    this.y_computed = Number.isInteger(this.y) ? this.y : px(this.line * 60 + 120)
+  }
+
+  render() {
+    return hmUI.createWidget(hmUI.widget.TEXT, {
+      x: px(0),
+      y: this.y_computed,
+      w: px(480),
+      h: px(46),
+      color: 0xffffff,
+      text_size: px(20),
+      align_h: hmUI.align.CENTER_H,
+      align_v: hmUI.align.CENTER_V,
+      text_style: hmUI.text_style.NONE,
+      text: this.text
+    })
+  }
+}
+
+Page({
+  build() {
+    const spo2 = hmSensor.createSensor(hmSensor.id.SPO2)
+
+    new TextByLine({
+      text: `current:${spo2.current};time:${spo2.time};retcode:${spo2.retcode}`,
+      line: 0
+    }).render()
+
+    const changeEventText = new TextByLine({
+      text: `EVENT-CHANGE:${spo2.current}`,
+      line: 1
+    }).render()
+
+    const changeCallback = () => {
+      const current = spo2.current
+      const time = spo2.time
+      const retcode = spo2.retcode
+
+      changeEventText.setProperty(hmUI.prop.MORE, {
+        text: `EVENT-CHANGE: ${current};${time};${retcode}`
+      })
+    }
+
+    const spo2ChangeListener = () => {
+      spo2.addEventListener(hmSensor.event.CHANGE, changeCallback)
+    }
+
+    hmUI.createWidget(hmUI.widget.BUTTON, {
+      x: px(80),
+      y: px(300),
+      w: px(300),
+      h: px(60),
+      radius: px(12),
+      normal_color: 0xfc6950,
+      press_color: 0xfeb4a8,
+      text: 'REGISTER_CHANGE',
+      click_func: spo2ChangeListener
+    })
+
+    hmUI.createWidget(hmUI.widget.BUTTON, {
+      x: px(80),
+      y: px(380),
+      w: px(300),
+      h: px(60),
+      radius: px(12),
+      normal_color: 0xfc6950,
+      press_color: 0xfeb4a8,
+      text: 'START',
+      click_func: () => {
+        spo2.stop()
+        spo2.start()
+      }
+    })
+
+    const hourAvgOfDay = spo2.hourAvgOfDay
+
+    for (let i = 0; i < hourAvgOfDay.length; i++) {
+      new TextByLine({
+        text: `index:${i};${hourAvgOfDay[i]}`,
+        line: 8 + i
+      }).render()
+    }
+  }
+})
+```

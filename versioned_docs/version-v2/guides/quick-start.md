@@ -1,0 +1,141 @@
+---
+title: Quick Start
+sidebar_label: Quick Start
+---
+
+## Introduction
+
+Zepp OS's open capabilities include Mini Program and Watchface.
+
+The effect of running the Mini Program.
+
+![mini_program_preview](/img/docs/quick-start/mini_program_preview.gif)
+
+The effect of running the Watchface.
+
+![watchface_preview](/img/docs/quick-start/watchface_preview.gif)
+
+Developers can experience more Mini Programs and Watchfaces in the "App Store" and "Watchfaces" in the Zepp App.
+
+## Getting Started
+
+Get started quickly with Zepp Mini Program and Watchface development with the guidance in this document.
+
+### Apply for an account
+
+First you need a Zepp account, through which you can manage the Mini Program and Watchfaces.
+
+Go to [Register Zepp Account](https://user.zepp.com/universalLogin/index.html#/register?project_name=open_platform&project_redirect_uri=https%3A%2F%2Fconsole.zepp.com%2F%23%2F&platform_app=com.huami.webapp), or use an existing Zepp account.
+
+:::caution
+For the time being, it only supports login with email or cell phone number, and does not support three-party account login
+:::
+
+### Zepp Mobile App and Device Preparation
+
+Go to the app market with your phone and install the latest version of the Zepp App.
+
+- [Android Download](https://play.google.com/store/apps/details?id=com.huami.watch.hmwatchmanager&hl=en&gl=US)
+- [IOS Download](https://apps.apple.com/us/app/zepp-formerly-amazfit/id1127269366)
+
+Sign in to your Zepp account in the Zepp App and follow the instructions to complete the tethering of your Zepp OS equipped device.
+
+### Create the first Watchface
+
+We offer two ways to make Watchfaces.
+
+The first one is to create a Watchface online in your browser via the [Watchface Maker](https://watchface.zepp.com/) (visual interactive interface).
+
+![effects](/img/docs/guides/tools/watchface/overview.png)
+
+:::info
+The Watchface Maker requires no programming experience and is designed to be very user-friendly in operation and interaction! For more usage refer to [Watchface Maker - Instructions](./tools/watchface/index.md).
+:::
+
+The second way is to create the Watchface project by way of the Zeus CLI (the same way as the Mini Program below, see [Create the first Mini Program](#create-the-first-mini-program))
+
+### Create the first Mini Program
+
+In this step, we make a series of configurations for the Mini Program development environment, install a series of development tools, and complete the creation of the first Mini Program.
+
+:::tip
+This process also applies to the Watchface Zeus CLI development approach.
+:::
+
+#### Installing Node.js and the code editor
+
+Please refer to [Construction of basic environment](../guides/best-practice/Basic-environment-construction.mdx).
+
+#### Installing the Zeus CLI
+
+Zeus CLI is a command line tool for quickly creating template projects using the `zeus create` command.
+
+Please refer to [Zeus CLI](../guides/tools/cli/index.md) for installation.
+
+#### Install the simulator
+
+Zepp OS simulator can help developers simulate the running performance of Mini Programs. At the same time, you can view the log of the Mini Program, which is convenient for developers to debug and greatly improve the development efficiency.
+
+![workspace.jpg](/img/simulator/workspace.jpg)
+
+Please refer to [Simulator Setup](../guides/tools/simulator/setup.md) for the installation procedure.
+
+#### Creating Template Projects with the Zeus CLI
+
+```sh
+zeus create hello-world
+```
+
+![CLI interaction](/img/docs/quick-start/cli_interaction.jpg)
+
+Once the project is created, open the project with the code editor and you will see the template project code.
+
+#### Compile Preview
+
+Refer to [Simulator - Installation and launch](../guides/tools/simulator/setup.md) to install and launch the simulator.
+
+```sh
+cd /Applications/simulator.app/Contents/MacOS && sudo -s ./simulator
+```
+
+After starting the simulator, refer to [Simulator - Install and open "Device Simulator"](./tools/simulator/index.md##install-and-open-device-simulator) to complete the installation and launch of "Device Simulator".
+
+![download.jpg](/img/simulator/download.jpg)
+
+![device_simulator.jpg](/img/simulator/device_simulator.jpg)
+
+Execute [`zeus dev` compile preview command](../guides/tools/cli/index.md#zeus-dev-compilation-preview-simulator) at the root of the template project `hello-world` and the Zeus CLI will compile the project code and preview it through the simulator.
+
+```sh
+zeus dev
+```
+
+You can preview `hello-world` Mini Program in the Device Simulator.
+
+![hello world preview](/img/docs/quick-start/hello_world.jpg)
+
+For a real machine preview, please refer to [Zeus CLI Real Machine Preview](../guides/tools/cli/index.md#zeus-preview-compile-preview-real-machine).
+
+---
+
+Congratulations 🎉🎉🎉🎉, you have successfully created your first Mini Program.
+
+In addition to the template project, a series of sample Mini Programs and Watchfaces are available for developers to reference.
+
+- [Sample Mini Programs and Watchfaces](../samples/index.md)
+
+For more specific details on the framework and API, please refer to the corresponding reference documents.
+
+- [Overall Architecture](./architecture/arc.mdx)
+- [Folder Structure](./architecture/folder-structure.mdx)
+- [Device App](./framework/device/intro.md)
+- [Mini Program Configuration app.json](../reference/app-json.mdx)
+
+For more details on development and debugging, please refer to.
+
+- [Debug Mini Program](../guides/best-practice/debug.mdx)
+
+For more details on the release of Mini Programs and Watchfaces, please refer to.
+
+- [How to submit an App](../distribute/index.md)
+- [How to submit a Watchface](../distribute/watchface.md)

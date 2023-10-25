@@ -1,0 +1,37 @@
+---
+title: hmSetting.getUserData()
+sidebar_label: getUserData
+---
+
+Gets the user data.
+
+All properties are `0` when no data is fetched.
+
+## Type
+
+```ts
+() => userData
+```
+
+## Parameters
+
+### userData: object
+
+| Property | Description                                                                | Type      |
+| -------- | -------------------------------------------------------------------------- | --------- |
+| age      | The user's age, or `0` when there is no data                               | `number`  |
+| height   | The user's height, a floating-point number, or `0` when there is no data   | `number`  |
+| weight   | The user's weight, in floating point numbers, or `0` when there is no data | `number`  |
+| gender   | `0`: MALE, `1`: FEMALE, `2`: UNSPECIFIED                                   | `boolean` |
+| nickName | user nickname                                                              | `string`  |
+| region   | User registration area (ISO standard)                                      | `string`  |
+
+## Code example
+
+```js
+const age = hmSetting.getUserData().age
+const height = hmSetting.getUserData().height
+const weight = hmSetting.getUserData().weight
+const gender = hmSetting.getUserData().gender
+const nickName = hmSetting.getUserData().nickName
+```

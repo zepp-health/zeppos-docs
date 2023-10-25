@@ -1,0 +1,26 @@
+---
+title: hmUI.setLayerScrolling(enable)
+sidebar_label: setLayerScrolling
+---
+
+Set scrolling for the default layer.
+
+This interface sets the scrolling (continuous scrolling) of the default layer of the js widget, with a lower priority than `setScrollView`, which sets the scrolling by page. If the former is turned on, the former takes precedence.
+
+## Type
+
+```ts
+(enable: boolean) => void
+```
+
+## Parameters
+
+| Parameter | Description             | Type |
+| --------- | ----------------------- | --------- |
+| enable    | `true` to set slidable. | `boolean` |
+
+## Code example
+
+```js
+hmUI.setLayerScrolling(false) //Turn off scrolling for the default layer.
+```

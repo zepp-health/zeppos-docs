@@ -1,0 +1,40 @@
+---
+title: hmSetting.getDiskInfo()
+sidebar_label: getDiskInfo
+---
+
+获取磁盘信息。
+
+## 类型
+
+```ts
+() => diskInfo
+```
+
+## 参数
+
+### diskInfo: object
+
+| 属性      | 说明            | 类型     |
+| --------- | --------------- | -------- |
+| total     | 总空间          | `number` |
+| free      | 可用空间        | `number` |
+| app       | js 应用已用空间 | `number` |
+| watchface | 表盘已用空间    | `number` |
+| music     | 音乐已用空间    | `number` |
+| system    | 系统已用空间    | `number` |
+
+## 代码示例
+
+```js
+const diskInfo = hmSetting.getDiskInfo()
+console.log(
+  'disk Info:',
+  diskInfo.total / 1024 / 1024,
+  diskInfo.free / 1024 / 1024,
+  diskInfo.app / 1024 / 1024,
+  diskInfo.watchface / 1024 / 1024,
+  diskInfo.music,
+  diskInfo.system / 1024 / 1024
+)
+```

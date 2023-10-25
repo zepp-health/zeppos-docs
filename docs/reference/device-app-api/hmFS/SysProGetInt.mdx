@@ -1,0 +1,33 @@
+---
+title: hmFS.SysProGetInt(key)
+sidebar_label: SysProGetInt
+---
+
+Get the temporarily stored integer that will be cleared by system reboot.
+
+## Type
+
+```ts
+(key: string) => result
+```
+
+## Parameters
+
+### key
+
+| Description | Required |   Type   | Default |
+| ----------- | -------- | -------- | ------ |
+|  key string |    yes   | `string` |   -    |
+
+### result
+
+|   Description- |   Type   |
+| -------------- | -------- |
+| stored integer | `number` |
+
+## Usage
+
+```js
+hmFS.SysProSetInt('js_test_int', 100)
+console.log(hmFS.SysProGetInt('js_test_int'))
+```

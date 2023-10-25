@@ -1,0 +1,44 @@
+---
+title: ARC_PROGRESS
+sidebar_label: ARC_PROGRESS
+---
+
+Arc progress widget draws arc progress, supports start angle, line width, end angle, color, progress scale.
+
+## Create UI widget
+
+```js
+const arcProgress = hmUI.createWidget(hmUI.widget.ARC_PROGRESS, Param)
+```
+
+## Type
+
+### Param: object
+
+| Properties        | Description                                                                                |  Required | Type     |
+| ----------------- | ------------------------------------------------------------------------------------------ | --------- | -------- |
+| center_x          | Center of circle x                                                                         | YES       | `number` |
+| center_y          | Center of circle y                                                                         | YES       | `number` |
+| radius            | Radius                                                                                     | YES       | `number` |
+| start_angle       | The angle at the beginning of the arc. (0 degrees is the positive three o'clock direction) | YES       | `number` |
+| end_angle         | The angle at the end of the arc. (0 degrees is the positive three o'clock direction)       | YES       | `number` |
+| line_width        | Width of circular arc.                                                                     | YES       | `number` |
+| color             | Color of circular arc.                                                                     | YES       | `number` |
+| src_bg            | Background images.                                                                         | NO        | `string` |
+| level             | The scale of arc progress. [0-100]                                                         | NO        | `number` |
+
+## Code example
+
+```js
+const arcProgress = hmUI.createWidget(hmUI.widget.ARC_PROGRESS)
+arcProgress.setProperty(hmUI.prop.MORE, {
+  center_x: 100,
+  center_y: 100,
+  radius: 200,
+  start_angle: -90,
+  end_angle: 90,
+  color: 0x34e073,
+  line_width: 10,
+  level: 50
+})
+```

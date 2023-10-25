@@ -1,0 +1,36 @@
+---
+title: stopTimer(timerID)
+sidebar_label: stopTimer
+---
+
+Delete Timer
+
+## Type
+
+```ts
+(timerId: number) => void
+```
+
+## Parameters
+
+### timerId
+
+|                        Description                      |   Type   |
+| ------------------------------------------------------- | -------- |
+| timer handle, returned when the timer object is created | `number` |
+
+## Code example
+
+```js
+const timer1 = timer.createTimer(
+  500,
+  1000,
+  function (option) {
+    console.log('timer callback')
+    console.log(option.hour)
+  },
+  { hour: 0, minute: 15, second: 30 }
+)
+
+timer.stopTimer(timer1)
+```

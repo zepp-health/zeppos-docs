@@ -1,0 +1,67 @@
+---
+title: hmFS.stat_asset(path)
+sidebar_label: stat_asset
+---
+
+> Zepp OS 小程序文件系统介绍请参考 [文件系统](../../../guides/framework/device/fs.md)。
+
+获取小程序 `/assets` 目录下的文件信息。
+
+## 类型
+
+```ts
+(path: string) => [stat, err]
+```
+
+## 参数
+
+### path
+
+| 说明                                   | 必填 | 类型     | 默认值 |
+| -------------------------------------- | ---- | -------- | ------ |
+| 小程序的 `/assets` 目录下文件名(相对路径) | 是   | `string` | -      |
+
+### stat: object
+
+| 属性  | 说明                       | 类型     |
+| ----- | -------------------------- | -------- |
+| size  | 文件大小（字节数）         | `number` |
+| mtime | 文件最后修改时间（UTC 秒） | `number` |
+
+### err
+
+| 说明                     | 类型     |
+| ------------------------ | -------- |
+| 错误码，`0` 表示获取成功 | `number` |
+
+其余错误码请参考 [文件系统 - 错误代码](../../../guides/framework/device/fs.md#错误代码)。
+
+## 代码示例
+
+```js
+Page({
+  build() {
+    const [fs_stat, err] = hmFS.stat_asset('raw/test_file.txt')
+
+    if (err === 0) {
+      const { size, mtime } = fs_stat
+
+      const text = hmUI.createWidget(hmUI.widget.TEXT, {
+        x: px(0),
+        y: px(120),
+        w: px(480),
+        h: px(46),
+        color: 0xffffff,
+        text_size: px(20),
+        align_h: hmUI.align.CENTER_H,
+        align_v: hmUI.align.CENTER_V,
+        text_style: hmUI.text_style.NONE,
+        text: `size: ${size}; mtime: ${mtime}`
+      })
+
+    } else {
+      console.log('err:', err)
+    }
+  }
+})
+```

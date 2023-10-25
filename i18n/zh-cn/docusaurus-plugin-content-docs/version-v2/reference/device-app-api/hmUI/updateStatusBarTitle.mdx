@@ -1,0 +1,28 @@
+---
+title: hmUI.updateStatusBarTitle(title)
+sidebar_label: updateStatusBarTitle
+---
+
+该接口只在方屏设备上有效，设置状态栏显示文本内容
+
+方屏标题栏，参考 [屏幕适配](../../../guides/best-practice/multi-screen-adaption.mdx)
+
+## 类型
+
+```ts
+(title: string) => void
+```
+
+## 参数
+
+| 参数  | 说明           | 类型     |
+| ----- | -------------- | -------- |
+| title | 状态栏显示文本 | `string` |
+
+## 代码示例
+
+```js
+const title = 'Mini Program Title'
+
+hmUI.updateStatusBarTitle(title)
+```

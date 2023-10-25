@@ -1,0 +1,86 @@
+---
+title: SLIDE_SWITCH
+sidebar_label: SLIDE_SWITCH 开关组件
+---
+
+> API_LEVEL `2.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../../guides/framework/device/compatibility.md)。
+
+![slide_switch_sample](/img/api/slide_switch_sample.jpg)
+
+用于在打开和关闭状态之间进行切换。
+
+## 创建 UI 控件
+
+```js
+import { createWidget, widget } from '@zos/ui'
+
+const slideSwitch = createWidget(widget.SLIDE_SWITCH, Param)
+```
+
+## 类型
+
+### Param: object
+
+| 属性                | 说明                                         | 是否必须 | 类型                |
+| ------------------- | -------------------------------------------- | -------- | ------------------- |
+| x                   | 控件 x 坐标                                  | 是       | `number`            |
+| y                   | 控件 y 坐标                                  | 是       | `number`            |
+| w                   | 控件显示宽度                                 | 是       | `number`            |
+| h                   | 控件显示高度                                 | 是       | `number`            |
+| select_bg           | 控件选中状态的背景图片路径                   | 是       | `string`            |
+| un_select_bg        | 控件未选中状态的背景图片路径                 | 是       | `string`            |
+| slide_src           | 控件开关按钮图片路径                         | 是       | `string`            |
+| slide_select_x      | 开关按钮选中状态的 x 坐标，相对于控件的坐标  | 是       | `number`            |
+| slide_un_select_x   | 开关按钮未选中状态的 x 坐标 相对于控件的坐标 | 是       | `number`            |
+| slide_y             | 开关按钮 y 轴坐标偏移，相对于控件的坐标      | 否       | `number`            |
+| checked_change_func | 控件状态更改时的回调函数                     | 否       | `CheckedChangeFunc` |
+| checked             | 默认选中状态                                 | 否       | `boolean`           |
+
+### CheckedChangeFunc: function
+
+```js
+(slideSwitch: SlideSwitch, checked: boolean) => void
+```
+
+| 参数        | 说明             | 类型          |
+| ----------- | ---------------- | ------------- |
+| slideSwitch | slideSwitch 实例 | `SlideSwitch` |
+| checked     | 是否选中         | `boolean`     |
+
+### Prop 属性
+
+| 属性                | 说明                      | 类型      |
+| ------------------- | ------------------------- | --------- |
+| `prop.CHECKED` | 设置开关状态 获取开关状态 | `boolean` |
+
+## 代码示例
+
+:::tip
+代码示例中的图片资源请参考 [设计资源](../../../../related-resources/design-resources.mdx)
+:::
+
+```js
+import { createWidget, widget, prop } from '@zos/ui'
+
+Page({
+  build() {
+    const slide_switch = createWidget(widget.SLIDE_SWITCH, {
+      x: 200,
+      y: 200,
+      w: 96,
+      h: 64,
+      select_bg: 'switch_on.png',
+      un_select_bg: 'switch_off.png',
+      slide_src: 'radio_select.png',
+      slide_select_x: 40,
+      slide_un_select_x: 8,
+      checked: true,
+      checked_change_func: (slideSwitch, checked) => {
+        console.log('checked', checked)
+      }
+    })
+
+    console.log('slide checked', slide_switch.getProperty(prop.CHECKED))
+  }
+})
+```

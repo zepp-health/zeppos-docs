@@ -1,0 +1,28 @@
+# getPackageInfo
+
+> Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Get some of the fields in the Mini Program configuration `app.json`.
+
+## Type
+
+```ts
+function getPackageInfo(): Result
+```
+
+## Parameters
+
+### Result
+
+| Type                | Description                                          |
+| ------------------- | ---------------------------------------------------- |
+| <code>object</code> | Please see the fields in `app.json` for more details |
+
+## Example
+
+```js
+import { getPackageInfo } from '@zos/app'
+
+const packageInfo = getPackageInfo()
+console.log(packageInfo.name)
+```

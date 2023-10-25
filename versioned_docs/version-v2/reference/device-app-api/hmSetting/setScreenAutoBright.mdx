@@ -1,0 +1,34 @@
+---
+title: hmSetting.setScreenAutoBright(isAutoBright)
+sidebar_label: setScreenAutoBright
+---
+
+Set whether auto-brightness is enabled or not.
+
+If auto-brightness is currently turned on and the brightness is automatically adjusted by the light sensor, the `setBrightness` function will have no real effect.
+
+## Type
+
+```ts
+(isAutoBright: boolean) => result
+```
+
+## Parameters
+
+### isAutoBright
+
+|                 Description            | Required |     Type   | Default |
+| -------------------------------------- | -------- | ---------- | ------ |
+|Whether to open the automatic brightness|   YES    |  `boolean` |   -    |
+
+### result
+
+|                   Description               |   Type   |
+| ------------------------------------------- | -------- |
+| result, `0` means the setting is successful | `number` |
+
+## Code example
+
+```js
+const result = hmSetting.setScreenAutoBright(true)
+```

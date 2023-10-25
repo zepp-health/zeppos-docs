@@ -1,0 +1,42 @@
+---
+title: hmFS.close(fileId)
+sidebar_label: close
+---
+
+> For an introduction to the Zepp OS Mini Program file system, please refer to [File System](../../../guides/framework/device/fs.md).
+
+Close file handle.
+
+## Type
+
+```ts
+(fileId: number) => result
+```
+
+## Parameters
+
+### fileId
+
+| Description                                   | Type     |
+| --------------------------------------------- | -------- |
+| File handle, returned when the file is opened | `number` |
+
+### result
+
+| Description             | Type     |
+| ----------------------- | -------- |
+| result, `0` get success | `number` |
+
+Please refer to [File System - Error Code](../../../guides/framework/device/fs.md#error-code) for the rest of the error codes.
+
+## Code example
+
+```js
+Page({
+  build() {
+    const fileId = hmFS.open('test_file.txt', hmFS.O_RDWR | hmFS.O_CREAT)
+
+    hmFS.close(fileId)
+  }
+})
+```

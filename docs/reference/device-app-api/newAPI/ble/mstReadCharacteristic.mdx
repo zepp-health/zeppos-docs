@@ -1,0 +1,33 @@
+# mstReadCharacteristic
+
+> Start from API_LEVEL `3.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Read Characteristic information.
+
+## Type
+
+```ts
+function mstReadCharacteristic(profile: Profile, uuid: UUID): void
+```
+
+## Parameters
+
+### Profile
+
+| Type                | Description     |
+| ------------------- | --------------- |
+| <code>number</code> | Profile pointer |
+
+### UUID
+
+| Type                | Description                |
+| ------------------- | -------------------------- |
+| <code>string</code> | Characteristic UUID string |
+
+## Example
+
+```js
+import { mstReadCharacteristic } from '@zos/ble'
+
+// ...
+```

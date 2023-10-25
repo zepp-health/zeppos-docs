@@ -1,0 +1,44 @@
+---
+title: hmFS.open_asset(path, flag)
+sidebar_label: open_asset
+---
+
+> For an introduction to the Zepp OS Mini Program file system, please refer to [File System](../../../guides/framework/device/fs.md).
+
+Open the files in the `/assets` directory of the Mini Program, the `/assets` directory is read-only.
+
+## Type
+
+```ts
+(path: string, flag: FLAG) => fileId
+```
+
+## Parameters
+
+### path
+
+|                   Description                     | Required |   Type   | Default |
+| ------------------------------------------------- | -------- | -------- | ------- |
+| Mini Program's `/assets` directory file name (relative path) |    yes   | `string` |    -    |
+
+### FLAG
+
+| Optional Properties |                           Description                   |
+| ------------------- | ------------------------------------------------------- |
+|      O_RDONLY       |                           read-only                     |
+
+### fileId
+
+| Description |   Type   |
+| ----------- | -------- |
+| file handle | `number` |
+
+## Code example
+
+```js
+Page({
+  build() {
+    const fileId = hmFS.open_asset('test_file.txt', hmFS.O_RDONLY)
+  }
+})
+```

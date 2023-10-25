@@ -1,0 +1,131 @@
+---
+title: Weather
+sidebar_label: Weather
+---
+
+:::warning
+This interface has been deprecated, please refer to https://github.com/orgs/zepp-health/discussions/83
+:::
+
+> Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Weather Forecasts sensor.
+
+## Methods
+
+### getForecastWeather
+
+Get weather forecast data
+
+```ts
+getForecastWeather(): ForecastWeather
+```
+
+#### ForecastWeather
+
+| Property     | Type                      | Description         | API_LEVEL |
+| ------------ | ------------------------- | ------------------- | --------- |
+| cityName     | <code>string</code>       | City Name           | 2.0       |
+| forecastData | <code>ForecastData</code> | Weather Information | 2.0       |
+| tideData     | <code>TideData</code>     | Tide Information    | 2.0       |
+
+#### ForecastData
+
+| Property | Type                                         | Description                                                    | API_LEVEL |
+| -------- | -------------------------------------------- | -------------------------------------------------------------- | --------- |
+| data     | <code>Array&#60;ForecastDataItem&#62;</code> | Weather Information Array, index 0 position represents the day | 2.0       |
+| count    | <code>number</code>                          | The length of Weather Information Array                        | 2.0       |
+
+#### ForecastDataItem
+
+| Property | Type                | Description                                                                    | API_LEVEL |
+| -------- | ------------------- | ------------------------------------------------------------------------------ | --------- |
+| high     | <code>number</code> | Maximum temperature                                                            | 2.0       |
+| low      | <code>number</code> | Lowest temperature                                                             | 2.0       |
+| index    | <code>number</code> | The index value of the weather, see index below for a description of the value | 2.0       |
+
+#### index
+
+| Value | Type                | Description          | API_LEVEL |
+| ----- | ------------------- | -------------------- | --------- |
+| 0     | <code>number</code> | Cloudy               | 2.0       |
+| 1     | <code>number</code> | Showers              | 2.0       |
+| 2     | <code>number</code> | Snow Showers         | 2.0       |
+| 3     | <code>number</code> | Sunny                | 2.0       |
+| 4     | <code>number</code> | Overcast             | 2.0       |
+| 5     | <code>number</code> | Light Rain           | 2.0       |
+| 6     | <code>number</code> | Light Snow           | 2.0       |
+| 7     | <code>number</code> | Moderate Rain        | 2.0       |
+| 8     | <code>number</code> | Moderate Snow        | 2.0       |
+| 9     | <code>number</code> | Heavy Snow           | 2.0       |
+| 10    | <code>number</code> | Heavy Rain           | 2.0       |
+| 11    | <code>number</code> | Sandstorm            | 2.0       |
+| 12    | <code>number</code> | Rain and Snow        | 2.0       |
+| 13    | <code>number</code> | Fog                  | 2.0       |
+| 14    | <code>number</code> | Hazy                 | 2.0       |
+| 15    | <code>number</code> | T-Storms             | 2.0       |
+| 16    | <code>number</code> | Snowstorm            | 2.0       |
+| 17    | <code>number</code> | Floating dust        | 2.0       |
+| 18    | <code>number</code> | Very Heavy Rainstorm | 2.0       |
+| 19    | <code>number</code> | Rain and Hail        | 2.0       |
+| 20    | <code>number</code> | T-Storms and Hail    | 2.0       |
+| 21    | <code>number</code> | Heavy Rainstorm      | 2.0       |
+| 22    | <code>number</code> | Dust                 | 2.0       |
+| 23    | <code>number</code> | Heavy sand storm     | 2.0       |
+| 24    | <code>number</code> | Rainstorm            | 2.0       |
+| 25    | <code>number</code> | Unknown              | 2.0       |
+| 26    | <code>number</code> | Cloudy Nighttime     | 2.0       |
+| 27    | <code>number</code> | Showers Nighttime    | 2.0       |
+| 28    | <code>number</code> | Sunny Nighttime      | 2.0       |
+
+#### TideData
+
+| Property | Type                                     | Description                                                 | API_LEVEL |
+| -------- | ---------------------------------------- | ----------------------------------------------------------- | --------- |
+| data     | <code>Array&#60;TideDataItem&#62;</code> | Tide Information Array, index 0 position represents the day | 2.0       |
+| count    | <code>number</code>                      | The length of Tide Information Array                        | 2.0       |
+
+#### TideDataItem
+
+| Property | Type                 | Description  | API_LEVEL |
+| -------- | -------------------- | ------------ | --------- |
+| sunrise  | <code>Sunrise</code> | Sunrise time | 2.0       |
+| sunset   | <code>Sunset</code>  | Sunset time  | 2.0       |
+
+#### Sunrise
+
+| Property | Type                | Description           | API_LEVEL |
+| -------- | ------------------- | --------------------- | --------- |
+| hour     | <code>number</code> | Sunrise time - hour   | 2.0       |
+| minute   | <code>number</code> | Sunrise time - minute | 2.0       |
+
+#### Sunset
+
+| Property | Type                | Description           | API_LEVEL |
+| -------- | ------------------- | --------------------- | --------- |
+| hour     | <code>number</code> | Sunrise time - hour   | 2.0       |
+| minute   | <code>number</code> | Sunrise time - minute | 2.0       |
+
+## Example
+
+```js
+import { Weather } from '@zos/sensor'
+
+const weather = new Weather()
+const { forecastData, tideData, cityName } = weather.getForecast()
+
+console.log(cityName)
+
+for (let i = 0; i < forecastData.count; i++) {
+  const element = forecastData.data[i]
+  console.log('Index' + element.index)
+  console.log('Highest temperature' + element.high)
+  console.log('Lowest temperature' + element.low)
+}
+
+for (let i = 0; i < tideData.count; i++) {
+  const element = tideData.data[i]
+  console.log('Sunrise' + element.sunrise.hour + element.sunrise.minute)
+  console.log('Sunset' + element.sunset.hour + element.sunset.minute)
+}
+```

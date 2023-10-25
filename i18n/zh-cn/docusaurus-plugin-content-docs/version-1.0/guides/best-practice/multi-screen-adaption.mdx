@@ -1,0 +1,142 @@
+---
+title: 屏幕适配
+sidebar_label: 屏幕适配
+---
+
+## 不同屏幕简介
+
+可以在 [设备基本信息](../../reference/related-resources/device-list.mdx) 中查到各设备的屏幕形状和尺寸。
+
+圆形屏幕的整个区域都供开发者绘制，而**方形屏幕设备上则预先绘制了一个状态栏**，以达到应用的统一性，如下图所示：
+
+![square screen](/img/docs/guides/best-practice/square_screen.jpg)
+
+状态栏的高度为 64 px，左侧显示的是文本，右侧显示的是当前时间。文本默认为 `app.json` 中的 `appName` 字段，如果在 `i18n` 中配置了 `appName` 字段，则优先使用 `i18n` 中的配置。
+
+有以下与状态栏相关的 API
+
+- [hmUI.setStatusBarVisible(visible)](../../reference/device-app-api/hmUI/setStatusBarVisible.mdx)
+  - 可用于控制状态栏的隐藏和显示
+- [hmUI.updateStatusBarTitle(title)](../../reference/device-app-api/hmUI/updateStatusBarTitle.mdx)
+  - 可用于设置状态栏左侧的文本显示内容
+
+## 适配方案
+
+对开发者来说，希望是一份代码能够跑在各个设备上，在现阶段我们给出了这样的两条方案：
+
+- `px` 内置函数：对相同形状的屏幕使用内置 `px` 函数实现按屏幕进行比例大小缩放
+- 样式代码按形状区分组织：不同形状屏幕建议样式分屏幕形状分开组织，在运行时判断屏幕形状，读取相应的样式
+
+### `px` 全局函数
+
+框架在全局实现了一个工具函数 `px`。
+
+会以 [小程序配置](../../reference/app-json.mdx) 中 `targets` 对象中各机型配置的 `designWidth` 为基准进行等比例缩放。
+
+举一个例子，某一应用 `app.json` 中的 `targets` 配置如下：
+
+```js
+{
+  ...
+  "targets": {
+    "gtr-3-pro": {
+      "designWidth": 480
+    },
+    "gtr-3": {
+      "designWidth": 480
+    },
+  }
+}
+```
+
+在上文我们可以知道，GTR 3 PRO 机型的宽度为 `480`，GTR 3 机型的的宽度为 `454`
+
+在下文中我们用 `DEVICE_WIDTH` 来指代设备的真实尺寸，那么 `px(x)` 函数运算的结果就是 `Math.ceil(x / designWidth * DEVICE_WIDTH)`
+
+在 GTR 3 PRO 上，`designWidth` 的值在 `app.json` 中进行配置，为 `480`，查询本文档上方机型尺寸，找到 `DEVICE_WIDTH` 值为 `480`，`px(100)` 的执行结果就是 `Math.ceil(100 / 480 * 480) = 100`
+
+在 GTR 3 上，`designWidth` 的值在 `app.json` 中进行配置，为 `480`，查询本文档上方机型尺寸，找到 `DEVICE_WIDTH` 值为 `454`，`px(100)` 的执行结果就是 `Math.ceil(100 / 480 * 454) = 95`
+
+```js
+// 在 GTR 3 PRO 真机执行
+console.log(px(100)) // 100
+
+// 在 GTR 3 真机执行
+console.log(px(100)) // 95
+```
+
+建议在进行 UI 设计时，圆屏统一以 `480px` 为基准，其余圆屏设备进行等比例缩放即可。
+
+在编码层面，只需要在 `app.json` 中配置上缩放基准 `designWidth` 字段，在代码中适当的地方包裹 `px` 函数，就可以做到布局自适应。
+
+```js
+const textStyle = {
+  x: px(96),
+  y: px(40),
+  w: px(288),
+  h: px(46),
+  color: 0xffffff,
+  text_size: px(36),
+  align_h: h.ALIGN.CENTER_H,
+  align_v: h.ALIGN.CENTER_V,
+  text_style: hmUI.text_style.WRAP
+}
+
+const text = hmUI.createWidget(hmUI.widget.TEXT, textStyle)
+```
+
+### 样式代码按屏幕形状区分组织
+
+与圆屏比起来，方屏在 UI 排版上发挥的空间更大一些，允许一款应用的 UI 在方屏和圆屏上会有部分不同，对于这种需求，给出一种代码组织思路：
+
+核心思想是样式文件独立于逻辑存放，有单独的 `styles.js`，在运行时获取设备的形状和尺寸，根据不同的屏幕形状，导出不同的样式变量
+
+通过 `hmSetting.getDeviceInfo` API 获取屏幕相关
+
+```js title="index.style.js"
+const deviceInfo = hmSetting.getDeviceInfo()
+const { width, height, screenShape } = deviceInfo
+
+// 0 - 方 s
+// 1 - 圆 r
+const DEVICE_TYPE = DEVICE_SHAPE ? 'round' : 'square'
+
+const processVal = (valObj = {}) => {
+  return valObj[DEVICE_TYPE] ? valObj[DEVICE_TYPE] : 0
+}
+
+const HOME_TITLE = {
+  round: {
+    attrs: {
+      text: 'Hello World Round'
+    },
+    x: px(96),
+    y: px(40),
+    w: px(288),
+    h: px(46),
+    color: 0xffffff,
+    text_size: px(36),
+    align_h: h.ALIGN.CENTER_H,
+    align_v: h.ALIGN.CENTER_V,
+    text_style: hmUI.text_style.WRAP
+  },
+  square: {
+    attrs: {
+      text: 'Hello World Square',
+      x: 32,
+      y: 11,
+      w: 232,
+      h: 42,
+      color: 0x666666,
+      text_size: 32,
+      align_h: h.ALIGN.CENTER_H,
+      align_v: h.ALIGN.CENTER_V,
+      text_style: hmUI.text_style.NONE
+    }
+  }
+}
+
+export default {
+  HOME_TITLE: processStyles(HOME_TITLE)
+}
+```

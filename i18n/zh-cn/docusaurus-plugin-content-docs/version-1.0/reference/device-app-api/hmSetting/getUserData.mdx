@@ -1,0 +1,37 @@
+---
+title: hmSetting.getUserData()
+sidebar_label: getUserData
+---
+
+获取用户数据。
+
+未获取到数据时，所有属性为 `0`。
+
+## 类型
+
+```ts
+() => userData
+```
+
+## 参数
+
+### userData: object
+
+| 属性     | 说明                                     | 类型      |
+| -------- | ---------------------------------------- | --------- |
+| age      | 用户年龄，无数据时为 `0`                 | `number`  |
+| height   | 用户身高，浮点数，无数据时为 `0`         | `number`  |
+| weight   | 用户体重，浮点数，无数据时为 `0`         | `number`  |
+| gender   | `0`：MALE、`1`：FEMALE、`2`：UNSPECIFIED | `boolean` |
+| nickName | 用户昵称                                 | `string`  |
+| region   | 用户账号注册地区（ISO 标准）             | `string`  |
+
+## 代码示例
+
+```js
+const age = hmSetting.getUserData().age
+const height = hmSetting.getUserData().height
+const weight = hmSetting.getUserData().weight
+const gender = hmSetting.getUserData().gender
+const nickName = hmSetting.getUserData().nickName
+```

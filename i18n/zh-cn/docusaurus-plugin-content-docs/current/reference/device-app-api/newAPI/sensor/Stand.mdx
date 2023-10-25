@@ -1,0 +1,64 @@
+---
+title: Stand
+sidebar_label: Stand 站立行为
+---
+
+> API_LEVEL `2.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+站立行为传感器。
+
+:::info
+权限代码： `data:user.hd.stand`
+:::
+
+## 方法
+
+### getCurrent
+
+获取当前有站立行为的小时数
+
+```ts
+getCurrent(): number
+```
+
+### getTarget
+
+获取有站立行为目标的小时数
+
+```ts
+getTarget(): number
+```
+
+### onChange
+
+注册站立行为小时数变化事件监听回调函数
+
+```ts
+onChange(callback: () => void): void
+```
+
+### offChange
+
+取消站立行为小时数变化事件监听回调函数
+
+```ts
+offChange(callback: () => void): void
+```
+
+## 代码示例
+
+```js
+import { Stand } from '@zos/sensor'
+
+const stand = new Stand()
+const current = stand.getCurrent()
+const target = stand.getTarget()
+const callback = () => {
+  console.log(stand.getCurrent())
+}
+
+stand.onChange(callback)
+
+// When not needed for use
+stand.offChange(callback)
+```

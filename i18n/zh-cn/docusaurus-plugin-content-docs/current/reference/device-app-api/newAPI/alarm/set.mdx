@@ -1,0 +1,102 @@
+# set
+
+> API_LEVEL `3.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+支持持久化的定时器，用来唤醒小程序的页面。
+
+:::info
+权限代码： `device:os.alarm`
+:::
+
+## 类型
+
+```ts
+function set(option: Option): Result
+```
+
+## 参数
+
+### Option
+
+| 属性            | 类型                 | 必填 | 默认值             | 说明                                                                                                                                                                                                                            | API_LEVEL |
+| --------------- | -------------------- | ---- | ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------- |
+| appid           | <code>number</code>  | 否   | -                  | 小程序的 App ID，默认当前小程序 ID                                                                                                                                                                                              | 3.0       |
+| file            | <code>string</code>  | 是   | -                  | 唤醒小程序的文件路径，支持「设备应用服务」                                                                                                                                                                                      | 3.0       |
+| time            | <code>number</code>  | 否   | -                  | 定时器执行的时间，UTC 时间戳，单位秒，该字段优先级高于 `delay`                                                                                                                                                                  | 3.0       |
+| delay           | <code>number</code>  | 否   | -                  | 基于当前时间的延迟多少秒后执行，单位秒                                                                                                                                                                                          | 3.0       |
+| store           | <code>boolean</code> | 否   | <code>false</code> | 定时器是否需要持久化存储（设备重启后依然能够成功执行）                                                                                                                                                                          | 3.0       |
+| repeat_type     | <code>number</code>  | 否   | -                  | 定时器的重复类型，参考定时器定期重复常量                                                                                                                                                                                        | 3.0       |
+| repeat_period   | <code>number</code>  | 否   | -                  | 当 repeat_type 设置为 `REPEAT_MINUTE`、`REPEAT_HOUR`、`REPEAT_DAY` 时生效，与 repeat_duration 配合使用，设置一个重复周期，一个重复周期以当前的 `repeat_type` 为单位，包含 `repeat_period` 次，提醒前 `repeat_duration` 次       | 3.0       |
+| repeat_duration | <code>number</code>  | 否   | -                  | 当 repeat_type 设置为 `REPEAT_MINUTE`、`REPEAT_HOUR`、`REPEAT_DAY` 时生效，定时器一个周期内提醒的次数，与 `repeat_duration` 配合使用，一个周期以当前的 `repeat_type` 为单位，包含 repeat_period 次，提醒前 `repeat_duration` 次 | 3.0       |
+| week_days       | <code>number</code>  | 否   | -                  | 当 `repeat_type` 为 `REPEAT_WEEK` 时生效，可以自定义一周内重复哪几天，参考定时器周常量                                                                                                                                          | 3.0       |
+| start_time      | <code>number</code>  | 否   | -                  | 重复提醒开始的时间，UTC 秒，重复提醒只在重复时间段内生效                                                                                                                                                                        | 3.0       |
+| end_time        | <code>number</code>  | 否   | -                  | 重复提醒结束的时间，UTC 秒，重复提醒只在重复时间段内生效                                                                                                                                                                        | 3.0       |
+
+### Result
+
+| 类型                | 说明                                                                                                  |
+| ------------------- | ----------------------------------------------------------------------------------------------------- |
+| <code>number</code> | 创建定时器返回的 id，`0` 为无效 ID，表示定时器创建失败，支持持久化的定时器在系统重启后，ID 仍保持不变 |
+
+## 常量
+
+### 定时器定期重复常量
+
+| 常量            | 说明           | API_LEVEL |
+| --------------- | -------------- | --------- |
+| `REPEAT_ONCE`   | 重复一次       | 3.0       |
+| `REPEAT_MINUTE` | 每分钟重复一次 | 3.0       |
+| `REPEAT_HOUR`   | 每小时重复一次 | 3.0       |
+| `REPEAT_DAY`    | 每天重复一次   | 3.0       |
+| `REPEAT_WEEK`   | 每周重复一次   | 3.0       |
+| `REPEAT_MONTH`  | 每月重复一次   | 3.0       |
+| `REPEAT_YEAR`   | 每年重复一次   | 3.0       |
+
+### 定时器周常量
+
+| 常量       | 说明   | API_LEVEL |
+| ---------- | ------ | --------- |
+| `WEEK_MON` | 星期一 | 3.0       |
+| `WEEK_TUE` | 星期二 | 3.0       |
+| `WEEK_WED` | 星期三 | 3.0       |
+| `WEEK_THU` | 星期四 | 3.0       |
+| `WEEK_FRI` | 星期五 | 3.0       |
+| `WEEK_SAT` | 星期六 | 3.0       |
+| `WEEK_SUN` | 星期日 | 3.0       |
+
+## 代码示例
+
+```js
+// At a certain time each day
+import { set, REPEAT_DAY } from '@zos/alarm'
+
+const option = {
+  file: 'pages/index.js',
+  time: 12345678,
+  repeat_type: REPEAT_DAY,
+}
+const id = set(option)
+
+// Every Monday and Wednesday
+import { set, REPEAT_WEEK, WEEK_MON, WEEK_WED } from '@zos/alarm'
+
+const option = {
+  file: 'pages/index.js',
+  time: 12345678,
+  repeat_type: REPEAT_WEEK,
+  week_days: WEEK_MON | WEEK_WED,
+}
+const id = set(option)
+
+// Reminder every 21 days
+import { set, REPEAT_DAY } from '@zos/alarm'
+
+const option = {
+  file: 'pages/index.js',
+  time: 12345678,
+  repeat_type: REPEAT_DAY,
+  repeat_period: 20,
+  repeat_duration: 1,
+}
+const id = set(option)
+```

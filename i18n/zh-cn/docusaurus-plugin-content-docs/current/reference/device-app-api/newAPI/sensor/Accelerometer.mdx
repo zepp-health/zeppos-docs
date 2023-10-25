@@ -1,0 +1,120 @@
+---
+title: Accelerometer
+sidebar_label: Accelerometer 加速度
+---
+
+> API_LEVEL `3.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+加速度传感器。
+
+:::info
+权限代码： `device:os.accelerometer`
+:::
+
+## 方法
+
+### start
+
+开始监听加速度传感器数据
+
+```ts
+start(): void
+```
+
+### stop
+
+停止监听加速度传感器数据
+
+```ts
+stop(): void
+```
+
+### getCurrent
+
+获取当前加速度传感器数据
+
+```ts
+getCurrent(): Result
+```
+
+#### Result
+
+| 属性 | 类型                | 说明                      | API_LEVEL |
+| ---- | ------------------- | ------------------------- | --------- |
+| x    | <code>number</code> | x 轴的加速度，单位 cm/s^2 | 3.0       |
+| y    | <code>number</code> | y 轴的加速度，单位 cm/s^2 | 3.0       |
+| z    | <code>number</code> | z 轴的加速度，单位 cm/s^2 | 3.0       |
+
+### onChange
+
+注册加速度传感器数据变化事件监听回调函数
+
+```ts
+onChange(callback: () => void): void
+```
+
+### offChange
+
+取消加速度传感器数据变化事件监听回调函数
+
+```ts
+offChange(callback: () => void): void
+```
+
+### setFreqMode
+
+> API_LEVEL `3.0`
+
+设置触发频率的模式，`mode` 值参考频率模式常量
+
+```ts
+setFreqMode(mode: number): void
+```
+
+#### 常量
+
+##### 频率模式
+
+| 常量               | 说明                       | API_LEVEL |
+| ------------------ | -------------------------- | --------- |
+| `FREQ_MODE_LOW`    | 低功耗模式，触发频率低     | 3.0       |
+| `FREQ_MODE_NORMAL` | 正常功耗模式，触发频率中等 | 3.0       |
+| `FREQ_MODE_HIGH`   | 高功耗模式，触发频率高     | 3.0       |
+
+### getFreqMode
+
+> API_LEVEL `3.0`
+
+获取触发频率模式，结果值参考频率模式常量
+
+```ts
+getFreqMode(): number
+```
+
+#### 常量
+
+##### 频率模式
+
+| 常量               | 说明                       | API_LEVEL |
+| ------------------ | -------------------------- | --------- |
+| `FREQ_MODE_LOW`    | 低功耗模式，触发频率低     | 3.0       |
+| `FREQ_MODE_NORMAL` | 正常功耗模式，触发频率中等 | 3.0       |
+| `FREQ_MODE_HIGH`   | 高功耗模式，触发频率高     | 3.0       |
+
+## 代码示例
+
+```js
+import { Accelerometer } from '@zos/sensor'
+
+const accelerometer = new Accelerometer()
+
+const callback = () => {
+  console.log(accelerometer.getCurrent())
+}
+accelerometer.onChange(callback)
+accelerometer.start()
+
+// When not needed for use
+accelerometer.offChange()
+accelerometer.stop()
+```

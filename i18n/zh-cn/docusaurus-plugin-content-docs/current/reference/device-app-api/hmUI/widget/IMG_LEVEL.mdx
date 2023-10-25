@@ -1,0 +1,49 @@
+---
+title: IMG_LEVEL
+sidebar_label: IMG_LEVEL 图片单独进度
+---
+
+![img_level_sample](/img/api/img_level_sample.jpg)
+
+通过给定一个图片数组，根据进度（`level` 属性）去显示对应的图片。
+
+## 创建 UI 控件
+
+```js
+const imgLevel = hmUI.createWidget(hmUI.widget.IMG_LEVEL, Param)
+```
+
+## 类型
+
+### Param: object
+
+| 属性         | 说明                        | 是否必须 | 类型            |
+| ------------ | --------------------------- | -------- | --------------- |
+| x            | 控件 x 坐标                 | 是       | `number`        |
+| y            | 控件 y 坐标                 | 是       | `number`        |
+| image_array  | 图片数组                    | 是       | `Array<string>` |
+| image_length | 数组大小                    | 是       | `number`        |
+| w            | 控件显示宽度，非必须        | 否       | `number`        |
+| h            | 控件显示高度，非必须        | 否       | `number`        |
+| level        | 绘制的图片 [1-image_length] | 否       | `number`        |
+
+:::caution
+
+- 如果 `w` / `h` 属性没有指定，就会去 `image_array` 读取图片的宽高作为控件的宽高
+:::
+
+## 代码示例
+
+```js
+Page({
+  build() {
+    const imgArray = ['img_level_1.png', 'img_level_2.png', 'img_level_3.png', 'img_level_4.png']
+    const img_level = hmUI.createWidget(hmUI.widget.IMG_LEVEL, {
+      x: 0,
+      y: 0,
+      image_array: imgArray,
+      image_length: imgArray.length,
+      level: 1
+    })
+})
+```

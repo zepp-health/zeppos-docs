@@ -1,0 +1,56 @@
+---
+title: Workout
+sidebar_label: Workout
+---
+
+> Start from API_LEVEL `3.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Workout Sensor.
+
+:::info
+permission code: `data:user.hd.workout`
+:::
+
+## Methods
+
+### getStatus
+
+Get altitude value in meters
+
+```ts
+getStatus(): Status
+```
+
+#### Status
+
+| Property         | Type                | Description        | API_LEVEL |
+| ---------------- | ------------------- | ------------------ | --------- |
+| vo2Max           | <code>number</code> | VO2 Max            | 3.0       |
+| trainingLoad     | <code>number</code> | Training Load      | 3.0       |
+| fullRecoveryTime | <code>number</code> | Full Recovery Time | 3.0       |
+
+### getHistory
+
+Get the duration of the workout record
+
+```ts
+getHistory(): Array<History>
+```
+
+#### History
+
+| Property  | Type                | Description                    | API_LEVEL |
+| --------- | ------------------- | ------------------------------ | --------- |
+| startTime | <code>number</code> | Workout start time             | 3.0       |
+| duration  | <code>number</code> | Duration of workout in seconds | 3.0       |
+
+## Example
+
+```js
+import { Workout } from '@zos/sensor'
+
+const workout = new Workout()
+
+const status = workout.getStatus()
+const history = workout.getHistory()
+```

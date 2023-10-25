@@ -1,0 +1,202 @@
+---
+title: SLEEP
+sidebar_label: SLEEP
+---
+
+## Creating Sensors
+
+```js
+const sleep = hmSensor.createSensor(hmSensor.id.SLEEP)
+```
+
+## SLEEP instance
+
+### sleep.updateInfo()
+
+By default, the system updates the sleep data every `30` minutes, the `updateInfo` method is used to trigger the update of the sleep data
+
+#### Type
+
+```ts
+() => void
+```
+
+### sleep.getSleepStageData()
+
+Get stage sleep information, as an array of variable length
+
+#### Type
+
+```ts
+() => Array<SleepInfo>
+```
+
+##### SleepInfo
+
+| Properties |                             Description                       | Type |
+| ---------- | ------------------------------------------------------------- | -------- |
+|    model   |                                sleep model                          | `number` |
+|    start   | start time, based on the number of minutes at 0:00 on the day | `number` |
+|    stop    | The end event, based on the number of minutes at 0:00 on the day | `number` |
+
+##### model:number
+
+Search `modelData` in `sleep.getSleepStageModel()`
+
+| value                      | Description       |
+| -------------------------- | ------------ |
+| `modelData.WAKE_STAGE`     | wake stage |
+| `modelData.REM_STAGE`      | REM stage  |
+| `modelData.LIGHT_STAGE`    | light stage|
+| `modelData.DEEP_STAGE`     | deep stage |
+
+#### Code example
+
+```js
+const sleepStageArray = sleep.getSleepStageData()
+
+for (int i = 0; i < sleepStageArray.length; i++) {
+  const data = sleepStageArray[i];
+  console.log(data.model)
+  console.log(data.start)
+  console.log(data.stop)
+}
+```
+
+### sleep.getSleepStageModel()
+
+Get Sleep Mode
+
+#### Type
+
+```ts
+() => modelData
+```
+
+#### Code example
+
+```js
+const modelData = sleep.getSleepStageModel()
+console.log(modelData.WAKE_STAGE)
+console.log(modelData.REM_STAGE)
+console.log(modelData.LIGHT_STAGE)
+console.log(modelData.DEEP_STAGE)
+```
+
+### sleep.getSleepHrData()
+
+Obtain the sleep heart rate as a variable-length array, with the `i` item representing the heart rate measurement at the `i` minute of sleep onset
+
+#### Type
+
+```ts
+() => Array<number>
+```
+
+### sleep.getTotalTime()
+
+Get total sleep time
+
+#### Type
+
+```ts
+() => number
+```
+
+#### Code example
+
+```js
+const totalTime = sleep.getTotalTime()
+```
+
+### sleep.getBasicInfo()
+
+#### Type
+
+```ts
+() => BasicInfo
+```
+
+##### BasicInfo
+
+| Properties |                                      Description                                 | Type |
+| ---------- | -------------------------------------------------------------------------------- | -------- |
+|  score     |                                      sleep score                                 | `number` |
+|  deepMin   |                              Deep sleep time in minutes                          | `number` |
+| startTime  |      Sleep start time, based on the number of minutes at 0:00 on the day         | `number` |
+|  endTime   | Sleep end time, the number of minutes from the same base point as the start time | `number` |
+
+#### Full Example
+
+```js
+class TextByLine {
+  constructor(params) {
+    const { text = '', y = undefined, line = 0 } = params
+
+    this.text = text
+    this.y = y
+    this.line = line
+    this.y_computed = Number.isInteger(this.y) ? this.y : px(this.line * 60 + 120)
+  }
+
+  render() {
+    return hmUI.createWidget(hmUI.widget.TEXT, {
+      x: px(0),
+      y: this.y_computed,
+      w: px(480),
+      h: px(46),
+      color: 0xffffff,
+      text_size: px(20),
+      align_h: hmUI.align.CENTER_H,
+      align_v: hmUI.align.CENTER_V,
+      text_style: hmUI.text_style.NONE,
+      text: this.text
+    })
+  }
+}
+
+Page({
+  build() {
+    const sleep = hmSensor.createSensor(hmSensor.id.SLEEP)
+
+    const { score, deepMin, startTime, endTime } = sleep.getBasicInfo()
+
+    new TextByLine({
+      text: `score:${score};deepMin:${deepMin};startTime:${startTime};endTime:${endTime}`,
+      line: 0
+    }).render()
+
+    const totalTime = sleep.getTotalTime()
+
+    new TextByLine({
+      text: `totalTime:${totalTime}`,
+      line: 1
+    }).render()
+
+    const modelData = sleep.getSleepStageModel()
+
+    const sleepStageArray = sleep.getSleepStageData();
+
+    for (let i = 0; i < sleepStageArray.length; i++) {
+      const element = sleepStageArray[i];
+      const { model, start, stop } = element
+
+      new TextByLine({
+        text: `model:${model};start:${start};stop:${stop}`,
+        line: i + 2
+      }).render()
+    }
+
+    const hrArr = sleep.getSleepHrData()
+
+    const hrArrWidgetList = hrArr.slice(0, 10)
+
+    for (let i = 0; i < hrArrWidgetList.length; i++) {
+      new TextByLine({
+        text: `hrValue:${hrArrWidgetList[i]}`,
+        line: i + sleepStageArray.length + 3
+      }).render()
+    }
+  }
+})
+```

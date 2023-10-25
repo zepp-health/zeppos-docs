@@ -1,0 +1,278 @@
+---
+title: KEYBOARD
+sidebar_label: KEYBOARD
+---
+
+> Start from API_LEVEL `3.0`. Please refer to [API_LEVEL](../../../../../guides/framework/device/compatibility.md)。
+
+## Create UI widget
+
+```js
+import { createWidget, widget, prop } from '@zos/ui'
+
+const keyboard = createWidget(widget.KEYBOARD, Param)
+```
+
+### Param: object
+
+| Properties | Description                                                                                             | Required | Type             |
+| ---------- | ------------------------------------------------------------------------------------------------------- | -------- | ---------------- |
+| x          | X position, default value is `0`                                                                        | NO       | `number`         |
+| y          | Y position, default value is `0`                                                                        | NO       | `number`         |
+| click_func | Callback function when Key clicked                                                                      | YES      | `ClickFunc`      |
+| key_attr   | Key attributes, if no key attribute is passed in, the default configuration of numeric keyboard is used | NO       | `Array<KeyAttr>` |
+
+#### ClickFunc: function
+
+```ts
+click_func(keyboard: WIDGET, id: number, value: number): void
+```
+
+| Param    | Description           |
+| -------- | --------------------- |
+| keyboard | The keyboard instance |
+| id       | Key id                |
+| value    | Key value             |
+
+#### KeyAttr: object
+
+| Properties | Description                                          | Required | Type     |
+| ---------- | ---------------------------------------------------- | -------- | -------- |
+| id         | Key id                                               | NO       | `number` |
+| x          | X position of key                                    | YES      | `number` |
+| y          | Y position of key                                    | YES      | `number` |
+| text       | Key text, Only single ASCII characters are supported | NO       | `string` |
+| image      | Key image path, recommended image size is 64 x 64 px | NO       | `string` |
+| value      | Key value                                            | NO       | `number` |
+
+## Property Operations
+
+Property operations are set via `widget.setProperty`
+
+```js
+keyboard.setProperty(prop, Param)
+```
+
+### `prop.ADD_KEY`
+
+Add a new key, Params refer to `KeyAttr`
+
+```js
+keyboard.setProperty(prop.ADD_KEY, {
+  id: 100,
+  x: 280,
+  y: 350,
+  text: '!'
+})
+```
+
+### `prop.DEL_KEY`
+
+Delete a key
+
+#### Param: object
+
+| Properties | Description | Required | Type     |
+| ---------- | ----------- | -------- | -------- |
+| id         | Key id      | NO       | `number` |
+
+```js
+keyboard.setProperty(prop.DEL_KEY, {
+  id: 20
+})
+```
+
+### `prop.KEY_PARA`
+
+Modify a key properties, Params refer to `KeyAttr`
+
+```js
+keyboard.setProperty(prop.KEY_PARA, {
+  id: 1,
+  x: 50,
+  y: 30,
+  image: 'images/common/widgetsbc/phoneCall/phone call_ic_answer_64px.png',
+  text: 'c',
+  value: 98
+})
+```
+
+### `prop.TEXT_STYLE`
+
+Text styles
+
+#### Param: object
+
+| Properties | Description                                                     | Required | Type      |
+| ---------- | --------------------------------------------------------------- | -------- | --------- |
+| x          | X position of text                                              | YES      | `number`  |
+| w          | Text width                                                      | YES      | `number`  |
+| align_h    | The alignment of the horizontal axis, alignment refer to `TEXT` | NO       | `number`  |
+| alpha      | Text alpha value [0-255], 0 for full transparency               | NO       | `number`  |
+| color      | Text color                                                      | NO       | `number`  |
+| show       | Text showon                                                     | NO       | `boolean` |
+
+```js
+keyboard.setProperty(prop.TEXT_STYLE, {
+  x: 0,
+  w: 480,
+  align_h: align.CENTER,
+  alpha: 255,
+  color: 0xff0000,
+  show: 1
+})
+```
+
+### `prop.TEXT`
+
+Update text, `Param` is `string`
+
+```js
+keyboard.setProperty(prop.TEXT, 'hello rose !')
+```
+
+### `prop.X` and `prop.Y`
+
+Adjust the overall position of the keyboard, `Param` is `number`
+
+```js
+keyboard.setProperty(prop.X, 0)
+keyboard.setProperty(prop.Y, 10)
+```
+
+## Code example
+
+```js
+import { createWidget, widget, prop, align } from '@zos/ui'
+
+function callback(keyboard, id, value) {
+  console.log(`id:${id} char:${value}`)
+  keyboard.setProperty(prop.TEXT, `id:${id} char:${value}`)
+
+  ret = keyboard.getProperty(prop.KEY_PARA, id)
+  if (ret !== undefined) {
+    console.log(id)
+    console.log(ret.value)
+    console.log(ret.x)
+    console.log(ret.y)
+  }
+}
+
+const keyboard = createWidget(widget.KEYBOARD, {
+  click_func: callback,
+  key_attr: [
+    {
+      id: 0,
+      x: 0,
+      y: 150,
+      text: 'H',
+      value: 1
+    },
+    {
+      id: 1,
+      x: 90,
+      y: 150,
+      text: 'E',
+      value: 2
+    },
+    {
+      id: 20,
+      x: 180,
+      y: 150,
+      text: 'L',
+      value: 3
+    },
+    {
+      id: 3,
+      x: 270,
+      y: 150,
+      text: 'L',
+      value: 4
+    },
+    {
+      id: 4,
+      x: 360,
+      y: 150,
+      text: 'O',
+      value: 5
+    },
+    {
+      id: 6,
+      x: 45,
+      y: 250,
+      text: 'R',
+      value: 6
+    },
+    {
+      id: 7,
+      x: 135,
+      y: 250,
+      text: 'O',
+      value: 7
+    },
+    {
+      id: 8,
+      x: 225,
+      y: 250,
+      text: 'S',
+      value: 8
+    },
+    {
+      id: 9,
+      x: 315,
+      y: 250,
+      text: 'E',
+      value: 9
+    },
+
+    {
+      id: 10,
+      x: 180,
+      y: 350,
+      image: 'images/common/widgetsbc/phoneCall/phone call_ic_answer_64px.png',
+      text: ' ',
+      value: 10
+    }
+  ]
+})
+
+keyboard.setProperty(prop.TEXT_STYLE, {
+  x: 0,
+  w: 480,
+  align_h: align.CENTER,
+  alpha: 255,
+  color: 0xff0000,
+  show: 1
+})
+
+keyboard.setProperty(prop.TEXT, 'hello rose !')
+
+keyboard.setProperty(prop.X, 0)
+keyboard.setProperty(prop.Y, 10)
+
+keyboard.setProperty(prop.KEY_PARA, {
+  id: 1,
+  text: 'c',
+  value: 98
+})
+
+keyboard.setProperty(prop.DEL_KEY, {
+  id: 20
+})
+
+keyboard.setProperty(prop.ADD_KEY, {
+  id: 100,
+  x: 280,
+  y: 350,
+  text: '!',
+  value: 11
+})
+
+keyboard.setProperty(prop.ADD_KEY, {
+  id: 99,
+  x: 80,
+  y: 350,
+  text: '!',
+  value: 11
+})
+```
