@@ -18,7 +18,7 @@ Select the document language and document version according to the language pref
 :::
 
 :::tip
-Click here to follow the Zepp OS guide [Quick Start](./guides/quick-start.md)
+Click here to follow the Zepp OS guide [Quick Start](./guides/quick-start.mdx)
 :::
 
 :::tip
