@@ -18,7 +18,7 @@ Zepp OS 是为智能穿戴设备打造的健康管理系统，围绕「给用户
 :::
 
 :::tip
-点击此处跟随 Zepp OS 指南 [《快速上手》](./guides/quick-start.md)
+点击此处跟随 Zepp OS 指南 [《快速上手》](./guides/quick-start.mdx)
 :::
 
 :::tip
