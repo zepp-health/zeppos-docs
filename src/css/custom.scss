@@ -123,6 +123,11 @@ html[lang='zh-cn'] {
   }
 }
 
+// Hide the version logo in doc
+.theme-doc-version-badge {
+  display: none;
+}
+
 /* 左侧菜单 */
 .menu {
   .menu__list {
@@ -184,7 +189,7 @@ html[lang='zh-cn'] {
   }
   .breadcrumbs__item:not(:last-child):after {
     width: 0.5rem;
-    height: 2.875rem;  
+    height: 2.875rem;
     background-size: contain;
     background-position: center 0.5rem;
     opacity: 1;
@@ -209,7 +214,7 @@ html[lang='zh-cn'] {
   .pagination-nav__sublabel {
     font-size: 1.25rem;
     font-weight: 600;
-  }  
+  }
   .pagination-nav__label {
     font-size: 1.25rem;
     font-weight: normal;

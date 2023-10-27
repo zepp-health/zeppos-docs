@@ -10,3 +10,5 @@ The quick start tutorial is divided into the following sections:
 3. [Running Simulator](./quick-start/simulator-dev.mdx)
 4. [Coding and Debugging](./quick-start/development.mdx)
 5. [Preview on a Watch](./quick-start/preview.mdx)
+
+Zepp OS team also provide video tutorials for this section, please refer to the [Youtube - Zepp OS Program Environment Setup and Development Beginner's Guide](https://www.youtube.com/watch?v=RPyTge0kjWQ)

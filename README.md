@@ -75,7 +75,7 @@ The following is an abbreviated version of the project's catalog structure.
 │   │   └── intro.md      # https://docs.zepp.com/docs/1.0/intro/
 │   └── version-v2
 │       ├── reference
-│       │   └── app-json.mdx    # https://docs.zepp.com/docs/v2/reference/app-json/      # https://docs.zepp.com/docs/v2/intro/
+│       │   └── app-json.mdx    # https://docs.zepp.com/docs/v2/reference/app-json/
 │       └── intro.md    # https://docs.zepp.com/docs/v2/intro/
 ├── i18n
 │   └── zh-cn
