@@ -17,7 +17,7 @@ function requestPermission(option: Option): Result
 | 属性        | 类型                                                     | 必填 | 默认值 | 说明                               | API_LEVEL |
 | ----------- | -------------------------------------------------------- | ---- | ------ | ---------------------------------- | --------- |
 | permissions | <code>Array&#60;string&#62;</code>                       | 是   | -      | 权限字符串数组，数组长度至少为 `1` | 3.0       |
-| function    | <code>(result: Array&#60;number&#62;) =&#62; void</code> | 是   | -      | 权限申请结果回调函数               | 3.0       |
+| callback    | <code>(result: Array&#60;number&#62;) =&#62; void</code> | 是   | -      | 权限申请结果回调函数               | 3.0       |
 
 ### Result
 
@@ -40,7 +40,7 @@ import { requestPermission } from '@zos/app'
 
 const result = requestPermission({
   permissions: ['device:os.bg_service'],
-  function: (result) => {
+  callback: (result) => {
     console.log(result)
   },
 })
