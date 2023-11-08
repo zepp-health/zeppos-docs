@@ -14,15 +14,18 @@ function emitCustomSystemEvent(option: Option): void
 
 ### Option
 
-| Property   | Type                | Required | DefaultValue | Description                                                                         | API_LEVEL |
-| ---------- | ------------------- | -------- | ------------ | ----------------------------------------------------------------------------------- | --------- |
-| eventName  | <code>string</code> | Y        | -            | Customize event names that meet the naming convention of 'event.customize.${event}' | 3.0       |
-| eventParam | <code>string</code> | Y        | -            | Custom event parameters                                                             | 3.0       |
+| Property   | Type                | Required | DefaultValue | Description                                                                                                          | API_LEVEL |
+| ---------- | ------------------- | -------- | ------------ | -------------------------------------------------------------------------------------------------------------------- | --------- |
+| eventName  | <code>string</code> | Y        | -            | Customize event names that meet the naming convention of 'event:customize.${event}'                                  | 3.0       |
+| eventParam | <code>string</code> | Y        | -            | Custom event parameters, this parameter is passed to the `onInit` lifecycle function of the `AppService` constructor | 3.0       |
 
 ## Example
 
 ```js
 import { emitCustomSystemEvent } from '@zos/app'
 
-emitCustomSystemEvent('event.customize.test')
+emitCustomSystemEvent({
+  eventName: 'event:customize.test',
+  eventParam: 'eventName=event:customize.test&type=0',
+})
 ```

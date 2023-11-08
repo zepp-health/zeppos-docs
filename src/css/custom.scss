@@ -16,6 +16,8 @@
   --ifm-code-font-size: 95%;
 } */
 
+@import 'react-lite-youtube-embed/dist/LiteYouTubeEmbed.css';
+
 :root {
   --ifm-color-primary: #f84e3f;
   --ifm-color-primary-dark: #f73221;
@@ -301,4 +303,12 @@ html[data-theme='dark'] {
     --ifm-navbar-padding-horizontal: 1rem;
     --ifm-navbar-height: 3.75rem;
   }
+}
+
+.video-container {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  max-width: 560px;
+  margin: 0 auto;
 }

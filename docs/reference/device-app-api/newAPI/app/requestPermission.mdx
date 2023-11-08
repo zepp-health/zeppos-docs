@@ -17,7 +17,7 @@ function requestPermission(option: Option): Result
 | Property    | Type                                                     | Required | DefaultValue | Description                                                          | API_LEVEL |
 | ----------- | -------------------------------------------------------- | -------- | ------------ | -------------------------------------------------------------------- | --------- |
 | permissions | <code>Array&#60;string&#62;</code>                       | Y        | -            | An array of permission strings, with an array length of at least `1` | 3.0       |
-| function    | <code>(result: Array&#60;number&#62;) =&#62; void</code> | Y        | -            | Permission request result callback function                          | 3.0       |
+| callback    | <code>(result: Array&#60;number&#62;) =&#62; void</code> | Y        | -            | Permission request result callback function                          | 3.0       |
 
 ### Result
 
@@ -40,7 +40,7 @@ import { requestPermission } from '@zos/app'
 
 const result = requestPermission({
   permissions: ['device:os.bg_service'],
-  function: (result) => {
+  callback: (result) => {
     console.log(result)
   },
 })
