@@ -141,6 +141,23 @@ import useBaseUrl from '@docusaurus/useBaseUrl'
 <img src={useBaseUrl('/img/docs/quick-start/download_zepp.jpg')} width="300" title="download_zepp" />
 ```
 
+### Embed Youtube Video
+
+Use the [`react-lite-youtube-embed`](https://github.com/ibrahimcesar/react-lite-youtube-embed) library, refer to the example usage.
+
+<pre>
+```mdx-code-block
+import LiteYouTubeEmbed from 'react-lite-youtube-embed';
+
+&lt;div className="video-container">
+  &lt;LiteYouTubeEmbed
+    id="RPyTge0kjWQ"
+    title="Zepp OS Program Environment Setup and Development Beginner's Guide"
+  />
+&lt;/div>
+```
+</pre>
+
 ### Documentation in multiple languages and versions
 
 Some documents may have multi-language versions and copies of other document versions, developers do not need to deal with the above situation when making changes to the document, the official team will perform this part of the check when processing the Pull Request.

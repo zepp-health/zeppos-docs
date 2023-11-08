@@ -141,6 +141,23 @@ import useBaseUrl from '@docusaurus/useBaseUrl'
 <img src={useBaseUrl('/img/docs/quick-start/download_zepp.jpg')} width="300" title="download_zepp" />
 ```
 
+### 嵌入 Youtube 视频
+
+使用 [`react-lite-youtube-embed`](https://github.com/ibrahimcesar/react-lite-youtube-embed) 库，参考示例用法。
+
+<pre>
+```mdx-code-block
+import LiteYouTubeEmbed from 'react-lite-youtube-embed';
+
+&lt;div className="video-container">
+  &lt;LiteYouTubeEmbed
+    id="RPyTge0kjWQ"
+    title="Zepp OS Program Environment Setup and Development Beginner's Guide"
+  />
+&lt;/div>
+```
+</pre>
+
 ### 多语言和多版本
 
 部分文档可能存在多语言版本和其他文档版本的副本，开发者在对文档做修改的时候，无需对上述情况进行处理，官方团队在处理 Pull Request 的时候会执行这部分检查。
