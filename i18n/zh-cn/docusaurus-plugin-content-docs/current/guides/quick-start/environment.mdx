@@ -5,7 +5,7 @@ sidebar_label: 1. 环境准备
 
 在本章节中，我们将完成以下环境准备工作
 
-- Node.js
+- Node.js (v >= 16.0)
 - npm
 - Zeus CLI
 - TUN/TAP Network for simulator
@@ -64,6 +64,26 @@ Set-ExecutionPolicy -ExecutionPolicy RemoteSigned
 :::
 
 #### macOS
+
+:::caution
+如果使用的是搭载 Apple 芯片的 Mac，不适用此脚本，请参考 [手动安装](#手动安装)。
+
+如何确定 Mac 是否搭载 Apple 芯片？
+
+1. 点击桌面左上角 Apple 图标
+2. 点击「关于本机」
+3. 在「概览」Tab 浏览处理器信息，如果显示 Apple 则为搭载 Apple 芯片的 Mac
+
+如果已经执行过安装脚本，则需要执行以下命令卸载相关文件，之后直接进行手动安装的最后一步，[模拟器 - 安装与启动](../tools/simulator/setup.md)。
+
+```sh
+sudo rm -rf /Library/Extensions/tun.kext
+sudo rm -rf /Library/Extensions/tap.kext
+
+sudo rm -f /Library/LaunchDaemons/*tun.plist
+sudo rm -f /Library/LaunchDaemons/*tap.plist
+```
+:::
 
 在 macOS 中推荐使用系统内置的 `Terminal` 或者 `iTerm2` 终端来执行命令。
 

@@ -34,4 +34,4 @@ title: Apple Silicon 机型开启系统扩展
 
 重新开机即可生效此配置。
 
-更多信息请参考 [Apple 官方 - macOS 中的系统和内核扩展](https://support.apple.com/zh-cn/guide/deployment/depa5fb8376f/web)。
+更多信息请参考 [Apple 官方 - 在搭载 Apple 芯片的 Mac 上更改启动磁盘的安全性设置](https://support.apple.com/zh-cn/guide/mac-help/mchl768f7291/mac)。

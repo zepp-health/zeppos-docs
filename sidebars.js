@@ -561,7 +561,8 @@ module.exports = {
         'guides/faq/watchface-maker',
         'guides/faq/simulator-4-4k',
         'guides/faq/developer-bridge-mode',
-        'guides/faq/apple-silicon'
+        'guides/faq/apple-silicon',
+        'guides/faq/windows-cli-qrcode-error',
       ]
     },
     {

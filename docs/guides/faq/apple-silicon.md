@@ -34,4 +34,4 @@ This completes the system expansion configuration. After the setup is finished, 
 
 This configuration will take effect after the reboot is complete.
 
-For more information, please refer to [Apple Support - System and kernel extensions in macOS](https://support.apple.com/guide/security/kernel-extensions-sec8e454101b/web)。
+For more information, please refer to [Apple Support - System and kernel extensions in macOS](https://support.apple.com/guide/mac-help/change-security-settings-startup-disk-a-mac-mchl768f7291/mac)。

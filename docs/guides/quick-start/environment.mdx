@@ -5,7 +5,7 @@ sidebar_label: 1. Environmental Preparation
 
 In this section, we will complete the following environment preparations.
 
-- Node.js
+- Node.js (v >= 16.0)
 - npm
 - Zeus CLI
 - TUN/TAP Network for simulator
@@ -65,6 +65,26 @@ And then run the script again.
 :::
 
 #### macOS
+
+:::caution
+If you are using a Mac with an Apple chip, this script is not applicable. Please refer to [Manual Installation](#manual-installation).
+
+How to know if a Mac is equipped with an Apple chip?
+
+1. Click the Apple icon in the upper left corner of the desktop
+2. Select About This Mac
+3. In the “Overview” tab, look for “Processor” or “Chip”. Check if it says “Apple”
+
+If the installation script has already been executed, you need to execute the following command to uninstall the relevant files, and then proceed directly to the final step of manual installation, [Simulator - Installation and Startup](../tools/simulator/setup.md).
+
+```sh
+sudo rm -rf /Library/Extensions/tun.kext
+sudo rm -rf /Library/Extensions/tap.kext
+
+sudo rm -f /Library/LaunchDaemons/*tun.plist
+sudo rm -f /Library/LaunchDaemons/*tap.plist
+```
+:::
 
 In macOS, it is recommended to use the built-in `Terminal` or `iTerm2` to execute commands.
 
