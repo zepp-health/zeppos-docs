@@ -29,7 +29,7 @@ npm i @zeppos/zeus-cli -g
 
 // or
 
-yarn global @zeppos/zeus-cli
+yarn global add @zeppos/zeus-cli
 ```
 
 ## `zeus create` Create project
