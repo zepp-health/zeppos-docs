@@ -99,13 +99,19 @@ If you do not see a prompt, try installing again.
 
 #### 2. Configuring the virtual network card
 
+:::caution
+If you are using a Mac with an Apple chip, you need to perform this step before. [Enable System Extensions or Kernel Extension on Apple Silicon Mac](../../faq/apple-silicon.md)
+
+How to know if a Mac is equipped with an Apple chip?
+
+1. Click the Apple icon in the upper left corner of the desktop
+2. Select About This Mac
+3. In the “Overview” tab, look for “Processor” or “Chip”. Check if it says “Apple”
+:::
+
 Run Tunnelblick and find the `tun/tap` installation option in the interface, under the action path `Utillites` => `Install tun and tap system extensions`.
 
 ![tun.png](/img/simulator/tun.png)
-
-:::caution
-Apple Silicon models (with M-series processors) may encounter the message "System Extension Blocked" when installing system extensions. refer to [Enable System Extensions or Kernel Extension on Apple Silicon Mac](../../faq/apple-silicon.md) for the solution.
-:::
 
 #### 3. Verify the virtual network card
 
