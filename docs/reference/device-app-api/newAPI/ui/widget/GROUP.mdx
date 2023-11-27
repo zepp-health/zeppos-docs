@@ -10,7 +10,8 @@ GROUP group widget is used to group a series of widgets together for unified wid
 The returned `group` instance has the method `createWidget`, which is used to Create UI widget belonging to the `group` group, and the sub-widgets need to use relative positions for layout.
 
 :::caution
-The `group` instance of `createWidget` cannot create child `GROUP` widgets, i.e. `GROUP` widgets cannot be nested.
+1. The `group` instance of `createWidget` cannot create child `GROUP` components, i.e. `GROUP` components cannot be nested.
+2. GROUP cannot be used in [SecondaryWidget](../../../newAPI/global/SecondaryWidget.mdx) and [Shorcut cards](../../../newAPI/global/AppWidget.mdx)
 :::
 
 ## Create UI widget
