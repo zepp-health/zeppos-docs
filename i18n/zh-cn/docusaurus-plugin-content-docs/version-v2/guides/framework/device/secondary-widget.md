@@ -249,6 +249,52 @@ i18n 用法与小程序页面一致，多语言文件一并存放在 /page/i18n 
 
 图片资源路径也与小程序页面保持一致。
 
+「副屏应用」和「快捷卡片」名称的多语言在 app.json 中配置，以下是示例
+
+「副屏应用」的名称在 `secondary-widget` 字段中进行配置。
+
+```json
+"secondary-widget": {
+  "widgets": [
+    {
+      "path": "secondary-widget/index",
+      "runtime": {
+        "type": "js"
+      },
+      "name": "App Name",
+      "i18n": {
+        "en-US": {
+          "name": "App Name"
+        },
+        "zh-CN": {
+          "name": "应用名称"
+        }
+      }
+    }
+  ]
+},
+```
+
+快捷卡片的名称在 app.json 的根 `i18n` 节点中配置。
+
+```json
+{
+  "i18n": {
+    "en-US": {
+      "appName": "Calories"
+    },
+    "zh-CN": {
+      "app-widget": {
+        "widgets":[{
+          "name": "卡路里"
+        }]
+      }
+    }
+  },
+  "defaultLanguage": "en-US"
+}
+```
+
 ## 完整示例
 
 「副屏应用」和「快捷卡片」提到的概念非常抽象，需要结合案例来理解。
