@@ -72,7 +72,7 @@ function set(option: Option): Result
 import { set, REPEAT_DAY } from '@zos/alarm'
 
 const option = {
-  file: 'pages/index.js',
+  url: 'pages/index.js',
   time: 12345678,
   repeat_type: REPEAT_DAY,
 }
@@ -82,7 +82,7 @@ const id = set(option)
 import { set, REPEAT_WEEK, WEEK_MON, WEEK_WED } from '@zos/alarm'
 
 const option = {
-  file: 'pages/index.js',
+  url: 'pages/index.js',
   time: 12345678,
   repeat_type: REPEAT_WEEK,
   week_days: WEEK_MON | WEEK_WED,
@@ -93,7 +93,7 @@ const id = set(option)
 import { set, REPEAT_DAY } from '@zos/alarm'
 
 const option = {
-  file: 'pages/index.js',
+  url: 'pages/index.js',
   time: 12345678,
   repeat_type: REPEAT_DAY,
   repeat_period: 20,
