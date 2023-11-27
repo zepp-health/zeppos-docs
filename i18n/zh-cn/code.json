@@ -160,7 +160,7 @@
     "description": "The label used to tell the user that he's browsing an unreleased doc version"
   },
   "theme.docs.versions.unmaintainedVersionLabel": {
-    "message": "这是已不再积极维护的 {siteTitle} {versionLabel} 版本文档。",
+    "message": "这是 Zepp OS {versionLabel} 版本文档。",
     "description": "The label used to tell the user that he's browsing an unmaintained doc version"
   },
   "theme.docs.versions.latestVersionSuggestionLabel": {
