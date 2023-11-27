@@ -10,7 +10,8 @@ GROUP 组控件用于将一系列控件分组，便于统一控制显示/隐藏�
 返回的 `group` 实例有实例方法 `createWidget`，用于创建属于 `group` 组的 UI 控件，子控件需要使用相对位置来进行布局。
 
 :::caution
-`group` 实例的 `createWidget` 无法创建子 `GROUP` 控件，即 `GROUP` 控件无法嵌套
+1. `group` 实例的 `createWidget` 无法创建子 `GROUP` 控件，即 `GROUP` 控件无法嵌套
+2. GROUP 控件无法在 [副屏应用](../../../newAPI/global/SecondaryWidget.mdx) 和 [快捷卡片](../../../newAPI/global/AppWidget.mdx) 中使用
 :::
 
 ## 创建 UI 控件
