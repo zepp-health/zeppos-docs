@@ -71,13 +71,13 @@ module.exports = {
             },
             '1.0': {
               label: 'v1.0',
-              banner: 'unmaintained'
+              banner: 'none'
             }
           },
           editUrl: 'https://github.com/zepp-health/zeppos-docs/edit/main/',
         },
         theme: {
-          customCss: require.resolve('./src/css/custom.scss')
+          customCss: require.resolve('./src/css/custom.scss'),
         }
       }),
     ]
