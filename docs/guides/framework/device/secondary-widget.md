@@ -249,6 +249,52 @@ i18n is used in the same way as the Mini Program page, and the i18n files are st
 
 The image resource path is also consistent with the Mini Program page.
 
+The names of the SecondaryWidget and the Shortcut cards are configured in multiple languages in app.json, here's the example.
+
+The name of SecondaryWidget is configured in the `secondary-widget` field.
+
+```json
+"secondary-widget": {
+  "widgets": [
+    {
+      "path": "secondary-widget/index",
+      "runtime": {
+        "type": "js"
+      },
+      "name": "App Name",
+      "i18n": {
+        "en-US": {
+          "name": "App Name"
+        },
+        "zh-CN": {
+          "name": "应用名称"
+        }
+      }
+    }
+  ]
+},
+```
+
+The name of Shorcut cards are configured in the root `i18n` field.
+
+```json
+{
+  "i18n": {
+    "en-US": {
+      "appName": "Calories"
+    },
+    "zh-CN": {
+      "app-widget": {
+        "widgets":[{
+          "name": "卡路里"
+        }]
+      }
+    }
+  },
+  "defaultLanguage": "en-US"
+}
+```
+
 ## Full example
 
 We added a Widget and Shortcut card based on the Mini Program sample calories, and put the source code on Github for your reference. [Calories](../../../samples/app/calories.md)
