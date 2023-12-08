@@ -3,35 +3,55 @@ title: 整体架构
 sidebar_label: 整体架构
 ---
 
-![架构图示](/img/docs/guides/architecture/architecture.jpg)
+import useBaseUrl from '@docusaurus/useBaseUrl'
 
-一个完整的 Zepp OS 小程序分为两个部分：
+<img src={useBaseUrl('/img/docs/guides/architecture/architecture.jpg')} width="600" title="arc" />
 
-- 设备应用
-- 伴生应用（可选）
-  - 设置应用
-  - 伴生服务
+一个完整的 Zepp OS 小程序分为三个部分：
 
-「设备应用」运行在设备端（搭载 Zepp OS 的设备），有 UI 交互、设备传感器调用等能力。
-
-「伴生应用」是「设置应用」和「伴生服务」的统称，运行在 Zepp App（通常是智能手机设备，下文称为移动端）之中。
-
-「设置应用」在移动端提供 UI 交互的能力，通常作为「设备应用」的配套设置页面。
-
-「伴生服务」无 UI 界面，提供一系列数据通信，以及网络请求的能力。
-
-其中「伴生应用」可选，即部分小程序无需用到伴生应用，只在设备端运行，如简单的计算器应用。
+- 「设备应用」 Device App
+  - 「设备应用」运行在搭载 Zepp OS 操作系统的手表设备上
+  - 「设备应用」有调用 Widget API 绘制 UI、调用传感器等能力
+- 「设置应用」 Settings App（可选）
+  - 「设置应用」运行在 Zepp App（通常是智能手机设备）中
+  - 「设置应用」通过 Render Function 绘制 UI
+- 「伴生服务」 Side Service（可选）
+- - 「设置应用」运行在 Zepp App（通常是智能手机设备）中
+  - 「伴生服务」无 UI 界面，可以使用 Fetch API 与网络服务器通信
 
 ## 通信关系
 
-- 「设备应用」与「伴生服务」之间通过蓝牙进行通信
-  - 「设备应用」使用 [`ble`](../../reference/device-app-api/newAPI/ble.mdx)
-  - 「伴生服务」使用 [`Messaging API`](../../reference/side-service-api/messaging.mdx)
-- 「伴生服务」与「设置应用」通过 Settings Storage API 进行通信
-  - 「伴生服务」与「设置应用」均可访问 `settingsStorage` 存储
-  - 「伴生服务」中通过 `settingsStorage` 监听 `change` 事件，来响应「设置应用」中对 `settingsStorage` 数据的修改
-  - 「设置应用」天然具有“响应式”，无需手动监听 `settingsStorage` 中的数据变化
-- 「伴生服务」通过 Fetch API 与「服务器」进行通信
+### 「设备应用」与「伴生服务」通过 BLE 蓝牙进行通信
+
+底层蓝牙 BLE 接口易用性不够好，需要开发者自行实现传输协议，Zepp OS 团队推出了 [ZML](https://github.com/zepp-health/zml) 工具库，对通信过程进行了更完整的实现，暴露了易用的 API。
+
+<img src={useBaseUrl('/img/docs/guides/architecture/zml-ble.jpg')} width="400" title="arc" />
+
+- 在「设备应用」使用 `this.request` 发送信息，在「伴生服务」使用 `onRequest` 接收信息
+- 在「伴生服务」使用 `this.call` 发送信息，在「设备应用」使用 `onCall` 接收信息
+
+### 「伴生服务」与「设置应用」通过 Settings Storage API 进行通信
+
+<img src={useBaseUrl('/img/docs/guides/architecture/settings-storage.jpg')} width="auto" title="arc" />
+
+:::info
+小程序中只存在一个 Settings Storage，图中为了更好地表示 get 和 set 两条数据路径，故绘制了两个 Settings Storage 图例
+:::
+
+[Settings Storage](../../reference//side-service-api/settings-storage.mdx) 使用 `setItem` 设置数据，用 `getItem` 获取值。
+
+- 「设置应用」 -> 「伴生服务」（红线）
+  - 在「伴生服务」中使用 `addListener` API 注册回调函数，监听 Settings Storage 中的数据变化
+  - 使用 `setItem` 变更数据，Settings Storage 数据变化，触发「伴生服务」注册的回调函数
+  - 当在 「设置应用」中使用 `setItem` 变更数据，Settings Storage 数据变化，自动调用「设置应用」`build` 生命周期，重新绘制 UI
+- 「伴生服务」-> 「设置应用」（蓝线）
+  - 使用 `setItem` 变更数据，Settings Storage 数据变化，自动调用「设置应用」`build` 生命周期，重新绘制 UI
+
+### 「伴生服务」使用 Fetch API 与网络服务器通信
+
+用法参考 [Fetch API](../../reference/side-service-api/fetch.mdx)
+
+### 更多说明
 
 :::caution
 「设备应用」与「设置应用」间不可直接通信，需要借助「伴生服务」
@@ -39,7 +59,6 @@ sidebar_label: 整体架构
 
 :::tip
 
-- 「设备应用」、「伴生服务」、「设置应用」间的完整通信示例请参考示例 [ToDoList](../../samples/app/toDoList.md)
-- 「伴生服务」与「服务器」间的通信请参考示例 [FetchAPI](../../samples/app/fetchAPI.md)
-- [蓝牙通信](../best-practice/bluetooth-communication.mdx)
-  :::
+- 更多有关通信关系内容请参考 [How To Extract Health Data from Amazfit Smartwatches to a Web Server](https://github.com/orgs/zepp-health/discussions/276)
+- 「设备应用」、「伴生服务」、「设置应用」间的完整通信示例请参考示例 [Post-Health-Data]([../../samples/app/toDoList.md](https://github.com/zepp-health/zeppos-samples/tree/main/application/2.0/post-health-data))
+:::
