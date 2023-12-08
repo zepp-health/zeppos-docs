@@ -3,43 +3,69 @@ title: Overall Architecture
 sidebar_label: Overall Architecture
 ---
 
-![Architecture Diagram](/img/docs/guides/architecture/architecture-en.jpg)
+import useBaseUrl from '@docusaurus/useBaseUrl'
 
-A complete Zepp OS Mini Program is divided into two parts.
+![Architecture Diagram](/img/docs/guides/architecture/architecture.jpg)
+
+The complete Mini Program includes Device App, Settings App and Side Service.
 
 - Device App
-- Side App (optional)
-  - Settings App
-  - Side Service
-
-"Device App" run on the device side (devices with Zepp OS) and have the ability to interact with UI, device sensor calls, etc.
-
-"Side App" is a collective term for the "Settings App" and "Side Service" running on the Zepp App (usually a smartphone device, henceforth referred to as mobile).
-
-The "Settings App" provides UI interaction capabilities on the mobile side, usually as a companion settings page to the "Device App".
-
-"Side Service" have no UI interface and provide a range of data communication and network request capabilities.
-
-The "Side App" is optional, i.e. some Mini Programs do not need to use the capabilities of the Side App and only run on the device side, such as a simple calculator app.
+  - The Device App runs on a watch device
+  - The operating system of the watch device is Zepp OS
+  - The Device App can call the widget API to draw UI and call a series of sensors to obtain data
+- Settings App(optional)
+  - Settings App runs in the Zepp App on mobile devices
+  - Settings App draws UI by calling render function
+- Side Service(optional)
+  - Side Service runs in the Zepp App on mobile devices
+  - Side Service can communicate with external servers through Fetch API
 
 ## Communication Relationships
 
-- Communication between the Device Application and the Side Service via Bluetooth
-  - Device Application using the [`Bluetooth Communication`](../../guides/best-practice/bluetooth-communication.mdx)
-  - Side App using the [`Messaging API`](../../reference/side-service-api/messaging.mdx)
-- Communication between the Side Service and the Settings App via the Settings Storage API
-  - Both the Side Service and the Settings App can access `settingsStorage` storage
-  - The Side Service listens for `change` event via `settingsStorage` to respond to changes to `settingsStorage` data in the Settings App
-  - The "Settings App" is naturally "responsive", eliminating the need to manually listen for data changes in `settingsStorage`.
-- The Side Service communicates with the Server via the Fetch API
+### BLE
+
+BLE is used for communication between Device App and Side Service. The underlying BLE API is not user-friendly, so we provide the [ZML](https://github.com/zepp-health/zml) tool library, which has a more complete implementation of the communication process and exposes the easy-to-use API.
+
+<img src={useBaseUrl('/img/docs/guides/architecture/zml-ble.jpg')} width="400" title="arc" />
+
+- Use `this.request` method to send messages in Device App and `onRequest` to receive messages in Side Service
+- Use `this.call` method to send messages in Side Service and `onCall` to receive messages in Device App
+
+:::info
+For more information about ZML, please refer to [ZML - Github](https://github.com/zepp-health/zml)
+:::
+
+### Settings Storage
+
+Communication between Settings App and Side Service relies on Settings Storage API.
+
+<img src={useBaseUrl('/img/docs/guides/architecture/settings-storage.jpg')} width="auto" title="arc" />
+
+:::info
+To facilitate the display of data relationships, two Settings Storage are drawn in the figure, which are actually the same thing.
+:::
+
+[Settings Storage](../../reference/side-service-api/settings-storage.mdx) use `setItem` to set the data and use `getItem` to get the value.
+
+- Settings App -> Side Service (the red line)
+  - Use `addListener` API in Side Service to register callback function to listen to data changes in Settings Storage
+  - Use `setItem` to change data in the Settings App and trigger the registered callback function
+  - When use `setItem` to set data in the Side Service, automatically call Settings App `build` lifecycle, redraw UI.
+- Side Service -> Settings App (the blue line)
+  - Use setItem to change data in the Side Service
+  - Settings Storage detects that data has changed, automatically triggers the re-rendering of the Settings App, and executes the `build` lifecycle
+
+### Side Service communicates with third-party Service using Fetch API
+
+Usage reference [Fetch API](../../reference/side-service-api/fetch.mdx)
+
+## More Info
 
 :::caution
 Direct communication between "Device App" and "Settings App" is not possible and requires a "Side Service".
 :::
 
 :::tip
-
-- For a complete example of communication between "Device Application", "Side Service", and "Settings App", please refer to the sample [ToDoList](../../samples/app/toDoList.md)
-- For the communication between "Side Service" and "Server", please refer to the sample [FetchAPI](../../samples/app/fetchAPI.md)
-- [Bluetooth Communication](../best-practice/bluetooth-communication.mdx)
+- For more information on communication relationships, please refer to [How To Extract Health Data from Amazfit Smartwatches to a Web Server](https://github.com/orgs/zepp-health/discussions/276)
+- For a complete example of communication between Device App, Side Service, and Settings App, please refer to the example [Post-Health-Data](https://github.com/zepp-health/zeppos-samples/tree/main/application/2.0/post-health-data)
 :::
