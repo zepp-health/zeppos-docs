@@ -104,7 +104,7 @@ getFreqMode(): number
 ## Example
 
 ```js
-import { Gyroscope } from '@zos/sensor'
+import { Gyroscope, FREQ_MODE_LOW } from '@zos/sensor'
 
 const gyroscope = new Gyroscope()
 
@@ -112,6 +112,7 @@ const callback = () => {
   console.log(gyroscope.getCurrent())
 }
 gyroscope.onChange(callback)
+gyroscope.setFreqMode(FREQ_MODE_LOW)
 gyroscope.start()
 
 // When not needed for use
