@@ -9,14 +9,15 @@ sidebar_label: 相关下载
 
 |  版本  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  | 链接 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; |
 |  ----  | ----  |
-| 1.2.3 for Mac  | [simulator_1.2.3_mac](https://upload-cdn.huami.com/zeppos/simulator/download/simulator_1.2.3.dmg) |
-| 1.2.3 for Windows  | [simulator_1.2.3_win](https://upload-cdn.huami.com/zeppos/simulator/download/simulator_1.2.3.exe) |
-| 1.2.3 for Linux  | [simulator_1.2.3_linux](https://upload-cdn.huami.com/zeppos/simulator/download/simulator_1.2.3_amd64.deb) |
+| 1.2.4 for Mac  | [simulator_1.2.4_mac](https://upload-cdn.huami.com/zeppos/simulator/download/simulator_1.2.4.dmg) |
+| 1.2.4 for Windows  | [simulator_1.2.4_win](https://upload-cdn.huami.com/zeppos/simulator/download/simulator_1.2.4.exe) |
+| 1.2.4 for Linux  | [simulator_1.2.4_linux](https://upload-cdn.huami.com/zeppos/simulator/download/simulator_1.2.4_amd64.deb) |
 
 ### 历史版本
 
 |  版本  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  | 链接 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; |
 |  ----  | ----  |
+| 1.2.3 | [simulator_1.2.3_mac](https://upload-cdn.huami.com/zeppos/simulator/download/simulator_1.2.3.dmg) 丨 [simulator_1.2.3_win](https://upload-cdn.huami.com/zeppos/simulator/download/simulator_1.2.3.exe)  丨 [simulator_1.2.3_linux](https://upload-cdn.huami.com/zeppos/simulator/download/simulator_1.2.3_amd64.deb)|
 | 1.2.2 | [simulator_1.2.2_mac](https://upload-cdn.huami.com/zeppos/simulator/download/simulator_1.2.2.dmg) 丨 [simulator_1.2.2_win](https://upload-cdn.huami.com/zeppos/simulator/download/simulator_1.2.2.exe)  丨 [simulator_1.2.2_linux](https://upload-cdn.huami.com/zeppos/simulator/download/simulator_1.2.2_amd64.deb)|
 | 1.2.1 | [simulator_1.2.1_mac](https://upload-cdn.huami.com/zeppos/simulator/download/simulator_1.2.1.dmg) 丨 [simulator_1.2.1_win](https://upload-cdn.huami.com/zeppos/simulator/download/simulator_1.2.1.exe)  丨 [simulator_1.2.1_linux](https://upload-cdn.huami.com/zeppos/simulator/download/simulator_1.2.1_amd64.deb)|
 | 1.2.0 | [simulator_1.2.0_mac](https://upload-cdn.huami.com/zeppos/simulator/download/simulator_1.2.0.dmg) 丨 [simulator_1.2.0_win](https://upload-cdn.huami.com/zeppos/simulator/download/simulator_1.2.0.exe)  丨 [simulator_1.2.0_linux](https://upload-cdn.huami.com/zeppos/simulator/download/simulator_1.2.0_amd64.deb)|
