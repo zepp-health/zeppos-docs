@@ -1,6 +1,6 @@
 ---
-title: 蓝牙通信
-sidebar_label: 蓝牙通信
+title: MessageBuilder 蓝牙通信
+sidebar_label: MessageBuilder 蓝牙通信
 ---
 
 首先回顾一下 Zepp OS 小程序的 [整体架构](../architecture/arc.mdx)。
@@ -40,21 +40,21 @@ import './shared/device-polyfill'
 ```js title=app.js
 import './shared/device-polyfill'
 import { MessageBuilder } from './shared/message'
-
-// need to pass in the appId
-const appId = 27280
-const messageBuilder = new MessageBuilder({ appId })
+import { getPackageInfo } from '@zos/app'
+import * as ble from '@zos/ble'
 
 App({
   globalData: {
-    messageBuilder: messageBuilder,
+    messageBuilder: null
   },
   onCreate(options) {
     console.log('app on create invoke')
     // establish connection
+    const { appId } = getPackageInfo()
+    const messageBuilder = new MessageBuilder({ appId, appDevicePort: 20, appSidePort: 0, ble })
+    this.globalData.messageBuilder = messageBuilder
     messageBuilder.connect()
   },
-
   onDestroy(options) {
     console.log('app on destroy invoke')
     messageBuilder.disConnect()
