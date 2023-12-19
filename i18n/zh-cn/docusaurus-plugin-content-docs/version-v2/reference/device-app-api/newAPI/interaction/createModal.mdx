@@ -16,18 +16,18 @@ function createModal(option: Option): Modal
 
 ### Option
 
-| 属性     | 类型                                         | 必填 | 默认值             | 说明                                              | API_LEVEL |
-| -------- | -------------------------------------------- | ---- | ------------------ | ------------------------------------------------- | --------- |
-| content  | <code>string</code>                          | 是   | -                  | Modal 对话框的内容                                | 2.0       |
-| show     | <code>boolean</code>                         | 否   | <code>false</code> | 完成创建后是否立即显示 Modal 对话框               | 2.0       |
-| onClick  | <code>(keyName: ModalKey) =&#62; void</code> | 否   | -                  | 点击确认或者取消的回调函数                        | 2.0       |
-| autoHide | <code>boolean</code>                         | 否   | <code>true</code>  | 点击确认或者取消按钮后，是否自动关闭 Modal 对话框 | 2.0       |
+| 属性     | 类型                                      | 必填 | 默认值             | 说明                                              | API_LEVEL |
+| -------- | ----------------------------------------- | ---- | ------------------ | ------------------------------------------------- | --------- |
+| content  | <code>string</code>                       | 是   | -                  | Modal 对话框的内容                                | 2.0       |
+| show     | <code>boolean</code>                      | 否   | <code>false</code> | 完成创建后是否立即显示 Modal 对话框               | 2.0       |
+| onClick  | <code>(keyObj: KeyObj) =&#62; void</code> | 否   | -                  | 点击确认或者取消的回调函数                        | 2.0       |
+| autoHide | <code>boolean</code>                      | 否   | <code>true</code>  | 点击确认或者取消按钮后，是否自动关闭 Modal 对话框 | 2.0       |
 
-### ModalKey
+### KeyObj
 
-| 类型                | 说明                                  |
-| ------------------- | ------------------------------------- |
-| <code>number</code> | Modal 按键名，值参考 Modal 按键名常量 |
+| 属性 | 类型                | 说明                                  | API_LEVEL |
+| ---- | ------------------- | ------------------------------------- | --------- |
+| type | <code>number</code> | Modal 按键名，值参考 Modal 按键名常量 | 2.0       |
 
 ### Modal
 
@@ -52,8 +52,9 @@ import { createModal, MODAL_CONFIRM } from '@zos/interaction'
 const dialog = createModal({
   content: 'hello world',
   autoHide: false,
-  onClick: (keyName) => {
-    if (keyName === MODAL_CONFIRM) {
+  onClick: (keyObj) => {
+    const { type } = keyObj
+    if (type === MODAL_CONFIRM) {
       console.log('confirm')
     } else {
       dialog.show(false)

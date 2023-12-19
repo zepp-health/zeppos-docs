@@ -16,18 +16,18 @@ function createModal(option: Option): Modal
 
 ### Option
 
-| Property | Type                                         | Required | DefaultValue       | Description                                                                                 | API_LEVEL |
-| -------- | -------------------------------------------- | -------- | ------------------ | ------------------------------------------------------------------------------------------- | --------- |
-| content  | <code>string</code>                          | Y        | -                  | Content of Modal                                                                            | 2.0       |
-| show     | <code>boolean</code>                         | N        | <code>false</code> | Whether to display Modal immediately after the creation is completed                        | 2.0       |
-| onClick  | <code>(keyName: ModalKey) =&#62; void</code> | N        | -                  | Whether to display Modal immediately                                                        | 2.0       |
-| autoHide | <code>boolean</code>                         | N        | <code>true</code>  | Whether to automatically close the Modal dialog after clicking the Confirm or Cancel button | 2.0       |
+| Property | Type                                      | Required | DefaultValue       | Description                                                                                 | API_LEVEL |
+| -------- | ----------------------------------------- | -------- | ------------------ | ------------------------------------------------------------------------------------------- | --------- |
+| content  | <code>string</code>                       | Y        | -                  | Content of Modal                                                                            | 2.0       |
+| show     | <code>boolean</code>                      | N        | <code>false</code> | Whether to display Modal immediately after the creation is completed                        | 2.0       |
+| onClick  | <code>(keyObj: KeyObj) =&#62; void</code> | N        | -                  | Whether to display Modal immediately                                                        | 2.0       |
+| autoHide | <code>boolean</code>                      | N        | <code>true</code>  | Whether to automatically close the Modal dialog after clicking the Confirm or Cancel button | 2.0       |
 
-### ModalKey
+### KeyObj
 
-| Type                | Description                                              |
-| ------------------- | -------------------------------------------------------- |
-| <code>number</code> | Modal key name, value reference Modal key name constants |
+| Property | Type                | Description                                              | API_LEVEL |
+| -------- | ------------------- | -------------------------------------------------------- | --------- |
+| type     | <code>number</code> | Modal key name, value reference Modal key name constants | 2.0       |
 
 ### Modal
 
@@ -52,8 +52,9 @@ import { createModal, MODAL_CONFIRM } from '@zos/interaction'
 const dialog = createModal({
   content: 'hello world',
   autoHide: false,
-  onClick: (keyName) => {
-    if (keyName === MODAL_CONFIRM) {
+  onClick: (keyObj) => {
+    const { type } = keyObj
+    if (type === MODAL_CONFIRM) {
       console.log('confirm')
     } else {
       dialog.show(false)
