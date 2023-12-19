@@ -19,9 +19,13 @@ The following GIF shows the effect of the "Widget"
 
 In the system settings, you can add, delete, sort and so on the "Widget", the specific operation path is
 
-```txt
+:::info
 Settings => Preferences => Widget => Add icon at the bottom of the interface
-```
+:::
+
+:::caution
+Some devices do not support "SecondaryWidget". Check the support of SecondaryWidget in [Device Basic Information](../../../reference/related-resources/device-list.mdx).
+:::
 
 ### Shortcut Cards
 
@@ -33,9 +37,9 @@ The following GIF shows the effect of the "Shorcut Cards"
 
 In the Negative Screen settings, you can add, delete, sort and so on the "Shortcut Cards", the specific operation path is
 
-```txt
+:::info
 Negative Screen page scrolls down to the bottom => Click on the settings icon => Add icon at the bottom of the interface
-```
+:::
 
 ### Comparison
 
