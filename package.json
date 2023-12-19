@@ -17,7 +17,7 @@
     "@docusaurus/core": "^2.4.3",
     "@docusaurus/plugin-content-docs": "^2.4.3",
     "@docusaurus/preset-classic": "^2.4.3",
-    "@easyops-cn/docusaurus-search-local": "^0.23.2",
+    "@easyops-cn/docusaurus-search-local": "^0.39.0",
     "@mdx-js/react": "^1.6.21",
     "@svgr/webpack": "^5.5.0",
     "clsx": "^1.1.1",
