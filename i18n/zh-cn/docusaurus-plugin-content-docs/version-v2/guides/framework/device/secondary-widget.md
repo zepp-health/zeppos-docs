@@ -23,6 +23,10 @@ sidebar_label: 注册副屏应用和快捷卡片
 设置 => 使用偏好 => 副屏应用 => 界面底部的添加 icon
 :::
 
+:::caution
+部分设备不支持「副屏应用」，在 [设备基本信息](../../../reference/related-resources/device-list.mdx) 中查询副屏应用的支持情况
+:::
+
 ### 「快捷卡片」
 
 在表盘页面右滑，进入「Negative Screen」页面，页面为一个纵向长列表，包含一系列的「快捷卡片」
