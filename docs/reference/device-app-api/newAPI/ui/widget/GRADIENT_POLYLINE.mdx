@@ -21,14 +21,14 @@ const polyline = createWidget(widget.GRADKIENT_POLYLINE, Param)
 
 ### Param: object
 
-| Properties | Description                    | Required | Type     |
-| ---------- | ------------------------------ | -------- | -------- |
-| x          | The x-coordinate of widget. | YES      | `number` |
-| y          | The y-coordinate of widget. | YES      | `number` |
-| w          | The width of widget.        | YES      | `number` |
-| h          | The height of the widget.   | YES      | `number` |
-| line_color | Line color, default `0xe60039` | NO       | `number` |
-| line_width | Line width, default `2` px     | NO       | `number` |
+| Properties | Description                                                                                                                                                                                                                                      | Required | Type     |
+| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------- | -------- |
+| x          | The x-coordinate of widget.                                                                                                                                                                                                                      | YES      | `number` |
+| y          | The y-coordinate of widget.                                                                                                                                                                                                                      | YES      | `number` |
+| w          | The width of widget.                                                                                                                                                                                                                             | YES      | `number` |
+| h          | Widget height, the maximum height on a circular screen with a screen height of `480` and a square device with a screen height of `390` is `150`, and the maximum height of other models is scaled proportionally according to the screen height. | YES      | `number` |
+| line_color | Line color, default `0xe60039`                                                                                                                                                                                                                   | NO       | `number` |
+| line_width | Line width, default `2` px                                                                                                                                                                                                                       | NO       | `number` |
 
 ### polyline instance
 
@@ -72,17 +72,17 @@ import { px } from '@zos/utils'
 Page({
   build() {
     const lineDataList = [
-      { x: 0, y: px(200) },
+      { x: 0, y: px(120) },
       { x: px(100), y: px(10) },
       { x: px(200), y: px(50) },
       { x: px(300), y: px(50) },
-      { x: px(400), y: px(200) }
+      { x: px(400), y: px(150) }
     ]
     const polyline = createWidget(widget.GRADKIENT_POLYLINE, {
       x: 0,
       y: px(200),
       w: px(480),
-      h: px(200),
+      h: px(150),
       line_color: 0x00ffff,
       line_width: 4
     })

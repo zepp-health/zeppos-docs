@@ -21,14 +21,14 @@ const polyline = createWidget(widget.GRADKIENT_POLYLINE, Param)
 
 ### Param: object
 
-| 属性       | 说明                      | 是否必须 | 类型     |
-| ---------- | ------------------------- | -------- | -------- |
-| x          | 控件 x 坐标               | 是       | `number` |
-| y          | 控件 y 坐标               | 是       | `number` |
-| w          | 控件宽度                  | 是       | `number` |
-| h          | 控件高度                  | 是       | `number` |
-| line_color | 线条颜色，默认 `0xe60039` | 否       | `number` |
-| line_width | 线条宽度，默认 `2` px     | 否       | `number` |
+| 属性       | 说明                                                                                                                             | 是否必须 | 类型     |
+| ---------- | -------------------------------------------------------------------------------------------------------------------------------- | -------- | -------- |
+| x          | 控件 x 坐标                                                                                                                      | 是       | `number` |
+| y          | 控件 y 坐标                                                                                                                      | 是       | `number` |
+| w          | 控件宽度                                                                                                                         | 是       | `number` |
+| h          | 控件高度，在屏幕高度为 `480` 圆形屏幕和屏幕高度为 `390` 的方形设备上的最大高度为 `150`，其余机型的最大高度按照屏幕高度等比例缩放 | 是       | `number` |
+| line_color | 线条颜色，默认 `0xe60039`                                                                                                        | 否       | `number` |
+| line_width | 线条宽度，默认 `2` px                                                                                                            | 否       | `number` |
 
 ### polyline 实例
 
@@ -72,17 +72,17 @@ import { px } from '@zos/utils'
 Page({
   build() {
     const lineDataList = [
-      { x: 0, y: px(200) },
+      { x: 0, y: px(120) },
       { x: px(100), y: px(10) },
       { x: px(200), y: px(50) },
       { x: px(300), y: px(50) },
-      { x: px(400), y: px(200) }
+      { x: px(400), y: px(150) }
     ]
     const polyline = createWidget(widget.GRADKIENT_POLYLINE, {
       x: 0,
       y: px(200),
       w: px(480),
-      h: px(200),
+      h: px(150),
       line_color: 0x00ffff,
       line_width: 4
     })
