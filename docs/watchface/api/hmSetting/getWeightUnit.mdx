@@ -1,4 +1,29 @@
-import Content from '../../../reference/device-app-api/hmSetting/getWeightUnit.mdx'
+---
+title: hmSetting.getWeightUnit()
+sidebar_label: getWeightUnit
+---
 
-<Content/>
-    
+Get the weight unit set by the user.
+
+## Type
+
+```ts
+() => weightUnit
+```
+
+## Return value
+
+### weightUnit: number
+
+| Value | Description |
+| ----- | ----------- |
+|  `0`  |   Kilogram  |
+|  `1`  |     Jin     |
+|  `2`  |    Pound    |
+|  `3`  |    Stone    |
+
+## Code examples
+
+```js
+const unit = hmSetting.getWeightUnit()
+```

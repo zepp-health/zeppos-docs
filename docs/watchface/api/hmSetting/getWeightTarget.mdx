@@ -1,4 +1,26 @@
-import Content from '../../../reference/device-app-api/hmSetting/getWeightTarget.mdx'
+---
+title: hmSetting.getWeightTarget()
+sidebar_label: getWeightTarget
+---
 
-<Content/>
-    
+Get the user's weight target.
+
+## Type
+
+```ts
+() => weightTarget
+```
+
+## Parameters
+
+### weightTarget
+
+|                       Description                 |   Type   |
+| ------------------------------------------------- | -------- |
+| user-set weight target, default is `0`, in kilogram | `number` |
+
+## Code example
+
+```js
+const target = hmSetting.getWeightTarget()
+```
