@@ -1,0 +1,22 @@
+---
+title: widget.setEnable()
+sidebar_label: setEnable
+---
+
+Set whether the widget responds to screen gesture interaction events, the default is to respond.
+
+If the widgets are stacked in the Z-axis direction, the widgets above the stack will block events and the widgets below will not receive events such as `CLICK_DOWN` and `CLICK_UP`. If you want the widgets below to receive gesture events, set `widget.setEnable(false)` for the widgets stacked above.
+
+## Type
+
+```ts
+(response: boolean) => void
+```
+
+## Parameters
+
+### response
+
+| Description                                                                                          | Type      |
+| ---------------------------------------------------------------------------------------------------- | --------- |
+| Whether the widget responds to gesture interaction events, `true` responds, `false` does not respond | `boolean` |

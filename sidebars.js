@@ -657,6 +657,7 @@ module.exports = {
             'reference/device-app-api/newAPI/ui/getTextLayout',
             'reference/device-app-api/newAPI/ui/getImageInfo',
             'reference/device-app-api/newAPI/ui/redraw',
+            'reference/device-app-api/newAPI/ui/setEnable',
             'reference/device-app-api/newAPI/ui/setAppWidgetSize',
             'reference/device-app-api/newAPI/ui/getAppWidgetSize'
           ]
