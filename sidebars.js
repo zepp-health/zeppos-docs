@@ -807,7 +807,8 @@ module.exports = {
         'designs/template/list',
         'designs/template/pop-up-windows',
         'designs/template/cards',
-        'designs/template/empty-pages'
+        'designs/template/empty-pages',
+        'designs/template/content-layout',
       ]
     },
     {
