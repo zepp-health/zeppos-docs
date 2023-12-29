@@ -34,17 +34,17 @@ Examples are as follows：
 
 `app` indicates program configuration information.
 
-| Properties  | Type            | Required | Description                                                                                                                           | Minimum Version |
-| ----------- | --------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
-| appId       | `number`        | YES      | The Mini Program "id", "id" is the unique identification of the Mini Program.                                                         | v2              |
-| appName     | `string`        | YES      | Mini Program Name.                                                                                                                    | v2              |
-| appType     | `string`        | YES      | Mini Program type. The following values are supported: `app` Mini Program; `watchface` dial.                                          | v2              |
-| version     | `object`        | YES      | Mini Program version information.                                                                                                     | v2              |
+| Properties  | Type            | Required | Description                                                                                                                                                  | Minimum Version |
+| ----------- | --------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------- |
+| appId       | `number`        | YES      | The Mini Program "id", "id" is the unique identification of the Mini Program.                                                                                | v2              |
+| appName     | `string`        | YES      | Mini Program Name.                                                                                                                                           | v2              |
+| appType     | `string`        | YES      | Mini Program type. The following values are supported: `app` Mini Program; `watchface` dial.                                                                 | v2              |
+| version     | `object`        | YES      | Mini Program version information.                                                                                                                            | v2              |
 | icon        | `string`        | NO       | The path to the Mini Program icon. Reference [Design Specifications - app icons](../designs/visual/icons.md#app-icons). If not passed, use the default icon. | v2              |
-| vender      | `string`        | YES      | Developer Name.                                                                                                                       | v2              |
-| venderId    | `number`        | NO       | Developer id.                                                                                                                         | -               |
-| cover       | `Array<string>` | NO       | Matching images for Mini Program display. In general, dials are used.                                                                 | -               |
-| description | `string`        | YES      | Short description of the Mini Program.                                                                                                | v2              |
+| vender      | `string`        | YES      | Developer Name.                                                                                                                                              | v2              |
+| venderId    | `number`        | NO       | Developer id.                                                                                                                                                | -               |
+| cover       | `Array<string>` | NO       | Matching images for Mini Program display. In general, dials are used.                                                                                        | -               |
+| description | `string`        | YES      | Short description of the Mini Program.                                                                                                                       | v2              |
 
 #### version: object
 
@@ -176,44 +176,25 @@ Examples are as follows:
 {
   "module": {
     "page": {
-      "pages": ["page/gtr-3-pro/loading"],
-      "window": {
-        "navigationBarBackgroundColor": "#ffffff",
-        "navigationBarTextStyle": "black",
-        "navigationBarTitleText": "Home Connect",
-        "backgroundColor": "#eeeeee",
-        "backgroundTextStyle": "light"
-      },
-      "app-side": {
-        "path": "app-side/index"
-      },
-      "setting": {
-        "path": "setting/index"
-      },
-      "app-widget": {
-        "widgets": [
-          {
-            "path": "app-widget/index",
-            "icon": "icon.png",
-            "name": "app-widget-demo",
-            "runtime": {
-              "type": "js"
-            }
+      "pages": ["page/gtr-3-pro/loading"]
+    },
+    "app-side": {
+      "path": "app-side/index"
+    },
+    "setting": {
+      "path": "setting/index"
+    },
+    "app-widget": {
+      "widgets": [
+        {
+          "path": "app-widget/index",
+          "icon": "icon.png",
+          "name": "app-widget-demo",
+          "runtime": {
+            "type": "js"
           }
-        ]
-      },
-      "secondary-widget": {
-        "widgets": [
-          {
-            "path": "secondary-widget/index",
-            "icon": "icon.png",
-            "name": "secondary-widget-demo",
-            "runtime": {
-              "type": "js"
-            }
-          }
-        ]
-      }
+        }
+      ]
     }
   }
 }

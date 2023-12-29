@@ -34,17 +34,17 @@ sidebar_label: 小程序配置
 
 `app` 表示程序配置信息。
 
-| 属性        | 类型            | 必填 | 描述                                                                                 | 最低版本 |
-| ----------- | --------------- | ---- | ------------------------------------------------------------------------------------ | -------- |
-| appId       | `number`        | 是   | 小程序 `id`，该 `id` 是小程序唯一标识                                                | v2       |
-| appName     | `string`        | 是   | 小程序名称                                                                           | v2       |
-| appType     | `string`        | 是   | 小程序类型。支持以下值：`app` 小程序; `watchface` 表盘                               | v2       |
-| version     | `object`        | 是   | 小程序版本信息                                                                       | v2       |
+| 属性        | 类型            | 必填 | 描述                                                                                                             | 最低版本 |
+| ----------- | --------------- | ---- | ---------------------------------------------------------------------------------------------------------------- | -------- |
+| appId       | `number`        | 是   | 小程序 `id`，该 `id` 是小程序唯一标识                                                                            | v2       |
+| appName     | `string`        | 是   | 小程序名称                                                                                                       | v2       |
+| appType     | `string`        | 是   | 小程序类型。支持以下值：`app` 小程序; `watchface` 表盘                                                           | v2       |
+| version     | `object`        | 是   | 小程序版本信息                                                                                                   | v2       |
 | icon        | `string`        | 否   | 小程序图标 icon 的路径。请参考[设计规范 - 图标](../designs/visual/icons.md#应用程序图标)。如未传，使用默认的图标 | v2       |
-| vender      | `string`        | 是   | 开发者名                                                                             | v2       |
-| venderId    | `number`        | 否   | 开发者 id                                                                            | -        |
-| cover       | `Array<string>` | 否   | 小程序展示用的配图。一般情况下，表盘使用。                                           | -        |
-| description | `string`        | 是   | 小程序简短的描述                                                                     | v2       |
+| vender      | `string`        | 是   | 开发者名                                                                                                         | v2       |
+| venderId    | `number`        | 否   | 开发者 id                                                                                                        | -        |
+| cover       | `Array<string>` | 否   | 小程序展示用的配图。一般情况下，表盘使用。                                                                       | -        |
+| description | `string`        | 是   | 小程序简短的描述                                                                                                 | v2       |
 
 #### version: object
 
@@ -176,44 +176,25 @@ targets 对象的键名可以自由命名，建议使用设备名进行命名，
 {
   "module": {
     "page": {
-      "pages": ["page/gtr-3-pro/loading"],
-      "window": {
-        "navigationBarBackgroundColor": "#ffffff",
-        "navigationBarTextStyle": "black",
-        "navigationBarTitleText": "Home Connect",
-        "backgroundColor": "#eeeeee",
-        "backgroundTextStyle": "light"
-      },
-      "app-side": {
-        "path": "app-side/index"
-      },
-      "setting": {
-        "path": "setting/index"
-      },
-      "app-widget": {
-        "widgets": [
-          {
-            "path": "app-widget/index",
-            "icon": "icon.png",
-            "name": "app-widget-demo",
-            "runtime": {
-              "type": "js"
-            }
+      "pages": ["page/gtr-3-pro/loading"]
+    },
+    "app-side": {
+      "path": "app-side/index"
+    },
+    "setting": {
+      "path": "setting/index"
+    },
+    "app-widget": {
+      "widgets": [
+        {
+          "path": "app-widget/index",
+          "icon": "icon.png",
+          "name": "app-widget-demo",
+          "runtime": {
+            "type": "js"
           }
-        ]
-      },
-      "secondary-widget": {
-        "widgets": [
-          {
-            "path": "secondary-widget/index",
-            "icon": "icon.png",
-            "name": "secondary-widget-demo",
-            "runtime": {
-              "type": "js"
-            }
-          }
-        ]
-      }
+        }
+      ]
     }
   }
 }
