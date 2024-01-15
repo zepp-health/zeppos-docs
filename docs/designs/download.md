@@ -20,3 +20,5 @@ sidebar_label: Resource Downloads
 - [Library for Circular Screen Devices](https://www.figma.com/community/file/1281820938249055059/Zepp-OS-3.0-Library-Circular)
 
 - [Library for Rectangular Screen Devices](https://www.figma.com/community/file/1281826684139757402/Zepp-OS-3.0-Library-Rectangular)
+
+- [Library for Icon](https://www.figma.com/community/file/1326839111646627664/icon-library-zepp-os)
