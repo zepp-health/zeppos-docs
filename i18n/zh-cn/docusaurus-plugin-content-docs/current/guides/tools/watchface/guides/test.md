@@ -36,7 +36,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl'
 
 ![simulatorRun.png](/img/docs/guides/tools/watchface/simulator_run.png)
 
-在模拟器内，可参考[Debugger](../../../tools/simulator/index.md#Sensors)进行心率、电量等参数的配置
+在模拟器内，可参考[Debugger](../../../tools/simulator/index.md#sensors)进行心率、电量等参数的配置
 
 ### 设备测试
 

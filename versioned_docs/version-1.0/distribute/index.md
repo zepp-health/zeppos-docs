@@ -95,7 +95,7 @@ Select the languages supported by your app and fill in the app name, app profile
 
 App Introduction Screenshots：
 
-- The output size: 360*360px, format: PNG
+- The output size: 360×360px, format: PNG
 - The background of screenshots should be transparent and not have a fill color.
 - Please ensure that the app interface is maximally displayed in the image area.
 - 3 or more screenshots are recommended.
@@ -105,7 +105,7 @@ App Introduction Screenshots (Circular screen devices)
 ![app_preview_round](/img/docs/distribute/app_preview_round.png)
 
 - ① Screenshot of the application interface
-- ② 360*360px square transparent background
+- ② 360×360px square transparent background
 - ③ App introduction screenshot: place the screenshot of the application interface in the middle of the square transparent background with no margins around
 
 App Introduction Screenshots (Rectangular Screen Devices)
@@ -113,7 +113,7 @@ App Introduction Screenshots (Rectangular Screen Devices)
 ![app_preview_square](/img/docs/distribute/app_preview_square.png)
 
 - ① Screenshot of the application interface
-- ② 360*360px square transparent background
+- ② 360×360px square transparent background
 - ③ App introduction screenshot: place the screenshot of the application interface in the middle of the square transparent background with an equal margins on the left and right, and no margins on the top or bottom
 
 ### Application icon
@@ -125,7 +125,7 @@ App Introduction Screenshots (Rectangular Screen Devices)
 ![icon_standard](/img/docs/distribute/icon_standard.png)
 
 - Application icon
-- 240*240 px square transparent background
+- 240×240 px square transparent background
 - Application icon: place the App icon image in the middle of the square transparent background，make sure there are no margins around the icon
 
 ### Privacy Statement

@@ -35,7 +35,7 @@ After the installation is complete, you can see the Watchface you created on the
 
 ![simulatorRun.png](/img/docs/guides/tools/watchface/simulator_run.png)
 
-In the simulator, you can refer to [Debugger](../../../tools/simulator/index.md#Sensors) to configure parameters such as heart rate and power
+In the simulator, you can refer to [Debugger](../../../tools/simulator/index.md#sensors) to configure parameters such as heart rate and power
 
 ### Device Test
 

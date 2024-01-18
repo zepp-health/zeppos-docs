@@ -20,7 +20,7 @@ Zepp OS icons follow the "lightweight" and "friendly" design concepts. Use simpl
 
 An application icon should clearly and transparently convey its feature /brand/service information, and the design style should follow Zepp OS system application icons. Provide resources in multiple sizes based on the requirements of this specification to ensure that the icons are suitable for mobile devices, mobile application stores, and other scenarios.
 
-- The overall application icon is a perfect circle with a size of 248*248px, and a blank and transparent safe area should be reserved inside (4px on the top, bottom, left, and right).
+- The overall application icon is a perfect circle with a size of 248×248px, and a blank and transparent safe area should be reserved inside (4px on the top, bottom, left, and right).
 
 ![Design](/img/design/app-icons_1.png)
 
@@ -66,11 +66,11 @@ An application icon should clearly and transparently convey its feature /brand/s
 
 ![Design](/img/design/app-icons_6.png)
 
->① Icon content size is 240*240px
+>① Icon content size is 240×240px
 >
 >② A 4px transparent safety zone around all four sides
 >
->③ The final size of the application icon should be 248*248px
+>③ The final size of the application icon should be 248×248px
 
 - Actual use examples
 
@@ -87,15 +87,15 @@ An application icon should clearly and transparently convey its feature /brand/s
 <table>
     <tr>
         <th>Device resolution</th>
-        <th>480*480px</th>
+        <th>480×480px</th>
     </tr>
     <tr>
         <td>App icons</td>
-        <td>248*248px（The inside of the icon should contain a blank transparent safe area, 4px on the top, bottom, left, and right）</td>
+        <td>248×248px（The inside of the icon should contain a blank transparent safe area, 4px on the top, bottom, left, and right）</td>
     </tr>
     <tr>
         <td>Store icons</td>
-        <td>240*240px</td>
+        <td>240×240px</td>
     </tr>
 </table>
 
@@ -136,19 +136,19 @@ Function icons are mainly used to communicate system or feature information and 
 <table>
     <tr>
         <th>Device resolution</th>
-        <th>480*480px</th>
+        <th>480×480px</th>
     </tr>
     <tr>
         <td>Regular size</td>
-        <td>64*64px</td>
+        <td>64×64px</td>
     </tr>
     <tr>
         <td>Medium size</td>
-        <td>52*52px</td>
+        <td>52×52px</td>
     </tr>
     <tr>
         <td>Ultra-small size</td>
-        <td>32*32px</td>
+        <td>32×32px</td>
     </tr>
     <tr>
         <td colspan="5">Note: The icon needs to contain a blank and transparent safe area (2px on the top, bottom, left, and right).</td>
@@ -212,23 +212,23 @@ Button icons are used to represent actions and guidance for a specific operation
 <table>
     <tr>
         <th>Device resolution</th>
-        <th>480*480px</th>
+        <th>480×480px</th>
     </tr>
     <tr>
         <td>Regular size</td>
-        <td>64*64px</td>
+        <td>64×64px</td>
     </tr>
     <tr>
         <td>Medium size</td>
-        <td>52*52px</td>
+        <td>52×52px</td>
     </tr>
      <tr>
         <td>Small size</td>
-        <td>40*40px</td>
+        <td>40×40px</td>
     </tr>
     <tr>
         <td>Ultra-small size</td>
-        <td>32*32px</td>
+        <td>32×32px</td>
     </tr>
     <tr>
         <td colspan="5">Note: The icon size needs to contain a blank and transparent safe area (2px on the top, bottom, left, and right).</td>

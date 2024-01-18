@@ -155,10 +155,10 @@ Again, assuming the name of the page is `index.js`, as in the example above.
 
 | Configuration         | Config-qualifier Value | Layout File Name         | Description                                                                     |
 | --------------------- | ---------------------- | ------------------------ | ------------------------------------------------------------------------------- |
-| {st: "r"}             | `r`                    | `index.r.layout.js`      | This layout file applies to round screen devices.                               |
-| {st: "s"}             | `s`                    | `index.s.layout.js`      | This layout file applies to square screen devices.                              |
-| {st: "b"}             | `b`                    | `index.b.layout.js`      | This layout file applies to band screen devices.                       |
-| {st: "s", sr: "w320"} | `w320-s`              | `index.w320-s.layout.js` | This layout file applies to square screen devices with a screen width of 320 px. |
+| `{st: "r"}`             | `r`                    | `index.r.layout.js`      | This layout file applies to round screen devices.                               |
+| `{st: "s"}`             | `s`                    | `index.s.layout.js`      | This layout file applies to square screen devices.                              |
+| `{st: "b"}`             | `b`                    | `index.b.layout.js`      | This layout file applies to band screen devices.                       |
+| `{st: "s", sr: "w320"}` | `w320-s`              | `index.w320-s.layout.js` | This layout file applies to square screen devices with a screen width of 320 px. |
 
 In `index.js`, the convention is to use the `zosLoader:` prefix to introduce layout files.
 

@@ -119,18 +119,18 @@ An application icon should clearly and transparently convey its feature /brand/s
 <table>
     <tr>
         <th>Device resolution</th>
-        <th>480*480px</th>
-        <th>466*466px</th>
-        <th>454*454px</th>
-        <th>390*450px</th>
+        <th>480×480px</th>
+        <th>466×466px</th>
+        <th>454×454px</th>
+        <th>390×450px</th>
     </tr>
     <tr>
         <td>App icons</td>
-        <td colspan="4" align="center">124*124px</td>
+        <td colspan="4" align="center">124×124px</td>
     </tr>
     <tr>
         <td>Store icons</td>
-        <td colspan="4" align="center">240*240px</td>
+        <td colspan="4" align="center">240×240px</td>
     </tr>
     <tr>
         <td colspan="5">Note: The icon needs to contain a blank and transparent safe area (2px on the top, bottom, left, and right).</td>
@@ -174,31 +174,31 @@ Feature icons are mainly used to communicate system or feature information and i
 <table>
     <tr>
         <th>Device resolution</th>
-        <th>480*480px</th>
-        <th>466*466px</th>
-        <th>454*454px</th>
-        <th>390*450px</th>
+        <th>480×480px</th>
+        <th>466×466px</th>
+        <th>454×454px</th>
+        <th>390×450px</th>
     </tr>
     <tr>
         <td>Regular size</td>
-        <td>64*64px</td>
-        <td>63*63px</td>
-        <td>61*61px</td>
-        <td>64*64px</td>
+        <td>64×64px</td>
+        <td>63×63px</td>
+        <td>61×61px</td>
+        <td>64×64px</td>
     </tr>
     <tr>
         <td>Medium size</td>
-        <td>52*52px</td>
-        <td>51*51px</td>
-        <td>50*50px</td>
-        <td>52*52px</td>
+        <td>52×52px</td>
+        <td>51×51px</td>
+        <td>50×50px</td>
+        <td>52×52px</td>
     </tr>
     <tr>
         <td>Ultra-small size</td>
-        <td>32*32px</td>
-        <td>32*32px</td>
-        <td>31*31px</td>
-        <td>32*32px</td>
+        <td>32×32px</td>
+        <td>32×32px</td>
+        <td>31×31px</td>
+        <td>32×32px</td>
     </tr>
     <tr>
         <td colspan="5">Note: The icon needs to contain a blank and transparent safe area (2px on the top, bottom, left, and right).</td>
@@ -262,38 +262,38 @@ Button icons are used to represent actions and guidance for a specific operation
 <table>
     <tr>
         <th>Device resolution</th>
-        <th>480*480px</th>
-        <th>466*466px</th>
-        <th>454*454px</th>
-        <th>390*450px</th>
+        <th>480×480px</th>
+        <th>466×466px</th>
+        <th>454×454px</th>
+        <th>390×450px</th>
     </tr>
     <tr>
         <td>Regular size</td>
-        <td>64*64px</td>
-        <td>63*63px</td>
-        <td>61*61px</td>
-        <td>64*64px</td>
+        <td>64×64px</td>
+        <td>63×63px</td>
+        <td>61×61px</td>
+        <td>64×64px</td>
     </tr>
     <tr>
         <td>Medium size</td>
-        <td>52*52px</td>
-        <td>51*51px</td>
-        <td>50*50px</td>
-        <td>52*52px</td>
+        <td>52×52px</td>
+        <td>51×51px</td>
+        <td>50×50px</td>
+        <td>52×52px</td>
     </tr>
      <tr>
         <td>Small size</td>
-        <td>40*40px</td>
-        <td>39*39px</td>
-        <td>38*38px</td>
-        <td>40*40px</td>
+        <td>40×40px</td>
+        <td>39×39px</td>
+        <td>38×38px</td>
+        <td>40×40px</td>
     </tr>
     <tr>
         <td>Ultra-small size</td>
-        <td>32*32px</td>
-        <td>32*32px</td>
-        <td>31*31px</td>
-        <td>32*32px</td>
+        <td>32×32px</td>
+        <td>32×32px</td>
+        <td>31×31px</td>
+        <td>32×32px</td>
     </tr>
     <tr>
         <td colspan="5">Note: The icon needs to contain a blank and transparent safe area (2px on the top, bottom, left, and right).</td>
