@@ -119,18 +119,18 @@ Zepp OS 的图标遵循「轻量」与「友好」的设计理念。在造型上
 <table>
     <tr>
         <th>设备分辨率</th>
-        <th>圆屏<br/>480*480px</th>
-        <th>圆屏<br/>466*466px</th>
-        <th>圆屏<br/>454*454px</th>
-        <th>矩形屏<br/>390*450px</th>
+        <th>圆屏<br/>480×480px</th>
+        <th>圆屏<br/>466×466px</th>
+        <th>圆屏<br/>454×454px</th>
+        <th>矩形屏<br/>390×450px</th>
     </tr>
     <tr>
         <td>应用程序图标</td>
-        <td colspan="4" align="center">124*124px</td>
+        <td colspan="4" align="center">124×124px</td>
     </tr>
     <tr>
         <td>应用商店图标</td>
-        <td colspan="4" align="center">240*240px</td>
+        <td colspan="4" align="center">240×240px</td>
     </tr>
     <tr>
         <td colspan="5">注意：图标尺寸需包含空白透明的安全区域（上下左右各 2px）。</td>
@@ -174,31 +174,31 @@ Zepp OS 的图标遵循「轻量」与「友好」的设计理念。在造型上
 <table>
     <tr>
         <th>设备分辨率</th>
-        <th>圆屏<br/>480*480px</th>
-        <th>圆屏<br/>466*466px</th>
-        <th>圆屏<br/>454*454px</th>
-        <th>矩形屏<br/>390*450px</th>
+        <th>圆屏<br/>480×480px</th>
+        <th>圆屏<br/>466×466px</th>
+        <th>圆屏<br/>454×454px</th>
+        <th>矩形屏<br/>390×450px</th>
     </tr>
     <tr>
         <td>常规尺寸</td>
-        <td>64*64px</td>
-        <td>63*63px</td>
-        <td>61*61px</td>
-        <td>64*64px</td>
+        <td>64×64px</td>
+        <td>63×63px</td>
+        <td>61×61px</td>
+        <td>64×64px</td>
     </tr>
     <tr>
         <td>中等尺寸</td>
-        <td>52*52px</td>
-        <td>51*51px</td>
-        <td>50*50px</td>
-        <td>52*52px</td>
+        <td>52×52px</td>
+        <td>51×51px</td>
+        <td>50×50px</td>
+        <td>52×52px</td>
     </tr>
     <tr>
         <td>超小尺寸</td>
-        <td>32*32px</td>
-        <td>32*32px</td>
-        <td>31*31px</td>
-        <td>32*32px</td>
+        <td>32×32px</td>
+        <td>32×32px</td>
+        <td>31×31px</td>
+        <td>32×32px</td>
     </tr>
     <tr>
         <td colspan="5">注意：图标尺寸需包含空白透明的安全区域（上下左右各 2px）。</td>
@@ -262,38 +262,38 @@ Zepp OS 的图标遵循「轻量」与「友好」的设计理念。在造型上
 <table>
     <tr>
         <th>设备分辨率</th>
-        <th>圆屏<br/>480*480px</th>
-        <th>圆屏<br/>466*466px</th>
-        <th>圆屏<br/>454*454px</th>
-        <th>矩形屏<br/>390*450px</th>
+        <th>圆屏<br/>480×480px</th>
+        <th>圆屏<br/>466×466px</th>
+        <th>圆屏<br/>454×454px</th>
+        <th>矩形屏<br/>390×450px</th>
     </tr>
     <tr>
         <td>常规尺寸</td>
-        <td>64*64px</td>
-        <td>63*63px</td>
-        <td>61*61px</td>
-        <td>64*64px</td>
+        <td>64×64px</td>
+        <td>63×63px</td>
+        <td>61×61px</td>
+        <td>64×64px</td>
     </tr>
     <tr>
         <td>中等尺寸</td>
-        <td>52*52px</td>
-        <td>51*51px</td>
-        <td>50*50px</td>
-        <td>52*52px</td>
+        <td>52×52px</td>
+        <td>51×51px</td>
+        <td>50×50px</td>
+        <td>52×52px</td>
     </tr>
     <tr>
         <td>小尺寸</td>
-        <td>40*40px</td>
-        <td>39*39px</td>
-        <td>38*38px</td>
-        <td>40*40px</td>
+        <td>40×40px</td>
+        <td>39×39px</td>
+        <td>38×38px</td>
+        <td>40×40px</td>
     </tr>
     <tr>
         <td>超小尺寸</td>
-        <td>32*32px</td>
-        <td>32*32px</td>
-        <td>31*31px</td>
-        <td>32*32px</td>
+        <td>32×32px</td>
+        <td>32×32px</td>
+        <td>31×31px</td>
+        <td>32×32px</td>
     </tr>
     <tr>
         <td colspan="5">注意：图标尺寸需包含空白透明的安全区域（上下左右各 2px）。</td>

@@ -33,7 +33,7 @@ const keyboard = createWidget(widget.WIDGET_PICKER, Param)
 
 | 属性                | 说明                                   | 是否必须 | 类型                                   |
 | ------------------- | -------------------------------------- | -------- | -------------------------------------- |
-| data_array          | 待选择的列数据                         | 是       | <code>Array<number&#124;string></code> |
+| data_array          | 待选择的列数据                         | 是       | <code>Array\<number&#124;string\></code> |
 | support_loop        | 是否支持循环拖拽                       | 是       | `boolean`                              |
 | unit                | 单位                                   | 否       | `string`                               |
 | connector           | 列与列的连接器                         | 否       | `string`                               |
@@ -102,7 +102,7 @@ import { widget, createWidget } from '@zos/ui'
 
 const time = new Time()
 
-picker_widget = createWidget(widget.WIDGET_PICKER, {
+const picker_widget = createWidget(widget.WIDGET_PICKER, {
   title: 'Start Date',
   subtitle: '',
   nb_of_columns: 3,

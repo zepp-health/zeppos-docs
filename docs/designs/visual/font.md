@@ -12,7 +12,7 @@ The main font used by Zepp OS is Noto Sans. Usage specifications for special fon
 
 ## Font size
 
-Based on the results of user survey, the best reading experience occurs in different scenarios when the viewing distance from the wearable device falls within the range of 25 cm-50 cm and the screen subtends a visual angle of 5 minutes of arc at the eye. Based on the Snellen theory, it has been deduced that on a 1.45-inch AMOLED screen with a display resolution of 480*480 pixels and a pixel density of 331 PPI, the calculation formula for the minimum font size for the Zepp OS main font is Caption1 = 0.0143*331*5 = 23.6665. Rounding up to the nearest integer gives us 24px, so 24px is the minimum size for the main font on this screen. To ensure the readability of text, use this formula to calculate the minimum font size for devices that have different screen sizes.
+Based on the results of user survey, the best reading experience occurs in different scenarios when the viewing distance from the wearable device falls within the range of 25 cm-50 cm and the screen subtends a visual angle of 5 minutes of arc at the eye. Based on the Snellen theory, it has been deduced that on a 1.45-inch AMOLED screen with a display resolution of 480×480 pixels and a pixel density of 331 PPI, the calculation formula for the minimum font size for the Zepp OS main font is Caption1 = 0.0143×331*5 = 23.6665. Rounding up to the nearest integer gives us 24px, so 24px is the minimum size for the main font on this screen. To ensure the readability of text, use this formula to calculate the minimum font size for devices that have different screen sizes.
 
 | Font style name | Round screen device 480 | Round screen device 454 | Round screen device 416  | Square screen device 390 |
 | --------------- | ----------------------- | ----------------------- | ------------------------ | ------------------------ |
@@ -24,7 +24,7 @@ Based on the results of user survey, the best reading experience occurs in diffe
 | LargeTitle      | 48                      | 47                      | 47                       | 48                       |
 
 A typographic scale is a progression of font sizes that grow by the same ratio. Use different sets of typographic scales to fit different screen sizes. We use arithmetic progression to define font sizes in a typographic scale, so as to distinguish the information layer of system content and offer a more comfortable and smooth reading experience.
-The typographic scale specification table for devices with a display resolution of 480*480 pixels is as follows:
+The typographic scale specification table for devices with a display resolution of 480×480 pixels is as follows:
 
 ![Design](/img/design/font_2.png)
 
