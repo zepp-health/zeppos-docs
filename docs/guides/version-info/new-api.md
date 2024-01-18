@@ -153,6 +153,6 @@ yarn add @zeppos/device-types
 
 ### Migration from 1.0
 
-In Zepp OS 2.0, we introduced the concept of `API_LEVEL`, a complete JS API compatibility scheme, refer to [API_LEVEL #Compatibility Assurance](../framework/device/compatibility.md#CompatibilityGuarantee).
+In Zepp OS 2.0, we introduced the concept of `API_LEVEL`, a complete JS API compatibility scheme, refer to [API_LEVEL #Compatibility Assurance](../framework/device/compatibility.md#compatibility-guarantee).
 
 Please refer to [Upgrade from version 1.0](migration-guide.md) for detailed migration steps.

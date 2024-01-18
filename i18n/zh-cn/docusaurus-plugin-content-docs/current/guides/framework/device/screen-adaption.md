@@ -155,10 +155,10 @@ const text = createWidget(widget.TEXT, textStyle)
 
 | 配置                  | config-qualifier 的值 | layout 文件名            | 说明                                           |
 | --------------------- | --------------------- | ------------------------ | ---------------------------------------------- |
-| {st: "r"}             | `r`                   | `index.r.layout.js`      | 该布局文件对圆形屏幕设备生效                   |
-| {st: "s"}             | `s`                   | `index.s.layout.js`      | 该布局文件对方形屏幕设备生效                   |
-| {st: "b"}             | `b`                   | `index.b.layout.js`      | 该布局文件对手环条状屏幕设备生效               |
-| {st: "s", sr: "w320"} | `w320-s`              | `index.w320-s.layout.js` | 该布局文件对方形且屏幕宽度为 320 px 的设备生效 |
+| `{st: "r"}`             | `r`                   | `index.r.layout.js`      | 该布局文件对圆形屏幕设备生效                   |
+| `{st: "s"}`             | `s`                   | `index.s.layout.js`      | 该布局文件对方形屏幕设备生效                   |
+| `{st: "b"}`             | `b`                   | `index.b.layout.js`      | 该布局文件对手环条状屏幕设备生效               |
+| `{st: "s", sr: "w320"}` | `w320-s`              | `index.w320-s.layout.js` | 该布局文件对方形且屏幕宽度为 320 px 的设备生效 |
 
 在 `index.js` 中，约定使用 `zosLoader:` 的前缀来引入布局文件。
 

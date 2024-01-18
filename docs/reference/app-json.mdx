@@ -91,7 +91,7 @@ When the APP-side Mini Program installs or upgrades the device-side Mini Program
 
 | Properties | Type     | Required | Description                                                                                                                                                           | Minimum Version |
 | ---------- | -------- | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
-| minVersion | `string` | YES      | Runtime requirements, this field YES is required to determine the current runtime requirements of the Mini Program; v <= minVersion, cannot be upgraded or installed. | v2              |
+| minVersion | `string` | YES      | Runtime requirements, this field YES is required to determine the current runtime requirements of the Mini Program; `v <= minVersion`, cannot be upgraded or installed. | v2              |
 | compatible | `string` | NO       | Compatible version, optional.                                                                                                                                         | v2              |
 | target     | `string` | NO       | This is the version of the target SDK, runtime, optionally.                                                                                                           | v2              |
 
@@ -154,7 +154,8 @@ As the latest known device names are as follows：
         // ...
       }
     },
- }
+  }
+}
 ```
 
 ### module: object
