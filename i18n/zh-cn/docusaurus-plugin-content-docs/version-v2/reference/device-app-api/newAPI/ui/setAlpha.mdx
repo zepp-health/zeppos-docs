@@ -1,0 +1,47 @@
+---
+title: widget.setAlpha(val)
+sidebar_label: setAlpha
+---
+
+> API_LEVEL `2.1` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+设置控件透明度。
+
+:::info
+对于不支持 `alpha` 属性的控件，可以使用 `widget.setAlpha` 设置透明度
+:::
+
+## 类型
+
+```ts
+(val: any) => void
+```
+
+## 参数
+
+### val
+
+| 说明                                          | 类型     |
+| --------------------------------------------- | -------- |
+| 取值 0 - 255，默认值为 255 不透明，0 为全透明 | `number` |
+
+## 代码示例
+
+```js
+import { createWidget, widget, text_style, align } from '@zos/ui'
+
+const text = createWidget(widget.TEXT, {
+  x: 96,
+  y: 120,
+  w: 288,
+  h: 46,
+  color: 0xffffff,
+  text_size: 36,
+  align_h: align.CENTER_H,
+  align_v: align.CENTER_V,
+  text_style: text_style.NONE,
+  text: 'HELLO ZEPPOS'
+})
+
+text.setAlpha(80)
+```
