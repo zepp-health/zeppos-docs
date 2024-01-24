@@ -462,6 +462,7 @@ module.exports = {
             'guides/tools/simulator/release-note'
           ]
         },
+        'guides/tools/npm/index',
         'guides/tools/zepp-app',
         {
           type: 'category',

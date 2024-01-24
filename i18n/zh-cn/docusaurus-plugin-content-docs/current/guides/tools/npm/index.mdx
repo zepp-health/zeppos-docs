@@ -1,0 +1,55 @@
+---
+title: npm 支持
+sidebar_label: npm 支持
+---
+
+## npm 介绍
+
+npm(Node Package Manager) 是 Node.js 默认的软件包管理系统，详细内容参考 [npm 官网](https://docs.npmjs.com/about-npm)。
+
+相比在代码仓库中以粘贴复制的方式引入三方库，以 npm 包形式进行管理，是更优的方式。
+
+## 如何使用 npm
+
+### 安装 npm 包
+
+使用到 npm 包的 Zepp OS 小程序的 `package.json` 文件中有如下字段，以 [3.0-download](https://github.com/zepp-health/zeppos-samples/tree/main/application/3.0/download) 示例小程序为例。
+
+```json
+"devDependencies": {
+  "@zeppos/device-types": "^3.0.0"
+},
+"dependencies": {
+  "@zeppos/zml": "^0.0.9"
+}
+```
+
+其中 `@zeppos/zml` 和 `@zeppos/device-types` 都是项目依赖的 npm 包，在使用 `package.json` 所在目录执行命令安装 npm 包。
+
+```sh
+npm install
+
+// alias
+npm i
+```
+
+安装完成之后，就可以使用 `zeus dev` 模拟器预览，或者 `zeus preview` 真机预览等命令。
+
+### 社区的 npm 包
+
+此处收录社区优秀的 npm 包，欢迎开发者在社区投稿自荐
+
+- [ZML](https://github.com/zepp-health/zml)
+  - 一个为 Zepp OS 小程序的开发迷你开发库。目前集成了网络请求,通信等功能。
+- [ZeppOS Visual Logger](https://github.com/silver-zepp/zeppos-visual-logger)
+  - On-Screen Logs on Your Device
+- [AutoGUI](https://github.com/silver-zepp/zeppos-autogui)
+  - Rapid GUI Prototyping for ZeppOS
+- [easy-ble](https://github.com/silver-zepp/zeppos-easy-ble)
+  - Simple interaction with home Peripherals
+
+### 如何为 Zepp OS 开发 npm 包
+
+针对 Zepp OS 开发的 npm 包只能使用 ES2015 语法与 Zepp OS JS API，不支持 Node.js 以及浏览器等环境 API，确保可用后，需要在 `package.json` 中加入 `"zeppos": true` 字段，否则 zeus CLI 工具在构建时会有 warning 提醒。
+
+上传 npm 包请参考 [npm 官方文档](https://docs.npmjs.com/about-npm)。

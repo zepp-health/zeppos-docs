@@ -1,0 +1,55 @@
+---
+title: npm Support
+sidebar_label: npm Support
+---
+
+## npm Intro
+
+npm(Node Package Manager) is the default package management system for Node.js. For more details, please refer to [npm official website](https://docs.npmjs.com/about-npm).
+
+Compared to introducing third-party libraries in the code repository by pasting and copying, managing them in the form of npm packages is a better way.
+
+## How to use npm
+
+### Install npm
+
+The `package.json` file of the Zepp OS Mini Program that uses the npm package has the following fields. Taking [3.0-download](https://github.com/zepp-health/zeppos-samples/tree/main/application/3.0/download) Mini Program as an example.
+
+```json
+"devDependencies": {
+  "@zeppos/device-types": "^3.0.0"
+},
+"dependencies": {
+  "@zeppos/zml": "^0.0.9"
+}
+```
+
+Both `@zeppos/zml` and `@zeppos/device-types` are npm packages that the project depends on. Execute the command in the directory where `package.json` is located to install the npm package.
+
+```sh
+npm install
+
+// alias
+npm i
+```
+
+After installation is complete, you can use commands such as `zeus dev` emulator preview or `zeus preview` to preview the real machine.
+
+### Npm packages for the community
+
+This is a collection of excellent npm packages from the community. Developers are welcome to contribute and recommend themselves in the community.
+
+- [ZML](https://github.com/zepp-health/zml)
+  - A mini development library for Zepp OS mini programs. Currently integrates network requests, communication and other functions
+- [ZeppOS Visual Logger](https://github.com/silver-zepp/zeppos-visual-logger)
+  - On-Screen Logs on Your Device
+- [AutoGUI](https://github.com/silver-zepp/zeppos-autogui)
+  - Rapid GUI Prototyping for Zepp OS
+- [easy-ble](https://github.com/silver-zepp/zeppos-easy-ble)
+  - Simple interaction with home Peripherals
+
+### How to develop npm packages for Zepp OS
+
+The npm package developed for Zepp OS can only use ES2015 syntax and Zepp OS JS API, and does not support environment APIs such as Node.js and browsers. After ensuring availability, it is necessary to add the `"zeppos": true` field in `package.json`, otherwise the zeus CLI tool will have a warning reminder during construction.
+
+Please refer to [npm official documentation](https://docs.npmjs.com/about-npm) for uploading npm packages.
