@@ -5,7 +5,10 @@
     {
       "type": "category",
       "label": "Mini Program Architecture",
-      "items": ["guides/architecture/arc", "guides/architecture/folder-structure"]
+      "items": [
+        "guides/architecture/arc",
+        "guides/architecture/folder-structure"
+      ]
     },
     {
       "type": "category",
@@ -37,7 +40,10 @@
         {
           "type": "category",
           "label": "Side Service",
-          "items": ["guides/framework/side-service/intro", "guides/framework/side-service/register"]
+          "items": [
+            "guides/framework/side-service/intro",
+            "guides/framework/side-service/register"
+          ]
         }
       ]
     },
@@ -48,7 +54,10 @@
         {
           "type": "category",
           "label": "CLI",
-          "items": ["guides/tools/cli/index", "guides/tools/cli/release-note"]
+          "items": [
+            "guides/tools/cli/index",
+            "guides/tools/cli/release-note"
+          ]
         },
         {
           "type": "category",
@@ -405,12 +414,17 @@
     {
       "type": "category",
       "label": "App",
-      "items": ["samples/app/calories", "samples/app/toDoList", "samples/app/fetchAPI"]
+      "items": [
+        "samples/app/calories",
+        "samples/app/toDoList",
+        "samples/app/fetchAPI"
+      ]
     },
     "distribute/index",
     "reference/revision-history"
   ],
   "watchface": [
+    "watchface/watchface-quick-start",
     "watchface/app-json",
     {
       "type": "category",
@@ -534,7 +548,10 @@
         {
           "type": "category",
           "label": "Timer Module",
-          "items": ["watchface/api/timer/createTimer", "watchface/api/timer/stopTimer"]
+          "items": [
+            "watchface/api/timer/createTimer",
+            "watchface/api/timer/stopTimer"
+          ]
         }
       ]
     },
@@ -557,7 +574,10 @@
     {
       "type": "category",
       "label": "Design Concept",
-      "items": ["designs/concept/values", "designs/concept/principles"]
+      "items": [
+        "designs/concept/values",
+        "designs/concept/principles"
+      ]
     },
     {
       "type": "category",
