@@ -462,6 +462,7 @@ module.exports = {
             'guides/tools/simulator/release-note'
           ]
         },
+        'guides/tools/npm/index',
         'guides/tools/zepp-app',
         {
           type: 'category',
@@ -646,7 +647,8 @@ module.exports = {
                 'reference/device-app-api/newAPI/ui/setProperty',
                 'reference/device-app-api/newAPI/ui/getProperty',
                 'reference/device-app-api/newAPI/ui/getType',
-                'reference/device-app-api/newAPI/ui/getId'
+                'reference/device-app-api/newAPI/ui/getId',
+                'reference/device-app-api/newAPI/ui/setAlpha',
               ]
             },
             'reference/device-app-api/newAPI/ui/widgetAnimations',

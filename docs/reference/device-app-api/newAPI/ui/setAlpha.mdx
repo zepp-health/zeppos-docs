@@ -1,0 +1,45 @@
+---
+title: widget.setAlpha(val)
+sidebar_label: setAlpha
+---
+
+> Start from API_LEVEL `2.1` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Set the opacity of the widget.
+
+:::info
+For widgets that do not support the `alpha` property, use `widget.setAlpha` to set opacity.
+:::
+
+## Type
+
+```ts
+(val: any) => void
+```
+
+### val
+
+| Description                                          | Type     |
+| --------------------------------------------- | -------- |
+| Transparency, 0 - 255, default value is 255 for opaque, 0 for full | `number` |
+
+## Code example
+
+```js
+import { createWidget, widget, text_style, align } from '@zos/ui'
+
+const text = createWidget(widget.TEXT, {
+  x: 96,
+  y: 120,
+  w: 288,
+  h: 46,
+  color: 0xffffff,
+  text_size: 36,
+  align_h: align.CENTER_H,
+  align_v: align.CENTER_V,
+  text_style: text_style.NONE,
+  text: 'HELLO ZEPPOS'
+})
+
+text.setAlpha(80)
+```
