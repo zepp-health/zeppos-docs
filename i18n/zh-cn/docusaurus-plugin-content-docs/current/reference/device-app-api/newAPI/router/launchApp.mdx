@@ -16,9 +16,9 @@ function launchApp(option: Option): void
 
 | 属性   | 类型                            | 必填 | 默认值 | 说明                                                                                                                         | API_LEVEL |
 | ------ | ------------------------------- | ---- | ------ | ---------------------------------------------------------------------------------------------------------------------------- | --------- |
-| appId  | <code>number</code>             | 是   | -      | 小程序 ID                                                                                                                    | 2.0       |
+| appId  | <code>number</code>             | 是   | -      | 小程序 ID 或系统应用 ID（API_LEVEL 3.0 支持，值参考系统应用 ID 常量）                                                        | 2.0       |
 | url    | <code>string</code>             | 是   | -      | 页面路径                                                                                                                     | 2.0       |
-| native | <code>boolean</code>            | 是   | -      | 是否跳转系统应用，3.0 版本支持跳转系统应用，参考系统应用 ID 常量                                                             | 3.0       |
+| native | <code>boolean</code>            | 是   | -      | 是否跳转系统应用                                                                                                             | 3.0       |
 | params | <code>string&#124;object</code> | 否   | -      | 传递给 app.js 生命周期 `onCreate` 中的参数，支持字符串或者标准 JSON 对象。如果传递标准 JSON 对象，该方法内部会将其转为字符串 | 2.0       |
 
 ## 常量
@@ -70,13 +70,20 @@ function launchApp(option: Option): void
 ## 代码示例
 
 ```js
-import { launchApp } from '@zos/router'
+import { launchApp, SYSTEM_APP_HR } from '@zos/router'
 
+// Jump to Mini Program
 launchApp({
   appId: 1000001,
   url: 'pages/js_widget_sample',
   params: {
     type: 1,
   },
+})
+
+// Jump to system App Heart Rate
+launchApp({
+  appId: SYSTEM_APP_HR,
+  native: true,
 })
 ```

@@ -16,9 +16,9 @@ function launchApp(option: Option): void
 
 | Property | Type                            | Required | DefaultValue | Description                                                                                                                                                                                   | API_LEVEL |
 | -------- | ------------------------------- | -------- | ------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------- |
-| appId    | <code>number</code>             | Y        | -            | Mini Program ID                                                                                                                                                                               | 2.0       |
+| appId    | <code>number</code>             | Y        | -            | Mini Program ID or System App ID (API_LEVEL 3.0 support, value reference System App ID constant)                                                                                              | 2.0       |
 | url      | <code>string</code>             | Y        | -            | path                                                                                                                                                                                          | 2.0       |
-| native   | <code>boolean</code>            | Y        | -            | Whether to jump to the system App, version 3.0 supports jumping to the system App, refer to the system App ID constant                                                                        | 3.0       |
+| native   | <code>boolean</code>            | Y        | -            | Whether to jump to the system App                                                                                                                                                             | 3.0       |
 | params   | <code>string&#124;object</code> | N        | -            | The argument passed to the app.js lifecycle `onCreate` supports either a string or a standard JSON object. If a standard JSON object is passed, the method internally converts it to a string | 2.0       |
 
 ## Constants
@@ -70,13 +70,20 @@ function launchApp(option: Option): void
 ## Example
 
 ```js
-import { launchApp } from '@zos/router'
+import { launchApp, SYSTEM_APP_HR } from '@zos/router'
 
+// Jump to Mini Program
 launchApp({
   appId: 1000001,
   url: 'pages/js_widget_sample',
   params: {
     type: 1,
   },
+})
+
+// Jump to system App Heart Rate
+launchApp({
+  appId: SYSTEM_APP_HR,
+  native: true,
 })
 ```
