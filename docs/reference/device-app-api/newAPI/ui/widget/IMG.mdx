@@ -18,7 +18,7 @@ The image widget is used to display images and supports image rotation.
 ## Create UI widget
 
 ```js
-import { createWidget, widget } from "@zos/ui";
+import { createWidget, widget } from '@zos/ui';
 
 const img = createWidget(widget.IMG, Param);
 ```
@@ -56,30 +56,30 @@ const img = createWidget(widget.IMG, Param);
 ## Code example
 
 ```js
-import { createWidget, widget, prop } from "@zos/ui";
+import { createWidget, widget, prop } from '@zos/ui';
 
 Page({
   build() {
     const img = createWidget(widget.IMG, {
       x: 125,
       y: 125,
-      src: "zeppos.png",
-    });
+      src: 'zeppos.png'
+    })
     img.addEventListener(event.CLICK_DOWN, (info) => {
       img.setProperty(prop.MORE, {
-        y: 200,
-      });
-    });
-  },
+        y: 200
+      })
+    })
+  }
 });
 ```
 
 ```js
-import { createWidget, widget, prop } from "@zos/ui";
+import { createWidget, widget, prop } from '@zos/ui';
 
 Page({
   build() {
-    const img_hour = createWidget(widget.IMG);
+    const img_hour = createWidget(widget.IMG)
     img_hour.setProperty(prop.MORE, {
       x: 0,
       y: 0,
@@ -89,9 +89,9 @@ Page({
       pos_y: 50 + 50,
       center_x: 454 / 2,
       center_x: 454 / 2,
-      src: "hour.png",
-      angle: 30,
-    });
-  },
-});
+      src: 'hour.png',
+      angle: 30
+    })
+  }
+})
 ```
