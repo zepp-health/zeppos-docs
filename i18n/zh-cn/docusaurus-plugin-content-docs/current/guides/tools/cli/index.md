@@ -32,6 +32,10 @@ npm i @zeppos/zeus-cli -g
 yarn global add @zeppos/zeus-cli
 ```
 
+:::tip
+安装过程中遇到问题请查看 [环境安装常见问题](../../faq/env-setup.md)
+:::
+
 ## `zeus create` 创建项目
 
 创建项目：
