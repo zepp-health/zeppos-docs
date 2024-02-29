@@ -32,6 +32,10 @@ npm i @zeppos/zeus-cli -g
 yarn global add @zeppos/zeus-cli
 ```
 
+:::tip
+If you encounter any problems during the installation process, please refer to the [Environment Installation FAQ](../../faq/env-setup.md)
+:::
+
 ## `zeus create` Create project
 
 Create project.

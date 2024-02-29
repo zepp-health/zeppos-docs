@@ -566,6 +566,7 @@ module.exports = {
         'guides/faq/windows-cli-qrcode-error',
         'guides/faq/preview-error',
         'guides/faq/upload-log',
+        'guides/faq/env-setup',
       ]
     },
     {

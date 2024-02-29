@@ -6,3 +6,4 @@
 - [Enable System Extensions or Kernel Extension on Apple Silicon Mac](./apple-silicon.md)
 - [Unable to preview Mini Program in Simulator or real machine](./preview-error.md)
 - [Submit user feedback (submit log)](./upload-log.md)
+- [Environment Installation FAQ](./env-setup.md)
