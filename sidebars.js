@@ -564,6 +564,8 @@ module.exports = {
         'guides/faq/developer-bridge-mode',
         'guides/faq/apple-silicon',
         'guides/faq/windows-cli-qrcode-error',
+        'guides/faq/preview-error',
+        'guides/faq/upload-log',
       ]
     },
     {
