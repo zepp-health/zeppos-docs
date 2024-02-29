@@ -172,7 +172,7 @@ module.exports = {
                 </a>`
               },
               {
-                html: `<a href="https://applink.feishu.cn/client/chat/chatter/add_by_link?link_token=39dl39d6-4317-421e-ba14-16d311d92c49" target="_blank" rel="noopener noreferrer" class="footer__link-item only-show-zh">
+                html: `<a href="https://applink.feishu.cn/client/chat/chatter/add_by_link?link_token=114t35f2-d460-4b6e-8641-f0e6f847d904" target="_blank" rel="noopener noreferrer" class="footer__link-item only-show-zh">
                   <span>飞书 ${outerLinkIcon}</span>
                 </a>`
               },

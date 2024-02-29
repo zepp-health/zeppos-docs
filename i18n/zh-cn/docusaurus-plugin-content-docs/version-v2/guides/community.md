@@ -15,7 +15,7 @@ https://github.com/orgs/zepp-health/discussions
 
 ## 飞书 - 中文沟通社区
 
-加入链接：https://applink.feishu.cn/client/chat/chatter/add_by_link?link_token=39dl39d6-4317-421e-ba14-16d311d92c49
+加入链接：https://applink.feishu.cn/client/chat/chatter/add_by_link?link_token=114t35f2-d460-4b6e-8641-f0e6f847d904
 
 我们在飞书上建立了社群，在这里你可以更及时的收到官方的通知，与官方人员实时沟通一些涉及隐私的问题。
 
