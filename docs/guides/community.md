@@ -21,7 +21,7 @@ We've created the Zepp Community team on Slack, where you can receive more timel
 
 ## Lark - Chinese Communication Community
 
-Link to join: https://applink.feishu.cn/client/chat/chatter/add_by_link?link_token=39dl39d6-4317-421e-ba14-16d311d92c49
+Link to join: https://applink.feishu.cn/client/chat/chatter/add_by_link?link_token=114t35f2-d460-4b6e-8641-f0e6f847d904
 
 We have created a community on Lark, where you can receive official notifications in a more timely manner and communicate with officials in real time about issues involving privacy.
 
