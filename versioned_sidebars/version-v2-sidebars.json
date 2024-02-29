@@ -475,6 +475,10 @@
               "items": [
                 "watchface/api/hmUI/widget/IMG",
                 "watchface/api/hmUI/widget/TEXT_IMG",
+                "watchface/api/hmUI/widget/TEXT",
+                "watchface/api/hmUI/widget/ARC",
+                "watchface/api/hmUI/widget/FILL_RECT",
+                "watchface/api/hmUI/widget/STROKE_RECT",
                 "watchface/api/hmUI/widget/ARC_PROGRESS",
                 "watchface/api/hmUI/widget/IMG_PROGRESS",
                 "watchface/api/hmUI/widget/IMG_LEVEL",
@@ -488,6 +492,7 @@
                 "watchface/api/hmUI/widget/DATE_POINTER",
                 "watchface/api/hmUI/widget/data_type",
                 "watchface/api/hmUI/widget/IMG_CLICK",
+                "watchface/api/hmUI/widget/BUTTON",
                 "watchface/api/hmUI/widget/GRADKIENT_POLYLINE",
                 "watchface/api/hmUI/widget/edit_watchface"
               ]
