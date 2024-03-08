@@ -100,6 +100,21 @@ mask = hmUI.createWidget(hmUI.widget.WATCHFACE_EDIT_FG_MASK, {
 })
 ```
 
+以全屏幕的控件提供给用户选择展示内容，尝试以下代码，省略部分与上文一致
+
+```js
+editGroup = hmUI.createWidget(hmUI.widget.WATCHFACE_EDIT_GROUP, {
+  // ...
+  select_list: {
+    title_font_size :34 ,
+    title_align_h: hmUI.align.CENTER_H ,
+    list_item_vspace: 8,
+    list_tips_text_font_size: 32,
+    list_tips_text_align_h : hmUI.align.LEFT,
+  }
+})
+```
+
 ## 高级用法 自定义 editType
 
 如果当前固件所支持的 `editType` 不全（可能产品新需求）不支持当前表盘 可以自定义 `type`
