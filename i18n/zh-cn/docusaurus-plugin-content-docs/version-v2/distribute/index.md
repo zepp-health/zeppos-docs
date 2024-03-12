@@ -116,9 +116,10 @@ appId 为应用的唯一标识，在应用登记时自动分配
 
 ### 应用 icon
 
-- icon 尺寸大小： 240×240 px，图片格式：PNG
-- icon 为背景透明的圆形图标，保证四周无填充；
-- icon 设计请参考[设计规范 - 图标](../designs/visual/icons.md#应用程序图标)
+此处的 icon 仅用于在管理中心上传，在应用市场展示
+
+- icon 尺寸大小：240×240 px，图片格式：PNG
+- icon 为背景透明的圆形图标，保证四周无填充
 
 ![icon_standard](/img/docs/distribute/icon_standard.png)
 

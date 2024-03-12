@@ -8,3 +8,4 @@
 - [无法在模拟器或者真机预览小程序](./preview-error.md)
 - [提交用户反馈（提交日志）](./upload-log.md)
 - [环境安装常见问题](./env-setup.md)
+- [无法进入系统的解决办法](./re-install-system.md)

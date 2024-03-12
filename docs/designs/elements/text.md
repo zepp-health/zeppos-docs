@@ -14,13 +14,17 @@ sidebar_label: Text
 
 **Main titles**
 
-- The main title is used to explain or summarize the content of the next level.
+- The main title is used to indicate or summarize the current page's content/function.
 
 ![Design](/img/design/main-titles_1.png)
 
-- The main title should be consistent with the name of the feature on the previous interface.
+- It is recommended that the text of the main title in the page title bar follows the Title Case text rule, where the first letter of each major word is capitalized.
 
-![Design](/img/design/998bf4ca18daf69a456a72156de3cdb9.png)
+![Design](/img/design/30_text_2.png)
+
+>① For round-screen devices, the text in the page title bar.
+>
+>② For square-screen devices, the text in the top status bar.
 
 **Subtitles**
 
@@ -29,6 +33,14 @@ sidebar_label: Text
 ![Design](/img/design/8acd9a289a70f4c643afac7b007b5955.png)
 
 >① The subtitle should have a lower-level style than the main title to show the page hierarchy.
+
+- The subtitle text in the page title bar should follow the sentence case text rule, meaning the first letter of the first word and all proper nouns are capitalized.
+
+![Design](/img/design/30_text_4.png)
+
+>① Regular words.
+>
+>② Proper nouns.
 
 ## Body text
 
@@ -42,10 +54,17 @@ The body text should show the full text without omission.
 
 ![Design](/img/design/message-content.png)
 
+## Label text
+
+- It is recommended that label text adheres to the "sentence case" text display rule, where the first letter of the first word and all proper nouns are capitalized. Care should be taken to avoid using all caps, as it can reduce readability speed.
+
+![Design](/img/design/30_text_label_text_1.png)
+
+![Design](/img/design/30_text_label_text_2.png)
+
 ## Auxiliary text
 
 - For more information about time, date, day of week, and unit, refer to: [International textual usage](../internationalization/regional-standards.md).
-
 
 - For more information about charts, refer to: [Charts](charts.md).
 ## Copywriting principles

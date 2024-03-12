@@ -6,39 +6,39 @@ sidebar_label: Editable watchface
 ## Editable Widget
 
 | Value                             | Description                                              |
-| --------------------------------- | -------------------------------------------------------- | 
+| --------------------------------- | -------------------------------------------------------- |
 | hmUI.data_type.BATTERY            | Electricity                                              |
-| hmUI.data_type.STEP               | Current Step Count                                       | 
-| hmUI.data_type.STEP_TARGET        | Target number of steps                                   |         
-| hmUI.data_type.CAL                | Current Calories                                         |             
-| hmUI.data_type.CAL_TARGET         | Target Calories                                          |           
-| hmUI.data_type.HEART              | Current heart rate                                       |   
-| hmUI.data_type.PAI_DAILY          | Today PAI                                                |           
+| hmUI.data_type.STEP               | Current Step Count                                       |
+| hmUI.data_type.STEP_TARGET        | Target number of steps                                   |
+| hmUI.data_type.CAL                | Current Calories                                         |
+| hmUI.data_type.CAL_TARGET         | Target Calories                                          |
+| hmUI.data_type.HEART              | Current heart rate                                       |
+| hmUI.data_type.PAI_DAILY          | Today PAI                                                |
 | hmUI.data_type.PAI_WEEKLY         | Total PAI                                                |
-| hmUI.data_type.DISTANCE           | Distance                                                 | 
-| hmUI.data_type.STAND              | Current stand                                            | 
-| hmUI.data_type.STAND_TARGET       | Target stand                                             | 
-| hmUI.data_type.WEATHER_CURRENT    | Current temperature                                      | 
-| hmUI.data_type.WEATHER_LOW        | Current low temperature                                  | 
-| hmUI.data_type.WEATHER_HIGH       | Current high temperature                                 | 
-| hmUI.data_type.UVI                | Ultraviolet light                                        | 
-| hmUI.data_type.AQI                | Air Quality                                              | 
-| hmUI.data_type.HUMIDITY           | Humidity                                                 | 
-| hmUI.data_type.FAT_BURNING        | Fat Burning                                              | 
-| hmUI.data_type.FAT_BURNING_TARGET | Fat Burning Goals                                        | 
-| hmUI.data_type.SUN_CURRENT        | Sunrise and sunset will be displayed according to the time | 
-| hmUI.data_type.SUN_RISE           | Sunrise                                                  | 
-| hmUI.data_type.SUN_SET            | Sunset                                                   | 
-| hmUI.data_type.WIND               | Wind Power                                               | 
-| hmUI.data_type.STRESS             | Pressure                                                 | 
-| hmUI.data_type.SPO2               | Blood oxygen                                             | 
-| hmUI.data_type.BODY_TEMP          | Temperature                                              | 
-| hmUI.data_type.ALTIMETER          | Pneumatic pressure                                       | 
-| hmUI.data_type.MOON               | Moon phase. Only progress is supported                   | 
-| hmUI.data_type.FLOOR              | Climbing a building                                      | 
-| hmUI.data_type.ALARM_CLOCK        | Alarm Clock                                              | 
-| hmUI.data_type.COUNT_DOWN         | Countdown                                                | 
-| hmUI.data_type.STOP_WATCH         | Stopwatch                                                | 
+| hmUI.data_type.DISTANCE           | Distance                                                 |
+| hmUI.data_type.STAND              | Current stand                                            |
+| hmUI.data_type.STAND_TARGET       | Target stand                                             |
+| hmUI.data_type.WEATHER_CURRENT    | Current temperature                                      |
+| hmUI.data_type.WEATHER_LOW        | Current low temperature                                  |
+| hmUI.data_type.WEATHER_HIGH       | Current high temperature                                 |
+| hmUI.data_type.UVI                | Ultraviolet light                                        |
+| hmUI.data_type.AQI                | Air Quality                                              |
+| hmUI.data_type.HUMIDITY           | Humidity                                                 |
+| hmUI.data_type.FAT_BURNING        | Fat Burning                                              |
+| hmUI.data_type.FAT_BURNING_TARGET | Fat Burning Goals                                        |
+| hmUI.data_type.SUN_CURRENT        | Sunrise and sunset will be displayed according to the time |
+| hmUI.data_type.SUN_RISE           | Sunrise                                                  |
+| hmUI.data_type.SUN_SET            | Sunset                                                   |
+| hmUI.data_type.WIND               | Wind Power                                               |
+| hmUI.data_type.STRESS             | Pressure                                                 |
+| hmUI.data_type.SPO2               | Blood oxygen                                             |
+| hmUI.data_type.BODY_TEMP          | Temperature                                              |
+| hmUI.data_type.ALTIMETER          | Pneumatic pressure                                       |
+| hmUI.data_type.MOON               | Moon phase. Only progress is supported                   |
+| hmUI.data_type.FLOOR              | Climbing a building                                      |
+| hmUI.data_type.ALARM_CLOCK        | Alarm Clock                                              |
+| hmUI.data_type.COUNT_DOWN         | Countdown                                                |
+| hmUI.data_type.STOP_WATCH         | Stopwatch                                                |
 | hmUI.data_type.SLEEP              | Sleep                                                    |
 
 ## Levels
@@ -99,6 +99,21 @@ mask = hmUI.createWidget(hmUI.widget.WATCHFACE_EDIT_FG_MASK, {
   h: 454,
   src: rootPath + 'mask/mask70.png',
   show_level: hmUI.show_level.ONLY_EDIT
+})
+```
+
+To provide the user with a full screen control to select the display content, try the following code, the omitted part is the same as above.
+
+```js
+editGroup = hmUI.createWidget(hmUI.widget.WATCHFACE_EDIT_GROUP, {
+  // ...
+  select_list: {
+    title_font_size :34 ,
+    title_align_h: hmUI.align.CENTER_H ,
+    list_item_vspace: 8,
+    list_tips_text_font_size: 32,
+    list_tips_text_align_h : hmUI.align.LEFT,
+  }
 })
 ```
 

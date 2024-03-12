@@ -2,7 +2,7 @@
 
 If you encounter any problems during use or need to submit logs to Zepp official, you can refer to the steps in this article.
 
-Submitting feedback in Zepp "Profile" - > "User feedback" can greatly shorten the time to solve problems.
+Submitting feedback in Zepp App "Profile" - > "User feedback" can greatly shorten the time to solve problems.
 
 1.In the textarea, you can describe the problem according to the following template
 

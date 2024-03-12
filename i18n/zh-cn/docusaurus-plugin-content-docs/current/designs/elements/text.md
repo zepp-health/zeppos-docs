@@ -14,13 +14,17 @@ sidebar_label: 文本
 
 **主标题**  
 
-- 主标题用于解释或概括下一层级的内容。  
+- 主标题用于表示或概括当前页面内容/功能。
 
 ![Design](/img/design/main-titles_1.png)
 
-- 标题和进入该页面的上一级界面的功能选项名称保持一致。  
+- 页面标题栏主标题文本建议遵循标题式大小写（Title Case）文本规则，即每个主要单词的首字母大写显示。
 
-![Design](/img/design/998bf4ca18daf69a456a72156de3cdb9.png)
+![Design](/img/design/30_text_2.png)
+
+>① 圆屏设备页面标题栏文本。
+>
+>② 方屏设备顶部状态栏文本。
 
 **副标题**  
 
@@ -30,6 +34,13 @@ sidebar_label: 文本
 
 >① 副标题应比主标题的样式级别低，以表达页面层级关系  
 
+- 页面标题栏副标题遵循句子式大小写（Sentence Case）文本规则，即首个单词首字母以及所有专有名词的首字母保持大写。
+
+![Design](/img/design/30_text_4.png)
+
+>① 常规单词。
+>
+>② 特有名词。
 
 ## 正文  
 
@@ -42,7 +53,15 @@ sidebar_label: 文本
 - 消息内容  
 
 ![Design](/img/design/message-content.png)
+
+## 标签文本
+
+- 标签文本建议遵循“句子式大小写”(Sentence Case)文本显示规则。首个单词首字母以及所有专有名词的首字母保持大写，注意避免全部大写而降低识别速度。
   
+![Design](/img/design/30_text_label_text_1.png)
+
+![Design](/img/design/30_text_label_text_2.png)
+
 ## 辅助文字  
 
 - 时间、日期、星期、单位参考：[国际化文字用法](../internationalization/regional-standards.md)。
