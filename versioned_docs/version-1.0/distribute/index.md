@@ -118,9 +118,10 @@ App Introduction Screenshots (Rectangular Screen Devices)
 
 ### Application icon
 
+The icon here is only used to upload in the Console and display in the app store.
+
 - Icon size: 240 * 240px, image format: PNG
 - The icon should be a circular image with transparent background, keep the area around the image transparent and not filled with color or any other things.
-- Please design the icon according to the [Design Specifications - app icons](../designs/visual/icons.md#app-icons).
 
 ![icon_standard](/img/docs/distribute/icon_standard.png)
 
