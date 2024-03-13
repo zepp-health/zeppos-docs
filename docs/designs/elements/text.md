@@ -12,7 +12,7 @@ sidebar_label: Text
 
 ## Title
 
-**Main titles**
+### Main titles
 
 - The main title is used to indicate or summarize the current page's content/function.
 
@@ -26,7 +26,7 @@ sidebar_label: Text
 >
 >② For square-screen devices, the text in the top status bar.
 
-**Subtitles**
+### Subtitles
 
 - When the main title cannot fully convey the content, add subtitles to supplement the information.
 
