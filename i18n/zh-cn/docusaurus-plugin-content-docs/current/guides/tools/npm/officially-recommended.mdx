@@ -1,0 +1,51 @@
+import useBaseUrl from '@docusaurus/useBaseUrl'
+
+# 官方推荐 npm 包
+
+## 官方维护的 npm 包
+
+此处收录 Zepp OS 官方推出的 npm 包
+
+### [ZML](https://github.com/zepp-health/zml)
+
+一个为 Zepp OS 小程序的开发的轻量级工具库。目前集成了网络请求，通信等功能。
+
+可以大大简化通信流程的代码编写，提高开发效率。
+
+### [ZeppOS Visual Logger](https://github.com/zepp-health/visual-logger)
+
+在屏幕上显示日志。
+
+<img src={useBaseUrl('/img/docs/guides/tools/npm/visual-logger.jpeg')} width="400" title="visual_logger" />
+
+### [AutoGUI](https://github.com/zepp-health/autogui)
+
+更快速、更简单的 Zepp OS GUI 工具库。
+
+<img src={useBaseUrl('/img/docs/guides/tools/npm/autogui-showcase.gif')} width="400" title="visual_logger" />
+
+### [eazy-ble](https://github.com/zepp-health/easy-ble)
+
+EasyBLE 库是 Zepp OS 3.0 手表的高级 BLE 管理工具，具有自动配置文件生成器、混合异步和顺序队列，可有效处理所有操作，包括写入和读取、用户友好的基于字符串的交互、数据和地址的无缝自动转换、支持多种数据类型以及通过MAC以地址为中心的命令简化设备管理，所有这些都旨在提高可用性并简化 BLE 通信。
+
+### [eazy-draw](https://github.com/zepp-health/easy-draw)
+
+这个库主要是为了扩展主要小部件并添加在 Zepp OS 2.0+上绘制任意线条的功能而创建的，目前只能使用折线小部件来实现。但是该小部件有其局限性-高内存消耗，非常有限的视口约为 150px，所有线条必须是相同的颜色。相比之下，`draw.line()` 基本上可以在任何方向上绘制多色线条，假设任何合理的长度。这使得它成为一个很好的工具，可以将您的GPS应用程序基于不支持 Canvas 的设备。
+
+<img src={useBaseUrl('/img/docs/guides/tools/npm/gps-map-example.gif')} width="400" title="eazy-draw" />
+
+### [eazy-storage](https://github.com/zepp-health/easy-storage)
+
+`EasyStorage` 套件是一套方便的 `ZeppOS` 应用程序工具。它包括 `EasyStorage`、`EasyFlashStorage` 和 `EasyTempStorage`。这些工具为开发人员提供了广泛的管理数据的选项，从将其存储在内存或文件中，到使用临时存储。每个工具都旨在满足特定的存储需求，使处理应用程序数据更加容易和高效。除此之外，该套件还有一个 `Storage` 实用程序库，提供直接文件操作的静态方法。这包括直接从文件系统读取和写入 JSON 对象、文本和二进制数据。
+
+除了这些存储解决方案，我们还有 `EasyTSDB`（时间序列数据库）。它是 `EasyStorage` 套件的一个特殊部分，专门用于管理时间序列数据。就像 `Impact xDB` 一样，`EasyTSDB` 非常擅长存储、检索和分析时间序列数据。它使用“RAM”和文件系统存储的混合来有效地管理数据，并且可以在 `RAM` 满时处理数据刷新到磁盘。它非常适合需要有效管理时间序列数据的应用程序，并支持特定时间范围内的自定义聚合和查询。
+
+<img src={useBaseUrl('/img/docs/guides/tools/npm/easy-tsdb-hr-example.gif')} width="400" title="eazy-storage" />
+
+## 社区作品
+
+此处收录社区优秀的 npm 包，欢迎开发者在社区投稿自荐
+
+### [zeppos-fx](https://github.com/XiaomaiTX/zeppos-fx)
+
+这是一个一个用于在 ZeppOS 中提供简单动画的库 你可以用非常简单的方式来为现有的 UI 控件添加各种动画效果。

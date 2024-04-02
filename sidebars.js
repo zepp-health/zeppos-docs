@@ -463,6 +463,7 @@ module.exports = {
           ]
         },
         'guides/tools/npm/index',
+        'guides/tools/npm/officially-recommended',
         'guides/tools/zepp-app',
         {
           type: 'category',
