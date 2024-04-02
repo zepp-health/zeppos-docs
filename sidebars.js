@@ -563,6 +563,7 @@ module.exports = {
         'guides/faq/simulator-4-4k',
         'guides/faq/developer-bridge-mode',
         'guides/faq/apple-silicon',
+        'guides/faq/apple-silicon-setup',
         'guides/faq/windows-cli-qrcode-error',
         'guides/faq/preview-error',
         'guides/faq/upload-log',
