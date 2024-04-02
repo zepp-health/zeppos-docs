@@ -12,31 +12,34 @@ Can be used to calculate the height of a multi-line text layout with a fixed wid
 ## Type
 
 ```ts
-(text_string: string, options: object) => result
+(text: string, options: object) => result
 ```
 
 ## Parameters
 
-| Parameter   | Description                                 | Required | Type      |
-| ----------- | ------------------------------------------- | -------- | --------- |
-| text_string | Text content of the layout to be calculated | YES      | `string`  |
-| options     | Options                                     | YES      | `Options` |
+| Parameter | Description                                 | Required | Type      |
+| --------- | ------------------------------------------- | -------- | --------- |
+| text      | Text content of the layout to be calculated | YES      | `string`  |
+| options   | Options                                     | YES      | `Options` |
 
 ### Options
 
-| Properties | Description                                                                                         | Required | Type     | API_LEVEL |
-| ---------- | --------------------------------------------------------------------------------------------------- | -------- | -------- | --------- |
-| text_size  | Text size                                                                                           | YES      | `number` | 2.0       |
-| text_width | Width of a single line of text                                                                      | YES      | `number` | 2.0       |
-| wrapped    | whether the text is line feed, `0`: no line feed; `1`: line feed                                    | NO       | `number` | 2.0       |
+| Properties | Description                                                                                                                                                                                            | Required | Type     | API_LEVEL |
+| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------- | -------- | --------- |
+| text_size  | Text size                                                                                                                                                                                              | YES      | `number` | 2.0       |
+| text_width | Width of a single line of text                                                                                                                                                                         | YES      | `number` | 2.0       |
+| wrapped    | whether the text is line feed, `0`: no line feed; `1`: line feed                                                                                                                                       | NO       | `number` | 2.0       |
 | rows_max   | Limit the maximum number of lines (when the given text exceeds the maximum number of lines, it will be truncated and followed by an ellipsis). The default value is `0`, which means there is no limit | NO       | `number` | 3.0       |
 
 ### result: object
 
-| Properties | Description        | Type     |
-| ---------- | ------------------ | -------- |
-| width      | Width pixel value  | `number` |
-| height     | Height pixel value | `number` |
+| Properties | Description                                                            | Type     | API_LEVEL |
+| ---------- | ---------------------------------------------------------------------- | -------- | --------- |
+| width      | Width pixel value                                                      | `number` | 2.0       |
+| height     | Height pixel value                                                     | `number` | 2.0       |
+| rows       | The text displays the number of lines. When the `wrapped` field is `false`, the value of `rows` is `1`.           | `number` | 2.0       |
+| result     | Calculation result, `-1` - error, `0` - success, `1` - success, characters truncated and ellipses added | `number` | 2.0       |
+| text       | When the calculation is successful, the truncated and ellipsed text content is returned, which can be used for the display of actual UI widgets | `string` | 2.0       |
 
 ## Code example
 
