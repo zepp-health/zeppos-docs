@@ -20,9 +20,9 @@ function scrollTo(y: number): void
 
 ### Option
 
-| Property | Type                | Required | DefaultValue | Description                           | API_LEVEL |
-| -------- | ------------------- | -------- | ------------ | ------------------------------------- | --------- |
-| y        | <code>number</code> | Y        | -            | Vertical axis coordinates of the page | 2.0       |
+| Property | Type                | Required | DefaultValue | Description                                                                                                                  | API_LEVEL |
+| -------- | ------------------- | -------- | ------------ | ---------------------------------------------------------------------------------------------------------------------------- | --------- |
+| y        | <code>number</code> | Y        | -            | The vertical axis coordinates of the page, the 12 o'clock direction of the watch is positive, and scrolling down is negative | 2.0       |
 
 ## Example
 
@@ -30,6 +30,6 @@ function scrollTo(y: number): void
 import { scrollTo } from '@zos/page'
 
 scrollTo({
-  y: 200,
+  y: -200,
 })
 ```
