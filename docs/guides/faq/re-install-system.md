@@ -1,8 +1,6 @@
-# 无法进入系统的解决办法
+# Solution for inability to enter the system
 
 import useBaseUrl from '@docusaurus/useBaseUrl'
-
-开发 Zepp OS 小程序或表盘过程中有概率引发系统错误，导致 Zepp OS 无法正常启动，显示如下画面，按键没有响应。
 
 During the development of Zepp OS Mini Program or Watchface, there is a probability of system errors causing Zepp OS to fail to start normally, displaying the following screen, and the buttons do not respond.
 
