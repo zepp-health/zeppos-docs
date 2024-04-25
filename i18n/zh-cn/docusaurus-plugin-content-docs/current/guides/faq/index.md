@@ -10,3 +10,4 @@
 - [提交用户反馈（提交日志）](./upload-log.md)
 - [环境安装常见问题](./env-setup.md)
 - [无法进入系统的解决办法](./re-install-system.md)
+- [获取测试模拟器](./join-test-group.md)

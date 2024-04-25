@@ -569,7 +569,8 @@ module.exports = {
         'guides/faq/preview-error',
         'guides/faq/upload-log',
         'guides/faq/env-setup',
-        'guides/faq/re-install-system'
+        'guides/faq/re-install-system',
+        'guides/faq/join-test-group',
       ]
     },
     {
