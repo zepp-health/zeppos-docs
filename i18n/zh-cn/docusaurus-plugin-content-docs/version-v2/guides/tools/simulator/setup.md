@@ -157,6 +157,7 @@ cd /Applications/simulator.app/Contents/MacOS && sudo -s ./simulator
 
 :::info
 
+- 模拟器通信依赖虚拟网卡 tun/tap，其运行需要 sudo 权限，所以需要使用 sudo 命令运行模拟器
 - 点击模拟器的 simulator 按钮，尝试打开手表模拟器，如果点击没有反应，建议查看系统偏好设置中的「安全性与隐私」是否有提示
 - 如果终端需要输入密码，输入密码即可
 - 退出模拟器，在终端按 control + c 或者右击控制栏图标退出
