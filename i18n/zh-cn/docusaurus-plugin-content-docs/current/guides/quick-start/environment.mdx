@@ -57,7 +57,7 @@ The script doesn’t run because the PowerShell Execution Policy is set to the d
 请先在终端执行如下命令
 
 ```sh
-Set-ExecutionPolicy -ExecutionPolicy RemoteSigned
+Set-ExecutionPolicy -ExecutionPolicy Bypass #or Unrestricted
 ```
 
 之后重新执行 `.\env-helper.ps1` 命令
