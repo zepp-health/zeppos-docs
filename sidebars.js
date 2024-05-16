@@ -541,7 +541,8 @@ module.exports = {
         'guides/best-practice/bluetooth-communication',
         'guides/best-practice/widget-group',
         'guides/best-practice/persistence-storage',
-        'guides/best-practice/error-catch'
+        'guides/best-practice/error-catch',
+        'guides/best-practice/i18n',
       ]
     },
     {
@@ -561,6 +562,7 @@ module.exports = {
       },
       items: [
         'guides/faq/watchface-maker',
+        'guides/faq/icon-faq',
         'guides/faq/simulator-4-4k',
         'guides/faq/developer-bridge-mode',
         'guides/faq/apple-silicon',
@@ -570,7 +572,7 @@ module.exports = {
         'guides/faq/upload-log',
         'guides/faq/env-setup',
         'guides/faq/re-install-system',
-        'guides/faq/join-test-group',
+        'guides/faq/join-test-group'
       ]
     },
     {
@@ -655,7 +657,7 @@ module.exports = {
                 'reference/device-app-api/newAPI/ui/getProperty',
                 'reference/device-app-api/newAPI/ui/getType',
                 'reference/device-app-api/newAPI/ui/getId',
-                'reference/device-app-api/newAPI/ui/setAlpha',
+                'reference/device-app-api/newAPI/ui/setAlpha'
               ]
             },
             'reference/device-app-api/newAPI/ui/widgetAnimations',
@@ -668,7 +670,9 @@ module.exports = {
             'reference/device-app-api/newAPI/ui/redraw',
             'reference/device-app-api/newAPI/ui/setEnable',
             'reference/device-app-api/newAPI/ui/setAppWidgetSize',
-            'reference/device-app-api/newAPI/ui/getAppWidgetSize'
+            'reference/device-app-api/newAPI/ui/getAppWidgetSize',
+            'reference/device-app-api/newAPI/ui/getRtlLayout',
+            'reference/device-app-api/newAPI/ui/relayoutRtl'
           ]
         },
         ...newAPIPathMap.map((i) => {
@@ -817,7 +821,7 @@ module.exports = {
         'designs/template/pop-up-windows',
         'designs/template/cards',
         'designs/template/empty-pages',
-        'designs/template/content-layout',
+        'designs/template/content-layout'
       ]
     },
     {
@@ -854,7 +858,8 @@ module.exports = {
       items: [
         'designs/customization/watchface',
         'designs/customization/screen-off-mode',
-        'designs/customization/widget'
+        'designs/customization/widget',
+        'designs/customization/shortcut-cards'
       ]
     },
     {

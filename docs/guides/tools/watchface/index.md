@@ -9,3 +9,8 @@ title: Overview
 As the tool function iterates, the Watchface design of more watch products is also supported. The Watchface Maker provides a simple and intuitive way to make the Watchface, and after the design is complete, it can be installed into the watch device by [install through scanning QR code](guides/scanCode.md) for real device preview.
 
 ![effects](/img/docs/guides/tools/watchface/overview.png)
+
+## Watchface design
+
+- [Watchface design specification](../../../designs/customization/watchface.md)
+- [Watchface Design Resources](../../../watchface/design-resources.md)

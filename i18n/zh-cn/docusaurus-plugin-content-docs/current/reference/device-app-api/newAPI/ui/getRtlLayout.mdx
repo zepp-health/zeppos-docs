@@ -1,0 +1,29 @@
+---
+title: getRtlLayout()
+sidebar_label: getRtlLayout
+---
+
+> API_LEVEL `2.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+查询当前系统语言设置是否为 RTL 语言，语言设置为希伯来语和阿拉伯语会返回 `true`。
+
+## 类型
+
+```ts
+() => result
+```
+
+### result: boolean
+
+| 说明     | 类型     |
+| -------- | -------- |
+| 查询结果，`true` 表明为 RTL 语言，`false` 表明非 RTL 语言 | `boolean` |
+
+## 代码示例
+
+```js
+import { getRtlLayout } from '@zos/ui'
+
+const result = getRtlLayout()
+console.log(result)
+```

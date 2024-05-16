@@ -1,0 +1,35 @@
+---
+title: relayoutRtl()
+sidebar_label: relayoutRtl
+---
+
+> API_LEVEL `2.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+根据当前系统语言，对控件应用 RTL 布局。
+
+:::note
+调用此方法之后，会查询当前系统语言，如果为 RTL 语言，会对当前调用页面的所有控件进行 RTL 布局调整。如果当前页面有不需要翻转的控件，需要组织 `relayoutRtl()` 和控件创建的调用时机
+:::
+
+设计规范参考 [设计规范-国际化-界面排版](../../../../designs/internationalization/interface-layouts.md)
+
+## 类型
+
+```ts
+() => result
+```
+
+### result: boolean
+
+| 说明     | 类型     |
+| -------- | -------- |
+| 调用结果，`true` 成功，`false` 失败 | `boolean` |
+
+## 代码示例
+
+```js
+import { relayoutRtl } from '@zos/ui'
+
+const result = relayoutRtl()
+console.log(result)
+```

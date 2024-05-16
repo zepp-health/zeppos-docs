@@ -1,0 +1,36 @@
+---
+title: relayoutRtl()
+sidebar_label: relayoutRtl
+---
+
+> Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Apply RTL layout to the widget based on the current system language.
+
+:::note
+After calling this method, the current system language will be queried. If it is an RTL language, RTL layout adjustments will be made to all widgets on the current calling page. If there are widgets on the current page that do not need to be flipped, you need to organize the calling timing of `relayoutRtl()` and widget creation
+
+:::
+
+Design specification reference [Design Specifications - Internationalization - Interface layouts](../../../../designs/internationalization/interface-layouts.md)
+
+## Type
+
+```ts
+() => result
+```
+
+### result: boolean
+
+| Description                     | Type      |
+| ------------------------------- | --------- |
+| Call result, `true` succeeds, `false` fails | `boolean` |
+
+## 代码示例
+
+```js
+import { relayoutRtl } from '@zos/ui'
+
+const result = relayoutRtl()
+console.log(result)
+```

@@ -10,3 +10,8 @@ sidebar_label: 概览
 随着工具功能的迭代，也会支持更多手表产品的表盘设计。表盘制作工具提供了一种简单直观的方式去制作表盘，并且设计完成后可以通过[扫码安装](guides/scanCode.md)的方式安装到手表设备, 实现真机预览。
 
 ![效果](/img/zh-cn/docs/watchface/overview.png)
+
+## 表盘设计
+
+- [表盘设计规范](../../../designs/customization/watchface.md)
+- [表盘设计资源](../../../watchface/design-resources.md)
