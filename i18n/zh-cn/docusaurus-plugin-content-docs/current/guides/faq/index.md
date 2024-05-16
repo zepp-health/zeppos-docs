@@ -1,6 +1,7 @@
 # 常见问题
 
 - [表盘制作工具](./watchface-maker.md)
+- [应用图标常见问题](./icon-faq.md)
 - [模拟器在4K屏幕的异常解决](./simulator-4-4k.md)
 - [Developer Bridge模式](./developer-bridge-mode.md)
 - [Apple Silicon 机型开启系统扩展](./apple-silicon.md)

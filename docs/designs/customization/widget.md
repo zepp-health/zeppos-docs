@@ -77,3 +77,7 @@ Inform the current page status or the solution to change the current status only
   The state of empty data is represented by "--" as a placeholder.  
   
 ![Design](/img/design/customization_35.png)  
+
+## Development Documents
+
+[Register SecondaryWidget and Shortcut Cards](../../guides/framework/device/secondary-widget.md)

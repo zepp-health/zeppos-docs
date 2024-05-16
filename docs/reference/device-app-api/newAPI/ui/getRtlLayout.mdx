@@ -1,0 +1,29 @@
+---
+title: getRtlLayout()
+sidebar_label: getRtlLayout
+---
+
+> Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Query whether the current system language setting is RTL language. Setting the language to Hebrew and Arabic will return `true`.
+
+## Type
+
+```ts
+() => result
+```
+
+### result: boolean
+
+| Description                                                                      | Type      |
+| -------------------------------------------------------------------------------- | --------- |
+| Query results, `true` indicates RTL language, `false` indicates non-RTL language | `boolean` |
+
+## Code example
+
+```js
+import { getRtlLayout } from '@zos/ui'
+
+const result = getRtlLayout()
+console.log(result)
+```

@@ -308,3 +308,8 @@ i18n 用法与小程序页面一致，多语言文件一并存放在 /page/i18n 
 ![widget](/img/docs/guides/version_info/calorie_1.png)
 
 ![widget](/img/docs/guides/version_info/calorie_2.png)
+
+## 设计规范
+
+- [副屏应用设计规范](../../../designs/customization/widget.md)
+- [快捷卡片设计规范](../../../designs/customization/shortcut-cards.md)

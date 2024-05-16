@@ -1,0 +1,131 @@
+---
+title: i18n
+sidebar_label: i18n
+---
+
+## Intro
+
+This article shares some experience in internationalization during the development of Zepp OS.
+
+## Design Specifications
+
+The Zepp OS design team has provided a very complete Internationalization design specification. For details, please refer to [Design Specifications - Internationalization](../../designs/internationalization/index.md).
+
+## Widget Text i18n Usage
+
+Internationalization support for text in UI widgets is the most common requirement. We can use the [`getText`](../../reference/device-app-api/newAPI/i18n/getText.mdx) method under the `@zos/i18n` module to achieve this.
+
+First, we need to create a `page/i18n` directory in the Mini Program directory, and create a file named `${key}.po` in it. The `key` in it is the abbreviation of the country code. Please refer to [Multilingual Mapping](../../reference/related-resources/language-list.mdx) for the mapping relationship between country codes and countries.
+
+For more information on the directory structure organization of multilingual files, please refer to [Folder Structure](../../guides/architecture/folder-structure.mdx).
+
+Take [Calories](https://github.com/zepp-health/zeppos-samples/tree/main/application/3.0/calories/page/i18n) Mini Program as an example. Show the structure of the `en-US.po` and `zh-CN.po` files.
+
+```txt
+// en-US.po
+
+msgid "unit"
+msgstr "KCAL"
+
+msgid "cake"
+msgstr "Cake"
+
+msgid "coffee"
+msgstr "Coffee"
+
+msgid "calories"
+msgstr "Calories"
+
+msgid "beer"
+msgstr "Beer"
+
+msgid "iceCream"
+msgstr "Ice cream"
+
+msgid "equivalent"
+msgstr "Equivalent to"
+
+msgid "hamburger"
+msgstr "Hamburger"
+
+msgid "pizza"
+msgstr "Pizza"
+
+msgid "chocolate"
+msgstr "Chocolate"
+
+msgid "consumption"
+msgstr "Consumption Today"
+
+msgid "sausage"
+msgstr "Sausage"
+
+msgid "ham"
+msgstr "Ham"
+
+msgid "cookie"
+msgstr "Cookie"
+```
+
+```txt
+// zh-CN.po
+
+msgid "unit"
+msgstr "KCAL"
+
+msgid "cake"
+msgstr "蛋糕"
+
+msgid "coffee"
+msgstr "咖啡"
+
+msgid "calories"
+msgstr "卡路里"
+
+msgid "beer"
+msgstr "啤酒"
+
+msgid "iceCream"
+msgstr "冰淇淋"
+
+msgid "equivalent"
+msgstr "相当于"
+
+msgid "hamburger"
+msgstr "汉堡包"
+
+msgid "pizza"
+msgstr "披萨"
+
+msgid "chocolate"
+msgstr "巧克力"
+
+msgid "consumption"
+msgstr "今日消耗"
+
+msgid "sausage"
+msgstr "香肠"
+
+msgid "ham"
+msgstr "火腿"
+
+msgid "cookie"
+msgstr "曲奇饼"
+```
+
+Each `.po` file needs to be organized in this format. In the Mini Program, you can use the `getText()` method to obtain the string in the current system language.
+
+```js
+// page.js
+import { getText } from '@zos/i18n'
+
+console.log(getText('cake'))
+```
+
+## Configuration Internationalization
+
+In addition to the implementation of the Mini Program internal page, the title of the Mini Program in the application list also needs to support Internationalization. This type of Internationalization configuration refers to the Internationalization configuration in [app.json](../../reference/app-json.mdx).
+
+## Implementation of RTL
+
+In some regions, RTL effects need to be implemented. Zepp OS provides the [relayoutRtl](../../reference/device-app-api/newAPI/ui/relayoutRtl.mdx) API, which is very convenient to call and easily realizes the flipping of widgets.

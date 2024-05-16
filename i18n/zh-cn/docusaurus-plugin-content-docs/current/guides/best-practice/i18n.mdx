@@ -1,0 +1,131 @@
+---
+title: 国际化
+sidebar_label: 国际化
+---
+
+## 介绍
+
+本文分享一些 Zepp OS 开发过程中国际化经验分享。
+
+## 设计资料
+
+Zepp OS 设计团队提供了非常完整的国际化设计规范，详情参考 [设计规范 - 国际化](../../designs/internationalization/index.md)
+
+## 控件文本国际化用法
+
+在 UI 控件中的文本支持国际化是最常见的需求，我们可以使用 `@zos/i18n` 模块下的 [`getText`](../../reference/device-app-api/newAPI/i18n/getText.mdx) 方法来实现。
+
+首先，我们需要在小程序目录中创建 `page/i18n` 目录，在其中创建名为 `${key}.po` 的文件，其中的 `key` 是国家代码缩写，国家代码与国家的映射关系请参考 [多语言映射](../../reference/related-resources/language-list.mdx)。
+
+更多多语言文件目录结构组织相关信息请参考 [目录结构](../../guides/architecture/folder-structure.mdx)
+
+以 [Calories](https://github.com/zepp-health/zeppos-samples/tree/main/application/3.0/calories/page/i18n) 小程序为例。展示一下 `en-US.po` 和 `zh-CN.po` 文件的结构。
+
+```txt
+// en-US.po
+
+msgid "unit"
+msgstr "KCAL"
+
+msgid "cake"
+msgstr "Cake"
+
+msgid "coffee"
+msgstr "Coffee"
+
+msgid "calories"
+msgstr "Calories"
+
+msgid "beer"
+msgstr "Beer"
+
+msgid "iceCream"
+msgstr "Ice cream"
+
+msgid "equivalent"
+msgstr "Equivalent to"
+
+msgid "hamburger"
+msgstr "Hamburger"
+
+msgid "pizza"
+msgstr "Pizza"
+
+msgid "chocolate"
+msgstr "Chocolate"
+
+msgid "consumption"
+msgstr "Consumption Today"
+
+msgid "sausage"
+msgstr "Sausage"
+
+msgid "ham"
+msgstr "Ham"
+
+msgid "cookie"
+msgstr "Cookie"
+```
+
+```txt
+// zh-CN.po
+
+msgid "unit"
+msgstr "KCAL"
+
+msgid "cake"
+msgstr "蛋糕"
+
+msgid "coffee"
+msgstr "咖啡"
+
+msgid "calories"
+msgstr "卡路里"
+
+msgid "beer"
+msgstr "啤酒"
+
+msgid "iceCream"
+msgstr "冰淇淋"
+
+msgid "equivalent"
+msgstr "相当于"
+
+msgid "hamburger"
+msgstr "汉堡包"
+
+msgid "pizza"
+msgstr "披萨"
+
+msgid "chocolate"
+msgstr "巧克力"
+
+msgid "consumption"
+msgstr "今日消耗"
+
+msgid "sausage"
+msgstr "香肠"
+
+msgid "ham"
+msgstr "火腿"
+
+msgid "cookie"
+msgstr "曲奇饼"
+```
+
+每一个 `.po` 文件都需要按照这个格式来组织，在小程序中通过 `getText()` 方法，即可获取当前系统语言下的字符串。
+
+```js
+// page.js
+import { getText } from '@zos/i18n'
+
+console.log(getText('cake'))
+```
+
+## 配置国际化
+
+除了小程序内部页面的实现，还有应用列表小程序的标题，也需要支持国际化，这类国际化配置参考 [app.json](../../reference/app-json.mdx) 中的国际化配置。
+
+## RTL 的实现
+
+部分地区需要实现 RTL 的效果，Zepp OS 提供了 [relayoutRtl](../../reference/device-app-api/newAPI/ui/relayoutRtl.mdx) API，调用非常方便，轻松实现控件的翻转。

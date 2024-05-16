@@ -76,3 +76,7 @@ sidebar_label: 副屏
 数据为空的状态使用“--”来占位表示。  
 
 ![Design](/img/design/customization_35.png)
+
+## 开发文档
+
+[注册副屏应用和快捷卡片](../../guides/framework/device/secondary-widget.md)

@@ -306,3 +306,8 @@ We added a Widget and Shortcut card based on the Mini Program sample calories, a
 ![widget](/img/docs/guides/version_info/calorie_1.png)
 
 ![widget](/img/docs/guides/version_info/calorie_2.png)
+
+## Design Specifications
+
+- [Widget Design Specifications](../../../designs/customization/widget.md)
+- [Shortcut Cards Design Specifications](../../../designs/customization/shortcut-cards.md)
