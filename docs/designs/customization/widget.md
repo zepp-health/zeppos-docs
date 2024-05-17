@@ -76,7 +76,15 @@ Inform the current page status or the solution to change the current status only
 
   The state of empty data is represented by "--" as a placeholder.  
   
-![Design](/img/design/customization_35.png)  
+![Design](/img/design/customization_35.png)
+
+## Preview Picture
+
+Press and hold the Widget to enter edit mode. A static preview image must be provided. The size of the preview image is consistent with the screen resolution. If it is a square screen device, rounded corners need to be added. Please refer to [Device Basic Information](../../reference/related-resources/device-list.mdx) for screen resolution and rounded corner information.(Currently, only Zepp OS 3.0 and above support the press-and-hold-to-edit feature on the Widget.)
+
+![Design](/img/design/widget_preview.png)
+
+Figma Design Template File Link: [Widget templates](https://www.figma.com/community/file/1372844899307211702)
 
 ## Development Documents
 

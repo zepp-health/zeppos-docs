@@ -253,6 +253,8 @@ i18n is used in the same way as the Mini Program page, and the i18n files are st
 
 The image resource path is also consistent with the Mini Program page.
 
+#### Name Internationalization
+
 The names of the SecondaryWidget and the Shortcut cards are configured in multiple languages in app.json, here's the example.
 
 The name of SecondaryWidget is configured in the `secondary-widget` field.
@@ -297,6 +299,34 @@ The name of Shorcut cards are configured in the root `i18n` field.
   },
   "defaultLanguage": "en-US"
 }
+```
+
+#### Preview Image Internationalization
+
+When the `API_LEVEL` of Mini Program is greater than `3.0`, a preview image needs to be passed in, and the size requirements of the preview image refer to the design specifications at the end of the article.
+
+Configure the path of the preview image in `app.json`. The preview image also needs to support Internationalization. You need to prepare the `preview_en-US.png` and `preview_zh -CN.png` images.
+
+```json
+"secondary-widget": {
+  "widgets": [
+    {
+      "path": "secondary-widget/index",
+      "runtime": {
+        "type": "js"
+      },
+      "preview": "preview.png",
+      "i18n": {
+        "en-US": {
+          "name": "App Name"
+        },
+        "zh-CN": {
+          "name": "应用名称"
+        }
+      }
+    }
+  ]
+},
 ```
 
 ## Full example

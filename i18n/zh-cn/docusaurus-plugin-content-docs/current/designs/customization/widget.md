@@ -63,7 +63,7 @@ sidebar_label: 副屏
 
 - 有操作的空页面。  
 
-底部加入按钮，整体对齐方式使用垂直居中的形式，保持上下间距统一。   
+底部加入按钮，整体对齐方式使用垂直居中的形式，保持上下间距统一。
 
 ![Design](/img/design/customization_33.png)
 
@@ -76,6 +76,14 @@ sidebar_label: 副屏
 数据为空的状态使用“--”来占位表示。  
 
 ![Design](/img/design/customization_35.png)
+
+## 预览图
+
+长按副屏进入编辑状态，需提供一张静态预览图，预览图尺寸与屏幕分辨率一致，如果是方屏幕设备，需要加入圆角。屏幕分辨率和圆角信息参考 [设备基本信息](../../reference/related-resources/device-list.mdx)。（目前仅 Zepp OS 3.0 及以上版本支持长按副屏进入编辑功能）
+
+![Design](/img/design/widget_preview.png)
+
+Figma 设计模版文件链接：[Widget templates](https://www.figma.com/community/file/1372844899307211702)
 
 ## 开发文档
 
