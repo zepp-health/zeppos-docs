@@ -253,6 +253,8 @@ i18n 用法与小程序页面一致，多语言文件一并存放在 /page/i18n 
 
 图片资源路径也与小程序页面保持一致。
 
+#### 名称国际化
+
 「副屏应用」和「快捷卡片」名称的多语言在 app.json 中配置，以下是示例
 
 「副屏应用」的名称在 `secondary-widget` 字段中进行配置。
@@ -297,6 +299,34 @@ i18n 用法与小程序页面一致，多语言文件一并存放在 /page/i18n 
   },
   "defaultLanguage": "en-US"
 }
+```
+
+#### 预览图国际化
+
+当小程序的 API_LEVEL 大于 `3.0`，需要传入预览图，预览图尺寸要求参考文末设计规范。
+
+在 `app.json` 中配置预览图路径，预览图也需要支持国际化，需要准备 `preview_en-US.png` 和 `preview_zh-CN.png` 图片。
+
+```json
+"secondary-widget": {
+  "widgets": [
+    {
+      "path": "secondary-widget/index",
+      "runtime": {
+        "type": "js"
+      },
+      "preview": "preview.png",
+      "i18n": {
+        "en-US": {
+          "name": "App Name"
+        },
+        "zh-CN": {
+          "name": "应用名称"
+        }
+      }
+    }
+  ]
+},
 ```
 
 ## 完整示例
