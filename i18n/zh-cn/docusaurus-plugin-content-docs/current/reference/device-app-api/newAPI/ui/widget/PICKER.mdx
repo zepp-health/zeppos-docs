@@ -12,7 +12,7 @@ sidebar_label: PICKER 通用选择器
 ```js
 import { createWidget, widget, prop } from '@zos/ui'
 
-const keyboard = createWidget(widget.WIDGET_PICKER, Param)
+const picker_widget = createWidget(widget.WIDGET_PICKER, Param)
 ```
 
 ### Param: object
@@ -23,7 +23,7 @@ const keyboard = createWidget(widget.WIDGET_PICKER, Param)
 | data_config    | 列配置信息数组，参考 `DataConfig`  | 是       | `Array<DataConfig>` |
 | title          | 选择器的标题                       | 否       | `string`            |
 | subtitle       | 选择器的副标题                     | 否       | `string`            |
-| done_icon      | 完成图标的资源路径                 | 否       | `number`            |
+| done_icon      | 完成图标的资源路径                 | 否       | `string`            |
 | picker_cb      | 选择器的回调函数                   | 否       | `CallBack`          |
 | init_col_index | 初始化 focus 的所在列的 index 索引 | 否       | `number`            |
 | normal_color   | 未选中的数据的颜色值               | 否       | `number`            |

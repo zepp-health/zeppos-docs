@@ -12,7 +12,7 @@ An universal selector, use to text and number list selection
 ```js
 import { createWidget, widget, prop } from '@zos/ui'
 
-const keyboard = createWidget(widget.WIDGET_PICKER, Param)
+const picker_widget = createWidget(widget.WIDGET_PICKER, Param)
 ```
 
 ### Param: object
@@ -23,7 +23,7 @@ const keyboard = createWidget(widget.WIDGET_PICKER, Param)
 | data_config    | Array of column configuration, refer to `DataConfig` | YES      | `Array<DataConfig>` |
 | title          | Title of Picker                                      | NO       | `string`            |
 | subtitle       | Subtitle of Picker                                   | NO       | `string`            |
-| done_icon      | Resource path of icon about done status              | NO       | `number`            |
+| done_icon      | Resource path of icon about done status              | NO       | `string`            |
 | picker_cb      | Callback function of Picker                          | NO       | `CallBack`          |
 | init_col_index | Initialize the index of the focused column           | NO       | `number`            |
 | normal_color   | Color value of unselected item                       | NO       | `number`            |
