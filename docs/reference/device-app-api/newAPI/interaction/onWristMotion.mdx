@@ -1,0 +1,52 @@
+# onWristMotion
+
+> Start from API_LEVEL `3.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Monitoring hand movement events.
+
+## Type
+
+```ts
+function onWristMotion(option: Option): void
+```
+
+## Parameters
+
+### Option
+
+| Property | Type                                      | Required | DefaultValue | Description                                    | API_LEVEL |
+| -------- | ----------------------------------------- | -------- | ------------ | ---------------------------------------------- | --------- |
+| callback | <code>(params: Params) =&#62; void</code> | Y        | -            | Digital crown rotation event callback function | 3.0       |
+
+### Params
+
+| Property | Type                | Description                                       | API_LEVEL |
+| -------- | ------------------- | ------------------------------------------------- | --------- |
+| type     | <code>number</code> | Action type, 0 - palm covering, 3 - wrist event   | 3.6       |
+| motion   | <code>number</code> | Action code, value reference hand motion constant | 3.0       |
+
+## Constants
+
+### Hand motion constant
+
+| Constant             | Description         | API_LEVEL |
+| -------------------- | ------------------- | --------- |
+| `WRIST_MOTION_LIFT`  | Wrist lift          | 2.0       |
+| `WRIST_MOTION_LOWER` | Wrist down          | 2.0       |
+| `WRIST_MOTION_FLIP`  | Flip wrist movement | 2.0       |
+
+## Example
+
+```js
+import { onWristMotion, WRIST_MOTION_LIFT } from '@zos/interaction'
+
+onWristMotion({
+  callback: (result) => {
+    const { type, motion } = result
+
+    if (type === 3) {
+      console.log(motion === WRIST_MOTION_LIFT)
+    }
+  },
+})
+```

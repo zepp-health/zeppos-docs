@@ -21,24 +21,26 @@ const button = createWidget(widget.BUTTON, Param)
 
 ### Param: object
 
-| 属性           | 说明                                                                       | 是否必须 | 类型        |
-| -------------- | -------------------------------------------------------------------------- | -------- | ----------- |
-| x              | 控件 x 坐标                                                                | 是       | `number`    |
-| y              | 控件 y 坐标                                                                | 是       | `number`    |
-| w              | 控件显示宽度 注: 设为-1 则优先根据 normal_src 的 size 适配，否则默认为 100 | 是       | `number`    |
-| h              | 控件显示高度 注: 设为-1 则优先根据 normal_src 的 size 适配，否则默认为 40  | 是       | `number`    |
-| text           | 按钮显示的文本                                                             | 否       | `string`    |
-| color          | 文本颜色                                                                   | 否       | `number`    |
-| text_size      | 文本字体大小                                                               | 否       | `number`    |
-| normal_color   | 正常状态的背景色，需要与 `press_color` 同时设置才能生效                    | 否       | `number`    |
-| press_color    | 按压时显示的背景色，需要与 `normal_color` 同时设置才能生效                 | 否       | `number`    |
-| radius         | 使用颜色作为按钮背景时的圆角                                               | 否       | `number`    |
-| normal_src     | 正常状态的背景图，需要与 `press_src` 同时设置才能生效                      | 否       | `string`    |
-| press_src      | 按压时显示的背景图，需要与 `normal_src` 同时设置才能生效                   | 否       | `string`    |
-| click_func     | 点击按钮的回调                                                             | 否       | `ClickFunc` |
-| longpress_func | 长按（700ms）按钮的回调                                                    | 否       | `ClickFunc` |
+| 属性           | 说明                                                                                           | 是否必须 | 类型        | API_LEVEL |
+| -------------- | ---------------------------------------------------------------------------------------------- | -------- | ----------- | --------- |
+| x              | 控件 x 坐标                                                                                    | 是       | `number`    | 2.0       |
+| y              | 控件 y 坐标                                                                                    | 是       | `number`    | 2.0       |
+| w              | 控件显示宽度 注: 设为-1 则优先根据 normal_src 的 size 适配，否则默认为 100                     | 是       | `number`    | 2.0       |
+| h              | 控件显示高度 注: 设为-1 则优先根据 normal_src 的 size 适配，否则默认为 40                      | 是       | `number`    | 2.0       |
+| text           | 按钮显示的文本                                                                                 | 否       | `string`    | 2.0       |
+| color          | 文本颜色                                                                                       | 否       | `number`    | 2.0       |
+| text_size      | 文本字体大小                                                                                   | 否       | `number`    | 2.0       |
+| normal_color   | 正常状态的背景色，需要与 `press_color` 同时设置才能生效                                        | 否       | `number`    | 2.0       |
+| press_color    | 按压时显示的背景色，需要与 `normal_color` 同时设置才能生效                                     | 否       | `number`    | 2.0       |
+| radius         | 使用颜色作为按钮背景时的圆角                                                                   | 否       | `number`    | 2.0       |
+| normal_src     | 正常状态的背景图，需要与 `press_src` 同时设置才能生效                                          | 否       | `string`    | 2.0       |
+| press_src      | 按压时显示的背景图，需要与 `normal_src` 同时设置才能生效                                       | 否       | `string`    | 2.0       |
+| click_func     | 点击按钮的回调                                                                                 | 否       | `ClickFunc` | 2.0       |
+| longpress_func | 长按（700ms）按钮的回调                                                                        | 否       | `ClickFunc` | 2.0       |
+| font           | 字体路径，资源存放路径参考 [目录结构](../../../../../guides/architecture/folder-structure.mdx) | 否       | `string`    | 3.6       |
 
 :::caution
+
 - 当按钮的背景和颜色都没有设置的时候，会使用默认的点击态背景色（正常黑色 点击灰色）
 - 当按钮的背景和颜色都设置时会优先使用背景色而不是背景图
 - radius 字段只有在设置背景色之后才有用

@@ -1,0 +1,257 @@
+---
+title: SPORT_DATA
+sidebar_label: SPORT_DATA 运动数据
+---
+
+> API_LEVEL `3.6` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../../guides/framework/device/compatibility.md)。
+
+在运动扩展中展示运动数据，可以展示丰富的运动数据类型。
+
+## 创建 UI 控件
+
+```js
+import { createWidget, widget } from '@zos/ui'
+
+const sportData = createWidget(widget.SPORT_DATA, Param)
+```
+
+### Param: object
+
+| 属性             | 说明                                                       | 是否必须 | 类型      |
+| ---------------- | ---------------------------------------------------------- | -------- | --------- |
+| x                | 控件 x 坐标                                                | 是       | `number`  |
+| y                | 控件 y 坐标                                                | 是       | `number`  |
+| w                | 控件显示宽度                                               | 是       | `number`  |
+| h                | 控件显示高度                                               | 是       | `number`  |
+| edit_id          | 控件 ID，确保每个实例唯一性                                | 是       | `number`  |
+| category         | 数据类型，目前仅支持 `edit_widget_group_type.SPORTS`       | 是       | `number`  |
+| default_type     | 展示的数据项，见下文支持的数据项                           | 是       | `number`  |
+| text_size        | 文本字体大小，默认 `36` px                                 | 否       | `number`  |
+| text_color       | 文本颜色，默认 `0x0000FF`                                  | 否       | `number`  |
+| sub_text_visible | 是否显示副文本，默认 `false`                               | 否       | `boolean` |
+| sub_text_size    | 副文本字体大小，默认 `36` px                               | 否       | `number`  |
+| sub_text_color   | 副文本颜色，默认 `0x0000FF`                                | 否       | `number`  |
+| rect_visible     | 是否显示文本框，默认 `false`                               | 否       | `boolean` |
+| line_color       | 文本框颜色，默认 `0x0000FF`                                | 否       | `number`  |
+| text_x           | 文本框显示位置 x 坐标                                      | 否       | `number`  |
+| text_y           | 文本框显示位置 y 坐标                                      | 否       | `number`  |
+| text_w           | 文本框宽度                                                 | 否       | `number`  |
+| text_h           | 文本框高度                                                 | 否       | `number`  |
+| sub_text_x       | 副文本框显示位置 x 坐标                                    | 否       | `number`  |
+| sub_text_y       | 副文本框显示位置 y 坐标                                    | 否       | `number`  |
+| sub_text_w       | 副文本框宽度                                               | 否       | `number`  |
+| sub_text_h       | 副文本框高度                                               | 否       | `number`  |
+| mock_data        | 模拟的数据，只在模拟器生效，控件的数据项会显示传入的字符串 | 否       | `string`  |
+
+### 数据项类型
+
+数据项类型通过 `@zos/ui` 模块的 `sport_data` 对象进行访问
+
+| 数据项 Key                    | 说明               |
+| ----------------------------- | ------------------ |
+| DURATION_NET                  | 运动用时           |
+| DURATION_CUR_SECTION          | 本段用时           |
+| DURATION_PREV_SECTION         | 上段用时           |
+| DURATION_AVG_SECTION          | 每段平均用时       |
+| DURATION_CUR_GROUP            | 本组用时           |
+| DISTANCE_TOTAL                | 距离               |
+| DISTANCE_CUR_SECTION          | 本段距离           |
+| DISTANCE_PREV_SECTION         | 上段距离           |
+| COUNT_TOTAL                   | 总计数             |
+| COUNT_CUR_ROPE                | 本组计数           |
+| COUNT_BROKEN_ROPE             | 断绳次数           |
+| COUNT_TOTAL_BOAT              | 总划次             |
+| COUNT_CUR_BOAT                | 本组划次           |
+| COUNT_CUR_FITNESS             | 本组计次           |
+| GLIDE_COUNT                   | 滑降次数           |
+| GLIDE_TOTAL_DISTANCE          | 累计滑降距离       |
+| GLIDE_CUR_DISTANCE            | 本次滑降距离       |
+| GLIDE_TOTAL_ALTITUDE          | 累计滑降落差       |
+| GLIDE_CUR_ALTITUDE            | 本次滑降落差       |
+| CLIMB_UP_FLOORS               | 上楼层数           |
+| CLIMB_UP_CUR_FLOORS           | 本段上楼层数       |
+| CLIMB_UP_PREV_FLOORS          | 上段上楼层数       |
+| CLIMB_DOWN_FLOORS             | 下楼层数           |
+| CLIMB_DOWN_CUR_FLOORS         | 本段下楼层数       |
+| CLIMB_DOWN_PREV_FLOORS        | 上段下楼层数       |
+| CLIMB_UP_FLOORS_IN_MIN        | 每分钟上楼层数     |
+| CLIMB_UP_TOTAL_ALTITUDE       | 上楼高度           |
+| CLIMB_UP_CUR_ALTITUDE         | 本段上楼高度       |
+| CLIMB_UP_PREV_ALTITUDE        | 上段上楼高度       |
+| CLIMB_DOWN_ALTITUDE_TOTAL     | 下楼高度           |
+| CLIMB_DOWN_CUR_ALTITUDE       | 本段下楼高度       |
+| CLIMB_DOWN_PREV_ALTITUDE      | 上段下楼高度       |
+| SWIM_TOTAL_LAPS               | 趟数               |
+| SWIM_CUR_LAPS                 | 本段趟数           |
+| SWIM_PREV_LAPS                | 上段趟数           |
+| SWIM_TOTAL_STROKE_count       | 总划水次数         |
+| SWIM_CUR_STROKE_count         | 本段划水次数       |
+| SWIM_PREV_STROKE_count        | 上段划水次数       |
+| SWIM_AVG_STROKE_DISTANCE      | 平均划水距离       |
+| SWIM_AVG_SECTION_STROKE_count | 每段平均划水次数   |
+| SWIM_STROKE_SPEED             | 划水速率           |
+| SWIM_CUR_STROKE_SPEED         | 本段划水速率       |
+| SWIM_PREV_STROKE_SPEED        | 上段划水速率       |
+| SWIM_AVG_STROKE_SPEED         | 平均划水速率       |
+| SWIM_AVG_SWOLF                | 平均 Swolf         |
+| SWIM_CUR_SWOLF                | 本段 Swolf         |
+| SWIM_PREV_SWOLF               | 上段 Swolf         |
+| PACE                          | 配速               |
+| PACE_AVG                      | 平均配速           |
+| PACE_CUR_AVG                  | 本段配速           |
+| PACE_PREV_AVG                 | 上段配速           |
+| STRIDE_FREQ                   | 步频               |
+| STRIDE_AVG_FREQ               | 平均步频           |
+| STRIDE_CUR_FREQ               | 本段步频           |
+| STRIDE_PREV_FREQ              | 上段步频           |
+| STRIDE                        | 步幅               |
+| STRIDE_AVG                    | 平均步幅           |
+| STRIDE_CUR                    | 本段步幅           |
+| STRIDE_PREV                   | 上段步幅           |
+| STRIDE_COUNT                  | 步数               |
+| SPEED                         | 速度               |
+| SPEED_AVG                     | 平均速度           |
+| SPEED_AVG_GLIDE               | 平均滑降速度       |
+| SPEED_PREV_GLIDE              | 上次滑降速度       |
+| SPEED_CUR_SECTION             | 本段速度           |
+| SPEED_PREV_SECTION            | 上段速度           |
+| SPEED_MAX                     | 最大速度           |
+| SPEED_VERTICAL                | 垂直速度           |
+| ALTITUDE                      | 海拔               |
+| ALTITUDE_MAX                  | 最高海拔           |
+| ALTITUDE_MIN                  | 最低海拔           |
+| ALTITUDE_AVG                  | 平均海拔           |
+| SLOPE_TOTAL_RISING_DISTANCE   | 累计爬坡           |
+| SLOPE_CUR_RISING_DISTANCE     | 本段爬坡           |
+| SLOPE_PREV_RISING_DISTANCE    | 上段爬坡           |
+| ALTITUDE_TOTAL_UP             | 累计上升           |
+| ALTITUDE_CUR_UP               | 本段上升           |
+| ALTITUDE_PREV_UP              | 上段上升           |
+| ALTITUDE_TOTAL_DOWN           | 累计下降           |
+| ALTITUDE_CUR_DOWN             | 本段下降           |
+| ALTITUDE_PREV_DOWN            | 上段下降           |
+| SLOPE                         | 坡度               |
+| SLOPE_AVG                     | 平均坡度           |
+| SLOPE_CUR                     | 本段坡度           |
+| SLOPE_PREV                    | 上段坡度           |
+| SLOPE_GLIDE                   | 滑翔比             |
+| SLOPE_AVG_GLIDE               | 平均滑翔比         |
+| SLOPE_CUR_GLIDE               | 本段滑翔比         |
+| SLOPE_PREV_GLIDE              | 上段滑翔比         |
+| BRANDISH_TOTAL_count          | 总挥拍次数         |
+| BRANDISH_POSITIVE_count       | 正手挥拍次数       |
+| BRANDISH_NEGATIVE_count       | 反手挥拍次数       |
+| BRANDISH_SERVE_count          | 发球次数           |
+| CONSUME                       | 消耗               |
+| CONSUME_CUR                   | 本组消耗           |
+| BOATING_FREQ                  | 划频               |
+| BOATING_AVG_FREQ              | 平均划频           |
+| BOATING_CUR_FREQ              | 本组平均划频       |
+| BOATING_PULL                  | 拉桨用时           |
+| BOATING_PUSH                  | 收桨用时           |
+| FREQ                          | 频率               |
+| FREQ_AVG                      | 平均频率           |
+| FREQ_CUR                      | 本组平均频率       |
+| GOLF_SPEED                    | 手速               |
+| GOLF_ANGLE                    | 平面               |
+| GOLF_UP_TIME                  | 上杆时间           |
+| GOLF_DOWN_TIME                | 下杆时间           |
+| GOLF_BEAT                     | 节奏               |
+| GOLF_SWING_COUNTER_GROUP      | 本组杆数           |
+| GOLF_SWING_COUNTER            | 总杆数             |
+| GOLF_AVG_SCORE                | 平均得分           |
+| GOLF_SCORE                    | 得分               |
+| HR                            | 心率               |
+| HR_AVG                        | 平均心率           |
+| HR_CUR_AVG                    | 本组平均心率       |
+| HR_INTERVAL                   | 心率区间           |
+| HR_MAX_PERCENT                | 最大心率百分比     |
+| HR_RESERVED_PERCENT           | 储备心率百分比     |
+| HR_AVG_MAX_PERCENT            | 平均最大心率百分比 |
+| HR_AVG_RESERVED_PERCENT       | 平均储备心率百分比 |
+| HR_CUR_SECTION                | 本段心率           |
+| HR_CUR_MAX_PERCENT            | 本段最大心率百分比 |
+| HR_CUR_RESERVED_PERCENT       | 本段储备心率百分比 |
+| HR_PREV_SECTION               | 上段心率           |
+| HR_PREV_MAX_PERCENT           | 上段最大心率百分比 |
+| HR_PREV_RESERED_PERCENT       | 上段储备心率百分比 |
+| PRESSURE                      | 压力               |
+| PRESSURE_AVG                  | 平均压力           |
+| PRESSURE_CUR                  | 本段压力           |
+| PRESSURE_PREV                 | 上段压力           |
+| TEMP                          | 温度               |
+| TEMP_MAX                      | 最高温度           |
+| TEMP_MIN                      | 最低温度           |
+| OTHER_SECTION_ORDER           | 当前组数           |
+| OTHER_AEROBIC_TE              | 有氧 TE            |
+| OTHER_ANAEROBIC_TE            | 无氧 TE            |
+| OTHER_TRAIN_LOAD              | 训练负荷           |
+| OTHER_CUR_TIME                | 当前时间           |
+| OTHER_SUNRISE_TIME            | 日出时间           |
+| OTHER_SUNSET_TIME             | 日落时间           |
+| OTHER_BORAMETER               | 气压               |
+| OTHER_ACTIONNAME              | 动作名称           |
+| CHART_HR                      | 心率图             |
+| CHART_SPEED                   | 速度图             |
+| CHART_STROKE_FREP             | 划频图             |
+| CHART_TE                      | 训练效果图         |
+| CHART_STROKE_SPEED            | 划水速率图         |
+| CHART_PACE                    | 配速图             |
+| CHART_ALTITUDE                | 海拔图             |
+| CHART_FREQ                    | 频率图             |
+| DEVICE_POWER                  | 功率               |
+| DEVICE_POWER_WEIGHT           | 功率体重比         |
+| DEVICE_WORK                   | 功                 |
+| DEVICE_AVG_POWER              | 平均功率           |
+| DEVICE_MAX_POWER              | 最大功率           |
+| DEVICE_3S_AVG_POWER           | 3s 平均功率        |
+| DEVICE_10S_AVG_POWER          | 10s 平均功率       |
+| DEVICE_30S_AVG_POWER          | 30s 平均功率       |
+| DEVICE_LAP_AVG_POWER          | 本段功率           |
+| DEVICE_PREV_AVG_POWER         | 上段功率           |
+| DEVICE_CADENCE                | 踏频               |
+| DEVICE_FAST_CADENCE           | 最快踏频           |
+| DEVICE_AVG_CADENCE            | 平均踏频           |
+| DEVICE_LAP_AVG_CADENCE        | 本段踏频           |
+| DEVICE_PREV_AVG_CADENCE       | 上段踏频           |
+| DURATION_GLIDE                | 滑降用时           |
+| DURATION_TOTAL_CLIMB          | 登山用时           |
+| GLIDE_PREV_DISTANCE           | 上次滑降距离       |
+| GLIDE_PREV_ALTITUDE           | 上次滑降落差       |
+| SPEED_MAX_GLIDE               | 最大滑降速度       |
+| SLOPE_GLIDE_MAX               | 最大滑降坡度       |
+| SLOPE_GLIDE_AVG               | 平均滑降坡度       |
+| GLIDE_ANGLE_MAX               | 最大滑降角度       |
+| GLIDE_ANGLE_AVG               | 平均滑降角度       |
+| DURATION_SURFACE              | 水面用时           |
+| DURATION_CUR_DIVING           | 本次下潜用时       |
+| DURATION_PREV_DIVING          | 上次下潜用时       |
+| COUNT_DIVING                  | 下潜次数           |
+| COUNT_CAUGHT                  | 捕获数量           |
+| SPEED_DIVING                  | 潜水速度           |
+| DEPTH                         | 深度               |
+| DEPTH_AVG                     | 平均深度           |
+| DEPTH_MAX                     | 最大深度           |
+| DEPTH_MAX_PREV                | 上次下潜深度       |
+| HEIGHT                        | 高度               |
+| DESENT_SPEED                  | 下降速度           |
+| DESENT_SPEED_MAX              | 最大下降速度       |
+| DESENT_SPEED_AVG              | 平均下降速度       |
+| SKYDIVING_HEIGHT              | 跳伞高度           |
+| COUNT_CONTINUOUS_ROPE         | 最大连跳次数       |
+
+## 完整示例
+
+```js
+import { createWidget, widget } from '@zos/ui'
+
+createWidget(widget.SPORT_DATA, {
+  edit_id: 1,
+  category: edit_widget_group_type.SPORTS,
+  default_type: sport_data.CONSUME,
+  x: 50,
+  y: 200,
+  w: 380,
+  h: 80
+})
+```

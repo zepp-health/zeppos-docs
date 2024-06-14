@@ -11,10 +11,10 @@ Vibrator.
 
 ### start
 
-Start vibration, if the `option` parameter is passed, it will only work for this vibration
+Start vibration, the'option 'parameter passed in only takes effect for this vibration, and supports passing in vibration scene arrays after API_LEVEL 3.6
 
 ```ts
-start(option?: Option): void
+start(option?: Option | Array<Action>): void
 ```
 
 #### Option
@@ -22,6 +22,13 @@ start(option?: Option): void
 | Property | Type                | Required | DefaultValue                             | Description                                                   | API_LEVEL |
 | -------- | ------------------- | -------- | ---------------------------------------- | ------------------------------------------------------------- | --------- |
 | mode     | <code>number</code> | N        | <code>VIBRATOR_SCENE_SHORT_MIDDLE</code> | Vibration mode, Value refer to Vibration motor mode constants | 2.0       |
+
+#### Action
+
+| Property | Type                | Required | DefaultValue | Description           | API_LEVEL |
+| -------- | ------------------- | -------- | ------------ | --------------------- | --------- |
+| type     | <code>number</code> | Y        | -            | Vibration Scene Type  | 3.6       |
+| duration | <code>number</code> | N        | -            | Duration of vibration | 3.6       |
 
 #### Constants
 
@@ -74,6 +81,31 @@ getConfig(): Option
 | Property | Type                | Description                                                   | API_LEVEL |
 | -------- | ------------------- | ------------------------------------------------------------- | --------- |
 | mode     | <code>number</code> | Vibration mode, Value refer to Vibration motor mode constants | 2.0       |
+
+### getType
+
+> Start from API_LEVEL `3.6`
+
+Get Vibration Scene Type
+
+```ts
+getType(): Type
+```
+
+#### Type
+
+| Property       | Type                | Description                                   | API_LEVEL |
+| -------------- | ------------------- | --------------------------------------------- | --------- |
+| GENTLE_SHORT   | <code>number</code> | Vibration scene, light short vibration        | 3.6       |
+| STRONG_SHORT   | <code>number</code> | Vibration scene, strong and short vibration   | 3.6       |
+| STANDARD_CROWN | <code>number</code> | Vibration scene, standard crown vibration     | 3.6       |
+| STRONG_CROWN   | <code>number</code> | Vibration scene, strong crown vibration       | 3.6       |
+| SPULSE_CROWN   | <code>number</code> | Vibration scene, single-pulse crown vibration | 3.6       |
+| DIPULSE_CROWN  | <code>number</code> | Vibration scene, dual-pulse crown vibration   | 3.6       |
+| KEYCODE_CLICK  | <code>number</code> | Vibration scene, password button vibration    | 3.6       |
+| URGENT         | <code>number</code> | Vibration scene, urgent vibration             | 3.6       |
+| CONTINUOUS     | <code>number</code> | Vibration scene, continuous vibration         | 3.6       |
+| PAUSE          | <code>number</code> | Vibration scene, stop vibration               | 3.6       |
 
 ## Example
 

@@ -122,6 +122,16 @@ Register the end-of-day event listener callback function
 onPerDay(callback: () => void): void
 ```
 
+### onPerHourEnd
+
+> Start from API_LEVEL `3.6`
+
+Register the end-of-hour event listener callback function
+
+```ts
+onPerHourEnd(callback: () => void): void
+```
+
 ### getFestival
 
 Get gregorian holidays, or return the string `'INVALID'` if there is no holiday

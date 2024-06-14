@@ -291,7 +291,11 @@ const newAPIPathMap = [
   {
     path: 'transfer-file',
     label: 'Transfer File'
-  }
+  },
+  {
+    path: 'app-access',
+    label: 'App Access'
+  },
 ]
 
 // 首先拼接 prefix
@@ -362,6 +366,7 @@ module.exports = {
             id: 'intro/version'
           },
           items: [
+            'guides/version-info/new-features-35',
             'guides/version-info/new-features-30',
             {
               type: 'category',
@@ -531,6 +536,23 @@ module.exports = {
     },
     {
       type: 'category',
+      label: 'Workout Extension',
+      items: [
+        'guides/workout-extension/intro',
+        'guides/workout-extension/quick-start',
+        'guides/workout-extension/distribute',
+      ]
+    },
+    {
+      type: 'category',
+      label: 'Related Resources',
+      items: [
+        'reference/related-resources/device-list',
+        'reference/related-resources/language-list'
+      ]
+    },
+    {
+      type: 'category',
       label: 'Best practice',
       items: [
         'guides/best-practice/debug',
@@ -543,14 +565,6 @@ module.exports = {
         'guides/best-practice/persistence-storage',
         'guides/best-practice/error-catch',
         'guides/best-practice/i18n',
-      ]
-    },
-    {
-      type: 'category',
-      label: 'Related Resources',
-      items: [
-        'reference/related-resources/device-list',
-        'reference/related-resources/language-list'
       ]
     },
     {
@@ -618,7 +632,8 @@ module.exports = {
                     'reference/device-app-api/newAPI/ui/widget/GRADIENT_POLYLINE',
                     'reference/device-app-api/newAPI/ui/widget/CANVAS',
                     'reference/device-app-api/newAPI/ui/widget/PAGE_INDICATOR',
-                    'reference/device-app-api/newAPI/ui/widget/PAGE_SCROLLBAR'
+                    'reference/device-app-api/newAPI/ui/widget/PAGE_SCROLLBAR',
+                    'reference/device-app-api/newAPI/ui/widget/SPORT_DATA',
                   ]
                 },
                 {

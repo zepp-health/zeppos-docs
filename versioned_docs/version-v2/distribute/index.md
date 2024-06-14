@@ -57,15 +57,11 @@ Please select the country where you want your app to be listed.
 
 ![app_country](/img/docs/distribute/app_country_en.png)
 
-### Application Category
+### App Classification
 
-- General: no attachment is required;
-- Medical: attach the approval letter from a medical institution;
-- Insurance: attach the corporate permit and insurance business permit of the insurance company, the permit for insurance brokerage business, the permit for loss adjuster business, and the permit for insurance agency business;
-- Sales of General Products: attach the ICP certificate (telecommunications and information service business license) and the EDI certificate (value-added telecommunications business license);
-- Sales of Food, Medicine, Health Care Products, and Medical Devices: attach the food business license, Internet drug information service qualification certificate, health care food approval certificate, Class I medical device production record certificate, medical device manufacturing enterprise license, and medical device distributing enterprise license;
+Select the corresponding category according to the purpose of the application.
 
-![app_category](/img/docs/distribute/app_category_en.png)
+![app_category](/img/docs/distribute/app_cate_en.jpg)
 
 ### Developer
 
