@@ -30,10 +30,11 @@ function setScrollMode(option: Option): Result
 
 ### FreeModeParams
 
-| Property             | Type                                         | Description                                           | API_LEVEL |
-| -------------------- | -------------------------------------------- | ----------------------------------------------------- | --------- |
-| scroll_frame_func    | <code>(params: ScrollObj) =&#62; void</code> | The callback function for each frame during scrolling | 3.0       |
-| scroll_complete_func | <code>(params: ScrollObj) =&#62; void</code> | The end of the scroll callback function               | 3.0       |
+| Property             | Type                                         | Description                                                                                                                                                                                                                                                                      | API_LEVEL |
+| -------------------- | -------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------- |
+| scroll_frame_func    | <code>(params: ScrollObj) =&#62; void</code> | The callback function for each frame during scrolling                                                                                                                                                                                                                            | 3.0       |
+| scroll_complete_func | <code>(params: ScrollObj) =&#62; void</code> | The end of the scroll callback function                                                                                                                                                                                                                                          | 3.0       |
+| bounce               | <code>boolean</code>                         | Control whether the page rebound effect is turned on. When the page content exceeds one screen, it is turned on by default. If the page content is less than one screen, it is turned off by default. This parameter needs to be passed in the `build` lifecycle to take effect. | 3.6       |
 
 ### ScrollObj
 

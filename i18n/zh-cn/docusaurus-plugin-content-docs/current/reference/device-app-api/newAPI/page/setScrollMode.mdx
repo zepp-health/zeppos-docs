@@ -30,10 +30,11 @@ function setScrollMode(option: Option): Result
 
 ### FreeModeParams
 
-| 属性                 | 类型                                         | 说明                     | API_LEVEL |
-| -------------------- | -------------------------------------------- | ------------------------ | --------- |
-| scroll_frame_func    | <code>(params: ScrollObj) =&#62; void</code> | 滚动过程中每帧的回调函数 | 3.0       |
-| scroll_complete_func | <code>(params: ScrollObj) =&#62; void</code> | 滚动结束的回调函数       | 3.0       |
+| 属性                 | 类型                                         | 说明                                                                                                                      | API_LEVEL |
+| -------------------- | -------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- | --------- |
+| scroll_frame_func    | <code>(params: ScrollObj) =&#62; void</code> | 滚动过程中每帧的回调函数                                                                                                  | 3.0       |
+| scroll_complete_func | <code>(params: ScrollObj) =&#62; void</code> | 滚动结束的回调函数                                                                                                        | 3.0       |
+| bounce               | <code>boolean</code>                         | 页面回弹效果是否开启，当页面内容超过一屏，默认开启，页面内容不足一屏，默认关闭，此参数需要在 `build` 生命周期传入才能生效 | 3.6       |
 
 ### ScrollObj
 

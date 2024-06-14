@@ -20,9 +20,19 @@ function scrollTo(y: number): void
 
 ### Option
 
-| Property | Type                | Required | DefaultValue | Description                                                                                                                  | API_LEVEL |
-| -------- | ------------------- | -------- | ------------ | ---------------------------------------------------------------------------------------------------------------------------- | --------- |
-| y        | <code>number</code> | Y        | -            | The vertical axis coordinates of the page, the 12 o'clock direction of the watch is positive, and scrolling down is negative | 2.0       |
+| Property   | Type                    | Required | DefaultValue | Description                                                                                                                  | API_LEVEL |
+| ---------- | ----------------------- | -------- | ------------ | ---------------------------------------------------------------------------------------------------------------------------- | --------- |
+| y          | <code>number</code>     | Y        | -            | The vertical axis coordinates of the page, the 12 o'clock direction of the watch is positive, and scrolling down is negative | 2.0       |
+| animConfig | <code>animConfig</code> | N        | -            | Scroll animation configuration                                                                                               | 3.6       |
+
+### animConfig
+
+| Property           | Type                        | Required | DefaultValue    | Description                                                                                                                       | API_LEVEL |
+| ------------------ | --------------------------- | -------- | --------------- | --------------------------------------------------------------------------------------------------------------------------------- | --------- |
+| anim_rate          | <code>string</code>         | N        | -               | Animation curve, optional values `linear`, `easein`, `easeout`, `easeinout` refer to [https://easings.net/](https://easings.net/) | 3.6       |
+| anim_duration      | <code>number</code>         | N        | -               | Animation duration, in milliseconds                                                                                               | 3.6       |
+| anim_fps           | <code>number</code>         | N        | <code>25</code> | Animation frame rate                                                                                                              | 3.6       |
+| anim_complete_func | <code>() =&#62; void</code> | N        | -               | End of animation callback function                                                                                                | 3.6       |
 
 ## Example
 

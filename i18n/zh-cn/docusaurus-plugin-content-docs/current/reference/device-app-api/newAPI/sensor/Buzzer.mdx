@@ -1,0 +1,74 @@
+---
+title: Buzzer
+sidebar_label: Buzzer 蜂鸣器
+---
+
+> API_LEVEL `3.6` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+蜂鸣器。
+
+## 方法
+
+### isEnabled
+
+获取系统蜂鸣器功能是否开启，开启后才可以使用
+
+```ts
+isEnabled(): boolean
+```
+
+### getSourceType
+
+获取蜂鸣模式
+
+```ts
+getSourceType(): Type
+```
+
+#### Type
+
+| 属性     | 类型                | 必填 | 默认值 | 说明   | API_LEVEL |
+| -------- | ------------------- | ---- | ------ | ------ | --------- |
+| ALARM    | <code>number</code> | 是   | -      | 闹钟   | 3.6       |
+| REMIND_1 | <code>number</code> | 是   | -      | 提醒 1 | 3.6       |
+| REMIND_2 | <code>number</code> | 是   | -      | 提醒 2 | 3.6       |
+| OPERATE  | <code>number</code> | 是   | -      | 操作   | 3.6       |
+| SUCCESS  | <code>number</code> | 是   | -      | 成功   | 3.6       |
+| FAILURE  | <code>number</code> | 是   | -      | 失败   | 3.6       |
+
+### getStrength
+
+获取蜂鸣器强度，`0` - weak，`1` - medium，`2` - high
+
+```ts
+getStrength(): number
+```
+
+### start
+
+开始蜂鸣，可以传入 `type` 指定系统内置蜂鸣模式，`repeatCount` 为重复次数，默认 `0`，不重复
+
+```ts
+start(type: number, repeatCount: 0): void
+```
+
+### stop
+
+停止蜂鸣器
+
+```ts
+stop(): void
+```
+
+## 代码示例
+
+```js
+import { Buzzer } from '@zos/sensor'
+
+const buzzer = new Buzzer()
+const alarmType = Buzzer.getType().ALARM
+
+if (buzzer.isEnabled()) {
+  buzzer.start(alarmType)
+}
+```

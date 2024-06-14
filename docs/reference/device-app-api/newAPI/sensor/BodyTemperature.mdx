@@ -1,0 +1,47 @@
+---
+title: BodyTemperature
+sidebar_label: BodyTemperature
+---
+
+> Start from API_LEVEL `3.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Body surface temperature sensor.
+
+:::info
+permission code: `data:user.hd.body_temp`
+:::
+
+## Methods
+
+### getCurrent
+
+Get the latest measurement of body surface temperature
+
+```ts
+getCurrent(): Result
+```
+
+#### Result
+
+| Property     | Type                | Description                                                                                             | API_LEVEL |
+| ------------ | ------------------- | ------------------------------------------------------------------------------------------------------- | --------- |
+| current      | <code>number</code> | Sleep stage type, refer to the constants returned by `getStageConstantObj` for the meaning of the value | 3.0       |
+| timeinterval | <code>number</code> | Sleep stage type, refer to the constants returned by `getStageConstantObj` for the meaning of the value | 3.0       |
+
+### getToday
+
+Get the body surface temperature measurement values for 24 hours a day. The array length is 24 \* 60 / 5 = 288, with an average measurement value every five minutes. The unit is Celsius, such as `35.2`. Data without measurement values is `-1000`
+
+```ts
+getToday(): Array<number>
+```
+
+## Example
+
+```js
+import { BodyTemperature } from '@zos/sensor'
+
+const bodyTemperature = new BodyTemperature()
+
+bodyTemperature.getCurrent()
+```

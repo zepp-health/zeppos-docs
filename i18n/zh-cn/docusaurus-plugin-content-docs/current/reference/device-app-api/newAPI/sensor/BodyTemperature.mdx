@@ -1,0 +1,47 @@
+---
+title: BodyTemperature
+sidebar_label: BodyTemperature 体表温度
+---
+
+> API_LEVEL `3.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+体表温度传感器。
+
+:::info
+权限代码： `data:user.hd.body_temp`
+:::
+
+## 方法
+
+### getCurrent
+
+获取最近一次体表温度的测量值
+
+```ts
+getCurrent(): Result
+```
+
+#### Result
+
+| 属性         | 类型                | 说明         | API_LEVEL |
+| ------------ | ------------------- | ------------ | --------- |
+| current      | <code>number</code> | 温度测量值   | 3.0       |
+| timeinterval | <code>number</code> | 上次测量时间 | 3.0       |
+
+### getToday
+
+获取全天 24 小时的体表温度测量值，数组长度为 24 \* 60 / 5 = 288，每五分钟一个的平均测量值，单位摄氏度，如 `35.2`，无测量值的数据为 `-1000`
+
+```ts
+getToday(): Array<number>
+```
+
+## 代码示例
+
+```js
+import { BodyTemperature } from '@zos/sensor'
+
+const bodyTemperature = new BodyTemperature()
+
+bodyTemperature.getCurrent()
+```

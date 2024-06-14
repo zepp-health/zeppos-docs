@@ -1,0 +1,74 @@
+---
+title: Buzzer
+sidebar_label: Buzzer
+---
+
+> Start from API_LEVEL `3.6` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Buzzer.
+
+## Methods
+
+### isEnabled
+
+Get whether the system buzzer function is turned on, and it can only be used after it is turned on.
+
+```ts
+isEnabled(): boolean
+```
+
+### getSourceType
+
+Get buzzer mode
+
+```ts
+getSourceType(): Type
+```
+
+#### Type
+
+| Property | Type                | Required | DefaultValue | Description | API_LEVEL |
+| -------- | ------------------- | -------- | ------------ | ----------- | --------- |
+| ALARM    | <code>number</code> | Y        | -            | Alarm clock | 3.6       |
+| REMIND_1 | <code>number</code> | Y        | -            | Reminder 1  | 3.6       |
+| REMIND_2 | <code>number</code> | Y        | -            | Reminder 2  | 3.6       |
+| OPERATE  | <code>number</code> | Y        | -            | Operation   | 3.6       |
+| SUCCESS  | <code>number</code> | Y        | -            | Success     | 3.6       |
+| FAILURE  | <code>number</code> | Y        | -            | Failure     | 3.6       |
+
+### getStrength
+
+Get buzzer strength, '0' - weak, '1' - medium, '2' - high
+
+```ts
+getStrength(): number
+```
+
+### start
+
+Start beeping, you can pass in `type` to specify the built-in beeping mode of the system,`repeatCount` is the number of repetitions, default `0`, do not repeat
+
+```ts
+start(type: number, repeatCount: 0): void
+```
+
+### stop
+
+Stop buzzer
+
+```ts
+stop(): void
+```
+
+## Example
+
+```js
+import { Buzzer } from '@zos/sensor'
+
+const buzzer = new Buzzer()
+const alarmType = Buzzer.getType().ALARM
+
+if (buzzer.isEnabled()) {
+  buzzer.start(alarmType)
+}
+```

@@ -57,7 +57,7 @@ appId 为应用的唯一标识，在应用登记时自动分配
 
 ![app_country](/img/docs/distribute/app_country.png)
 
-### 应用分类
+### 服务类别
 
 - 普通：无需添加附件；
 - 医疗：需上传医疗机构批准书附件
@@ -65,7 +65,13 @@ appId 为应用的唯一标识，在应用登记时自动分配
 - 普通商品销售：需上传 ICP 证（电信与信息服务业务经营许可证）、EDI 证（增值电信业务经营许可证）附件；
 - 食品药品保健品及医疗器械销售：需上传食品经营许可证、互联网药品信息服务资质证书、保健食品批准证书、第一类医疗器械生产备案凭证、医疗器械生产许可证、经营许可证附件；
 
-![app_category](/img/docs/distribute/app_category.png)
+![app_category](/img/docs/distribute/app_category.jpg)
+
+### 应用分类
+
+根据应用的用途，选择对应的分类
+
+![app_category](/img/docs/distribute/app_cate.jpg)
 
 ### 开发者
 

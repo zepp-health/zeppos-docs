@@ -14,9 +14,9 @@ function mstStartScan(callback: Callback, filter?: Filter): Result
 
 ### Callback
 
-| Type                                                           | Description                                  |
-| -------------------------------------------------------------- | -------------------------------------------- |
-| <code>(result: ScanResult, filter?: Filter) =&#62; void</code> | Callback function for receiving scan results |
+| Type                                                                              | Description                                  |
+| --------------------------------------------------------------------------------- | -------------------------------------------- |
+| <code>(result: ScanResult, filter?: Filter, timeout?: Timeout) =&#62; void</code> | Callback function for receiving scan results |
 
 ### ScanResult
 
@@ -44,6 +44,13 @@ function mstStartScan(callback: Callback, filter?: Filter): Result
 | service_uuid      | <code>string</code> | N        | -            | Service UUID                                       | 3.0       |
 | service_data_uuid | <code>string</code> | N        | -            | Service data UUID                                  | 3.0       |
 | manufacturer_id   | <code>number</code> | N        | -            | Manufacturer ID                                    | 3.0       |
+
+### Timeout
+
+| Property   | Type                        | Required | DefaultValue | Description                                                                                    | API_LEVEL |
+| ---------- | --------------------------- | -------- | ------------ | ---------------------------------------------------------------------------------------------- | --------- |
+| duration   | <code>number</code>         | N        | -            | Scanning duration, in seconds. Scanning automatically stops when the given duration is reached | 3.0       |
+| on_timeout | <code>() =&#62; void</code> | N        | -            | Callback function after scanning stops                                                         | 3.0       |
 
 ### Result
 

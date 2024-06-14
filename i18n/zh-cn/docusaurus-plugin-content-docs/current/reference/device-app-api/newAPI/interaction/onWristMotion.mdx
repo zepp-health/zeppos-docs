@@ -1,0 +1,52 @@
+# onWristMotion
+
+> API_LEVEL `3.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+监听手部动作事件。
+
+## 类型
+
+```ts
+function onWristMotion(option: Option): void
+```
+
+## 参数
+
+### Option
+
+| 属性     | 类型                                      | 必填 | 默认值 | 说明                 | API_LEVEL |
+| -------- | ----------------------------------------- | ---- | ------ | -------------------- | --------- |
+| callback | <code>(params: Params) =&#62; void</code> | 是   | -      | 手部动作事件回调函数 | 3.0       |
+
+### Params
+
+| 属性   | 类型                | 说明                             | API_LEVEL |
+| ------ | ------------------- | -------------------------------- | --------- |
+| type   | <code>number</code> | 动作类型，0 - 覆掌，3 - 腕部事件 | 3.6       |
+| motion | <code>number</code> | 动作代号，值参考手部动作常量     | 3.0       |
+
+## 常量
+
+### 手部动作常量
+
+| 常量                 | 说明         | API_LEVEL |
+| -------------------- | ------------ | --------- |
+| `WRIST_MOTION_LIFT`  | 抬腕动作     | 2.0       |
+| `WRIST_MOTION_LOWER` | 落腕动作     | 2.0       |
+| `WRIST_MOTION_FLIP`  | 翻转手腕动作 | 2.0       |
+
+## 代码示例
+
+```js
+import { onWristMotion, WRIST_MOTION_LIFT } from '@zos/interaction'
+
+onWristMotion({
+  callback: (result) => {
+    const { type, motion } = result
+
+    if (type === 3) {
+      console.log(motion === WRIST_MOTION_LIFT)
+    }
+  },
+})
+```

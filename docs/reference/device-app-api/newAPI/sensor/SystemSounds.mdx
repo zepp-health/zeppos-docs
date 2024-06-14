@@ -1,0 +1,68 @@
+---
+title: SystemSounds
+sidebar_label: SystemSounds
+---
+
+> Start from API_LEVEL `3.6` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Calorie Sensor.
+
+## Methods
+
+### getEnabled
+
+Get whether the system ringtone function is turned on, and it can only be played after it is turned on
+
+```ts
+getEnabled(): boolean
+```
+
+### getSourceType
+
+Get built-in system ringtone type
+
+```ts
+getSourceType(): Type
+```
+
+#### Type
+
+| Property | Type                | Required | DefaultValue | Description                                               | API_LEVEL |
+| -------- | ------------------- | -------- | ------------ | --------------------------------------------------------- | --------- |
+| ALARM    | <code>number</code> | Y        | -            | Alarm clock reminder                                      | 3.6       |
+| MESSAGE  | <code>number</code> | Y        | -            | Notification sound when receiving text messages or emails | 3.6       |
+| REGULAR  | <code>number</code> | Y        | -            | TingTing sound                                            | 3.6       |
+| ACHIEVE  | <code>number</code> | Y        | -            | Goals achieved                                            | 3.6       |
+| CAMERA   | <code>number</code> | Y        | -            | Camera shutter                                            | 3.6       |
+| ABN_HIGH | <code>number</code> | Y        | -            | Health data measurement abnormalities (high values)       | 3.6       |
+| ABN_LOW  | <code>number</code> | Y        | -            | Health data measurement abnormalities (low values)        | 3.6       |
+| SOS      | <code>number</code> | Y        | -            | SOS for help                                              | 3.6       |
+
+### start
+
+Start playing the sound, you can pass in `type` to specify the ringtone type, `repeatCount` is the number of audio repetitions, default is `0`, do not repeat playback
+
+```ts
+start(sourceType: number, repeatCount: 0): void
+```
+
+### stop
+
+Stop sound playback
+
+```ts
+stop(): void
+```
+
+## Example
+
+```js
+import { SystemSounds } from '@zos/sensor'
+
+const systemSounds = new SystemSounds()
+const alarmType = systemSounds.getType().ALARM
+
+if (systemSounds.getEnabled()) {
+  systemSounds.start(alarmType)
+}
+```

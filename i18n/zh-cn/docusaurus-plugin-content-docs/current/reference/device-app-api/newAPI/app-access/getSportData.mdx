@@ -1,0 +1,75 @@
+# getSportData
+
+> API_LEVEL `3.6` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+获取运动实时数据。
+
+:::info
+权限代码： `data:user.hd.workout`
+:::
+
+## 类型
+
+```ts
+function getSportData(options: Options, callback: (callbackResult: CallbackResult) => void): Result
+```
+
+## 参数
+
+### Options
+
+| 属性 | 类型                | 必填 | 默认值 | 说明                                | API_LEVEL |
+| ---- | ------------------- | ---- | ------ | ----------------------------------- | --------- |
+| type | <code>string</code> | 是   | -      | 运动类型，取值参考 `SportType` 的值 | 3.6       |
+
+### CallbackResult
+
+| 属性 | 类型                | 说明                                                                                                                                                                           | API_LEVEL |
+| ---- | ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------- |
+| code | <code>number</code> | 结果状态码，`0` 表示成功，非 `0` 表示失败                                                                                                                                      | 3.6       |
+| data | <code>string</code> | 运动数据，返回值类型为字符串，需要使用 `JSON.parse` 进行解析，解析完的类型是 `Array<object>`，`object` 具体类型参考下文 `SportType` 类型说明，每一种 `type` 对应的返回值都不同 | 3.6       |
+
+### Result
+
+| 类型                 | 说明                                       |
+| -------------------- | ------------------------------------------ |
+| <code>Boolean</code> | 如果返回 `true` 说明调用成功，否则调用失败 |
+
+### SportType
+
+| 值                      | 类型                | 说明                                                                                             | API_LEVEL |
+| ----------------------- | ------------------- | ------------------------------------------------------------------------------------------------ | --------- |
+| speed                   | <code>object</code> | 速度，示例返回值 `{"speed":"9.99", "name": "Speed"}`                                             | 3.6       |
+| avg_speed               | <code>object</code> | 平均速度，示例返回值 `{"avg_speed":"9.99", "name": "Average Speed"}`                             | 3.6       |
+| pace                    | <code>object</code> | 配速，示例返回值 `{"avg_pace":"1'12''", "name": "Average Pace"}`                                 | 3.6       |
+| avg_pace                | <code>object</code> | 平均配速，示例返回值 `{"avg_pace":"1'12''", "name": "Average Pace"}`                             | 3.6       |
+| distance                | <code>object</code> | 距离，示例返回值 `{"distance":"9.99", "name": "Distance"}`                                       | 3.6       |
+| duration                | <code>object</code> | 运动用时，示例返回值 `{"duration":"1:15:15", "name": "Duration"}`                                | 3.6       |
+| calories                | <code>object</code> | 消耗，示例返回值 `{"calories":"9.99", "name": "Calories"}`                                       | 3.6       |
+| cadence                 | <code>object</code> | 步频/踏频，示例返回值 `{"cadence":"9.99", "name": "Cadence"}`                                    | 3.6       |
+| avg_cadence             | <code>object</code> | 平均步频/踏频，示例返回值 `{"avg_cadence":"9.99", "name": "Average Cadence"}`                    | 3.6       |
+| altitude                | <code>object</code> | 海拔，示例返回值 `{"altitude":"9.99", "name": "Elevation"}`                                      | 3.6       |
+| total_up_altitude       | <code>object</code> | 累计上升海拔，示例返回值 `{"total_up_altitude":"9.99", "name": "Total Ascent"}`                  | 3.6       |
+| total_count             | <code>object</code> | 总计数，示例返回值 `{"total_count":"9.99", "name": "Total count"}`                               | 3.6       |
+| vertical_speed          | <code>object</code> | 垂直速度，示例返回值 `{"vertical_speed":"9.99", "name": "Vertical Speed"}`                       | 3.6       |
+| downhill_count          | <code>object</code> | 滑降次数，示例返回值 `{"downhill_count":"9.99", "name": "Downhills"}`                            | 3.6       |
+| total_downhill_distance | <code>object</code> | 累计滑降距离，示例返回值 `{"total_downhill_distance":"9.99", "name": "Total Downhill Distance"}` | 3.6       |
+
+## 代码示例
+
+```js
+import { getSportData } from '@zos/app-access'
+
+const result = getSportData(
+  {
+    type: 'distance',
+  },
+  (callbackResult) => {
+    const { code, data } = callbackResult
+    if (code === 0) {
+      const [{ distance }] = JSON.parse(data)
+      console.log(distance)
+    }
+  },
+)
+```

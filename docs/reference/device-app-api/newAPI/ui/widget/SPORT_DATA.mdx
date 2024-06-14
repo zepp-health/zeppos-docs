@@ -1,0 +1,257 @@
+---
+title: SPORT_DATA
+sidebar_label: SPORT_DATA
+---
+
+> Start from API_LEVEL `3.6` . Please refer to [API_LEVEL](../../../../../guides/framework/device/compatibility.md).
+
+Displaying workout data in the workout extension can display a rich variety of workouts data types.
+
+## Create UI widget
+
+```js
+import { createWidget, widget } from '@zos/ui'
+
+const sportData = createWidget(widget.SPORT_DATA, Param)
+```
+
+### Param: object
+
+| Properties       | Description                                                                                                             | Required | Type      |
+| ---------------- | ----------------------------------------------------------------------------------------------------------------------- | -------- | --------- |
+| x                | Widget x coordinate                                                                                                     | YES      | `number`  |
+| y                | Widget y coordinate                                                                                                     | YES      | `number`  |
+| w                | Widget display width                                                                                                    | YES      | `number`  |
+| h                | Widget display height                                                                                                   | YES      | `number`  |
+| edit_id          | Widget ID, ensuring uniqueness of each instance                                                                         | YES      | `number`  |
+| category         | Data type, currently only supports `edit_widget_group_type.SPORTS`                                                      | YES      | `number`  |
+| default_type     | Displayed data items, see supported data items below                                                                    | YES      | `number`  |
+| text_size        | Text font size, default `36` px                                                                                         | NO       | `number`  |
+| text_color       | Text color, default `0x0000FF`                                                                                          | NO       | `number`  |
+| sub_text_visible | Whether to display subtext, default is `false`                                                                          | NO       | `boolean` |
+| sub_text_size    | Subtext font size, default `36` px                                                                                      | NO       | `number`  |
+| sub_text_color   | Subtext color, default `0x0000FF`                                                                                       | NO       | `number`  |
+| rect_visible     | Whether to display the text box, default is `false`                                                                     | NO       | `boolean` |
+| line_color       | Text box color, default `0x0000FF`                                                                                      | NO       | `number`  |
+| text_x           | Text box displays location x coordinates                                                                                | NO       | `number`  |
+| text_y           | Text box displays position y coordinates                                                                                | NO       | `number`  |
+| text_w           | Text box width                                                                                                          | NO       | `number`  |
+| text_h           | Text box height                                                                                                         | NO       | `number`  |
+| sub_text_x       | Subtext box displays position x coordinates                                                                             | NO       | `number`  |
+| sub_text_y       | Subtext box displays position y coordinates                                                                             | NO       | `number`  |
+| sub_text_w       | Secondary text box width                                                                                                | NO       | `number`  |
+| sub_text_h       | Secondary text box height                                                                                               | NO       | `number`  |
+| mock_data        | The simulated data only takes effect in the emulator, and the data items of the widget will display the incoming string | NO       | `string`  |
+
+### Data item type
+
+Data item types are accessed through the `sport_data` object of the `@zos/ui` module
+
+| Data item Key                 | Description                                    |
+| ----------------------------- | ---------------------------------------------- |
+| DURATION_NET                  | Exercise time                                  |
+| DURATION_CUR_SECTION          | This segment time                              |
+| DURATION_PREV_SECTION         | Previous segment time                          |
+| DURATION_AVG_SECTION          | Average segment time                           |
+| DURATION_CUR_GROUP            | This set time                                  |
+| DISTANCE_TOTAL                | Distance                                       |
+| DISTANCE_CUR_SECTION          | This segment distance                          |
+| DISTANCE_PREV_SECTION         | Previous segment distance                      |
+| COUNT_TOTAL                   | Total count                                    |
+| COUNT_CUR_ROPE                | This set count                                 |
+| COUNT_BROKEN_ROPE             | Number of broken ropes                         |
+| COUNT_TOTAL_BOAT              | Total strokes                                  |
+| COUNT_CUR_BOAT                | This set strokes                               |
+| COUNT_CUR_FITNESS             | This set count                                 |
+| GLIDE_COUNT                   | Number of descents                             |
+| GLIDE_TOTAL_DISTANCE          | Cumulative descent distance                    |
+| GLIDE_CUR_DISTANCE            | This descent distance                          |
+| GLIDE_TOTAL_ALTITUDE          | Cumulative descent drop                        |
+| GLIDE_CUR_ALTITUDE            | This descent drop                              |
+| CLIMB_UP_FLOORS               | Floors ascended                                |
+| CLIMB_UP_CUR_FLOORS           | This segment floors ascended                   |
+| CLIMB_UP_PREV_FLOORS          | Previous segment floors ascended               |
+| CLIMB_DOWN_FLOORS             | Floors descended                               |
+| CLIMB_DOWN_CUR_FLOORS         | This segment floors descended                  |
+| CLIMB_DOWN_PREV_FLOORS        | Previous segment floors descended              |
+| CLIMB_UP_FLOORS_IN_MIN        | Floors ascended per minute                     |
+| CLIMB_UP_TOTAL_ALTITUDE       | Ascent height                                  |
+| CLIMB_UP_CUR_ALTITUDE         | This segment ascent height                     |
+| CLIMB_UP_PREV_ALTITUDE        | Previous segment ascent height                 |
+| CLIMB_DOWN_ALTITUDE_TOTAL     | Descent height                                 |
+| CLIMB_DOWN_CUR_ALTITUDE       | This segment descent height                    |
+| CLIMB_DOWN_PREV_ALTITUDE      | Previous segment descent height                |
+| SWIM_TOTAL_LAPS               | Number of trips                                |
+| SWIM_CUR_LAPS                 | This segment trips                             |
+| SWIM_PREV_LAPS                | Previous segment trips                         |
+| SWIM_TOTAL_STROKE_count       | Total paddle strokes                           |
+| SWIM_CUR_STROKE_count         | This segment paddle strokes                    |
+| SWIM_PREV_STROKE_count        | Previous segment paddle strokes                |
+| SWIM_AVG_STROKE_DISTANCE      | Average paddle distance                        |
+| SWIM_AVG_SECTION_STROKE_count | Average paddle strokes per segment             |
+| SWIM_STROKE_SPEED             | Paddle stroke rate                             |
+| SWIM_CUR_STROKE_SPEED         | This segment paddle stroke rate                |
+| SWIM_PREV_STROKE_SPEED        | Previous segment paddle stroke rate            |
+| SWIM_AVG_STROKE_SPEED         | Average paddle stroke rate                     |
+| SWIM_AVG_SWOLF                | Average Swolf                                  |
+| SWIM_CUR_SWOLF                | This segment Swolf                             |
+| SWIM_PREV_SWOLF               | Previous segment Swolf                         |
+| PACE                          | Pace                                           |
+| PACE_AVG                      | Average pace                                   |
+| PACE_CUR_AVG                  | This segment pace                              |
+| PACE_PREV_AVG                 | Previous segment pace                          |
+| STRIDE_FREQ                   | Cadence                                        |
+| STRIDE_AVG_FREQ               | Average cadence                                |
+| STRIDE_CUR_FREQ               | This segment cadence                           |
+| STRIDE_PREV_FREQ              | Previous segment cadence                       |
+| STRIDE                        | Stride length                                  |
+| STRIDE_AVG                    | Average stride length                          |
+| STRIDE_CUR                    | This segment stride length                     |
+| STRIDE_PREV                   | Previous segment stride length                 |
+| STRIDE_COUNT                  | Steps                                          |
+| SPEED                         | Speed                                          |
+| SPEED_AVG                     | Average speed                                  |
+| SPEED_AVG_GLIDE               | Average descent speed                          |
+| SPEED_PREV_GLIDE              | Previous descent speed                         |
+| SPEED_CUR_SECTION             | This segment speed                             |
+| SPEED_PREV_SECTION            | Previous segment speed                         |
+| SPEED_MAX                     | Maximum speed                                  |
+| SPEED_VERTICAL                | Vertical speed                                 |
+| ALTITUDE                      | Altitude                                       |
+| ALTITUDE_MAX                  | Maximum altitude                               |
+| ALTITUDE_MIN                  | Minimum altitude                               |
+| ALTITUDE_AVG                  | Average altitude                               |
+| SLOPE_TOTAL_RISING_DISTANCE   | Cumulative ascent                              |
+| SLOPE_CUR_RISING_DISTANCE     | This segment ascent                            |
+| SLOPE_PREV_RISING_DISTANCE    | Previous segment ascent                        |
+| ALTITUDE_TOTAL_UP             | Cumulative ascent                              |
+| ALTITUDE_CUR_UP               | This segment ascent                            |
+| ALTITUDE_PREV_UP              | Previous segment ascent                        |
+| ALTITUDE_TOTAL_DOWN           | Cumulative descent                             |
+| ALTITUDE_CUR_DOWN             | This segment descent                           |
+| ALTITUDE_PREV_DOWN            | Previous segment descent                       |
+| SLOPE                         | Gradient                                       |
+| SLOPE_AVG                     | Average gradient                               |
+| SLOPE_CUR                     | This segment gradient                          |
+| SLOPE_PREV                    | Previous segment gradient                      |
+| SLOPE_GLIDE                   | Glide ratio                                    |
+| SLOPE_AVG_GLIDE               | Average glide ratio                            |
+| SLOPE_CUR_GLIDE               | This segment glide ratio                       |
+| SLOPE_PREV_GLIDE              | Previous segment glide ratio                   |
+| BRANDISH_TOTAL_count          | Total shots                                    |
+| BRANDISH_POSITIVE_count       | Forehand shots                                 |
+| BRANDISH_NEGATIVE_count       | Backhand shots                                 |
+| BRANDISH_SERVE_count          | Serves                                         |
+| CONSUME                       | Consumption                                    |
+| CONSUME_CUR                   | This set consumption                           |
+| BOATING_FREQ                  | Stroke rate                                    |
+| BOATING_AVG_FREQ              | Average stroke rate                            |
+| BOATING_CUR_FREQ              | This set average stroke rate                   |
+| BOATING_PULL                  | Pull time                                      |
+| BOATING_PUSH                  | Recovery time                                  |
+| FREQ                          | Frequency                                      |
+| FREQ_AVG                      | Average frequency                              |
+| FREQ_CUR                      | This set average frequency                     |
+| GOLF_SPEED                    | Hand speed                                     |
+| GOLF_ANGLE                    | Plane                                          |
+| GOLF_UP_TIME                  | Upstroke time                                  |
+| GOLF_DOWN_TIME                | Downstroke time                                |
+| GOLF_BEAT                     | Rhythm                                         |
+| GOLF_SWING_COUNTER_GROUP      | This set strokes                               |
+| GOLF_SWING_COUNTER            | Total strokes                                  |
+| GOLF_AVG_SCORE                | Average score                                  |
+| GOLF_SCORE                    | Score                                          |
+| HR                            | Heart rate                                     |
+| HR_AVG                        | Average heart rate                             |
+| HR_CUR_AVG                    | This set average heart rate                    |
+| HR_INTERVAL                   | Heart rate zone                                |
+| HR_MAX_PERCENT                | Maximum heart rate percentage                  |
+| HR_RESERVED_PERCENT           | Reserve heart rate percentage                  |
+| HR_AVG_MAX_PERCENT            | Average maximum heart rate percentage          |
+| HR_AVG_RESERVED_PERCENT       | Average reserve heart rate percentage          |
+| HR_CUR_SECTION                | This segment heart rate                        |
+| HR_CUR_MAX_PERCENT            | This segment maximum heart rate percentage     |
+| HR_CUR_RESERVED_PERCENT       | This segment reserve heart rate percentage     |
+| HR_PREV_SECTION               | Previous segment heart rate                    |
+| HR_PREV_MAX_PERCENT           | Previous segment maximum heart rate percentage |
+| HR_PREV_RESERED_PERCENT       | Previous segment reserve heart rate percentage |
+| PRESSURE                      | Pressure                                       |
+| PRESSURE_AVG                  | Average pressure                               |
+| PRESSURE_CUR                  | This segment pressure                          |
+| PRESSURE_PREV                 | Previous segment pressure                      |
+| TEMP                          | Temperature                                    |
+| TEMP_MAX                      | Maximum temperature                            |
+| TEMP_MIN                      | Minimum temperature                            |
+| OTHER_SECTION_ORDER           | Current set                                    |
+| OTHER_AEROBIC_TE              | Aerobic TE                                     |
+| OTHER_ANAEROBIC_TE            | Anaerobic TE                                   |
+| OTHER_TRAIN_LOAD              | Training load                                  |
+| OTHER_CUR_TIME                | Current time                                   |
+| OTHER_SUNRISE_TIME            | Sunrise time                                   |
+| OTHER_SUNSET_TIME             | Sunset time                                    |
+| OTHER_BORAMETER               | Barometric pressure                            |
+| OTHER_ACTIONNAME              | Movement name                                  |
+| CHART_HR                      | Heart rate graph                               |
+| CHART_SPEED                   | Speed graph                                    |
+| CHART_STROKE_FREP             | Stroke rate graph                              |
+| CHART_TE                      | Training effect graph                          |
+| CHART_STROKE_SPEED            | Paddle stroke rate graph                       |
+| CHART_PACE                    | Pace graph                                     |
+| CHART_ALTITUDE                | Altitude graph                                 |
+| CHART_FREQ                    | Frequency graph                                |
+| DEVICE_POWER                  | Power                                          |
+| DEVICE_POWER_WEIGHT           | Power-to-weight ratio                          |
+| DEVICE_WORK                   | Work                                           |
+| DEVICE_AVG_POWER              | Average power                                  |
+| DEVICE_MAX_POWER              | Maximum power                                  |
+| DEVICE_3S_AVG_POWER           | 3s average power                               |
+| DEVICE_10S_AVG_POWER          | 10s average power                              |
+| DEVICE_30S_AVG_POWER          | 30s average power                              |
+| DEVICE_LAP_AVG_POWER          | This segment power                             |
+| DEVICE_PREV_AVG_POWER         | Previous segment power                         |
+| DEVICE_CADENCE                | Cadence                                        |
+| DEVICE_FAST_CADENCE           | Maximum cadence                                |
+| DEVICE_AVG_CADENCE            | Average cadence                                |
+| DEVICE_LAP_AVG_CADENCE        | This segment cadence                           |
+| DEVICE_PREV_AVG_CADENCE       | Previous segment cadence                       |
+| DURATION_GLIDE                | Descent time                                   |
+| DURATION_TOTAL_CLIMB          | Ascent time                                    |
+| GLIDE_PREV_DISTANCE           | Previous descent distance                      |
+| GLIDE_PREV_ALTITUDE           | Previous descent drop                          |
+| SPEED_MAX_GLIDE               | Maximum descent speed                          |
+| SLOPE_GLIDE_MAX               | Maximum descent gradient                       |
+| SLOPE_GLIDE_AVG               | Average descent gradient                       |
+| GLIDE_ANGLE_MAX               | Maximum descent angle                          |
+| GLIDE_ANGLE_AVG               | Average descent angle                          |
+| DURATION_SURFACE              | Time on water                                  |
+| DURATION_CUR_DIVING           | This dive time                                 |
+| DURATION_PREV_DIVING          | Previous dive time                             |
+| COUNT_DIVING                  | Number of dives                                |
+| COUNT_CAUGHT                  | Catch count                                    |
+| SPEED_DIVING                  | Dive speed                                     |
+| DEPTH                         | Depth                                          |
+| DEPTH_AVG                     | Average depth                                  |
+| DEPTH_MAX                     | Maximum depth                                  |
+| DEPTH_MAX_PREV                | Previous dive depth                            |
+| HEIGHT                        | Elevation                                      |
+| DESENT_SPEED                  | Descent rate                                   |
+| DESENT_SPEED_MAX              | Maximum descent rate                           |
+| DESENT_SPEED_AVG              | Average descent rate                           |
+| SKYDIVING_HEIGHT              | Parachute jump height                          |
+| COUNT_CONTINUOUS_ROPE         | Maximum consecutive jumps                      |
+
+## Code example
+
+```js
+import { createWidget, widget } from '@zos/ui'
+
+createWidget(widget.SPORT_DATA, {
+  edit_id: 1,
+  category: edit_widget_group_type.SPORTS,
+  default_type: sport_data.CONSUME,
+  x: 50,
+  y: 200,
+  w: 380,
+  h: 80
+})
+```

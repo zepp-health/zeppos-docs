@@ -122,6 +122,16 @@ onPerMinute(callback: () => void): void
 onPerDay(callback: () => void): void
 ```
 
+### onPerHourEnd
+
+> API_LEVEL `3.6`
+
+注册每小时结束事件监听回调函数
+
+```ts
+onPerHourEnd(callback: () => void): void
+```
+
 ### getFestival
 
 获取公历节日，如果没有节日，则返回字符串 `'INVALID'`

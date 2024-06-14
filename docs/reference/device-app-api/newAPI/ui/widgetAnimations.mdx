@@ -34,15 +34,16 @@ The properties that support setting animations are
 
 ## Animation Configuration
 
-| Property           | Type                 | Description                                                                                                                                                                |
-| ------------------ | -------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| anim_steps         | `Array<anim_config>` | Attribute animation configuration array, refer to [anim_config](#individual-property-animation-configuration), multiple sets of animations can be performed simultaneously |
-| anim_fps           | `number`             | Animation frame rate, default `25`                                                                                                                                         |
-| anim_auto_start    | `number`             | If or not the animation plays automatically, default `1`, `0`: don't play automatically; `1`: play automatically                                                           |
-| anim_auto_destroy  | `number`             | If or not the animation is automatically destroyed, default `1`, `0`: not automatically destroyed; `1`: automatically destroyed                                            |
-| anim_repeat        | `number`             | Animation loop, default `1` times, `-1`: infinite loop; `0`: play once; or specify the number of times to play directly                                                    |
-| anim_frame_func    | `() => void`         | Callback function for each frame of animation playback                                                                                                                     |
-| anim_complete_func | `() => void`         | End of animation callback function                                                                                                                                         |
+| Property           | Type                 | Description                                                                                                                                                                | API_LEVEL |
+| ------------------ | -------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------- |
+| anim_steps         | `Array<anim_config>` | Attribute animation configuration array, refer to [anim_config](#individual-property-animation-configuration), multiple sets of animations can be performed simultaneously | 2.0       |
+| anim_fps           | `number`             | Animation frame rate, default `25`                                                                                                                                         | 2.0       |
+| anim_auto_start    | `number`             | If or not the animation plays automatically, default `1`, `0`: don't play automatically; `1`: play automatically                                                           | 2.0       |
+| anim_auto_destroy  | `number`             | If or not the animation is automatically destroyed, default `1`, `0`: not automatically destroyed; `1`: automatically destroyed                                            | 2.0       |
+| anim_repeat        | `number`             | Animation loop, default `1` times, `-1`: infinite loop; `0`: play once; or specify the number of times to play directly                                                    | 2.0       |
+| anim_frame_func    | `() => void`         | Callback function for each frame of animation playback                                                                                                                     | 2.0       |
+| anim_complete_func | `() => void`         | End of animation callback function                                                                                                                                         | 2.0       |
+| anim_repeat_func   | `() => void`         | The animation plays the callback function of each loop, which takes effect when `anim_repeat` is greater than '0'                                                          | 3.6       |
 
 ## Animation Status anim_status
 
@@ -50,12 +51,12 @@ The properties that support setting animations are
 - Use `widget.getProperty` to get the animation play state
 
 | anim_status        | Description |
-| ------------------ | ---- |
-| anim_status.START  | start |
-| anim_status.STOP   | stop |
-| anim_status.PAUSE  | pause |
-| anim_status.RESUME | resume |
-| anim_status.UNKNOW | unknown |
+| ------------------ | ----------- |
+| anim_status.START  | start       |
+| anim_status.STOP   | stop        |
+| anim_status.PAUSE  | pause       |
+| anim_status.RESUME | resume      |
+| anim_status.UNKNOW | unknown     |
 
 ## Code example
 

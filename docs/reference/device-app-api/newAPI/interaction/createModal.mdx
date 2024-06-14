@@ -16,12 +16,21 @@ function createModal(option: Option): Modal
 
 ### Option
 
-| Property | Type                                      | Required | DefaultValue       | Description                                                                                 | API_LEVEL |
-| -------- | ----------------------------------------- | -------- | ------------------ | ------------------------------------------------------------------------------------------- | --------- |
-| content  | <code>string</code>                       | Y        | -                  | Content of Modal                                                                            | 2.0       |
-| show     | <code>boolean</code>                      | N        | <code>false</code> | Whether to display Modal immediately after the creation is completed                        | 2.0       |
-| onClick  | <code>(keyObj: KeyObj) =&#62; void</code> | N        | -                  | Whether to display Modal immediately                                                        | 2.0       |
-| autoHide | <code>boolean</code>                      | N        | <code>true</code>  | Whether to automatically close the Modal dialog after clicking the Confirm or Cancel button | 2.0       |
+| Property      | Type                                      | Required | DefaultValue          | Description                                                                                             | API_LEVEL |
+| ------------- | ----------------------------------------- | -------- | --------------------- | ------------------------------------------------------------------------------------------------------- | --------- |
+| content       | <code>string</code>                       | Y        | -                     | title of Modal                                                                                          | 2.0       |
+| title         | <code>string</code>                       | N        | -                     | Modal dialog box title, alias for `content`                                                             | 3.6       |
+| show          | <code>boolean</code>                      | N        | <code>false</code>    | Whether to display Modal immediately after the creation is completed                                    | 2.0       |
+| onClick       | <code>(keyObj: KeyObj) =&#62; void</code> | N        | -                     | Whether to display Modal immediately                                                                    | 2.0       |
+| autoHide      | <code>boolean</code>                      | N        | <code>true</code>     | Whether to automatically close the Modal dialog after clicking the Confirm or Cancel button             | 2.0       |
+| subtitle      | <code>string</code>                       | N        | -                     | subtitle                                                                                                | 3.6       |
+| src           | <code>string</code>                       | N        | -                     | Icon icon path                                                                                          | 3.6       |
+| text          | <code>string</code>                       | N        | -                     | text content                                                                                            | 3.6       |
+| textColor     | <code>number</code>                       | N        | <code>0xFFFFFF</code> | text color                                                                                              | 3.6       |
+| textAlpha     | <code>number</code>                       | N        | <code>255</code>      | Text transparency, transparency [0-255], 0 is full transparency                                         | 3.6       |
+| okButton      | <code>string</code>                       | N        | -                     | The icon path of the confirmation button                                                                | 3.6       |
+| cancelButton  | <code>string</code>                       | N        | -                     | Cancel button icon icon path                                                                            | 3.6       |
+| capsuleButton | <code>Array&#60;string&#62;</code>        | N        | -                     | Capsule button configuration, as a string array, click `type` in the returned KeyObj starting from `10` | 3.6       |
 
 ### KeyObj
 

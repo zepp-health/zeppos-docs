@@ -1,0 +1,68 @@
+---
+title: SystemSounds
+sidebar_label: SystemSounds
+---
+
+> API_LEVEL `3.6` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+系统声音播放。
+
+## 方法
+
+### getEnabled
+
+获取系统铃声功能是否开启，开启后才可以播放
+
+```ts
+getEnabled(): boolean
+```
+
+### getSourceType
+
+获取内置系统铃声类型
+
+```ts
+getSourceType(): Type
+```
+
+#### Type
+
+| 属性     | 类型                | 必填 | 默认值 | 说明                         | API_LEVEL |
+| -------- | ------------------- | ---- | ------ | ---------------------------- | --------- |
+| ALARM    | <code>number</code> | 是   | -      | 闹钟提醒                     | 3.6       |
+| MESSAGE  | <code>number</code> | 是   | -      | 收到短信、邮件时，消息通知声 | 3.6       |
+| REGULAR  | <code>number</code> | 是   | -      | TingTing 声                  | 3.6       |
+| ACHIEVE  | <code>number</code> | 是   | -      | 目标达成                     | 3.6       |
+| CAMERA   | <code>number</code> | 是   | -      | 照相机快门                   | 3.6       |
+| ABN_HIGH | <code>number</code> | 是   | -      | 健康数据测量异常（高值）情况 | 3.6       |
+| ABN_LOW  | <code>number</code> | 是   | -      | 健康数据测量异常（低值）情况 | 3.6       |
+| SOS      | <code>number</code> | 是   | -      | SOS 求救                     | 3.6       |
+
+### start
+
+开始播放声音，可以传入 `type` 指定铃声类型，`repeatCount` 为音频重复次数，默认 `0`，不重复播放
+
+```ts
+start(sourceType: number, repeatCount: 0): void
+```
+
+### stop
+
+停止声音播放
+
+```ts
+stop(): void
+```
+
+## 代码示例
+
+```js
+import { SystemSounds } from '@zos/sensor'
+
+const systemSounds = new SystemSounds()
+const alarmType = systemSounds.getType().ALARM
+
+if (systemSounds.getEnabled()) {
+  systemSounds.start(alarmType)
+}
+```

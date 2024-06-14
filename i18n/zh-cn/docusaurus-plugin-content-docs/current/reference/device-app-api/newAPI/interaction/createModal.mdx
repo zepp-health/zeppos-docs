@@ -16,12 +16,21 @@ function createModal(option: Option): Modal
 
 ### Option
 
-| 属性     | 类型                                      | 必填 | 默认值             | 说明                                              | API_LEVEL |
-| -------- | ----------------------------------------- | ---- | ------------------ | ------------------------------------------------- | --------- |
-| content  | <code>string</code>                       | 是   | -                  | Modal 对话框的内容                                | 2.0       |
-| show     | <code>boolean</code>                      | 否   | <code>false</code> | 完成创建后是否立即显示 Modal 对话框               | 2.0       |
-| onClick  | <code>(keyObj: KeyObj) =&#62; void</code> | 否   | -                  | 点击确认或者取消的回调函数                        | 2.0       |
-| autoHide | <code>boolean</code>                      | 否   | <code>true</code>  | 点击确认或者取消按钮后，是否自动关闭 Modal 对话框 | 2.0       |
+| 属性          | 类型                                      | 必填 | 默认值                | 说明                                                                   | API_LEVEL |
+| ------------- | ----------------------------------------- | ---- | --------------------- | ---------------------------------------------------------------------- | --------- |
+| content       | <code>string</code>                       | 是   | -                     | Modal 对话框的标题                                                     | 2.0       |
+| title         | <code>string</code>                       | 否   | -                     | Modal 对话框的标题，`content` 的别名                                   | 3.6       |
+| show          | <code>boolean</code>                      | 否   | <code>false</code>    | 完成创建后是否立即显示 Modal 对话框                                    | 2.0       |
+| onClick       | <code>(keyObj: KeyObj) =&#62; void</code> | 否   | -                     | 点击确认或者取消的回调函数                                             | 2.0       |
+| autoHide      | <code>boolean</code>                      | 否   | <code>true</code>     | 点击确认或者取消按钮后，是否自动关闭 Modal 对话框                      | 2.0       |
+| subtitle      | <code>string</code>                       | 否   | -                     | 子标题                                                                 | 3.6       |
+| src           | <code>string</code>                       | 否   | -                     | icon 图标路径                                                          | 3.6       |
+| text          | <code>string</code>                       | 否   | -                     | 文本内容                                                               | 3.6       |
+| textColor     | <code>number</code>                       | 否   | <code>0xFFFFFF</code> | 文本颜色                                                               | 3.6       |
+| textAlpha     | <code>number</code>                       | 否   | <code>255</code>      | 文本透明度，透明度[0-255]，0 为全透明                                  | 3.6       |
+| okButton      | <code>string</code>                       | 否   | -                     | 确认按钮的 icon 图标路径                                               | 3.6       |
+| cancelButton  | <code>string</code>                       | 否   | -                     | 取消按钮的 icon 图标路径                                               | 3.6       |
+| capsuleButton | <code>Array&#60;string&#62;</code>        | 否   | -                     | 胶囊按钮配置，为字符串数组，点击返回的 KeyObj 中的 `type` 从 `10` 开始 | 3.6       |
 
 ### KeyObj
 

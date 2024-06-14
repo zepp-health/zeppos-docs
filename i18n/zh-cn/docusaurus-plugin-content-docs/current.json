@@ -95,6 +95,10 @@
     "message": "伴生服务 API",
     "description": "The label for category Side Service API in sidebar reference"
   },
+  "sidebar.guides.category.Workout Extension": {
+    "message": "运动扩展",
+    "description": "The label for category Reference in sidebar reference"
+  },
   "sidebar.guides.category.Related Resources": {
     "message": "相关资源",
     "description": "The label for category Side Service API in sidebar reference"
