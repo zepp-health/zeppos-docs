@@ -71,7 +71,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl'
 「运动扩展」必须在 API_LEVEL `3.6` 及以上的设备才可以使用，`minVersion` 需要配置为 `3.6`。
 :::
 
-`widgets` 字段为一个数组，最多大长度为 `5`，即同一个 appId 的「运动扩展」应用中，最多可以同时存在 `5` 个「运动扩展」插件。用户在「运动」应用中可以添加多个「运动扩展」插件，同时添加的最大数量取决于机型性能，至少为 `2` 个。
+`widgets` 字段为一个数组，目前最大长度为 `1`，即同一个 appId 的「运动扩展」应用中，最多可以同时存在 `1` 个「运动扩展」插件（后期可能会支持多个）。
 
 ```json
 "module": {
@@ -139,7 +139,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl'
 
 「运动扩展」在 UI 交互方面存在部分限制。
 
-- 绘制区域有限制，只可以在设备屏幕边界范围内绘制 UI 控件，如「运动扩展」在 Amazfit Balance 设备上的绘图区域大小与屏幕分辨率一致为 480 x 480 px。
+- 绘制区域有限制，只可以在设备屏幕边界范围内绘制 UI 控件，如「运动扩展」在 Amazfit T-Rex Ultra 设备上的绘图区域大小与屏幕分辨率一致为 454 x 454 px。
 - 只能展示单页内容，不支持长页面滚动。
 - 不支持滑动操作。页面内不支持 `SCROLL_LIST`、`VIEW_CONTAINER`、`PAGE_INDICATOR`、`SCROLL_BAR` 等支持滑动或者堆叠布局的控件。
 - 不支持手势监听。

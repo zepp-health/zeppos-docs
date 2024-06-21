@@ -71,7 +71,7 @@ The difference between Workout Extension is only in the configuration of the `mo
 "Workout Extension" can only be used on devices with API_LEVEL `3.6` or above, and "minVersion" needs to be configured to `3.6`.
 :::
 
-The `widgets` field is an array with a maximum length of `5`. That is to say, in the "Workout Extension" application with the same appId, up to `5` "Workout Extension" plugins can exist at the same time. Users can add multiple "Workout Extension" plugins in the "Workout" application, and the maximum number added at the same time depends on the model performance, at least `2`.
+The `widgets` field is an array with a maximum length of `1`. This means that in a Workout Extension application with the same appId, up to `1` Workout Extension plugin can exist simultaneously (multiple plugins may be supported later).
 
 ```json
 "module": {
@@ -134,7 +134,7 @@ When the "Workout Extension" plugin loses focus, it will enter the "Pause" state
 
 "Workout Extension" has some limitations in UI interaction.
 
-- The drawing area is limited, and UI widgets can only be drawn within the boundaries of the device screen. For example, the drawing area size of "Workout Extension" on Amazfit Balance devices is consistent with the screen resolution of 480 x 480 px.
+- The drawing area is limited, and UI widgets can only be drawn within the boundaries of the device screen. For example, the drawing area size of "Workout Extension" on Amazfit T-Rex Ultra devices is consistent with the screen resolution of 454 x 454 px.
 - Can only display single-page content, does not support long page scrolling.
 - Sliding operation is not supported. Widgets such as `SCROLL_LIST`, `VIEW_CONTAINER`, `PAGE_INDICATOR`, `SCROLL_BAR` that support sliding or stacking layout are not supported on the page.
 - Does not support gesture monitoring.
