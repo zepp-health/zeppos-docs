@@ -21,23 +21,23 @@ const button = createWidget(widget.BUTTON, Param)
 
 ### Param: object
 
-| Properties     | Description                                                                                                               | Required | Type        |
-| -------------- | ------------------------------------------------------------------------------------------------------------------------- | -------- | ----------- | --- |
-| x              | The x-coordinate of widgets                                                                                               | YES      | `number`    |
-| y              | The y-coordinate of widgets                                                                                               | YES      | `number`    |
-| w              | The width of widgets;If set to `-1`, the size of normal_src is preferred, otherwise the default is `100`.                 | YES      | `number`    |
-| h              | The height of widgets;If set to `-1`, the size of normal_src is preferred, otherwise the default is `40`.                 | YES      | `number`    |
-| text           | Text displayed on the button.                                                                                             | YES      | `string`    |
-| color          | The color of the text.                                                                                                    | NO       | `number`    |
-| text_size      | The font size of the text.                                                                                                | NO       | `number`    |
-| press_src      | The image of background displayed when pressed. Need to be used with `normal_src`.                                        | NO       | `string`    |
-| normal_src     | Normal state of the background image. Need to be used with `press_src`.                                                   | NO       | `string`    |
-| press_color    | The color of background when pressed. Need to be used with `normal_color`.                                                | NO       | `number`    |
-| normal_color   | The color of normal state background. Need to be used with `press_color`.                                                 | NO       | `number`    |
-| radius         | Rounded corners when using color as button background.                                                                    | NO       | `number`    |
-| click_func     | Callbacks for button clicks.                                                                                              | NO       | `ClickFunc` |
-| longpress_func | Callbacks for button long press(700ms).                                                                                   | NO       | `ClickFunc` |
-| font           | Font path, resource storage path reference [directory structure](../../../../../guides/architecture/folder-structure.mdx) | NO       | `string`    | 3.6 |
+| Properties     | Description                                                                                                               | Required | Type        | API_LEVEL |
+| -------------- | ------------------------------------------------------------------------------------------------------------------------- | -------- | ----------- | --------- |
+| x              | The x-coordinate of widgets                                                                                               | YES      | `number`    | 2.0       |
+| y              | The y-coordinate of widgets                                                                                               | YES      | `number`    | 2.0       |
+| w              | The width of widgets;If set to `-1`, the size of normal_src is preferred, otherwise the default is `100`.                 | YES      | `number`    | 2.0       |
+| h              | The height of widgets;If set to `-1`, the size of normal_src is preferred, otherwise the default is `40`.                 | YES      | `number`    | 2.0       |
+| text           | Text displayed on the button.                                                                                             | YES      | `string`    | 2.0       |
+| color          | The color of the text.                                                                                                    | NO       | `number`    | 2.0       |
+| text_size      | The font size of the text.                                                                                                | NO       | `number`    | 2.0       |
+| press_src      | The image of background displayed when pressed. Need to be used with `normal_src`.                                        | NO       | `string`    | 2.0       |
+| normal_src     | Normal state of the background image. Need to be used with `press_src`.                                                   | NO       | `string`    | 2.0       |
+| press_color    | The color of background when pressed. Need to be used with `normal_color`.                                                | NO       | `number`    | 2.0       |
+| normal_color   | The color of normal state background. Need to be used with `press_color`.                                                 | NO       | `number`    | 2.0       |
+| radius         | Rounded corners when using color as button background.                                                                    | NO       | `number`    | 2.0       |
+| click_func     | Callbacks for button clicks.                                                                                              | NO       | `ClickFunc` | 2.0       |
+| longpress_func | Callbacks for button long press(700ms).                                                                                   | NO       | `ClickFunc` | 2.0       |
+| font           | Font path, resource storage path reference [directory structure](../../../../../guides/architecture/folder-structure.mdx) | NO       | `string`    | 3.6       |
 
 :::caution
 
