@@ -66,7 +66,7 @@ stop(): void
 import { Buzzer } from '@zos/sensor'
 
 const buzzer = new Buzzer()
-const alarmType = Buzzer.getType().ALARM
+const alarmType = buzzer.getSourceType().ALARM
 
 if (buzzer.isEnabled()) {
   buzzer.start(alarmType)
