@@ -462,9 +462,9 @@ module.exports = {
           label: 'Simulator',
           items: [
             'guides/tools/simulator/index',
-            'guides/tools/simulator/setup',
             'guides/tools/simulator/download',
-            'guides/tools/simulator/release-note'
+            'guides/tools/simulator/release-note',
+            'guides/tools/simulator/setup',
           ]
         },
         'guides/tools/npm/index',
@@ -579,8 +579,6 @@ module.exports = {
         'guides/faq/icon-faq',
         'guides/faq/simulator-4-4k',
         'guides/faq/developer-bridge-mode',
-        'guides/faq/apple-silicon',
-        'guides/faq/apple-silicon-setup',
         'guides/faq/windows-cli-qrcode-error',
         'guides/faq/preview-error',
         'guides/faq/upload-log',

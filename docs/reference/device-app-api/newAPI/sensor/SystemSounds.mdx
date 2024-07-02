@@ -60,7 +60,7 @@ stop(): void
 import { SystemSounds } from '@zos/sensor'
 
 const systemSounds = new SystemSounds()
-const alarmType = systemSounds.getSourceType().ALARM
+const alarmType = systemSounds.getType().ALARM
 
 if (systemSounds.getEnabled()) {
   systemSounds.start(alarmType)

@@ -15,7 +15,6 @@ The Zeus CLI is a command line toolset that has the following main features.
   - Listen to project code changes and refresh automatically
 - `zeus preview` generates a QR code that can be scanned and installed on the device via the Zepp APP
 - `zeus build` to build the application zab package
-- `zeus help` help command, displaying instructions for use
 
 ## Environmental Preparation
 
