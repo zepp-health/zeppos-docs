@@ -11,7 +11,7 @@ Buzzer.
 
 ### isEnabled
 
-Get whether the system buzzer function is turned on, and it can only be used after it is turned on.
+Get whether other options in the system buzzer scene settings are turned on, Settings - > Sound & Vibration - > Buzzer Scene - > Other
 
 ```ts
 isEnabled(): boolean
@@ -27,14 +27,14 @@ getSourceType(): Type
 
 #### Type
 
-| Property | Type                | Required | DefaultValue | Description | API_LEVEL |
-| -------- | ------------------- | -------- | ------------ | ----------- | --------- |
-| ALARM    | <code>number</code> | Y        | -            | Alarm clock | 3.6       |
-| REMIND_1 | <code>number</code> | Y        | -            | Reminder 1  | 3.6       |
-| REMIND_2 | <code>number</code> | Y        | -            | Reminder 2  | 3.6       |
-| OPERATE  | <code>number</code> | Y        | -            | Operation   | 3.6       |
-| SUCCESS  | <code>number</code> | Y        | -            | Success     | 3.6       |
-| FAILURE  | <code>number</code> | Y        | -            | Failure     | 3.6       |
+| Value    | Type                | Description | API_LEVEL |
+| -------- | ------------------- | ----------- | --------- |
+| ALARM    | <code>number</code> | Alarm clock | 3.6       |
+| REMIND_1 | <code>number</code> | Reminder 1  | 3.6       |
+| REMIND_2 | <code>number</code> | Reminder 2  | 3.6       |
+| OPERATE  | <code>number</code> | Operation   | 3.6       |
+| SUCCESS  | <code>number</code> | Success     | 3.6       |
+| FAILURE  | <code>number</code> | Failure     | 3.6       |
 
 ### getStrength
 
@@ -63,12 +63,56 @@ stop(): void
 ## Example
 
 ```js
+import { createWidget, widget, prop, align, text_style } from '@zos/ui'
 import { Buzzer } from '@zos/sensor'
+import { px } from '@zos/utils'
 
-const buzzer = new Buzzer()
-const alarmType = buzzer.getSourceType().ALARM
+const sceneList = ['ALARM', 'REMIND_1', 'REMIND_2', 'OPERATE', 'SUCCESS', 'FAILURE']
 
-if (buzzer.isEnabled()) {
-  buzzer.start(alarmType)
-}
+Page({
+  state: {
+    pageName: 'BUZZER',
+    currentIndex: 0,
+  },
+  build() {
+    const buzzer = new Buzzer()
+    const sceneText = createWidget(widget.TEXT, {
+      x: px(0),
+      y: px(120),
+      w: px(480),
+      h: px(46),
+      color: 0xffffff,
+      text_size: px(20),
+      align_h: align.CENTER_H,
+      align_v: align.CENTER_V,
+      text_style: text_style.NONE,
+      text: `${sceneList[this.state.currentIndex]}`,
+    })
+
+    const startBuzzer = () => {
+      const alarmType = buzzer.getSourceType()[sceneList[this.state.currentIndex]]
+
+      if (buzzer.isEnabled()) {
+        buzzer.start(alarmType)
+      }
+
+      this.state.currentIndex = (this.state.currentIndex + 1) % sceneList.length
+      sceneText.setProperty(prop.MORE, {
+        text: `BUZZER: ${sceneList[this.state.currentIndex]}`,
+      })
+    }
+
+    createWidget(widget.BUTTON, {
+      x: px(80),
+      y: px(300),
+      w: px(300),
+      h: px(60),
+      radius: px(12),
+      normal_color: 0xfc6950,
+      press_color: 0xfeb4a8,
+      text: 'START BUZZER',
+      click_func: startBuzzer,
+    })
+  },
+})
 ```

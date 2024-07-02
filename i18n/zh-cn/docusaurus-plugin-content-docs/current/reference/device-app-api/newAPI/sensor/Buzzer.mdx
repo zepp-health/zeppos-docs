@@ -11,7 +11,7 @@ sidebar_label: Buzzer 蜂鸣器
 
 ### isEnabled
 
-获取系统蜂鸣器功能是否开启，开启后才可以使用
+获取系统蜂鸣器场景设置中的其他选项是否开启，设置 -> 声音与震动 -> 蜂鸣场景 -> 其他
 
 ```ts
 isEnabled(): boolean
@@ -27,14 +27,14 @@ getSourceType(): Type
 
 #### Type
 
-| 属性     | 类型                | 必填 | 默认值 | 说明   | API_LEVEL |
-| -------- | ------------------- | ---- | ------ | ------ | --------- |
-| ALARM    | <code>number</code> | 是   | -      | 闹钟   | 3.6       |
-| REMIND_1 | <code>number</code> | 是   | -      | 提醒 1 | 3.6       |
-| REMIND_2 | <code>number</code> | 是   | -      | 提醒 2 | 3.6       |
-| OPERATE  | <code>number</code> | 是   | -      | 操作   | 3.6       |
-| SUCCESS  | <code>number</code> | 是   | -      | 成功   | 3.6       |
-| FAILURE  | <code>number</code> | 是   | -      | 失败   | 3.6       |
+| 值       | 类型                | 说明   | API_LEVEL |
+| -------- | ------------------- | ------ | --------- |
+| ALARM    | <code>number</code> | 闹钟   | 3.6       |
+| REMIND_1 | <code>number</code> | 提醒 1 | 3.6       |
+| REMIND_2 | <code>number</code> | 提醒 2 | 3.6       |
+| OPERATE  | <code>number</code> | 操作   | 3.6       |
+| SUCCESS  | <code>number</code> | 成功   | 3.6       |
+| FAILURE  | <code>number</code> | 失败   | 3.6       |
 
 ### getStrength
 
@@ -63,12 +63,56 @@ stop(): void
 ## 代码示例
 
 ```js
+import { createWidget, widget, prop, align, text_style } from '@zos/ui'
 import { Buzzer } from '@zos/sensor'
+import { px } from '@zos/utils'
 
-const buzzer = new Buzzer()
-const alarmType = buzzer.getSourceType().ALARM
+const sceneList = ['ALARM', 'REMIND_1', 'REMIND_2', 'OPERATE', 'SUCCESS', 'FAILURE']
 
-if (buzzer.isEnabled()) {
-  buzzer.start(alarmType)
-}
+Page({
+  state: {
+    pageName: 'BUZZER',
+    currentIndex: 0,
+  },
+  build() {
+    const buzzer = new Buzzer()
+    const sceneText = createWidget(widget.TEXT, {
+      x: px(0),
+      y: px(120),
+      w: px(480),
+      h: px(46),
+      color: 0xffffff,
+      text_size: px(20),
+      align_h: align.CENTER_H,
+      align_v: align.CENTER_V,
+      text_style: text_style.NONE,
+      text: `${sceneList[this.state.currentIndex]}`,
+    })
+
+    const startBuzzer = () => {
+      const alarmType = buzzer.getSourceType()[sceneList[this.state.currentIndex]]
+
+      if (buzzer.isEnabled()) {
+        buzzer.start(alarmType)
+      }
+
+      this.state.currentIndex = (this.state.currentIndex + 1) % sceneList.length
+      sceneText.setProperty(prop.MORE, {
+        text: `BUZZER: ${sceneList[this.state.currentIndex]}`,
+      })
+    }
+
+    createWidget(widget.BUTTON, {
+      x: px(80),
+      y: px(300),
+      w: px(300),
+      h: px(60),
+      radius: px(12),
+      normal_color: 0xfc6950,
+      press_color: 0xfeb4a8,
+      text: 'START BUZZER',
+      click_func: startBuzzer,
+    })
+  },
+})
 ```
