@@ -1,6 +1,6 @@
 ---
-title: 安装与启动
-sidebar_label: 安装与启动
+title: 安装与启动（v1.x.x 模拟器参考）
+sidebar_label: 安装与启动（v1.x.x 模拟器参考）
 ---
 
 不同操作系统对应着不同的安装和启动方式，请开发者根据操作系统参考对应章节：
@@ -102,16 +102,6 @@ brew install --cask tunnelblick
 :::
 
 #### 2. 配置虚拟网卡
-
-:::caution
-如果使用的是搭载 Apple 芯片的 Mac，在执行此步骤之前需要执行 [Apple Silicon 机型开启系统扩展](../../faq/apple-silicon.md)。
-
-如何确定 Mac 是否搭载 Apple 芯片？
-
-1. 点击桌面左上角 Apple 图标
-2. 点击「关于本机」
-3. 在「概览」Tab 浏览处理器信息，如果显示 Apple 则为搭载 Apple 芯片的 Mac
-:::
 
 运行 Tunnelblick，在界面中找到 `tun/tap` 安装选项，操作路径「工具集」=> 「安装 tun 和 tap 系统扩展」。
 

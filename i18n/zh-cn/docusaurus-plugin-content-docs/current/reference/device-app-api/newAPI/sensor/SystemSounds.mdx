@@ -1,11 +1,11 @@
 ---
 title: SystemSounds
-sidebar_label: SystemSounds 系统声音
+sidebar_label: SystemSounds
 ---
 
 > API_LEVEL `3.6` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
 
-系统声音。
+系统声音播放。
 
 ## 方法
 
@@ -60,7 +60,7 @@ stop(): void
 import { SystemSounds } from '@zos/sensor'
 
 const systemSounds = new SystemSounds()
-const alarmType = systemSounds.getSourceType().ALARM
+const alarmType = systemSounds.getType().ALARM
 
 if (systemSounds.getEnabled()) {
   systemSounds.start(alarmType)

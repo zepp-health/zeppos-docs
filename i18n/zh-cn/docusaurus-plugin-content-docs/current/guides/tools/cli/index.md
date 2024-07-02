@@ -15,7 +15,6 @@ Zeus CLI 是一个命令行工具集，主要有如下功能：
   - 监听项目代码改动，自动刷新
 - `zeus preview` 生成二维码，可通过 Zepp APP 扫码安装到设备
 - `zeus build` 构建应用 zab 包
-- `zeus help` 帮助命令，显示使用说明
 
 ## 环境准备
 

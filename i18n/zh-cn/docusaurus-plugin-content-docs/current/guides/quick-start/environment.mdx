@@ -3,128 +3,82 @@ title: 1. 环境准备
 sidebar_label: 1. 环境准备
 ---
 
-在本章节中，我们将完成以下环境准备工作
+在本章节中，我们将完成以下环境准备工作。
 
-- Node.js (v >= 16.0)
-- npm
-- Zeus CLI
-- TUN/TAP Network for simulator
+- 安装 Node.js (v >= 16.0)
+- 安装 Zeus CLI
 
-我们提供了两种方式来完成环境准备，建议使用 Zepp OS 官方提供的 env-setup-script 脚本来实现一键安装，或者根据文档提示，手动完成环境准备。
+## 安装 Node.js
 
-## 使用 env-setup-script 脚本安装环境
+访问 [Node.js 官网 - 下载 Node.js](https://nodejs.org/zh-cn/download/package-manager)。
 
-### 下载 env-setup-script 安装包
-
-开发者根据不同操作系统，下载对应安装包。
-
-- [Win10-11](https://bundle-cdn.huami.com/other/20240227/win10-11.zip)
-- [MacOS](https://bundle-cdn.huami.com/other/20240227/macos.zip)
-- [Debian](https://bundle-cdn.huami.com/other/20240227/debian.zip)
-
-<!-- 项目源码托管在 [Zepp Health Github env-setup-script](https://github.com/zepp-health/env-setup-script)。 -->
-
-### 执行脚本
-
-在这一步骤中，不同操作系统的操作有差异，请参考操作系统对应的内容进行操作。
-
-执行脚本，即可完成环境安装，当脚本出现以下提示表明安装成功。
-
-![Environment](/img/docs/quick-start/environment.png)
-
-#### Windows
-
-在 Windows 中推荐使用系统内置的 `PowerShell` 终端来执行命令，以管理员方式运行。
-
-进入 `/win10-11` 目录中，执行 `.\env-helper.ps1` 命令。
+推荐通过 `nvm` 包管理器的方式进行安装，以下安装指引摘自 `Node.js` 官网。
 
 ```sh
-.\env-helper.ps1
+# installs nvm (Node Version Manager)
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+
+# download and install Node.js (you may need to restart the terminal)
+nvm install 20
+
+# verifies the right Node.js version is in the environment
+node -v # should print `v20.15.0`
+
+# verifies the right NPM version is in the environment
+npm -v # should print `10.7.0`
 ```
 
 :::info
-如果遇到了这样的错误提示消息
 
-```sh
-File .\env-helper.ps1 cannot be loaded because running scripts is disabled on this system. For more information, see about_Execution_Policies at http://go.microsoft.com/fwlink/?LinkID=135170.
+- 在 Windows 中我们推荐使用系统内置的 `PowerShell` 终端来执行命令，以管理员方式运行
+- 在 MacOS 和 Linux 中推荐使用系统内置的 `Terminal` 终端来执行命令
 
-+ CategoryInfo : SecurityError: (:) [], ParentContainsErrorRecordException
-+ FullyQualifiedErrorId : UnauthorizedAccess
-
-The script doesn’t run because the PowerShell Execution Policy is set to the default of Restricted.
-```
-
-请先在终端执行如下命令
-
-```sh
-Set-ExecutionPolicy -ExecutionPolicy Bypass #or Unrestricted
-```
-
-之后重新执行 `.\env-helper.ps1` 命令
 :::
 
-#### macOS
+第一步，执行官网安装指引中的第一条命令，安装 nvm (Node Version Manager)，将命令复制到终端中，键盘按下「回车键」。
 
-:::caution
-如果使用的是搭载 Apple 芯片的 Mac，不适用此脚本，请参考 [手动安装](#手动安装)。
+```js
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+```
 
-如何确定 Mac 是否搭载 Apple 芯片？
+第二步，执行官网安装指引中的第二条命令，安装 Node.js，建议直接安装 `lts` 版本。
 
-1. 点击桌面左上角 Apple 图标
-2. 点击「关于本机」
-3. 在「概览」Tab 浏览处理器信息，如果显示 Apple 则为搭载 Apple 芯片的 Mac
-
-如果已经执行过安装脚本，则需要执行以下命令卸载相关文件，之后直接进行手动安装的最后一步，[模拟器 - 安装与启动](../tools/simulator/setup.md)。
+在 **Windows** 终端依次执行以下两条命令：
 
 ```sh
-sudo rm -rf /Library/Extensions/tun.kext
-sudo rm -rf /Library/Extensions/tap.kext
-
-sudo rm -f /Library/LaunchDaemons/*tun.plist
-sudo rm -f /Library/LaunchDaemons/*tap.plist
+nvm install lts
+nvm use lts
 ```
+
+在 **MacOS** 和 **Linux** 的终端依次执行以下两条命令：
+
+```sh
+nvm install --lts
+nvm use --lts
+```
+
+第三步，检查 Node.js 是否安装成功，在终端执行以下命令，如果终端显示如 `v20.15.0` 这样的版本号，则表明安装成功。
+
+```sh
+node -v
+```
+
+## 安装 Zeus CLI
+
+[Zeus CLI](../tools/cli/index.md) 是一个 Zepp OS 命令行工具集，我们用它来创建、预览编译以及构建 Zepp OS 小程序或者表盘项目。
+
+第一步，在终端执行安装命令。
+
+```sh
+npm i @zeppos/zeus-cli -g
+```
+
+:::tip
+安装 Zeus CLI 过程中遇到问题请查看 [环境安装常见问题](../faq/env-setup.md)
 :::
 
-在 macOS 中推荐使用系统内置的 `Terminal` 或者 `iTerm2` 终端来执行命令。
-
-进入 `/macOS` 目录下，执行脚本。
+第二步，检查 Zeus CLI 是否安装成功，在终端执行以下命令，如果终端显示如 `1.5.20` 的版本号，则表明安装成功。
 
 ```sh
-cd macOS
-bash env-helper.sh
+zeus -v
 ```
-
-:::info
-- 如果提示输入密码，输入当前用户的密码并确认
-
-```sh
-Extension with identifiers xxxxxx not approved to load. Please approve using System Preferences.
-```
-- 如果收到这样的错误提示，在「系统偏好设置」的「隐私与安全性」中手动授予权限
-:::
-
-#### Debian
-
-我们只提供为基于 Debian 的 Linux 发行版的自动安装脚本（使用了 apt），
-如果您要在其他 Linux 发行版中使用，请移步[手动安装](#手动安装)
-
-
-在 Ubuntu 中推荐使用系统内置的 `Terminal` 终端执行命令。
-
-进入 `/linux` 目录下，执行脚本。
-
-```sh
-cd linux
-bash env-helper.sh
-```
-
-## 手动安装
-
-请参考以下文档，完成环境准备
-
-- 安装 Node.js（推荐 LTS 版本）
-  - 参考 [Node.js 官方文档](https://nodejs.org/)
-- [Zeus CLI 命令行工具](../tools/cli/index.md)
-  - 完成 Zeus CLI 命令行工具安装
-- [模拟器 - 安装与启动](../tools/simulator/setup.md)
-  - 完成 TUN/TAP 安装

@@ -6,125 +6,75 @@ sidebar_label: 1. Environmental Preparation
 In this section, we will complete the following environment preparations.
 
 - Node.js (v >= 16.0)
-- npm
 - Zeus CLI
-- TUN/TAP Network for simulator
 
-We provide two ways to prepare the environment. We recommend using the env-setup-script provided by Zepp OS for one-click installation, or following the documentation to prepare the environment manually.
+## Install Node.js
 
-## Install the environment using the env-setup-script script
+Visit the [Node.js Official website - Download](https://nodejs.org/en/download/package-manager)。
 
-### Download the env-setup-script project
-
-The developer downloads the corresponding installation packages according to different operating systems.
-
-- [Win10-11](https://bundle-cdn.huami.com/other/20240227/win10-11.zip)
-- [MacOS](https://bundle-cdn.huami.com/other/20240227/macos.zip)
-- [Debian](https://bundle-cdn.huami.com/other/20240227/debian.zip)
-
-<!-- Project source code is hosted at [Zepp Health Github env-setup-script](https://github.com/zepp-health/env-setup-script). -->
-
-### Executing script
-
-During this phase, the procedure varies depending on the operating system being used. Therefore, please refer to the relevant sections for your specific operating system.
-
-Execute the script, you can complete the installation of the environment, when the script appears the following prompt indicates that the installation is successful.
-
-![Environment](/img/docs/quick-start/environment.png)
-
-#### Windows
-
-In Windows, it is recommended to use the built-in `PowerShell` terminal to execute commands as an administrator.
-
-Go to the `/win10-11` directory and execute the `. \env-helper.ps1` command.
+It is recommended to install through the `nvm` package manager. The following installation instructions are excerpted from the `Node.js` official website.
 
 ```sh
-.\env-helper.ps1
+# installs nvm (Node Version Manager)
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+
+# download and install Node.js (you may need to restart the terminal)
+nvm install 20
+
+# verifies the right Node.js version is in the environment
+node -v # should print `v20.15.0`
+
+# verifies the right NPM version is in the environment
+npm -v # should print `10.7.0`
 ```
 
 :::info
-If you encounter an error message like this.
 
-```sh
-File .\env-helper.ps1 cannot be loaded because running scripts is disabled on this system. For more information, see about_Execution_Policies at http://go.microsoft.com/fwlink/?LinkID=135170.
-
-+ CategoryInfo : SecurityError: (:) [], ParentContainsErrorRecordException
-+ FullyQualifiedErrorId : UnauthorizedAccess
-
-The script doesn’t run because the PowerShell Execution Policy is set to the default of Restricted.
-```
-
-Please execute the following command in the terminal first:
-
-```sh
-Set-ExecutionPolicy -ExecutionPolicy Bypass #or Unrestricted
-```
-
-And then run the script again.
+- In Windows, we recommend using the built-in `PowerShell` to execute commands as an administrator
+- It is recommended to use the built-in `Terminal` in MacOS and Linux to execute commands
 
 :::
 
-#### macOS
+Step one, execute the first command in the official website installation guide, install nvm (Node Version Manager), copy the command to the end point, and press "Enter" on the keyboard.
 
-:::caution
-If you are using a Mac with an Apple chip, this script is not applicable. Please refer to [Manual Installation](#manual-installation).
-
-How to know if a Mac is equipped with an Apple chip?
-
-1. Click the Apple icon in the upper left corner of the desktop
-2. Select About This Mac
-3. In the “Overview” tab, look for “Processor” or “Chip”. Check if it says “Apple”
-
-If the installation script has already been executed, you need to execute the following command to uninstall the relevant files, and then proceed directly to the final step of manual installation, [Simulator - Installation and Startup](../tools/simulator/setup.md).
-
-```sh
-sudo rm -rf /Library/Extensions/tun.kext
-sudo rm -rf /Library/Extensions/tap.kext
-
-sudo rm -f /Library/LaunchDaemons/*tun.plist
-sudo rm -f /Library/LaunchDaemons/*tap.plist
-```
-:::
-
-In macOS, it is recommended to use the built-in `Terminal` or `iTerm2` to execute commands.
-
-Go to the `/macOS` directory and execute the script.
-
-```sh
-cd macOS
-bash env-helper.sh
+```js
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
 ```
 
-:::info
-- If prompted for a password, enter the current user's password and confirm it.
+Step 2, execute the second command in the official website installation guide to install Node.js. It is recommended to directly install the `lts` version.
+
+Execute the following two commands in sequence at the **Windows** PowerShell
 
 ```sh
-Extension with identifiers xxxxxx not approved to load. Please approve using System Preferences.
+nvm install lts
+nvm use lts
 ```
-- If you get this error, manually grant permissions in Privacy and Security in System Preferences.
-:::
 
-#### Debian
-
-We only provide installation script for Debian-based which use apt.
-If you want to use it with other Linux distribution, you can see [Manual Installation](#Manual_Installation)
-
-In Ubuntu, it is recommended to use the built-in `Terminal` terminal to execute commands.
-
-Go to the `/linux` directory and execute the script.
+Execute the following two commands in sequence at the **MacOS** or **Linux** Terminal
 
 ```sh
-cd linux
-bash env-helper.sh
+nvm install --lts
+nvm use --lts
 ```
 
-## Manual Installation
+Step three, check if Node.js has been installed successfully. Execute the following command at the end point. If the end point displays a version number such as `v20.15.0`, it indicates a successful installation.
 
-Please refer to the following documents to complete the environment preparation.
+```sh
+node -v
+```
 
-- Installing Node.js (LTS version is recommended)
-  - See [Official Node.js Documentation](https://nodejs.org/)
-- [Zeus CLI Command Line Tools](../tools/cli/index.md)
-  - Completing the Zeus CLI command-line tool installation
-- [Simulator - Installation and Startup](../tools/simulator/setup.md)
-  - Completing the TUN/TAP Installation
+## Install Zeus CLI
+
+[Zeus CLI](../tools/cli/index.md) is a Zepp OS command-line toolset that we use to create, preview compiles, and build Zepp OS Mini Programs or Watchface projects.
+
+The first step is to execute the installation command at the terminal.
+
+```sh
+npm i @zeppos/zeus-cli -g
+```
+
+The second step is to check whether the Zeus CLI is installed successfully. Execute the following command at the terminal. If the end point displays a version number such as `1.5.20`, it means that the installation is successful.
+
+```sh
+zeus -v
+```
