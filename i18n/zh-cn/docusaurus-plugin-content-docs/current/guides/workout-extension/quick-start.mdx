@@ -13,7 +13,6 @@ import useBaseUrl from '@docusaurus/useBaseUrl'
 - 「运动扩展」必须在 API_LEVEL 3.6 及以上的设备才可以使用
 - 「运动扩展」拥有大多数 JS API 的能力，但存在部分限制，详情请参考 [API 限制](#api-限制)
 - 「运动扩展」是独立的应用，拥有独立的 appId，需要在开发者后台完成创建，提交，审核流程后才可以在应用商店上线
-- 用户可以配置同时运行多个「运动扩展」
 
 :::
 
@@ -21,7 +20,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl'
 
 ### 1. 环境准备
 
-「运动扩展」的流程与 Zepp OS 小程序一致，所需的开发工具一致，请参考 [环境准备](../quick-start/environment.mdx) 完成环境准备。
+「运动扩展」的开发流程与 Zepp OS 小程序一致，所需的开发工具一致，请参考 [环境准备](../quick-start/environment.mdx) 完成环境准备。
 
 ### 2. 创建项目
 
@@ -35,7 +34,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl'
 
 此步骤流程与 Zepp OS 小程序一致，参考 [模拟器运行](../quick-start/simulator-dev.mdx) 完成模拟器安装和模拟器运行。
 
-我们使用终端进入到刚刚创建的「运动扩展」目录下，执行 `zeus dev` 编译预览命令，我们可以在模拟器中看到我们的运动扩展应用。
+使用终端进入到刚刚创建的「运动扩展」目录下，执行 `zeus dev` 编译预览命令，可以在模拟器中看到运动扩展应用。
 
 <img
   src={useBaseUrl('/img/docs/workout-extension/simulator_dev.jpg')}
@@ -44,12 +43,12 @@ import useBaseUrl from '@docusaurus/useBaseUrl'
 />
 
 :::info
-为了方便开发者使用，运动扩展在模拟器中的应用列表中展示，真机则是需要在运动应用中添加（不在应用列表中显示）
+为方便开发者开发，运动扩展会在模拟器的应用列表中展示，真机则是需要在系统应用「运动」中添加预览（真机不会在应用列表中显示运动扩展应用）
 :::
 
 ### 4. 真机预览
 
-此步骤流程与 Zepp OS 小程序一致，参考 [真机预览](../quick-start/preview.mdx) 完成真机预览。
+此步骤流程与预览 Zepp OS 小程序一致，参考 [真机预览](../quick-start/preview.mdx) 。
 
 ## 相关要点
 

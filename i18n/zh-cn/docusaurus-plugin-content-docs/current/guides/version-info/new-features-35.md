@@ -9,11 +9,15 @@ Zepp OS 3.5 带来了非常多激动人心的新特性。
 
 ## 运动扩展
 
-「运动扩展」是 Zepp OS 3.5 版本的新特性，以插件的形式扩展「运动」应用的功能，旨在提升用户在运动中的体验。
+「运动扩展」是 Zepp OS 3.5 版本的新特性，以插件的形式扩展系统应用「运动」的功能，旨在提升用户在运动中的体验。
 
-该功能允许开发者使用 Zepp OS JS API 创建「运动扩展」插件，在「运动」应用中为用户提供更多功能，包括不限于运动数据、运动图表、指南针、GoPro 等应用。
+该功能允许开发者使用 Zepp OS JS API 创建「运动扩展」插件，在系统应用「运动」中为用户提供更多功能，包括不限于运动数据、运动图表、指南针、GoPro 等应用。
 
 <img src={useBaseUrl('/img/docs/workout-extension/sample_both.jpeg')} width="80%" title="download_zepp" />
+
+:::info
+目前「运动扩展」功能在 Amazfit Cheetah Pro、Amazfit Cheetah (Round)、Amazfit T-Rex Ultra、Amazfit Falcon 设备上可以体验。
+:::
 
 「运动扩展」有以下核心价值：
 
