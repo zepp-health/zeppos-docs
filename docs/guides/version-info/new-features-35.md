@@ -9,11 +9,15 @@ Zepp OS 3.5 brings a lot of exciting new features.
 
 ## Workout Extension
 
-"Workout Extension" is a new feature of Zepp OS 3.5, which extends the functionality of the "Workout" application in the form of a plug-in, aiming to enhance the user experience in sports.
+"Workout Extension" is a new feature of Zepp OS 3.5, which extends the functionality of the "Workout" system application in the form of a plug-in, aiming to enhance the user experience in workouts.
 
-This feature allows developers to use the Zepp OS JS API to create "Workout Extension" plugins, providing users with more features in "Workout" applications, including but not limited to workout data, workout charts, Compass, GoPro, and other applications.
+This feature allows developers to use the Zepp OS JS API to create "Workout Extension" plugins, providing users with more features in "Workout" system applications, including but not limited to workout data, workout charts, Compass, GoPro, and other applications.
 
 <img src={useBaseUrl('/img/docs/workout-extension/sample_both.jpeg')} width="80%" title="download_zepp" />
+
+:::info
+Currently, the "Workout Extension" feature can be experienced on Amazfit Cheetah Pro, Amazfit Cheetah (Round), Amazfit T-Rex Ultra, and Amazfit Falcon devices.
+:::
 
 Workout Extension has the following core values:
 
