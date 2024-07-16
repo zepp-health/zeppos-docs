@@ -49,8 +49,10 @@ Zepp OS 的开放能力（JS API）会不断扩充，同时能力也会不断增
 
 查询设备的 Zepp OS 版本，请参考 [搭载 Zepp OS 设备列表](../../../reference/related-resources/device-list.mdx)
 
+查询设备的 API_LEVEL，请参考 [查询设备 API_LEVEL](../../../guides/tools/zepp-app.mdx#查询设备-api_level)
+
 :::caution
-搭载 Zepp OS 1.0 版本的设备不支持 `API_LEVEL`。
+搭载 Zepp OS 1.0 版本的设备不支持 `API_LEVEL`，为 Zepp OS 1.0 设备开发小程序请查看 v1.0 版本的开发者文档
 :::
 
 ### 兼容性保证

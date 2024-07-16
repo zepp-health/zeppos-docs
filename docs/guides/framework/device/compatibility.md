@@ -49,8 +49,10 @@ As of now, the `API_LEVEL` of all firmware versions with Zepp OS 2.0 devices is 
 
 To check the Zepp OS version of your device, please refer to [List of devices with Zepp OS](../../../reference/related-resources/device-list.mdx).
 
+Query equipment API_LEVEL, please refer to [Query the device API LEVEL](../../../guides/tools/zepp-app.mdx#query-the-device-api-level)
+
 :::caution
-Devices with Zepp OS version 1.0 do not support `API_LEVEL`.
+Devices running Zepp OS 1.0 do not support API_LEVEL. To develop a Mini Program for Zepp OS 1.0 devices, please refer to the v1.0 developer documentation
 :::
 
 ### Compatibility Guarantee
