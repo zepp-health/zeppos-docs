@@ -1,0 +1,67 @@
+---
+title: 注册页面与绘制控件
+sidebar_label: 注册页面与绘制控件
+---
+
+import useBaseUrl from '@docusaurus/useBaseUrl'
+
+## 注册页面
+
+每个小程序页面都需要在相应的 JS 文件中使用 [`Page` 构造函数](../../../reference/device-app-api/newAPI/global/Page.mdx) 注册页面实例，指定页面生命周期回调、事件处理函数，并可以在页面实例上挂载属性。
+
+:::caution
+小程序中的每个页面都需要在 `app.json` 的 `targets` 对象中配置文件路径。
+:::
+
+使用 [`getCurrentPage` 方法](../../../reference/device-app-api/newAPI/global/getCurrentPage.mdx) 获取 `page` 实例
+
+```js title="page.js"
+Page({
+  state: {
+    text: 'Hello Zepp OS'
+  },
+  onInit() {
+    console.log('onInit')
+  },
+  build() {
+    console.log('build')
+    console.log(this.state.text)
+  }
+})
+
+const page = getCurrentPage()
+console.log(page._options.state.text)
+```
+
+## 绘制控件
+
+Zepp OS 提供了丰富的 UI 控件。
+
+整个控件布局采用绝对坐标，大多数控件都有以下属性。
+
+| 属性 | 描述     |
+| ---- | -------- |
+| x    | x 坐标   |
+| y    | y 坐标   |
+| w    | 控件宽度 |
+| h    | 控件高度 |
+
+下图为圆屏设备坐标轴的起点和正方向。以 `IMG` 图片控件为例，图中标注了展示控件的 `x`、`y`、`w`、`h` 属性。
+
+<img
+  src={useBaseUrl('/img/docs/guides/framework/round_axis.png')}
+  width="300"
+  title="round"
+/>
+
+下图为方屏设备坐标轴的起点和正方向。
+
+<img
+  src={useBaseUrl('/img/docs/guides/framework/square_axis.png')}
+  width="300"
+  title="square"
+/>
+
+文档中控件的坐标如果没有特殊注明，都是以屏幕坐标轴为起点的绝对坐标。以 IMG 图片控件的 `pos_x`、`pos_y` 属性为例，文档中注明为相对坐标，相对坐标以控件左上角为起点，参考下图。
+
+![坐标图示](/img/api/img_pos.jpg)
