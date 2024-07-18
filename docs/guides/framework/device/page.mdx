@@ -1,0 +1,67 @@
+---
+title: Register Page and draw widgets
+sidebar_label: Register Page and draw widgets
+---
+
+## Register Page
+
+For each page in the Mini Program, you need to use [`Page` constructor](../../../reference/device-app-api/newAPI/global/Page.mdx) in the corresponding js file of the page to register the page instance, specify the page lifecycle callbacks, event handling functions, and can mount properties on the page instance.
+
+:::caution
+For each page in the Mini Program, you need to configure the path in the `targets` object of `app.json`.
+:::
+
+Use the [`getCurrentPage` method](../../../reference/device-app-api/newAPI/global/getCurrentPage.mdx) to get the `page` instance.
+
+```js title="page.js"
+Page({
+  state: {
+    text: 'Hello Zepp OS'
+  },
+  onInit() {
+    console.log('onInit')
+  },
+  build() {
+    console.log('build')
+    console.log(this.state.text)
+  }
+})
+
+const page = getCurrentPage()
+console.log(page._options.state.text)
+```
+
+## Draw widgets
+
+Zepp OS provides rich UI widgets.
+
+The entire widget layout uses absolute coordinates, and most widgets have the following properties.
+
+| Property | Description     |
+| ---- | -------- |
+| x    | X coordinate   |
+| y    | Y coordinate   |
+| w    | Widget width |
+| h    | Widget height |
+
+The following figure shows the starting point and forward direction of the coordinate axis of the round screen device. Taking the `IMG` image widget as an example, The annotations in the figure indicate the `x`, `y` ,`w`, and `h` properties of the widget.
+
+<img
+  src={useBaseUrl('/img/docs/guides/framework/round_axis.png')}
+  width="300"
+  title="round"
+/>
+
+The following figure shows the starting point and positive direction of the coordinate axis of the square screen device.
+
+<img
+  src={useBaseUrl('/img/docs/guides/framework/square_axis.png')}
+  width="300"
+  title="square"
+/>
+
+文档中控件的坐标如果没有特殊注明，都是以屏幕坐标轴为起点的绝对坐标。以 IMG 图片控件的 `pos_x`、`pos_y` 属性为例，文档中注明为相对坐标，相对坐标以控件左上角为起点，参考下图。
+
+The coordinates of the widgets in the document are absolute coordinates starting from the screen axis unless otherwise specified. Taking the `pos_x` and `pos_y` properties of the IMG image widget as an example, the document indicates that they are relative coordinates, which start from the upper left corner of the widget. Refer to the figure below.
+
+![figure](/img/api/img_pos.jpg)
