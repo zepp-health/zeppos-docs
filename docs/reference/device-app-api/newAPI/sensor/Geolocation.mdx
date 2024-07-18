@@ -162,21 +162,32 @@ onGnssChange(callback: (info: Info) => void): void
 
 #### SatelliteSystem
 
-| Property           | Type                                  | Description                                         | API_LEVEL |
-| ------------------ | ------------------------------------- | --------------------------------------------------- | --------- |
-| gnss_id            | <code>number</code>                   | Satellite ID                                        | 3.0       |
-| sub_top4_cn_val    | <code>number</code>                   | The strongest signal value of this satellite system | 3.0       |
-| nb_valid_satellite | <code>number</code>                   | Number of available satellites that can be searched | 3.0       |
-| gsv_data           | <code>Array&#60;Satellite&#62;</code> | Single satellite data array, maximum length 32      | 3.0       |
+| Property           | Type                                  | Description                                              | API_LEVEL |
+| ------------------ | ------------------------------------- | -------------------------------------------------------- | --------- |
+| gnss_id            | <code>number</code>                   | Satellite ID, see `gnss_id` below for value descriptions | 3.0       |
+| sub_top4_cn_val    | <code>number</code>                   | The strongest signal value of this satellite system      | 3.0       |
+| nb_valid_satellite | <code>number</code>                   | Number of available satellites that can be searched      | 3.0       |
+| gsv_data           | <code>Array&#60;Satellite&#62;</code> | Single satellite data array, maximum length 32           | 3.6       |
+
+#### gnss_id
+
+| Value | Type                | Description | API_LEVEL |
+| ----- | ------------------- | ----------- | --------- |
+| 0     | <code>number</code> | GPS         | 3.0       |
+| 1     | <code>number</code> | BDS         | 3.0       |
+| 2     | <code>number</code> | GLONASS     | 3.0       |
+| 3     | <code>number</code> | GALILEO     | 3.0       |
+| 4     | <code>number</code> | QZSS        | 3.0       |
+| 5     | <code>number</code> | IRNSS       | 3.0       |
 
 #### Satellite
 
 | Property  | Type                | Description           | API_LEVEL |
 | --------- | ------------------- | --------------------- | --------- |
-| id        | <code>number</code> | Satellite ID          | 3.0       |
-| elevation | <code>number</code> | Pitch angle           | 3.0       |
-| azimuth   | <code>number</code> | Azimuth               | 3.0       |
-| snr       | <code>number</code> | Signal-to-noise ratio | 3.0       |
+| id        | <code>number</code> | Satellite ID          | 3.6       |
+| elevation | <code>number</code> | Pitch angle           | 3.6       |
+| azimuth   | <code>number</code> | Azimuth               | 3.6       |
+| snr       | <code>number</code> | Signal-to-noise ratio | 3.6       |
 
 ### offGnssChange
 
