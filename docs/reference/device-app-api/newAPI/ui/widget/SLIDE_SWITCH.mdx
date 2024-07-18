@@ -30,9 +30,9 @@ const slideSwitch = createWidget(widget.SLIDE_SWITCH, Param)
 | select_bg           | The selected background.                                             | YES      | `string`            |
 | un_select_bg        | Unselected background.                                               | YES      | `string`            |
 | slide_src           | Switch button.                                                       | YES      | `string`            |
-| slide_select_x      | The selected state of the switch button.(relative to x-coordinate)   | YES      | `number`            |
-| slide_un_select_x   | The unselected state of the switch button.(relative to x-coordinate) | YES      | `number`            |
-| slide_y             | The y-axis offset of the switch button, relative to the coordinate   | NO       | `number`            |
+| slide_select_x      | Relative coordinates.The selected state of the switch button.   | YES      | `number`            |
+| slide_un_select_x   | Relative coordinates.The unselected state of the switch button. | YES      | `number`            |
+| slide_y             | Relative coordinates.The y-axis offset of the switch button.   | NO       | `number`            |
 | checked_change_func | Callback on state change.                                            | NO       | `CheckedChangeFunc` |
 | checked             | Default switch state.                                                | NO       | `boolean`           |
 
