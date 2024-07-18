@@ -162,21 +162,32 @@ onGnssChange(callback: (info: Info) => void): void
 
 #### SatelliteSystem
 
-| 属性               | 类型                                  | 说明                          | API_LEVEL |
-| ------------------ | ------------------------------------- | ----------------------------- | --------- |
-| gnss_id            | <code>number</code>                   | 卫星 ID                       | 3.0       |
-| sub_top4_cn_val    | <code>number</code>                   | 该卫星系统的最强信号值        | 3.0       |
-| nb_valid_satellite | <code>number</code>                   | 搜索到可用卫星数量            | 3.0       |
-| gsv_data           | <code>Array&#60;Satellite&#62;</code> | 单颗卫星数据数组，最大长度 32 | 3.0       |
+| 属性               | 类型                                  | 说明                                | API_LEVEL |
+| ------------------ | ------------------------------------- | ----------------------------------- | --------- |
+| gnss_id            | <code>number</code>                   | 卫星系统 ID，值描述见下方 `gnss_id` | 3.0       |
+| sub_top4_cn_val    | <code>number</code>                   | 该卫星系统的最强信号值              | 3.0       |
+| nb_valid_satellite | <code>number</code>                   | 搜索到可用卫星数量                  | 3.0       |
+| gsv_data           | <code>Array&#60;Satellite&#62;</code> | 单颗卫星数据数组，最大长度 32       | 3.6       |
+
+#### gnss_id
+
+| 值  | 类型                | 说明                       | API_LEVEL |
+| --- | ------------------- | -------------------------- | --------- |
+| 0   | <code>number</code> | GPS 全球定位系统           | 3.0       |
+| 1   | <code>number</code> | BDS 北斗卫星导航系统       | 3.0       |
+| 2   | <code>number</code> | GLONASS 全球导航卫星系统   | 3.0       |
+| 3   | <code>number</code> | GALILEO 伽利略定位系统     | 3.0       |
+| 4   | <code>number</code> | QZSS 准天顶卫星系统        | 3.0       |
+| 5   | <code>number</code> | IRNSS 印度区域导航卫星系统 | 3.0       |
 
 #### Satellite
 
 | 属性      | 类型                | 说明    | API_LEVEL |
 | --------- | ------------------- | ------- | --------- |
-| id        | <code>number</code> | 卫星 ID | 3.0       |
-| elevation | <code>number</code> | 俯仰角  | 3.0       |
-| azimuth   | <code>number</code> | 方位角  | 3.0       |
-| snr       | <code>number</code> | 信噪比  | 3.0       |
+| id        | <code>number</code> | 卫星 ID | 3.6       |
+| elevation | <code>number</code> | 俯仰角  | 3.6       |
+| azimuth   | <code>number</code> | 方位角  | 3.6       |
+| snr       | <code>number</code> | 信噪比  | 3.6       |
 
 ### offGnssChange
 
