@@ -13,11 +13,11 @@ Technical issues suitable for public discussion are recommended to be posted in 
 
 Official staff from Zepp Health and developers from the community will be available to answer a range of technical questions, and since the community is open to Zepp OS developers worldwide, English is recommended for discussions.
 
-## Slack - English communication community
+## Discord - English communication community
 
-Link to join: https://t.zepp.com/t/zepp-community-slack
+Link to join: https://t.zepp.com/t/b6e70
 
-We've created the Zepp Community team on Slack, where you can receive more timely notifications and communicate with officials about privacy issues in real time.
+We've created the Zepp Health team on Discord, where you can receive more timely notifications and communicate with officials about privacy issues in real time.
 
 ## Lark - Chinese Communication Community
 
