@@ -35,4 +35,4 @@ wait for the QR code to be generated
 
 3. Zepp App version 6.6.0 or above is required
 
-4. If _Developer Mode_ is not found， See [Developer Mode](../../zepp-app.md).
+4. If _Developer Mode_ is not found， See [Developer Mode](../../zepp-app.mdx).

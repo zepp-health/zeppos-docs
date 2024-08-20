@@ -32,7 +32,7 @@ sidebar_label: 卡片
 
 ## 卡片滑动  
 
-卡片向左滑动时出现删除操作，按钮高度和卡片高度相同，点击后删除当前卡片。卡片滑动动效效果见：[视觉动效](../visual/animations.md#control-animations)。
+卡片向左滑动时出现删除操作，按钮高度和卡片高度相同，点击后删除当前卡片。卡片滑动动效效果见：[视觉动效](../visual/animations.md#动效)。
 
 ![Design](/img/design/card-swipe.png)
 
