@@ -19,11 +19,11 @@ https://github.com/orgs/zepp-health/discussions
 
 我们在飞书上建立了社群，在这里你可以更及时的收到官方的通知，与官方人员实时沟通一些涉及隐私的问题。
 
-## Slack - 英文沟通社区
+## Discord - 英文沟通社区
 
-加入链接：https://t.zepp.com/t/zepp-community-slack
+加入链接：https://t.zepp.com/t/b6e70
 
-我们在 Slack 上建立了 Zepp Community 团队，在这里你可以更及时的收到官方的通知，与官方人员实时沟通一些涉及隐私的问题。
+我们在 Discord 上建立了 Zepp Health 团队，在这里你可以更及时的收到官方的通知，与官方人员实时沟通一些涉及隐私的问题。
 
 ## Youtube
 

@@ -167,8 +167,8 @@ module.exports = {
             title: 'Community',
             items: [
               {
-                html: `<a href="https://t.zepp.com/t/zepp-community-slack" target="_blank" rel="noopener noreferrer" class="footer__link-item only-hide-zh">
-                  <span>Slack ${outerLinkIcon}</span>
+                html: `<a href="https://t.zepp.com/t/b6e70" target="_blank" rel="noopener noreferrer" class="footer__link-item only-hide-zh">
+                  <span>Discord ${outerLinkIcon}</span>
                 </a>`
               },
               {
