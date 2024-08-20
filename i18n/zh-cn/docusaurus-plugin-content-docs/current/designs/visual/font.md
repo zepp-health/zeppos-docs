@@ -6,7 +6,7 @@ sidebar_label: 字体
 
 文字是信息最直接最清晰的表达方式，而字体则直接决定了文字信息能否正确、准确地传达，字体通过字号、字重、大小写、字体风格等差异来区分信息的层次和权重。
 
-Zepp OS 的主字体使用 Noto sans ，特殊字体的使用规范见下文[特殊字体](font.md#special-fonts)部分。
+Zepp OS 的主字体使用 Noto sans ，特殊字体的使用规范见下文[特殊字体](font.md#特殊字体)部分。
 
 ![Design](/img/design/font.png)
 

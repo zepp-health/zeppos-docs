@@ -134,7 +134,7 @@ begin generate qrcode
 编译成功后，会在终端显示二维码，使用 Zepp App 「开发者模式」扫一扫功能扫描此二维码即可将小程序或表盘安装至设备中。
 
 :::tip
-此步骤需要开启 Zepp App 的开发者模式，参考 [开发者模式](../zepp-app.md)
+此步骤需要开启 Zepp App 的开发者模式，参考 [开发者模式](../zepp-app.mdx)
 
 Zepp App 开发者模式扫一扫操作路径
 

@@ -134,7 +134,7 @@ begin generate qrcode
 After successful compilation, a QR code will be displayed on the terminal, which can be scanned with the Zepp App "Developer Mode" scan function to install the Mini Program or Watchface on the device.
 
 :::tip
-This step requires the developer mode of Zepp App to be enabled, refer to [Zepp App - Developer Mode](../zepp-app.md)
+This step requires the developer mode of Zepp App to be enabled, refer to [Zepp App - Developer Mode](../zepp-app.mdx)
 
 Zepp App Developer Mode Scan Action Path
 
