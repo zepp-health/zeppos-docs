@@ -2,7 +2,6 @@
 title: 模拟器在4K屏幕的异常解决
 ---
 
-
 ### windows版本手表模拟器在4K屏上点击区域异常处理
 
 1. 在安装目录下找到 qemu-system-arm.exe（simulator\resources\firmware\qemu_win） 右击打开属性
