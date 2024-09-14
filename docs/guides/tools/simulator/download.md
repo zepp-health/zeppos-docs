@@ -18,6 +18,10 @@ Taking Windows as an example, double-clicking the Simulator icon can launch the 
 
 | Version                | Links                                                                                                                                  |
 | ---------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
+| 2.0.1 for MacOS 14.0+  | [simulator_2.0.1_mac](https://upload-cdn.zepp.com/zepp-applet-and-wechat-applet/20240914/7719732eb279d03dbc2977215fa835cd.dmg)         |
+| 2.0.1 for Windows      | [simulator_2.0.1_win](https://upload-cdn.zepp.com/zepp-applet-and-wechat-applet/20240914/fc45201e2227ad103122b7e025795585.exe)         |
+| 2.0.1 for Linux(amd64) | [simulator_2.0.1_linux_amd64](https://upload-cdn.zepp.com/zepp-applet-and-wechat-applet/20240914/8afd529fe20e2ba291abf6bb590544b8.deb) |
+| 2.0.1 for Linux(arm64) | [simulator_2.0.1_linux_arm64](https://upload-cdn.zepp.com/zepp-applet-and-wechat-applet/20240914/36d85bc45c119da4dd1f32c931ebce29.deb) |
 | 2.0.0 for MacOS 14.0+  | [simulator_2.0.0_mac](https://upload-cdn.zepp.com/zepp-applet-and-wechat-applet/20240626/3d9d2c98e1b591e778a9398a03afc4d2.dmg)         |
 | 2.0.0 for Windows      | [simulator_2.0.0_win](https://upload-cdn.zepp.com/zepp-applet-and-wechat-applet/20240626/b182dce83f685bc879c60a090b936d48.exe)         |
 | 2.0.0 for Linux(amd64) | [simulator_2.0.0_linux_amd64](https://upload-cdn.zepp.com/zepp-applet-and-wechat-applet/20240626/19878ce4a58911b33c1cbaf4963736a7.deb) |
