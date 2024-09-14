@@ -1,6 +1,7 @@
 # FAQ
 
 - [WatchFace Maker](./watchface-maker.md)
+- [FAQ about app icon](./icon-faq.md)
 - [Simulator click exception on 4K screen](./simulator-4-4k.md)
 - [Developer Bridge Mode](./developer-bridge-mode.md)
 - [Simulator FAQ](./simulator-faq.md)
@@ -9,3 +10,4 @@
 - [Environment Installation FAQ](./env-setup.md)
 - [Solution for inability to enter the system](./re-install-system.md)
 - [Get test simulator](./join-test-group.md)
+- [How to log in to the Simulator with a third-party authorized login account?](./third-party-login.md)
