@@ -578,6 +578,7 @@ module.exports = {
         'guides/faq/watchface-maker',
         'guides/faq/icon-faq',
         'guides/faq/simulator-4-4k',
+        'guides/faq/ubuntu-fractional-error',
         'guides/faq/simulator-faq',
         'guides/faq/developer-bridge-mode',
         'guides/faq/windows-cli-qrcode-error',
