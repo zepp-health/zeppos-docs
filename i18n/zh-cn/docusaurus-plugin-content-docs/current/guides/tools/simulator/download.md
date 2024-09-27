@@ -18,6 +18,10 @@ Zepp OS 模拟器全新推出 v2 版本，大大简化流程，无需虚拟网�
 
 | 版本                   | 链接                                                                                                                                   |
 | ---------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
+| 2.0.2 for MacOS 14.0+  | [simulator_2.0.2_mac](https://upload-cdn.zepp.com/zepp-applet-and-wechat-applet/20240927/ecb6ca54f4dc97a2f91e53358bbb532d.dmg)         |
+| 2.0.2 for Windows      | [simulator_2.0.2_win](https://upload-cdn.zepp.com/zepp-applet-and-wechat-applet/20240927/9db7ae1c60c26836a447a71a6fb25b3b.exe)         |
+| 2.0.2 for Linux(amd64) | [simulator_2.0.2_linux_amd64](https://upload-cdn.zepp.com/zepp-applet-and-wechat-applet/20240927/3e688d423cd0cd31a8a589b8325a309e.deb) |
+| 2.0.2 for Linux(arm64) | [simulator_2.0.2_linux_arm64](https://upload-cdn.zepp.com/zepp-applet-and-wechat-applet/20240927/02ec69e6a2f3b744d964fd7ba4f40fc3.deb) |
 | 2.0.1 for MacOS 14.0+  | [simulator_2.0.1_mac](https://upload-cdn.zepp.com/zepp-applet-and-wechat-applet/20240914/7719732eb279d03dbc2977215fa835cd.dmg)         |
 | 2.0.1 for Windows      | [simulator_2.0.1_win](https://upload-cdn.zepp.com/zepp-applet-and-wechat-applet/20240914/fc45201e2227ad103122b7e025795585.exe)         |
 | 2.0.1 for Linux(amd64) | [simulator_2.0.1_linux_amd64](https://upload-cdn.zepp.com/zepp-applet-and-wechat-applet/20240914/8afd529fe20e2ba291abf6bb590544b8.deb) |
