@@ -75,7 +75,7 @@ getTodayByHour(): Array<number>
 
 > API_LEVEL `3.0`
 
-获取过去一周每天的压力均值，返回值为定长数组，为每天平均压力，数组长度为 7，索引 0 的位置代表六天前，索引 6 的位置代表今天
+获取过去七天每天的压力均值，返回值为定长数组，为每天平均压力，数组长度为 7，索引 0 的位置代表六天前，索引 6 的位置代表今天
 
 ```ts
 getLastWeek(): Array<number>
@@ -85,7 +85,7 @@ getLastWeek(): Array<number>
 
 > API_LEVEL `3.0`
 
-获取过去一周每小时的压力平均值，返回值为定长数组，数组长度为 7 \* 24
+获取过去七天每小时的压力平均值，返回值为定长数组，数组长度为 7 \* 24
 
 ```ts
 getLastWeekByHour(): Array<StressInfo>

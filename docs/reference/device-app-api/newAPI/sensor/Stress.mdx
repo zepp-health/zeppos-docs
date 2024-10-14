@@ -75,7 +75,7 @@ getTodayByHour(): Array<number>
 
 > Start from API_LEVEL `3.0`
 
-Get the average pressure value for each day of the past week, the return value is a fixed-length array, the average pressure per day, the length of the array is 7, the position of index 0 represents six days ago, the position of index 6 represents today
+Get the average pressure value for each day of the past 7 days, the return value is a fixed-length array, the average pressure per day, the length of the array is 7, the position of index 0 represents six days ago, the position of index 6 represents today
 
 ```ts
 getLastWeek(): Array<number>
@@ -85,7 +85,7 @@ getLastWeek(): Array<number>
 
 > Start from API_LEVEL `3.0`
 
-Get the hourly pressure average for the past week, the return value is a fixed-length array, the length of the array is 7 \* 24
+Get the hourly pressure average for the past 7 days, the return value is a fixed-length array, the length of the array is 7 \* 24
 
 ```ts
 getLastWeekByHour(): Array<StressInfo>

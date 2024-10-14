@@ -31,7 +31,7 @@ getToday(): number
 
 ### getLastWeek
 
-获取一周的 PAI 数据，返回值为长度为 `7` 的数组，数组索引 `0` 的位置为今天的 PAI 值，索引 `1` 的位置为前 1 天的 PAI 值，以此类推
+获取过去 `7` 天的 PAI 数据，返回值为长度为 `7` 的数组，数组索引 `0` 的位置为今天的 PAI 值，索引 `1` 的位置为前 1 天的 PAI 值，以此类推
 
 ```ts
 getLastWeek(): Array<number>
