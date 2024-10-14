@@ -16,7 +16,7 @@ This feature allows developers to use the Zepp OS JS API to create "Workout Exte
 <img src={useBaseUrl('/img/docs/workout-extension/sample_both.jpeg')} width="80%" title="download_zepp" />
 
 :::info
-Currently, the "Workout Extension" feature can be experienced on Amazfit Cheetah Pro, Amazfit Cheetah (Round), Amazfit T-Rex Ultra, and Amazfit Falcon devices.
+Currently, the "Workout Extension" feature can be experienced on Amazfit T-Rex 3, Amazfit Cheetah Pro, Amazfit Cheetah (Round), Amazfit Cheetah Square, Amazfit T-Rex Ultra, and Amazfit Falcon devices.
 :::
 
 Workout Extension has the following core values:
