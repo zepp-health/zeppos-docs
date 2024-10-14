@@ -16,7 +16,7 @@ Zepp OS 3.5 带来了非常多激动人心的新特性。
 <img src={useBaseUrl('/img/docs/workout-extension/sample_both.jpeg')} width="80%" title="download_zepp" />
 
 :::info
-目前「运动扩展」功能在 Amazfit Cheetah Pro、Amazfit Cheetah (Round)、Amazfit T-Rex Ultra、Amazfit Falcon 设备上可以体验。
+目前「运动扩展」功能在 Amazfit T-Rex 3、Amazfit Cheetah Pro、Amazfit Cheetah (Round)、Amazfit Cheetah Square、Amazfit T-Rex Ultra、Amazfit Falcon 设备上可以体验。
 :::
 
 「运动扩展」有以下核心价值：
