@@ -3,46 +3,52 @@ title: data_type 数据
 sidebar_label: data_type 数据
 ---
 
-| 值                                 | 说明                                        | 数据最大位数 |
-| ---------------------------------- | ------------------------------------------- | ------------ |
-| hmUI.data_type.BATTERY             | 电量                                        | 3            |
-| hmUI.data_type.STEP                | 当前步数                                    | 5            |
-| hmUI.data_type.STEP_TARGET         | 目标步数                                    | 5            |
-| hmUI.data_type.CAL                 | 当前卡路里                                  | 4            |
-| hmUI.data_type.CAL_TARGET          | 目标卡路里                                  | 4            |
-| hmUI.data_type.HEART               | 当前心率                                    | 3            |
-| hmUI.data_type.PAI_DAILY           | 今天 PAI                                    | 3            |
-| hmUI.data_type.PAI_WEEKLY          | total PAI                                   | 3            |
-| hmUI.data_type.DISTANCE            | 距离                                        | 4            |
-| hmUI.data_type.STAND               | 当前站立                                    | 5            |
-| hmUI.data_type.STAND_TARGET        | 目标站立                                    | 2            |
-| hmUI.data_type.WEATHER_CURRENT     | 当前温度                                    | 3            |
-| hmUI.data_type.WEATHER_LOW         | 当前低温                                    | 3            |
-| hmUI.data_type.WEATHER_HIGH        | 当前高温                                    | 3            |
-| hmUI.data_type.UVI                 | 紫外线                                      | 2            |
-| hmUI.data_type.AQI                 | 空气质量                                    | 3            |
-| hmUI.data_type.HUMIDITY            | 湿度                                        | 3            |
-| hmUI.data_type.ACTIVITY            | 当前活动                                    | 5            |
-| hmUI.data_type.ACTIVITY_TARGET     | 目标活动                                    | 5            |
-| hmUI.data_type.FAT_BURNING         | 脂肪燃烧                                    | 3            |
-| hmUI.data_type.FAT_BURNING_TARGET  | 脂肪燃烧目标                                | 3            |
-| hmUI.data_type.SUN_CURRENT         | 日出日落 会根据时间来显示                   | 5            |
-| hmUI.data_type.SUN_RISE            | 日出                                        | 5            |
-| hmUI.data_type.SUN_SET             | 日落                                        | 5            |
-| hmUI.data_type.WIND                | 风力 纯风力                                 | 2            |
-| hmUI.data_type.STRESS              | 压力                                        | 3            |
-| hmUI.data_type.SPO2                | 血氧                                        | 3            |
-| hmUI.data_type.ALTIMETER           | 气压                                        | 4            |
-| hmUI.data_type.MOON                | 月相 只支持进度                             | x            |
-| hmUI.data_type.FLOOR               | 爬楼                                        | 3            |
-| hmUI.data_type.ALARM_CLOCK         | 闹钟                                        | 5            |
-| hmUI.data_type.COUNT_DOWN          | 倒计时                                      | 2            |
-| hmUI.data_type.STOP_WATCH          | 秒表                                        | 2            |
-| hmUI.data_type.SLEEP               | 睡眠                                        | 3            |
-| hmUI.data_type.ALTITUDE            | 海拔高度，单位 m                            | 5            |
-| hmUI.data_type.OUTDOOR_RUNNING     | 户外跑，只能配合 `IMG_CLICK` 做跳转使用       | -            |
-| hmUI.data_type.WALKING             | 健走，只能配合 `IMG_CLICK` 做跳转使用         | -            |
-| hmUI.data_type.OUTDOOR_CYCLING     | 户外骑行，只能配合 `IMG_CLICK` 做跳转使用     | -            |
-| hmUI.data_type.FREE_TRAINING       | 自由训练，只能配合 `IMG_CLICK` 做跳转使用     | -            |
-| hmUI.data_type.POOL_SWIMMING       | 泳池游泳，只能配合 `IMG_CLICK` 做跳转使用     | -            |
-| hmUI.data_type.OPEN_WATER_SWIMMING | 开放水域游泳，只能配合 `IMG_CLICK` 做跳转使用 | -            |
+| 值                                 | 说明                                          | 数据范围                                 |
+| ---------------------------------- | --------------------------------------------- | ---------------------------------------- |
+| hmUI.data_type.BATTERY             | 电量                                          | `[0, 100]`                               |
+| hmUI.data_type.STEP                | 当前步数                                      | `[0, 99999]`                             |
+| hmUI.data_type.STEP_TARGET         | 目标步数                                      | `[0, 99999]`                             |
+| hmUI.data_type.CAL                 | 当前卡路里                                    | `[0, 9999]`                              |
+| hmUI.data_type.CAL_TARGET          | 目标卡路里                                    | `[0, 9999]`                              |
+| hmUI.data_type.HEART               | 当前心率                                      | `[min, 220-age]`，`age` 代表年龄         |
+| hmUI.data_type.PAI_DAILY           | 今日获得 PAI                                  | `[0, 75]`                                |
+| hmUI.data_type.PAI_WEEKLY          | 当前累计的 PAI                                | `[0, 525]`                               |
+| hmUI.data_type.DISTANCE            | 距离                                          | `[0, 99]`                                |
+| hmUI.data_type.STAND               | 当前站立次数                                  | `[0, 12]`                                |
+| hmUI.data_type.STAND_TARGET        | 目标站立次数                                  | `12`                                     |
+| hmUI.data_type.WEATHER_CURRENT     | 当前温度                                      | 最大 `3` 位数                            |
+| hmUI.data_type.WEATHER_LOW         | 当前低温                                      | 最大 `3` 位数                            |
+| hmUI.data_type.WEATHER_HIGH        | 当前高温                                      | 最大 `3` 位数                            |
+| hmUI.data_type.UVI                 | 紫外线                                        | `[1, 5]`                                 |
+| hmUI.data_type.AQI                 | 空气质量                                      | `(0, 999]`                               |
+| hmUI.data_type.HUMIDITY            | 湿度                                          | `[0, 100]`                               |
+| hmUI.data_type.FAT_BURNING         | 脂肪燃烧时间（分钟）                          | `[0, 999]`                               |
+| hmUI.data_type.FAT_BURNING_TARGET  | 脂肪燃烧目标时间（分钟）                      | `[0, 999]`                               |
+| hmUI.data_type.SUN_CURRENT         | 距离日出/日落时间                             | `HH:MM`                                  |
+| hmUI.data_type.SUN_RISE            | 日出时间                                      | `HH:MM`                                  |
+| hmUI.data_type.SUN_SET             | 日落时间                                      | `HH:MM`                                  |
+| hmUI.data_type.WIND                | 风力等级                                      | `[0, 12]`                                |
+| hmUI.data_type.STRESS              | 身体压力状态值                                | `[0, 100]`                               |
+| hmUI.data_type.SPO2                | 血氧                                          | `(50, 100]`                              |
+| hmUI.data_type.ALTIMETER           | 气压                                          | `(0, 1200]`                              |
+| hmUI.data_type.FLOOR               | 爬楼（楼层数）                                | `[0, 999]`                               |
+| hmUI.data_type.ALARM_CLOCK         | 闹钟                                          | `HH:MM`                                  |
+| hmUI.data_type.COUNT_DOWN          | 倒计时，分钟数或者秒数                        | `2` 位数                                 |
+| hmUI.data_type.STOP_WATCH          | 秒表，分钟数或者秒数                          | `2` 位数                                 |
+| hmUI.data_type.SLEEP               | 睡眠                                          | `H:MM`                                   |
+| hmUI.data_type.TRAINING_LOAD       | 训练负荷                                      | 最大 `3` 位数                            |
+| hmUI.data_type.VO2MAX              | 最大摄氧量                                    | `[15, 65]`                               |
+| hmUI.data_type.RECOVERY_TIME       | 完全恢复时间                                  | `[0, 97]`                                |
+| hmUI.data_type.MONTH_RUN_TIMES     | 每月户外跑次数                                | `[0, 100]`                               |
+| hmUI.data_type.MONTH_RUN_DISTANCE  | 每月户外跑距离                                | 最大 `4` 位整数，`2` 位小数，如 `150.98` |
+| hmUI.data_type.ALTITUDE            | 海拔高度                                      | 最大 `5` 位数                            |
+| hmUI.data_type.READINESS           | 身心准备度                                    | `[0, 100]`                               |
+| hmUI.data_type.MOON                | 月相，只能配合 `IMG_CLICK` 做跳转使用         | -                                        |
+| hmUI.data_type.OUTDOOR_RUNNING     | 户外跑，只能配合 `IMG_CLICK` 做跳转使用       | -                                        |
+| hmUI.data_type.WALKING             | 健走，只能配合 `IMG_CLICK` 做跳转使用         | -                                        |
+| hmUI.data_type.OUTDOOR_CYCLING     | 户外骑行，只能配合 `IMG_CLICK` 做跳转使用     | -                                        |
+| hmUI.data_type.FREE_TRAINING       | 自由训练，只能配合 `IMG_CLICK` 做跳转使用     | -                                        |
+| hmUI.data_type.POOL_SWIMMING       | 泳池游泳，只能配合 `IMG_CLICK` 做跳转使用     | -                                        |
+| hmUI.data_type.OPEN_WATER_SWIMMING | 开放水域游泳，只能配合 `IMG_CLICK` 做跳转使用 | -                                        |
+| hmUI.data_type.PHN                 | 运动教练，只能配合 `IMG_CLICK` 做跳转使用     | -                                        |
+| hmUI.data_type.BREATH_TRAIN        | 呼吸训练，只能配合 `IMG_CLICK` 做跳转使用     | -                                        |
