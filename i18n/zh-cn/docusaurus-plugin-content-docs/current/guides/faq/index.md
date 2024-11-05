@@ -12,3 +12,4 @@
 - [无法进入系统的解决办法](./re-install-system.md)
 - [获取测试模拟器](./join-test-group.md)
 - [三方授权登录的账号如何登录模拟器](./third-party-login.md)
+- [提交付费小程序或表盘](./paid-app.md)
