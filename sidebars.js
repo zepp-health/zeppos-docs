@@ -585,7 +585,9 @@ module.exports = {
         'guides/faq/upload-log',
         'guides/faq/env-setup',
         'guides/faq/re-install-system',
-        'guides/faq/join-test-group'
+        'guides/faq/join-test-group',
+        'guides/faq/third-party-login',
+        'guides/faq/paid-app',
       ]
     },
     {

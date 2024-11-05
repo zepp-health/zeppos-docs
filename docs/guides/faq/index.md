@@ -11,3 +11,4 @@
 - [Solution for inability to enter the system](./re-install-system.md)
 - [Get test simulator](./join-test-group.md)
 - [How to log in to the Simulator with a third-party authorized login account?](./third-party-login.md)
+- [Submit a paid Mini Program or Watchface](./paid-app.md)
