@@ -11,10 +11,10 @@ sidebar_label: Vibrator 振动马达
 
 ### start
 
-开始振动，传入的 `option` 参数，只对此次振动生效，在 API_LEVEL 3.6 后支持传入震动场景数组
+开始振动，传入的 `option` 参数，只对此次振动生效，在 API_LEVEL 3.6 后支持传入震动场景数组，并可以指定重复次数，默认 `repeat = 0` 不重复，最大重复 `8` 次
 
 ```ts
-start(option?: Option | Array<Action>): void
+start(option?: Option | Array<Action>, repeat?: number): void
 ```
 
 #### Option
@@ -115,7 +115,23 @@ import { Vibrator, VIBRATOR_SCENE_DURATION } from '@zos/sensor'
 const vibrator = new Vibrator()
 vibrator.start()
 
-// set scene
+// Set scene
 vibrator.setMode(VIBRATOR_SCENE_DURATION)
 vibrator.start()
+
+// Another example using vibration array
+import { Vibrator } from '@zos/sensor'
+
+const vibrator = new Vibrator()
+const vibrationType = vibrator.getType()
+vibrator.start([
+  {
+    type: vibrationType.GENTLE_SHORT,
+    duration: 2000,
+  },
+  {
+    type: vibrationType.URGENT,
+    duration: 1000,
+  },
+])
 ```
