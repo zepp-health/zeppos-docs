@@ -6,7 +6,7 @@ Zepp OS has strict restrictions on the submission of paid Mini Programs or Watch
 
 Only certified corporate developers in Mainland China can submit paid Mini Programs or Watchfaces in the Zepp Store, and their works can be listed in Zepp Stores outside of Mainland China.
 
-:::note
+:::info
 To become a certified corporate developer, please contact Zepp OS staff in [the developer community](../community.md).
 :::
 
@@ -20,7 +20,7 @@ Payments can be divided into three tiers:
 | 2.99 Tier | $2.99 | €2.99 |
 | 3.99 Tier | $3.99 | €3.99 |
 
-Zepp Health takes a 15% share of the developer's revenue, and after deducting the 30% commission that Apple or Google takes for in-app purchases, the developer can receive a revenue of 100% - 15% - 30% = 55%.
+Zepp Health's service fee for developers is 15%, and after deducting the 30% commission that Apple or Google takes for in-app purchases, the developer can receive a revenue of 100% - 15% - 30% = 55%.
 
 ## In-App Purchases for Mini Programs
 
