@@ -588,6 +588,7 @@ module.exports = {
         'guides/faq/join-test-group',
         'guides/faq/third-party-login',
         'guides/faq/paid-app',
+        'guides/faq/opus-to-mp3',
       ]
     },
     {

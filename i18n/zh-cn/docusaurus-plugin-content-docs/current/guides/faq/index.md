@@ -13,3 +13,4 @@
 - [获取测试模拟器](./join-test-group.md)
 - [三方授权登录的账号如何登录模拟器](./third-party-login.md)
 - [提交付费小程序或表盘](./paid-app.md)
+- [手表录制的 opus 音频文件格式转换](./opus-to-mp3.md)
