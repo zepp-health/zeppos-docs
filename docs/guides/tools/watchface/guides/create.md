@@ -12,9 +12,10 @@ Here's a simple Watchface, "Art Ideas-Hi", with the following effects:
 
 ## Preparations
 
-1. A computer with a browser is recommended for chrome
-2. Prepare the design resource. <a href="https://upload-cdn.huami.com/20211103/6fd50ae2ff34fde02c996d5b8602007e.zip" target="_self" download>Resource .zip</a>
-3. Go to the [Watchface maker interface](https://watchface.zepp.com). Complete developer registration, login according to the relevant tips on the page
+1. A computer with an internet browser ([Google Chrome](https://www.google.com/chrome))
+2. Download the design resource files <a href="https://upload-cdn.huami.com/20211103/6fd50ae2ff34fde02c996d5b8602007e.zip" target="_self" download>Resource.zip</a>
+3. Go to the [Watchface maker interface](https://watchface.zepp.com) and complete developer registration.
+4. Login
 
 ## Start
 
@@ -22,7 +23,7 @@ Here's a simple Watchface, "Art Ideas-Hi", with the following effects:
 
 1. Visit [https://watchface.zepp.com](https://watchface.zepp.com)
 2. Click the New button in the navigation bar at the top to jump to the creating page
-3. Enter the name of Watchface in the creating page, select the Watchface type, resolution（[Device Resolution Information](../../../../../reference/related-resources/device-list)）, support language and other information, upload the preview images by support languages
+3. Enter the name of Watchface in the create page, select the Watchface type, resolution（[Device Resolution Information](../../../../../reference/related-resources/device-list)）, support language and other information, upload the preview images by support languages
 4. Click the Create button. When you're done creating, you'll be taken to the Watchface details page.
 
 ![create.png](/img/docs/guides/tools/watchface/create.png)
@@ -48,7 +49,7 @@ Here's a simple Watchface, "Art Ideas-Hi", with the following effects:
 ### 4. Add pointer time
 
 1. Click "Time" to select "Pointer Time" in the pop-up drop-down menu
-2. Click "Pointer Time" - "Hour hand" in the left panel to add a time-hand picture (pointer/hour.png in footage) in the right-most configuration panel
+2. Click "Pointer Time" - "Hour hand" in the left panel to add a time-hand picture (pointer/hour.png in the design resource files) in the right-most configuration panel
 3. Enter the following coordinate information in the configuration panel on the right:
 
 - Center of Watchface rotation - The center point of the entire Watchface, the current Watchface resolution is 454 x 454, so the center coordinate of the Watchface rotation is (227, 227)
