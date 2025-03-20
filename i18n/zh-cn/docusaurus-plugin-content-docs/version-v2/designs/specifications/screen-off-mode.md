@@ -39,9 +39,7 @@ sidebar_label: 息屏模式
 
 ## 数字时间处理方法
 
-字体描边或缩小字体。
-
 - 数字时间一般图形面积较大，所以采用外轮廓描边处理，描边宽度不少于2px。
 - 描边颜色选取明度较高的白色或彩色，当亮起面积小于10%时，则可以不使用描边处理。
 
-![Design](/img/design/1e8a22b822cfd0f6d0aa31222fd3edc7.png)
+![Design](/img/design/90cc5ba0-f61b-4db9-ab75-d42bc6d52955.png)
