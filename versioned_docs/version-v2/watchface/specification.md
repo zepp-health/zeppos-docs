@@ -139,10 +139,11 @@ Leave a safe distance of 2px at the edge. And the display areas of status points
 
 ![safe area](/img/zh-cn/docs/watchface/specification/safeArea.png)
 
-### Screen-rest mode
-![screen-rest mode](/img/zh-cn/docs/watchface/specification/idle.png)
+### Always-On Display Mode
 
-The screen-rest mode refers to that the Watchface can display important information such as time in a limited manner in the screen-rest state, which helps users to obtain information without lifting their wrists. It is an essential mode of a Watchface.
+![Always-On Display Mode](/img/zh-cn/docs/watchface/specification/idle.png)
+
+The Always-On Display Mode refers to that the Watchface can display important information such as time in a limited manner in the screen-rest state, which helps users to obtain information without lifting their wrists. It is an essential mode of a Watchface.
 
 The display of interest screen mode is divided into two categories, which follow the interest screen of the current Watchface and the Watchface that users can choose to set independently; The screen following the current Watchface needs to be designed separately by the Watchface designer. Please refer to [the design specification](#pointer-processing-method).
 

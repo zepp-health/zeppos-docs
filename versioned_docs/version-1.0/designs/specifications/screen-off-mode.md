@@ -39,9 +39,7 @@ White film + black border on the outer edge
 
 ## Digital time processing methods
 
-Add font borders or reduce the font size
-
 - Digital time displays typically occupy a large graphical area, so the outer border is used. The border width should not be less than 2px.
 - The border color must be white or another color with high brightness. When the illuminated area is less than 10%, the border area can be omitted.
 
-![Design](/img/design/1e8a22b822cfd0f6d0aa31222fd3edc7.png)
+![Design](/img/design/90cc5ba0-f61b-4db9-ab75-d42bc6d52955.png)

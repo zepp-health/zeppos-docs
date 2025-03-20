@@ -101,7 +101,7 @@ title: Release Notes
 #### 🚀  New Features
 
   1. The Cross platform simulator can save user settings now
-  2. Add button to turn off the screen, which is used to develop the screen-rest mode of watchface
+  2. Add button to turn off the screen, which is used to develop the Always-On Display Mode of watchface
 
 #### 📈 Optimized Features
 
