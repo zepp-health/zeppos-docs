@@ -1,0 +1,89 @@
+# getPerformance
+
+> Start from API_LEVEL `4.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Get Mini Program performance statistics, including memory usage and loading performance metrics.
+
+## Type
+
+```ts
+function getPerformance(...args: Array<'memory' | 'perf'>): Result
+```
+
+## Parameters
+
+### Result
+
+| Property | Type                | Description            | API_LEVEL |
+| -------- | ------------------- | ---------------------- | --------- |
+| memory   | <code>Memory</code> | Memory statistics      | 4.0       |
+| perf     | <code>Perf</code>   | Performance statistics | 4.0       |
+
+### Memory
+
+| Property | Type                                      | Description                         | API_LEVEL |
+| -------- | ----------------------------------------- | ----------------------------------- | --------- |
+| system   | <code>SystemMemory</code>                 | system memory information           | 4.0       |
+| app      | <code>Array&#60;AppMemory&#62;</code>     | Application memory information list | 4.0       |
+| leaking  | <code>Array&#60;LeakingMemory&#62;</code> | Unreleased memory information list  | 4.0       |
+
+### SystemMemory
+
+| Property | Type                | Description          | API_LEVEL |
+| -------- | ------------------- | -------------------- | --------- |
+| used     | <code>number</code> | Used memory (bytes)  | 4.0       |
+| total    | <code>number</code> | Total memory (bytes) | 4.0       |
+
+### AppMemory
+
+| Property | Type                                     | Description               | API_LEVEL |
+| -------- | ---------------------------------------- | ------------------------- | --------- |
+| appid    | <code>number</code>                      | Mini Program ID           | 4.0       |
+| used     | <code>number</code>                      | Memory usage (bytes)      | 4.0       |
+| peak     | <code>number</code>                      | Peak memory usage (bytes) | 4.0       |
+| modules  | <code>Array&#60;MemoryModule&#62;</code> | Module memory information | 4.0       |
+
+### LeakingMemory
+
+| Property | Type                                     | Description               | API_LEVEL |
+| -------- | ---------------------------------------- | ------------------------- | --------- |
+| appid    | <code>number</code>                      | Mini Program ID           | 4.0       |
+| used     | <code>number</code>                      | Memory usage (bytes)      | 4.0       |
+| modules  | <code>Array&#60;MemoryModule&#62;</code> | Module memory information | 4.0       |
+
+### MemoryModule
+
+| Property | Type                | Description               | API_LEVEL |
+| -------- | ------------------- | ------------------------- | --------- |
+| file     | <code>string</code> | File path                 | 4.0       |
+| used     | <code>number</code> | Memory usage (bytes)      | 4.0       |
+| peak     | <code>number</code> | Peak memory usage (bytes) | 4.0       |
+
+### Perf
+
+| Property | Type                                   | Description                         | API_LEVEL |
+| -------- | -------------------------------------- | ----------------------------------- | --------- |
+| appid    | <code>number</code>                    | Mini Program ID                     | 4.0       |
+| modules  | <code>Array&#60;PerfModule&#62;</code> | Module performance information list | 4.0       |
+
+### PerfModule
+
+| Property   | Type                | Description                                                        | API_LEVEL |
+| ---------- | ------------------- | ------------------------------------------------------------------ | --------- |
+| file       | <code>string</code> | File name                                                          | 4.0       |
+| evalTime   | <code>number</code> | File reading and running time (excluding lifecycle execution time) | 4.0       |
+| createTime | <code>number</code> | onCreate lifecycle execution time                                  | 4.0       |
+| initTime   | <code>number</code> | onInit lifecycle execution time                                    | 4.0       |
+| buildTime  | <code>number</code> | build lifecycle execution time                                     | 4.0       |
+
+## Example
+
+```js
+import { getPerformance } from '@zos/app'
+
+// Get memory info only
+const memoryProfile = getPerformance('memory')
+
+// Get both memory and performance info
+const fullProfile = getPerformance('memory', 'perf')
+```

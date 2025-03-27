@@ -235,6 +235,10 @@
     "message": "app-service 设备应用服务",
     "description": "The label for category Reference in sidebar reference"
   },
+  "sidebar.reference.category.System Timer": {
+    "message": "sysTimer 系统定时器",
+    "description": "The label for category Reference in sidebar reference"
+  },
   "sidebar.reference.category.Notification": {
     "message": "notification 系统通知",
     "description": "The label for category Reference in sidebar reference"

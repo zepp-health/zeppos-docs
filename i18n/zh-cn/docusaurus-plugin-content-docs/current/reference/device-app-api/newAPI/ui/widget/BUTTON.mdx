@@ -38,6 +38,7 @@ const button = createWidget(widget.BUTTON, Param)
 | click_func     | 点击按钮的回调                                                                                 | 否       | `ClickFunc` | 2.0       |
 | longpress_func | 长按（700ms）按钮的回调                                                                        | 否       | `ClickFunc` | 2.0       |
 | font           | 字体路径，资源存放路径参考 [目录结构](../../../../../guides/architecture/folder-structure.mdx) | 否       | `string`    | 3.6       |
+| text_w         | 按钮文本宽度                                                                                   | 否       | `number`    | 3.6       |
 
 :::caution
 
@@ -47,7 +48,7 @@ const button = createWidget(widget.BUTTON, Param)
 - 背景色 `normal_color` 与按压背景色 `press_color` 需要同时设置才能生效
 - 背景色 `normal_src` 与按压背景色 `press_color` 需要同时设置才能生效
 - 在使用 [`widget.setProperty`](../setProperty.mdx) API 修改 BUTTON 控件属性时，需要传入必填字段 `x`、`y`、`w`、`h`（参考代码示例）
-:::
+  :::
 
 ### ClickFunc
 
@@ -56,6 +57,27 @@ const button = createWidget(widget.BUTTON, Param)
 ```
 
 `createWidget` 方法创建的 `button` 实例
+
+## 属性访问支持列表
+
+| 属性名         | setProperty | getProperty | [setter](../gettersetter.mdx) | [getter](../gettersetter.mdx) |
+| -------------- | ----------- | ----------- | ----------------------------- | ----------------------------- |
+| x              | Y           | Y           | Y                             | Y                             |
+| y              | Y           | Y           | Y                             | Y                             |
+| w              | Y           | Y           | Y                             | Y                             |
+| h              | Y           | Y           | Y                             | Y                             |
+| text           | Y           | Y           | Y                             | Y                             |
+| color          | Y           | Y           | Y                             | Y                             |
+| text_size      | Y           | Y           | Y                             | Y                             |
+| font           | Y           | Y           | Y                             | Y                             |
+| press_src      | N           | N           | Y                             | Y                             |
+| normal_src     | N           | N           | Y                             | Y                             |
+| press_color    | N           | N           | Y                             | Y                             |
+| normal_color   | N           | N           | Y                             | Y                             |
+| radius         | Y           | Y           | Y                             | Y                             |
+| click_func     | N           | N           | Y                             | Y                             |
+| longpress_func | N           | N           | Y                             | Y                             |
+| text_w         | N           | N           | Y                             | Y                             |
 
 ## 代码示例
 

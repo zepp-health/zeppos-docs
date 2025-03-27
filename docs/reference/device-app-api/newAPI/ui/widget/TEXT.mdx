@@ -3,7 +3,7 @@ title: TEXT
 sidebar_label: TEXT
 ---
 
-> Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](../../../../../guides/framework/device/compatibility.md).
+> Start from API_LEVEL `2.0`. Please refer to [API_LEVEL](../../../../../guides/framework/device/compatibility.md).
 
 ![text_sample](/img/api/text_sample.jpg)
 
@@ -21,41 +21,68 @@ const text = createWidget(widget.TEXT, Param)
 
 ## Param: object
 
-| Properties | Description                                                                                                                                                                                                                                    | Required | Type         |
-| ---------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- | ------------ |
-| x          | The x-axis coordinate of the widget.                                                                                                                                                                                                        | YES      | `number`     |
-| y          | The y-axis coordinate of the widget.                                                                                                                                                                                                        | YES      | `number`     |
-| w          | The width of the widget.                                                                                                                                                                                                                    | YES      | `number`     |
-| h          | The height of the widget.                                                                                                                                                                                                                   | YES      | `number`     |
-| color      | The color of the text.                                                                                                                                                                                                                         | NO       | `number`     |
-| align_h    | The alignment of the horizontal axis (see ALIGN for values).                                                                                                                                                                                   | NO       | `ALIGN`      |
-| align_v    | Alignment of the vertical axis (see ALIGN for values).                                                                                                                                                                                         | NO       | `ALIGN`      |
-| text       | Text                                                                                                                                                                                                                                           | NO       | `string`     |
-| text_size  | The size of the font.                                                                                                                                                                                                                          | NO       | `number`     |
-| text_style | Text overlength handling, default is `text_style.NONE` (see TEXT_STYLE for value).                                                                                                                                                             | NO       | `TEXT_STYLE` |
-| line_space | Row spacing.                                                                                                                                                                                                                                   | NO       | `number`     |
-| char_space | Character Spacing.                                                                                                                                                                                                                             | NO       | `number`     |
-| font       | Font path, resource storage path reference [Folder Structure](../../../../../guides/architecture/folder-structure.mdx)                                                                                                                                           | NO       | `string`     |
-| text_i18n  | Multi-language text support, refer to the code example, where the 'en-US' field is required, when the current country language is not configured, the value of 'en-US' will be used, when passed in this way, the `text` attribute is disabled | NO       | `object`     |
+| Properties  | Description                                                                                                                                                                                                                                    | Required | Type         |
+| ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- | ------------ |
+| x           | The x-axis coordinate of the widget                                                                                                                                                                                                              | YES      | `number`     |
+| y           | The y-axis coordinate of the widget                                                                                                                                                                                                              | YES      | `number`     |
+| w           | The width of the widget                                                                                                                                                                                                                          | YES      | `number`     |
+| h           | The height of the widget                                                                                                                                                                                                                         | YES      | `number`     |
+| color       | The color of the text                                                                                                                                                                                                                            | NO       | `number`     |
+| align_h     | The alignment of the horizontal axis (see ALIGN for values)                                                                                                                                                                                      | NO       | `ALIGN`      |
+| align_v     | Alignment of the vertical axis (see ALIGN for values)                                                                                                                                                                                            | NO       | `ALIGN`      |
+| text        | Text                                                                                                                                                                                                                                             | NO       | `string`     |
+| text_size   | The size of the font                                                                                                                                                                                                                             | NO       | `number`     |
+| text_style  | Text overlength handling, default is scrolling text (see TEXT_STYLE for values)                                                                                                                                                                   | NO       | `TEXT_STYLE` |
+| line_space  | Row spacing                                                                                                                                                                                                                                      | NO       | `number`     |
+| char_space  | Character spacing                                                                                                                                                                                                                                | NO       | `number`     |
+| font        | Font path, resource storage path reference [Folder Structure](../../../../../guides/architecture/folder-structure.mdx)                                                                                                                              | NO       | `string`     |
+| text_i18n   | Multi-language text support, refer to the code example, where the 'en-US' field is required. When the current country language is not configured, the value of 'en-US' will be used. When passed in this way, the `text` attribute is disabled     | NO       | `object`     |
+| start_angle | Arc layout starting angle                                                                                                                                                                                                                        | NO       | `number`     |
+| end_angle   | Arc layout ending angle (start_angle < end_angle)                                                                                                                                                                                                 | NO       | `number`     |
+| mode        | Arc layout mode, default 0<br/>0: inner<br/>1: outer                                                                                                                                                                                             | NO       | `number`     |
+| radius      | Controls the arc layout radius, defaults to half of the widget's width and height                                                                                                                                                                 | NO       | `number`     |
 
 ### ALIGN alignment
 
 | Value          | Description                   |
 | -------------- | ----------------------------- |
-| align.LEFT     | Horizontal axis-left aligned. |
-| align.RIGHT    | Horizontal axis-align right.  |
-| align.CENTER_H | Horizontal axis-centered.     |
-| align.TOP      | Vertical axis-top.            |
-| align.BOTTOM   | Vertical axis-bottommost.     |
-| align.CENTER_V | Vertical axis-centered.       |
+| align.LEFT     | Horizontal axis-left aligned  |
+| align.RIGHT    | Horizontal axis-right aligned |
+| align.CENTER_H | Horizontal axis-centered      |
+| align.TOP      | Vertical axis-top            |
+| align.BOTTOM   | Vertical axis-bottom         |
+| align.CENTER_V | Vertical axis-centered       |
 
 ### TEXT_STYLE Text layout
 
 | Value               | Description                               |
 | ------------------- | ----------------------------------------- |
 | text_style.ELLIPSIS | Single line overflow character display... |
-| text_style.NONE     | Keep scrolling.                           |
-| text_style.WRAP     | Wrap                           |
+| text_style.NONE     | Scrolling text                           |
+| text_style.WRAP     | Line wrap                                |
+
+## Property Access Support List
+
+| Property    | setProperty | getProperty | [setter](../gettersetter.mdx) | [getter](../gettersetter.mdx) |
+| ----------- | ----------- | ----------- | ----------------------------- | ----------------------------- |
+| x           | Y           | Y           | Y                             | Y                             |
+| y           | Y           | Y           | Y                             | Y                             |
+| w           | Y           | Y           | Y                             | Y                             |
+| h           | Y           | Y           | Y                             | Y                             |
+| color       | Y           | Y           | Y                             | Y                             |
+| align_h     | Y           | Y           | Y                             | Y                             |
+| align_v     | Y           | Y           | Y                             | Y                             |
+| text        | Y           | Y           | Y                             | Y                             |
+| text_size   | Y           | Y           | Y                             | Y                             |
+| font        | Y           | Y           | Y                             | Y                             |
+| text_style  | Y           | Y           | Y                             | Y                             |
+| line_space  | Y           | Y           | Y                             | Y                             |
+| char_space  | Y           | Y           | Y                             | Y                             |
+| text_i18n   | N           | N           | Y                             | Y                             |
+| start_angle | N           | N           | N                             | N                             |
+| end_angle   | N           | N           | N                             | N                             |
+| mode        | N           | N           | N                             | N                             |
+| radius      | N           | N           | N                             | N                             |
 
 ## Code example
 
@@ -74,7 +101,7 @@ Page({
       align_h: align.CENTER_H,
       align_v: align.CENTER_V,
       text_style: text_style.NONE,
-      text: 'HELLO ZEPPOS'
+      text: 'HELLO, Zepp OS'
     })
 
     text.addEventListener(event.CLICK_DOWN, (info) => {
@@ -95,7 +122,7 @@ Page({
       text_style: text_style.NONE,
       font: 'fonts/custom.ttf',
       text_i18n: {
-        'en-US': 'Hello Zepp OS'
+        'en-US': 'Hello Zepp OS',
         'zh-CN': '你好 Zepp OS'
       }
     })

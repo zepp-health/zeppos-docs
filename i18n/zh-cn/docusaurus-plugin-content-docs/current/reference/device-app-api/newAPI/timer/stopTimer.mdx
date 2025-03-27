@@ -1,0 +1,36 @@
+# stopTimer
+
+> API_LEVEL `4.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+停止由 `createSysTimer` 方法创建的定时器。
+
+## 类型
+
+```ts
+function stopTimer(timerId: TimerId): void
+```
+
+## 参数
+
+### TimerId
+
+| 类型                | 说明                                              |
+| ------------------- | ------------------------------------------------- |
+| <code>number</code> | 需要停止的定时器 ID，由 `createSysTimer` 方法返回 |
+
+## 代码示例
+
+```js
+import { createSysTimer, stopTimer } from '@zos/timer'
+
+// Create a periodic timer that executes every 10 seconds
+const timerId = createSysTimer(true, 10000, () => {
+  console.log('Execute every 10 seconds')
+})
+
+// Stop the timer after 5 seconds
+createSysTimer(false, 5000, () => {
+  stopTimer(timerId)
+  console.log('Timer stopped')
+})
+```

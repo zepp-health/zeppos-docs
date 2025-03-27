@@ -1,0 +1,106 @@
+---
+title: SMART_KEYBOARD
+sidebar_label: SMART_KEYBOARD 智能键盘
+---
+
+import useBaseUrl from '@docusaurus/useBaseUrl'
+
+> API_LEVEL `4.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../../guides/framework/device/compatibility.md)。
+
+<img src={useBaseUrl('/img/api/smart_keyboard.jpg')} width="50%" title="smart_keyboard" />
+
+创建系统级输入键盘，支持多种输入模式。
+
+## 创建键盘控件
+
+```js
+import { createKeyboard, inputType } from '@zos/ui'
+
+const keyboard = createKeyboard({
+  // 必要参数
+  inputType: inputType.NUM,
+  onComplete: (result) => {
+    /* 输入完成处理 */
+  },
+  onCancel: (result) => {
+    /* 取消输入处理 */
+  },
+
+  // 可选参数
+  text: '初始文本'
+})
+```
+
+## 类型说明
+
+### Param: object
+
+| 属性       | 说明                               | 是否必须 | 类型       | 版本 |
+| ---------- | ---------------------------------- | -------- | ---------- | ---- |
+| inputType  | 输入类型，参考 `inputType` 枚举    | 是       | `number`   | 4.0  |
+| onComplete | 输入完成回调，用户确认时触发       | 是       | `function` | 4.0  |
+| onCancel   | 取消输入回调，右滑或按返回键时触发 | 是       | `function` | 4.0  |
+| text       | 初始编辑文本                       | 否       | `string`   | 4.0  |
+| onClick    | 点击事件回调（暂未开放）           | 否       | `function` | 4.0  |
+| selection  | 快捷回复选项（暂未开放）           | 否       | `array`    | 4.0  |
+
+### `inputType` 枚举
+
+| 值               | 说明         |
+| ---------------- | ------------ |
+| inputType.EMOJI  | EMOJI 表情   |
+| inputType.NUM    | 数字键盘     |
+| inputType.CHAR   | 字符键盘     |
+| inputType.VOICE  | 语音输入     |
+| inputType.SELECT | 快捷回复选择 |
+
+## 方法说明
+
+### deleteKeyboard()
+
+退出并销毁当前键盘输入界面
+
+```js
+import { deleteKeyboard } from '@zos/ui'
+
+deleteKeyboard()
+```
+
+## 代码示例
+
+```js
+import { createKeyboard, inputType, deleteKeyboard } from '@zos/ui'
+
+Page({
+  onInit() {
+    this.createKeyboard()
+  },
+
+  createKeyboard() {
+    createKeyboard({
+      inputType: inputType.NUM,
+      onComplete: (result) => {
+        console.log('输入内容:', result.data)
+        this.destroyKeyboard()
+      },
+      onCancel: (result) => {
+        console.log('取消输入')
+        this.destroyKeyboard()
+      },
+      text: '100' // 初始化文本
+    })
+  },
+
+  destroyKeyboard() {
+    deleteKeyboard()
+    // 执行返回页面等后续操作...
+  }
+})
+```
+
+:::caution 注意事项
+
+1. 键盘控件为系统级组件，不支持通过 `setProperty` 修改属性
+2. 每次页面切换需主动调用 `deleteKeyboard` 销毁实例
+3. 语音输入功能需要设备硬件支持
+   :::

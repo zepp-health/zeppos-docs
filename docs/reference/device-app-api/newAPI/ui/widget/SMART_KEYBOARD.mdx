@@ -1,0 +1,99 @@
+---
+title: SMART_KEYBOARD
+sidebar_label: SMART_KEYBOARD
+---
+
+import useBaseUrl from '@docusaurus/useBaseUrl'
+
+> Start from API_LEVEL `4.0`. Please refer to [API_LEVEL](../../../../../guides/framework/device/compatibility.md).
+
+<img src={useBaseUrl('/img/api/smart_keyboard.jpg')} width="50%" title="smart_keyboard" />
+
+Create a system-level input keyboard that supports multiple input modes.
+
+## Create Keyboard Widget
+
+```js
+import { createKeyboard, inputType } from '@zos/ui'
+
+const keyboard = createKeyboard({
+  // Required parameters
+  inputType: inputType.NUM,
+  onComplete: (result) => {
+    /* Handle input completion */
+  },
+  onCancel: (result) => {
+    /* Handle input cancellation */
+  },
+
+  // Optional parameters
+  text: 'Initial text'
+})
+```
+
+## Type Definitions
+
+### Param: object
+
+| Property    | Description                                                | Required | Type       | Version |
+| ----------- | ---------------------------------------------------------- | -------- | ---------- | ------- |
+| inputType   | Input type, refer to `inputType` enum                      | YES      | `number`   | 4.0     |
+| onComplete  | Callback when user confirms input                          | YES      | `function` | 4.0     |
+| onCancel    | Callback when user swipes right or presses back button     | YES      | `function` | 4.0     |
+| text        | Initial text for editing                                   | NO       | `string`   | 4.0     |
+| onClick     | Click event callback (Not available yet)                   | NO       | `function` | 4.0     |
+| selection   | Quick reply options (Not available yet)                    | NO       | `array`    | 4.0     |
+
+### `inputType` Enum
+
+| Value             | Description    |
+| ---------------- | -------------- |
+| inputType.EMOJI  | EMOJI keyboard |
+| inputType.NUM    | Number keyboard|
+| inputType.CHAR   | Character keyboard |
+| inputType.VOICE  | Voice input    |
+| inputType.SELECT | Quick reply selection |
+
+## Methods
+
+### deleteKeyboard()
+
+Exit and destroy the current keyboard input interface
+
+```js
+import { deleteKeyboard } from '@zos/ui'
+
+deleteKeyboard()
+```
+
+## Code Example
+
+```js
+import { createKeyboard, inputType, deleteKeyboard } from '@zos/ui'
+
+Page({
+  onInit() {
+    this.createKeyboard()
+  },
+
+  createKeyboard() {
+    createKeyboard({
+      inputType: inputType.NUM,
+      onComplete: (result) => {
+        console.log('Input content:', result.data)
+        this.destroyKeyboard()
+      },
+      onCancel: (result) => {
+        console.log('Input cancelled')
+        this.destroyKeyboard()
+      },
+      text: '100' // Initial text
+    })
+  },
+
+  destroyKeyboard() {
+    deleteKeyboard()
+    // Execute subsequent operations like page navigation...
+  }
+})
+```

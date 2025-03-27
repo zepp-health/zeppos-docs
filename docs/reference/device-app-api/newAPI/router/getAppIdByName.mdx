@@ -1,0 +1,28 @@
+# getAppIdByName
+
+> Start from API_LEVEL `3.6` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Fuzzy match the English name of installed Mini Programs on the device by name.
+
+## Type
+
+```ts
+function getAppIdByName(name: string): Result
+```
+
+## Parameters
+
+### Result
+
+| Type                | Description                                                  |
+| ------------------- | ------------------------------------------------------------ |
+| <code>number</code> | Matched Mini Program ID, returns invalid ID when match fails |
+
+## Example
+
+```js
+import { getAppIdByName } from '@zos/router'
+
+const appId = getAppIdByName('calculator')
+console.log(appId)
+```

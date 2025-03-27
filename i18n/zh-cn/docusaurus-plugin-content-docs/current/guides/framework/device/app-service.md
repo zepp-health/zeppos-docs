@@ -81,22 +81,22 @@ sidebar_label: 设备应用服务
 ```js
 import { Time } from '@zos/sensor'
 
-const timeSensor = new Time();
+const timeSensor = new Time()
 
 AppService({
   onInit(e) {
-    logger.log(`service onInit(${e})`);
+    logger.log(`service onInit(${e})`)
 
     timeSensor.onPerMinute(() => {
       logger.log(
         `${moduleName} time report: ${timeSensor.getHours()}:${timeSensor.getMinutes()}:${timeSensor.getSeconds()}`
-      );
-    });
+      )
+    })
   },
   onDestroy() {
-    logger.log("service on destroy invoke");
-  },
-});
+    logger.log('service on destroy invoke')
+  }
+})
 ```
 
 ### 「设备应用服务」执行策略
@@ -140,6 +140,7 @@ AppService({
 | @zos/user         | 名称以 `get` 开头的 API，如 `getProfile`                       | 可用     | -                          |
 | @zos/media        | 音频播放相关 API                                               | 可用     | -                          |
 | @zos/ble          | 除名称以 `mst` 开头的 API，如 `send`                           | 可用     | -                          |
+| @zos/fs           | 写文件相关的 API 只能在屏幕熄灭或者 AOD 息屏显示时候使用       | 可用     | -                          |
 
 :::info
 「设备应用服务」无 UI 界面，与用户进行视图交互的唯一方式是 `@zos/notification` 「系统通知」API

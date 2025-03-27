@@ -1,0 +1,142 @@
+---
+title: VIRTUAL_CONTAINER
+sidebar_label: VIRTUAL_CONTAINER 虚拟容器
+---
+
+> API_LEVEL `4.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../../guides/framework/device/compatibility.md)。
+
+VIRTUAL_CONTAINER 是一个特殊的容器控件，用于实现 Flex 布局。它作为 Flex 布局容器的根节点，容器内的控件会按照 Flex 布局的规则进行排布和渲染。
+
+## 创建 UI 控件
+
+```js
+import { createWidget, widget } from '@zos/ui'
+
+const container = createWidget(widget.VIRTUAL_CONTAINER, Param)
+```
+
+## 类型
+
+### Param: object
+
+| 属性   | 说明                                   | 是否必须 | 类型     | API_LEVEL |
+| ------ | -------------------------------------- | -------- | -------- | --------- |
+| x      | 控件 x 坐标，默认 `0`                  | 否       | `number` | 4.0       |
+| y      | 控件 y 坐标，默认 `0`                  | 否       | `number` | 4.0       |
+| w      | 控件宽度，默认屏幕宽度                 | 否       | `number` | 4.0       |
+| h      | 控件高度，默认屏幕高度                 | 否       | `number` | 4.0       |
+| layout | 布局属性，用于设置 Flex 布局相关的属性 | 否       | `object` | 4.0       |
+
+## layout 属性
+
+VIRTUAL_CONTAINER 控件支持通过 `layout` 属性实现 Flex 布局。详细的 layout 属性配置请参考 [控件 layout 属性实现 Flex 布局](../../../../../guides/framework/device/layout.md)。
+
+## 实例方法
+
+### setLayoutParent(parent)
+
+设置当前节点的父节点。
+
+**参数**
+
+- `parent`: 参与布局的控件实例
+
+**返回值**
+
+无
+
+### addLayoutChild(child, index)
+
+添加子节点到当前节点。
+
+**参数**
+
+- `child`: 要添加的子控件实例
+- `index`: 可选，指定插入位置的索引，默认添加到末尾
+
+**返回值**
+
+无
+
+### removeLayoutChild(child)
+
+从当前节点移除指定的子节点。
+
+**参数**
+
+- `child`: 要移除的子控件实例
+
+**返回值**
+
+无
+
+### updateLayoutStyle(style)
+
+更新节点的布局样式。
+
+**参数**
+
+- `style`: 包含布局属性的对象
+
+**返回值**
+
+无
+
+## 代码示例
+
+以下示例展示了如何使用 VIRTUAL_CONTAINER 创建一个简单的 Flex 布局：
+
+```js
+import { createWidget, widget } from '@zos/ui'
+
+// 创建根容器
+const root = createWidget(widget.VIRTUAL_CONTAINER, {
+  x: 0,
+  y: 0,
+  w: 480,
+  h: 480,
+  layout: {
+    display: 'flex',
+    'flex-flow': 'column',
+    'justify-content': 'center',
+    'align-items': 'center'
+  }
+})
+
+// 创建子元素
+const text = createWidget(widget.TEXT, {
+  text: 'Hello Zepp OS',
+  layout: {
+    width: '100%',
+    height: 'auto',
+    'font-size': '36'
+  }
+})
+
+// 将 text 控件设置为 root 的子节点
+text.setLayoutParent(root)
+
+// 创建按钮
+const button = createWidget(widget.BUTTON, {
+  text: '点击我',
+  layout: {
+    width: '80%',
+    height: '60px',
+    'margin-top': '20px'
+  }
+})
+
+// 将按钮添加为 root 的子节点
+root.addLayoutChild(button)
+
+// 更新布局样式
+button.updateLayoutStyle({
+  'background-color': '#ff0000'
+})
+```
+
+## 注意事项
+
+1. VIRTUAL_CONTAINER 控件主要用于实现 Flex 布局，需要配合 `layout` 属性和控件节点操作 API 使用。
+2. 使用 Flex 布局时，建议使用相对单位（如 %、vw、vh 等）来实现响应式布局。
+3. 在更新布局样式后，可能需要调用 `hmUI.updateLayout()` 来刷新布局。

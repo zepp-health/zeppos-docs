@@ -9,10 +9,6 @@ sidebar_label: FILL_RECT 填充矩形
 
 填充矩形控件用于绘制一个纯色矩形区域。
 
-:::caution
-现阶段如果通过 `setProperty(prop.MORE, Params)` 的方式来改变控件属性，必须传递 `x`、`y`，`w`、`h` 属性，具体参考示例代码
-:::
-
 ## 创建 UI 控件
 
 ```js
@@ -25,16 +21,39 @@ const fillRect = createWidget(widget.FILL_RECT, Param)
 
 ### Param: object
 
-| 属性   | 备注                                                  | 是否必须 | 类型     | API_LEVEL |
-| ------ | ----------------------------------------------------- | -------- | -------- | --------- |
-| x      | 控件 x 坐标                                           | 是       | `number` | 2.0       |
-| y      | 控件 y 坐标                                           | 是       | `number` | 2.0       |
-| w      | 控件显示宽度                                          | 是       | `number` | 2.0       |
-| h      | 控件显示高度                                          | 是       | `number` | 2.0       |
-| color  | 控件颜色                                              | 是       | `number` | 2.0       |
-| radius | 矩形圆角                                              | 否       | `number` | 2.0       |
-| angle  | 旋转角度                                              | 否       | `number` | 2.0       |
-| alpha  | 透明度，取值 0 - 255，默认值为 255 不透明，0 为全透明 | 否       | `number` | 3.0         |
+| 属性        | 备注                                                  | 是否必须 | 类型     | API_LEVEL |
+| ----------- | ----------------------------------------------------- | -------- | -------- | --------- |
+| x           | 控件 x 坐标                                           | 是       | `number` | 2.0       |
+| y           | 控件 y 坐标                                           | 是       | `number` | 2.0       |
+| w           | 控件显示宽度                                          | 是       | `number` | 2.0       |
+| h           | 控件显示高度                                          | 是       | `number` | 2.0       |
+| color       | 控件颜色                                              | 是       | `number` | 2.0       |
+| radius      | 矩形圆角                                              | 否       | `number` | 2.0       |
+| angle       | 旋转角度                                              | 否       | `number` | 2.0       |
+| alpha       | 透明度，取值 0 - 255，默认值为 255 不透明，0 为全透明 | 否       | `number` | 3.0       |
+| pos_x       | 绘制区域 x offset（仅在 angle%360!=0 生效）           | 否       | `number` | 4.0       |
+| pos_y       | 绘制区域 y offset（仅在 angle%360!=0 生效）           | 否       | `number` | 4.0       |
+| rect_width  | 绘制区域的宽度（仅在 angle%360!=0 生效）              | 否       | `number` | 4.0       |
+| rect_height | 绘制区域的高度（仅在 angle%360!=0 生效）              | 否       | `number` | 4.0       |
+
+## 属性访问支持列表
+
+| 属性名      | setProperty | getProperty | [setter](../gettersetter.mdx) | [getter](../gettersetter.mdx) |
+| ----------- | ----------- | ----------- | ----------------------------- | ----------------------------- |
+| x           | Y           | Y           | Y                             | Y                             |
+| y           | Y           | Y           | Y                             | Y                             |
+| w           | Y           | Y           | Y                             | Y                             |
+| h           | Y           | Y           | Y                             | Y                             |
+| color       | Y           | Y           | Y                             | Y                             |
+| radius      | Y           | Y           | Y                             | Y                             |
+| angle       | Y           | Y           | Y                             | Y                             |
+| pos_x       | N           | Y           | N                             | Y                             |
+| pos_y       | N           | Y           | N                             | Y                             |
+| rect_width  | N           | N           | N                             | Y                             |
+| rect_height | N           | N           | N                             | Y                             |
+| center_x    | Y           | Y           | Y                             | Y                             |
+| center_y    | Y           | Y           | Y                             | Y                             |
+| alpha       | Y           | Y           | Y                             | Y                             |
 
 ## 代码示例
 

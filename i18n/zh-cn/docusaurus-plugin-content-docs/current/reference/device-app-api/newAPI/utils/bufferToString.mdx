@@ -1,0 +1,33 @@
+# bufferToString
+
+> API_LEVEL `4.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+将 `ArrayBuffer` 类型转换为字符串类型。
+
+## 类型
+
+```ts
+function bufferToString(buffer: InputBuffer): Result
+```
+
+## 参数
+
+### InputBuffer
+
+| 类型                     | 说明                     |
+| ------------------------ | ------------------------ |
+| <code>ArrayBuffer</code> | 需要转换的 `ArrayBuffer` |
+
+### Result
+
+| 类型                | 说明           |
+| ------------------- | -------------- |
+| <code>string</code> | 转换后的字符串 |
+
+## 代码示例
+
+```js
+import { bufferToString } from '@zos/utils'
+
+const str = bufferToString(buffer)
+```

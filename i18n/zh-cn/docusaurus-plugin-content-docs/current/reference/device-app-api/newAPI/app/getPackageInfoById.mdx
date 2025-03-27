@@ -1,0 +1,34 @@
+# getPackageInfoById
+
+> API_LEVEL `4.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+根据小程序 ID 获取小程序配置 `app.json` 中的部分字段。
+
+## 类型
+
+```ts
+function getPackageInfoById(option: Option): Result
+```
+
+## 参数
+
+### Option
+
+| 属性  | 类型                | 必填 | 默认值 | 说明      | API_LEVEL |
+| ----- | ------------------- | ---- | ------ | --------- | --------- |
+| appId | <code>number</code> | 是   | -      | 小程序 ID | 4.0       |
+
+### Result
+
+| 类型                | 说明                                     |
+| ------------------- | ---------------------------------------- |
+| <code>object</code> | 此处不一一列举，请参考 `app.json` 中字段 |
+
+## 代码示例
+
+```js
+import { getPackageInfoById } from '@zos/app'
+
+const packageInfo = getPackageInfoById({ appId: 1001 })
+console.log(packageInfo.name)
+```

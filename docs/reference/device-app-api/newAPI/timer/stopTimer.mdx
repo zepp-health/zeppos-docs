@@ -1,0 +1,36 @@
+# stopTimer
+
+> Start from API_LEVEL `4.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Stop the timer created by `createSysTimer` method.
+
+## Type
+
+```ts
+function stopTimer(timerId: TimerId): void
+```
+
+## Parameters
+
+### TimerId
+
+| Type                | Description                                                 |
+| ------------------- | ----------------------------------------------------------- |
+| <code>number</code> | Timer ID to be stopped, returned by `createSysTimer` method |
+
+## Example
+
+```js
+import { createSysTimer, stopTimer } from '@zos/timer'
+
+// Create a periodic timer that executes every 10 seconds
+const timerId = createSysTimer(true, 10000, () => {
+  console.log('Execute every 10 seconds')
+})
+
+// Stop the timer after 5 seconds
+createSysTimer(false, 5000, () => {
+  stopTimer(timerId)
+  console.log('Timer stopped')
+})
+```

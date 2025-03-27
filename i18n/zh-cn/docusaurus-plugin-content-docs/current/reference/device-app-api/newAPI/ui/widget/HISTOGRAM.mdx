@@ -21,26 +21,27 @@ const histoGram = createWidget(widget.HISTOGRAM, Param)
 
 ### Param: object
 
-| 属性            | 说明                                | 是否必须 | 类型            |
-| --------------- | ----------------------------------- | -------- | --------------- |
-| x               | 控件 x 坐标                   | 是       | `number`        |
-| y               | 控件 y 坐标                         | 是       | `number`        |
-| w               | 控件宽                              | 是       | `number`        |
-| h               | 控件高                              | 是       | `number`        |
-| item_width      | 柱子宽                              | 是       | `number`        |
-| item_space      | 柱子间距                            | 是       | `number`        |
-| item_radius     | 柱子圆角                            | 是       | `number`        |
-| item_start_y    | 柱子起始 Y 点 相对坐标 不填默认为 0 | 否       | `number`        |
-| item_max_height | 柱子最大高度 不填默认为控件高       | 否       | `number`        |
-| item_color      | 柱子颜色                            | 是       | `number`        |
-| data_min_value  | 柱子最小值 用于计算柱子实际高度     | 是       | `number`        |
-| data_max_value  | 柱子最大值 用于计算柱子实际高度     | 是       | `number`        |
-| data_array      | 柱子数据数组                        | 是       | `Array<number>` |
-| data_count      | 数据长度                            | 是       | `number`        |
-| xline           | x 轴配置对象                        | 是       | `XLine`         |
-| xText           | x 轴文字配置对象                    | 是       | `XText`         |
-| yline           | y 轴配置对象                        | 是       | `YLine`         |
-| yText           | y 轴文字配置对象                    | 是       | `YText`         |
+| 属性            | 说明                                                                                 | 是否必须 | 类型            |
+| --------------- | ------------------------------------------------------------------------------------ | -------- | --------------- |
+| x               | 控件 x 坐标                                                                          | 是       | `number`        |
+| y               | 控件 y 坐标                                                                          | 是       | `number`        |
+| w               | 控件宽                                                                               | 是       | `number`        |
+| h               | 控件高                                                                               | 是       | `number`        |
+| item_width      | 柱子宽                                                                               | 是       | `number`        |
+| item_space      | 柱子间距                                                                             | 是       | `number`        |
+| item_radius     | 柱子圆角                                                                             | 是       | `number`        |
+| item_start_y    | 柱子起始 Y 点 相对坐标 不填默认为 0                                                  | 否       | `number`        |
+| item_max_height | 柱子最大高度 不填默认为控件高                                                        | 否       | `number`        |
+| item_color      | 柱子颜色，API_LEVEL 3.5 支持传入数组 `Array<number>`，表明每个柱子的颜色             | 是       | `number`        |
+| item_alpha      | 柱子颜色透明度，API_LEVEL 3.5 支持传入数组 `Array<number>`，表明每个柱子的颜色透明度 | 否       | `number`        |
+| data_min_value  | 柱子最小值 用于计算柱子实际高度                                                      | 是       | `number`        |
+| data_max_value  | 柱子最大值 用于计算柱子实际高度                                                      | 是       | `number`        |
+| data_array      | 柱子数据数组                                                                         | 是       | `Array<number>` |
+| data_count      | 数据长度                                                                             | 是       | `number`        |
+| xline           | x 轴配置对象                                                                         | 是       | `XLine`         |
+| xText           | x 轴文字配置对象                                                                     | 是       | `XText`         |
+| yline           | y 轴配置对象                                                                         | 是       | `YLine`         |
+| yText           | y 轴文字配置对象                                                                     | 是       | `YText`         |
 
 ### XLine: object
 

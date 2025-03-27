@@ -49,6 +49,24 @@ viewContainer.createWidget(xxx, xxx)
 | type    | `0`: 用户还在触碰屏幕进行拖动、`1`: 用户已经松手，处于惯性滚动效果 | `number` | 2.0       |
 | yoffset | y 轴偏移像素                                                       | `number` | 3.0       |
 
+## 属性访问支持列表
+
+| 属性名               | setProperty | getProperty | [setter](../gettersetter.mdx) | [getter](../gettersetter.mdx) |
+| -------------------- | ----------- | ----------- | ----------------------------- | ----------------------------- |
+| x                    | Y           | Y           | Y                             | Y                             |
+| y                    | Y           | Y           | Y                             | Y                             |
+| w                    | Y           | Y           | Y                             | Y                             |
+| h                    | Y           | Y           | Y                             | Y                             |
+| pos_x                | Y           | Y           | Y                             | Y                             |
+| pos_y                | Y           | Y           | Y                             | Y                             |
+| page                 | N           | N           | N                             | Y                             |
+| modal                | N           | N           | N                             | Y                             |
+| z_index              | N           | N           | N                             | Y                             |
+| bounce               | N           | N           | N                             | Y                             |
+| scroll_enable        | N           | Y           | N                             | Y                             |
+| scroll_frame_func    | N           | N           | N                             | N                             |
+| scroll_complete_func | N           | N           | N                             | N                             |
+
 ## 代码示例
 
 代码运行效果为文档顶部图片所示，创建了两个 VIEW_CONTAINER 控件

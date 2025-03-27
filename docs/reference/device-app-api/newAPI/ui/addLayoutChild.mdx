@@ -1,0 +1,40 @@
+---
+title: addLayoutChild()
+sidebar_label: addLayoutChild
+---
+
+> Supported from API_LEVEL `4.0`. For API compatibility, please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Adds a child node to the current widget.
+
+## Type
+
+```ts
+(child: UIWidget, index?: number) => void
+```
+
+## Parameters
+
+| Parameter | Type       | Required | Description                 |
+| --------- | ---------- | -------- | --------------------------- |
+| child     | `UIWidget` | Yes      | Child widget instance to add |
+| index     | `number`   | No       | Insertion position index    |
+
+## Example
+
+```js
+import { createWidget, widget } from '@zos/ui'
+
+const container = createWidget(widget.VIRTUAL_CONTAINER)
+const button = createWidget(widget.BUTTON)
+
+// Add child node to the end of container
+container.addLayoutChild(button)
+
+// Add child node at specified position
+container.addLayoutChild(button, 0)
+```
+
+## Related References
+
+- [Widget layout property implements Flex layout](../../../../guides/framework/device/layout.md)

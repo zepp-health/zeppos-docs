@@ -1,0 +1,33 @@
+# stringToBuffer
+
+> Start from API_LEVEL `4.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Convert string type to `ArrayBuffer` type.
+
+## Type
+
+```ts
+function stringToBuffer(str: InputString): Result
+```
+
+## Parameters
+
+### InputString
+
+| Type                | Description                |
+| ------------------- | -------------------------- |
+| <code>string</code> | The string to be converted |
+
+### Result
+
+| Type                     | Description                 |
+| ------------------------ | --------------------------- |
+| <code>ArrayBuffer</code> | The converted `ArrayBuffer` |
+
+## Example
+
+```js
+import { stringToBuffer } from '@zos/utils'
+
+const buffer = stringToBuffer('Hello Zepp OS')
+```

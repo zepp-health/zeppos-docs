@@ -5,6 +5,10 @@ sidebar_label: SCROLL_LIST 滑动列表
 
 > API_LEVEL `2.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../../guides/framework/device/compatibility.md)。
 
+![scroll_list_sample](/img/api/scroll_list_sample.png)
+
+创建一个支持滑动的列表区域，其中每个列表项可以包含图片和文本，并支持水平滑动。
+
 ## 创建 UI 控件
 
 ```js
@@ -17,51 +21,56 @@ const scrollList = createWidget(widget.SCROLL_LIST, Param)
 
 ### Param: object
 
-| 属性                     | 说明                                                                              | 是否必须 | 类型                  |
-| ------------------------ | --------------------------------------------------------------------------------- | -------- | --------------------- |
-| x                        | 控件 x 坐标                                                                       | 是       | `number`              |
-| y                        | 控件 y 坐标                                                                       | 是       | `number`              |
-| w                        | 控件宽度                                                                          | 是       | `number`              |
-| h                        | 控件高度                                                                          | 是       | `number`              |
-| item_space               | item 之间的间距                                                                   | 否       | `number`              |
-| item_config              | item 类型配置，见 [`ItemConfig`](#itemconfig-object)                              | 是       | `Array<ItemConfig>`   |
-| item_config_count        | item_config 数组长度                                                              | 是       | `number`              |
-| data_array               | 数据数组                                                                          | 是       | `DataArray`           |
-| data_count               | 数据数组长度                                                                      | 是       | `number`              |
-| item_click_func          | item 点击回调函数，见 [`ItemClickFunc`](#itemclickfunc)                           | 否       | `ItemClickFunc`       |
-| data_type_config         | item 索引类型配置数组，见 [DataTypeConfig](#datatypeconfig-object)                      | 否       | `Array<DataTypeConfig>`  |
-| data_type_config_count   | item 索引类型配置数组长度                                                         | 否       | `number`              |
-| on_page                  | 更新数据时使用，设置为 `1` 表示列表数据更新后仍然停留在当前位置，否则回到列表顶部 | 否       | `number`              |
-| snap_to_center           | 列表是否吸附 SCROLL_LIST 高度中心位置                                             | 否       | `boolean`             |
-| item_focus_change_func   | 列表滑动焦点变化回调函数，见 [ItemFocusChangeFunc](#itemfocuschangefunc)          | 否       | `ItemFocusChangeFunc` |
-| item_enable_horizon_drag | item 水平方向是否可以滑动                                                         | 否       | `boolean`             |
-| item_drag_max_distance   | 水平滑动距离，正值代表向左滑动，负值代表向右滑动                                  | 否       | `number`              |
+| 属性                     | 说明                                                                              | 是否必须 | 类型                    | API_LEVEL |
+| ------------------------ | --------------------------------------------------------------------------------- | -------- | ----------------------- | --------- |
+| x                        | 控件 x 坐标                                                                       | 是       | `number`                | 2.0       |
+| y                        | 控件 y 坐标                                                                       | 是       | `number`                | 2.0       |
+| w                        | 控件宽度                                                                          | 是       | `number`                | 2.0       |
+| h                        | 控件高度                                                                          | 是       | `number`                | 2.0       |
+| item_space               | item 之间的间距                                                                   | 否       | `number`                | 2.0       |
+| item_config              | item 类型配置，见 [`ItemConfig`](#itemconfig-object)                              | 是       | `Array<ItemConfig>`     | 2.0       |
+| item_config_count        | item_config 数组长度                                                              | 是       | `number`                | 2.0       |
+| data_array               | 数据数组                                                                          | 是       | `DataArray`             | 2.0       |
+| data_count               | 数据数组长度                                                                      | 是       | `number`                | 2.0       |
+| item_click_func          | item 点击回调函数，见 [`ItemClickFunc`](#itemclickfunc)                           | 否       | `ItemClickFunc`         | 2.0       |
+| data_type_config         | item 索引类型配置数组，见 [DataTypeConfig](#datatypeconfig-object)                | 否       | `Array<DataTypeConfig>` | 2.0       |
+| data_type_config_count   | item 索引类型配置数组长度                                                         | 否       | `number`                | 2.0       |
+| on_page                  | 更新数据时使用，设置为 `1` 表示列表数据更新后仍然停留在当前位置，否则回到列表顶部 | 否       | `number`                | 2.0       |
+| snap_to_center           | 列表是否吸附 SCROLL_LIST 高度中心位置                                             | 否       | `boolean`               | 2.0       |
+| item_focus_change_func   | 列表滑动焦点变化回调函数，见 [ItemFocusChangeFunc](#itemfocuschangefunc)          | 否       | `ItemFocusChangeFunc`   | 2.0       |
+| item_enable_horizon_drag | item 水平方向是否可以滑动                                                         | 否       | `boolean`               | 2.0       |
+| item_drag_max_distance   | 水平滑动距离，正值代表向左滑动，负值代表向右滑动                                  | 否       | `number`                | 2.0       |
+| snap_type               | 设置吸附模式（详见snap_type 吸附模式）                                           | 否       | `number`                | 4.0       |
+| item_common_focus       | 公共焦点是否显示(按键模式下生效)                                                  | 否       | `boolean`               | 4.0       |
+| item_key_focus_change_func | 按键模式下的按键监听回调                                                         | 否       | `function`              | 4.0       |
+| enable_scroll_bar       | 创建页面指示器(arcScrollBar)                                                      | 否       | `boolean`               | 4.0       |
+| view_index              | 设置列表某Item到可视区域(备注: 圆屏：屏幕居中， 方屏：屏幕置顶）                  | 否       | `number`                | 4.0       |
 
 ### ItemConfig: object
 
-| 属性             | 说明                                                                 | 是否必须 | 类型               |
-| ---------------- | -------------------------------------------------------------------- | -------- | ------------------ |
+| 属性             | 说明                                                                    | 是否必须 | 类型               |
+| ---------------- | ----------------------------------------------------------------------- | -------- | ------------------ |
 | type_id          | 当前 item 类型 ID，如果 item_config_count 为 `0` 时可不填，其他时候必填 | 否       | `number`           |
-| item_height      | item 高                                                              | 是       | `number`           |
-| item_bg_color    | item 背景色                                                          | 是       | `number`           |
-| item_bg_radius   | item 背景圆角                                                        | 是       | `number`           |
-| text_view        | textView 结构体数组，每一项为一个 `textView`，见下方说明             | 否       | `Array<TextView>`  |
-| text_view_count  | text_view 数组长度                                                   | 否       | `number`           |
-| image_view       | imageView 数组，每一项为一个 `imageView`，见下方说明                 | 否       | `Array<ImageView>` |
-| image_view_count | image_view 数组长度                                                  | 否       | `number`           |
+| item_height      | item 高                                                                 | 是       | `number`           |
+| item_bg_color    | item 背景色                                                             | 是       | `number`           |
+| item_bg_radius   | item 背景圆角                                                           | 是       | `number`           |
+| text_view        | textView 结构体数组，每一项为一个 `textView`，见下方说明                | 否       | `Array<TextView>`  |
+| text_view_count  | text_view 数组长度                                                      | 否       | `number`           |
+| image_view       | imageView 数组，每一项为一个 `imageView`，见下方说明                    | 否       | `Array<ImageView>` |
+| image_view_count | image_view 数组长度                                                     | 否       | `number`           |
 
 ### TextView: object
 
-| 属性      | 说明                                                                                        | 是否必须 | 类型     |
-| --------- | ------------------------------------------------------------------------------------------- | -------- | -------- |
-| x         | x 坐标，相对坐标                                                                            | 是       | `number` |
-| y         | y 坐标，相对坐标                                                                            | 是       | `number` |
-| w         | 控件宽度                                                                                    | 是       | `number` |
-| h         | 控件长度                                                                                    | 是       | `number` |
-| color     | 文字颜色                                                                                    | 否       | `number` |
-| text_size | 字体大小                                                                                    | 否       | `number` |
-| key       | 数据绑定 key，详情见使用例子和 data_array 说明                                              | 是       | `string` |
-| action    | 是否响应点击事件，响应之后，可以在 `item_click_func` 中捕捉到对应的数据 `key`，默认 `false` | 否       | `boolean`  |
+| 属性      | 说明                                                                                        | 是否必须 | 类型      |
+| --------- | ------------------------------------------------------------------------------------------- | -------- | --------- |
+| x         | x 坐标，相对坐标                                                                            | 是       | `number`  |
+| y         | y 坐标，相对坐标                                                                            | 是       | `number`  |
+| w         | 控件宽度                                                                                    | 是       | `number`  |
+| h         | 控件长度                                                                                    | 是       | `number`  |
+| color     | 文字颜色                                                                                    | 否       | `number`  |
+| text_size | 字体大小                                                                                    | 否       | `number`  |
+| key       | 数据绑定 key，详情见使用例子和 data_array 说明                                              | 是       | `string`  |
+| action    | 是否响应点击事件，响应之后，可以在 `item_click_func` 中捕捉到对应的数据 `key`，默认 `false` | 否       | `boolean` |
 
 ```js
 const text_view = [
@@ -72,14 +81,14 @@ const text_view = [
 
 ### ImageView: object
 
-| 属性   | 说明                                                                                            | 是否必须 | 类型     |
-| ------ | ----------------------------------------------------------------------------------------------- | -------- | -------- |
-| x      | x 坐标，相对坐标                                                                                | 是       | `number` |
-| y      | y 坐标，相对坐标                                                                                | 是       | `number` |
-| w      | 控件宽度                                                                                        | 是       | `number` |
-| h      | 控件长度                                                                                        | 是       | `number` |
-| key    | 数据绑定 key 详情见使用例子和 data_array 说明                                                   | 是       | `string` |
-| action | 是否响应点击事件，设置响应之后，可以在 `item_click_func` 中捕捉到对应的数据 `key`，默认 `false` | 否       | `boolean`  |
+| 属性   | 说明                                                                                            | 是否必须 | 类型      |
+| ------ | ----------------------------------------------------------------------------------------------- | -------- | --------- |
+| x      | x 坐标，相对坐标                                                                                | 是       | `number`  |
+| y      | y 坐标，相对坐标                                                                                | 是       | `number`  |
+| w      | 控件宽度                                                                                        | 是       | `number`  |
+| h      | 控件长度                                                                                        | 是       | `number`  |
+| key    | 数据绑定 key 详情见使用例子和 data_array 说明                                                   | 是       | `string`  |
+| action | 是否响应点击事件，设置响应之后，可以在 `item_click_func` 中捕捉到对应的数据 `key`，默认 `false` | 否       | `boolean` |
 
 ```js
 // 数组内的每一个结构体为一个imageView
@@ -104,10 +113,10 @@ const dataList = [
 
 每个索引项默认使用 `item_config[0]` 的配置。
 
-| 属性    | 说明                          | 是否必须 | 类型     |
-| ------- | ----------------------------- | -------- | -------- |
-| start   | 开始的索引                    | 是       | `number` |
-| end     | 结束的索引                    | 是       | `number` |
+| 属性    | 说明                                   | 是否必须 | 类型     |
+| ------- | -------------------------------------- | -------- | -------- |
+| start   | 开始的索引                             | 是       | `number` |
+| end     | 结束的索引                             | 是       | `number` |
 | type_id | item_config 中类型配置对应的 `type_id` | 是       | `number` |
 
 `start` 和 `end` 的为闭区间 `[start, end]`
@@ -154,6 +163,21 @@ data_type_config_count:2
 | list  | SCROLL_LIST 控件  | `any`     |
 | index | item 索引         | `number`  |
 | focus | item 是否聚焦状态 | `boolean` |
+
+### snap_type 吸附模式
+
+| 吸附模式枚举值 | 说明 |
+| --- | --- |
+| SCROLL_LIST.snap_type.SNAPCENTER_ALL | 中心吸附 |
+| SCROLL_LIST.snap_type.SNAPCENTER_EXCEPTTITLE | 除了标题以外，中心吸附 |
+| SCROLL_LIST.snap_type.SNAP_TOP | 顶部吸附 |
+| SCROLL_LIST.snap_type.SNAP_BOTTOM | 底部吸附 |
+
+```js
+import { SCROLL_LIST } from '@zos/ui'
+
+console.log(SCROLL_LIST.snap_type.SNAPCENTER_ALL)
+```
 
 ## 刷新数据
 
@@ -209,6 +233,33 @@ scrollList.setProperty(prop.MOVE_ITEM, {
   item_drag_max_distance: -200 // 水平滑动距离，只有在使能时，才会生效。
 })
 ```
+
+## 属性访问支持列表
+
+| 属性名                     | setProperty | getProperty | [setter](../gettersetter.mdx) | [getter](../gettersetter.mdx) |
+| -------------------------- | ----------- | ----------- | ----------------------------- | ----------------------------- |
+| x                          | N           | Y           | N                             | Y                             |
+| y                          | N           | Y           | N                             | Y                             |
+| w                          | N           | Y           | N                             | Y                             |
+| h                          | N           | Y           | N                             | Y                             |
+| item_space                 | N           | N           | N                             | N                             |
+| item_config                | N           | N           | N                             | N                             |
+| item_config_count          | N           | N           | N                             | N                             |
+| data_array                 | N           | N           | N                             | N                             |
+| data_count                 | N           | N           | N                             | N                             |
+| item_click_func            | N           | N           | N                             | N                             |
+| data_type_config           | N           | N           | N                             | N                             |
+| data_type_config_count     | N           | N           | N                             | N                             |
+| on_page                    | N           | N           | N                             | N                             |
+| snap_to_center             | N           | N           | N                             | N                             |
+| item_focus_change_func     | N           | N           | N                             | N                             |
+| item_enable_horizon_drag   | N           | N           | N                             | N                             |
+| item_drag_max_distance     | N           | N           | N                             | N                             |
+| snap_type                  | N           | N           | N                             | N                             |
+| item_common_focus          | N           | N           | N                             | N                             |
+| item_key_focus_change_func | N           | N           | N                             | N                             |
+| enable_scroll_bar          | N           | N           | N                             | N                             |
+| view_index                 | N           | N           | N                             | N                             |
 
 ## 代码示例
 

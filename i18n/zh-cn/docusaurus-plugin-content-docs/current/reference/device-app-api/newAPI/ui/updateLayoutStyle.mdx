@@ -1,0 +1,42 @@
+---
+title: updateLayoutStyle()
+sidebar_label: updateLayoutStyle
+---
+
+> API_LEVEL `4.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+更新控件节点的布局样式，具体的 `layout` 对象属性参考 [layout 属性配置](../../../../guides/framework/device/layout.md#layout-属性)。
+
+## 类型
+
+```ts
+(style: LayoutStyle) => void
+```
+
+## 参数
+
+| 参数   | 类型          | 说明               |
+| ------ | ------------- | ------------------ |
+| style  | `LayoutStyle` | 包含布局属性的对象，`layout` 对象 |
+
+## 示例
+
+```js
+import { createWidget, widget } from '@zos/ui'
+
+const container = createWidget(widget.VIRTUAL_CONTAINER)
+
+// 更新容器布局样式
+container.updateLayoutStyle({
+  display: 'flex',
+  'flex-direction': 'row',
+  'justify-content': 'space-between',
+  'align-items': 'center',
+  width: '100%',
+  height: '200px'
+})
+```
+
+## 相关参考
+
+- [控件 layout 属性实现 Flex 布局](../../../../guides/framework/device/layout.md)

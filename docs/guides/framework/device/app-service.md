@@ -140,6 +140,7 @@ The "App Service" has no UI interface and has more limitations on the use of sys
 | @zos/user         | APIs whose names start with `get`, such as `getProfile`                   | YES          | -                                               |
 | @zos/media        | Audio Playback Related APIs                                               | YES          | -                                               |
 | @zos/ble          | Except for APIs whose names begin with `mst`, such as `send`              | YES          | -                                               |
+| @zos/fs           | File writing related APIs can only be used when the screen is off or in AOD display mode | YES          | -                          |
 
 :::info
 The "App Service" has no UI and the only way to interact with the user's view is the `@zos/notification` System Notification API.

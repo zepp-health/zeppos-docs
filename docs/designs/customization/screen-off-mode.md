@@ -2,7 +2,7 @@
 sidebar_label: Always-On Display Mode
 ---
 
-## Always-On Display Mode
+# Always-On Display Mode
 
 ![Design](/img/design/2ffc61f3-4d57-4570-9500-071e80ffea80.png)
 

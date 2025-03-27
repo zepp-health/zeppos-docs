@@ -32,7 +32,8 @@ const histoGram = createWidget(widget.HISTOGRAM, Param)
 | item_radius     | Radius of column.                                                                 | YES       | `number`        |
 | item_start_y    | The starting Y point of the column, relative coordinate, default is 0 if not filled. | NO       | `number`        |
 | item_max_height | Maximum height of column.If unfilled,default is widget height.                      | NO       | `number`        |
-| item_color      | Color of column.                                                                     | YES       | `number`        |
+| item_color      | Column color. In API_LEVEL 3.5, supports passing an array `Array<number>` to specify the color of each column | YES      | `number`        |
+| item_alpha      | Column color transparency. In API_LEVEL 3.5, supports passing an array `Array<number>` to specify the transparency of each column | NO       | `number`        |
 | data_min_value  | Minimum value of the column.Used to calculate the actual height of the column.       | YES       | `number`        |
 | data_max_value  | Maximum value of the column.Used to calculate the actual height of the column.       | YES       | `number`        |
 | data_array      | Data array of columns.                                                               | YES       | `Array<number>` |

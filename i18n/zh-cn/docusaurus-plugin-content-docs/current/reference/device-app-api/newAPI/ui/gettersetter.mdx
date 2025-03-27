@@ -1,0 +1,115 @@
+# 控件 getter/setter 特性
+
+> API_LEVEL `4.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+从 API_LEVEL 4.0 开始，Zepp OS 支持通过 getter/setter 特性直接访问和设置控件属性，使得控件属性的读写更加简洁和直观。
+
+## 概述
+
+在 API_LEVEL 4.0 之前，我们需要使用 `getProperty` 和 `setProperty` 方法来读取和设置控件属性。现在，我们可以直接使用 `.` 操作符来访问或设置这些属性，就像访问普通 JavaScript 对象的属性一样。
+
+## 使用方式
+
+### 读取属性 (getter)
+
+```js
+// 旧方式
+const textWidth = textWidget.getProperty(prop.W)
+
+// 新方式 (API_LEVEL 4.0+)
+const textWidth = textWidget.w
+```
+
+### 设置属性 (setter)
+
+```js
+// 旧方式
+textWidget.setProperty(prop.TEXT, 'Hello Zepp OS')
+
+// 新方式 (API_LEVEL 4.0+)
+textWidget.text = 'Hello Zepp OS'
+```
+
+## 代码示例
+
+以下是使用 TEXT 控件演示 getter/setter 特性的完整示例：
+
+```js
+import { createWidget, widget, prop } from '@zos/ui'
+
+Page({
+  build() {
+    // 创建 TEXT 控件
+    const textWidget = createWidget(widget.TEXT, {
+      x: 96,
+      y: 120,
+      w: 288,
+      h: 46,
+      color: 0xffffff,
+      text: 'Hello Zepp OS',
+      text_size: 36
+    })
+
+    // 使用 getter 读取属性
+    console.log('Text content:', textWidget.text)
+    console.log('Text color:', textWidget.color)
+    console.log('Text position:', textWidget.x, textWidget.y)
+
+    // 使用 setter 设置属性
+    textWidget.text = 'Updated Text'
+    textWidget.color = 0xff0000
+    textWidget.x = 120
+  }
+})
+```
+
+与 `getProperty` 和 `setProperty` 方法对比
+
+```js
+// 读取属性
+const oldText = textWidget.getProperty(prop.TEXT)
+console.log('Old way - Text content:', oldText)
+
+// 设置属性
+textWidget.setProperty(prop.TEXT, 'Set by old method')
+textWidget.setProperty(prop.MORE, {
+  color: 0x00ff00,
+  x: 150
+})
+```
+
+## 属性访问支持列表
+
+不同控件支持通过 getter/setter 访问的属性可能有所不同，请参考各控件文档中的属性支持表格。
+
+以 `TEXT` 控件支持的属性列表举例：
+
+| 属性名      | setProperty | setProperty | setter | getter |
+| ----------- | ----------- | ----------- | ------ | ------ |
+| x           | Y           | Y           | Y      | Y      |
+| y           | Y           | Y           | Y      | Y      |
+| w           | Y           | Y           | Y      | Y      |
+| h           | Y           | Y           | Y      | Y      |
+| color       | Y           | Y           | Y      | Y      |
+| align_h     | Y           | Y           | Y      | Y      |
+| align_v     | Y           | Y           | Y      | Y      |
+| text        | Y           | Y           | Y      | Y      |
+| text_size   | Y           | Y           | Y      | Y      |
+| font        | Y           | Y           | Y      | Y      |
+| text_style  | Y           | Y           | Y      | Y      |
+| line_space  | Y           | Y           | Y      | Y      |
+| char_space  | Y           | Y           | Y      | Y      |
+| text_i18n   | N           | N           | Y      | Y      |
+| start_angle | N           | N           | N      | N      |
+| end_angle   | N           | N           | N      | N      |
+| mode        | N           | N           | N      | N      |
+| radius      | N           | N           | N      | N      |
+
+- Y: 表明支持该属性访问方式
+- N: 表明不支持该属性访问方式
+
+## 相关参考
+
+- [createWidget](./createWidget.mdx)
+- [setProperty](./setProperty.mdx)
+- [getProperty](./getProperty.mdx)

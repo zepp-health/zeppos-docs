@@ -1,0 +1,75 @@
+---
+title: openInspector
+sidebar_label: openInspector
+---
+
+import useBaseUrl from '@docusaurus/useBaseUrl'
+
+> API_LEVEL `4.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+<img src={useBaseUrl('/img/docs/guides/framework/layout_debug.jpg')} width="50%" title="layout_debug" />
+
+在开发过程中，特别是使用 Flex 布局时，可能需要查看各个控件的实际布局位置和大小。使用 `openInspector()` 可以在模拟器中直观地显示所有参与布局的控件的边界，帮助开发者调试布局问题。
+
+用于在模拟器中绘制所有参与布局的 widget 的边界矩形，帮助开发者调试布局问题。此方法需要在 `build()` 生命周期之后调用。
+
+## 类型
+
+```ts
+function openInspector(): Inspector
+```
+
+## 参数
+
+无
+
+## 返回值
+
+| 类型        | 说明               |
+| ----------- | ------------------ |
+| `Inspector` | Inspector 对象实例 |
+
+## Inspector 对象方法
+
+### draw(options)
+
+绘制所有参与布局的 widget 的边界矩形。
+
+#### 参数
+
+| 参数    | 类型                | 必填 | 默认值 | 说明     |
+| ------- | ------------------- | ---- | ------ | -------- |
+| options | <code>object</code> | 否   | -      | 绘制选项 |
+
+#### options 对象属性
+
+| 属性        | 类型                | 必填 | 默认值 | 说明                                                  |
+| ----------- | ------------------- | ---- | ------ | ----------------------------------------------------- |
+| line_color  | <code>number</code> | 否   | -      | 边框线条颜色，十六进制数值，例如：`0xff0000` 表示红色 |
+| line_width  | <code>number</code> | 否   | -      | 边框线条宽度                                          |
+| border_mode | <code>number</code> | 否   | `0`    | 边框绘制模式，`0` 表示向外绘制，`1` 表示向内绘制      |
+
+### clear()
+
+清除所有已绘制的边界矩形。
+
+## 代码示例
+
+```js
+import { openInspector } from '@zos/ui'
+
+Page({
+  build() {
+    // 创建布局...
+
+    // 绘制所有参与布局的 widget 的边界矩形
+    setTimeout(() => {
+      openInspector().draw({
+        line_color: 0xff0000, // 红色
+        line_width: 1, // 线宽为 1
+        border_mode: 1 // 向内绘制边框
+      })
+    }, 100)
+  }
+})
+```

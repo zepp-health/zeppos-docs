@@ -82,6 +82,46 @@ Cancel the compass direction change event listener callback function
 offChange(callback: () => void): void
 ```
 
+### setFreqMode
+
+> Start from API_LEVEL `4.0`
+
+Set the mode of trigger frequency, `mode` value reference frequency mode constant
+
+```ts
+setFreqMode(mode: number): void
+```
+
+#### Constants
+
+##### Frequency Mode
+
+| Constant           | Description                                             | API_LEVEL |
+| ------------------ | ------------------------------------------------------- | --------- |
+| `FREQ_MODE_LOW`    | Low power mode with low trigger frequency               | 3.0       |
+| `FREQ_MODE_NORMAL` | Normal power consumption mode, medium trigger frequency | 3.0       |
+| `FREQ_MODE_HIGH`   | High power consumption mode with high trigger frequency | 3.0       |
+
+### getFreqMode
+
+> Start from API_LEVEL `4.0`
+
+Get the mode of trigger frequency, result value reference frequency mode constant
+
+```ts
+getFreqMode(): number
+```
+
+#### Constants
+
+##### Frequency Mode
+
+| Constant           | Description                                             | API_LEVEL |
+| ------------------ | ------------------------------------------------------- | --------- |
+| `FREQ_MODE_LOW`    | Low power mode with low trigger frequency               | 3.0       |
+| `FREQ_MODE_NORMAL` | Normal power consumption mode, medium trigger frequency | 3.0       |
+| `FREQ_MODE_HIGH`   | High power consumption mode with high trigger frequency | 3.0       |
+
 ## Example
 
 ```js

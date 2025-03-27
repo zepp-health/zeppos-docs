@@ -18,11 +18,12 @@ function start(option: Option): Result
 
 ### Option
 
-| 属性          | 类型                                                      | 必填 | 默认值 | 说明                                                                         | API_LEVEL |
-| ------------- | --------------------------------------------------------- | ---- | ------ | ---------------------------------------------------------------------------- | --------- |
-| file          | <code>string</code>                                       | 是   | -      | 设备应用服务 js 文件，必须是在 app.json module 中 app-service 字段配置的文件 | 3.0       |
-| param         | <code>string</code>                                       | 否   | -      | 设备应用服务 js 文件加载时，传入的参数                                       | 3.0       |
-| complete_func | <code>(callbackOption: CallbackOption) =&#62; void</code> | 是   | -      | 设备应用服务启动完成回调函数                                                 | 3.0       |
+| 属性          | 类型                                                      | 必填 | 默认值            | 说明                                                                                                           | API_LEVEL |
+| ------------- | --------------------------------------------------------- | ---- | ----------------- | -------------------------------------------------------------------------------------------------------------- | --------- |
+| file          | <code>string</code>                                       | 是   | -                 | 设备应用服务 js 文件，必须是在 app.json module 中 app-service 字段配置的文件                                   | 3.0       |
+| param         | <code>string</code>                                       | 否   | -                 | 设备应用服务 js 文件加载时，传入的参数                                                                         | 3.0       |
+| complete_func | <code>(callbackOption: CallbackOption) =&#62; void</code> | 是   | -                 | 设备应用服务启动完成回调函数                                                                                   | 3.0       |
+| reload        | <code>boolean</code>                                      | 否   | <code>true</code> | 是否持久化，跟随系统运行状态变化自动重启。系统状态变化包括：系统重启，省电模式进出，系统语言变更，小程序更新等 | 4.0       |
 
 ### CallbackOption
 

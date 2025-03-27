@@ -1,0 +1,89 @@
+# getPerformance
+
+> API_LEVEL `4.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+获取小程序性能统计信息，包括内存占用和加载性能等指标。
+
+## 类型
+
+```ts
+function getPerformance(...args: Array<'memory' | 'perf'>): Result
+```
+
+## 参数
+
+### Result
+
+| 属性   | 类型                | 说明         | API_LEVEL |
+| ------ | ------------------- | ------------ | --------- |
+| memory | <code>Memory</code> | 内存统计信息 | 4.0       |
+| perf   | <code>Perf</code>   | 性能统计信息 | 4.0       |
+
+### Memory
+
+| 属性    | 类型                                      | 说明                 | API_LEVEL |
+| ------- | ----------------------------------------- | -------------------- | --------- |
+| system  | <code>SystemMemory</code>                 | 系统内存信息         | 4.0       |
+| app     | <code>Array&#60;AppMemory&#62;</code>     | 应用内存信息列表     | 4.0       |
+| leaking | <code>Array&#60;LeakingMemory&#62;</code> | 未释放的内存信息列表 | 4.0       |
+
+### SystemMemory
+
+| 属性  | 类型                | 说明             | API_LEVEL |
+| ----- | ------------------- | ---------------- | --------- |
+| used  | <code>number</code> | 已用内存（字节） | 4.0       |
+| total | <code>number</code> | 内存总量（字节） | 4.0       |
+
+### AppMemory
+
+| 属性    | 类型                                     | 说明             | API_LEVEL |
+| ------- | ---------------------------------------- | ---------------- | --------- |
+| appid   | <code>number</code>                      | 小程序 ID        | 4.0       |
+| used    | <code>number</code>                      | 占用内存（字节） | 4.0       |
+| peak    | <code>number</code>                      | 内存峰值（字节） | 4.0       |
+| modules | <code>Array&#60;MemoryModule&#62;</code> | 模块内存信息     | 4.0       |
+
+### LeakingMemory
+
+| 属性    | 类型                                     | 说明             | API_LEVEL |
+| ------- | ---------------------------------------- | ---------------- | --------- |
+| appid   | <code>number</code>                      | 小程序 ID        | 4.0       |
+| used    | <code>number</code>                      | 占用内存（字节） | 4.0       |
+| modules | <code>Array&#60;MemoryModule&#62;</code> | 模块内存信息     | 4.0       |
+
+### MemoryModule
+
+| 属性 | 类型                | 说明             | API_LEVEL |
+| ---- | ------------------- | ---------------- | --------- |
+| file | <code>string</code> | 文件路径         | 4.0       |
+| used | <code>number</code> | 占用内存（字节） | 4.0       |
+| peak | <code>number</code> | 内存峰值（字节） | 4.0       |
+
+### Perf
+
+| 属性    | 类型                                   | 说明             | API_LEVEL |
+| ------- | -------------------------------------- | ---------------- | --------- |
+| appid   | <code>number</code>                    | 小程序 ID        | 4.0       |
+| modules | <code>Array&#60;PerfModule&#62;</code> | 模块性能信息列表 | 4.0       |
+
+### PerfModule
+
+| 属性       | 类型                | 说明                                         | API_LEVEL |
+| ---------- | ------------------- | -------------------------------------------- | --------- |
+| file       | <code>string</code> | 文件名                                       | 4.0       |
+| evalTime   | <code>number</code> | 文件读取和运行时间（不包含生命周期执行时间） | 4.0       |
+| createTime | <code>number</code> | onCreate 生命周期执行时间                    | 4.0       |
+| initTime   | <code>number</code> | onInit 生命周期执行时间                      | 4.0       |
+| buildTime  | <code>number</code> | build 生命周期执行时间                       | 4.0       |
+
+## 代码示例
+
+```js
+import { getPerformance } from '@zos/app'
+
+// Get memory info only
+const memoryProfile = getPerformance('memory')
+
+// Get both memory and performance info
+const fullProfile = getPerformance('memory', 'perf')
+```

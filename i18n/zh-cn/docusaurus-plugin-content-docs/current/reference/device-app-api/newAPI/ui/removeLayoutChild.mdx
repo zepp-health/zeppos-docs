@@ -1,0 +1,31 @@
+---
+title: removeLayoutChild(child)
+sidebar_label: removeLayoutChild
+---
+
+> API_LEVEL `4.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+从当前节点移除指定的子节点。
+
+## 类型
+
+```ts
+(child: UIWidget) => void
+```
+
+## 参数
+
+| 参数   | 类型      | 说明                 |
+| ------ | --------- | -------------------- |
+| child  | `UIWidget` | 要移除的子控件实例   |
+
+## 示例
+
+```js
+// 从父容器中移除子控件
+container.removeLayoutChild(button)
+```
+
+## 相关参考
+
+- [Flex 布局指南](../../../../guides/framework/device/layout.md)

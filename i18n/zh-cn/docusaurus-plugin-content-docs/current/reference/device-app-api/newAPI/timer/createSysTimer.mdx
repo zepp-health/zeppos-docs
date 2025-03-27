@@ -1,0 +1,64 @@
+# createSysTimer
+
+> API_LEVEL `4.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+在设备应用服务中可以注册的定时器，在系统级别运行，不受手表息屏影响。
+
+## 类型
+
+```ts
+function createSysTimer(periodic: Periodic, period: Period, callback: Callback, arg?: Arg): Result
+```
+
+## 参数
+
+### Periodic
+
+| 类型                 | 说明                 |
+| -------------------- | -------------------- |
+| <code>boolean</code> | 是否创建周期性定时器 |
+
+### Period
+
+| 类型                | 说明                                                           |
+| ------------------- | -------------------------------------------------------------- |
+| <code>number</code> | 定时周期（毫秒）。非周期性定时器时表示延迟时长，0 表示立即执行 |
+
+### Callback
+
+| 类型                                     | 说明     |
+| ---------------------------------------- | -------- |
+| <code>(arg?: unknown) =&#62; void</code> | 回调函数 |
+
+### Arg
+
+| 类型                 | 说明                 |
+| -------------------- | -------------------- |
+| <code>unknown</code> | 传递给回调函数的参数 |
+
+### Result
+
+| 类型                | 说明                                        |
+| ------------------- | ------------------------------------------- |
+| <code>number</code> | 创建系统定时器返回的 ID，用于后续停止定时器 |
+
+## 代码示例
+
+```js
+import { createSysTimer } from '@zos/timer'
+
+// Create a non-periodic timer that executes after 5 seconds
+const timerId = createSysTimer(
+  false,
+  5000,
+  (param) => {
+    console.log('timer callback with param:', param)
+  },
+  'customParam',
+)
+
+// Create a periodic timer that executes every 10 seconds
+const intervalId = createSysTimer(true, 10000, () => {
+  console.log('interval timer callback')
+})
+```

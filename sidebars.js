@@ -281,6 +281,10 @@ const newAPIPathMap = [
     label: 'App Service'
   },
   {
+    path: 'timer',
+    label: 'System Timer'
+  },
+  {
     path: 'notification',
     label: 'Notification'
   },
@@ -295,7 +299,7 @@ const newAPIPathMap = [
   {
     path: 'app-access',
     label: 'App Access'
-  },
+  }
 ]
 
 // 首先拼接 prefix
@@ -366,6 +370,7 @@ module.exports = {
             id: 'intro/version'
           },
           items: [
+            'guides/version-info/new-features-40',
             'guides/version-info/new-features-35',
             'guides/version-info/new-features-30',
             {
@@ -428,7 +433,8 @@ module.exports = {
             'guides/framework/device/app-service',
             'guides/framework/device/system-event',
             'guides/framework/device/system-notification',
-            'guides/framework/device/ble-central'
+            'guides/framework/device/ble-central',
+            'guides/framework/device/layout'
           ]
         },
         {
@@ -464,7 +470,7 @@ module.exports = {
             'guides/tools/simulator/index',
             'guides/tools/simulator/download',
             'guides/tools/simulator/release-note',
-            'guides/tools/simulator/setup',
+            'guides/tools/simulator/setup'
           ]
         },
         'guides/tools/npm/index',
@@ -540,7 +546,7 @@ module.exports = {
       items: [
         'guides/workout-extension/intro',
         'guides/workout-extension/quick-start',
-        'guides/workout-extension/distribute',
+        'guides/workout-extension/distribute'
       ]
     },
     {
@@ -564,7 +570,7 @@ module.exports = {
         'guides/best-practice/widget-group',
         'guides/best-practice/persistence-storage',
         'guides/best-practice/error-catch',
-        'guides/best-practice/i18n',
+        'guides/best-practice/i18n'
       ]
     },
     {
@@ -588,7 +594,7 @@ module.exports = {
         'guides/faq/join-test-group',
         'guides/faq/third-party-login',
         'guides/faq/paid-app',
-        'guides/faq/opus-to-mp3',
+        'guides/faq/opus-to-mp3'
       ]
     },
     {
@@ -635,7 +641,7 @@ module.exports = {
                     'reference/device-app-api/newAPI/ui/widget/CANVAS',
                     'reference/device-app-api/newAPI/ui/widget/PAGE_INDICATOR',
                     'reference/device-app-api/newAPI/ui/widget/PAGE_SCROLLBAR',
-                    'reference/device-app-api/newAPI/ui/widget/SPORT_DATA',
+                    'reference/device-app-api/newAPI/ui/widget/SPORT_DATA'
                   ]
                 },
                 {
@@ -647,7 +653,8 @@ module.exports = {
                     'reference/device-app-api/newAPI/ui/widget/SLIDE_SWITCH',
                     'reference/device-app-api/newAPI/ui/widget/PICK_DATE',
                     'reference/device-app-api/newAPI/ui/widget/KEYBOARD',
-                    'reference/device-app-api/newAPI/ui/widget/PICKER'
+                    'reference/device-app-api/newAPI/ui/widget/PICKER',
+                    'reference/device-app-api/newAPI/ui/widget/SMART_KEYBOARD',
                     // 'reference/device-app-api/newAPI/ui/widget/WIDGET_PICKER',
                   ]
                 },
@@ -674,7 +681,8 @@ module.exports = {
                 'reference/device-app-api/newAPI/ui/getProperty',
                 'reference/device-app-api/newAPI/ui/getType',
                 'reference/device-app-api/newAPI/ui/getId',
-                'reference/device-app-api/newAPI/ui/setAlpha'
+                'reference/device-app-api/newAPI/ui/setAlpha',
+                'reference/device-app-api/newAPI/ui/gettersetter'
               ]
             },
             'reference/device-app-api/newAPI/ui/widgetAnimations',
@@ -689,7 +697,14 @@ module.exports = {
             'reference/device-app-api/newAPI/ui/setAppWidgetSize',
             'reference/device-app-api/newAPI/ui/getAppWidgetSize',
             'reference/device-app-api/newAPI/ui/getRtlLayout',
-            'reference/device-app-api/newAPI/ui/relayoutRtl'
+            'reference/device-app-api/newAPI/ui/relayoutRtl',
+            'reference/device-app-api/newAPI/ui/relayoutRtl',
+            'reference/device-app-api/newAPI/ui/setLayoutParent',
+            'reference/device-app-api/newAPI/ui/addLayoutChild',
+            'reference/device-app-api/newAPI/ui/removeLayoutChild',
+            'reference/device-app-api/newAPI/ui/updateLayoutStyle',
+            'reference/device-app-api/newAPI/ui/updateLayout',
+            'reference/device-app-api/newAPI/ui/openInspector'
           ]
         },
         ...newAPIPathMap.map((i) => {

@@ -1,0 +1,115 @@
+# Widget Getter/Setter Features
+
+> Supported since API_LEVEL `4.0`. For API compatibility, please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Starting from API_LEVEL 4.0, Zepp OS supports direct access and modification of widget properties through getter/setter features, making property read/write operations more concise and intuitive.
+
+## Overview
+
+Before API_LEVEL 4.0, we needed to use `getProperty` and `setProperty` methods to read and set widget properties. Now, we can directly use the `.` operator to access or set these properties, just like accessing regular JavaScript object properties.
+
+## Usage
+
+### Reading Properties (getter)
+
+```js
+// Old way
+const textWidth = textWidget.getProperty(prop.W)
+
+// New way (API_LEVEL 4.0+)
+const textWidth = textWidget.w
+```
+
+### Setting Properties (setter)
+
+```js
+// Old way
+textWidget.setProperty(prop.TEXT, 'Hello Zepp OS')
+
+// New way (API_LEVEL 4.0+)
+textWidget.text = 'Hello Zepp OS'
+```
+
+## Code Example
+
+Here's a complete example demonstrating the getter/setter features using a TEXT widget:
+
+```js
+import { createWidget, widget, prop } from '@zos/ui'
+
+Page({
+  build() {
+    // Create TEXT widget
+    const textWidget = createWidget(widget.TEXT, {
+      x: 96,
+      y: 120,
+      w: 288,
+      h: 46,
+      color: 0xffffff,
+      text: 'Hello Zepp OS',
+      text_size: 36
+    })
+
+    // Using getter to read properties
+    console.log('Text content:', textWidget.text)
+    console.log('Text color:', textWidget.color)
+    console.log('Text position:', textWidget.x, textWidget.y)
+
+    // Using setter to set properties
+    textWidget.text = 'Updated Text'
+    textWidget.color = 0xff0000
+    textWidget.x = 120
+  }
+})
+```
+
+Comparison with `getProperty` and `setProperty` methods
+
+```js
+// Reading properties
+const oldText = textWidget.getProperty(prop.TEXT)
+console.log('Old way - Text content:', oldText)
+
+// Setting properties
+textWidget.setProperty(prop.TEXT, 'Set by old method')
+textWidget.setProperty(prop.MORE, {
+  color: 0x00ff00,
+  x: 150
+})
+```
+
+## Property Access Support List
+
+Different widgets may support different properties through getter/setter access. Please refer to the property support table in each widget's documentation.
+
+Here's an example of the property list supported by the `TEXT` widget:
+
+| Property Name | setProperty | setProperty | setter | getter |
+| ----------- | ----------- | ----------- | ------ | ------ |
+| x           | Y           | Y           | Y      | Y      |
+| y           | Y           | Y           | Y      | Y      |
+| w           | Y           | Y           | Y      | Y      |
+| h           | Y           | Y           | Y      | Y      |
+| color       | Y           | Y           | Y      | Y      |
+| align_h     | Y           | Y           | Y      | Y      |
+| align_v     | Y           | Y           | Y      | Y      |
+| text        | Y           | Y           | Y      | Y      |
+| text_size   | Y           | Y           | Y      | Y      |
+| font        | Y           | Y           | Y      | Y      |
+| text_style  | Y           | Y           | Y      | Y      |
+| line_space  | Y           | Y           | Y      | Y      |
+| char_space  | Y           | Y           | Y      | Y      |
+| text_i18n   | N           | N           | Y      | Y      |
+| start_angle | N           | N           | N      | N      |
+| end_angle   | N           | N           | N      | N      |
+| mode        | N           | N           | N      | N      |
+| radius      | N           | N           | N      | N      |
+
+- Y: Indicates the property access method is supported
+- N: Indicates the property access method is not supported
+
+## Related References
+
+- [createWidget](./createWidget.mdx)
+- [setProperty](./setProperty.mdx)
+- [getProperty](./getProperty.mdx)
