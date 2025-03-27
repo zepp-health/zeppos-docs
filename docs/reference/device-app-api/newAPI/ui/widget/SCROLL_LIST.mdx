@@ -3,11 +3,11 @@ title: SCROLL_LIST
 sidebar_label: SCROLL_LIST
 ---
 
-> Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](../../../../../guides/framework/device/compatibility.md).
+> Start from API_LEVEL `2.0`. Please refer to [API_LEVEL](../../../../../guides/framework/device/compatibility.md).
 
 ![scroll_list_sample](/img/api/scroll_list_sample.png)
 
-Create a list area with sliding support, where each item item can have an image and text, and support horizontal sliding.
+Create a list area with sliding support, where each list item can contain images and text, and supports horizontal sliding.
 
 ## Create UI widget
 
@@ -21,84 +21,82 @@ const scrollList = createWidget(widget.SCROLL_LIST, Param)
 
 ### Param: object
 
-| Properties               | Description                                                                                                                                               | Required | Type                    |
-| ------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- | ----------------------- |
-| x                        | The x-coordinate of the widget.                                                                                                                        | YES      | `number`                |
-| y                        | The y-coordinate of the widget.                                                                                                                        | YES      | `number`                |
-| w                        | Width of the widget.                                                                                                                                   | YES      | `number`                |
-| h                        | The height of the widget.                                                                                                                              | YES      | `number`                |
-| item_space               | Space between each item.                                                                                                                                  | NO       | `number`                |
-| item_config              | item type configuration, see [`ItemConfig`](#itemconfig-object)                                                                                           | YES      | `Array<ItemConfig>`     |
-| item_config_count        | The length of the item_config array.                                                                                                                      | YES      | `number`                |
-| data_array               | Data Array.                                                                                                                                               | YES      | `DataArray`             |
-| data_count               | Data array length.                                                                                                                                        | YES      | `number`                |
-| item_click_func          | item Click callback function, see [`ItemClickFunc`](#itemclickfunc)                                                                                       | NO       | `ItemClickFunc`         |
-| data_type_config         | The index type configuration array for item, see [DataTypeConfig](#datatypeconfig-object)                                                                 | NO       | `Array<DataTypeConfig>` |
-| data_type_config_count   | The length of `data_type_config`.                                                                                                                         | NO       | `number`                |
-| on_page                  | Used when updating data, set to `1` means that the list data remains at the current position after updating, otherwise it returns to the top of the list. | NO       | `number`                |
-| snap_to_center           | Is the list attached to the SCROLL_LIST height center position                                                                                            | NO       | `boolean`               |
-| item_focus_change_func   | The list sliding focus change callback function, see [ItemFocusChangeFunc](#itemfocuschangefunc)                                                          | NO       | `ItemFocusChangeFunc`   |
-| item_enable_horizon_drag | Whether the item can be slid in the horizontal direction                                                                                                  | NO       | `boolean`               |
-| item_drag_max_distance   | Horizontal sliding distance, positive value means sliding to the left, negative value means sliding to the right                                          | NO       | `number`                |
+| Properties               | Description                                                                                                                                               | Required | Type                    | API_LEVEL |
+| ------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- | ----------------------- | --------- |
+| x                        | The x-coordinate of the widget                                                                                                                           | YES      | `number`                | 2.0       |
+| y                        | The y-coordinate of the widget                                                                                                                           | YES      | `number`                | 2.0       |
+| w                        | Width of the widget                                                                                                                                      | YES      | `number`                | 2.0       |
+| h                        | Height of the widget                                                                                                                                     | YES      | `number`                | 2.0       |
+| item_space               | Space between items                                                                                                                                      | NO       | `number`                | 2.0       |
+| item_config              | Item type configuration, see [`ItemConfig`](#itemconfig-object)                                                                                           | YES      | `Array<ItemConfig>`     | 2.0       |
+| item_config_count        | Length of the item_config array                                                                                                                           | YES      | `number`                | 2.0       |
+| data_array               | Data array                                                                                                                                                | YES      | `DataArray`             | 2.0       |
+| data_count               | Length of the data array                                                                                                                                  | YES      | `number`                | 2.0       |
+| item_click_func          | Item click callback function, see [`ItemClickFunc`](#itemclickfunc)                                                                                       | NO       | `ItemClickFunc`         | 2.0       |
+| data_type_config         | Item index type configuration array, see [DataTypeConfig](#datatypeconfig-object)                                                                          | NO       | `Array<DataTypeConfig>` | 2.0       |
+| data_type_config_count   | Length of the item index type configuration array                                                                                                          | NO       | `number`                | 2.0       |
+| on_page                  | Used when updating data, set to `1` to keep the list at current position after update, otherwise returns to list top                                       | NO       | `number`                | 2.0       |
+| snap_to_center           | Whether the list should snap to the center height of SCROLL_LIST                                                                                           | NO       | `boolean`               | 2.0       |
+| item_focus_change_func   | List sliding focus change callback function, see [ItemFocusChangeFunc](#itemfocuschangefunc)                                                               | NO       | `ItemFocusChangeFunc`   | 2.0       |
+| item_enable_horizon_drag | Whether items can be dragged horizontally                                                                                                                 | NO       | `boolean`               | 2.0       |
+| item_drag_max_distance   | Maximum horizontal drag distance, positive values for left drag, negative for right drag                                                                    | NO       | `number`                | 2.0       |
+| snap_type               | Set snap mode (see snap_type snap mode)                                                                | NO       | `number`                | 4.0       |
+| item_common_focus       | Whether to show common focus (effective in key mode)                                                   | NO       | `boolean`               | 4.0       |
+| item_key_focus_change_func | Key event listener callback in key mode                                                            | NO       | `function`              | 4.0       |
+| enable_scroll_bar       | Create page indicator (arcScrollBar)                                                                   | NO       | `boolean`               | 4.0       |
+| view_index              | Set list item to visible area (Note: Round screen: center screen, Square screen: top of screen)        | NO       | `number`                | 4.0       |
 
 ### ItemConfig: object
 
-| Properties       | Description                                                                            | Required | Type               |
-| ---------------- | -------------------------------------------------------------------------------------- | -------- | ------------------ |
-| type_id          | The type ID of the item, not required if item_config_count is `0`, otherwise required. | NO       | `number`           |
-| item_height      | Item's height.                                                                         | YES      | `number`           |
-| item_bg_color    | Item's background color.                                                               | YES      | `number`           |
-| item_bg_radius   | The rounded corners of the item's background.                                          | YES      | `number`           |
-| text_view        | The structure array of textView, each item is a textView. See the description below.   | NO       | `Array<TextView>`  |
-| text_view_count  | Array's length of text_view.                                                           | NO       | `number`           |
-| image_view       | Array of imageView, each item is an imageView.See description below.                   | NO       | `Array<ImageView>` |
-| image_view_count | The length of the image_view array.                                                    | NO       | `number`           |
+| Properties       | Description                                                                                              | Required | Type               |
+| ---------------- | -------------------------------------------------------------------------------------------------------- | -------- | ------------------ |
+| type_id          | Current item type ID, optional when item_config_count is `0`, required otherwise                          | NO       | `number`           |
+| item_height      | Item height                                                                                               | YES      | `number`           |
+| item_bg_color    | Item background color                                                                                     | YES      | `number`           |
+| item_bg_radius   | Item background corner radius                                                                             | YES      | `number`           |
+| text_view        | Array of textView structures, each item is a `textView`, see explanation below                            | NO       | `Array<TextView>`  |
+| text_view_count  | Length of text_view array                                                                                 | NO       | `number`           |
+| image_view       | Array of imageView, each item is an `imageView`, see explanation below                                    | NO       | `Array<ImageView>` |
+| image_view_count | Length of image_view array                                                                                | NO       | `number`           |
 
 ### TextView: object
 
-All relative coordinates involving location information.
-
-| Properties | Description                                                                                                                                        | Required | Type      |
-| ---------- | -------------------------------------------------------------------------------------------------------------------------------------------------- | -------- | --------- |
-| x          | x coordinate, relative coordinate.                                                                                                                 | YES      | `number`  |
-| y          | y-coordinate, relative coordinate.                                                                                                                 | YES      | `number`  |
-| w          | The width of widget.                                                                                                                            | YES      | `number`  |
-| h          | The length of the widget.                                                                                                                       | YES      | `number`  |
-| color      | The color of text.                                                                                                                                 | NO       | `number`  |
-| text_size  | The size of text.                                                                                                                                  | NO       | `number`  |
-| key        | Data binding.See usage examples and data_array descriptions for details.                                                                           | YES      | `string`  |
-| action     | Whether or not to respond to the click event, after responding, the corresponding data `key` can be captured in `item_click_func`, default `false` | NO       | `boolean` |
+| Properties | Description                                                                                                                | Required | Type      |
+| ---------- | -------------------------------------------------------------------------------------------------------------------------- | -------- | --------- |
+| x          | The x-coordinate, relative coordinate                                                                                        | YES      | `number`  |
+| y          | The y-coordinate, relative coordinate                                                                                        | YES      | `number`  |
+| w          | Widget width                                                                                                                 | YES      | `number`  |
+| h          | Widget height                                                                                                                | YES      | `number`  |
+| color      | Text color                                                                                                                   | NO       | `number`  |
+| text_size  | Font size                                                                                                                    | NO       | `number`  |
+| key        | Data binding key, see examples and data_array description for details                                                        | YES      | `string`  |
+| action     | Whether to respond to click events, after response, the corresponding data `key` can be captured in `item_click_func`, default `false` | NO       | `boolean` |
 
 ```js
-// Each structure in the array is a textView.
 const text_view = [
-  { x: 100, y: 0, w: 100, h: 20, key: 'name', color: 0xffffff },
+  { x: 100, y: 0, w: 100, h: 20, key: 'name', color: 0xffffff, action: true },
   { x: 0, y: 30, w: 100, h: 100, key: 'age', color: 0xffffff, text_size: 20 }
 ]
 ```
 
 ### ImageView: object
 
-All relative coordinates involving location information.
-
-| Properties | Description                                                                                                                                        | Required | Type      |
-| ---------- | -------------------------------------------------------------------------------------------------------------------------------------------------- | -------- | --------- |
-| x          | x-coordinate, relative coordinate.                                                                                                                 | YES      | `number`  |
-| y          | y-coordinate, relative coordinate.                                                                                                                 | YES      | `number`  |
-| w          | The width of widget.                                                                                                                            | YES      | `number`  |
-| h          | The length of the widget.                                                                                                                       | YES      | `number`  |
-| color      | The color of text.                                                                                                                                 | NO       | `number`  |
-| key        | Data binding.See usage examples and data_array descriptions for details.                                                                           | YES      | `string`  |
-| action     | Whether or not to respond to the click event, after responding, the corresponding data `key` can be captured in `item_click_func`, default `false` | NO       | `boolean` |
+| Properties | Description                                                                                                                                | Required | Type      |
+| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------ | -------- | --------- |
+| x          | The x-coordinate, relative coordinate                                                                                                        | YES      | `number`  |
+| y          | The y-coordinate, relative coordinate                                                                                                        | YES      | `number`  |
+| w          | Widget width                                                                                                                                 | YES      | `number`  |
+| h          | Widget height                                                                                                                                | YES      | `number`  |
+| key        | Data binding key, see examples and data_array description for details                                                                        | YES      | `string`  |
+| action     | Whether to respond to click events, after response, the corresponding data `key` can be captured in `item_click_func`, default `false`       | NO       | `boolean` |
 
 ```js
-// Each structure in the array is an imageView.
-const image_view = [{ x: 0, y: 0, w: 20, h: 20, key: 'img_src' }]
-```
+// Each structure in the array is an imageView
+const image_view = [{ x: 0, y: 0, w: 20, h: 20, key: 'img_src', action: true }]
 
-### data_array Configuration
+### data_array
 
-The data arrays, TextView and ImageView, take values from each of the data_array objects based on the property name (configured via `key`) and render them to the view based on the corresponding configuration.
+Data arrays, TextView and ImageView take values from each data_array object based on property names (configured via `key`) and render them to the view based on the corresponding configuration.
 
 ```js
 const dataList = [
@@ -110,20 +108,22 @@ const dataList = [
 
 ### DataTypeConfig: object
 
-Set the item type of the list index.
+Set the type of list index item.
 
-| Properties | Description                                                    | Required | Type     |
-| ---------- | -------------------------------------------------------------- | -------- | -------- |
-| start      | Index of start                                                 | YES      | `number` |
-| end        | Index of the end                                               | YES      | `number` |
-| type_id    | The type configuration in item_config corresponds to `type_id` | YES      | `number` |
+Each index item uses the configuration of `item_config[0]` by default.
 
-The relationship between `start` and `end` is the closed interval `[start, end]`.
+| Properties | Description | Required | Type |
+| ------- | -------------------------------------- | -------- | -------- |
+| start | Starting index | YES | `number` |
+| end | Ending index | YES | `number` |
+| type_id | The `type_id` corresponding to the type configuration in item_config | YES | `number` |
+
+`start` and `end` form a closed interval `[start, end]`
 
 ```js
 {
 data_type_config:[
-  //The data representing the index from 0 to 2 uses the style with type_id of 2.
+  // Represents that data entries from index 0 to 2 use the style configuration with type_id 2
   {
   start: 0,
   end: 2,
@@ -145,11 +145,11 @@ data_type_config_count:2
 (list: ScrollList, index: number, data_key: string) => void
 ```
 
-| Parameters | description                                          | Type     |
-| ---------- | ---------------------------------------------------- | -------- |
-| list       | SCROLL_LIST Widget                                    | `any`    |
-| index      | Clicked item index                                     | `number` |
-| data_key   | Clicked data `key` name, by `key` can be located to the clicked area | `string` |
+| Parameters | Description | Type |
+| -------- | ---------------------------------------------------- | -------- |
+| list | SCROLL_LIST widget | `any` |
+| index | Clicked item index | `number` |
+| data_key | Clicked data `key` name, can locate the clicked area through `key` | `string` |
 
 ### ItemFocusChangeFunc
 
@@ -157,20 +157,35 @@ data_type_config_count:2
 (list: ScrollList, index: number, focus: boolean) => void
 ```
 
-| Parameters  | description              | Type      |
+| Parameters | Description | Type |
 | ----- | ----------------- | --------- |
-| list  | SCROLL_LIST Widget  | `any`     |
-| index | item index         | `number`  |
-| focus | item is in focus or not | `boolean` |
+| list | SCROLL_LIST widget | `any` |
+| index | Item index | `number` |
+| focus | Whether the item is in focus state | `boolean` |
 
-## Refresh data
+### snap_type Snap Mode
+
+| Snap Mode Enum Value | Description |
+| --- | --- |
+| SCROLL_LIST.snap_type.SNAPCENTER_ALL | Center snap |
+| SCROLL_LIST.snap_type.SNAPCENTER_EXCEPTTITLE | Center snap except for title |
+| SCROLL_LIST.snap_type.SNAP_TOP | Top snap |
+| SCROLL_LIST.snap_type.SNAP_BOTTOM | Bottom snap |
+
+```js
+import { SCROLL_LIST } from '@zos/ui'
+
+console.log(SCROLL_LIST.snap_type.SNAPCENTER_ALL)
+```
+
+## Refresh Data
 
 ```js
 import { createWidget, widget, prop } from '@zos/ui'
 
 const scrollList = createWidget(widget.SCROLL_LIST, Param)
 scrollList.setProperty(prop.UPDATE_DATA, {
-  //Reset configuration information
+  // Reset configuration information
   data_type_config: [
     {
       start: 0,
@@ -178,24 +193,74 @@ scrollList.setProperty(prop.UPDATE_DATA, {
       type_id: 2
     }
   ],
-  //Configuration the length of information
+  // Configuration information length
   data_type_config_count: 1,
-  //New data
+  // New data
   data_array: [
-    { img_src: rootPath + 'test/NOrmalbtn_h.png', name: 'Name', age: '12', like: 'type2' },
-    { img_src: rootPath + 'test/NOrmalbtn_h.png', name: 'namex1', age: '13', like: 'type2' },
-    { img_src: rootPath + 'test/NOrmalbtn_h.png', name: 'namex2', age: '13', like: 'type2' },
-    { img_src: rootPath + 'test/NOrmalbtn_h.png', name: 'namex3', age: '12', like: 'type2' },
-    { img_src: rootPath + 'test/NOrmalbtn_h.png', name: 'name666', age: '13', like: 'type2' }
+    { img_src: rootPath + 'test/normalbtn_h.png', name: 'Name', age: '12', like: 'type2' },
+    { img_src: rootPath + 'test/normalbtn_h.png', name: 'namex1', age: '13', like: 'type2' },
+    { img_src: rootPath + 'test/normalbtn_h.png', name: 'namex2', age: '13', like: 'type2' },
+    { img_src: rootPath + 'test/normalbtn_h.png', name: 'namex3', age: '12', like: 'type2' },
+    { img_src: rootPath + 'test/normalbtn_h.png', name: 'name666', age: '13', like: 'type2' }
   ],
-  //The length of the data
+  // Data length
   data_count: 5,
-  //Refresh the data and stay on the current page. If it is not set or set to 0, it will return to the top of the list.
+  // Stay on current page after data refresh, if not set or set to 0, it will return to the top of the list
   on_page: 1
 })
 ```
 
-## Code example
+## Update/Delete Single Item
+
+```js
+// Update a specific data
+scrollList.setProperty(prop.UPDATE_ITEM, {
+  index: gScrollListSelectIndex,
+  item_data: dataList2[gScrollListSelectIndex]
+})
+// Delete a specific data
+list.setProperty(prop.DELETE_ITEM, { index: delete_index })
+```
+
+## Control Horizontal Sliding Parameters of Single Item
+
+```js
+scrollList.setProperty(prop.MOVE_ITEM, {
+  start: 0, // Start row
+  end: 0, // End row
+  item_enable_horizon_drag: false, // Whether horizontal sliding is enabled
+  item_drag_max_distance: -200 // Horizontal sliding distance, only takes effect when enabled
+})
+```
+
+## Property Access Support List
+
+| 属性名                     | setProperty | getProperty | [setter](../gettersetter.mdx) | [getter](../gettersetter.mdx) |
+| -------------------------- | ----------- | ----------- | ----------------------------- | ----------------------------- |
+| x                          | N           | Y           | N                             | Y                             |
+| y                          | N           | Y           | N                             | Y                             |
+| w                          | N           | Y           | N                             | Y                             |
+| h                          | N           | Y           | N                             | Y                             |
+| item_space                 | N           | N           | N                             | N                             |
+| item_config                | N           | N           | N                             | N                             |
+| item_config_count          | N           | N           | N                             | N                             |
+| data_array                 | N           | N           | N                             | N                             |
+| data_count                 | N           | N           | N                             | N                             |
+| item_click_func            | N           | N           | N                             | N                             |
+| data_type_config           | N           | N           | N                             | N                             |
+| data_type_config_count     | N           | N           | N                             | N                             |
+| on_page                    | N           | N           | N                             | N                             |
+| snap_to_center             | N           | N           | N                             | N                             |
+| item_focus_change_func     | N           | N           | N                             | N                             |
+| item_enable_horizon_drag   | N           | N           | N                             | N                             |
+| item_drag_max_distance     | N           | N           | N                             | N                             |
+| snap_type                  | N           | N           | N                             | N                             |
+| item_common_focus          | N           | N           | N                             | N                             |
+| item_key_focus_change_func | N           | N           | N                             | N                             |
+| enable_scroll_bar          | N           | N           | N                             | N                             |
+| view_index                 | N           | N           | N                             | N                             |
+
+## 代码示例
 
 ```js
 import { createWidget, widget, prop } from '@zos/ui'

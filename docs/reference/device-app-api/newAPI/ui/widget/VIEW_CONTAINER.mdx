@@ -49,6 +49,24 @@ viewContainer.createWidget(xxx, xxx)
 | type       | `0`: the user is still touching the screen and dragging, `1`: the user has let go and is in an inertial scrolling effect | `number` | 2.0       |
 | yoffset    | y-axis offset pixels                                                                                                     | `number` | 3.0       |
 
+## Supported Property Access List
+
+| Properties           | setProperty | getProperty | [setter](../gettersetter.mdx) | [getter](../gettersetter.mdx) |
+| -------------------- | ----------- | ----------- | ----------------------------- | ----------------------------- |
+| x                    | Y           | Y           | Y                             | Y                             |
+| y                    | Y           | Y           | Y                             | Y                             |
+| w                    | Y           | Y           | Y                             | Y                             |
+| h                    | Y           | Y           | Y                             | Y                             |
+| pos_x                | Y           | Y           | Y                             | Y                             |
+| pos_y                | Y           | Y           | Y                             | Y                             |
+| page                 | N           | N           | N                             | Y                             |
+| modal                | N           | N           | N                             | Y                             |
+| z_index              | N           | N           | N                             | Y                             |
+| bounce               | N           | N           | N                             | Y                             |
+| scroll_enable        | N           | Y           | N                             | Y                             |
+| scroll_frame_func    | N           | N           | N                             | N                             |
+| scroll_complete_func | N           | N           | N                             | N                             |
+
 ## Code example
 
 The code runs as shown in the image at the top of the document, creating two VIEW_CONTAINER widgets

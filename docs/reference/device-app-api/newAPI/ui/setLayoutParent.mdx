@@ -1,0 +1,42 @@
+---
+title: setLayoutParent(parent)
+sidebar_label: setLayoutParent
+---
+
+> Supported from API_LEVEL `4.0`. For API compatibility, please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Sets the parent node of the current node.
+
+## Type
+
+```ts
+(parent: UIWidget) => void
+```
+
+## Parameters
+
+| Parameter | Type      | Description                   |
+| --------- | --------- | ----------------------------- |
+| parent    | `UIWidget` | Widget instance object participating in layout |
+
+## Example
+
+```js
+const container = hmUI.createWidget(hmUI.widget.VIRTUAL_CONTAINER, {
+  x: 0,
+  y: 0,
+  w: 480,
+  h: 480
+})
+
+const text = hmUI.createWidget(hmUI.widget.TEXT, {
+  text: 'Hello Zepp OS'
+})
+
+// Set text widget as child node of container
+text.setLayoutParent(container)
+```
+
+## Related References
+
+- [Flex Layout Guide](../../../../guides/framework/device/layout.md)

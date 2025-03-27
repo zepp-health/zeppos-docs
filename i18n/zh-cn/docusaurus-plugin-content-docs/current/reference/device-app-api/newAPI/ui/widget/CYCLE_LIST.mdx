@@ -57,6 +57,21 @@ const cycleList = createWidget(widget.CYCLE_LIST, Param)
 | index     | 失去/获取焦点 item 的索引 | `number` |
 | isFocus     | 是否获取焦点 | `boolean` |
 
+## 属性访问支持列表
+
+| 属性名                 | setProperty | getProperty | [setter](../gettersetter.mdx) | [getter](../gettersetter.mdx) |
+|------------------------|-------------|-------------|-------------------------------|-------------------------------|
+| x                     | Y           | Y           | Y                             | Y                             |
+| y                     | Y           | Y           | Y                             | Y                             |
+| w                     | Y           | Y           | Y                             | Y                             |
+| h                     | Y           | Y           | Y                             | Y                             |
+| data_array            | N           | N           | N                             | Y                             |
+| data_size             | N           | N           | N                             | Y                             |
+| item_bg_color         | N           | N           | N                             | Y                             |
+| item_height           | N           | N           | N                             | Y                             |
+| item_click_func       | N           | N           | Y                             | Y                             |
+| item_focus_change_func | N           | N           | Y                             | Y                             |
+
 ## 代码示例
 
 :::tip

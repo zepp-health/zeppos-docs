@@ -1,0 +1,31 @@
+---
+title: removeLayoutChild(child)
+sidebar_label: removeLayoutChild
+---
+
+> Supported from API_LEVEL `4.0`. For API compatibility, please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Removes the specified child node from the current node.
+
+## Type
+
+```ts
+(child: UIWidget) => void
+```
+
+## Parameters
+
+| Parameter | Type      | Description                 |
+| --------- | --------- | --------------------------- |
+| child     | `UIWidget` | Child widget instance to remove |
+
+## Example
+
+```js
+// Remove child widget from parent container
+container.removeLayoutChild(button)
+```
+
+## Related References
+
+- [Flex Layout Guide](../../../../guides/framework/device/layout.md)

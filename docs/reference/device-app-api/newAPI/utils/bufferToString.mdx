@@ -1,0 +1,33 @@
+# bufferToString
+
+> Start from API_LEVEL `4.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Convert `ArrayBuffer` type to string type.
+
+## Type
+
+```ts
+function bufferToString(buffer: InputBuffer): Result
+```
+
+## Parameters
+
+### InputBuffer
+
+| Type                     | Description                       |
+| ------------------------ | --------------------------------- |
+| <code>ArrayBuffer</code> | The `ArrayBuffer` to be converted |
+
+### Result
+
+| Type                | Description          |
+| ------------------- | -------------------- |
+| <code>string</code> | The converted string |
+
+## Example
+
+```js
+import { bufferToString } from '@zos/utils'
+
+const str = bufferToString(buffer)
+```

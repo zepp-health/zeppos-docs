@@ -1,0 +1,33 @@
+# stringToBuffer
+
+> API_LEVEL `4.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+将字符串类型转换为 `ArrayBuffer` 类型。
+
+## 类型
+
+```ts
+function stringToBuffer(str: InputString): Result
+```
+
+## 参数
+
+### InputString
+
+| 类型                | 说明             |
+| ------------------- | ---------------- |
+| <code>string</code> | 需要转换的字符串 |
+
+### Result
+
+| 类型                     | 说明                   |
+| ------------------------ | ---------------------- |
+| <code>ArrayBuffer</code> | 转换后的 `ArrayBuffer` |
+
+## 代码示例
+
+```js
+import { stringToBuffer } from '@zos/utils'
+
+const buffer = stringToBuffer('Hello Zepp OS')
+```

@@ -3,13 +3,13 @@ title: RADIO_GROUP
 sidebar_label: RADIO_GROUP
 ---
 
-> Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](../../../../../guides/framework/device/compatibility.md).
+> Start from API_LEVEL `2.0`. Please refer to [API_LEVEL](../../../../../guides/framework/device/compatibility.md).
 
 ![radio_group_sample](/img/api/radio_group_sample.jpg)
 
-Used to select a single result among multiple options. Each individual option needs to be created using `STATE_BUTTON`.
+Used to select a single option among multiple options. Each individual option is a `STATE_BUTTON` widget that needs to be created separately.
 
-## Create UI widget
+## Create UI Widget
 
 ```js
 import { createWidget, widget } from '@zos/ui'
@@ -18,19 +18,20 @@ const radioGroup = createWidget(widget.RADIO_GROUP, radioGroupParam)
 const stateButton = createWidget(widget.STATE_BUTTON, stateButtonParam)
 ```
 
-## Type
+## Types
 
 ### radioGroupParam: object
 
-| Properties   | Description                               | Required | Type        |
-| ------------ | ----------------------------------------- | -------- | ----------- |
-| x            | The x-coordinate of the widget.        | YES      | `number`    |
-| y            | The y-coordinate of the widget.        | YES      | `number`    |
-| w            | Width of the widget.                   | YES      | `number`    |
-| h            | The height of the widget.              | YES      | `number`    |
-| select_src   | The selected image of the widget.      | YES      | `string`    |
-| unselect_src | Unselected image of the widget.        | YES      | `string`    |
-| check_func   | Callback when the button's state changes. | NO       | `CheckFunc` |
+| Properties   | Description                               | Required | Type        | API_LEVEL |
+| ------------ | ----------------------------------------- | -------- | ----------- | --------- |
+| x            | The x-coordinate of the widget            | YES      | `number`    | 2.0       |
+| y            | The y-coordinate of the widget            | YES      | `number`    | 2.0       |
+| w            | Width of the widget                       | YES      | `number`    | 2.0       |
+| h            | Height of the widget                      | YES      | `number`    | 2.0       |
+| select_src   | Image displayed when widget is selected   | YES      | `string`    | 2.0       |
+| unselect_src | Image displayed when widget is unselected | YES      | `string`    | 2.0       |
+| check_func   | Callback when button state changes        | NO       | `CheckFunc` | 2.0       |
+| use_color    | Whether to display widget using colors    | NO       | `boolean`   | 4.0       |
 
 ### CheckFunc: function
 
@@ -40,18 +41,22 @@ const stateButton = createWidget(widget.STATE_BUTTON, stateButtonParam)
 
 | Parameters | Description                 | Type         |
 | ---------- | --------------------------- | ------------ |
-| radioGroup | The instance of radioGroup. | `RadioGroup` |
-| index      | The index of state change.  | `number`     |
-| checked    | Whether to check.           | `boolean`    |
+| radioGroup | The radioGroup instance     | `RadioGroup` |
+| index      | Index of the option        | `number`     |
+| checked    | Whether selected           | `boolean`    |
 
 ### StateButton: object
 
-| Properties | Description                                                              | Required | Type     |
-| ---------- | ------------------------------------------------------------------------ | -------- | -------- |
-| x          | The x-coordinate of the widget. Coordinates relative to `radioGroup`. | YES      | `number` |
-| y          | The y-coordinate of the widget. Coordinates relative to `radioGroup`. | YES      | `number` |
-| w          | Width of the widget.                                                  | YES      | `number` |
-| h          | The height of the widget.                                             | YES      | `number` |
+| Properties     | Description                                                  | Required | Type     | API_LEVEL |
+| -------------- | ------------------------------------------------------------ | -------- | -------- | --------- |
+| x              | The x-coordinate relative to radioGroup                      | YES      | `number` | 2.0       |
+| y              | The y-coordinate relative to radioGroup                      | YES      | `number` | 2.0       |
+| w              | Width of the widget                                          | YES      | `number` | 2.0       |
+| h              | Height of the widget                                         | YES      | `number` | 2.0       |
+| select_color   | Color when selected                                          | NO       | `number` | 4.0       |
+| unselect_color | Color when unselected                                        | NO       | `number` | 4.0       |
+| fill_width     | Button color display area width                              | NO       | `number` | 4.0       |
+| fill_height    | Button color display area height                             | NO       | `number` | 4.0       |
 
 :::caution
 The widget must be initialized once with `prop.INIT` to render the view
@@ -59,13 +64,41 @@ The widget must be initialized once with `prop.INIT` to render the view
 
 ### Prop Properties
 
-| Properties            | Support get/set | Type                               | Notes                                                                                                                                      |
-| --------------------- | --------------- | ---------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
-| `prop.INIT`      | set             | `object`                           | Initialize the widget and set the default selected items.                                                                               |
-| `prop.CHECKED`   | set/get         | `object` Return `boolean` when get | Set the selected child widget to the selected state, or use to get the selected state of the child widget, the value is of type `boolean`. |
-| `prop.UNCHECKED` | get             | `object`                           | Set the selected child widget to unselected state, or use to get the selected state of the child widget, the value is of type `boolean`.   |
+| Properties       | Support get/set | Type     | Notes                                                                                                                                    |
+| ---------------- | -------------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| `prop.INIT`      | set            | `object` | Initialize the component and set the default selected item                                                                                |
+| `prop.CHECKED`   | set/get        | `object` | Set the selected child widget to selected state, or get the selected state of the child widget, the value type is `boolean`               |
+| `prop.UNCHECKED` | get            | `object` | Set the selected child widget to unselected state, or get the selected state of the child widget, the value type is `boolean`             |
 
-## Code example
+## Property Access Support List
+
+### RADIO_GROUP
+
+| Property Name | setProperty | getProperty | [setter](../gettersetter.mdx) | [getter](../gettersetter.mdx) |
+| ------------ | ----------- | ----------- | ----------------------------- | ----------------------------- |
+| x            | Y           | Y           | Y                             | Y                             |
+| y            | Y           | Y           | Y                             | Y                             |
+| w            | Y           | Y           | Y                             | Y                             |
+| h            | Y           | Y           | Y                             | Y                             |
+| select_src   | N           | N           | N                             | N                             |
+| unselect_src | N           | N           | N                             | N                             |
+| check_func   | N           | N           | N                             | N                             |
+| use_color    | N           | N           | N                             | N                             |
+
+### STATE_BUTTON
+
+| Property Name   | setProperty | getProperty | [setter](../gettersetter.mdx) | [getter](../gettersetter.mdx) |
+| -------------- | ----------- | ----------- | ----------------------------- | ----------------------------- |
+| x              | Y           | Y           | Y                             | Y                             |
+| y              | Y           | Y           | Y                             | Y                             |
+| w              | Y           | Y           | Y                             | Y                             |
+| h              | Y           | Y           | Y                             | Y                             |
+| select_color   | N           | N           | N                             | N                             |
+| unselect_color | N           | N           | N                             | N                             |
+| fill_width     | N           | N           | N                             | N                             |
+| fill_height    | N           | N           | N                             | N                             |
+
+## Code Example
 
 :::tip
 Please refer to [Design Resources](../../../../related-resources/design-resources.mdx) for the image resources in the code example

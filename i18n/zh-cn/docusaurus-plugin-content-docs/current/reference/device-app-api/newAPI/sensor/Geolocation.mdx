@@ -196,7 +196,37 @@ onGnssChange(callback: (info: Info) => void): void
 取消 GNSS 信息变化事件监听回调函数
 
 ```ts
-offGnssChange(callback: (...args: any[]) => any): void
+offGnssChange(callback: (info: Geolocation.onGnssChange.Info) => void): void
+```
+
+### getEnabled
+
+> API_LEVEL `4.0`
+
+获取用户是否允许小程序使用定位功能
+
+```ts
+getEnabled(): boolean
+```
+
+### onEnableChange
+
+> API_LEVEL `4.0`
+
+注册用户定位授权状态变化事件监听回调函数
+
+```ts
+onEnableChange(callback: () => void): void
+```
+
+### offEnableChange
+
+> API_LEVEL `4.0`
+
+取消用户定位授权状态变化事件监听回调函数
+
+```ts
+offEnableChange(callback: () => void): void
 ```
 
 ## 代码示例

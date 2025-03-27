@@ -1,0 +1,28 @@
+# getAppIdByName
+
+> API_LEVEL `3.6` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+根据名称模糊匹配设备端已安装小程序的英文名称。
+
+## 类型
+
+```ts
+function getAppIdByName(name: string): Result
+```
+
+## 参数
+
+### Result
+
+| 类型                | 说明                                       |
+| ------------------- | ------------------------------------------ |
+| <code>number</code> | 匹配到的小程序 ID，未成功匹配时返回无效 ID |
+
+## 代码示例
+
+```js
+import { getAppIdByName } from '@zos/router'
+
+const appId = getAppIdByName('calculator')
+console.log(appId)
+```

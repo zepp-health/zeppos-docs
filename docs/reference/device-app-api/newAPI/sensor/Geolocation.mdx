@@ -196,7 +196,37 @@ onGnssChange(callback: (info: Info) => void): void
 Cancel the callback function for listening to the GNSS information change event
 
 ```ts
-offGnssChange(callback: (...args: any[]) => any): void
+offGnssChange(callback: (info: Geolocation.onGnssChange.Info) => void): void
+```
+
+### getEnabled
+
+> Start from API_LEVEL `4.0`
+
+Get whether the user allows the Mini Program to use location features
+
+```ts
+getEnabled(): boolean
+```
+
+### onEnableChange
+
+> Start from API_LEVEL `4.0`
+
+Register a callback function to listen for user location permission change events
+
+```ts
+onEnableChange(callback: () => void): void
+```
+
+### offEnableChange
+
+> Start from API_LEVEL `4.0`
+
+Cancel the callback function for listening to user location permission change events
+
+```ts
+offEnableChange(callback: () => void): void
 ```
 
 ## Example

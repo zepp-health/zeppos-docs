@@ -82,6 +82,46 @@ onChange(callback: () => void): void
 offChange(callback: () => void): void
 ```
 
+### setFreqMode
+
+> API_LEVEL `4.0`
+
+设置触发频率的模式，`mode` 值参考频率模式常量
+
+```ts
+setFreqMode(mode: number): void
+```
+
+#### 常量
+
+##### 频率模式
+
+| 常量               | 说明                       | API_LEVEL |
+| ------------------ | -------------------------- | --------- |
+| `FREQ_MODE_LOW`    | 低功耗模式，触发频率低     | 3.0       |
+| `FREQ_MODE_NORMAL` | 正常功耗模式，触发频率中等 | 3.0       |
+| `FREQ_MODE_HIGH`   | 高功耗模式，触发频率高     | 3.0       |
+
+### getFreqMode
+
+> API_LEVEL `4.0`
+
+获取触发频率模式，结果值参考频率模式常量
+
+```ts
+getFreqMode(): number
+```
+
+#### 常量
+
+##### 频率模式
+
+| 常量               | 说明                       | API_LEVEL |
+| ------------------ | -------------------------- | --------- |
+| `FREQ_MODE_LOW`    | 低功耗模式，触发频率低     | 3.0       |
+| `FREQ_MODE_NORMAL` | 正常功耗模式，触发频率中等 | 3.0       |
+| `FREQ_MODE_HIGH`   | 高功耗模式，触发频率高     | 3.0       |
+
 ## 代码示例
 
 ```js

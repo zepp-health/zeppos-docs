@@ -1,0 +1,40 @@
+---
+title: addLayoutChild()
+sidebar_label: addLayoutChild
+---
+
+> API_LEVEL `4.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+添加子节点到当前控件。
+
+## 类型
+
+```ts
+(child: UIWidget, index?: number) => void
+```
+
+## 参数
+
+| 参数  | 类型       | 必填 | 说明                 |
+| ----- | ---------- | ---- | -------------------- |
+| child | `UIWidget` | 是   | 要添加的子控件实例   |
+| index | `number`   | 否   | 指定插入位置的索引值 |
+
+## 示例
+
+```js
+import { createWidget, widget } from '@zos/ui'
+
+const container = createWidget(widget.VIRTUAL_CONTAINER)
+const button = createWidget(widget.BUTTON)
+
+// 添加子节点到容器末尾
+container.addLayoutChild(button)
+
+// 添加子节点到指定位置
+container.addLayoutChild(button, 0)
+```
+
+## 相关参考
+
+- [控件 layout 属性实现 Flex 布局](../../../../guides/framework/device/layout.md)

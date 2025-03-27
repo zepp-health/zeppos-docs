@@ -1,0 +1,42 @@
+---
+title: setLayoutParent(parent)
+sidebar_label: setLayoutParent
+---
+
+> API_LEVEL `4.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+设置当前节点的父节点。
+
+## 类型
+
+```ts
+(parent: UIWidget) => void
+```
+
+## 参数
+
+| 参数   | 类型      | 说明                   |
+| ------ | --------- | ---------------------- |
+| parent | `UIWidget` | 参与布局的控件实例对象 |
+
+## 示例
+
+```js
+const container = hmUI.createWidget(hmUI.widget.VIRTUAL_CONTAINER, {
+  x: 0,
+  y: 0,
+  w: 480,
+  h: 480
+})
+
+const text = hmUI.createWidget(hmUI.widget.TEXT, {
+  text: 'Hello Zepp OS'
+})
+
+// 将 text 控件设置为 container 的子节点
+text.setLayoutParent(container)
+```
+
+## 相关参考
+
+- [Flex 布局指南](../../../../guides/framework/device/layout.md)

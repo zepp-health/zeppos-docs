@@ -1,0 +1,32 @@
+---
+title: updateLayout()
+sidebar_label: updateLayout
+---
+
+> API_LEVEL `4.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+在修改控件树之后，用于重新渲染视图。
+
+## 类型
+
+```ts
+() => void
+```
+
+## 示例
+
+```js
+import { createWidget, widget, updateLayout } from '@zos/ui'
+
+const container = createWidget(widget.VIRTUAL_CONTAINER)
+const button = createWidget(widget.BUTTON)
+
+// 添加子节点
+container.addLayoutChild(button)
+
+// 更新布局，重新渲染视图
+updateLayout()
+```
+
+## 相关参考
+- [控件 layout 属性实现 Flex 布局](../../../../guides/framework/device/layout.md)

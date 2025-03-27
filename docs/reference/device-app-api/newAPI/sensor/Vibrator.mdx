@@ -11,10 +11,10 @@ Vibrator.
 
 ### start
 
-Start vibration. The passed `option` parameter only takes effect for this vibration. After API_LEVEL 3.6, it supports passing in vibration scene arrays and specifying repeat count, with default `repeat = 0` meaning no repea
+Start vibration, the'option 'parameter passed in only takes effect for this vibration, and supports passing in vibration scene arrays after API_LEVEL 3.6
 
 ```ts
-start(option?: Option | Array<Action>, repeat?: number): void
+start(option?: Option | Array<Action>): void
 ```
 
 #### Option
@@ -115,23 +115,7 @@ import { Vibrator, VIBRATOR_SCENE_DURATION } from '@zos/sensor'
 const vibrator = new Vibrator()
 vibrator.start()
 
-// Set scene
+// set scene
 vibrator.setMode(VIBRATOR_SCENE_DURATION)
 vibrator.start()
-
-// Another example using vibration array
-import { Vibrator } from '@zos/sensor'
-
-const vibrator = new Vibrator()
-const vibrationType = vibrator.getType()
-vibrator.start([
-  {
-    type: vibrationType.GENTLE_SHORT,
-    duration: 2000,
-  },
-  {
-    type: vibrationType.URGENT,
-    duration: 1000,
-  },
-])
 ```

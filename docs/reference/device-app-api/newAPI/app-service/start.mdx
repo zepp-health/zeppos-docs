@@ -18,11 +18,12 @@ function start(option: Option): Result
 
 ### Option
 
-| Property      | Type                                                      | Required | DefaultValue | Description                                                                              | API_LEVEL |
-| ------------- | --------------------------------------------------------- | -------- | ------------ | ---------------------------------------------------------------------------------------- | --------- |
-| file          | <code>string</code>                                       | Y        | -            | The App Service js file must be the one configured in the module app-service in app.json | 3.0       |
-| param         | <code>string</code>                                       | N        | -            | Parameters passed in when the js file is loaded by the backend service                   | 3.0       |
-| complete_func | <code>(callbackOption: CallbackOption) =&#62; void</code> | Y        | -            | Callback function for the completion of the backend service start                        | 3.0       |
+| Property      | Type                                                      | Required | DefaultValue      | Description                                                                                                                                                                                                          | API_LEVEL |
+| ------------- | --------------------------------------------------------- | -------- | ----------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------- |
+| file          | <code>string</code>                                       | Y        | -                 | The App Service js file must be the one configured in the module app-service in app.json                                                                                                                             | 3.0       |
+| param         | <code>string</code>                                       | N        | -                 | Parameters passed in when the js file is loaded by the backend service                                                                                                                                               | 3.0       |
+| complete_func | <code>(callbackOption: CallbackOption) =&#62; void</code> | Y        | -                 | Callback function for the completion of the backend service start                                                                                                                                                    | 3.0       |
+| reload        | <code>boolean</code>                                      | N        | <code>true</code> | Whether to persist and automatically restart following system running state changes. System state changes include: system restart, power saving mode entry/exit, system language changes, Mini Program updates, etc. | 4.0       |
 
 ### CallbackOption
 

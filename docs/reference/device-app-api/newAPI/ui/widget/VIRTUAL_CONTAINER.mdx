@@ -1,0 +1,142 @@
+---
+title: VIRTUAL_CONTAINER
+sidebar_label: VIRTUAL_CONTAINER
+---
+
+> Supported from API_LEVEL `4.0`. Please refer to [API_LEVEL](../../../../../guides/framework/device/compatibility.md) for compatibility.
+
+VIRTUAL_CONTAINER is a special container widget used to implement Flex layout. It serves as the root node of a Flex layout container, and the widgets inside the container will be arranged and rendered according to the rules of Flex layout.
+
+## Creating UI Widget
+
+```js
+import { createWidget, widget } from '@zos/ui'
+
+const container = createWidget(widget.VIRTUAL_CONTAINER, Param)
+```
+
+## Types
+
+### Param: object
+
+| Property | Description                                     | Required | Type     | API_LEVEL |
+| -------- | ----------------------------------------------- | -------- | -------- | --------- |
+| x        | Widget x coordinate, default `0`                | No       | `number` | 4.0       |
+| y        | Widget y coordinate, default `0`                | No       | `number` | 4.0       |
+| w        | Widget width, default screen width              | No       | `number` | 4.0       |
+| h        | Widget height, default screen height            | No       | `number` | 4.0       |
+| layout   | Layout properties for Flex layout configuration | No       | `object` | 4.0       |
+
+## Layout Properties
+
+VIRTUAL_CONTAINER widget supports Flex layout through the `layout` property. For detailed layout property configuration, please refer to [Widget Layout Properties for Flex Layout](../../../../../guides/framework/device/layout.md).
+
+## Instance Methods
+
+### setLayoutParent(parent)
+
+Sets the parent node of the current node.
+
+**Parameters**
+
+- `parent`: Widget instance participating in the layout
+
+**Return Value**
+
+None
+
+### addLayoutChild(child, index)
+
+Adds a child node to the current node.
+
+**Parameters**
+
+- `child`: Child widget instance to be added
+- `index`: Optional, specifies the insertion position index, defaults to adding at the end
+
+**Return Value**
+
+None
+
+### removeLayoutChild(child)
+
+Removes the specified child node from the current node.
+
+**Parameters**
+
+- `child`: Child widget instance to be removed
+
+**Return Value**
+
+None
+
+### updateLayoutStyle(style)
+
+Updates the layout style of the node.
+
+**Parameters**
+
+- `style`: Object containing layout properties
+
+**Return Value**
+
+None
+
+## Code Example
+
+The following example shows how to use VIRTUAL_CONTAINER to create a simple Flex layout:
+
+```js
+import { createWidget, widget } from '@zos/ui'
+
+// Create root container
+const root = createWidget(widget.VIRTUAL_CONTAINER, {
+  x: 0,
+  y: 0,
+  w: 480,
+  h: 480,
+  layout: {
+    display: 'flex',
+    'flex-flow': 'column',
+    'justify-content': 'center',
+    'align-items': 'center'
+  }
+})
+
+// Create child element
+const text = createWidget(widget.TEXT, {
+  text: 'Hello Zepp OS',
+  layout: {
+    width: '100%',
+    height: 'auto',
+    'font-size': '36'
+  }
+})
+
+// Set text widget as a child node of root
+text.setLayoutParent(root)
+
+// Create button
+const button = createWidget(widget.BUTTON, {
+  text: 'Click Me',
+  layout: {
+    width: '80%',
+    height: '60px',
+    'margin-top': '20px'
+  }
+})
+
+// Add button as a child node of root
+root.addLayoutChild(button)
+
+// Update layout style
+button.updateLayoutStyle({
+  'background-color': '#ff0000'
+})
+```
+
+## Notes
+
+1. VIRTUAL_CONTAINER widget is mainly used to implement Flex layout and needs to be used with the `layout` property and widget node operation APIs.
+2. When using Flex layout, it is recommended to use relative units (such as %, vw, vh, etc.) to implement responsive layouts.
+3. After updating the layout style, you may need to call `hmUI.updateLayout()` to refresh the layout.

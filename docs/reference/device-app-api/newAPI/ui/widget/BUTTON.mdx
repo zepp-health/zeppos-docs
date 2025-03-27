@@ -3,13 +3,13 @@ title: BUTTON
 sidebar_label: BUTTON
 ---
 
-> Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](../../../../../guides/framework/device/compatibility.md).
+> Supported from API_LEVEL `2.0`. For API compatibility, please refer to [API_LEVEL](../../../../../guides/framework/device/compatibility.md).
 
 ![button_sample](/img/api/button_sample.jpg)
 
 The button widget supports setting images and colors for normal and pressed states.
 
-## Create UI widget
+## Create UI Widget
 
 ```js
 import { createWidget, widget } from '@zos/ui'
@@ -17,37 +17,37 @@ import { createWidget, widget } from '@zos/ui'
 const button = createWidget(widget.BUTTON, Param)
 ```
 
-## Type
+## Types
 
 ### Param: object
 
-| Properties     | Description                                                                                                               | Required | Type        | API_LEVEL |
-| -------------- | ------------------------------------------------------------------------------------------------------------------------- | -------- | ----------- | --------- |
-| x              | The x-coordinate of widgets                                                                                               | YES      | `number`    | 2.0       |
-| y              | The y-coordinate of widgets                                                                                               | YES      | `number`    | 2.0       |
-| w              | The width of widgets;If set to `-1`, the size of normal_src is preferred, otherwise the default is `100`.                 | YES      | `number`    | 2.0       |
-| h              | The height of widgets;If set to `-1`, the size of normal_src is preferred, otherwise the default is `40`.                 | YES      | `number`    | 2.0       |
-| text           | Text displayed on the button.                                                                                             | YES      | `string`    | 2.0       |
-| color          | The color of the text.                                                                                                    | NO       | `number`    | 2.0       |
-| text_size      | The font size of the text.                                                                                                | NO       | `number`    | 2.0       |
-| press_src      | The image of background displayed when pressed. Need to be used with `normal_src`.                                        | NO       | `string`    | 2.0       |
-| normal_src     | Normal state of the background image. Need to be used with `press_src`.                                                   | NO       | `string`    | 2.0       |
-| press_color    | The color of background when pressed. Need to be used with `normal_color`.                                                | NO       | `number`    | 2.0       |
-| normal_color   | The color of normal state background. Need to be used with `press_color`.                                                 | NO       | `number`    | 2.0       |
-| radius         | Rounded corners when using color as button background.                                                                    | NO       | `number`    | 2.0       |
-| click_func     | Callbacks for button clicks.                                                                                              | NO       | `ClickFunc` | 2.0       |
-| longpress_func | Callbacks for button long press(700ms).                                                                                   | NO       | `ClickFunc` | 2.0       |
-| font           | Font path, resource storage path reference [directory structure](../../../../../guides/architecture/folder-structure.mdx) | NO       | `string`    | 3.6       |
+| Properties     | Description                                                                                              | Required | Type        | API_LEVEL |
+| -------------- | -------------------------------------------------------------------------------------------------------- | -------- | ----------- | --------- |
+| x              | The x-coordinate of the widget                                                                            | YES      | `number`    | 2.0       |
+| y              | The y-coordinate of the widget                                                                            | YES      | `number`    | 2.0       |
+| w              | The width of the widget. Note: If set to -1, it will prioritize adapting to normal_src size, default is 100 | YES      | `number`    | 2.0       |
+| h              | The height of the widget. Note: If set to -1, it will prioritize adapting to normal_src size, default is 40  | YES      | `number`    | 2.0       |
+| text           | Text displayed on the button                                                                               | NO       | `string`    | 2.0       |
+| color          | Text color                                                                                                | NO       | `number`    | 2.0       |
+| text_size      | Text font size                                                                                            | NO       | `number`    | 2.0       |
+| normal_color   | Background color in normal state, must be set together with `press_color` to take effect                   | NO       | `number`    | 2.0       |
+| press_color    | Background color when pressed, must be set together with `normal_color` to take effect                     | NO       | `number`    | 2.0       |
+| radius         | Corner radius when using color as button background                                                        | NO       | `number`    | 2.0       |
+| normal_src     | Background image in normal state, must be set together with `press_src` to take effect                     | NO       | `string`    | 2.0       |
+| press_src      | Background image when pressed, must be set together with `normal_src` to take effect                       | NO       | `string`    | 2.0       |
+| click_func     | Button click callback                                                                                      | NO       | `ClickFunc` | 2.0       |
+| longpress_func | Long press (700ms) button callback                                                                          | NO       | `ClickFunc` | 2.0       |
+| font           | Font path, refer to [Directory Structure](../../../../../guides/architecture/folder-structure.mdx)           | NO       | `string`    | 3.6       |
+| text_w         | Button text width                                                                                          | NO       | `number`    | 3.6       |
 
 :::caution
 
-- When neither the background nor the color of the button is set, the default click state background color is used (normal black click gray)
-- When both the background and color of the button are set, the background color is used instead of the background image.
-- The radius field is only useful when the background color is set
-- background color `normal_color` and `press_color` need to be set at the same time for the background color to take effect
-- The background color `normal_src` and the press background color `press_color` need to be set at the same time for the background color to take effect
-- When using [`widget.setProperty`](../setProperty.mdx) API to modify `BUTTON` widget properties, you need to pass in the required fields `x`, `y`, `w`, `h` (refer to the code example)
-
+- When neither background nor color is set for the button, it will use the default click state background color (normal black, clicked gray)
+- When both background and color are set for the button, background color takes precedence over background image
+- The radius field only works after setting the background color
+- Background color `normal_color` and pressed color `press_color` must be set together to take effect
+- Background image `normal_src` and pressed image `press_src` must be set together to take effect
+- When using [`widget.setProperty`](../setProperty.mdx) API to modify BUTTON widget properties, you must pass in the required fields `x`, `y`, `w`, `h` (refer to code example)
 :::
 
 ### ClickFunc
@@ -56,9 +56,30 @@ const button = createWidget(widget.BUTTON, Param)
 (button: Button) => void
 ```
 
-The `button` instance created by the `createWidget` method.
+The `button` instance created by the `createWidget` method
 
-## Code example
+## Property Access Support List
+
+| Property Name  | setProperty | getProperty | [setter](../gettersetter.mdx) | [getter](../gettersetter.mdx) |
+| -------------- | ----------- | ----------- | ----------------------------- | ----------------------------- |
+| x              | Y           | Y           | Y                             | Y                             |
+| y              | Y           | Y           | Y                             | Y                             |
+| w              | Y           | Y           | Y                             | Y                             |
+| h              | Y           | Y           | Y                             | Y                             |
+| text           | Y           | Y           | Y                             | Y                             |
+| color          | Y           | Y           | Y                             | Y                             |
+| text_size      | Y           | Y           | Y                             | Y                             |
+| font           | Y           | Y           | Y                             | Y                             |
+| press_src      | N           | N           | Y                             | Y                             |
+| normal_src     | N           | N           | Y                             | Y                             |
+| press_color    | N           | N           | Y                             | Y                             |
+| normal_color   | N           | N           | Y                             | Y                             |
+| radius         | Y           | Y           | Y                             | Y                             |
+| click_func     | N           | N           | Y                             | Y                             |
+| longpress_func | N           | N           | Y                             | Y                             |
+| text_w         | N           | N           | Y                             | Y                             |
+
+## Code Example
 
 :::tip
 Please refer to [Design Resources](../../../../related-resources/design-resources.mdx) for the image resources in the code example

@@ -3,17 +3,13 @@ title: FILL_RECT
 sidebar_label: FILL_RECT
 ---
 
-> Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](../../../../../guides/framework/device/compatibility.md).
+> Supported from API_LEVEL `2.0`. For API compatibility, please refer to [API_LEVEL](../../../../../guides/framework/device/compatibility.md).
 
 ![fill_rect_sample](/img/api/fill_rect_sample.jpg)
 
 The Fill Rectangle widget is used to draw a solid color rectangular area.
 
-:::caution
-At this stage, if you change the properties of the widget by means of `setProperty(prop.MORE, Params)`, you must pass `x`, `y`, `w`, `h` properties, see the sample code for details.
-:::
-
-## Create UI widget
+## Create UI Widget
 
 ```js
 import { createWidget, widget } from '@zos/ui'
@@ -21,22 +17,45 @@ import { createWidget, widget } from '@zos/ui'
 const fillRect = createWidget(widget.FILL_RECT, Param)
 ```
 
-## Type
+## Types
 
 ### Param: object
 
-| Properties | Description                                                                             | Required | Type     | API_LEVEL |
-| ---------- | --------------------------------------------------------------------------------------- | -------- | -------- | --------- |
-| x          | The x-coordinate of widget.                                                             | YES      | `number` | 3.0       |
-| y          | The y-coordinate of widget.                                                             | YES      | `number` | 3.0       |
-| w          | The width of widget.                                                                    | YES      | `number` | 3.0       |
-| h          | The height of the widget.                                                               | YES      | `number` | 3.0       |
-| color      | The color of widget.                                                                    | YES      | `number` | 3.0       |
-| radius     | The radius of widget.                                                                   | NO       | `number` | 3.0       |
-| angle      | The angle of widget.                                                                    | NO       | `number` | 3.0       |
-| alpha      | Transparency, value 0 - 255, default value is 255 for opacity, 0 for full transparency. | NO       | `number` | 3.0       |
+| Property    | Description                                                         | Required | Type     | API_LEVEL |
+| ----------- | ------------------------------------------------------------------- | -------- | -------- | --------- |
+| x           | The x-coordinate of the widget                                       | YES      | `number` | 2.0       |
+| y           | The y-coordinate of the widget                                       | YES      | `number` | 2.0       |
+| w           | The width of the widget                                             | YES      | `number` | 2.0       |
+| h           | The height of the widget                                            | YES      | `number` | 2.0       |
+| color       | The color of the widget                                             | YES      | `number` | 2.0       |
+| radius      | The corner radius of the rectangle                                  | NO       | `number` | 2.0       |
+| angle       | The rotation angle                                                  | NO       | `number` | 2.0       |
+| alpha       | Opacity, value range 0-255, default 255 (opaque), 0 (transparent)   | NO       | `number` | 3.0       |
+| pos_x       | Drawing area x offset (only works when angle%360!=0)                | NO       | `number` | 4.0       |
+| pos_y       | Drawing area y offset (only works when angle%360!=0)                | NO       | `number` | 4.0       |
+| rect_width  | Width of the drawing area (only works when angle%360!=0)            | NO       | `number` | 4.0       |
+| rect_height | Height of the drawing area (only works when angle%360!=0)           | NO       | `number` | 4.0       |
 
-## Code example
+## Property Access Support List
+
+| Property    | setProperty | getProperty | [setter](../gettersetter.mdx) | [getter](../gettersetter.mdx) |
+| ----------- | ----------- | ----------- | ----------------------------- | ----------------------------- |
+| x           | Y           | Y           | Y                             | Y                             |
+| y           | Y           | Y           | Y                             | Y                             |
+| w           | Y           | Y           | Y                             | Y                             |
+| h           | Y           | Y           | Y                             | Y                             |
+| color       | Y           | Y           | Y                             | Y                             |
+| radius      | Y           | Y           | Y                             | Y                             |
+| angle       | Y           | Y           | Y                             | Y                             |
+| pos_x       | N           | Y           | N                             | Y                             |
+| pos_y       | N           | Y           | N                             | Y                             |
+| rect_width  | N           | N           | N                             | Y                             |
+| rect_height | N           | N           | N                             | Y                             |
+| center_x    | Y           | Y           | Y                             | Y                             |
+| center_y    | Y           | Y           | Y                             | Y                             |
+| alpha       | Y           | Y           | Y                             | Y                             |
+
+## Code Example
 
 ```js
 import { createWidget, widget, prop } from '@zos/ui'

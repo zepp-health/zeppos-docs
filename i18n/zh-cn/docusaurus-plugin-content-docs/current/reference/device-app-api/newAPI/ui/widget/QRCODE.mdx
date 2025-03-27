@@ -21,7 +21,7 @@ const qrcode = createWidget(widget.QRCODE, Param)
 
 ### Param: object
 
-| 属性      | 说明             | 是否必须 | 类型     | 版本 |
+| 属性名      | 说明             | 是否必须 | 类型     | 版本 |
 | --------- | ---------------- | -------- | -------- | ---- |
 | content   | 二维码文本内容   | 是       | `string` | -    |
 | x         | 二维码 x 坐标    | 是       | `number` | -    |
@@ -33,6 +33,21 @@ const qrcode = createWidget(widget.QRCODE, Param)
 | bg_w      | 背景宽度         | 否       | `number` | -    |
 | bg_h      | 背景高度         | 否       | `number` | -    |
 | bg_radius | 背景区域圆角半径 | 否       | `number` | 2.1  |
+
+## 属性访问支持列表
+
+| 属性名    | setProperty | getProperty | [setter](../gettersetter.mdx) | [getter](../gettersetter.mdx) |
+| --------- | ----------- | ----------- | ----------------------------- | ----------------------------- |
+| x         | Y           | Y           | Y                             | Y                             |
+| y         | Y           | Y           | Y                             | Y                             |
+| w         | N           | N           | N                             | N                             |
+| h         | N           | N           | N                             | N                             |
+| bg_x      | N           | N           | N                             | N                             |
+| bg_y      | N           | N           | N                             | N                             |
+| bg_w      | N           | N           | N                             | N                             |
+| bg_h      | N           | N           | N                             | N                             |
+| bg_radius | N           | N           | N                             | N                             |
+| content   | N           | N           | N                             | N                             |
 
 ## 代码示例
 

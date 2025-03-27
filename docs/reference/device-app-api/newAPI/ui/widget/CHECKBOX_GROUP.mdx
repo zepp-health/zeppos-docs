@@ -3,13 +3,13 @@ title: CHECKBOX_GROUP
 sidebar_label: CHECKBOX_GROUP
 ---
 
-> Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](../../../../../guides/framework/device/compatibility.md).
+> Supported from API_LEVEL `2.0`. Please refer to [API_LEVEL](../../../../../guides/framework/device/compatibility.md) for API compatibility.
 
 ![check_group_sample](/img/api/check_group_sample.jpg)
 
-Used to select a single result among multiple options. Each individual option needs to be created using `STATE_BUTTON`.
+Used to select multiple options from a set of choices. Each option needs to be created using `STATE_BUTTON`.
 
-## Create UI widget
+## Create UI Widget
 
 ```js
 import { createWidget, widget } from '@zos/ui'
@@ -18,19 +18,20 @@ const checkGroup = createWidget(widget.CHECKBOX_GROUP, checkboxGroupParam)
 const stateButton = createWidget(widget.STATE_BUTTON, stateButtonParam)
 ```
 
-## Type
+## Types
 
 ### checkboxGroupParam: object
 
-| Properties   | Description                             | Required | Type        |
-| ------------ | --------------------------------------- | -------- | ----------- |
-| x            | The x-coordinate of widgets.         | YES      | `number`    |
-| y            | The y-coordinate of widgets.         | YES      | `number`    |
-| w            | The width of widgets.                | YES      | `number`    |
-| h            | The height of widgets.               | YES      | `number`    |
-| select_src   | The selected image of the widgets.   | YES      | `string`    |
-| unselect_src | The unselected image of the widgets. | YES      | `string`    |
-| check_func   | Callback when button state changes.     | NO       | `CheckFunc` |
+| Properties   | Description                             | Required | Type        | API_LEVEL |
+| ------------ | --------------------------------------- | -------- | ----------- | --------- |
+| x            | The x-coordinate of the widget          | YES      | `number`    | 2.0       |
+| y            | The y-coordinate of the widget          | YES      | `number`    | 2.0       |
+| w            | The width of the widget                 | YES      | `number`    | 2.0       |
+| h            | The height of the widget                | YES      | `number`    | 2.0       |
+| select_src   | Image displayed when selected           | YES      | `string`    | 2.0       |
+| unselect_src | Image displayed when unselected         | YES      | `string`    | 2.0       |
+| check_func   | Callback when button state changes      | NO       | `CheckFunc` | 2.0       |
+| use_color    | Whether to display widget using colors  | NO       | `boolean`   | 4.0       |
 
 ### CheckFunc: function
 
@@ -40,32 +41,64 @@ const stateButton = createWidget(widget.STATE_BUTTON, stateButtonParam)
 
 | Parameters    | Description                     | Type            |
 | ------------- | ------------------------------- | --------------- |
-| checkboxGroup | The instance of checkboxGroup.      | `CheckboxGroup` |
-| index         | Subview index for state changes | `number`        |
-| checked       | Check or not                    | `boolean`       |
+| checkboxGroup | The `checkboxGroup` instance    | `CheckboxGroup` |
+| index         | Index of the option            | `number`        |
+| checked       | Whether selected               | `boolean`       |
 
-### StateButton
+### StateButton: object
 
-| Properties | Required | Type     | Notes                                                                    |
-| ---------- | -------- | -------- | ------------------------------------------------------------------------ |
-| x          | YES      | `number` | The x-coordinate of widgets. Coordinates relative to `checkboxGroup`. |
-| y          | YES      | `number` | The y-coordinate of widgets. Coordinates relative to `checkboxGroup`. |
-| w          | YES      | `number` | The width of widgets.                                                 |
-| h          | YES      | `number` | The height of widgets.                                                |
-
-:::caution
-The widget must be initialized once with `prop.INIT` to render the view
-:::
+| Properties     | Description                                          | Required | Type     | API_LEVEL |
+| -------------- | ---------------------------------------------------- | -------- | -------- | --------- |
+| x              | The x-coordinate relative to `radioGroup`            | YES      | `number` | 2.0       |
+| y              | The y-coordinate relative to `radioGroup`            | YES      | `number` | 2.0       |
+| w              | The width of the widget                              | YES      | `number` | 2.0       |
+| h              | The height of the widget                             | YES      | `number` | 2.0       |
+| select_color   | Color when selected                                  | NO       | `number` | 4.0       |
+| unselect_color | Color when unselected                                | NO       | `number` | 4.0       |
+| fill_width     | Button color display area width                      | NO       | `number` | 4.0       |
+| fill_height    | Button color display area height                     | NO       | `number` | 4.0       |
 
 ### Prop Properties
 
-| Properties            | Supports get/set | Type                                     | Notes                                                                   |
-| --------------------- | ---------------- | ---------------------------------------- | ----------------------------------------------------------------------- |
-| `prop.INIT`      | set              | `object`                                 | Initialize the widget and set the default checkbox                   |
-| `prop.CHECKED`   | set/get          | `object`(Returns the bool type when get) | Set selected sub-widget.Get the selected state of the sub-widget. |
-| `prop.UNCHECKED` | set              | `object`                                 | Set unchecked sub-widget.                                            |
+| Properties         | Supports get/set | Type     | Notes                                                                   |
+| ------------------ | --------------- | -------- | ----------------------------------------------------------------------- |
+| `prop.INIT`        | set             | `object` | Initialize the widget and set default selected item                      |
+| `prop.CHECKED`     | set/get         | `object` | Set/get selected sub-widget state, returns boolean type when getting    |
+| `prop.UNCHECKED`   | set             | `object` | Set sub-widget to unselected state                                      |
 
-## Code example
+:::caution
+The widget must be initialized once with `prop.INIT` to render the view. Currently, initialization only supports single option parameter passing. To initialize multiple options, use `prop.CHECKED` to set them.
+:::
+
+## Property Access Support List
+
+### CHECKBOX_GROUP
+
+| Property     | setProperty | getProperty | [setter](../gettersetter.mdx) | [getter](../gettersetter.mdx) |
+| ------------ | ----------- | ----------- | ----------------------------- | ----------------------------- |
+| x            | Y           | Y           | Y                             | Y                             |
+| y            | Y           | Y           | Y                             | Y                             |
+| w            | Y           | Y           | Y                             | Y                             |
+| h            | Y           | Y           | Y                             | Y                             |
+| select_src   | N           | N           | N                             | N                             |
+| unselect_src | N           | N           | N                             | N                             |
+| check_func   | N           | N           | N                             | N                             |
+| use_color    | N           | N           | N                             | N                             |
+
+### STATE_BUTTON
+
+| Property       | setProperty | getProperty | [setter](../gettersetter.mdx) | [getter](../gettersetter.mdx) |
+| -------------- | ----------- | ----------- | ----------------------------- | ----------------------------- |
+| x              | Y           | Y           | Y                             | Y                             |
+| y              | Y           | Y           | Y                             | Y                             |
+| w              | Y           | Y           | Y                             | Y                             |
+| h              | Y           | Y           | Y                             | Y                             |
+| select_color   | N           | N           | N                             | N                             |
+| unselect_color | N           | N           | N                             | N                             |
+| fill_width     | N           | N           | N                             | N                             |
+| fill_height    | N           | N           | N                             | N                             |
+
+## Code Example
 
 :::tip
 Please refer to [Design Resources](../../../../related-resources/design-resources.mdx) for the image resources in the code example

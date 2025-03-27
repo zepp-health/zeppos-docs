@@ -22,15 +22,16 @@ const stateButton = createWidget(widget.STATE_BUTTON, stateButtonParam)
 
 ### checkboxGroupParam: object
 
-| 属性         | 说明                       | 是否必须 | 类型        |
-| ------------ | -------------------------- | -------- | ----------- |
-| x            | 控件 x 坐标                | 是       | `number`    |
-| y            | 控件 y 坐标                | 是       | `number`    |
-| w            | 控件显示宽度               | 是       | `number`    |
-| h            | 控件显示高度               | 是       | `number`    |
-| select_src   | 控件选中状态所显示的图片   | 是       | `string`    |
-| unselect_src | 控件未选中状态所显示的图片 | 是       | `string`    |
-| check_func   | 按钮状态改变时的回调       | 否       | `CheckFunc` |
+| 属性         | 说明                       | 是否必须 | 类型        | API_LEVEL |
+| ------------ | -------------------------- | -------- | ----------- | --------- |
+| x            | 控件 x 坐标                | 是       | `number`    | 2.0       |
+| y            | 控件 y 坐标                | 是       | `number`    | 2.0       |
+| w            | 控件显示宽度               | 是       | `number`    | 2.0       |
+| h            | 控件显示高度               | 是       | `number`    | 2.0       |
+| select_src   | 控件选中状态所显示的图片   | 是       | `string`    | 2.0       |
+| unselect_src | 控件未选中状态所显示的图片 | 是       | `string`    | 2.0       |
+| check_func   | 按钮状态改变时的回调       | 否       | `CheckFunc` | 2.0       |
+| use_color    | 是否通过颜色来显示控件     | 否       | `boolean`   | 4.0       |
 
 ### CheckFunc: function
 
@@ -46,12 +47,16 @@ const stateButton = createWidget(widget.STATE_BUTTON, stateButtonParam)
 
 ### StateButton: object
 
-| 属性 | 是否必须 | 类型     | 备注                                    |
-| ---- | -------- | -------- | --------------------------------------- |
-| x    | 是       | `number` | 控件 x 坐标，相对于 `checkboxGroup` 的坐标 |
-| y    | 是       | `number` | 控件 y 坐标，相对于 `checkboxGroup` 的坐标 |
-| w    | 是       | `number` | 控件显示宽度                            |
-| h    | 是       | `number` | 控件显示高度                            |
+| 属性           | 说明                                    | 是否必须 | 类型     | API_LEVEL |
+| -------------- | --------------------------------------- | -------- | -------- | --------- |
+| x              | 控件 x 坐标，相对于 `radioGroup` 的坐标 | 是       | `number` | 2.0       |
+| y              | 控件 y 坐标, 相对于 `radioGroup` 的坐标 | 是       | `number` | 2.0       |
+| w              | 控件显示宽度                            | 是       | `number` | 2.0       |
+| h              | 控件显示高度                            | 是       | `number` | 2.0       |
+| select_color   | 选中的颜色                              | 否       | `number` | 4.0       |
+| unselect_color | 非选中颜色                              | 否       | `number` | 4.0       |
+| fill_width     | Button 颜色显示区域                     | 否       | `number` | 4.0       |
+| fill_height    | Button 颜色显示区域                     | 否       | `number` | 4.0       |
 
 ### Prop 属性
 
@@ -64,6 +69,34 @@ const stateButton = createWidget(widget.STATE_BUTTON, stateButtonParam)
 :::caution
 必须要对控件进行一次初始化设置 `prop.INIT`，才能渲染视图。目前初始化只支持单个选项参数传递，如需初始化设置多个选项，可以通过 `prop.CHECKED` 来进行设置
 :::
+
+## 属性访问支持列表
+
+### CHECKBOX_GROUP
+
+| 属性名       | setProperty | getProperty | [setter](../gettersetter.mdx) | [getter](../gettersetter.mdx) |
+| ------------ | ----------- | ----------- | ----------------------------- | ----------------------------- |
+| x            | Y           | Y           | Y                             | Y                             |
+| y            | Y           | Y           | Y                             | Y                             |
+| w            | Y           | Y           | Y                             | Y                             |
+| h            | Y           | Y           | Y                             | Y                             |
+| select_src   | N           | N           | N                             | N                             |
+| unselect_src | N           | N           | N                             | N                             |
+| check_func   | N           | N           | N                             | N                             |
+| use_color    | N           | N           | N                             | N                             |
+
+### STATE_BUTTON
+
+| 属性名         | setProperty | getProperty | [setter](../gettersetter.mdx) | [getter](../gettersetter.mdx) |
+| -------------- | ----------- | ----------- | ----------------------------- | ----------------------------- |
+| x              | Y           | Y           | Y                             | Y                             |
+| y              | Y           | Y           | Y                             | Y                             |
+| w              | Y           | Y           | Y                             | Y                             |
+| h              | Y           | Y           | Y                             | Y                             |
+| select_color   | N           | N           | N                             | N                             |
+| unselect_color | N           | N           | N                             | N                             |
+| fill_width     | N           | N           | N                             | N                             |
+| fill_height    | N           | N           | N                             | N                             |
 
 ## 代码示例
 
