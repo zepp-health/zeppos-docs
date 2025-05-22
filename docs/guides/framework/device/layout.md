@@ -94,15 +94,28 @@ Sets the parent node of the current node.
 **Example**
 
 ```js
+import { createWidget, widget, align } from '@zos/ui'
+
 const container = createWidget(widget.VIRTUAL_CONTAINER, {
-  x: 0,
-  y: 0,
-  w: 480,
-  h: 480
+  layout: {
+    x: '0',
+    y: '0',
+    width: '100%',
+    height: '100%',
+    display: 'flex',
+    'justify-content': 'center',
+    'align-items': 'center',
+  },
 })
 
 const text = createWidget(widget.TEXT, {
-  text: 'Hello Zepp OS'
+  text: 'Hello Zepp OS',
+  align_h: align.CENTER_H,
+  align_v: align.CENTER_V,
+  layout:{
+    width:'200',
+    height:'100',
+  }
 })
 
 // Set text widget as child node of container

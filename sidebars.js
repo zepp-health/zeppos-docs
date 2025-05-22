@@ -666,7 +666,8 @@ module.exports = {
                     'reference/device-app-api/newAPI/ui/widget/SCROLL_LIST',
                     'reference/device-app-api/newAPI/ui/widget/VIEW_CONTAINER',
                     'reference/device-app-api/newAPI/ui/widget/CYCLE_LIST',
-                    'reference/device-app-api/newAPI/ui/widget/CYCLE_IMAGE_TEXT_LIST'
+                    'reference/device-app-api/newAPI/ui/widget/CYCLE_IMAGE_TEXT_LIST',
+                    'reference/device-app-api/newAPI/ui/widget/VIRTUAL_CONTAINER',
                   ]
                 }
               ]
