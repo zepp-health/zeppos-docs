@@ -1,11 +1,11 @@
 ---
-title: Zepp OS 4.0 New Features
-sidebar_label: Zepp OS 4.0 New Features
+title: API_LEVEL 4.0 New Features
+sidebar_label: API_LEVEL 4.0 New Features
 ---
 
 import useBaseUrl from '@docusaurus/useBaseUrl'
 
-# Zepp OS 4.0 New Features
+# API_LEVEL 4.0 New Features
 
 API_LEVEL 4.0 brings several important updates and new features, providing developers with more powerful tools and a more flexible development experience. This article will introduce the main new features and improvements.
 
