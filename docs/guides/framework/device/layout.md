@@ -160,7 +160,7 @@ container.removeLayoutChild(button)
 
 Updates the node's layout style.
 
-### [openInspector](../../../reference/device-app-api/newAPI/ui/openInspector.mdx)
+### [openInspector()](../../../reference/device-app-api/newAPI/ui/openInspector.mdx)
 
 Used in simulator to draw boundary rectangles for all widgets participating in layout, helping developers debug layout issues. This method should be called after the `build()` lifecycle.
 
