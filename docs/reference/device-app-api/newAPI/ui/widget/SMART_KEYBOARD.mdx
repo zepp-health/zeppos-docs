@@ -19,10 +19,10 @@ import { createKeyboard, inputType } from '@zos/ui'
 const keyboard = createKeyboard({
   // Required parameters
   inputType: inputType.NUM,
-  onComplete: (result) => {
+  onComplete: (keyboardWidget, result) => {
     /* Handle input completion */
   },
-  onCancel: (result) => {
+  onCancel: (keyboardWidget, result) => {
     /* Handle input cancellation */
   },
 
@@ -79,11 +79,11 @@ Page({
   createKeyboard() {
     createKeyboard({
       inputType: inputType.NUM,
-      onComplete: (result) => {
+      onComplete: (_, result) => {
         console.log('Input content:', result.data)
         this.destroyKeyboard()
       },
-      onCancel: (result) => {
+      onCancel: (_, result) => {
         console.log('Input cancelled')
         this.destroyKeyboard()
       },
