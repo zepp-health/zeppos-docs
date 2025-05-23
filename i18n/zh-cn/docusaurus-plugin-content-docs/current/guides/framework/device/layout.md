@@ -160,7 +160,7 @@ container.removeLayoutChild(button)
 
 更新节点的布局样式。
 
-### [openInspector](../../../reference/device-app-api/newAPI/ui/openInspector.mdx)
+### [openInspector()](../../../reference/device-app-api/newAPI/ui/openInspector.mdx)
 
 用于在模拟器中绘制所有参与布局的 widget 的边界矩形，帮助开发者调试布局问题。此方法需要在 `build()` 生命周期之后调用。
 
