@@ -44,11 +44,11 @@ Negative Screen page scrolls down to the bottom => Click on the settings icon =>
 ### Comparison
 
 - Widget
-  - More focus on quick, providing quick access portal
-  - The drawing area is more compact and can only hold core information
-- Shortcut Cards
   - More focus on "information display", can carry more information
   - More suitable for graphical presentations
+- Shortcut Cards
+  - More focus on quick access, for quickly starting mini programs
+  - The drawing area is more compact and can only hold core information
 
 ## Zepp OS 2.0 Open Related JS API
 
