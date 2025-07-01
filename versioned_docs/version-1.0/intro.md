@@ -17,10 +17,14 @@ Select the document language and document version according to the language pref
 ![version_change](/img/version_change.jpg)
 :::
 
-:::tip
+:::info
 Click here to follow the Zepp OS guide [Quick Start](./guides/quick-start.mdx)
 :::
 
-:::tip
+:::info
 For more community support, please refer to [Developer Community](./guides/community.md)
+:::
+
+:::info
+For information about devices running Zepp OS, please refer to [Device Basic Information](./reference/related-resources/device-list.mdx)
 :::
