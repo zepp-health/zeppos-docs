@@ -1,27 +1,91 @@
+To design a **custom watch face** for the **Mibro X1** that includes a **bike speedometer**, here’s a complete concept with both aesthetics and functionality in mind.
+
 ---
-title: Quick Start
-sidebar_label: Quick Start
+
+### ✅ **Watch Face Design Concept: "Cyclo-X1"**
+
+#### 🎯 **Theme**: Sporty & Functional
+
+#### 🕐 **Style**: Analog-Digital Hybrid (Modern Speedometer Look)
+
 ---
 
-import useBaseUrl from '@docusaurus/useBaseUrl'
+### 🔧 **Key Features to Include**
 
-The quick start tutorial is divided into the following sections:
+#### 1. **Central Analog Clock**
 
-1. [Environmental Preparation](./quick-start/environment.mdx)
-2. [Creating a Project](./quick-start/create.mdx)
-3. [Running Simulator](./quick-start/simulator-dev.mdx)
-4. [Coding and Debugging](./quick-start/development.mdx)
-5. [Preview on a Watch](./quick-start/preview.mdx)
+* **Hour and Minute hands** with bold, neon color (e.g., red/green)
+* **Second hand** in a contrasting color (e.g., white)
 
-Zepp OS team also provide video tutorials for this section, please refer to the [Youtube - Zepp OS Program Environment Setup and Development Beginner's Guide](https://www.youtube.com/watch?v=RPyTge0kjWQ)
+#### 2. **Digital Speedometer Display**
 
-```mdx-code-block
-import LiteYouTubeEmbed from 'react-lite-youtube-embed';
+* Large **digital speed display** in the top-middle or bottom-center (in km/h or mph)
+* Speed pulled from GPS (if supported by paired phone or watch sensors)
+* Range: 0–99+ km/h
 
-<div className="video-container">
-  <LiteYouTubeEmbed
-    id="RPyTge0kjWQ"
-    title="Zepp OS Program Environment Setup and Development Beginner's Guide"
-  />
-</div>
+#### 3. **Speed Ring (Circular Arc Meter)**
+
+* A half or full **ring arc around the screen**, indicating speed visually like a tachometer
+* Colored segments:
+
+  * Green (0–20 km/h)
+  * Yellow (20–40 km/h)
+  * Red (40+ km/h)
+
+#### 4. **Odometer Section**
+
+* Small area below speed display showing **total ride distance** (e.g., "12.3 km")
+
+#### 5. **Time & Date**
+
+* Digital **time (HH\:MM)** in upper right
+* **Date (e.g., Tue, 16 Jul)** in upper left
+
+#### 6. **Battery Level**
+
+* Small icon in the corner or ring-style meter around the face
+* Optional: color-coded (green/yellow/red)
+
+#### 7. **Weather Indicator (Optional)**
+
+* Icon + temperature (°C) in a corner
+
+---
+
+### 🎨 **Design Style**
+
+* **Background**: Black or carbon-fiber texture for better OLED contrast
+* **Color Scheme**: Neon colors (green, blue, red) on dark background
+* **Font**: Digital or LCD-style fonts for speed, smooth sans-serif for time/date
+
+---
+
+### 🖼️ Sketch / Visual Preview (Text-Based Mockup)
+
 ```
+     [ Tue, 16 Jul ]        [ 82% 🔋 ]
+
+           🚴‍♂️  SPEED
+          ┌───────────┐
+          │   23.8    │   ← Speed (km/h)
+          │   km/h    │
+          └───────────┘
+
+    ⟳────────────⟳         ← Arc ring (color-coded speed)
+      12.3 km               ← Odometer
+
+      🕒 Analog Hands (Center)
+
+           14:36           ← Digital time (optional)
+```
+
+---
+
+### 📱 Compatibility Notes for Mibro X1:
+
+* The Mibro X1 supports custom watch faces via the **Mibro Fit app**.
+* Speedometer data may need to be fetched via the **phone’s GPS** using a third-party fitness or biking app if the watch doesn’t have GPS.
+
+---
+
+Would you like me to generate a **graphical version (image)** of this watch face? I can design one visually so you can visualize or even use it as a reference for customization.
