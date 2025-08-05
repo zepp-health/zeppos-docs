@@ -29,10 +29,39 @@ sidebar_label: createWidget
 
 ### WIDGET
 
-| 说明     | 类型     |
-| -------- | -------- |
+| 说明        | 类型     |
+| ----------- | -------- |
 | UI 控件对象 | `object` |
 
 ## 代码示例
 
 > 参考具体 UI 控件的代码示例
+
+## 控件显示级别
+
+表盘有三种状态：息屏、正常显示、可编辑。
+
+创建控件时可以设置控件显示级别。
+
+| 状态     | 属性                        |
+| -------- | --------------------------- |
+| 正常显示 | hmUI.show_level.ONLY_NORMAL |
+| 息屏     | hmUI.show_level.ONAL_AOD    |
+| 编辑     | hmUI.show_level.ONLY_EDIT   |
+
+### 示例代码
+
+必须在创建控件的时候传入才会生效
+
+```js
+const widget = hmUI.createWidget(hmUI.widget.IMG, {
+  x: 158,
+  y: 218,
+  w: 112,
+  h: 136,
+  alpha: 100,
+  src: 'a.png',
+  // 表示只在正常表盘和息屏下显示，在可编辑状态下会不创建
+  show_level: hmUI.show_level.ONLY_NORMAL | hmUI.show_level.ONAL_AOD
+})
+```
