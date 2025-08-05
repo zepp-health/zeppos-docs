@@ -36,3 +36,32 @@ Create UI widgets.
 ## Code examples
 
 > Reference to a widget example.
+
+## Widget Display Level
+
+The watch face has three states: screen off, normal display, and editable.
+
+You can set the widget display level when creating widgets.
+
+| State | Property |
+| -------- | --------------------------- |
+| Normal Display | hmUI.show_level.ONLY_NORMAL |
+| Screen Off | hmUI.show_level.ONAL_AOD |
+| Edit | hmUI.show_level.ONLY_EDIT |
+
+### Example Code
+
+The display level must be passed when creating the widget to take effect
+
+```js
+const widget = hmUI.createWidget(hmUI.widget.IMG, {
+  x: 158,
+  y: 218,
+  w: 112,
+  h: 136,
+  alpha: 100,
+  src: 'a.png',
+  // Only displayed in normal watchface and screen-off states, not created in editable state
+  show_level: hmUI.show_level.ONLY_NORMAL | hmUI.show_level.ONAL_AOD
+})
+```

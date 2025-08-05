@@ -1,0 +1,26 @@
+---
+title: DELEGATE 表盘生命周期
+sidebar_label: DELEGATE 表盘生命周期
+---
+
+## 表盘生命周期
+
+通过 DELEGATE 控件可以监听表盘生命周期，这是一个虚拟的控件，不会绘制任何内容，仅做生命周期感知。
+
+| 回调函数名称 | 解释                                                      |
+| ------------ | --------------------------------------------------------- |
+| resume_call  | 表盘首次启动，从其他界面回到表盘                             |
+| pause_call   | 滑动到副屏、通知 控制中心，进入应用列表，从表盘进入其他应用 |
+
+## 代码示例
+
+```js
+const widgetDelegate = hmUI.createWidget(hmUI.widget.WIDGET_DELEGATE, {
+  resume_call: function () {
+    console.log('Watchface resume')
+  },
+  pause_call: function () {
+    console.log('Watchface pause')
+  }
+})
+```

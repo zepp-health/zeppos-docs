@@ -57,9 +57,10 @@ const deviceAPIList = [
           { path: '/hmUI/widget/data_type', targets: [1] },
           { path: '/hmUI/widget/IMG_CLICK', targets: [1] },
           { path: '/hmUI/widget/GRADKIENT_POLYLINE', targets: [1] },
+          { path: '/hmUI/widget/DELEGATE', targets: [1] },
           { path: '/hmUI/widget/edit_watchface', targets: [1] },
           { path: '/hmUI/widget/PICK_DATE', targets: [0] },
-          { path: '/hmUI/widget/QRCODE', targets: [0] }
+          { path: '/hmUI/widget/QRCODE', targets: [0] },
         ]
       },
       '/hmUI/createWidget',

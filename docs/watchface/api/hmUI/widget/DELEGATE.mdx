@@ -1,0 +1,26 @@
+---
+title: DELEGATE
+sidebar_label: DELEGATE
+---
+
+## Watchface Lifecycle
+
+The DELEGATE widget can be used to monitor the Watchface lifecycle. It is a virtual widget that does not render any content and only handles lifecycle events.
+
+| Callback Name | Description |
+| ------------ | ----------- |
+| resume_call  | Triggered when Watchface first launches or returns from other screens |
+| pause_call   | Triggered when sliding to secondary widget, notifications, shortcut cards, entering app list, or launching other apps from Watchface |
+
+## Code Example
+
+```js
+const widgetDelegate = hmUI.createWidget(hmUI.widget.WIDGET_DELEGATE, {
+  resume_call: function () {
+    console.log('Watchface resume')
+  },
+  pause_call: function () {
+    console.log('Watchface pause')
+  }
+})
+```
