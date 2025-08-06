@@ -29,10 +29,10 @@ const scrollList = createWidget(widget.SCROLL_LIST, Param)
 | h                        | 控件高度                                                                          | 是       | `number`                | 2.0       |
 | item_space               | item 之间的间距                                                                   | 否       | `number`                | 2.0       |
 | item_config              | item 类型配置，见 [`ItemConfig`](#itemconfig-object)                              | 是       | `Array<ItemConfig>`     | 2.0       |
-| item_config_count        | item_config 数组长度                                                              | 是       | `number`                | 2.0       |
+| item_config_count        | item_config 类型配置数组长度                                                              | 是       | `number`                | 2.0       |
 | data_array               | 数据数组                                                                          | 是       | `DataArray`             | 2.0       |
 | data_count               | 数据数组长度                                                                      | 是       | `number`                | 2.0       |
-| item_click_func          | item 点击回调函数，见 [`ItemClickFunc`](#itemclickfunc)                           | 否       | `ItemClickFunc`         | 2.0       |
+| item_click_func          | item 点击回调函数，这里的 item 索引与 data_array 数组对应，见 [`ItemClickFunc`](#itemclickfunc)                           | 否       | `ItemClickFunc`         | 2.0       |
 | data_type_config         | item 索引类型配置数组，见 [DataTypeConfig](#datatypeconfig-object)                | 否       | `Array<DataTypeConfig>` | 2.0       |
 | data_type_config_count   | item 索引类型配置数组长度                                                         | 否       | `number`                | 2.0       |
 | on_page                  | 更新数据时使用，设置为 `1` 表示列表数据更新后仍然停留在当前位置，否则回到列表顶部 | 否       | `number`                | 2.0       |
