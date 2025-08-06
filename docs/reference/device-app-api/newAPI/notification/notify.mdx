@@ -18,20 +18,20 @@ function notify(option: Option): Result
 
 ### Option
 
-| Property | Type                               | Required | DefaultValue | Description          | API_LEVEL |
-| -------- | ---------------------------------- | -------- | ------------ | -------------------- | --------- |
-| title    | <code>string</code>                | Y        | -            | Notice title text    | 3.0       |
-| content  | <code>string</code>                | Y        | -            | Text of the notice   | 3.0       |
-| actions  | <code>Array&#60;Action&#62;</code> | Y        | -            | Custom button arrays | 3.0       |
+| Property | Type                               | Required | DefaultValue   | Description                                                                                                                                                                  | API_LEVEL |
+| -------- | ---------------------------------- | -------- | -------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------- |
+| title    | <code>string</code>                | Y        | -              | Notice title text                                                                                                                                                            | 3.0       |
+| content  | <code>string</code>                | Y        | -              | Text of the notice                                                                                                                                                           | 3.0       |
+| actions  | <code>Array&#60;Action&#62;</code> | Y        | -              | Custom button arrays                                                                                                                                                         | 3.0       |
+| vibrate  | <code>number</code>                | N        | <code>0</code> | Specify the vibration effect when the notification center pops up, 0 - default, 1 - beep, 2 - birdsong, 3 - drumbeat, 4 - gentle, 5 - buzz, Only effective for linear motors | 3.0       |
 
 ### Action
 
-| Property | Type                | Required | DefaultValue   | Description                                                                                                                                | API_LEVEL |
-| -------- | ------------------- | -------- | -------------- | ------------------------------------------------------------------------------------------------------------------------------------------ | --------- |
-| text     | <code>string</code> | Y        | -              | Button Text                                                                                                                                | 3.0       |
-| file     | <code>string</code> | Y        | -              | The App Service file to be started                                                                                                         | 3.0       |
-| param    | <code>string</code> | N        | -              | Parameters passed in during file loading                                                                                                   | 3.0       |
-| vibrate  | <code>number</code> | N        | <code>0</code> | Specify the vibration effect when the notification center pops up, 0 - default, 1 - beep, 2 - birdsong, 3 - drumbeat, 4 - gentle, 5 - buzz | 3.0       |
+| Property | Type                | Required | DefaultValue | Description                              | API_LEVEL |
+| -------- | ------------------- | -------- | ------------ | ---------------------------------------- | --------- |
+| text     | <code>string</code> | Y        | -            | Button Text                              | 3.0       |
+| file     | <code>string</code> | Y        | -            | The App Service file to be started       | 3.0       |
+| param    | <code>string</code> | N        | -            | Parameters passed in during file loading | 3.0       |
 
 ### Result
 

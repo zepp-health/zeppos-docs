@@ -55,6 +55,16 @@ function onKey(callback: (key: Key, event: KeyEvent) => PreventDefault): void
 | `KEY_DOWN`     | DOWN 按键     | 2.0       |
 | `KEY_SHORTCUT` | SHORTCUT 按键 | 2.0       |
 
+### 按键事件名常量
+
+| 常量                     | 说明                                                                                                | API_LEVEL |
+| ------------------------ | --------------------------------------------------------------------------------------------------- | --------- |
+| `KEY_EVENT_CLICK`        | 按键点击事件                                                                                        | 2.0       |
+| `KEY_EVENT_LONG_PRESS`   | 按键长按事件                                                                                        | 2.0       |
+| `KEY_EVENT_DOUBLE_CLICK` | 按键双击事件                                                                                        | 2.0       |
+| `KEY_EVENT_PRESS`        | 按键按下事件，只要是按下按键就会触发，如一次 CLICK 事件一共会触发三次事件 PRESS -> RELEASE -> CLICK | 2.0       |
+| `KEY_EVENT_RELEASE`      | 按键释放事件                                                                                        | 2.0       |
+
 ## 代码示例
 
 ```js
