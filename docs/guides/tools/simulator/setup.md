@@ -133,13 +133,7 @@ After the installation is complete, execute the following command in the termina
 cd /Applications/simulator.app/Contents/Resources/firmware && chmod +x ./start_qemu.sh
 ```
 
-Re-open a terminal and run the following command to start the simulator.
-
-```sh
-cd /Applications/simulator.app/Contents/MacOS && sudo -s ./simulator
-```
-
-Enter the password and enter OK, the simulator icon appears in the control bar and the simulator starts successfully.
+Start the simulator from the Lauchpad. The simulator icon appears in the control bar and the simulator starts successfully.
 
 :::info
 
