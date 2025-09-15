@@ -139,8 +139,7 @@ Start the simulator from the Lauchpad. The simulator icon appears in the control
 
 - The simulator communication depends on the virtual network interface card tun/tap, which requires sudo privileges to run, so you need to use the sudo command to run the simulator
 - Click on the simulator button of the simulator and try to open the watch simulator, if it does not respond, it is recommended to check the "Security and Privacy" in the system preferences to see if there is a prompt
-- If the terminal requires a password, just enter it
-- To exit the simulator, press control + c in the terminal or right-click on the control bar icon
+- To exit the simulator, right-click on the control bar icon
 :::
 
 ## Linux Version Installation
