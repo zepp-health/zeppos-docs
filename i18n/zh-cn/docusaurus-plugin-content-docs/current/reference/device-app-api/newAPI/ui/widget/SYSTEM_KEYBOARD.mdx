@@ -1,6 +1,6 @@
 ---
-title: SMART_KEYBOARD
-sidebar_label: SMART_KEYBOARD 智能键盘
+title: SYSTEM_KEYBOARD
+sidebar_label: SYSTEM_KEYBOARD 系统键盘
 ---
 
 import useBaseUrl from '@docusaurus/useBaseUrl'
@@ -35,24 +35,24 @@ const keyboard = createKeyboard({
 
 ### Param: object
 
-| 属性       | 说明                               | 是否必须 | 类型       | 版本 |
-| ---------- | ---------------------------------- | -------- | ---------- | ---- |
-| inputType  | 输入类型，参考 `inputType` 枚举    | 是       | `number`   | 4.0  |
-| onComplete | 输入完成回调，用户确认时触发       | 是       | `function` | 4.0  |
-| onCancel   | 取消输入回调，右滑或按返回键时触发 | 是       | `function` | 4.0  |
-| text       | 初始编辑文本                       | 否       | `string`   | 4.0  |
-| onClick    | 点击事件回调（暂未开放）           | 否       | `function` | 4.0  |
-| selection  | 快捷回复选项（暂未开放）           | 否       | `array`    | 4.0  |
+| 属性       | 说明                               | 是否必须 | 类型       | API_LEVEL |
+| ---------- | ---------------------------------- | -------- | ---------- | --------- |
+| inputType  | 输入类型，参考 `inputType` 枚举    | 是       | `number`   | 4.0       |
+| onComplete | 输入完成回调，用户确认时触发       | 是       | `function` | 4.0       |
+| onCancel   | 取消输入回调，右滑或按返回键时触发 | 是       | `function` | 4.0       |
+| text       | 初始编辑文本                       | 否       | `string`   | 4.0       |
+| onClick    | 点击事件回调（暂未开放）           | 否       | `function` | 4.0       |
+| selection  | 快捷回复选项（暂未开放）           | 否       | `array`    | 4.0       |
 
 ### `inputType` 枚举
 
-| 值               | 说明         |
-| ---------------- | ------------ |
-| inputType.EMOJI  | EMOJI 表情   |
-| inputType.NUM    | 数字键盘     |
-| inputType.CHAR   | 字符键盘     |
-| inputType.VOICE  | 语音输入     |
-| inputType.SELECT | 快捷回复选择 |
+| 值               | 说明         | API_LEVEL |
+| ---------------- | ------------ | --------- |
+| inputType.EMOJI  | Emoji 表情   | 4.0       |
+| inputType.NUM    | 数字键盘     | 4.0       |
+| inputType.CHAR   | 字符键盘     | 4.0       |
+| inputType.VOICE  | 语音输入     | 4.0       |
+| inputType.JSKB   | 自定义键盘 Widget | 4.2       |
 
 ## 方法说明
 

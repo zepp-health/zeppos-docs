@@ -1,6 +1,6 @@
 ---
-title: SMART_KEYBOARD
-sidebar_label: SMART_KEYBOARD
+title: SYSTEM_KEYBOARD
+sidebar_label: SYSTEM_KEYBOARD
 ---
 
 import useBaseUrl from '@docusaurus/useBaseUrl'
@@ -35,24 +35,24 @@ const keyboard = createKeyboard({
 
 ### Param: object
 
-| Property    | Description                                                | Required | Type       | Version |
-| ----------- | ---------------------------------------------------------- | -------- | ---------- | ------- |
-| inputType   | Input type, refer to `inputType` enum                      | YES      | `number`   | 4.0     |
-| onComplete  | Callback when user confirms input                          | YES      | `function` | 4.0     |
-| onCancel    | Callback when user swipes right or presses back button     | YES      | `function` | 4.0     |
-| text        | Initial text for editing                                   | NO       | `string`   | 4.0     |
-| onClick     | Click event callback (Not available yet)                   | NO       | `function` | 4.0     |
-| selection   | Quick reply options (Not available yet)                    | NO       | `array`    | 4.0     |
+| Property   | Description                                            | Required | Type       | Version |
+| ---------- | ------------------------------------------------------ | -------- | ---------- | ------- |
+| inputType  | Input type, refer to `inputType` enum                  | YES      | `number`   | 4.0     |
+| onComplete | Callback when user confirms input                      | YES      | `function` | 4.0     |
+| onCancel   | Callback when user swipes right or presses back button | YES      | `function` | 4.0     |
+| text       | Initial text for editing                               | NO       | `string`   | 4.0     |
+| onClick    | Click event callback (Not available yet)               | NO       | `function` | 4.0     |
+| selection  | Quick reply options (Not available yet)                | NO       | `array`    | 4.0     |
 
 ### `inputType` Enum
 
-| Value             | Description    |
-| ---------------- | -------------- |
-| inputType.EMOJI  | EMOJI keyboard |
-| inputType.NUM    | Number keyboard|
-| inputType.CHAR   | Character keyboard |
-| inputType.VOICE  | Voice input    |
-| inputType.SELECT | Quick reply selection |
+| Value           | Description        | API_LEVEL |
+| --------------- | ------------------ | --------- |
+| inputType.EMOJI | Emoji keyboard     | 4.0       |
+| inputType.NUM   | Number keyboard    | 4.0       |
+| inputType.CHAR  | Character keyboard | 4.0       |
+| inputType.VOICE | Voice input        | 4.0       |
+| inputType.JSKB  | Custom Keyboard Widget  | 4.2       |
 
 ## Methods
 

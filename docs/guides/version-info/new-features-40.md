@@ -65,7 +65,7 @@ textWidget.setProperty(prop.MORE, {
 
 ## New UI Widgets/Methods
 
-- Smart Keyboard [SMART_KEYBOARD](../../reference/device-app-api/newAPI/ui/widget/SMART_KEYBOARD.mdx)
+- System Keyboard [SYSTEM_KEYBOARD](../../reference/device-app-api/newAPI/ui/widget/SYSTEM_KEYBOARD.mdx)
 
 <img src={useBaseUrl('/img/api/smart_keyboard.jpg')} width="50%" title="smart_keyboard" />
 

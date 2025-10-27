@@ -65,7 +65,7 @@ textWidget.setProperty(prop.MORE, {
 
 ## 新增 UI 控件/方法
 
-- 智能键盘 [SMART_KEYBOARD](../../reference/device-app-api/newAPI/ui/widget/SMART_KEYBOARD.mdx)
+- 系统键盘 [SMART_KEYBOARD](../../reference/device-app-api/newAPI/ui/widget/SYSTEM_KEYBOARD.mdx)
 
 <img src={useBaseUrl('/img/api/smart_keyboard.jpg')} width="50%" title="smart_keyboard" />
 

@@ -1,0 +1,107 @@
+import useBaseUrl from '@docusaurus/useBaseUrl'
+
+# 快速上手
+
+## 介绍
+
+一些相关背景：
+
+:::info
+
+- **设备要求**：「自定义键盘」功能需要 API_LEVEL 4.2 及以上的设备支持
+- **技术架构**：输入功能通过「键盘 Widget」实现，「键盘 Widget」必须依附于小程序主体（详见[整体架构](#整体架构)）
+- **API 限制**：「键盘 Widget」拥有大多数 JS API 能力，但存在部分限制（详见[API 限制](#api-限制)）
+
+:::
+
+## 整体架构
+
+**关系说明**：「键盘 Widget」 依附于「小程序主体」，两者共同构成完整的自定义键盘功能。
+
+「键盘 Widget」是实际执行输入操作的界面，如下图所示：
+
+<img src={useBaseUrl('/img/docs/keyboard/t9.png')} width="50%" title="t9" />
+
+「键盘 Widget」依附于一个「小程序主体」，需要在「小程序主体」的 `app.json` 中进行注册，详见 [`app.json` 配置](#appjson-配置)。
+
+「小程序主体」，在应用列表可以进行访问，通常包含以下功能：
+
+- 负责自定义键盘功能系统设置的用户引导
+- 提供「键盘 Widget」设置
+- 提供拉起「键盘 Widget」的入口，可以在应用内体验输入效果
+
+「键盘 Widget」占据一整个屏幕空间，自定义键盘需要在系统设置 -> 偏好设置 -> 键盘中设置启用，通过点击系统键盘中的地球图标，就可以将当前键盘切换到「键盘 Widget」进行输入。
+
+「键盘 Widget」通常包含以下功能：
+
+- Input 输入框
+- Keyboard Area 键盘区域
+- 通过一系列 [keyboard API](../../reference/device-app-api/newAPI/ui/keyboard.mdx) 的组合，可以实现文本预测，智能补全等智能化的功能
+
+## 相关要点
+
+### 相关 API
+
+- [DataWidget 构造函数](../../reference/device-app-api/newAPI/global/DataWidget.mdx)
+  - 「键盘 Widget」需要使用 `DataWidget` 构造函数进行创建
+- [SYSTEM_KEYBOARD API](../../reference/device-app-api/newAPI/ui/widget/SYSTEM_KEYBOARD.mdx)
+  - 通过 `SYSTEM_KEYBOARD` API 可以在需要输入的场景下，调用系统键盘，通过指定 `inputType`，可以直接拉起已经启用的「键盘 Widget」
+- [keyboard API](../../reference/device-app-api/newAPI/ui/keyboard.mdx)
+  - 通过一系列 keyboard API 的组合可以对输入框、光标进行控制，也可以实现文本预测、智能补全等功能
+
+### app.json 配置
+
+`app.json` 请参考 [小程序配置](../../reference/app-json.mdx)。
+
+:::info
+「自定义键盘」功能必须在 API_LEVEL `4.2` 及以上的设备才可以使用，`minVersion` 需要配置为 `4.2`。
+:::
+
+「键盘 Widget」需要在 `module` 字段中进行配置，`data-widget` 代表系统功能扩展配置。
+
+`widgets` 字段为一个数组，目前最大长度为 `1`，即同一个 appId 的「小程序主体」中，最多可以同时存在 `1` 个「键盘 Widget」（后期可能会支持多个）。
+
+```json
+"module": {
+  "data-widget":{
+    "widgets": [{
+      "name": "English",
+      "path": "data-widget/index",
+      "icon": "icon.png",
+      "runtime": {
+        "ability": [{
+          "name": "en-US", // 中文
+          "type": 2,
+          "subType": []
+        }]
+      }
+    }]
+  },
+}
+```
+
+| 属性    | 类型            | 说明                                                                                      |
+| ------- | --------------- | ----------------------------------------------------------------------------------------- |
+| name | `string` | 填写支持的语言，如 `"en-US"`，支持的所有语言请参考 [多语言映射](../../reference/related-resources/language-list.mdx) |
+| type    | `number`        | 自定义键盘填写 `2`                                                  |
+
+`app.json` 中的 `appName` 字段代表了「键盘 Widget」的名称，在系统设置 -> 偏好设置 -> 键盘中展示，「小程序主体」在应用列表中展示的名称也是 `appName`。
+
+### 生命周期
+
+「键盘 Widget」的生命周期与 [Zepp OS 小程序生命周期](../../guides/framework/device/life-cycle.md) 基本一致，新增了 `onResume` 和 `onPause` 生命周期。
+
+在介绍生命周期之前，先引入一个概念，叫做「Pause」状态，在这个状态下应用的上下文信息会保留，但是无法响应注册的回调函数，注册的定时器会暂停。
+
+在系统键盘被调起之后，不论「键盘 Widget」是否为当前选中的键盘，都会执行「键盘 Widget」的 `onInit` 和 `build` 生命周期，之后触发 `onPause`（创建完成后立即 `onPause`），当被「键盘 Widget」被选中之后，触发 `onResume`，当用户从「键盘 Widget」切换到其他键盘时，会触发 `onPause` 生命周期。
+
+### API 限制
+
+- 「键盘 Widget」的绘图区域有边界限制，绘图区域的边界与当前设备的屏幕边界保持一致，以 Amazfit Balance 2 为例，屏幕分辨率 480x480，绘图区域不能超出这个范围
+- 「键盘 Widget」无法使用 `GROUP` 控件
+- 凡是涉及到滚动、滑动以及图层堆叠相关的 UI 控件，都无法使用，如 `SCROLL_LIST`、`VIEW_CONTAINER`
+
+## 完整示例
+
+- [Github Sample - 英文 T9 键盘](https://github.com/zepp-health/zeppos-samples/tree/feat/api_4.2/application/4.2/t9-keyboard)
+- [Github Sample - 中文拼音键盘](https://github.com/zepp-health/zeppos-samples/tree/feat/api_4.2/application/4.2/simple-keyboard)
