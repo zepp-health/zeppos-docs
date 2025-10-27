@@ -1,0 +1,61 @@
+import useBaseUrl from '@docusaurus/useBaseUrl'
+
+# Introduction
+
+"Custom Keyboard" is a new feature introduced in API_LEVEL 4.2, enabling developers to create personalized keyboard widgets that integrate deeply with the system keyboard. It significantly expands the capability boundaries of the system keyboard, addressing the limitations of language support and the inability to meet diverse input needs of global users, providing a more intelligent and localized watch input experience.
+
+## System Keyboard Functionality Overview
+
+Before introducing "Custom Keyboard", let's briefly introduce the system keyboard functionality.
+
+The main use case is currently message replies (support varies by region and device model). When receiving app notifications, some messages support reply functionality. Clicking on them will bring up the system keyboard for input.
+
+:::info
+Zepp OS is continuously expanding the use cases for system keyboards, and more scenarios will support keyboard input in the future.
+:::
+
+The built-in English full keyboard supports 6 languages: English, French, German, Italian, Portuguese, and Spanish, while also providing symbol and emoji input. Some regions also support voice input.
+
+The image below shows the process of replying to Instagram messages on iOS devices using Beeper. For a complete operation guide, please refer to [How to Reply to iOS Message Notifications on Amazfit Devices](https://us.amazfit.com/pages/how-to-reply-to-ios-message-notifications-on-amazfit-devices)
+
+<img src={useBaseUrl('/img/docs/keyboard/message_reply.gif')} width="50%" title="message_reply" />
+
+Beyond message reply scenarios, API_LEVEL 4.0 opened up the system keyboard [`SYSTEM_KEYBOARD`](../../reference/device-app-api/newAPI/ui/widget/SYSTEM_KEYBOARD.mdx) API, allowing developers to invoke the system keyboard in Mini Program applications to implement text input functionality without having to implement keyboard UI and input logic within the Mini Program.
+
+As user communities become more globalized and diverse, the demand for text input continues to grow. API_LEVEL 4.2 introduced the "Custom Keyboard" feature, enabling developers to create personalized keyboards that support more languages and meet diverse input needs.
+
+## Custom Keyboard Usage Introduction
+
+"Custom Keyboard" is a further extension of system keyboard functionality, allowing developers to create personalized "Custom Keyboard Widgets". Like Mini Programs, they need to be downloaded from the app store. After installation, they are enabled in System Settings → Preferences → Keyboard menu (only one "Custom Keyboard Widget" can be enabled at a time), and users can switch to use them during input.
+
+Below is a demonstration of the complete usage flow using the T9 Keyboard "Custom Keyboard" as an example:
+
+<img src={useBaseUrl('/img/docs/keyboard/keyboard_setting.png')} width="50%" title="keyboard_setting" />
+
+After invoking the system keyboard in message reply scenarios, you can see the globe icon. Click the globe icon to switch between different keyboards:
+
+<img src={useBaseUrl('/img/docs/keyboard/keyboard_switch.png')} width="50%" title="keyboard_switch" />
+
+After clicking the globe icon, it switches to T9 Keyboard:
+
+<img src={useBaseUrl('/img/docs/keyboard/t9.png')} width="50%" title="t9" />
+
+If you need to quickly switch to a specific keyboard, long press the globe icon to enter the keyboard selection page:
+
+<img src={useBaseUrl('/img/docs/keyboard/longpress_switch.png')} width="50%" title="longpress_switch" />
+
+The image below shows the actual input effect of T9 Keyboard:
+
+<img src={useBaseUrl('/img/docs/keyboard/t9_case.gif')} width="100%" title="t9_case" />
+
+Through this example, you can see that "Custom Keyboard" integrates perfectly with system keyboard functionality. Developers can leverage powerful keyboard APIs to implement the following features:
+
+- **Appearance Customization**: Customize keyboard styles, themes, and color schemes to meet different users' aesthetic needs
+- **Text Prediction**: Display predicted words during input for quick user selection
+- **Multi-stage Input**: Support pinyin and kana input for languages like Chinese, Japanese, and Korean, providing candidate word panels
+- **Automatic Punctuation Completion**: Intelligently complete quotation marks, question marks, and other punctuation symbols to reduce input operations
+- **Smart Capitalization**: Automatically switch letter case based on context
+- **Intelligent Correction**: Use algorithms to correct spelling errors
+- **Quick Input**: Double-tap space to automatically input period and space
+- **Swipe Input**: Support gesture input to improve input efficiency
+- **Cursor Movement**: Move cursor by sliding finger in the keyboard area

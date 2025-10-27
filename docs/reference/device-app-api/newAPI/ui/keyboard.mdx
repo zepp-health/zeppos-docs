@@ -1,0 +1,378 @@
+---
+title: keyboard API
+sidebar_label: keyboard API
+---
+
+> Start from API_LEVEL `4.2`. Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+The keyboard API provides rich input interface capabilities, greatly simplifying the development complexity of custom keyboards.
+
+## Overview
+
+The Keyboard API includes the following main functional modules:
+
+- Input: input field management, cursor and text operations
+- Keyboard switching
+- Input buffer management
+- System integration
+
+## Import
+
+```js
+import { keyboard } from '@zos/ui'
+```
+
+## API List
+
+### 1. Input Field Area
+
+#### setContentRect(rect)
+
+Set the size and position of the input field.
+
+##### Type
+
+```ts
+(rect: object) => void
+```
+
+##### Parameters
+
+| Parameter | Description                        | Required | Type     |
+| --------- | ---------------------------------- | -------- | -------- |
+| rect      | Object containing x, y, w, h properties | YES      | `object` |
+
+##### Code Example
+
+```js
+keyboard.setContentRect({
+  x: 10,
+  y: 20,
+  w: 300,
+  h: 310
+})
+```
+
+#### getContentRect()
+
+Get the size and position of the input area.
+
+##### Type
+
+```ts
+() => {x: number, y: number, w: number, h: number}
+```
+
+##### Code Example
+
+```js
+let rect = keyboard.getContentRect()
+console.log(rect.x, rect.y, rect.w, rect.h)
+```
+
+### 2. Input Field Text Operations
+
+#### getTextContext()
+
+Get the text content of the current input field.
+
+##### Type
+
+```ts
+() => string
+```
+
+##### Code Example
+
+```js
+const text = keyboard.getTextContext()
+```
+
+#### inputText(text)
+
+Insert text at the current cursor position.
+
+##### Type
+
+```ts
+(text: string) => void
+```
+
+##### Parameters
+
+| Parameter | Description      | Required | Type     |
+| --------- | ---------------- | -------- | -------- |
+| text      | Text to be inserted | YES      | `string` |
+
+##### Code Example
+
+```js
+keyboard.inputText('yesterday')
+```
+
+#### backspace(count)
+
+Delete a specified number of characters.
+
+##### Type
+
+```ts
+(count?: number) => void
+```
+
+##### Parameters
+
+| Parameter | Description                | Required | Type     | Default |
+| --------- | -------------------------- | -------- | -------- | ------- |
+| count     | Number of characters to delete | NO       | `number` | 1       |
+
+##### Code Example
+
+```js
+keyboard.backspace() // Delete 1 character
+keyboard.backspace(4) // Delete 4 characters
+```
+
+#### clearInput()
+
+Clear the input field content.
+
+##### Type
+
+```ts
+() => void
+```
+
+##### Code Example
+
+```js
+keyboard.clearInput()
+```
+
+### 3. Special Key Operations
+
+#### sendFnKey(keyType)
+
+Send special function key events.
+
+##### Type
+
+```ts
+(keyType: number) => void
+```
+
+##### Parameters
+
+| Parameter | Description      | Required | Type     |
+| --------- | ---------------- | -------- | -------- |
+| keyType   | Key type constant | YES      | `number` |
+
+##### Key Type Constants
+
+| Constant             | Description           |
+| -------------------- | --------------------- |
+| `keyboard.BACKSPACE` | Backspace delete      |
+| `keyboard.ENTER`     | Confirm/submit input  |
+| `keyboard.SWITCH`    | Switch keyboard input method |
+| `keyboard.SELECT`    | Enter keyboard selection |
+
+##### Code Example
+
+```js
+keyboard.sendFnKey(keyboard.BACKSPACE)
+keyboard.sendFnKey(keyboard.ENTER)
+```
+
+### 4. Cache Management
+
+#### inputBuffer(text, color, underlineColor)
+
+Set input buffer content.
+
+##### Type
+
+```ts
+(text: string, color?: number, underlineColor?: number) => void
+```
+
+##### Parameters
+
+| Parameter      | Description      | Required | Type     | Default    |
+| -------------- | ---------------- | -------- | -------- | ---------- |
+| text           | Buffer text      | YES      | `string` | -          |
+| color          | Text color       | NO       | `number` | `0xffffff` |
+| underlineColor | Underline color  | NO       | `number` | `0xffffff` |
+
+##### Code Example
+
+```js
+keyboard.inputBuffer('国')
+keyboard.inputBuffer('me', 0xff00ff, 0x00ff00)
+```
+
+#### getBuffer()
+
+Read buffer text.
+
+##### Type
+
+```ts
+() => string
+```
+
+##### Code Example
+
+```js
+let text = keyboard.getBuffer()
+```
+
+#### clearBuffer()
+
+Clear buffer text.
+
+##### Type
+
+```ts
+() => void
+```
+
+##### Code Example
+
+```js
+keyboard.clearBuffer()
+```
+
+### 5. Keyboard Switching
+
+#### switchInputType(inputType)
+
+Switch to a specified type of keyboard.
+
+##### Type
+
+```ts
+(inputType: number) => void
+```
+
+##### Parameters
+
+| Parameter | Description        | Required | Type     |
+| --------- | ------------------ | -------- | -------- |
+| inputType | Input type constant | YES      | `number` |
+
+##### Input Type Constants
+
+| Constant          | Description      |
+| ----------------- | ---------------- |
+| `inputType.EMOJI` | Emoji keyboard   |
+| `inputType.NUM`   | Number keyboard  |
+| `inputType.CHAR`  | Character keyboard |
+| `inputType.VOICE` | Voice input      |
+| `inputType.JSKB`  | Custom keyboard  |
+
+##### Code Example
+
+```js
+keyboard.switchInputType(inputType.NUM)
+```
+
+### 6. System Integration
+
+#### checkVoiceInputAvailable()
+
+Check if voice input is supported.
+
+##### Type
+
+```ts
+() => boolean
+```
+
+##### Code Example
+
+```js
+let voiceSupport = keyboard.checkVoiceInputAvailable()
+```
+
+#### isEnabled()
+
+Check if the current keyboard is enabled in settings.
+
+##### Type
+
+```ts
+() => boolean
+```
+
+##### Code Example
+
+```js
+let enable = keyboard.isEnabled()
+```
+
+#### isSelected()
+
+Check if the current keyboard is selected for use.
+
+##### Type
+
+```ts
+() => boolean
+```
+
+##### Code Example
+
+```js
+let select = keyboard.isSelected()
+```
+
+#### gotoSettings()
+
+Navigate to the keyboard settings page in system settings: System Settings -> Preferences -> Keyboard.
+
+##### Type
+
+```ts
+() => void
+```
+
+##### Code Example
+
+```js
+keyboard.gotoSettings()
+```
+
+## Code Example
+
+```js
+import { keyboard, inputType } from '@zos/ui'
+
+// Keyboard Widget usage example
+DataWidget({
+  build() {
+    // Set input area
+    keyboard.setContentRect({
+      x: 10,
+      y: 20,
+      w: 300,
+      h: 310
+    })
+
+    // Check keyboard status
+    if (keyboard.isEnabled()) {
+      console.log('Keyboard is enabled')
+    }
+
+    // Handle text input
+    keyboard.inputText('Hello')
+
+    // Switch to number keyboard
+    keyboard.switchInputType(inputType.NUM)
+  }
+})
+```
+
+## Related References
+
+- [Custom Keyboard](../../../../guides/keyboard/intro.mdx)
+- [SYSTEM_KEYBOARD](../ui/widget/SYSTEM_KEYBOARD.mdx)

@@ -1,0 +1,107 @@
+import useBaseUrl from '@docusaurus/useBaseUrl'
+
+# Quick Start
+
+## Introduction
+
+Some relevant background information:
+
+:::info
+
+- **Device Requirements**: Custom Keyboard functionality requires devices with API_LEVEL 4.2 and above
+- **Technical Architecture**: Input functionality is implemented through "Keyboard Widget", which must be attached to a Mini Program host (see [Overall Architecture](#overall-architecture))
+- **API Limitations**: "Keyboard Widget" has access to most JS API capabilities, but with some limitations (see [API Limitations](#api-limitations))
+
+:::
+
+## Overall Architecture
+
+**Relationship**: The "Keyboard Widget" is attached to a "Mini Program Host", and together they form a complete custom keyboard functionality.
+
+The "Keyboard Widget" is the interface that actually performs input operations, as shown in the image below:
+
+<img src={useBaseUrl('/img/docs/keyboard/t9.png')} width="50%" title="t9" />
+
+The "Keyboard Widget" is attached to a "Mini Program Host" and needs to be registered in the `app.json` of the "Mini Program Host". See [`app.json` Configuration](#appjson-configuration) for details.
+
+The "Mini Program Host" can be accessed from the application list and typically includes the following features:
+
+- Responsible for user guidance for custom keyboard functionality system settings
+- Provides "Keyboard Widget" settings
+- Provides an entry point to launch the "Keyboard Widget", allowing users to experience input effects within the app
+
+The "Keyboard Widget" occupies the entire screen space. Custom keyboards need to be enabled in System Settings -> Preferences -> Keyboard. By clicking the globe icon in the system keyboard, you can switch the current keyboard to the "Keyboard Widget" for input.
+
+The "Keyboard Widget" typically includes the following features:
+
+- Input text field
+- Keyboard Area
+- Through a combination of [keyboard APIs](../../reference/device-app-api/newAPI/ui/keyboard.mdx), intelligent features such as text prediction and smart completion can be implemented
+
+## Key Points
+
+### Related APIs
+
+- [DataWidget Constructor](../../reference/device-app-api/newAPI/global/DataWidget.mdx)
+  - "Keyboard Widget" needs to be created using the `DataWidget` constructor
+- [SYSTEM_KEYBOARD API](../../reference/device-app-api/newAPI/ui/widget/SYSTEM_KEYBOARD.mdx)
+  - Through the `SYSTEM_KEYBOARD` API, you can invoke the system keyboard in scenarios requiring input. By specifying `inputType`, you can directly launch an enabled "Keyboard Widget"
+- [keyboard API](../../reference/device-app-api/newAPI/ui/keyboard.mdx)
+  - Through a combination of keyboard APIs, you can control input fields and cursors, and implement features like text prediction and smart completion
+
+### app.json Configuration
+
+For `app.json`, please refer to [Mini Program Configuration](../../reference/app-json.mdx).
+
+:::info
+Custom Keyboard functionality can only be used on devices with API_LEVEL `4.2` and above. The `minVersion` needs to be configured as `4.2`.
+:::
+
+The "Keyboard Widget" needs to be configured in the `module` field, where `data-widget` represents system functionality extension configuration.
+
+The `widgets` field is an array with a current maximum length of `1`, meaning that within the same appId "Mini Program Host", at most `1` "Keyboard Widget" can exist simultaneously (multiple widgets may be supported in the future).
+
+```json
+"module": {
+  "data-widget":{
+    "widgets": [{
+      "name": "English",
+      "path": "data-widget/index",
+      "icon": "icon.png",
+      "runtime": {
+        "ability": [{
+          "name": "en-US", // English
+          "type": 2,
+          "subType": []
+        }]
+      }
+    }]
+  },
+}
+```
+
+| Property | Type     | Description                                                                                      |
+| -------- | -------- | ------------------------------------------------------------------------------------------------ |
+| name     | `string` | Fill in the supported language, such as `"en-US"`. For all supported languages, see [Multi-language Mapping](../../reference/related-resources/language-list.mdx) |
+| type     | `number` | Fill in `2` for custom keyboards                                                                 |
+
+The `appName` field in `app.json` represents the name of the "Keyboard Widget", displayed in System Settings -> Preferences -> Keyboard. The name displayed for the "Mini Program Host" in the application list is also `appName`.
+
+### Lifecycle
+
+The lifecycle of "Keyboard Widget" is basically consistent with the [Zepp OS Mini Program Lifecycle](../../guides/framework/device/life-cycle.md), with the addition of `onResume` and `onPause` lifecycle methods.
+
+Before introducing the lifecycle, let's first introduce a concept called the "Pause" state. In this state, the application's context information is retained, but it cannot respond to registered callback functions, and registered timers are paused.
+
+After the system keyboard is invoked, regardless of whether the "Keyboard Widget" is the currently selected keyboard, the `onInit` and `build` lifecycle methods of the "Keyboard Widget" will be executed, followed by triggering `onPause` (immediately `onPause` after creation is complete). When the "Keyboard Widget" is selected, `onResume` is triggered. When the user switches from the "Keyboard Widget" to another keyboard, the `onPause` lifecycle is triggered.
+
+### API Limitations
+
+- The drawing area of "Keyboard Widget" has boundary restrictions. The drawing area boundaries are consistent with the current device's screen boundaries. For example, with Amazfit Balance 2, which has a screen resolution of 480x480, the drawing area cannot exceed this range
+- "Keyboard Widget" cannot use the `GROUP` widget
+- Any UI widgets related to scrolling, sliding, and layer stacking cannot be used, such as `SCROLL_LIST`, `VIEW_CONTAINER`
+
+## Complete Examples
+
+- [Github Sample - English T9 Keyboard](https://github.com/zepp-health/zeppos-samples/tree/feat/api_4.2/application/4.2/t9-keyboard)
+- [Github Sample - Chinese Pinyin Keyboard](https://github.com/zepp-health/zeppos-samples/tree/feat/api_4.2/application/4.2/simple-keyboard)

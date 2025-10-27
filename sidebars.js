@@ -552,6 +552,14 @@ module.exports = {
     },
     {
       type: 'category',
+      label: 'Custom Keyboard',
+      items: [
+        'guides/keyboard/intro',
+        'guides/keyboard/quick-start',
+      ]
+    },
+    {
+      type: 'category',
       label: 'Related Resources',
       items: [
         'reference/related-resources/device-list',
@@ -655,7 +663,7 @@ module.exports = {
                     'reference/device-app-api/newAPI/ui/widget/PICK_DATE',
                     'reference/device-app-api/newAPI/ui/widget/KEYBOARD',
                     'reference/device-app-api/newAPI/ui/widget/PICKER',
-                    'reference/device-app-api/newAPI/ui/widget/SMART_KEYBOARD',
+                    'reference/device-app-api/newAPI/ui/widget/SYSTEM_KEYBOARD',
                     // 'reference/device-app-api/newAPI/ui/widget/WIDGET_PICKER',
                   ]
                 },
@@ -706,7 +714,8 @@ module.exports = {
             'reference/device-app-api/newAPI/ui/removeLayoutChild',
             'reference/device-app-api/newAPI/ui/updateLayoutStyle',
             'reference/device-app-api/newAPI/ui/updateLayout',
-            'reference/device-app-api/newAPI/ui/openInspector'
+            'reference/device-app-api/newAPI/ui/openInspector',
+            'reference/device-app-api/newAPI/ui/keyboard',
           ]
         },
         ...newAPIPathMap.map((i) => {

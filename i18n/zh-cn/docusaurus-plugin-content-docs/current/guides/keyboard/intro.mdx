@@ -1,0 +1,61 @@
+import useBaseUrl from '@docusaurus/useBaseUrl'
+
+# 介绍
+
+「自定义键盘」是 API_LEVEL 4.2 推出的新功能，让开发者能够创建个性化的键盘 Widget，与系统键盘深度集成。它大大拓宽了系统键盘的能力边界，解决了语言支持有限、无法满足全球用户多样化输入需求的问题，为用户提供更智能、更本地化的手表输入体验。
+
+## 系统键盘功能介绍
+
+在介绍「自定义键盘」之前，先简单介绍一下系统键盘功能。
+
+目前主要使用场景是消息回复（各地区以及机型支持情况不同）。当收到应用通知时，部分消息支持回复功能，点击后会调出系统键盘进行输入。
+
+:::info
+Zepp OS 正在不断拓宽系统键盘的使用场景，未来会又更多场景支持键盘输入。
+:::
+
+系统自带的英文全键盘支持英、法、德、意、葡、西 6 种语言，同时提供符号、表情输入，部分地区还支持语音输入。
+
+下图展示了在 IOS 设备上借助 Beeper 回复 Instagram 消息的流程，完整操作指南请参考 [How to Reply to iOS Message Notifications on Amazfit Devices](https://us.amazfit.com/pages/how-to-reply-to-ios-message-notifications-on-amazfit-devices)
+
+<img src={useBaseUrl('/img/docs/keyboard/message_reply.gif')} width="50%" title="message_reply" />
+
+除了消息回复的场景，API_LEVEL 4.0 开放了系统键盘 [`SYSTEM_KEYBOARD`](../../reference/device-app-api/newAPI/ui/widget/SYSTEM_KEYBOARD.mdx) API，允许开发者在小程序应用中唤起系统键盘，实现文本输入功能，无需在小程序中自行实现键盘 UI 和输入逻辑。
+
+随着用户群体的全球化和多样化，对文本输入的需求日益增长。API_LEVEL 4.2 推出了「自定义键盘」功能，让开发者能够创建支持更多语言、满足多样化输入需求的个性化键盘。
+
+## 「自定义键盘」使用介绍
+
+「自定义键盘」是在系统键盘基础上进一步开放的功能，允许开发者创建个性化的「自定义键盘 Widtge」。它和小程序一样需要从应用商店下载，安装后在系统设置 → 偏好设置 → 键盘菜单中启用（同一时间只能启用一个「自定义键盘 Widget」），用户可以在输入时切换使用。
+
+下面以 T9 Keyboard 「自定义键盘」为例，演示完整的使用流程：
+
+<img src={useBaseUrl('/img/docs/keyboard/keyboard_setting.png')} width="50%" title="keyboard_setting" />
+
+在消息回复场景中调出系统键盘后，可以看到地球图标。点击地球图标在不同键盘之间切换：
+
+<img src={useBaseUrl('/img/docs/keyboard/keyboard_switch.png')} width="50%" title="keyboard_switch" />
+
+点击地球图标后，切换至 T9 Keyboard：
+
+<img src={useBaseUrl('/img/docs/keyboard/t9.png')} width="50%" title="t9" />
+
+如果需要快速切换到特定键盘，长按地球图标，进入键盘选择页面：
+
+<img src={useBaseUrl('/img/docs/keyboard/longpress_switch.png')} width="50%" title="longpress_switch" />
+
+下图展示了 T9 Keyboard 的实际输入效果：
+
+<img src={useBaseUrl('/img/docs/keyboard/t9_case.gif')} width="100%" title="t9_case" />
+
+通过这个示例可以看到，「自定义键盘」与系统键盘功能完美集成。开发者可以利用强大的 keyboard API 实现以下功能：
+
+- **外观定制**：自定义键盘样式、主题和配色，满足不同用户的审美需求
+- **文本预测**：输入时显示预测词，方便用户快速选择
+- **多阶段输入**：支持中日韩等语言的拼音、假名输入，提供候选词面板
+- **自动标点补全**：智能补全引号、问号等标点符号，减少输入操作
+- **智能大小写**：根据语境自动切换字母大小写
+- **智能更正**：利用算法纠正拼写错误
+- **快捷输入**：双击空格自动输入句号和空格
+- **滑动输入**：支持手势输入，提高输入效率
+- **光标移动**：在键盘区域滑动手指即可移动光标

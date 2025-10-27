@@ -99,6 +99,10 @@
     "message": "运动扩展",
     "description": "The label for category Reference in sidebar reference"
   },
+  "sidebar.guides.category.Custom Keyboard": {
+    "message": "自定义键盘",
+    "description": "The label for category Reference in sidebar reference"
+  },
   "sidebar.guides.category.Related Resources": {
     "message": "相关资源",
     "description": "The label for category Side Service API in sidebar reference"

@@ -1,0 +1,378 @@
+---
+title: keyboard API
+sidebar_label: keyboard API
+---
+
+> API_LEVEL `4.2` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+keyboard API 提供了丰富的输入接口能力，大大简化自定义键盘的开发复杂度。
+
+## 概述
+
+键盘 API 包含以下主要功能模块：
+
+- Input 输入框管理，操作光标文本
+- 键盘切换
+- 输入缓存管理
+- 系统集成
+
+## 导入方式
+
+```js
+import { keyboard } from '@zos/ui'
+```
+
+## API 列表
+
+### 1. Input 输入框区域
+
+#### setContentRect(rect)
+
+设置 Input 输入框的大小和位置。
+
+##### 类型
+
+```ts
+(rect: object) => void
+```
+
+##### 参数
+
+| 参数 | 说明                       | 是否必须 | 类型     |
+| ---- | -------------------------- | -------- | -------- |
+| rect | 包含 x, y, w, h 属性的对象 | 是       | `object` |
+
+##### 示例
+
+```js
+keyboard.setContentRect({
+  x: 10,
+  y: 20,
+  w: 300,
+  h: 310
+})
+```
+
+#### getContentRect()
+
+获取输入区域的大小和位置。
+
+##### 类型
+
+```ts
+() => {x: number, y: number, w: number, h: number}
+```
+
+##### 示例
+
+```js
+let rect = keyboard.getContentRect()
+console.log(rect.x, rect.y, rect.w, rect.h)
+```
+
+### 2. Input 输入框文本操作
+
+#### getTextContext()
+
+获取当前 Input 输入框的文本内容。
+
+##### 类型
+
+```ts
+() => string
+```
+
+##### 示例
+
+```js
+const text = keyboard.getTextContext()
+```
+
+#### inputText(text)
+
+在当前光标位置插入文本。
+
+##### 类型
+
+```ts
+(text: string) => void
+```
+
+##### 参数
+
+| 参数 | 说明         | 是否必须 | 类型     |
+| ---- | ------------ | -------- | -------- |
+| text | 要插入的文本 | 是       | `string` |
+
+##### 示例
+
+```js
+keyboard.inputText('yesterday')
+```
+
+#### backspace(count)
+
+删除指定数量的字符。
+
+##### 类型
+
+```ts
+(count?: number) => void
+```
+
+##### 参数
+
+| 参数  | 说明           | 是否必须 | 类型     | 默认值 |
+| ----- | -------------- | -------- | -------- | ------ |
+| count | 要删除的字符数 | 否       | `number` | 1      |
+
+##### 示例
+
+```js
+keyboard.backspace() // 删除1个字符
+keyboard.backspace(4) // 删除4个字符
+```
+
+#### clearInput()
+
+清空输入框内容。
+
+##### 类型
+
+```ts
+() => void
+```
+
+##### 示例
+
+```js
+keyboard.clearInput()
+```
+
+### 3. 特殊按键操作
+
+#### sendFnKey(keyType)
+
+发送特殊功能键事件。
+
+##### 类型
+
+```ts
+(keyType: number) => void
+```
+
+##### 参数
+
+| 参数    | 说明         | 是否必须 | 类型     |
+| ------- | ------------ | -------- | -------- |
+| keyType | 按键类型常量 | 是       | `number` |
+
+##### 按键类型常量
+
+| 常量                 | 说明           |
+| -------------------- | -------------- |
+| `keyboard.BACKSPACE` | 退格删除       |
+| `keyboard.ENTER`     | 确定/提交输入  |
+| `keyboard.SWITCH`    | 切换键盘输入法 |
+| `keyboard.SELECT`    | 进入键盘选择   |
+
+##### 示例
+
+```js
+keyboard.sendFnKey(keyboard.BACKSPACE)
+keyboard.sendFnKey(keyboard.ENTER)
+```
+
+### 4. 缓存管理
+
+#### inputBuffer(text, color, underlineColor)
+
+设置输入缓存区内容。
+
+##### 类型
+
+```ts
+(text: string, color?: number, underlineColor?: number) => void
+```
+
+##### 参数
+
+| 参数           | 说明       | 是否必须 | 类型     | 默认值   |
+| -------------- | ---------- | -------- | -------- | -------- |
+| text           | 缓存文本   | 是       | `string` | -        |
+| color          | 文字颜色   | 否       | `number` | `0xffffff` |
+| underlineColor | 下划线颜色 | 否       | `number` | `0xffffff` |
+
+##### 示例
+
+```js
+keyboard.inputBuffer('国')
+keyboard.inputBuffer('me', 0xff00ff, 0x00ff00)
+```
+
+#### getBuffer()
+
+读取缓存文本。
+
+##### 类型
+
+```ts
+() => string
+```
+
+##### 示例
+
+```js
+let text = keyboard.getBuffer()
+```
+
+#### clearBuffer()
+
+清除缓存文本。
+
+##### 类型
+
+```ts
+() => void
+```
+
+##### 示例
+
+```js
+keyboard.clearBuffer()
+```
+
+### 5. 键盘切换
+
+#### switchInputType(inputType)
+
+跳转到指定类型的键盘。
+
+##### 类型
+
+```ts
+(inputType: number) => void
+```
+
+##### 参数
+
+| 参数      | 说明         | 是否必须 | 类型     |
+| --------- | ------------ | -------- | -------- |
+| inputType | 输入类型常量 | 是       | `number` |
+
+##### 输入类型常量
+
+| 常量               | 说明          |
+| ------------------ | ------------- |
+| `inputType.EMOJI`  | Emoji 键盘    |
+| `inputType.NUM`    | 数字键盘      |
+| `inputType.CHAR`   | 字符键盘      |
+| `inputType.VOICE`  | 语音输入      |
+| `inputType.JSKB`   | 自定义键盘       |
+
+##### 示例
+
+```js
+keyboard.switchInputType(inputType.NUM)
+```
+
+### 6. 系统集成
+
+#### checkVoiceInputAvailable()
+
+检查是否支持语音输入。
+
+##### 类型
+
+```ts
+() => boolean
+```
+
+##### 示例
+
+```js
+let voiceSupport = keyboard.checkVoiceInputAvailable()
+```
+
+#### isEnabled()
+
+检查当前键盘是否在设置中启用。
+
+##### 类型
+
+```ts
+() => boolean
+```
+
+##### 示例
+
+```js
+let enable = keyboard.isEnabled()
+```
+
+#### isSelected()
+
+检查当前键盘是否被选中使用。
+
+##### 类型
+
+```ts
+() => boolean
+```
+
+##### 示例
+
+```js
+let select = keyboard.isSelected()
+```
+
+#### gotoSettings()
+
+跳转到系统设置中的键盘设置页面，系统设置 -> 偏好设置 -> 键盘。
+
+##### 类型
+
+```ts
+() => void
+```
+
+##### 示例
+
+```js
+keyboard.gotoSettings()
+```
+
+## 完整示例
+
+```js
+import { keyboard, inputType } from '@zos/ui'
+
+// 键盘 Widget 使用示例
+DataWidget({
+  build() {
+    // 设置输入区域
+    keyboard.setContentRect({
+      x: 10,
+      y: 20,
+      w: 300,
+      h: 310
+    })
+
+    // 检查键盘状态
+    if (keyboard.isEnabled()) {
+      console.log('键盘已启用')
+    }
+
+    // 处理文本输入
+    keyboard.inputText('Hello')
+
+    // 切换到数字键盘
+    keyboard.switchInputType(inputType.NUM)
+  }
+})
+```
+
+## 相关参考
+
+- [自定义键盘](../../../../guides/keyboard/intro.mdx)
+- [SYSTEM_KEYBOARD](../ui/widget/SYSTEM_KEYBOARD.mdx)
