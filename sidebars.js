@@ -371,6 +371,7 @@ module.exports = {
             id: 'intro/version'
           },
           items: [
+            'guides/version-info/new-features-42',
             'guides/version-info/new-features-40',
             'guides/version-info/new-features-35',
             'guides/version-info/new-features-30',
