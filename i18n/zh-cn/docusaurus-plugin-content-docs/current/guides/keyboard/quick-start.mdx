@@ -95,13 +95,59 @@ import useBaseUrl from '@docusaurus/useBaseUrl'
 
 在系统键盘被调起之后，不论「键盘 Widget」是否为当前选中的键盘，都会执行「键盘 Widget」的 `onInit` 和 `build` 生命周期，之后触发 `onPause`（创建完成后立即 `onPause`），当被「键盘 Widget」被选中之后，触发 `onResume`，当用户从「键盘 Widget」切换到其他键盘时，会触发 `onPause` 生命周期。
 
+### 小程序主体的设计规范
+
+小程序主体必须包含键盘的启用引导，鼓励开发者在小程序主体中提供键盘体验、设置功能以及个性化功能。
+
+启用引导需要包含两个步骤：
+
+1. **键盘启用**
+   - 对应 API：`keyboard.isEnabled`、`keyboard.gotoSettings`
+2. **键盘切换**
+   - 对应 API：`keyboard.isSelected`
+
+**完整流程说明：**
+
+1. 进入小程序主体后，调用 `keyboard.isEnabled` 判断键盘是否启用
+   - 如果未启用 → 进入键盘启用引导页面
+   - 如果已启用 → 进入键盘切换引导判断
+
+2. 在键盘切换引导阶段，调用 `keyboard.isSelected` 判断当前键盘是否为选中状态
+   - 如果不是选中状态 → 进入键盘切换引导页面
+   - 如果是选中状态 → 直接进入键盘设置页面
+
+**流程图：**
+
+```mermaid
+flowchart TD
+    A[Enter Mini App] --> B{Call keyboard.isEnabled}
+    B -->|Not Enabled| C[Keyboard Enable Guide Page]
+    B -->|Enabled| D{Call keyboard.isSelected}
+    D -->|Not Selected| E[Keyboard Switch Guide Page]
+    D -->|Selected| F[Keyboard Settings Page]
+
+    C --> G[User enables keyboard]
+    G --> D
+
+    E --> H[User switches to this keyboard]
+    H --> F
+```
+
+:::info
+此流程结合文末示例在真机的运行效果更容易理解，可以直接将示例应用中的代码和图片资源复用，也鼓励开发者自行实现这部分的 UI
+:::
+
+:::warning
+Amazfit Active 2 (Round), Amazfit Active 2 (Suqare), Amazfit Bip 6 的真机固件暂时缺失这部分的三个 API，预计在 2025 年底的 OTA 可以修复，如果在这之前上架作品，需要做一下 API 的存在性判断，如果不存在 API，建议每次进入小程序主体程序，都展示键盘的启用引导和键盘切换引导界面
+:::
+
 ### API 限制
 
 - 「键盘 Widget」的绘图区域有边界限制，绘图区域的边界与当前设备的屏幕边界保持一致，以 Amazfit Balance 2 为例，屏幕分辨率 480x480，绘图区域不能超出这个范围
-- 「键盘 Widget」无法使用 `GROUP` 控件
 - 凡是涉及到滚动、滑动以及图层堆叠相关的 UI 控件，都无法使用，如 `SCROLL_LIST`、`VIEW_CONTAINER`
+- 出于用户隐私保护考虑「键盘 Widget」无法与伴生服务进行通信，无法使用 BLE 相关的 API
 
 ## 完整示例
 
-- [Github Sample - 英文 T9 键盘](https://github.com/zepp-health/zeppos-samples/tree/feat/api_4.2/application/4.2/t9-keyboard)
-- [Github Sample - 中文拼音键盘](https://github.com/zepp-health/zeppos-samples/tree/feat/api_4.2/application/4.2/simple-keyboard)
+- [Github Sample - 英文 T9 键盘](https://github.com/zepp-health/zeppos-samples/tree/main/application/4.2/t9-keyboard)
+- [Github Sample - 中文拼音键盘](https://github.com/zepp-health/zeppos-samples/tree/main/application/4.2/simple-keyboard)

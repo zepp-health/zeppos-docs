@@ -95,13 +95,59 @@ Before introducing the lifecycle, let's first introduce a concept called the "Pa
 
 After the system keyboard is invoked, regardless of whether the "Keyboard Widget" is the currently selected keyboard, the `onInit` and `build` lifecycle methods of the "Keyboard Widget" will be executed, followed by triggering `onPause` (immediately `onPause` after creation is complete). When the "Keyboard Widget" is selected, `onResume` is triggered. When the user switches from the "Keyboard Widget" to another keyboard, the `onPause` lifecycle is triggered.
 
+### Mini Program Main Body Design Guidelines
+
+The Mini Program main body must include keyboard enable guidance, and developers are encouraged to provide keyboard experience, settings, and personalization features in the Mini Program main body.
+
+The enable guidance needs to include two steps:
+
+1. **Keyboard Enable**
+   - Corresponding APIs: `keyboard.isEnabled`, `keyboard.gotoSettings`
+2. **Keyboard Switch**
+   - Corresponding API: `keyboard.isSelected`
+
+**Complete Flow Description:**
+
+1. After entering the Mini Program main body, call `keyboard.isEnabled` to determine if the keyboard is enabled
+   - If not enabled → Enter keyboard enable guide page
+   - If enabled → Proceed to keyboard switch guidance
+
+2. In the keyboard switch guidance phase, call `keyboard.isSelected` to determine if the current keyboard is selected
+   - If not selected → Enter keyboard switch guide page
+   - If selected → Directly enter keyboard settings page
+
+**Flow Chart:**
+
+```mermaid
+flowchart TD
+    A[Enter Mini Program] --> B{Call keyboard.isEnabled}
+    B -->|Not Enabled| C[Keyboard Enable Guide Page]
+    B -->|Enabled| D{Call keyboard.isSelected}
+    D -->|Not Selected| E[Keyboard Switch Guide Page]
+    D -->|Selected| F[Keyboard Settings Page]
+
+    C --> G[User enables keyboard]
+    G --> D
+
+    E --> H[User switches to this keyboard]
+    H --> F
+```
+
+:::info
+This flow is easier to understand when combined with the examples at the end of the document running on real devices. You can directly reuse the code and image resources from the sample applications, and developers are also encouraged to implement this part of the UI themselves.
+:::
+
+:::warning
+The firmware of Amazfit Active 2 (Round), Amazfit Active 2 (Square), and Amazfit Bip 6 temporarily lacks these three APIs, which are expected to be fixed in the OTA at the end of 2025. If you publish your work before then, you need to check for API existence. If the APIs don't exist, it's recommended to show the keyboard enable guide and keyboard switch guide interface every time you enter the Mini Program main body.
+:::
+
 ### API Limitations
 
-- The drawing area of "Keyboard Widget" has boundary restrictions. The drawing area boundaries are consistent with the current device's screen boundaries. For example, with Amazfit Balance 2, which has a screen resolution of 480x480, the drawing area cannot exceed this range
-- "Keyboard Widget" cannot use the `GROUP` widget
-- Any UI widgets related to scrolling, sliding, and layer stacking cannot be used, such as `SCROLL_LIST`, `VIEW_CONTAINER`
+- The "Keyboard Widget" has drawing area boundary limitations. The drawing area boundaries are consistent with the current device's screen boundaries. For example, with Amazfit Balance 2, the screen resolution is 480x480, and the drawing area cannot exceed this range.
+- Any UI controls related to scrolling, sliding, and layer stacking cannot be used, such as `SCROLL_LIST`, `VIEW_CONTAINER`
+- For user privacy protection, the "Keyboard Widget" cannot communicate with companion services and cannot use BLE-related APIs
 
 ## Complete Examples
 
-- [Github Sample - English T9 Keyboard](https://github.com/zepp-health/zeppos-samples/tree/feat/api_4.2/application/4.2/t9-keyboard)
-- [Github Sample - Chinese Pinyin Keyboard](https://github.com/zepp-health/zeppos-samples/tree/feat/api_4.2/application/4.2/simple-keyboard)
+- [Github Sample - English T9 Keyboard](https://github.com/zepp-health/zeppos-samples/tree/main/application/4.2/t9-keyboard)
+- [Github Sample - Chinese Pinyin Keyboard](https://github.com/zepp-health/zeppos-samples/tree/main/application/4.2/simple-keyboard)
