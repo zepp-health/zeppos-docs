@@ -28,17 +28,35 @@ As user communities become more globalized and diverse, the demand for text inpu
 
 "Custom Keyboard" is a further extension of system keyboard functionality, allowing developers to create personalized "Custom Keyboard Widgets". Like Mini Programs, they need to be downloaded from the app store. After installation, they are enabled in System Settings → Preferences → Keyboard menu (only one "Custom Keyboard Widget" can be enabled at a time), and users can switch to use them during input.
 
-Below is a demonstration of the complete usage flow using the T9 Keyboard "Custom Keyboard" as an example:
+You can download "T9 Keyboard" from the app store to experience it. The device needs to support API_LEVEL 4.2.
 
-<img src={useBaseUrl('/img/docs/keyboard/keyboard_setting.png')} width="50%" title="keyboard_setting" />
+<img src={useBaseUrl('/img/docs/keyboard/T9_store.jpeg')} width="50%" title="zepp_store" />
 
-After invoking the system keyboard in message reply scenarios, you can see the globe icon. Click the globe icon to switch between different keyboards:
+:::info
+Some device models may not be able to search for this app in the app store. You can visit the project [source repository](https://github.com/zepp-health/zeppos-samples/tree/main/application/4.2/t9-keyboard) and use the `zeus preview` command to experience it on a real device.
+:::
 
-<img src={useBaseUrl('/img/docs/keyboard/keyboard_switch.png')} width="50%" title="keyboard_switch" />
+The "Custom Keyboard" has a mini app main body that can be accessed from the app list.
 
-After clicking the globe icon, it switches to T9 Keyboard:
+<img src={useBaseUrl('/img/docs/keyboard/keyboard_in_list.png')} width="50%" title="keyboard_setting" />
 
-<img src={useBaseUrl('/img/docs/keyboard/t9.png')} width="50%" title="t9" />
+If the keyboard is not enabled, enter the keyboard enable guide to complete the keyboard enable settings in system settings.
+
+<div style={{display: 'flex', gap: '10px', alignItems: 'center'}}>
+  <img src={useBaseUrl('/img/docs/keyboard/intro_step1.png')} width="50%" title="keyboard_setting" />
+  <img src={useBaseUrl('/img/docs/keyboard/keyboard_setting.png')} width="50%" title="keyboard_setting" />
+</div>
+
+After completing the settings, return to the mini app and enter the keyboard switch guide to learn how to switch to the "Custom Keyboard Widget".
+
+<img src={useBaseUrl('/img/docs/keyboard/intro_step2.png')} width="50%" title="intro_step2" />
+
+Click the button at the bottom of the page to invoke the system keyboard, then click the globe icon to switch to T9 Keyboard.
+
+<div style={{display: 'flex', gap: '10px', alignItems: 'center'}}>
+  <img src={useBaseUrl('/img/docs/keyboard/keyboard_switch.png')} width="50%" title="keyboard_switch" />
+  <img src={useBaseUrl('/img/docs/keyboard/t9.png')} width="50%" title="t9" />
+</div>
 
 If you need to quickly switch to a specific keyboard, long press the globe icon to enter the keyboard selection page:
 

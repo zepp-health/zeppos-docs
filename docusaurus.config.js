@@ -52,6 +52,9 @@ module.exports = {
       }
     }
   },
+  markdown: {
+    mermaid: true,
+  },
   presets: [
     [
       '@docusaurus/preset-classic',
@@ -86,6 +89,7 @@ module.exports = {
   ],
   themes: [
     // ... Your other themes.
+    '@docusaurus/theme-mermaid',
     [
       require.resolve('@easyops-cn/docusaurus-search-local'),
       {
@@ -201,6 +205,6 @@ module.exports = {
       prism: {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme
-      }
+      },
     })
 }

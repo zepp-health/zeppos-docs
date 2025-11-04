@@ -28,17 +28,35 @@ Zepp OS 正在不断拓宽系统键盘的使用场景，未来会又更多场景
 
 「自定义键盘」是在系统键盘基础上进一步开放的功能，允许开发者创建个性化的「自定义键盘 Widtge」。它和小程序一样需要从应用商店下载，安装后在系统设置 → 偏好设置 → 键盘菜单中启用（同一时间只能启用一个「自定义键盘 Widget」），用户可以在输入时切换使用。
 
-下面以 T9 Keyboard 「自定义键盘」为例，演示完整的使用流程：
+可以在应用商店下载「T9 Keyboard」体验，设备需要支持 API_LEVEL 4.2
 
-<img src={useBaseUrl('/img/docs/keyboard/keyboard_setting.png')} width="50%" title="keyboard_setting" />
+<img src={useBaseUrl('/img/docs/keyboard/T9_store.jpeg')} width="50%" title="zepp_store" />
 
-在消息回复场景中调出系统键盘后，可以看到地球图标。点击地球图标在不同键盘之间切换：
+:::info
+部分机型在应用商店可能无法搜索到该应用，可以访问该项目 [源码仓库](https://github.com/zepp-health/zeppos-samples/tree/main/application/4.2/t9-keyboard) ，使用 `zeus preview` 命令在真机体验
+:::
 
-<img src={useBaseUrl('/img/docs/keyboard/keyboard_switch.png')} width="50%" title="keyboard_switch" />
+「自定义键盘」拥有小程序主体，可以在应用列表中访问
 
-点击地球图标后，切换至 T9 Keyboard：
+<img src={useBaseUrl('/img/docs/keyboard/keyboard_in_list.png')} width="50%" title="keyboard_setting" />
 
-<img src={useBaseUrl('/img/docs/keyboard/t9.png')} width="50%" title="t9" />
+如果未启用键盘，进入键盘启用引导，进入系统设置完成键盘启用设置
+
+<div style={{display: 'flex', gap: '10px', alignItems: 'center'}}>
+  <img src={useBaseUrl('/img/docs/keyboard/intro_step1.png')} width="50%" title="keyboard_setting" />
+  <img src={useBaseUrl('/img/docs/keyboard/keyboard_setting.png')} width="50%" title="keyboard_setting" />
+</div>
+
+设置完成后回到小程序，进入键盘切换引导，学习如何切换到「自定义键盘 Widget」
+
+<img src={useBaseUrl('/img/docs/keyboard/intro_step2.png')} width="50%" title="intro_step2" />
+
+点击页面底部按钮，唤起系统键盘后，点击地球图标，切换到 T9 Keyboard
+
+<div style={{display: 'flex', gap: '10px', alignItems: 'center'}}>
+  <img src={useBaseUrl('/img/docs/keyboard/keyboard_switch.png')} width="50%" title="keyboard_switch" />
+  <img src={useBaseUrl('/img/docs/keyboard/t9.png')} width="50%" title="t9" />
+</div>
 
 如果需要快速切换到特定键盘，长按地球图标，进入键盘选择页面：
 
@@ -59,3 +77,4 @@ Zepp OS 正在不断拓宽系统键盘的使用场景，未来会又更多场景
 - **快捷输入**：双击空格自动输入句号和空格
 - **滑动输入**：支持手势输入，提高输入效率
 - **光标移动**：在键盘区域滑动手指即可移动光标
+- **手写输入**：与 CANVAS 能力配合，实现手写输入功能
