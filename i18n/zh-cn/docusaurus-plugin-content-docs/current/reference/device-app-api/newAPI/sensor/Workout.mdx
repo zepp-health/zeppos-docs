@@ -1,11 +1,11 @@
 ---
 title: Workout
-sidebar_label: Workout 运动记录
+sidebar_label: Workout 运动
 ---
 
 > API_LEVEL `3.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
 
-运动记录传感器。
+运动传感器。
 
 :::info
 权限代码： `data:user.hd.workout`
@@ -44,6 +44,59 @@ getHistory(): Array<History>
 | startTime | <code>number</code> | 运动开始时间 | 3.0       |
 | duration  | <code>number</code> | 时长，单位秒 | 3.0       |
 
+### getUserHrZoneSettings
+
+> API_LEVEL `4.2`
+
+获取用户运动心率区间设置
+
+```ts
+getUserHrZoneSettings(): HrZoneSettings
+```
+
+#### HrZoneSettings
+
+| 属性  | 类型                  | 说明                                                                                              | API_LEVEL |
+| ----- | --------------------- | ------------------------------------------------------------------------------------------------- | --------- |
+| type  | <code>number</code>   | 心率区间类型，0: 按储备心率，1: 按最大心率                                                        | 4.2       |
+| rest  | <code>number</code>   | 静息心率值                                                                                        | 4.2       |
+| range | <code>number[]</code> | 心率区间值数组，含 6 个数值，依次对应：热身放松、脂肪燃烧、心肺强化、耐力强化、无氧极限和最大心率 | 4.2       |
+
+### getWorkoutTrackNavInfo
+
+> API_LEVEL `4.2`
+
+获取运动中轨迹导航信息，开启导航时返回导航信息对象，未开启导航时返回 `undefined`
+
+```ts
+getWorkoutTrackNavInfo(): WorkoutTrackNavInfo | undefined
+```
+
+#### WorkoutTrackNavInfo
+
+| 属性           | 类型                | 说明                                        | API_LEVEL |
+| -------------- | ------------------- | ------------------------------------------- | --------- |
+| isYaw          | <code>number</code> | 是否偏航，true: 偏航，false: 未偏航         | 4.2       |
+| yawAngle       | <code>number</code> | 偏航夹角                                    | 4.2       |
+| yawDistance    | <code>number</code> | 偏航距离（米）                              | 4.2       |
+| remainDistance | <code>number</code> | 剩余距离（米）                              | 4.2       |
+| turnDistance   | <code>number</code> | 到下一个转弯的距离（米）                    | 4.2       |
+| turnType       | <code>number</code> | 下一个转弯的方向，值含义参考 `TURN_TYPE`    | 4.2       |
+
+#### TURN_TYPE
+
+| 值  | 类型                | 说明     | API_LEVEL |
+| --- | ------------------- | -------- | --------- |
+| 1   | <code>number</code> | 右前转   | 4.2       |
+| 2   | <code>number</code> | 右转     | 4.2       |
+| 3   | <code>number</code> | 右后转   | 4.2       |
+| 4   | <code>number</code> | 向右掉头 | 4.2       |
+| 5   | <code>number</code> | 掉头     | 4.2       |
+| 6   | <code>number</code> | 向左掉头 | 4.2       |
+| 7   | <code>number</code> | 左后转   | 4.2       |
+| 8   | <code>number</code> | 左转     | 4.2       |
+| 9   | <code>number</code> | 左前转   | 4.2       |
+
 ## 代码示例
 
 ```js
@@ -53,4 +106,10 @@ const workout = new Workout()
 
 const status = workout.getStatus()
 const history = workout.getHistory()
+
+const hrZoneSettings = workout.getUserHrZoneSettings()
+// {"type":0,"rest":83,"range":[129,138,147,157,166,175]}
+// {"type":1,"rest":70,"range":[90,108,126,144,162,181]}
+
+const trackNavInfo = workout.getWorkoutTrackNavInfo()
 ```

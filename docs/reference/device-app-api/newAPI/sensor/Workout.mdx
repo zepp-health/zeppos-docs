@@ -44,6 +44,59 @@ getHistory(): Array<History>
 | startTime | <code>number</code> | Workout start time             | 3.0       |
 | duration  | <code>number</code> | Duration of workout in seconds | 3.0       |
 
+### getUserHrZoneSettings
+
+> Start from API_LEVEL `4.2`
+
+Get user heart rate zone settings
+
+```ts
+getUserHrZoneSettings(): HrZoneSettings
+```
+
+#### HrZoneSettings
+
+| Property | Type                  | Description                                                                                                                       | API_LEVEL |
+| -------- | --------------------- | --------------------------------------------------------------------------------------------------------------------------------- | --------- |
+| type     | <code>number</code>   | Heart rate zone type, 0: by heart rate reserve, 1: by maximum heart rate                                                          | 4.2       |
+| rest     | <code>number</code>   | Resting heart rate value                                                                                                          | 4.2       |
+| range    | <code>number[]</code> | Heart rate zone value array with 6 values, corresponding to: Ligit, Intensive, Aerobic, Anaerobic, VO2 max and maximum heart rate | 4.2       |
+
+### getWorkoutTrackNavInfo
+
+> Start from API_LEVEL `4.2`
+
+Get workout track navigation information, returns navigation info object when navigation is enabled, returns `undefined` when navigation is not enabled
+
+```ts
+getWorkoutTrackNavInfo(): WorkoutTrackNavInfo | undefined
+```
+
+#### WorkoutTrackNavInfo
+
+| Property       | Type                | Description                                                             | API_LEVEL |
+| -------------- | ------------------- | ----------------------------------------------------------------------- | --------- |
+| isYaw          | <code>number</code> | Whether off course, true: off course, false: on course                  | 4.2       |
+| yawAngle       | <code>number</code> | Yaw angle                                                               | 4.2       |
+| yawDistance    | <code>number</code> | Yaw distance in meters                                                  | 4.2       |
+| remainDistance | <code>number</code> | Remaining distance in meters                                            | 4.2       |
+| turnDistance   | <code>number</code> | Distance to next turn in meters                                         | 4.2       |
+| turnType       | <code>number</code> | The direction of the next turn, refer to `TURN_TYPE` for value meanings | 4.2       |
+
+#### TURN_TYPE
+
+| Value | Type                | Description         | API_LEVEL |
+| ----- | ------------------- | ------------------- | --------- |
+| 1     | <code>number</code> | Turn right forward  | 4.2       |
+| 2     | <code>number</code> | Turn right          | 4.2       |
+| 3     | <code>number</code> | Turn right backward | 4.2       |
+| 4     | <code>number</code> | U-turn to the right | 4.2       |
+| 5     | <code>number</code> | U-turn              | 4.2       |
+| 6     | <code>number</code> | U-turn to the left  | 4.2       |
+| 7     | <code>number</code> | Turn left backward  | 4.2       |
+| 8     | <code>number</code> | Turn left           | 4.2       |
+| 9     | <code>number</code> | Turn left forward   | 4.2       |
+
 ## Example
 
 ```js
@@ -53,4 +106,10 @@ const workout = new Workout()
 
 const status = workout.getStatus()
 const history = workout.getHistory()
+
+const hrZoneSettings = workout.getUserHrZoneSettings()
+// {"type":0,"rest":83,"range":[129,138,147,157,166,175]}
+// {"type":1,"rest":70,"range":[90,108,126,144,162,181]}
+
+const trackNavInfo = workout.getWorkoutTrackNavInfo()
 ```
