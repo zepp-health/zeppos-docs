@@ -3,6 +3,8 @@ title: media
 sidebar_label: Media 多媒体
 ---
 
+import useBaseUrl from '@docusaurus/useBaseUrl'
+
 > API_LEVEL `3.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../guides/framework/device/compatibility.md)。
 
 Media 多媒体模块包括播放器和录制器，有录制和播放音频的能力。
@@ -62,7 +64,7 @@ addEventListener(callback: function): void
 
 ### setSource
 
-在开始播放之前，设置播放参数，以及相关编码参数
+在开始播放之前，设置播放参数，指定音频文件路径
 
 ```ts
 setSource(source: number, obj: object): void
@@ -78,7 +80,7 @@ source 的取值支持 `player.source.FILE`
 
 ### prepare
 
-设置播放器进入准备阶段，缓存多媒体数据等等，通过状态监听返回结果
+播放器进入准备阶段，检查路径是否正确，文件格式是否可以播放，码率是否支持。成功则播放器状态变化，开始缓存多媒体数据。通过事件监听函数获取调用结果。
 
 ```ts
 prepare(): void
@@ -95,7 +97,6 @@ player.addEventListener(player.event.PREPARE, function (result) {
     player.start()
   } else {
     console.log('=== prepare fail ===')
-    player.release()
   }
 })
 ```
@@ -150,11 +151,13 @@ getMediaInfo(): MediaInfo
 
 | 属性  | 说明   | 类型     |
 | ----- | ------ | -------- |
-| title | 文件名 | <code>string&#124;undefined</code> |
-| artist | 艺术家 | <code>string&#124;undefined</code> |
+| title | 文件名，`setSource()` 后可获取 | <code>string&#124;undefined</code> |
+| artist | 艺术家，`setSource()` 后可获取 | <code>string&#124;undefined</code> |
 | duration | 文件时长，需要播放器处于 `PREPARED` 状态才可以获取到值 | `number` |
 
 ### release
+
+> 接口已废弃，无需手动调用，系统自动管理
 
 在播放停止后，释放播放器硬件资源
 
@@ -172,14 +175,31 @@ getStatus(): number
 
 返回值含义参考 `player.state`
 
+### seek
+
+> API_LEVEL `4.2`
+
+设置播放位置（播放文件时长的百分比位置），`percentage` 有效值 [0 - 100]，返回值代表是否设置成功。
+
+- 如果当前是 `PREPARED` 状态，在 `seek()` 之后会自动开始播放
+- 如果当前是 `PAUSED` 或 `PLAY` 状态，在 `seek()` 之后保持当前状态
+
+```ts
+seek(percentage: number): boolean
+```
+
 ### player.event
 
 播放器支持监听的事件类型
 
 | 事件值                  | 说明                                                                                           |
 | ----------------------- | ---------------------------------------------------------------------------------------------- |
-| `player.event.PREPARE`  | `prepare` 接口的异步结果监听，回调函数 `(result: boolean) => void`, 参数 `result` 表示是否成功 |
+| `player.event.PREPARE`  | `prepare()` 会触发此事件，回调函数 `function(result)`,  `result` 为 `boolean` 类型，表示是否成功 |
 | `player.event.COMPLETE` | 音频正常开始播放后，待音频文件或音频数据播放结束时，可以监听到 `COMPLETE` 事件                 |
+| `player.event.PLAY`     | `start()` 和 `seek()` 会触发此事件，回调函数 `function(result)`,  `result` 为 `boolean` 类型，表示是否成功 |
+| `player.event.STOP`     | `stop()` 停止播放                                                                     |
+| `player.event.PAUSE`    | 播放暂停，调用 `pause()` 触发，或因系统资源冲突触发                                                       |
+| `player.event.PROGRESS` | 播放状态下（每秒）更新播放进度                                           |
 
 ### player.state
 
@@ -189,11 +209,22 @@ getStatus(): number
 | -------------------------- | ------------------------------------------ |
 | `player.state.IDLE`        | 初始状态                                   |
 | `player.state.INITIALIZED` | `setSource` 后的状态                       |
-| `player.state.PREPARING`   | `prepare` 调用后，还未 `PREPARED` 时的状态 |
+| `player.state.PREPARING`   | 中间状态，`prepare` 调用后，还未 `PREPARED` 时的状态 |
 | `player.state.PREPARED`    | `prepare` 成功后的状态                     |
-| `player.state.STARTED`     | 开始播放后的状态                           |
+| `player.state.STARTED`     | 开始播放后的状态，已废弃，使用 `PLAY` 替代                           |
+| `player.state.STARTING`     | 中间状态，开始播放处理                           |
+| `player.state.PLAY`     | 开始播放后的状态                           |
 | `player.state.PAUSED`      | 播放暂停时的状态                           |
 | `player.state.STOPPED`     | 停止播放后的状态                           |
+| `player.state.RESUMING`     | 中间状态，恢复播放处理中，恢复后变为 `PLAY` 状态                          |
+
+### 播放器事件和状态流转图
+
+<img
+  src={useBaseUrl('/img/api/media_player_state.jpg')}
+  width="100%"
+  title="media_player_state"
+/>
 
 ## Record 接口
 
@@ -231,14 +262,12 @@ player.addEventListener(player.event.PREPARE, function (result) {
     player.start()
   } else {
     console.log('=== prepare fail ===')
-    player.release()
   }
 })
 
 player.addEventListener(player.event.COMPLETE, function (result) {
   console.log('=== play end ===')
   player.stop()
-  player.release()
 })
 
 player.setSource(player.source.FILE, { file: '08-15s-16000-1ch.opus' })
@@ -246,9 +275,7 @@ player.setSource(player.source.FILE, { file: '08-15s-16000-1ch.opus' })
 // User control
 player.prepare()
 player.pause()
-player.resume()
 player.stop()
-player.release()
 ```
 
 ```js

@@ -19,6 +19,16 @@ API_LEVEL 4.2 对完善了现有 API 能力，新功能主要集中在自定义�
 
 <img src={useBaseUrl('/img/docs/keyboard/t9.png')} width="50%" title="t9" />
 
+## [Media 多媒体](../../reference/device-app-api/newAPI/media.mdx)
+
+Player 新增 `seek` 功能，新增事件与状态流转图
+
+<img
+  src={useBaseUrl('/img/api/media_player_state.jpg')}
+  width="100%"
+  title="media_player_state"
+/>
+
 ## [Workout 运动](../../reference/device-app-api/newAPI/sensor/Workout.mdx)
 
 - 新增 `getWorkoutTrackNavInfo`，可以获取运动中轨迹导航的相关信息
