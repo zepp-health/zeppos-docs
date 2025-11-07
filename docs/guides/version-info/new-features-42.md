@@ -21,7 +21,7 @@ For details, refer to [Custom Keyboard - Introduction](../../guides/keyboard/int
 
 ## [Media Multimedia](../../reference/device-app-api/newAPI/media.mdx)
 
-Player now supports seek, with new events and a state transition diagram
+Player now supports `seek()` function, with new events and a state transition diagram
 
 <img
   src={useBaseUrl('/img/api/media_player_state.jpg')}

@@ -147,6 +147,27 @@ The firmware of Amazfit Active 2 (Round), Amazfit Active 2 (Square), and Amazfit
 - Any UI controls related to scrolling, sliding, and layer stacking cannot be used, such as `SCROLL_LIST`, `VIEW_CONTAINER`
 - For user privacy protection, the "Keyboard Widget" cannot communicate with companion services and cannot use BLE-related APIs
 
+### Design Recommendations
+
+Due to device screen size constraints, the keyboard is typically presented in full-screen mode. The upper section is the content area, used for real-time preview of text that has been entered and is being entered; the lower section is the keyboard area, primarily for character input and function key operations.
+
+<img src={useBaseUrl('/img/docs/keyboard/keyboard_layout.png')} width="50%" title="keyboard_layout" />
+
+**Input Area**
+
+- Content operations: retrieve text content (including all text, text before and after the cursor), insert or delete text characters, and listen for events when the user actively deletes text.
+- Cursor control: support moving the cursor forward/backward by a specified distance or to the beginning/end of the text, and listen for events when the user actively moves the cursor.
+- Composing character marker: For languages such as Chinese, Japanese, and Korean that require multi-stage character composition, use a special style in the display area to mark composing characters (e.g., Chinese Pinyin) for users to view and edit. After confirming the characters, clear the marker and keep the confirmed text in the content area. When a composing marker exists, restrict the cursor to move only within the marked range; at this time, pressing the confirm key is only for confirming the characters—define the characters to commit; if not defined, directly use the composing characters. If a keyboard switch or other action causes the current input state to exit, remove the marker and discard the composing characters.
+
+**Keyboard Area**
+
+The keyboard area is the core of a custom keyboard, where various character inputs and function key operations are implemented. Ensure the following key requirements are met:
+
+- Keyboard switch key: typically displayed with a globe icon, used to quickly switch between multiple input methods or keyboards, or to open the keyboard menu.
+- Confirm key: typically represented by icons such as checkmark, return, or send. When tapped, it commits the entered text and proceeds with subsequent actions (e.g., exit current input, send a message).
+- Keyboard height: the height of the keyboard area can be customized, but ensure at least one line of text can be displayed to avoid the input and content areas obstructing each other.
+- Multi-device adaptation: the keyboard must adapt to various shapes (round, square) and different screen sizes to ensure a consistent and usable input experience across devices.
+
 ## Complete Examples
 
 - [Github Sample - English T9 Keyboard](https://github.com/zepp-health/zeppos-samples/tree/main/application/4.2/t9-keyboard)
