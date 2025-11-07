@@ -21,7 +21,7 @@ API_LEVEL 4.2 对完善了现有 API 能力，新功能主要集中在自定义�
 
 ## [Media 多媒体](../../reference/device-app-api/newAPI/media.mdx)
 
-Player 新增 `seek` 功能，新增事件与状态流转图
+Player 新增 `seek()` 功能，新增事件与状态流转图
 
 <img
   src={useBaseUrl('/img/api/media_player_state.jpg')}
