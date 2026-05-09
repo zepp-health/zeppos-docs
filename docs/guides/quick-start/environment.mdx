@@ -5,27 +5,37 @@ sidebar_label: 1. Environmental Preparation
 
 In this section, we will complete the following environment preparations.
 
-- Node.js (v >= 16.0)
+- Node.js (recommended LTS version)
 - Zeus CLI
+
+:::info
+
+If you run into any installation issues, it is recommended that you send the error message, operating system version, and the command you are currently running to AI for troubleshooting. This usually helps resolve the problem faster.
+
+:::
 
 ## Install Node.js
 
-Visit the [Node.js Official website - Download](https://nodejs.org/en/download/package-manager)。
+Visit the [Node.js Official website - Download](https://nodejs.org/en/download/package-manager).
 
-It is recommended to install through the `nvm` package manager. The following installation instructions are excerpted from the `Node.js` official website.
+It is recommended to use the official installer and install the LTS version.
+
+If you are used to Node.js version managers, it is recommended that you follow the official command installation guide.
+
+The following installation commands are excerpted from the official website. This is an example of using `fnm` to install Node.js on macOS. For installation methods on other platforms, please refer to the official guide.
 
 ```sh
-# installs nvm (Node Version Manager)
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+# Download and install fnm:
+curl -o- https://fnm.vercel.app/install | bash
 
-# download and install Node.js (you may need to restart the terminal)
-nvm install 20
+# Download and install Node.js:
+fnm install 24
 
-# verifies the right Node.js version is in the environment
-node -v # should print `v20.15.0`
+# Verify the Node.js version:
+node -v # Should print "v24.15.0".
 
-# verifies the right NPM version is in the environment
-npm -v # should print `10.7.0`
+# Verify the npm version:
+npm -v # Should print "11.12.1".
 ```
 
 :::info
@@ -35,45 +45,19 @@ npm -v # should print `10.7.0`
 
 :::
 
-Step one, execute the first command in the official website installation guide, install nvm (Node Version Manager), copy the command to the end point, and press "Enter" on the keyboard.
+[Zeus CLI](../tools/cli/index.md) is a Zepp OS command-line toolset that we use to create, preview, compile, and build Zepp OS Mini Programs or Watchface projects.
 
-```js
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
-```
-
-Step 2, execute the second command in the official website installation guide to install Node.js. It is recommended to directly install the `lts` version.
-
-Execute the following two commands in sequence at the **Windows** PowerShell
-
-```sh
-nvm install lts
-nvm use lts
-```
-
-Execute the following two commands in sequence at the **MacOS** or **Linux** Terminal
-
-```sh
-nvm install --lts
-nvm use --lts
-```
-
-Step three, check if Node.js has been installed successfully. Execute the following command at the end point. If the end point displays a version number such as `v20.15.0`, it indicates a successful installation.
-
-```sh
-node -v
-```
-
-## Install Zeus CLI
-
-[Zeus CLI](../tools/cli/index.md) is a Zepp OS command-line toolset that we use to create, preview compiles, and build Zepp OS Mini Programs or Watchface projects.
-
-The first step is to execute the installation command at the terminal.
+Step one, execute the installation command at the terminal.
 
 ```sh
 npm i @zeppos/zeus-cli -g
 ```
 
-The second step is to check whether the Zeus CLI is installed successfully. Execute the following command at the terminal. If the end point displays a version number such as `1.5.20`, it means that the installation is successful.
+:::tip
+If you encounter any issues while installing Zeus CLI, please see [Environment Installation FAQ](../faq/env-setup.md).
+:::
+
+Step two, check whether Zeus CLI is installed successfully. Execute the following command at the terminal. If the terminal displays a version number such as `1.9.0`, it means that the installation is successful.
 
 ```sh
 zeus -v
