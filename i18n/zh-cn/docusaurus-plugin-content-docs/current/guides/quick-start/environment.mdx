@@ -5,63 +5,44 @@ sidebar_label: 1. 环境准备
 
 在本章节中，我们将完成以下环境准备工作。
 
-- 安装 Node.js (v >= 16.0)
+- 安装 Node.js（推荐 LTS 版本）
 - 安装 Zeus CLI
+
+:::info
+
+如果在安装过程中遇到问题，建议将报错信息、操作系统版本和当前执行的命令发给 AI 进行排查，通常能更快解决问题。
+:::
 
 ## 安装 Node.js
 
 访问 [Node.js 官网 - 下载 Node.js](https://nodejs.org/zh-cn/download/package-manager)。
 
-推荐通过 `nvm` 包管理器的方式进行安装，以下安装指引摘自 `Node.js` 官网。
+推荐使用官方安装程序进行安装，安装 LTS 版本。
+
+如果习惯使用 Node.js 版本管理工具，建议参考官方的命令安装指引。
+
+以下安装命令摘自官网，是在 macOS 上使用 fnm 安装 Node.js 的示例，其他平台的安装方式请参考官网指引。
 
 ```sh
-# installs nvm (Node Version Manager)
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+# 下载并安装 fnm：
+curl -o- https://fnm.vercel.app/install | bash
 
-# download and install Node.js (you may need to restart the terminal)
-nvm install 20
+# 下载并安装 Node.js：
+fnm install 24
 
-# verifies the right Node.js version is in the environment
-node -v # should print `v20.15.0`
+# 验证 Node.js 版本：
+node -v # Should print "v24.15.0".
 
-# verifies the right NPM version is in the environment
-npm -v # should print `10.7.0`
+# 验证 npm 版本：
+npm -v # Should print "11.12.1".
 ```
 
 :::info
 
-- 在 Windows 中我们推荐使用系统内置的 `PowerShell` 终端来执行命令，以管理员方式运行
+- 在 Windows 中推荐使用系统内置的 `PowerShell` 终端来执行命令，以管理员方式运行
 - 在 MacOS 和 Linux 中推荐使用系统内置的 `Terminal` 终端来执行命令
 
 :::
-
-第一步，执行官网安装指引中的第一条命令，安装 nvm (Node Version Manager)，将命令复制到终端中，键盘按下「回车键」。
-
-```js
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
-```
-
-第二步，执行官网安装指引中的第二条命令，安装 Node.js，建议直接安装 `lts` 版本。
-
-在 **Windows** 终端依次执行以下两条命令：
-
-```sh
-nvm install lts
-nvm use lts
-```
-
-在 **MacOS** 和 **Linux** 的终端依次执行以下两条命令：
-
-```sh
-nvm install --lts
-nvm use --lts
-```
-
-第三步，检查 Node.js 是否安装成功，在终端执行以下命令，如果终端显示如 `v20.15.0` 这样的版本号，则表明安装成功。
-
-```sh
-node -v
-```
 
 ## 安装 Zeus CLI
 
@@ -77,7 +58,7 @@ npm i @zeppos/zeus-cli -g
 安装 Zeus CLI 过程中遇到问题请查看 [环境安装常见问题](../faq/env-setup.md)
 :::
 
-第二步，检查 Zeus CLI 是否安装成功，在终端执行以下命令，如果终端显示如 `1.5.20` 的版本号，则表明安装成功。
+第二步，检查 Zeus CLI 是否安装成功，在终端执行以下命令，如果终端显示如 `1.9.0` 的版本号，则表明安装成功。
 
 ```sh
 zeus -v
