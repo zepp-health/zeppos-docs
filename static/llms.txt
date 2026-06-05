@@ -1,0 +1,336 @@
+# Zepp OS Developer Documentation
+
+> Official API reference and guides for Zepp OS — the RTOS platform for wearable devices by Zepp Health. Covers Mini Program and Watchface development using JavaScript APIs (@zos/ui, @zos/sensor, @zos/ble, etc.), with a JS runtime on a C firmware layer.
+
+Zepp OS exposes firmware capabilities through a JS framework layer. Developers use `@zos/*` module imports. The API is versioned by API_LEVEL (2.0, 3.0, 3.6, 4.0, 4.1, 4.2+), not OS version.
+
+Key concepts:
+- **Mini Program** (app) and **Watchface** are the two target types; some APIs are only available for one target
+- **UI widgets** are created via `createWidget(widgetId, option)` and configured through property objects
+- **Sensors** follow a start/stop/getCurrent/onChange pattern
+- **Permission** system uses `device:os.*` codes; apps must declare them in `app.json`
+- **File system** uses `@zos/fs` with sync/async variants; Mini Programs write to `/data` directory
+- **BLE** uses `@zos/ble` for both peripheral and central roles
+
+## Introduction
+
+- [Introduction](https://docs.zepp.com/docs/intro/): What is Zepp OS
+- [Version intro](https://docs.zepp.com/docs/intro/version/): Platform overview by version
+- [What's new (4.2)](https://docs.zepp.com/docs/guides/version-info/new-features-42/): Latest API features
+- [What's new (4.0)](https://docs.zepp.com/docs/guides/version-info/new-features-40/): API_LEVEL 4.0 additions
+- [What's new (3.5)](https://docs.zepp.com/docs/guides/version-info/new-features-35/): API_LEVEL 3.5 additions
+- [What's new (3.0)](https://docs.zepp.com/docs/guides/version-info/new-features-30/): API_LEVEL 3.0 additions
+- [Zepp OS v2 features](https://docs.zepp.com/docs/guides/version-info/new-features/): v2.0 and v2.1 additions
+- [New API in v2](https://docs.zepp.com/docs/guides/version-info/new-api/): API introduced in v2
+- [Migration guide](https://docs.zepp.com/docs/guides/version-info/migration-guide/): Migrate between API versions
+- [Version choose](https://docs.zepp.com/docs/guides/version-info/version-choose/): Which version to target
+
+## Quick Start
+
+- [Quick Start overview](https://docs.zepp.com/docs/guides/quick-start/): From zero to first build
+- [Environment setup](https://docs.zepp.com/docs/guides/quick-start/environment/): Install tools and SDK
+- [Create a project](https://docs.zepp.com/docs/guides/quick-start/create/): Scaffold your first app
+- [Simulator development](https://docs.zepp.com/docs/guides/quick-start/simulator-dev/): Run in the simulator
+- [Coding and debugging](https://docs.zepp.com/docs/guides/quick-start/development/): Debug workflow
+- [Preview on watch](https://docs.zepp.com/docs/guides/quick-start/preview/): Push to real device
+
+## Framework
+
+### Device App (Mini Program)
+
+- [Introduction](https://docs.zepp.com/docs/guides/framework/device/intro/): Mini Program architecture
+- [JS support](https://docs.zepp.com/docs/guides/framework/device/js-support/): JavaScript runtime capabilities
+- [App lifecycle](https://docs.zepp.com/docs/guides/framework/device/app/): App-level events
+- [Page lifecycle](https://docs.zepp.com/docs/guides/framework/device/page/): Page lifecycle hooks
+- [Secondary widget](https://docs.zepp.com/docs/guides/framework/device/secondary-widget/): Widget for watchface complication
+- [Life cycle](https://docs.zepp.com/docs/guides/framework/device/life-cycle/): Page and app lifecycle reference
+- [Router](https://docs.zepp.com/docs/guides/framework/device/router/): Navigation between pages
+- [Compatibility](https://docs.zepp.com/docs/guides/framework/device/compatibility/): API_LEVEL system explained
+- [Permission](https://docs.zepp.com/docs/guides/framework/device/permission/): Runtime permissions
+- [File system](https://docs.zepp.com/docs/guides/framework/device/fs/): File operations
+- [Screen adaptation](https://docs.zepp.com/docs/guides/framework/device/screen-adaption/): Multi-device layout
+- [App Service](https://docs.zepp.com/docs/guides/framework/device/app-service/): Background services
+- [System event](https://docs.zepp.com/docs/guides/framework/device/system-event/): System-level events
+- [System notification](https://docs.zepp.com/docs/guides/framework/device/system-notification/): Notification API
+- [BLE Central](https://docs.zepp.com/docs/guides/framework/device/ble-central/): Bluetooth Low Energy guide
+- [Layout](https://docs.zepp.com/docs/guides/framework/device/layout/): Auto-layout system
+
+### Settings App
+
+- [Introduction](https://docs.zepp.com/docs/guides/framework/app-settings/intro/): Settings App overview
+- [JS support](https://docs.zepp.com/docs/guides/framework/app-settings/js-support/): JavaScript capabilities
+- [Register](https://docs.zepp.com/docs/guides/framework/app-settings/register/): How to register
+- [UI introduction](https://docs.zepp.com/docs/guides/framework/app-settings/ui-intro/): Settings App UI
+
+### Side Service
+
+- [Introduction](https://docs.zepp.com/docs/guides/framework/side-service/intro/): Side Service overview
+- [Register](https://docs.zepp.com/docs/guides/framework/side-service/register/): How to register
+
+## Tools
+
+- [Zeus CLI](https://docs.zepp.com/docs/guides/tools/cli/): Command-line tool
+- [Simulator](https://docs.zepp.com/docs/guides/tools/simulator/): Device simulator
+- [npm package](https://docs.zepp.com/docs/guides/tools/npm/): Package management
+- [Zepp App](https://docs.zepp.com/docs/guides/tools/zepp-app/): Mobile companion app
+- [Watchface Maker](https://docs.zepp.com/docs/guides/tools/watchface/): Visual watchface editor
+
+## Device App API Reference (v3+ / @zos namespace)
+
+Per-module enhanced references are available at `/llms/@zos-{module}.md`. Each module file contains the full API reference with constants, type signatures, and examples:
+
+- [@zos/alarm](/llms/@zos-alarm.md) — Alarm API (set/cancel/getAllAlarms)
+- [@zos/app](/llms/@zos-app.md) — Mini Program control (lifecycle, permissions, package info)
+- [@zos/app-access](/llms/@zos-app-access.md) — App access (sport data)
+- [@zos/app-service](/llms/@zos-app-service.md) — App service (background services)
+- [@zos/ble](/llms/@zos-ble.md) — Bluetooth LE (peripheral + central roles)
+- [@zos/device](/llms/@zos-device.md) — Device info
+- [@zos/display](/llms/@zos-display.md) — Display control (brightness, settings)
+- [@zos/fs](/llms/@zos-fs.md) — File system (sync read/write, sys properties)
+- [@zos/global](/llms/@zos-global.md) — Global frame interfaces
+- [@zos/i18n](/llms/@zos-i18n.md) — Internationalization
+- [@zos/interaction](/llms/@zos-interaction.md) — Interaction (vibrate, screen resolution)
+- [@zos/notification](/llms/@zos-notification.md) — Notification API
+- [@zos/page](/llms/@zos-page.md) — Page data
+- [@zos/router](/llms/@zos-router.md) — Router (page navigation)
+- [@zos/sensor](/llms/@zos-sensor.md) — Sensors (accelerometer, heart rate, GPS, etc.)
+- [@zos/settings](/llms/@zos-settings.md) — System settings (brightness, language, device info)
+- [@zos/storage](/llms/@zos-storage.md) — Key-value storage
+- [@zos/timer](/llms/@zos-timer.md) — System timer
+- [@zos/transfer-file](/llms/@zos-transfer-file.md) — File transfer
+- [@zos/ui](/llms/@zos-ui.md) — UI overview and submodule index
+- [@zos/ui-methods](/llms/@zos-ui-methods.md) — General UI methods, dialogs, keyboard, toast, layout helpers
+- [@zos/ui-animations](/llms/@zos-ui-animations.md) — Widget animation APIs
+- [@zos/ui-widget-basic](/llms/@zos-ui-widget-basic.md) — Basic widgets
+- [@zos/ui-widget-form](/llms/@zos-ui-widget-form.md) — Form widgets
+- [@zos/ui-widget-layout](/llms/@zos-ui-widget-layout.md) — Layout widgets
+- [@zos/user](/llms/@zos-user.md) — User info
+- [@zos/utils](/llms/@zos-utils.md) — Utilities (ASCII conversion, format)
+
+### @zos/sensor — Sensors
+
+- [Accelerometer](https://docs.zepp.com/docs/reference/device-app-api/newAPI/sensor/Accelerometer/): Device acceleration
+- [Barometer](https://docs.zepp.com/docs/reference/device-app-api/newAPI/sensor/Barometer/): Atmospheric pressure
+- [Battery](https://docs.zepp.com/docs/reference/device-app-api/newAPI/sensor/Battery/): Battery level and charging
+- [BloodOxygen](https://docs.zepp.com/docs/reference/device-app-api/newAPI/sensor/BloodOxygen/): SpO2 blood oxygen
+- [BodyTemperature](https://docs.zepp.com/docs/reference/device-app-api/newAPI/sensor/BodyTemperature/): Body temperature
+- [Buzzer](https://docs.zepp.com/docs/reference/device-app-api/newAPI/sensor/Buzzer/): Vibration patterns
+- [Calorie](https://docs.zepp.com/docs/reference/device-app-api/newAPI/sensor/Calorie/): Calorie data
+- [Compass](https://docs.zepp.com/docs/reference/device-app-api/newAPI/sensor/Compass/): Heading direction
+- [Distance](https://docs.zepp.com/docs/reference/device-app-api/newAPI/sensor/Distance/): Distance tracking
+- [FatBurning](https://docs.zepp.com/docs/reference/device-app-api/newAPI/sensor/FatBurning/): Fat burn data
+- [Geolocation](https://docs.zepp.com/docs/reference/device-app-api/newAPI/sensor/Geolocation/): GPS positioning
+- [Gyroscope](https://docs.zepp.com/docs/reference/device-app-api/newAPI/sensor/Gyroscope/): Angular velocity
+- [HeartRate](https://docs.zepp.com/docs/reference/device-app-api/newAPI/sensor/HeartRate/): Heart rate monitoring
+- [Pai](https://docs.zepp.com/docs/reference/device-app-api/newAPI/sensor/Pai/): PAI activity score
+- [Screen](https://docs.zepp.com/docs/reference/device-app-api/newAPI/sensor/Screen/): Screen on/off state
+- [Sleep](https://docs.zepp.com/docs/reference/device-app-api/newAPI/sensor/Sleep/): Sleep tracking
+- [Stand](https://docs.zepp.com/docs/reference/device-app-api/newAPI/sensor/Stand/): Stand detection
+- [Step](https://docs.zepp.com/docs/reference/device-app-api/newAPI/sensor/Step/): Step counter
+- [Stress](https://docs.zepp.com/docs/reference/device-app-api/newAPI/sensor/Stress/): Stress level
+- [SystemSounds](https://docs.zepp.com/docs/reference/device-app-api/newAPI/sensor/SystemSounds/): System sound playback
+- [Time](https://docs.zepp.com/docs/reference/device-app-api/newAPI/sensor/Time/): Time and date
+- [Vibrator](https://docs.zepp.com/docs/reference/device-app-api/newAPI/sensor/Vibrator/): Vibration motor
+- [Wear](https://docs.zepp.com/docs/reference/device-app-api/newAPI/sensor/Wear/): Wear detection
+- [Weather](https://docs.zepp.com/docs/reference/device-app-api/newAPI/sensor/Weather/): Weather data
+- [Workout](https://docs.zepp.com/docs/reference/device-app-api/newAPI/sensor/Workout/): Workout tracking
+- [WorldClock](https://docs.zepp.com/docs/reference/device-app-api/newAPI/sensor/WorldClock/): World clock zones
+- [checkSensor](https://docs.zepp.com/docs/reference/device-app-api/newAPI/sensor/checkSensor/): Check sensor availability
+
+### @zos/app — Mini Program App Control (Mini Program only)
+
+- [startApp](https://docs.zepp.com/docs/reference/device-app-api/newAPI/app/startApp/): Start another Mini Program
+- [gotoPage](https://docs.zepp.com/docs/reference/device-app-api/newAPI/app/gotoPage/): Navigate to page
+- [reloadPage](https://docs.zepp.com/docs/reference/device-app-api/newAPI/app/reloadPage/): Reload current page
+- [setLayerY](https://docs.zepp.com/docs/reference/device-app-api/newAPI/app/setLayerY/): Set layer Y offset
+- [getLayerY](https://docs.zepp.com/docs/reference/device-app-api/newAPI/app/getLayerY/): Get layer Y offset
+- [gotoHome](https://docs.zepp.com/docs/reference/device-app-api/newAPI/app/gotoHome/): Go to home screen
+- [exit](https://docs.zepp.com/docs/reference/device-app-api/newAPI/app/exit/): Exit app
+- [goBack](https://docs.zepp.com/docs/reference/device-app-api/newAPI/app/goBack/): Go back
+- [setScreenKeep](https://docs.zepp.com/docs/reference/device-app-api/newAPI/app/setScreenKeep/): Keep screen on
+- [getPackageInfo](https://docs.zepp.com/docs/reference/device-app-api/newAPI/app/getPackageInfo/): Get package info
+- [getPackageInfoById](https://docs.zepp.com/docs/reference/device-app-api/newAPI/app/getPackageInfoById/): Get package info by ID
+- [getPerformance](https://docs.zepp.com/docs/reference/device-app-api/newAPI/app/getPerformance/): Get performance data
+- [getScene](https://docs.zepp.com/docs/reference/device-app-api/newAPI/app/getScene/): Get current scene
+- [queryPermission](https://docs.zepp.com/docs/reference/device-app-api/newAPI/app/queryPermission/): Query permission status
+- [requestPermission](https://docs.zepp.com/docs/reference/device-app-api/newAPI/app/requestPermission/): Request permissions
+- [emitCustomSystemEvent](https://docs.zepp.com/docs/reference/device-app-api/newAPI/app/emitCustomSystemEvent/): Emit custom system event
+
+### @zos/app-service — App Service (Mini Program only)
+
+- [start](https://docs.zepp.com/docs/reference/device-app-api/newAPI/app-service/start/): Start app service
+- [stop](https://docs.zepp.com/docs/reference/device-app-api/newAPI/app-service/stop/): Stop app service
+- [getAllAppServices](https://docs.zepp.com/docs/reference/device-app-api/newAPI/app-service/getAllAppServices/): List all services
+- [exit](https://docs.zepp.com/docs/reference/device-app-api/newAPI/app-service/exit/): Exit service
+
+### @zos/app-access — App Access (Mini Program only)
+
+- [getSportData](https://docs.zepp.com/docs/reference/device-app-api/newAPI/app-access/getSportData/): Get sport/health data
+
+### @zos/ble — Bluetooth Low Energy (Mini Program only)
+
+- [createConnect](https://docs.zepp.com/docs/reference/device-app-api/newAPI/ble/createConnect/): Create BLE connection
+- [connectStatus](https://docs.zepp.com/docs/reference/device-app-api/newAPI/ble/connectStatus/): Check connection status
+- [addListener](https://docs.zepp.com/docs/reference/device-app-api/newAPI/ble/addListener/): Listen for BLE events
+- [removeListener](https://docs.zepp.com/docs/reference/device-app-api/newAPI/ble/removeListener/): Remove BLE listener
+- [send](https://docs.zepp.com/docs/reference/device-app-api/newAPI/ble/send/): Send data
+- [mstStartScan](https://docs.zepp.com/docs/reference/device-app-api/newAPI/ble/mstStartScan/): Start central scan
+- [mstConnect](https://docs.zepp.com/docs/reference/device-app-api/newAPI/ble/mstConnect/): Central mode connect
+- [mstDisconnect](https://docs.zepp.com/docs/reference/device-app-api/newAPI/ble/mstDisconnect/): Central mode disconnect
+- Full central/master API: getProfileInstance, buildProfile, readCharacteristic, writeCharacteristic, etc.
+
+### @zos/fs — File System
+
+- [statSync](https://docs.zepp.com/docs/reference/device-app-api/newAPI/fs/statSync/): Get file info
+- [rmSync](https://docs.zepp.com/docs/reference/device-app-api/newAPI/fs/rmSync/): Delete file
+- [renameSync](https://docs.zepp.com/docs/reference/device-app-api/newAPI/fs/renameSync/): Rename file
+- [openSync](https://docs.zepp.com/docs/reference/device-app-api/newAPI/fs/openSync/): Open file sync
+- [closeSync](https://docs.zepp.com/docs/reference/device-app-api/newAPI/fs/closeSync/): Close file
+- [readSync](https://docs.zepp.com/docs/reference/device-app-api/newAPI/fs/readSync/): Read file
+- [writeSync](https://docs.zepp.com/docs/reference/device-app-api/newAPI/fs/writeSync/): Write file
+- [seekSync](https://docs.zepp.com/docs/reference/device-app-api/newAPI/fs/seekSync/): Seek in file
+- [statAssetSync](https://docs.zepp.com/docs/reference/device-app-api/newAPI/fs/statAssetSync/): Get asset file info
+- [openAssetSync](https://docs.zepp.com/docs/reference/device-app-api/newAPI/fs/openAssetSync/): Open asset file
+- System Properties: SysProSetBool, SysProGetBool, SysProSetInt, SysProGetInt, SysProSetInt64, SysProGetInt64, SysProSetDouble, SysProGetDouble, SysProSetChars, SysProGetChars
+
+### @zos/settings — System Settings
+
+- [setScreenAutoBright](https://docs.zepp.com/docs/reference/device-app-api/newAPI/settings/setScreenAutoBright/): Auto brightness
+- [getBrightness](https://docs.zepp.com/docs/reference/device-app-api/newAPI/settings/getBrightness/): Get brightness
+- [getDeviceInfo](https://docs.zepp.com/docs/reference/device-app-api/newAPI/settings/getDeviceInfo/): Device info
+- [getUserData](https://docs.zepp.com/docs/reference/device-app-api/newAPI/settings/getUserData/): User data
+- [getLanguage](https://docs.zepp.com/docs/reference/device-app-api/newAPI/settings/getLanguage/): Get language
+- [getScreenType](https://docs.zepp.com/docs/reference/device-app-api/newAPI/settings/getScreenType/): Screen type (round/rect)
+
+### @zos/device — Device Info
+
+- [getDeviceInfo](https://docs.zepp.com/docs/reference/device-app-api/newAPI/device/getDeviceInfo/): Device information
+- [getDiskInfo](https://docs.zepp.com/docs/reference/device-app-api/newAPI/device/getDiskInfo/): Disk space info
+
+### @zos/display — Display Control
+
+- [getBrightness](https://docs.zepp.com/docs/reference/device-app-api/newAPI/display/getBrightness/): Get brightness
+- [getAutoBrightness](https://docs.zepp.com/docs/reference/device-app-api/newAPI/display/getAutoBrightness/): Auto brightness
+- [getSettings](https://docs.zepp.com/docs/reference/device-app-api/newAPI/display/getSettings/): Display settings
+
+### @zos/i18n — Internationalization
+
+- [getLanguage](https://docs.zepp.com/docs/reference/device-app-api/newAPI/i18n/getLanguage/): Get language
+- [getLocale](https://docs.zepp.com/docs/reference/device-app-api/newAPI/i18n/getLocale/): Get locale
+
+### @zos/interaction — Interaction
+
+- [vibrate](https://docs.zepp.com/docs/reference/device-app-api/newAPI/interaction/vibrate/): Trigger vibration
+- [getDesignResolutionWidth](https://docs.zepp.com/docs/reference/device-app-api/newAPI/interaction/getDesignResolutionWidth/): Get design width
+- [getDesignResolutionHeight](https://docs.zepp.com/docs/reference/device-app-api/newAPI/interaction/getDesignResolutionHeight/): Get design height
+
+### @zos/timer — System Timer
+
+- [createTimer](https://docs.zepp.com/docs/reference/device-app-api/newAPI/timer/createTimer/): Create timer
+- [stopTimer](https://docs.zepp.com/docs/reference/device-app-api/newAPI/timer/stopTimer/): Stop timer
+
+### @zos/storage — Storage
+
+- [getSync](https://docs.zepp.com/docs/reference/device-app-api/newAPI/storage/getSync/): Read storage
+- [setSync](https://docs.zepp.com/docs/reference/device-app-api/newAPI/storage/setSync/): Write storage
+- [deleteSync](https://docs.zepp.com/docs/reference/device-app-api/newAPI/storage/deleteSync/): Delete storage entry
+
+### @zos/alarm — Alarm (Mini Program only)
+
+- [set](https://docs.zepp.com/docs/reference/device-app-api/newAPI/alarm/set/): Set alarm
+- [cancel](https://docs.zepp.com/docs/reference/device-app-api/newAPI/alarm/cancel/): Cancel alarm
+- [getAllAlarms](https://docs.zepp.com/docs/reference/device-app-api/newAPI/alarm/getAllAlarms/): List all alarms
+
+### @zos/notification — Notification (Mini Program only)
+
+- [notify](https://docs.zepp.com/docs/reference/device-app-api/newAPI/notification/notify/): Send notification
+
+### @zos/page — Page Module
+
+- [getPageData](https://docs.zepp.com/docs/reference/device-app-api/newAPI/page/getPageData/): Get page data
+- [setPageData](https://docs.zepp.com/docs/reference/device-app-api/newAPI/page/setPageData/): Set page data
+
+### @zos/router — Router Module
+
+- [replace](https://docs.zepp.com/docs/reference/device-app-api/newAPI/router/replace/): Replace page
+
+### @zos/user — User Info
+
+- [getUserInfo](https://docs.zepp.com/docs/reference/device-app-api/newAPI/user/getUserInfo/): Get user info
+
+### @zos/transfer-file — File Transfer
+
+- [transferFile](https://docs.zepp.com/docs/reference/device-app-api/newAPI/transfer-file/transferFile/): Transfer file to side service
+
+### @zos/utils — Utilities
+
+- [EventBus](https://docs.zepp.com/docs/reference/device-app-api/newAPI/utils/EventBus/): Event publish/subscribe utility
+- [assets](https://docs.zepp.com/docs/reference/device-app-api/newAPI/utils/assets/): Resource path helper
+- [bufferToString](https://docs.zepp.com/docs/reference/device-app-api/newAPI/utils/bufferToString/): Convert `ArrayBuffer` to string
+- [log](https://docs.zepp.com/docs/reference/device-app-api/newAPI/utils/log/): Structured logging helpers
+- [px](https://docs.zepp.com/docs/reference/device-app-api/newAPI/utils/px/): Pixel scaling helper
+- [stringToBuffer](https://docs.zepp.com/docs/reference/device-app-api/newAPI/utils/stringToBuffer/): Convert string to `ArrayBuffer`
+
+### Global API
+
+- [Global](https://docs.zepp.com/docs/reference/device-app-api/newAPI/global/): Frame-level global interfaces
+
+## Watchface API
+
+- [Watchface Quick Start](https://docs.zepp.com/docs/watchface/watchface-quick-start/): Build your first watchface
+- [Watchface app.json](https://docs.zepp.com/docs/watchface/app-json/): Watchface configuration
+- [Watchface API reference](https://docs.zepp.com/docs/watchface/api/): Full watchface API (uses hmUI/hmSensor/hmFS/hmSetting/hmBle with some differences from Mini Program)
+- [Watchface specification](https://docs.zepp.com/docs/watchface/specification/): Design specifications
+- [Watchface design resources](https://docs.zepp.com/docs/watchface/design-resources/): Asset templates
+
+## Settings App API
+
+- [Global](https://docs.zepp.com/docs/reference/app-settings-api/global/): Settings App global API
+- [UI Components](https://docs.zepp.com/docs/reference/app-settings-api/ui/): Settings App UI sections, links, text
+- [Settings Storage](https://docs.zepp.com/docs/reference/app-settings-api/settings-storage/): Persistent key-value storage
+
+## Side Service API
+
+- [Global](https://docs.zepp.com/docs/reference/side-service-api/global/): Side Service global API
+- [Messaging](https://docs.zepp.com/docs/reference/side-service-api/messaging/): Communicate with device
+- [Fetch](https://docs.zepp.com/docs/reference/side-service-api/fetch/): HTTP requests
+- [Settings Storage](https://docs.zepp.com/docs/reference/side-service-api/settings-storage/): Server-side storage
+- [Transfer File](https://docs.zepp.com/docs/reference/side-service-api/transfer-file/): Send files
+- [Download File](https://docs.zepp.com/docs/reference/side-service-api/download-file/): Download files
+- [Image Convert](https://docs.zepp.com/docs/reference/side-service-api/image-convert/): Convert images
+
+## Best Practices
+
+- [Debug](https://docs.zepp.com/docs/guides/best-practice/debug/): Debugging techniques
+- [Multi-screen adaptation](https://docs.zepp.com/docs/guides/best-practice/multi-screen-adaption/): Support multiple devices
+- [Code adaptation for new devices](https://docs.zepp.com/docs/guides/best-practice/code-adaptations-for-new-devices/): Porting guide
+- [Code organization](https://docs.zepp.com/docs/guides/best-practice/code-organization/): Project structure tips
+- [Cross-page communication](https://docs.zepp.com/docs/guides/best-practice/cross-page-communications/): Page-to-page data flow
+- [BLE communication](https://docs.zepp.com/docs/guides/best-practice/bluetooth-communication/): Bluetooth best practices
+- [Widget group](https://docs.zepp.com/docs/guides/best-practice/widget-group/): Organizing UI widgets
+- [Persistent storage](https://docs.zepp.com/docs/guides/best-practice/persistence-storage/): Data persistence
+- [Error handling](https://docs.zepp.com/docs/guides/best-practice/error-catch/): Error catching patterns
+- [Internationalization](https://docs.zepp.com/docs/guides/best-practice/i18n/): i18n best practices
+
+## TypeScript Definitions
+
+- [@zos/* type declarations on npm](https://www.npmjs.com/package/@zeppos/device-api-typings): Official TypeScript types — the most accurate source for module signatures, parameter types, and return values
+
+## Reference
+
+- [app.json configuration](https://docs.zepp.com/docs/reference/app-json/): Full app manifest spec
+- [Device list](https://docs.zepp.com/docs/reference/related-resources/device-list/): Supported devices and screen specs
+- [Design resources](https://docs.zepp.com/docs/reference/related-resources/design-resources/): UI design templates and specs
+- [Physical keys](https://docs.zepp.com/docs/reference/related-resources/physical-keys/): Hardware key mappings
+- [Language list](https://docs.zepp.com/docs/reference/related-resources/language-list/): Supported languages and i18n codes
+- [Revision history](https://docs.zepp.com/docs/reference/revision-history/): API changelog
+
+## FAQ
+
+- [Watchface Maker](https://docs.zepp.com/docs/guides/faq/watchface-maker/): Watchface Maker FAQ
+- [Icon FAQ](https://docs.zepp.com/docs/guides/faq/icon-faq/): App icon requirements
+- [Simulator FAQ](https://docs.zepp.com/docs/guides/faq/simulator-faq/): Common simulator issues
+- [Bridge mode](https://docs.zepp.com/docs/guides/faq/developer-bridge-mode/): Developer bridge mode setup
+- [Environment setup](https://docs.zepp.com/docs/guides/faq/env-setup/): Environment troubleshooting
+- [Upload logs](https://docs.zepp.com/docs/guides/faq/upload-log/): How to upload logs
+- [Paid apps](https://docs.zepp.com/docs/guides/faq/paid-app/): Paid app distribution
