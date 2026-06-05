@@ -230,7 +230,7 @@ title: Release history
 
 #### 📈 Optimized Features
 
-1. The domain name is changed to [watchface.zepp.com](https://watchface.zepp.com), and the original domain name [watchface.huami.com](https://watchface.huami.com) can still be accessed
+1. The domain name is changed to [watchface.zepp.com](https://watchface.zepp.com)
 1. Unify the non-zepp os and zepp os Watchface review page to the [Open Platform](https://developer.zepp.com/#/admin/service/app/audit/form/create/watchface) for review
 1. Optimize the problem that the rotation center of the pointer shakes during rotation
 
@@ -372,7 +372,7 @@ title: Release history
 
 1. My Watchface page now supports the search feature
 1. Update form item when creating a new Watchface
-1. Update the address of the Watchface maker to https://watchface.huami.com
+1. Update the address of the Watchface maker to https://watchface.zepp.com
 1. Update the login method for the Watchface maker
 
 #### 📈 Optimized Features
