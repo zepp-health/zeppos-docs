@@ -1,5 +1,21 @@
 # Simulator FAQ
 
+## Ubuntu 26.04 LTS Notes
+
+```sh
+# Install libraries libxss1 libcapstone5 libsdl2-dev libaio-dev
+sudo apt install libxss1 libcapstone5 libsdl2-dev libaio-dev
+
+# Link dependent dynamic libraries
+# x64 version
+cd /lib/x86_64-linux-gnu
+# arm64/aarch64 version
+cd /lib/aarch64-linux-gnu
+
+sudo ln -s libcapstone.so libcapstone.so.4
+sudo ln -s libaio.so libaio.so.1
+```
+
 ## Ubuntu 24 is not running properly
 
 2.0 Simulator running on ubuntu 24 requires running the following script (with `sudo` privileges).

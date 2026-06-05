@@ -1,5 +1,21 @@
 # 模拟器常见问题
 
+## Ubuntu 26.04 LTS 下注意事项
+
+```sh
+# 安装库 libxss1 libcapstone5 libsdl2-dev libaio-dev
+sudo apt install libxss1 libcapstone5 libsdl2-dev libaio-dev
+
+# 链接依赖的动态链接库
+# x64 版本
+cd /lib/x86_64-linux-gnu
+# arm64/aarch64 版本
+cd /lib/aarch64-linux-gnu
+
+sudo ln -s libcapstone.so libcapstone.so.4
+sudo ln -s libaio.so libaio.so.1
+```
+
 ## ubuntu 24 无法正常运行
 
 v2.x Simulator 模拟器在 ubuntu 24 下运行需要运行以下脚本（使用 `sudo` 权限运行）。
