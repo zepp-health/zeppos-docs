@@ -34,20 +34,19 @@ viewContainer.createWidget(xxx, xxx)
 
 ## Param: object
 
-| Properties           | Description                                                                                                                                                                                                                     | Required | Type       | API_LEVEL |
-| -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- | ---------- | --------- |
-| x                    | Widget x-coordinate, default `0`                                                                                                                                                                                                | NO       | `number`   | 2.0       |
-| y                    | Widget y-coordinate, default `0`                                                                                                                                                                                                | NO       | `number`   | 2.0       |
-| w                    | Widget width, default screen width                                                                                                                                                                                              | NO       | `number`   | 2.0       |
-| h                    | Widget height, default screen height                                                                                                                                                                                            | NO       | `number`   | 2.0       |
-| scroll_enable        | When the layout of widgets in VIEW_CONTAINER exceeds the width/height, it is considered a long page. `0`: disable scrolling, you can set container scroll position offset by `pos_x` or `pos_y`; `1`: allow scrolling (default) | NO       | `number`   | 2.0       |
-| pos_x                | When VIEW_CONTAINER is a long horizontal page layout, you can read/set the horizontal offset                                                                                                                                    | NO       | `number`   | 2.0       |
-| pos_y                | When VIEW_CONTAINER is a long vertical page layout, you can read/set the vertical offset                                                                                                                                        | NO       | `number`   | 2.0       |
-| z_index              | When using multiple VIEW_CONTAINER widgets, the cascading relationship can be controlled by this field, with `0` at the bottom by default                                                                                       | NO       | `number`   | 2.0       |
-| scroll_frame_func    | During scrolling, each frame triggers a callback function with signature `(frameParams: FrameParams) => void`, `FrameParams` refer below                                                                                        | NO       | `function` | 2.0       |
-| scroll_complete_func | Callback function at the end of scrolling                                                                                                                                                                                       | NO       | `function` | 2.0       |
-| bounce               | Rebound effect, `0`: disabled, `1`: enabled (default)                                                                                                                                                                           | NO       | `function` | 3.0       |
-| page               | Used with [`setScrollMode`](../../page/setScrollMode.mdx) Swiper mode. The entire screen uses Swiper mode, and each independent page is implemented using `VIEW_CONTAINER`. Marks the page index to coordinate with Swiper mode | NO       | `number` | 3.0       |
+| Properties | Description | Required | Type | API_LEVEL |
+| --- | --- | --- | --- | --- |
+| x | Widget x-coordinate, default `0` | NO | `number` | 2.0 |
+| y | Widget y-coordinate, default `0` | NO | `number` | 2.0 |
+| w | Widget width, default screen width | NO | `number` | 2.0 |
+| h | Widget height, default screen height | NO | `number` | 2.0 |
+| scroll_enable | When the layout of widgets in VIEW_CONTAINER exceeds the width/height, it is considered a long page. `0`: disable scrolling, you can set container scroll position offset by `pos_x` or `pos_y`; `1`: allow scrolling (default) | NO | `number` | 2.0 |
+| pos_x | When VIEW_CONTAINER is a long horizontal page layout, you can read/set the horizontal offset | NO | `number` | 2.0 |
+| pos_y | When VIEW_CONTAINER is a long vertical page layout, you can read/set the vertical offset | NO | `number` | 2.0 |
+| z_index | When using multiple VIEW_CONTAINER widgets, the cascading relationship can be controlled by this field, with `0` at the bottom by default | NO | `number` | 2.0 |
+| modal | Modal layer switch. `0`: disable; `1`: enable (default). When enabled, it can be used to create a modal overlay/dialog inside a `VIEW_CONTAINER` and block the base layer from scrolling. | NO | `number` | 2.0 |
+| bounce | Rebound effect, `0`: disabled, `1`: enabled (default) | NO | `number` | 3.0 |
+| page | Used with [`setScrollMode`](../../page/setScrollMode.mdx) Swiper mode. The entire screen uses Swiper mode, and each independent page is implemented using `VIEW_CONTAINER`. Marks the page index to coordinate with Swiper mode | NO | `number` | 3.0 |
 
 ### FrameParams: object
 
