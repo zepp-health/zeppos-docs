@@ -232,7 +232,7 @@ sidebar_label: 版本历史
 
 #### 📈 优化
 
-1. 域名变更为 [watchface.zepp.com](https://watchface.zepp.com)，原域名 [watchface.huami.com](https://watchface.huami.com) 仍可访问
+1. 域名变更为 [watchface.zepp.com](https://watchface.zepp.com)
 1. 非 zepp os 与 zepp os 表盘提审界面统一到[开放平台](https://developer.zepp.com/#/admin/service/app/audit/form/create/watchface)提审
 1. 优化指针旋转中心点在旋转时的抖动问题
 
@@ -374,7 +374,7 @@ sidebar_label: 版本历史
 
 1. 我的表盘页面新增了搜索功能
 1. 更新了新建表盘时的表单填写条目
-1. 更新了表盘制作工具的访问域名，新域名为 https://watchface.huami.com
+1. 更新了表盘制作工具的访问域名，新域名为 https://watchface.zepp.com
 1. 更新了表盘制作工具的登录方式
 
 #### 📈 优化
