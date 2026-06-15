@@ -255,3 +255,28 @@ createWidget(widget.SPORT_DATA, {
   h: 80
 })
 ```
+## 补充示例
+
+### 示例 1
+
+```js
+import { createWidget, edit_widget_group_type, sport_data, widget } from '@zos/ui'
+
+createWidget(widget.SPORT_DATA, {
+  x: 60,
+  y: 120,
+  w: 360,
+  h: 120,
+  edit_id: 1,
+  category: edit_widget_group_type.SPORTS,
+  default_type: sport_data.DURATION_NET,
+  line_color: 0x0000ff,
+  text_size: 36,
+  text_color: 0xffffff,
+  text_x: 24,
+  text_y: 16,
+  text_w: 312,
+  text_h: 40,
+})
+```
+

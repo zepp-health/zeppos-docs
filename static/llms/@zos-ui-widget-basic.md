@@ -134,6 +134,59 @@ Page({
   }
 })
 ```
+## Additional Examples
+
+### Example 1
+
+```js
+
+createWidget(widget.TEXT, {
+  x: 0,
+  y: 0,
+  w: 200,
+  h: 200,
+  text: 'hello',
+  color: 0x34e073,
+  align_h: align.LEFT,
+  font: 'fonts/Pacifico-Regular.ttf',
+})
+```
+
+### Example 2
+
+```js
+
+const rootContainer = createWidget(widget.VIRTUAL_CONTAINER, {
+  layout: { x: '10vw', y: '10vh', width: '80vw', height: '50vh' },
+})
+
+const groupRoot = createWidget(widget.GROUP, {
+  parent: rootContainer,
+  layout: {
+    display: 'flex',
+    'flex-flow': 'row wrap',
+    'column-gap': '20',
+    'row-gap': '10',
+    'justify-content': 'space-evenly',
+    'align-items': 'center',
+    width: '100%',
+    height: '100%',
+  },
+})
+
+for (let i = 0; i < 3; i += 1) {
+  groupRoot.createWidget(widget.TEXT, {
+    text: 'hello zepp os',
+    color: 0x34e073,
+    align_v: align.CENTER_V,
+    layout: {
+      width: '30%',
+      height: '25%',
+      'font-size': '16',
+    },
+  })
+}
+```
 
 ---
 
@@ -232,6 +285,43 @@ Page({
     })
   }
 })
+```
+## Additional Examples
+
+### Example 1
+
+```js
+
+const rootContainer = createWidget(widget.VIRTUAL_CONTAINER, {
+  layout: { x: '10vw', y: '10vh', width: '80vw', height: '50vh' },
+})
+
+const groupRoot = createWidget(widget.GROUP, {
+  parent: rootContainer,
+  layout: {
+    display: 'flex',
+    'flex-flow': 'row wrap',
+    'column-gap': '20',
+    'row-gap': '10',
+    'justify-content': 'space-evenly',
+    'align-items': 'center',
+    width: '100%',
+    height: '100%',
+  },
+})
+
+for (let i = 0; i < 5; i += 1) {
+  const imgWidget = groupRoot.createWidget(widget.IMG, {
+    src: 'images/icons/ic_moon.png',
+    layout: {
+      width: '15%',
+      height: '25%',
+      pos_x: '20',
+      radius: '5.25vw',
+    },
+  })
+  fill_rect_list.push(imgWidget)
+}
 ```
 
 ---
@@ -360,6 +450,63 @@ Page({
       }
     })
   }
+})
+```
+
+## Additional Examples
+
+### Example 1
+
+```js
+
+const button = createWidget(widget.BUTTON, {
+  x: 0,
+  y: 100,
+  w: 218,
+  h: 74,
+  press_color: 0x1976d2,
+  normal_color: 0xef5350,
+  text: 'button',
+  click_func: () => {
+    console.log('button clicked')
+  },
+  longpress_func: () => {
+    console.log('button long pressed')
+  },
+})
+```
+
+### Example 2
+
+> Supported from API_LEVEL `4.0`.
+
+```js
+
+const buttonContainer = createWidget(widget.VIRTUAL_CONTAINER, {
+  layout: { x: '0', y: '60vh', width: '100vw', height: '40vh' },
+})
+
+const buttonSubContainer = createWidget(widget.VIRTUAL_CONTAINER, {
+  parent: buttonContainer,
+  layout: {
+    display: 'flex',
+    'flex-flow': 'row wrap',
+    'column-gap': '20',
+    'row-gap': '10',
+    'justify-content': 'space-evenly',
+    'align-items': 'center',
+    width: '100%',
+    height: '100%',
+  },
+})
+
+const addButton = createWidget(widget.BUTTON, {
+  parent: buttonSubContainer,
+  layout: { width: '25%', height: '20%', radius: '3vw' },
+  press_src: 'images/test/normalbtn_h.png',
+  normal_src: 'images/test/normalbtn_n.png',
+  text: 'add widget',
+  click_func: () => {},
 })
 ```
 
@@ -886,6 +1033,24 @@ Page({
       bg_h: 240
     })
   }
+})
+```
+## Additional Examples
+
+### Example 1
+
+```js
+
+createWidget(widget.QRCODE, {
+  x: 96,
+  y: 120,
+  w: 288,
+  h: 288,
+  bg_x: 80,
+  bg_y: 104,
+  bg_w: 320,
+  bg_h: 320,
+  content: 'zepp/url/@my:long page2',
 })
 ```
 
@@ -1780,6 +1945,52 @@ Page({
   }
 })
 ```
+## Additional Examples
+
+### Example 1
+
+```js
+
+const pageCount = 10
+const vertical = false
+const pageSize = 480
+
+setScrollMode({
+  mode: vertical ? SCROLL_MODE_SWIPER : SCROLL_MODE_SWIPER_HORIZONTAL,
+  options: {
+    count: pageCount,
+    height: vertical ? pageSize : undefined,
+    width: vertical ? undefined : pageSize,
+  },
+})
+
+createWidget(widget.PAGE_INDICATOR, {
+  x: 0,
+  y: 470,
+  w: 480,
+  h: 100,
+  align_h: align.CENTER_H,
+  h_space: 8,
+  select_src: 'images/test/select/select.png',
+  unselect_src: 'images/test/select/unselect.png',
+})
+
+for (let i = 0; i < pageCount; i += 1) {
+  const xPos = vertical ? 0 : pageSize * i
+  const yPos = vertical ? 400 + pageSize * i : 400
+
+  createWidget(widget.TEXT, {
+    x: xPos,
+    y: yPos,
+    w: 480,
+    h: 120,
+    text_size: 35,
+    color: 0xffffff,
+    align_h: align.CENTER_H,
+    text: `PAGE ${i}`,
+  })
+}
+```
 
 ---
 
@@ -1813,6 +2024,22 @@ const scrollBar = createWidget(widget.PAGE_SCROLLBAR, Param)
 ```js
 
 const scrollBar = createWidget(widget.PAGE_SCROLLBAR)
+```
+## Additional Examples
+
+### Example 1
+
+```js
+
+const vc0 = createWidget(widget.VIEW_CONTAINER, {
+  x: 0,
+  y: 0,
+  w: 466,
+  h: 466,
+})
+
+const scrollVer = createWidget(widget.PAGE_SCROLLBAR, {})
+scrollVer.setProperty(prop.TARGET, vc0)
 ```
 
 ---
@@ -2073,6 +2300,29 @@ createWidget(widget.SPORT_DATA, {
   y: 200,
   w: 380,
   h: 80
+})
+```
+## Additional Examples
+
+### Example 1
+
+```js
+
+createWidget(widget.SPORT_DATA, {
+  x: 60,
+  y: 120,
+  w: 360,
+  h: 120,
+  edit_id: 1,
+  category: edit_widget_group_type.SPORTS,
+  default_type: sport_data.DURATION_NET,
+  line_color: 0x0000ff,
+  text_size: 36,
+  text_color: 0xffffff,
+  text_x: 24,
+  text_y: 16,
+  text_w: 312,
+  text_h: 40,
 })
 ```
 

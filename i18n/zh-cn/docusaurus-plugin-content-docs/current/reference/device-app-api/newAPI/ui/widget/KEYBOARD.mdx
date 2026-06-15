@@ -278,3 +278,23 @@ keyboard.setProperty(prop.ADD_KEY, {
   value: 11
 })
 ```
+## 补充示例
+
+### 示例 1
+
+```js
+import { createWidget, prop, widget } from '@zos/ui'
+
+let keyboardLock = createWidget(widget.KEYBOARD, {
+  click_func: presscb,
+  key_attr: [
+    { cntr_coord_style: true, id: 0, x: 8, y: '35vh', text: 'H', value: 1 },
+    { id: 1, x: 90, y: 150, text: 'E', value: 2 },
+    { id: 20, x: 180, y: 150, text: 'L', value: 3 },
+    { id: 3, x: 270, y: 150, text: 'L', value: 4 },
+  ],
+})
+
+keyboardLock.setProperty(prop.TEXT, 'hello rose !')
+```
+

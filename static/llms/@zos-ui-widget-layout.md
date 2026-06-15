@@ -408,6 +408,87 @@ Page({
 })
 ```
 
+## Additional Examples
+
+> Supported from API_LEVEL `4.0`.
+
+```js
+
+const rootPath = 'images/'
+
+const dataList = [
+  { icon_image: rootPath + 'icons/ic_aqi.png', icon_name: 'Air Quality' },
+  { icon_image: rootPath + 'icons/ic_stand.png', icon_name: 'Standing Time' },
+  { icon_image: rootPath + 'icons/ic_hr.png', icon_name: 'Heart Rate' },
+]
+
+createWidget(widget.SCROLL_LIST, {
+  item_space: 10,
+  snap_to_center: true,
+  item_enable_horizon_drag: true,
+  item_drag_max_distance: -150,
+  item_config: [
+    {
+      type_id: 1,
+      item_bg_color: 0x333333,
+      item_bg_radius: 36,
+      item_height: 128,
+      layout: {
+        height: '26vh',
+        display: 'flex',
+        'flex-flow': 'row wrap',
+        'column-gap': '20',
+        'row-gap': '10',
+        'justify-content': 'space-evenly',
+        'align-items': 'center',
+      },
+      text_view: [
+        {
+          key: 'icon_name',
+          color: 0xffffff,
+          bg_color: 0x0000ff,
+          bg_alpha: 30,
+          layout: {
+            width: '25%',
+            height: '66%',
+            'font-size': '16',
+          },
+        },
+      ],
+      text_view_count: 1,
+      image_view: [
+        {
+          key: 'icon_image',
+          action: true,
+          layout: {
+            width: '25%',
+            height: '66%',
+          },
+        },
+      ],
+      image_view_count: 1,
+    },
+  ],
+  item_config_count: 1,
+  data_array: dataList,
+  data_count: dataList.length,
+  data_type_config: [
+    {
+      start: 0,
+      end: dataList.length - 1,
+      type_id: 1,
+    },
+  ],
+  data_type_config_count: 1,
+  layout: {
+    x: '1vw',
+    y: '1vh',
+    width: '50vw',
+    height: '100vh',
+  },
+})
+```
+
 ---
 
 ## VIEW_CONTAINER
@@ -680,6 +761,37 @@ Page({
   },
 });
 ```
+## Additional Examples
+
+### Example 1
+
+```js
+
+const vc = createWidget(widget.VIEW_CONTAINER, {
+  x: 0,
+  y: 0,
+  w: 416,
+  h: 416,
+  page: 1,
+  scroll_enable: 1,
+  scroll_frame_func: (info) => {
+    console.log('scrolling', info)
+  },
+  scroll_complete_func: (info) => {
+    console.log('scrolled', info)
+  },
+})
+
+vc.createWidget(widget.TEXT, {
+  x: 150,
+  y: 416,
+  w: 200,
+  h: 50,
+  color: 0xffffff,
+  text_size: 30,
+  text: 'hello1',
+})
+```
 
 ---
 
@@ -774,6 +886,45 @@ Page({
     })
   }
 })
+```
+## Additional Examples
+
+### Example 1
+
+```js
+
+const imgListStyleObj = {
+  data_array: imgArray,
+  data_size: 11,
+  item_bg_color: 0x0007f,
+  layout: {
+    width: '20vw',
+    height: '65vh',
+    item_height: '13vh',
+  },
+}
+
+const rootContainer = createWidget(widget.VIRTUAL_CONTAINER, {
+  layout: { x: '0vw', y: '0vh', width: '100vw', height: '70vh' },
+})
+
+const groupRoot = createWidget(widget.GROUP, {
+  parent: rootContainer,
+  layout: {
+    display: 'flex',
+    'flex-flow': 'row wrap',
+    'column-gap': '20',
+    'row-gap': '10',
+    'justify-content': 'space-evenly',
+    'align-items': 'center',
+    width: '100%',
+    height: '100%',
+  },
+})
+
+for (let i = 0; i < 3; i += 1) {
+  groupRoot.createWidget(widget.CYCLE_LIST, imgListStyleObj)
+}
 ```
 
 ---
@@ -922,6 +1073,68 @@ cycleList = createWidget(widget.CYCLE_IMAGE_TEXT_LIST, {
 //Get the index value of the first row.
 ret = cycleList.getProperty(prop.MORE, {})
 console.log(ret.index)
+```
+
+## Additional Examples
+
+### Example 1
+
+```js
+
+function _itemClick(list, index) {}
+
+const dataArray = [
+  { src: rootPath + 'step/step_num_0.png', text: '1' },
+  { src: rootPath + 'step/step_num_1.png', text: '2' },
+  { src: rootPath + 'step/step_num_2.png', text: '3' },
+]
+
+createWidget(widget.CYCLE_IMAGE_TEXT_LIST, {
+  x: 0,
+  y: 0,
+  w: 200,
+  h: 400,
+  data_array: dataArray,
+  data_size: 3,
+  item_height: 100,
+  item_bg_color: 0xffffff,
+  item_text_color: 0x000000,
+  item_text_x: 10,
+  item_text_y: 10,
+  item_text_size: 18,
+  item_click_func: _itemClick,
+})
+```
+
+### Example 2
+
+```js
+
+function _itemClick(list, index) {}
+function _scrollListFocusChange(list, index, bfocus) {}
+
+const dataArray = [
+  { src: rootPath + 'step/step_num_0.png', text: '1' },
+  { src: rootPath + 'step/step_num_1.png', text: '2' },
+  { src: rootPath + 'step/step_num_2.png', text: '3' },
+]
+
+createWidget(widget.CYCLE_IMAGE_TEXT_LIST, {
+  x: 0,
+  y: 0,
+  w: 200,
+  h: 400,
+  data_array: dataArray,
+  data_size: 3,
+  item_height: 100,
+  item_bg_color: 0xffffff,
+  item_text_color: 0x000000,
+  item_text_x: 10,
+  item_text_y: 10,
+  item_text_size: 18,
+  item_click_func: _itemClick,
+  item_focus_change_func: _scrollListFocusChange,
+})
 ```
 
 ---

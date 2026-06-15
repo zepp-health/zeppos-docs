@@ -1,0 +1,10 @@
+# https://www.robotstxt.org/robotstxt.html
+User-agent: *
+Allow: /
+
+# LLM-consumable documentation
+Allow: /llms.txt
+Allow: /llms-full.txt
+Allow: /llms/
+
+Sitemap: https://docs.zepp.com/sitemap.xml

@@ -95,3 +95,42 @@ Page({
   }
 })
 ```
+## Additional Examples
+
+### Example 1
+
+```js
+import { createWidget, widget } from '@zos/ui'
+
+const rootContainer = createWidget(widget.VIRTUAL_CONTAINER, {
+  layout: { x: '10vw', y: '10vh', width: '80vw', height: '50vh' },
+})
+
+const groupRoot = createWidget(widget.GROUP, {
+  parent: rootContainer,
+  layout: {
+    display: 'flex',
+    'flex-flow': 'row wrap',
+    'column-gap': '20',
+    'row-gap': '10',
+    'justify-content': 'space-evenly',
+    'align-items': 'center',
+    width: '100%',
+    height: '100%',
+  },
+})
+
+for (let i = 0; i < 5; i += 1) {
+  const imgWidget = groupRoot.createWidget(widget.IMG, {
+    src: 'images/icons/ic_moon.png',
+    layout: {
+      width: '15%',
+      height: '25%',
+      pos_x: '20',
+      radius: '5.25vw',
+    },
+  })
+  fill_rect_list.push(imgWidget)
+}
+```
+

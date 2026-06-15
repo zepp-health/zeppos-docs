@@ -363,3 +363,85 @@ Page({
   }
 })
 ```
+## 补充示例
+
+### 示例 1
+
+```js
+import { createWidget, widget } from '@zos/ui'
+
+const rootPath = 'images/'
+
+const dataList = [
+  { icon_image: rootPath + 'icons/ic_aqi.png', icon_name: 'Air Quality' },
+  { icon_image: rootPath + 'icons/ic_stand.png', icon_name: 'Standing Time' },
+  { icon_image: rootPath + 'icons/ic_hr.png', icon_name: 'Heart Rate' },
+]
+
+createWidget(widget.SCROLL_LIST, {
+  item_space: 10,
+  snap_to_center: true,
+  item_enable_horizon_drag: true,
+  item_drag_max_distance: -150,
+  item_config: [
+    {
+      type_id: 1,
+      item_bg_color: 0x333333,
+      item_bg_radius: 36,
+      item_height: 128,
+      layout: {
+        height: '26vh',
+        display: 'flex',
+        'flex-flow': 'row wrap',
+        'column-gap': '20',
+        'row-gap': '10',
+        'justify-content': 'space-evenly',
+        'align-items': 'center',
+      },
+      text_view: [
+        {
+          key: 'icon_name',
+          color: 0xffffff,
+          bg_color: 0x0000ff,
+          bg_alpha: 30,
+          layout: {
+            width: '25%',
+            height: '66%',
+            'font-size': '16',
+          },
+        },
+      ],
+      text_view_count: 1,
+      image_view: [
+        {
+          key: 'icon_image',
+          action: true,
+          layout: {
+            width: '25%',
+            height: '66%',
+          },
+        },
+      ],
+      image_view_count: 1,
+    },
+  ],
+  item_config_count: 1,
+  data_array: dataList,
+  data_count: dataList.length,
+  data_type_config: [
+    {
+      start: 0,
+      end: dataList.length - 1,
+      type_id: 1,
+    },
+  ],
+  data_type_config_count: 1,
+  layout: {
+    x: '1vw',
+    y: '1vh',
+    width: '50vw',
+    height: '100vh',
+  },
+})
+```
+

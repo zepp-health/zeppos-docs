@@ -93,3 +93,52 @@ Page({
   }
 })
 ```
+## Additional Examples
+
+### Example 1
+
+```js
+import { align, createWidget, widget } from '@zos/ui'
+import { SCROLL_MODE_SWIPER, SCROLL_MODE_SWIPER_HORIZONTAL, setScrollMode } from '@zos/page'
+
+const pageCount = 10
+const vertical = false
+const pageSize = 480
+
+setScrollMode({
+  mode: vertical ? SCROLL_MODE_SWIPER : SCROLL_MODE_SWIPER_HORIZONTAL,
+  options: {
+    count: pageCount,
+    height: vertical ? pageSize : undefined,
+    width: vertical ? undefined : pageSize,
+  },
+})
+
+createWidget(widget.PAGE_INDICATOR, {
+  x: 0,
+  y: 470,
+  w: 480,
+  h: 100,
+  align_h: align.CENTER_H,
+  h_space: 8,
+  select_src: 'images/test/select/select.png',
+  unselect_src: 'images/test/select/unselect.png',
+})
+
+for (let i = 0; i < pageCount; i += 1) {
+  const xPos = vertical ? 0 : pageSize * i
+  const yPos = vertical ? 400 + pageSize * i : 400
+
+  createWidget(widget.TEXT, {
+    x: xPos,
+    y: yPos,
+    w: 480,
+    h: 120,
+    text_size: 35,
+    color: 0xffffff,
+    align_h: align.CENTER_H,
+    text: `PAGE ${i}`,
+  })
+}
+```
+
