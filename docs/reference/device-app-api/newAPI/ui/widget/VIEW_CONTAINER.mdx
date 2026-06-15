@@ -273,3 +273,36 @@ Page({
   },
 });
 ```
+## Additional Examples
+
+### Example 1
+
+```js
+import { createWidget, widget } from '@zos/ui'
+
+const vc = createWidget(widget.VIEW_CONTAINER, {
+  x: 0,
+  y: 0,
+  w: 416,
+  h: 416,
+  page: 1,
+  scroll_enable: 1,
+  scroll_frame_func: (info) => {
+    console.log('scrolling', info)
+  },
+  scroll_complete_func: (info) => {
+    console.log('scrolled', info)
+  },
+})
+
+vc.createWidget(widget.TEXT, {
+  x: 150,
+  y: 416,
+  w: 200,
+  h: 50,
+  color: 0xffffff,
+  text_size: 30,
+  text: 'hello1',
+})
+```
+

@@ -167,3 +167,67 @@ cycleList = createWidget(widget.CYCLE_IMAGE_TEXT_LIST, {
 ret = cycleList.getProperty(prop.MORE, {})
 console.log(ret.index)
 ```
+## 补充示例
+
+### 示例 1
+
+```js
+import { createWidget, widget } from '@zos/ui'
+
+function _itemClick(list, index) {}
+
+const dataArray = [
+  { src: rootPath + 'step/step_num_0.png', text: '1' },
+  { src: rootPath + 'step/step_num_1.png', text: '2' },
+  { src: rootPath + 'step/step_num_2.png', text: '3' },
+]
+
+createWidget(widget.CYCLE_IMAGE_TEXT_LIST, {
+  x: 0,
+  y: 0,
+  w: 200,
+  h: 400,
+  data_array: dataArray,
+  data_size: 3,
+  item_height: 100,
+  item_bg_color: 0xffffff,
+  item_text_color: 0x000000,
+  item_text_x: 10,
+  item_text_y: 10,
+  item_text_size: 18,
+  item_click_func: _itemClick,
+})
+```
+
+### 示例 2
+
+```js
+import { createWidget, widget } from '@zos/ui'
+
+function _itemClick(list, index) {}
+function _scrollListFocusChange(list, index, bfocus) {}
+
+const dataArray = [
+  { src: rootPath + 'step/step_num_0.png', text: '1' },
+  { src: rootPath + 'step/step_num_1.png', text: '2' },
+  { src: rootPath + 'step/step_num_2.png', text: '3' },
+]
+
+createWidget(widget.CYCLE_IMAGE_TEXT_LIST, {
+  x: 0,
+  y: 0,
+  w: 200,
+  h: 400,
+  data_array: dataArray,
+  data_size: 3,
+  item_height: 100,
+  item_bg_color: 0xffffff,
+  item_text_color: 0x000000,
+  item_text_x: 10,
+  item_text_y: 10,
+  item_text_size: 18,
+  item_click_func: _itemClick,
+  item_focus_change_func: _scrollListFocusChange,
+})
+```
+

@@ -28,3 +28,21 @@ import { createWidget, widget } from '@zos/ui'
 
 const scrollBar = createWidget(widget.PAGE_SCROLLBAR)
 ```
+## 补充示例
+
+### 示例 1
+
+```js
+import { createWidget, prop, widget } from '@zos/ui'
+
+const vc0 = createWidget(widget.VIEW_CONTAINER, {
+  x: 0,
+  y: 0,
+  w: 466,
+  h: 466,
+})
+
+const scrollVer = createWidget(widget.PAGE_SCROLLBAR, {})
+scrollVer.setProperty(prop.TARGET, vc0)
+```
+

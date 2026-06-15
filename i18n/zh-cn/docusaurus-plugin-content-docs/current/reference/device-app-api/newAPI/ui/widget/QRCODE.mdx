@@ -70,3 +70,23 @@ Page({
   }
 })
 ```
+## 补充示例
+
+### 示例 1
+
+```js
+import { createWidget, widget } from '@zos/ui'
+
+createWidget(widget.QRCODE, {
+  x: 96,
+  y: 120,
+  w: 288,
+  h: 288,
+  bg_x: 80,
+  bg_y: 104,
+  bg_w: 320,
+  bg_h: 320,
+  content: 'zepp/url/@my:long page2',
+})
+```
+

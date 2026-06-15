@@ -157,3 +157,59 @@ function picker_cb(picker, event_type, column_index, select_index) {
   )
 }
 ```
+## Additional Examples
+
+### Example 1
+
+```js
+import { createWidget, widget } from '@zos/ui'
+
+createWidget(widget.WIDGET_PICKER, {
+  title: 'Start Date',
+  subtitle: '',
+  nb_of_columns: 3,
+  init_col_index: 1,
+  data_config: [
+    {
+      data_array: new Array(12).fill(0).map((_, index) => index + 1),
+      init_val_index: 5,
+      unit: 'Month',
+      support_loop: true,
+      font_name: 'fonts/x.ttf',
+      font_size: 24,
+      select_font_size: 48,
+      connector_font_size: 18,
+      unit_font_size: 18,
+      col_width: 80,
+    },
+    {
+      data_array: new Array(31).fill(0).map((_, index) => index + 1),
+      init_val_index: 10,
+      unit: 'Day',
+      support_loop: true,
+      font_name: 'fonts/x.ttf',
+      font_size: 24,
+      select_font_size: 48,
+      connector_font_size: 36,
+      unit_font_size: 36,
+      col_width: 80,
+    },
+    {
+      data_array: new Array(30).fill(0).map((_, index) => index + 2020),
+      init_val_index: 4,
+      unit: 'Year',
+      support_loop: true,
+      font_name: 'fonts/x.ttf',
+      font_size: 24,
+      select_font_size: 48,
+      connector_font_size: 36,
+      unit_font_size: 36,
+      col_width: 80,
+    },
+  ],
+  picker_cb: (picker, eventType, column, valueIndex) => {
+    console.log('picker event', eventType, column, valueIndex)
+  },
+})
+```
+

@@ -771,6 +771,24 @@ keyboard.setProperty(prop.ADD_KEY, {
   value: 11
 })
 ```
+## Additional Examples
+
+### Example 1
+
+```js
+
+let keyboardLock = createWidget(widget.KEYBOARD, {
+  click_func: presscb,
+  key_attr: [
+    { cntr_coord_style: true, id: 0, x: 8, y: '35vh', text: 'H', value: 1 },
+    { id: 1, x: 90, y: 150, text: 'E', value: 2 },
+    { id: 20, x: 180, y: 150, text: 'L', value: 3 },
+    { id: 3, x: 270, y: 150, text: 'L', value: 4 },
+  ],
+})
+
+keyboardLock.setProperty(prop.TEXT, 'hello rose !')
+```
 
 ---
 
@@ -932,6 +950,60 @@ function picker_cb(picker, event_type, column_index, select_index) {
     'select_index: ' + select_index
   )
 }
+```
+## Additional Examples
+
+### Example 1
+
+```js
+
+createWidget(widget.WIDGET_PICKER, {
+  title: 'Start Date',
+  subtitle: '',
+  nb_of_columns: 3,
+  init_col_index: 1,
+  data_config: [
+    {
+      data_array: new Array(12).fill(0).map((_, index) => index + 1),
+      init_val_index: 5,
+      unit: 'Month',
+      support_loop: true,
+      font_name: 'fonts/x.ttf',
+      font_size: 24,
+      select_font_size: 48,
+      connector_font_size: 18,
+      unit_font_size: 18,
+      col_width: 80,
+    },
+    {
+      data_array: new Array(31).fill(0).map((_, index) => index + 1),
+      init_val_index: 10,
+      unit: 'Day',
+      support_loop: true,
+      font_name: 'fonts/x.ttf',
+      font_size: 24,
+      select_font_size: 48,
+      connector_font_size: 36,
+      unit_font_size: 36,
+      col_width: 80,
+    },
+    {
+      data_array: new Array(30).fill(0).map((_, index) => index + 2020),
+      init_val_index: 4,
+      unit: 'Year',
+      support_loop: true,
+      font_name: 'fonts/x.ttf',
+      font_size: 24,
+      select_font_size: 48,
+      connector_font_size: 36,
+      unit_font_size: 36,
+      col_width: 80,
+    },
+  ],
+  picker_cb: (picker, eventType, column, valueIndex) => {
+    console.log('picker event', eventType, column, valueIndex)
+  },
+})
 ```
 
 ---
