@@ -304,7 +304,7 @@ pausePalmScreenOff({
 ### Import
 
 ```js
-import { resetDropWristScreenOff } from '@zos/display'
+import { pauseDropWristScreenOff, resetDropWristScreenOff } from '@zos/display'
 ```
 
 ### Typings
@@ -363,7 +363,7 @@ setTimeout(() => {
 ### Import
 
 ```js
-import { resetPageBrightTime } from '@zos/display'
+import { setPageBrightTime, resetPageBrightTime } from '@zos/display'
 ```
 
 ### Typings
@@ -417,7 +417,7 @@ const result = resetPageBrightTime()
 ### Import
 
 ```js
-import { resetPalmScreenOff } from '@zos/display'
+import { pausePalmScreenOff, resetPalmScreenOff } from '@zos/display'
 ```
 
 ### Typings

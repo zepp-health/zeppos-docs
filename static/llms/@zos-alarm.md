@@ -132,7 +132,7 @@ getAllAlarms()
 ### Import
 
 ```js
-import { set } from '@zos/alarm'
+import { set, REPEAT_DAY } from '@zos/alarm'
 ```
 
 ### Typings

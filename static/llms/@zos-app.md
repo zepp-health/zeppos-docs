@@ -284,7 +284,7 @@ const fullProfile = getPerformance('memory', 'perf')
 ### Import
 
 ```js
-import { getScene } from '@zos/app'
+import { getScene, SCENE_APP } from '@zos/app'
 ```
 
 ### Typings

@@ -23,7 +23,7 @@
 ### Import
 
 ```js
-import { getDateFormat } from '@zos/settings'
+import { getDateFormat, DATE_FORMAT_YMD } from '@zos/settings'
 ```
 
 ### Typings
@@ -88,7 +88,7 @@ if (currentDateFormat === DATE_FORMAT_YMD) {
 ### Import
 
 ```js
-import { getDistanceUnit } from '@zos/settings'
+import { getDistanceUnit, DISTANCE_UNIT_METRIC } from '@zos/settings'
 ```
 
 ### Typings
@@ -356,7 +356,7 @@ console.log(mode)
 ### Import
 
 ```js
-import { getTemperatureUnit } from '@zos/settings'
+import { getTemperatureUnit, TEMPERATURE_UNIT_CENTIGRADE } from '@zos/settings'
 ```
 
 ### Typings
@@ -421,7 +421,7 @@ if (temperatureUnit === TEMPERATURE_UNIT_CENTIGRADE) {
 ### Import
 
 ```js
-import { getTimeFormat } from '@zos/settings'
+import { getTimeFormat, TIME_FORMAT_24 } from '@zos/settings'
 ```
 
 ### Typings
@@ -534,7 +534,7 @@ console.log(weightTarget)
 ### Import
 
 ```js
-import { getWeightUnit } from '@zos/settings'
+import { getWeightUnit, WEIGHT_UNIT_KILOGRAM } from '@zos/settings'
 ```
 
 ### Typings

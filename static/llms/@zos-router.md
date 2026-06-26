@@ -87,7 +87,7 @@ back()
 ### Import
 
 ```js
-import { checkSystemApp } from '@zos/router'
+import { checkSystemApp, SYSTEM_APP_STATUS } from '@zos/router'
 ```
 
 ### Typings
@@ -191,7 +191,7 @@ checkSystemApp({
 ### Import
 
 ```js
-import { clearLaunchAppTimeout } from '@zos/router'
+import { setLaunchAppTimeout, clearLaunchAppTimeout } from '@zos/router'
 ```
 
 ### Typings
@@ -390,7 +390,7 @@ home()
 ### Import
 
 ```js
-import { launchApp } from '@zos/router'
+import { launchApp, SYSTEM_APP_HR } from '@zos/router'
 ```
 
 ### Typings
@@ -618,7 +618,7 @@ replace({
 ### Import
 
 ```js
-import { setLaunchAppTimeout } from '@zos/router'
+import { setLaunchAppTimeout, clearLaunchAppTimeout } from '@zos/router'
 ```
 
 ### Typings

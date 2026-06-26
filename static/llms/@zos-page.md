@@ -63,7 +63,7 @@ console.log(top)
 ### Import
 
 ```js
-import { getSwiperIndex } from '@zos/page'
+import { setScrollMode, swipeToIndex, getSwiperIndex, SCROLL_MODE_SWIPER } from '@zos/page'
 ```
 
 ### Typings
@@ -251,7 +251,7 @@ setScrollLock({
 ### Import
 
 ```js
-import { setScrollMode } from '@zos/page'
+import { setScrollMode, SCROLL_MODE_SWIPER } from '@zos/page'
 ```
 
 ### Typings
@@ -358,7 +358,7 @@ setScrollMode({
 ### Import
 
 ```js
-import { swipeToIndex } from '@zos/page'
+import { setScrollMode, swipeToIndex, SCROLL_MODE_SWIPER } from '@zos/page'
 ```
 
 ### Typings

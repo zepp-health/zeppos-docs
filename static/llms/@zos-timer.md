@@ -97,7 +97,7 @@ const intervalId = createSysTimer(true, 10000, () => {
 ### Import
 
 ```js
-import { stopTimer } from '@zos/timer'
+import { createSysTimer, stopTimer } from '@zos/timer'
 ```
 
 ### Typings

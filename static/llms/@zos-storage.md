@@ -5,7 +5,7 @@
 ### Import
 
 ```js
-import { localStorage } from '@zos/storage'
+import { LocalStorage } from '@zos/storage'
 ```
 
 ### Typings
@@ -89,7 +89,7 @@ localStorage.clear()
 ### Import
 
 ```js
-import { sessionStorage } from '@zos/storage'
+import { SessionStorage } from '@zos/storage'
 ```
 
 ### Typings
