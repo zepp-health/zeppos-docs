@@ -7,7 +7,7 @@ Layout widget APIs.
 ### Import
 
 ```js
-import { GROUP } from '@zos/ui'
+import { createWidget, widget } from '@zos/ui'
 ```
 
 > Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](https://docs.zepp.com/docs/guides/framework/device/compatibility).
@@ -49,7 +49,7 @@ group.createWidget(xxx, xxx)
 ### Import
 
 ```js
-import { SCROLL_LIST } from '@zos/ui'
+import { createWidget, widget } from '@zos/ui'
 ```
 
 > Start from API_LEVEL `2.0`. Please refer to [API_LEVEL](https://docs.zepp.com/docs/guides/framework/device/compatibility).
@@ -496,7 +496,7 @@ createWidget(widget.SCROLL_LIST, {
 ### Import
 
 ```js
-import { VIEW_CONTAINER } from '@zos/ui'
+import { createWidget, widget } from '@zos/ui'
 ```
 
 > Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](https://docs.zepp.com/docs/guides/framework/device/compatibility).
@@ -800,7 +800,7 @@ vc.createWidget(widget.TEXT, {
 ### Import
 
 ```js
-import { CYCLE_LIST } from '@zos/ui'
+import { createWidget, widget } from '@zos/ui'
 ```
 
 > Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](https://docs.zepp.com/docs/guides/framework/device/compatibility).
@@ -934,7 +934,7 @@ for (let i = 0; i < 3; i += 1) {
 ### Import
 
 ```js
-import { CYCLE_IMAGE_TEXT_LIST } from '@zos/ui'
+import { createWidget, widget } from '@zos/ui'
 ```
 
 > Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](https://docs.zepp.com/docs/guides/framework/device/compatibility).
@@ -1144,7 +1144,7 @@ createWidget(widget.CYCLE_IMAGE_TEXT_LIST, {
 ### Import
 
 ```js
-import { VIRTUAL_CONTAINER } from '@zos/ui'
+import { createWidget, widget } from '@zos/ui'
 ```
 
 > Supported from API_LEVEL `4.0`. Please refer to [API_LEVEL](https://docs.zepp.com/docs/guides/framework/device/compatibility) for compatibility.

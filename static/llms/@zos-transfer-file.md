@@ -5,7 +5,7 @@
 ### Import
 
 ```js
-import { TransferFile } from '@zos/transfer-file'
+import TransferFile from "@zos/ble/TransferFile"
 ```
 
 > Start from API_LEVEL `3.0` . Please refer to [API_LEVEL](https://docs.zepp.com/docs/guides/framework/device/compatibility).

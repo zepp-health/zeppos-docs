@@ -7,7 +7,7 @@ General UI methods, page-level helpers, layout helpers, dialogs, toast, keyboard
 ### Import
 
 ```js
-import { addEventListener } from '@zos/ui'
+import { createWidget, widget, event } from '@zos/ui'
 ```
 
 > Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](https://docs.zepp.com/docs/guides/framework/device/compatibility).
@@ -56,7 +56,7 @@ img_bkg.addEventListener(event.CLICK_DOWN, function (info) {
 ### Import
 
 ```js
-import { removeEventListener } from '@zos/ui'
+import { createWidget, widget, event } from '@zos/ui'
 ```
 
 > Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](https://docs.zepp.com/docs/guides/framework/device/compatibility).
@@ -100,7 +100,7 @@ img_bkg.removeEventListener(event.CLICK_DOWN, listenerFunc)
 ### Import
 
 ```js
-import { setProperty } from '@zos/ui'
+import { createWidget, widget, prop, align } from '@zos/ui'
 ```
 
 > Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](https://docs.zepp.com/docs/guides/framework/device/compatibility).
@@ -165,7 +165,7 @@ const dataset = text.getProperty(prop.DATASET)
 ### Import
 
 ```js
-import { getProperty } from '@zos/ui'
+import { createWidget, widget, prop } from '@zos/ui'
 ```
 
 > Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](https://docs.zepp.com/docs/guides/framework/device/compatibility).
@@ -223,13 +223,6 @@ Page({
 ---
 
 ## getType
-
-### Import
-
-```js
-import { getType } from '@zos/ui'
-```
-
 > Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](https://docs.zepp.com/docs/guides/framework/device/compatibility).
 
 Get the UI widget type.
@@ -251,13 +244,6 @@ Get the UI widget type.
 ---
 
 ## getId
-
-### Import
-
-```js
-import { getId } from '@zos/ui'
-```
-
 > Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](https://docs.zepp.com/docs/guides/framework/device/compatibility).
 
 Get the unique ID of the widget.
@@ -283,7 +269,7 @@ Get the unique ID of the widget.
 ### Import
 
 ```js
-import { setAlpha } from '@zos/ui'
+import { createWidget, widget, text_style, align } from '@zos/ui'
 ```
 
 > Start from API_LEVEL `2.1` . Please refer to [API_LEVEL](https://docs.zepp.com/docs/guides/framework/device/compatibility).
@@ -333,7 +319,7 @@ text.setAlpha(80)
 ### Import
 
 ```js
-import { gettersetter } from '@zos/ui'
+import { createWidget, widget, prop } from '@zos/ui'
 ```
 
 > Supported since API_LEVEL `4.0`. For API compatibility, please refer to [API_LEVEL](https://docs.zepp.com/docs/guides/framework/device/compatibility).
@@ -456,7 +442,7 @@ Here's an example of the property list supported by the `TEXT` widget:
 ### Import
 
 ```js
-import { createWidget } from '@zos/ui'
+import { createWidget, widget, align, text_style } from '@zos/ui'
 ```
 
 > Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](https://docs.zepp.com/docs/guides/framework/device/compatibility).
@@ -522,7 +508,7 @@ Page({
 ### Import
 
 ```js
-import { deleteWidget } from '@zos/ui'
+import { createWidget, widget, align, text_style, deleteWidget } from '@zos/ui'
 ```
 
 > Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](https://docs.zepp.com/docs/guides/framework/device/compatibility).
@@ -855,13 +841,6 @@ redraw()
 ---
 
 ## setEnable
-
-### Import
-
-```js
-import { setEnable } from '@zos/ui'
-```
-
 > Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](https://docs.zepp.com/docs/guides/framework/device/compatibility).
 
 Set whether the widget responds to screen gesture interaction events, the default is to respond.
@@ -1031,13 +1010,6 @@ console.log(result)
 ---
 
 ## setLayoutParent
-
-### Import
-
-```js
-import { setLayoutParent } from '@zos/ui'
-```
-
 > Supported from API_LEVEL `4.0`. For API compatibility, please refer to [API_LEVEL](https://docs.zepp.com/docs/guides/framework/device/compatibility).
 
 Sets the parent node of the current node.
@@ -1083,7 +1055,7 @@ text.setLayoutParent(container)
 ### Import
 
 ```js
-import { addLayoutChild } from '@zos/ui'
+import { createWidget, widget } from '@zos/ui'
 ```
 
 > Supported from API_LEVEL `4.0`. For API compatibility, please refer to [API_LEVEL](https://docs.zepp.com/docs/guides/framework/device/compatibility).
@@ -1124,13 +1096,6 @@ container.addLayoutChild(button, 0)
 ---
 
 ## removeLayoutChild
-
-### Import
-
-```js
-import { removeLayoutChild } from '@zos/ui'
-```
-
 > Supported from API_LEVEL `4.0`. For API compatibility, please refer to [API_LEVEL](https://docs.zepp.com/docs/guides/framework/device/compatibility).
 
 Removes the specified child node from the current node.
@@ -1165,7 +1130,7 @@ container.removeLayoutChild(button)
 ### Import
 
 ```js
-import { updateLayoutStyle } from '@zos/ui'
+import { createWidget, widget } from '@zos/ui'
 ```
 
 > Supported from API_LEVEL `4.0`. For API compatibility, please refer to [API_LEVEL](https://docs.zepp.com/docs/guides/framework/device/compatibility).
@@ -1212,7 +1177,7 @@ container.updateLayoutStyle({
 ### Import
 
 ```js
-import { updateLayout } from '@zos/ui'
+import { createWidget, widget, updateLayout } from '@zos/ui'
 ```
 
 > Supported from API_LEVEL `4.0`. For API compatibility, please refer to [API_LEVEL](https://docs.zepp.com/docs/guides/framework/device/compatibility).

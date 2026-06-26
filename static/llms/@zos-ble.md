@@ -183,7 +183,7 @@ import { mstBuildProfile } from '@zos/ble'
 - Example:
 
 ```js
-import { mstGetConnIdByRemoteAddr } from '@zos/ble'
+import { mstBuildProfile } from '@zos/ble'
 
 // ...
 ```
@@ -1641,7 +1641,7 @@ import { mstWriteDescriptor } from '@zos/ble'
 - Example:
 
 ```js
-import { mstOnCharaNotification } from '@zos/ble'
+import { mstWriteDescriptor } from '@zos/ble'
 
 // ...
 ```

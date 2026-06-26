@@ -12,7 +12,7 @@
 ### Import
 
 ```js
-import { getDeviceInfo } from '@zos/device'
+import { getDeviceInfo, SCREEN_SHAPE_SQUARE } from '@zos/device'
 ```
 
 ### Typings

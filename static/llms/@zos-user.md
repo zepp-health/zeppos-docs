@@ -78,7 +78,7 @@ addHealthData({
 ### Import
 
 ```js
-import { getProfile } from '@zos/user'
+import { getProfile, GENDER_MALE } from '@zos/user'
 ```
 
 ### Typings

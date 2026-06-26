@@ -7,7 +7,7 @@ Basic widget APIs.
 ### Import
 
 ```js
-import { TEXT } from '@zos/ui'
+import { createWidget, widget } from '@zos/ui'
 ```
 
 > Start from API_LEVEL `2.0`. Please refer to [API_LEVEL](https://docs.zepp.com/docs/guides/framework/device/compatibility).
@@ -195,7 +195,7 @@ for (let i = 0; i < 3; i += 1) {
 ### Import
 
 ```js
-import { IMG } from '@zos/ui'
+import { createWidget, widget } from '@zos/ui'
 ```
 
 > Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](https://docs.zepp.com/docs/guides/framework/device/compatibility).
@@ -331,7 +331,7 @@ for (let i = 0; i < 5; i += 1) {
 ### Import
 
 ```js
-import { BUTTON } from '@zos/ui'
+import { createWidget, widget } from '@zos/ui'
 ```
 
 > Supported from API_LEVEL `2.0`. For API compatibility, please refer to [API_LEVEL](https://docs.zepp.com/docs/guides/framework/device/compatibility).
@@ -517,7 +517,7 @@ const addButton = createWidget(widget.BUTTON, {
 ### Import
 
 ```js
-import { FILL_RECT } from '@zos/ui'
+import { createWidget, widget } from '@zos/ui'
 ```
 
 > Supported from API_LEVEL `2.0`. For API compatibility, please refer to [API_LEVEL](https://docs.zepp.com/docs/guides/framework/device/compatibility).
@@ -605,7 +605,7 @@ Page({
 ### Import
 
 ```js
-import { STROKE_RECT } from '@zos/ui'
+import { createWidget, widget } from '@zos/ui'
 ```
 
 > Supported from API_LEVEL `2.0`. For API compatibility, please refer to [API_LEVEL](https://docs.zepp.com/docs/guides/framework/device/compatibility).
@@ -689,7 +689,7 @@ Page({
 ### Import
 
 ```js
-import { CIRCLE } from '@zos/ui'
+import { createWidget, widget } from '@zos/ui'
 ```
 
 > Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](https://docs.zepp.com/docs/guides/framework/device/compatibility).
@@ -751,7 +751,7 @@ Page({
 ### Import
 
 ```js
-import { ARC } from '@zos/ui'
+import { createWidget, widget } from '@zos/ui'
 ```
 
 > Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](https://docs.zepp.com/docs/guides/framework/device/compatibility).
@@ -833,7 +833,7 @@ Page({
 ### Import
 
 ```js
-import { IMG_ANIM } from '@zos/ui'
+import { createWidget, widget } from '@zos/ui'
 ```
 
 > Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](https://docs.zepp.com/docs/guides/framework/device/compatibility).
@@ -967,7 +967,7 @@ Page({
 ### Import
 
 ```js
-import { QRCODE } from '@zos/ui'
+import { createWidget, widget } from '@zos/ui'
 ```
 
 > Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](https://docs.zepp.com/docs/guides/framework/device/compatibility).
@@ -1061,7 +1061,7 @@ createWidget(widget.QRCODE, {
 ### Import
 
 ```js
-import { DIALOG } from '@zos/ui'
+import { createWidget, widget } from '@zos/ui'
 ```
 
 > Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](https://docs.zepp.com/docs/guides/framework/device/compatibility).
@@ -1160,7 +1160,7 @@ Page({
 ### Import
 
 ```js
-import { HISTOGRAM } from '@zos/ui'
+import { createWidget, widget } from '@zos/ui'
 ```
 
 > Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](https://docs.zepp.com/docs/guides/framework/device/compatibility).
@@ -1343,7 +1343,7 @@ Page({
 ### Import
 
 ```js
-import { GRADIENT_POLYLINE } from '@zos/ui'
+import { createWidget, widget } from '@zos/ui'
 ```
 
 > Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](https://docs.zepp.com/docs/guides/framework/device/compatibility).
@@ -1454,7 +1454,7 @@ Page({
 ### Import
 
 ```js
-import { CANVAS } from '@zos/ui'
+import { createWidget, widget } from '@zos/ui'
 ```
 
 > Start from API_LEVEL `3.0`. Please refer to [API_LEVEL](https://docs.zepp.com/docs/guides/framework/device/compatibility)。
@@ -1856,7 +1856,7 @@ canvas.addEventListener(event.CLICK_UP, function cb(info) {
 ### Import
 
 ```js
-import { PAGE_INDICATOR } from '@zos/ui'
+import { createWidget, widget } from '@zos/ui'
 ```
 
 > Start from API_LEVEL `2.1` . Please refer to [API_LEVEL](https://docs.zepp.com/docs/guides/framework/device/compatibility).
@@ -1999,7 +1999,7 @@ for (let i = 0; i < pageCount; i += 1) {
 ### Import
 
 ```js
-import { PAGE_SCROLLBAR } from '@zos/ui'
+import { createWidget, widget } from '@zos/ui'
 ```
 
 > Start from API_LEVEL `3.0`. Please refer to [API_LEVEL](https://docs.zepp.com/docs/guides/framework/device/compatibility)。
@@ -2049,7 +2049,7 @@ scrollVer.setProperty(prop.TARGET, vc0)
 ### Import
 
 ```js
-import { SPORT_DATA } from '@zos/ui'
+import { createWidget, widget } from '@zos/ui'
 ```
 
 > Start from API_LEVEL `3.6` . Please refer to [API_LEVEL](https://docs.zepp.com/docs/guides/framework/device/compatibility).

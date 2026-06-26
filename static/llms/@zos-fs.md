@@ -17,7 +17,7 @@
 ### Import
 
 ```js
-import { closeSync } from '@zos/fs'
+import { openSync, closeSync, O_RDONLY } from '@zos/fs'
 ```
 
 ### Typings
@@ -165,7 +165,7 @@ if (result === 0) {
 ### Import
 
 ```js
-import { openAssetsSync } from '@zos/fs'
+import { openSync, O_RDONLY } from '@zos/fs'
 ```
 
 ### Typings
@@ -239,7 +239,7 @@ const fd = openAssetsSync({
 ### Import
 
 ```js
-import { openSync } from '@zos/fs'
+import { openSync, O_RDONLY } from '@zos/fs'
 ```
 
 ### Typings
@@ -397,7 +397,7 @@ const contentString = readFileSync({
 ### Import
 
 ```js
-import { readSync } from '@zos/fs'
+import { openSync, readSync, O_RDONLY } from '@zos/fs'
 ```
 
 ### Typings
@@ -892,7 +892,7 @@ writeFileSync({
 ### Import
 
 ```js
-import { writeSync } from '@zos/fs'
+import { openSync, writeSync, O_RDWR, O_CREAT } from '@zos/fs'
 ```
 
 ### Typings

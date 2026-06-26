@@ -30,7 +30,7 @@
 ### Import
 
 ```js
-import { createModal } from '@zos/interaction'
+import { createModal, MODAL_CONFIRM } from '@zos/interaction'
 ```
 
 ### Typings
@@ -138,7 +138,7 @@ dialog.show(true)
 ### Import
 
 ```js
-import { offDigitalCrown } from '@zos/interaction'
+import { onDigitalCrown, offDigitalCrown, KEY_HOME } from '@zos/interaction'
 ```
 
 ### Typings
@@ -196,7 +196,7 @@ offDigitalCrown()
 ### Import
 
 ```js
-import { offGesture } from '@zos/interaction'
+import { onGesture, offGesture, GESTURE_UP } from '@zos/interaction'
 ```
 
 ### Typings
@@ -258,7 +258,7 @@ offGesture()
 ### Import
 
 ```js
-import { offKey } from '@zos/interaction'
+import { onKey, offKey, KEY_UP, KEY_EVENT_CLICK } from '@zos/interaction'
 ```
 
 ### Typings
@@ -318,7 +318,7 @@ offKey()
 ### Import
 
 ```js
-import { onDigitalCrown } from '@zos/interaction'
+import { onDigitalCrown, KEY_HOME } from '@zos/interaction'
 ```
 
 ### Typings
@@ -408,7 +408,7 @@ onDigitalCrown({
 ### Import
 
 ```js
-import { onGesture } from '@zos/interaction'
+import { onGesture, GESTURE_UP } from '@zos/interaction'
 ```
 
 ### Typings
@@ -498,7 +498,7 @@ onGesture({
 ### Import
 
 ```js
-import { onKey } from '@zos/interaction'
+import { onKey, KEY_UP, KEY_EVENT_CLICK } from '@zos/interaction'
 ```
 
 ### Typings
@@ -606,7 +606,7 @@ onKey({
 ### Import
 
 ```js
-import { onWristMotion } from '@zos/interaction'
+import { onWristMotion, WRIST_MOTION_LIFT } from '@zos/interaction'
 ```
 
 ### Typings

@@ -24,7 +24,7 @@
 ### Import
 
 ```js
-import { Accelerometer } from '@zos/sensor'
+import { Accelerometer, FREQ_MODE_NORMAL } from '@zos/sensor'
 ```
 
 ### Typings
@@ -569,7 +569,7 @@ bodyTemperature.getCurrent()
 ### Import
 
 ```js
-import { Buzzer } from '@zos/sensor'
+import { createWidget, widget, prop, align, text_style } from '@zos/ui'
 ```
 
 ### Typings
@@ -1472,7 +1472,7 @@ geolocation.stop()
 ### Import
 
 ```js
-import { Gyroscope } from '@zos/sensor'
+import { Gyroscope, FREQ_MODE_LOW } from '@zos/sensor'
 ```
 
 ### Typings
@@ -2815,7 +2815,7 @@ const currentTime = time.getTime()
 ### Import
 
 ```js
-import { Vibrator } from '@zos/sensor'
+import { Vibrator, VIBRATOR_SCENE_DURATION } from '@zos/sensor'
 ```
 
 ### Typings
@@ -3443,7 +3443,7 @@ worldClock.destroy()
 ### Import
 
 ```js
-import { checkSensor } from '@zos/sensor'
+import { checkSensor, Geolocation } from '@zos/sensor'
 ```
 
 ### Typings

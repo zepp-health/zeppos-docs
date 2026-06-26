@@ -1,13 +1,6 @@
 # @zos/global
 
 ## App
-
-### Import
-
-```js
-import { App } from '@zos/global'
-```
-
 > Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](https://docs.zepp.com/docs/guides/framework/device/compatibility).
 
 Register the Mini Program, specifying the Mini Program's lifecycle callbacks, etc. `App()` must be called in `app.js`, and can only be called once.
@@ -54,13 +47,6 @@ App({
 ---
 
 ## AppService
-
-### Import
-
-```js
-import { AppService } from '@zos/global'
-```
-
 > Start from API_LEVEL `3.0` . Please refer to [API_LEVEL](https://docs.zepp.com/docs/guides/framework/device/compatibility).
 
 Register an App Service in the Mini Program, specify the lifecycle callback for the current App Service, etc. Each App Service file must call the `AppService()` constructor only once.
@@ -107,13 +93,6 @@ AppService({
 ---
 
 ## AppWidget
-
-### Import
-
-```js
-import { AppWidget } from '@zos/global'
-```
-
 > Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](https://docs.zepp.com/docs/guides/framework/device/compatibility).
 
 Register AppWidget, specify the lifecycle callback for the current AppWidget, etc. Each AppWidget file must call the `AppWidget()` constructor only once.
@@ -163,13 +142,6 @@ AppWidget({
 ---
 
 ## Buffer
-
-### Import
-
-```js
-import { Buffer } from '@zos/global'
-```
-
 > Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](https://docs.zepp.com/docs/guides/framework/device/compatibility).
 
 Buffer, Reference Node.js https://nodejs.org/dist/latest-v16.x/docs/api/buffer.html.
@@ -183,13 +155,6 @@ Buffer.from('Hello Zepp OS')
 ---
 
 ## DataWidget
-
-### Import
-
-```js
-import { DataWidget } from '@zos/global'
-```
-
 > Start from API_LEVEL `3.6` . Please refer to [API_LEVEL](https://docs.zepp.com/docs/guides/framework/device/compatibility).
 
 Register DataWidget, specify the lifecycle callback for the current DataWidget, etc. Each DataWidget file must call the `DataWidget()` constructor only once.
@@ -239,13 +204,6 @@ DataWidget({
 ---
 
 ## Page
-
-### Import
-
-```js
-import { Page } from '@zos/global'
-```
-
 > Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](https://docs.zepp.com/docs/guides/framework/device/compatibility).
 
 Register a page in the Mini Program, specify the lifecycle callback for the current page, etc. Each page file must call the `Page()` constructor only once.
@@ -293,13 +251,6 @@ Page({
 ---
 
 ## SecondaryWidget
-
-### Import
-
-```js
-import { SecondaryWidget } from '@zos/global'
-```
-
 > Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](https://docs.zepp.com/docs/guides/framework/device/compatibility).
 
 Register SecondaryWidget, specify the lifecycle callback for the current SecondaryWidget, etc. Each SecondaryWidget file must call the `SecondaryWidget()` constructor only once.
@@ -349,13 +300,6 @@ SecondaryWidget({
 ---
 
 ## clearInterval
-
-### Import
-
-```js
-import { clearInterval } from '@zos/global'
-```
-
 > Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](https://docs.zepp.com/docs/guides/framework/device/compatibility).
 
 Cancel the timer registered by `setInterval`.
@@ -387,13 +331,6 @@ clearInterval(intervalID)
 ---
 
 ## clearTimeout
-
-### Import
-
-```js
-import { clearTimeout } from '@zos/global'
-```
-
 > Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](https://docs.zepp.com/docs/guides/framework/device/compatibility).
 
 Cancel the timer registered by `setTimeout`.
@@ -425,13 +362,6 @@ clearTimeout(timeoutID)
 ---
 
 ## console
-
-### Import
-
-```js
-import { console } from '@zos/global'
-```
-
 > Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](https://docs.zepp.com/docs/guides/framework/device/compatibility).
 
 Console Print Log.
@@ -455,13 +385,6 @@ console.log('Hello Zepp OS')
 ---
 
 ## getApp
-
-### Import
-
-```js
-import { getApp } from '@zos/global'
-```
-
 > Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](https://docs.zepp.com/docs/guides/framework/device/compatibility).
 
 Get the app instance object.
@@ -509,13 +432,6 @@ console.log(app._options.globalData.text)
 ---
 
 ## getCurrentPage
-
-### Import
-
-```js
-import { getCurrentPage } from '@zos/global'
-```
-
 > Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](https://docs.zepp.com/docs/guides/framework/device/compatibility).
 
 Get the page instance object.
@@ -563,13 +479,6 @@ console.log(page._options.state.text)
 ---
 
 ## setInterval
-
-### Import
-
-```js
-import { setInterval } from '@zos/global'
-```
-
 > Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](https://docs.zepp.com/docs/guides/framework/device/compatibility).
 
 Repeatedly call a function with a fixed time interval between each call.
@@ -611,13 +520,6 @@ setInterval(() => {
 ---
 
 ## setTimeout
-
-### Import
-
-```js
-import { setTimeout } from '@zos/global'
-```
-
 > Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](https://docs.zepp.com/docs/guides/framework/device/compatibility).
 
 Set a timer and execute the registered callback function after the timer expires.

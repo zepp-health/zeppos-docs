@@ -7,7 +7,7 @@ Form widget APIs.
 ### Import
 
 ```js
-import { RADIO_GROUP } from '@zos/ui'
+import { createWidget, widget } from '@zos/ui'
 ```
 
 > Start from API_LEVEL `2.0`. Please refer to [API_LEVEL](https://docs.zepp.com/docs/guides/framework/device/compatibility).
@@ -158,7 +158,7 @@ Page({
 ### Import
 
 ```js
-import { CHECKBOX_GROUP } from '@zos/ui'
+import { createWidget, widget } from '@zos/ui'
 ```
 
 > Supported from API_LEVEL `2.0`. Please refer to [API_LEVEL](https://docs.zepp.com/docs/guides/framework/device/compatibility) for API compatibility.
@@ -310,7 +310,7 @@ Page({
 ### Import
 
 ```js
-import { SLIDE_SWITCH } from '@zos/ui'
+import { createWidget, widget } from '@zos/ui'
 ```
 
 > Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](https://docs.zepp.com/docs/guides/framework/device/compatibility).
@@ -400,7 +400,7 @@ Page({
 ### Import
 
 ```js
-import { PICK_DATE } from '@zos/ui'
+import { createWidget, widget } from '@zos/ui'
 ```
 
 > Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](https://docs.zepp.com/docs/guides/framework/device/compatibility).
@@ -497,7 +497,7 @@ Page({
 ### Import
 
 ```js
-import { KEYBOARD } from '@zos/ui'
+import { createWidget, widget, prop } from '@zos/ui'
 ```
 
 > Start from API_LEVEL `3.0`. Please refer to [API_LEVEL](https://docs.zepp.com/docs/guides/framework/device/compatibility)。
@@ -797,7 +797,7 @@ keyboardLock.setProperty(prop.TEXT, 'hello rose !')
 ### Import
 
 ```js
-import { PICKER } from '@zos/ui'
+import { createWidget, widget, prop } from '@zos/ui'
 ```
 
 > Start from API_LEVEL `3.0`. Please refer to [API_LEVEL](https://docs.zepp.com/docs/guides/framework/device/compatibility)。
@@ -1013,7 +1013,7 @@ createWidget(widget.WIDGET_PICKER, {
 ### Import
 
 ```js
-import { TIME_PICKER } from '@zos/ui'
+import { createWidget, widget, prop } from '@zos/ui'
 ```
 
 > Start from API_LEVEL `3.6`. Please refer to [API_LEVEL](https://docs.zepp.com/docs/guides/framework/device/compatibility)。
@@ -1122,7 +1122,7 @@ function callbackFunc(picker, event_type, column, value_index) {
 ### Import
 
 ```js
-import { SYSTEM_KEYBOARD } from '@zos/ui'
+import { createKeyboard, inputType } from '@zos/ui'
 ```
 
 > Start from API_LEVEL `4.0`. Please refer to [API_LEVEL](https://docs.zepp.com/docs/guides/framework/device/compatibility).
