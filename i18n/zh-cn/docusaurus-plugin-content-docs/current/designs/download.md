@@ -13,7 +13,11 @@ sidebar_label: 资源下载
 
 - [Zepp OS Number.ttf](https://upload-cdn.zepp.com/20230908/Zepp-OS-Number.ttf)
 
+- [Zepp OS Number Bold.ttf](https://upload-cdn.zepp.com/other/20260626/Zepp-OS-Number-blod.ttf)
+
 - [Zepp OS Number Condensed.ttf](https://upload-cdn.zepp.com/20230908/Zepp-OS-Number-Condensed.ttf)
+
+- [Zepp OS Number Condensed Bold.ttf](https://upload-cdn.zepp.com/other/20260626/Zepp-OS-Number-Condensed-blod.ttf)
 
 ## 设计组件库
 

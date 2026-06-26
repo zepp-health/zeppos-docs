@@ -4,50 +4,63 @@ sidebar_label: Font
 
 # Font
 
-Text is the most direct and clear way of expressing information, and font directly determines whether the text information can be conveyed correctly and accurately. Fonts distinguish the layer and priority of information through the differences in font size, font weight, capitalization, and font style.
+When selecting and applying fonts, it is essential to ensure that the text is legible, the information hierarchy is clear, and key information is prominent. Zepp OS use the following fonts:
 
-The main font used by Zepp OS is Noto Sans. Usage specifications for special fonts are described in the [Special Fonts](font.md#special-fonts) section below.
+- Noto Sans
+- Zepp OS Number
+- Zepp OS Number Condensed
 
-![Design](/img/design/font.png)
+## Noto Sans
 
-## Font size
+Noto Sans is the default system font for Zepp OS and includes two weights: Regular and Medium. It is primarily used for system and feature interfaces, general content, and information.
 
-Based on the results of user survey, the best reading experience occurs in different scenarios when the viewing distance from the wearable device falls within the range of 25 cm-50 cm and the screen subtends a visual angle of 5 minutes of arc at the eye. Based on the Snellen theory, it has been deduced that on a 1.45-inch AMOLED screen with a display resolution of 480×480 pixels and a pixel density of 331 PPI, the calculation formula for the minimum font size for the Zepp OS main font is Caption1 = 0.0143×331*5 = 23.6665. Rounding up to the nearest integer gives us 24px, so 24px is the minimum size for the main font on this screen. To ensure the readability of text, use this formula to calculate the minimum font size for devices that have different screen sizes.
+![Noto Sans 示例](/img/design/font_specification1.png)
 
-| Font style name | Round screen device 480 | Round screen device 454 | Round screen device 416  | Square screen device 390 |
-| --------------- | ----------------------- | ----------------------- | ------------------------ | ------------------------ |
-| Caption1        | 24                      | 23                      | 23                       | 24                       |
-| Subheadline     | 28                      | 27                      | 27                       | 28                       |
-| Body            | 32                      | 31                      | 31                       | 32                       |
-| Title           | 36                      | 35                      | 35                       | 36                       |
-| Title1          | 40                      | 39                      | 39                       | 40                       |
-| LargeTitle      | 48                      | 47                      | 47                       | 48                       |
+## Zepp OS Number
 
-A typographic scale is a progression of font sizes that grow by the same ratio. Use different sets of typographic scales to fit different screen sizes. We use arithmetic progression to define font sizes in a typographic scale, so as to distinguish the information layer of system content and offer a more comfortable and smooth reading experience.
-The typographic scale specification table for devices with a display resolution of 480×480 pixels is as follows:
+In certain scenarios, the Zepp OS Number font is used to highlight key fitness or health data to draw the user's attention. This font includes Regular and Bold weights; please choose the appropriate weight based on the specific context.
 
-![Design](/img/design/font_2.png)
+![Zepp OS Number 示例](/img/design/font_specification2.png)
 
-## Line height
+![Zepp OS Number 示例](/img/design/font_specification3.png)
 
-A text box is a container that wraps content text. In order to provide a better reading experience on the screen and display more content, we set the line height to 1.25 times.
+>① Heart rate values in the Heart Rate app use the Zepp OS Number font
+>
+>② Step count values in the Activity app use the Zepp OS Number font.
 
-- Calculation rule for single-line text height: text box height = (font size * 1.25).
+## Zepp OS Number Condensed
 
-![Design](/img/design/Lineheight.png)
+In sports-related features, key metric values such as "Pace" and "Distance" are displayed using the Zepp OS Number Condensed font. This font includes Regular and Bold weights; please choose the appropriate weight based on the specific context.
 
-## Special fonts
+![Zepp OS Number Condensed 示例](/img/design/font_specification4.png)
 
-### Zepp OS Number Regular
+![Zepp OS Number Condensed 示例](/img/design/font_specification5.png)
 
-Use Zepp OS Number Regular for special digits.
+>① During workouts, data-driven information uses the Zepp OS Number Condensed font to achieve clearer value recognition and info emphasis.
+>
+>② Post-workout, the Zepp OS Number Condensed font is used to reinforce user focus on key results.
 
-![Design](/img/design/special-font_1.png)
+## Line height settings
 
-### Zepp OS Number Condensed
+To ensure readability and visual consistency across multilingual interfaces, the default system font, Noto Sans, uses tiered line height settings across different language environments. Based on the typographical characteristics of each script, the line height strategy is divided into three categories:
 
-The Zepp OS Number Condensed font is used in the workout module, which allows users to get a better reading experience while doing sports.
+- ① English-like Languages (Recommended Line Height: Font Size * 116%)
+  These languages have glyph structures close to English, including scripts using Latin letters (excluding Vietnamese), Greek, Cyrillic, Hebrew, Armenian, and Georgian.
+- ② Tall-character languages (Recommended Line Height: Font Size * 132%)
+  These languages feature taller glyph structures that require extra vertical space, commonly found in South Asian, Southeast Asian, and certain Eastern language systems.
+- ③ Compact Languages (Recommended Line Height: Font Size * 125%)
+  Chinese, Japanese, and Korean consist of high-density block character structures. Although their overall visual presence is high, their vertical spacing requirements differ from Tall languages and must be configured separately to maintain rhythm and breathing room between text blocks.
 
-![Design](/img/design/special-font_2.png)
+| Category | Languages | Line Height |
+| --- | --- | --- |
+| English-like | English, Spanish, German, French, Italian, Portuguese (Brazil/Portugal), Dutch, Hungarian, Czech, Polish, Slovak, Turkish, Russian, Ukrainian, Serbian, Hebrew, Romanian | 116% |
+| Tall-character | Arabic, Hindi, Thai, Vietnamese | 132% |
+| Compact | Simplified Chinese, Traditional Chinese (HK), Traditional Chinese (TW), Japanese, Korean | 125% |
 
-Please refer to the link for font-related resources to download: [Font Resources](../download.md).
+![行高设置示例](/img/design/font_specification6.png)
+
+For the special fonts “Zepp OS Number” and “Zepp OS Number Condensed,” the recommended line height is: font size * 100%.
+
+![特殊字体行高示例](/img/design/font_specification7.png)
+
+To get font resources, please vist: Font Resources [Resource Downloads](../download.md)。
