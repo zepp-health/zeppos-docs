@@ -91,6 +91,19 @@ cancel(id)
 import { getAllAlarms } from '@zos/alarm'
 ```
 
+### Typings
+
+- Description: Get an array of all created timers alarmId for the current Mini Program, including timers that support persistence
+- API_LEVEL: 3.0
+- Permission: `device:os.alarm`
+- Example:
+
+```js
+import { getAllAlarms } from '@zos/alarm'
+
+getAllAlarms()
+```
+
 > Start from API_LEVEL `3.0` . Please refer to [API_LEVEL](https://docs.zepp.com/docs/guides/framework/device/compatibility).
 
 Get an array of all created timers alarmId for the current Mini Program, including timers that support persistence.

@@ -52,6 +52,19 @@ cancel(alarmID)
 import { getAllNotifications } from '@zos/notification'
 ```
 
+### Typings
+
+- Description: Get the notification IDs that have been sent by the current app and are still in the notification center
+- API_LEVEL: 3.0
+- Permission: `device:os.notification`
+- Example:
+
+```js
+import { getAllNotifications } from '@zos/notification'
+
+getAllNotifications()
+```
+
 > Start from API_LEVEL `3.0` . Please refer to [API_LEVEL](https://docs.zepp.com/docs/guides/framework/device/compatibility).
 
 Get the notification IDs that have been sent by the current app and are still in the notification center.

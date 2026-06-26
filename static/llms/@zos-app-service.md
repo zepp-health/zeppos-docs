@@ -8,6 +8,19 @@
 import { exit } from '@zos/app-service'
 ```
 
+### Typings
+
+- Description: Called in The App Service, it will exit the service and will not affect the foreground page
+- API_LEVEL: 3.0
+- Permission: `device:os.bg_service`
+- Example:
+
+```js
+import { exit } from '@zos/app-service'
+
+exit()
+```
+
 > Start from API_LEVEL `3.0` . Please refer to [API_LEVEL](https://docs.zepp.com/docs/guides/framework/device/compatibility).
 
 Called in The App Service, it will exit the service and will not affect the foreground page.

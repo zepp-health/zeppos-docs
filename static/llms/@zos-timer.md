@@ -100,6 +100,27 @@ const intervalId = createSysTimer(true, 10000, () => {
 import { stopTimer } from '@zos/timer'
 ```
 
+### Typings
+
+- Description: Stop the timer created by `createSysTimer` method
+- API_LEVEL: 4.0
+- Example:
+
+```js
+import { createSysTimer, stopTimer } from '@zos/timer'
+
+// Create a periodic timer that executes every 10 seconds
+const timerId = createSysTimer(true, 10000, () => {
+  console.log('Execute every 10 seconds')
+})
+
+// Stop the timer after 5 seconds
+createSysTimer(false, 5000, () => {
+  stopTimer(timerId)
+  console.log('Timer stopped')
+})
+```
+
 > Start from API_LEVEL `4.0` . Please refer to [API_LEVEL](https://docs.zepp.com/docs/guides/framework/device/compatibility).
 
 Stop the timer created by `createSysTimer` method.

@@ -15,6 +15,24 @@
 import { getDeviceInfo } from '@zos/device'
 ```
 
+### Typings
+
+- Description: Gets device information
+- Permission: `data:os.device.info`
+- Constants: `screenShape`
+- Example:
+
+```js
+import { getDeviceInfo, SCREEN_SHAPE_SQUARE } from '@zos/device'
+
+const { width, screenShape } = getDeviceInfo()
+console.log(width)
+
+if (screenShape === SCREEN_SHAPE_SQUARE) {
+  console.log('Square Screen')
+}
+```
+
 > Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](https://docs.zepp.com/docs/guides/framework/device/compatibility).
 
 Gets device information.

@@ -180,6 +180,18 @@ console.log(assetsPathFunc(imagePath, true)) // img/zeppos-logo@rtl.png
 import { bufferToString } from '@zos/utils'
 ```
 
+### Typings
+
+- Description: Convert `ArrayBuffer` type to string type
+- API_LEVEL: 4.0
+- Example:
+
+```js
+import { bufferToString } from '@zos/utils'
+
+const str = bufferToString(buffer)
+```
+
 > Start from API_LEVEL `4.0` . Please refer to [API_LEVEL](https://docs.zepp.com/docs/guides/framework/device/compatibility).
 
 Convert `ArrayBuffer` type to string type.

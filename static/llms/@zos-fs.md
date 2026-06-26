@@ -817,6 +817,29 @@ if (result) {
 import { writeFileSync } from '@zos/fs'
 ```
 
+### Typings
+
+- Description: Synchronously write data to a file in the `/data` directory of the Mini Program, replacing the file if it already exists, or creating a new file if it doesn't
+- Example:
+
+```js
+import { writeFileSync } from '@zos/fs'
+
+const buffer = new ArrayBuffer(4)
+writeFileSync({
+  path: 'test.txt',
+  data: buffer
+})
+
+writeFileSync({
+  path: 'content.txt',
+  data: 'some content...',
+  options: {
+    encoding: 'utf8'
+  }
+})
+```
+
 > Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](https://docs.zepp.com/docs/guides/framework/device/compatibility).
 
 Synchronously write data to a file in the `/data` directory of the Mini Program, replacing the file if it already exists, or creating a new file if it doesn't.

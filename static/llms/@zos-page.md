@@ -66,6 +66,30 @@ console.log(top)
 import { getSwiperIndex } from '@zos/page'
 ```
 
+### Typings
+
+- Description: Get the scroll position of the current page, only if the page scroll mode is `SCROLL_MODE_SWIPER` or `SCROLL_MODE_SWIPER_HORIZONTAL` return the index of the current item (starting from `1`), otherwise return `undefined`
+- Example:
+
+```js
+import { setScrollMode, swipeToIndex, getSwiperIndex, SCROLL_MODE_SWIPER } from '@zos/page'
+
+setScrollMode({
+  mode: SCROLL_MODE_SWIPER,
+  options: {
+    height: 480,
+    count: 10
+  }
+})
+
+swipeToIndex({
+  index: 5
+})
+
+const currentIndex = getSwiperIndex()
+console.log(currentIndex)
+```
+
 > Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](https://docs.zepp.com/docs/guides/framework/device/compatibility).
 
 Get the scroll position of the current page, only if the page scroll mode is `SCROLL_MODE_SWIPER` or `SCROLL_MODE_SWIPER_HORIZONTAL` return the index of the current item (starting from `1`), otherwise return `undefined`.

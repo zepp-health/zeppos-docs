@@ -102,6 +102,19 @@ cancel(id)
 import { getAllAlarms } from '@zos/alarm'
 ```
 
+### Typings
+
+- Description: Get an array of all created timers alarmId for the current Mini Program, including timers that support persistence
+- API_LEVEL: 3.0
+- Permission: `device:os.alarm`
+- Example:
+
+```js
+import { getAllAlarms } from '@zos/alarm'
+
+getAllAlarms()
+```
+
 > Start from API_LEVEL `3.0` . Please refer to [API_LEVEL](https://docs.zepp.com/docs/guides/framework/device/compatibility).
 
 Get an array of all created timers alarmId for the current Mini Program, including timers that support persistence.
@@ -397,6 +410,19 @@ const result = getSportData(
 
 ```js
 import { exit } from '@zos/app-service'
+```
+
+### Typings
+
+- Description: Called in The App Service, it will exit the service and will not affect the foreground page
+- API_LEVEL: 3.0
+- Permission: `device:os.bg_service`
+- Example:
+
+```js
+import { exit } from '@zos/app-service'
+
+exit()
 ```
 
 > Start from API_LEVEL `3.0` . Please refer to [API_LEVEL](https://docs.zepp.com/docs/guides/framework/device/compatibility).
@@ -795,6 +821,22 @@ console.log(packageInfo.name)
 
 ```js
 import { getPerformance } from '@zos/app'
+```
+
+### Typings
+
+- Description: Get Mini Program performance statistics, including memory usage and loading performance metrics
+- API_LEVEL: 4.0
+- Example:
+
+```js
+import { getPerformance } from '@zos/app'
+
+// Get memory info only
+const memoryProfile = getPerformance('memory')
+
+// Get both memory and performance info
+const fullProfile = getPerformance('memory', 'perf')
 ```
 
 > Start from API_LEVEL `4.0` . Please refer to [API_LEVEL](https://docs.zepp.com/docs/guides/framework/device/compatibility).
@@ -2803,6 +2845,17 @@ function mstWriteDescriptor(
 import { removeListener } from '@zos/ble'
 ```
 
+### Typings
+
+- Description: Cancel connection status listening callback function
+- Example:
+
+```js
+import { removeListener } from '@zos/ble'
+
+// ...
+```
+
 > Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](https://docs.zepp.com/docs/guides/framework/device/compatibility).
 
 Cancel connection status listening callback function.
@@ -2878,6 +2931,24 @@ function send(data: object, size: number): void
 
 ```js
 import { getDeviceInfo } from '@zos/device'
+```
+
+### Typings
+
+- Description: Gets device information
+- Permission: `data:os.device.info`
+- Constants: `screenShape`
+- Example:
+
+```js
+import { getDeviceInfo, SCREEN_SHAPE_SQUARE } from '@zos/device'
+
+const { width, screenShape } = getDeviceInfo()
+console.log(width)
+
+if (screenShape === SCREEN_SHAPE_SQUARE) {
+  console.log('Square Screen')
+}
 ```
 
 > Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](https://docs.zepp.com/docs/guides/framework/device/compatibility).
@@ -3108,6 +3179,18 @@ console.log(`current brightness ${result}`)
 
 ```js
 import { getSettings } from '@zos/display'
+```
+
+### Typings
+
+- Description: Get system display related information
+- API_LEVEL: 3.0
+- Example:
+
+```js
+import { getSettings } from '@zos/display'
+
+console.log(getSettings())
 ```
 
 > Start from API_LEVEL `3.0` . Please refer to [API_LEVEL](https://docs.zepp.com/docs/guides/framework/device/compatibility).
@@ -4587,6 +4670,29 @@ if (result) {
 import { writeFileSync } from '@zos/fs'
 ```
 
+### Typings
+
+- Description: Synchronously write data to a file in the `/data` directory of the Mini Program, replacing the file if it already exists, or creating a new file if it doesn't
+- Example:
+
+```js
+import { writeFileSync } from '@zos/fs'
+
+const buffer = new ArrayBuffer(4)
+writeFileSync({
+  path: 'test.txt',
+  data: buffer
+})
+
+writeFileSync({
+  path: 'content.txt',
+  data: 'some content...',
+  options: {
+    encoding: 'utf8'
+  }
+})
+```
+
 > Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](https://docs.zepp.com/docs/guides/framework/device/compatibility).
 
 Synchronously write data to a file in the `/data` directory of the Mini Program, replacing the file if it already exists, or creating a new file if it doesn't.
@@ -5390,6 +5496,17 @@ setTimeout(() => {
 import { getText } from '@zos/i18n'
 ```
 
+### Typings
+
+- Description: Get the corresponding string from the internationalization resource file (.po) based on the internationalization key
+- Example:
+
+```js
+import { getText } from '@zos/i18n'
+
+getText('name')
+```
+
 > Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](https://docs.zepp.com/docs/guides/framework/device/compatibility).
 
 Get the corresponding string from the internationalization resource file (.po) based on the internationalization key.
@@ -6037,6 +6154,27 @@ onKey({
 import { onWristMotion } from '@zos/interaction'
 ```
 
+### Typings
+
+- Description: Monitoring hand movement events
+- API_LEVEL: 3.0
+- Constants: `motion`
+- Example:
+
+```js
+import { onWristMotion, WRIST_MOTION_LIFT } from '@zos/interaction'
+
+onWristMotion({
+  callback: (result) => {
+    const { type, motion } = result
+
+    if (type === 3) {
+      console.log(motion === WRIST_MOTION_LIFT)
+    }
+  }
+})
+```
+
 > Start from API_LEVEL `3.0` . Please refer to [API_LEVEL](https://docs.zepp.com/docs/guides/framework/device/compatibility).
 
 Monitoring hand movement events.
@@ -6198,6 +6336,19 @@ cancel(alarmID)
 import { getAllNotifications } from '@zos/notification'
 ```
 
+### Typings
+
+- Description: Get the notification IDs that have been sent by the current app and are still in the notification center
+- API_LEVEL: 3.0
+- Permission: `device:os.notification`
+- Example:
+
+```js
+import { getAllNotifications } from '@zos/notification'
+
+getAllNotifications()
+```
+
 > Start from API_LEVEL `3.0` . Please refer to [API_LEVEL](https://docs.zepp.com/docs/guides/framework/device/compatibility).
 
 Get the notification IDs that have been sent by the current app and are still in the notification center.
@@ -6356,6 +6507,30 @@ console.log(top)
 
 ```js
 import { getSwiperIndex } from '@zos/page'
+```
+
+### Typings
+
+- Description: Get the scroll position of the current page, only if the page scroll mode is `SCROLL_MODE_SWIPER` or `SCROLL_MODE_SWIPER_HORIZONTAL` return the index of the current item (starting from `1`), otherwise return `undefined`
+- Example:
+
+```js
+import { setScrollMode, swipeToIndex, getSwiperIndex, SCROLL_MODE_SWIPER } from '@zos/page'
+
+setScrollMode({
+  mode: SCROLL_MODE_SWIPER,
+  options: {
+    height: 480,
+    count: 10
+  }
+})
+
+swipeToIndex({
+  index: 5
+})
+
+const currentIndex = getSwiperIndex()
+console.log(currentIndex)
 ```
 
 > Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](https://docs.zepp.com/docs/guides/framework/device/compatibility).
@@ -7007,6 +7182,19 @@ exit()
 
 ```js
 import { getAppIdByName } from '@zos/router'
+```
+
+### Typings
+
+- Description: Fuzzy match the English name of installed Mini Programs on the device by name
+- API_LEVEL: 3.6
+- Example:
+
+```js
+import { getAppIdByName } from '@zos/router'
+
+const appId = getAppIdByName('calculator')
+console.log(appId)
 ```
 
 > Start from API_LEVEL `3.6` . Please refer to [API_LEVEL](https://docs.zepp.com/docs/guides/framework/device/compatibility).
@@ -10826,6 +11014,23 @@ worldClock.destroy()
 import { checkSensor } from '@zos/sensor'
 ```
 
+### Typings
+
+- Description: Check the availability of sensors on the current device
+- API_LEVEL: 3.0
+- Example:
+
+```js
+import { checkSensor, Geolocation } from '@zos/sensor'
+
+const result = checkSensor(Geolocation)
+let geolocation = null
+
+if (result) {
+  geolocation = new Geolocation()
+}
+```
+
 > Start from API_LEVEL `3.0` . Please refer to [API_LEVEL](https://docs.zepp.com/docs/guides/framework/device/compatibility).
 
 Check the availability of sensors on the current device.
@@ -11169,6 +11374,19 @@ console.log(minAPI)
 
 ```js
 import { getSystemMode } from '@zos/settings'
+```
+
+### Typings
+
+- Description: Get the system mode setting information
+- API_LEVEL: 3.0
+- Example:
+
+```js
+import { getSystemMode } from '@zos/settings'
+
+const mode = getSystemMode()
+console.log(mode)
 ```
 
 > Start from API_LEVEL `3.0` . Please refer to [API_LEVEL](https://docs.zepp.com/docs/guides/framework/device/compatibility).
@@ -11721,6 +11939,27 @@ const intervalId = createSysTimer(true, 10000, () => {
 
 ```js
 import { stopTimer } from '@zos/timer'
+```
+
+### Typings
+
+- Description: Stop the timer created by `createSysTimer` method
+- API_LEVEL: 4.0
+- Example:
+
+```js
+import { createSysTimer, stopTimer } from '@zos/timer'
+
+// Create a periodic timer that executes every 10 seconds
+const timerId = createSysTimer(true, 10000, () => {
+  console.log('Execute every 10 seconds')
+})
+
+// Stop the timer after 5 seconds
+createSysTimer(false, 5000, () => {
+  stopTimer(timerId)
+  console.log('Timer stopped')
+})
 ```
 
 > Start from API_LEVEL `4.0` . Please refer to [API_LEVEL](https://docs.zepp.com/docs/guides/framework/device/compatibility).
@@ -12708,49 +12947,6 @@ Page({
     })
 
     dialog.show(true)
-  }
-})
-```
-
----
-
-## showToast
-
-### Import
-
-```js
-import { showToast } from '@zos/ui'
-```
-
-> Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](https://docs.zepp.com/docs/guides/framework/device/compatibility).
-
-[Image: show_toast]
-
-Show Toast with `\n` text line feed support.
-
-## Type
-
-```ts
-(option: Option) => void
-```
-
-## Parameters
-
-### Option: object
-
-| Properties | Description                |   Type   |
-| ---------- | -------------------------- | -------- |
-|    text    | The text content of toast. | `string` |
-
-## Code examples
-
-```js
-
-Page({
-  build() {
-    showToast({
-      text: 'Hello\nZepp OS'
-    })
   }
 })
 ```
@@ -18701,6 +18897,22 @@ UI documentation is split into smaller files that follow the sidebar structure.
 import { addHealthData } from '@zos/user'
 ```
 
+### Typings
+
+- Description: Set user health data information
+- API_LEVEL: 3.0
+- Permission: `data:user.health`
+- Example:
+
+```js
+import { addHealthData } from '@zos/user'
+
+addHealthData({
+  weight: 65,
+  bmi: 1900
+})
+```
+
 > Start from API_LEVEL `3.0` . Please refer to [API_LEVEL](https://docs.zepp.com/docs/guides/framework/device/compatibility).
 
 Set user health data information.
@@ -19002,6 +19214,18 @@ console.log(assetsPathFunc(imagePath, true)) // img/zeppos-logo@rtl.png
 
 ```js
 import { bufferToString } from '@zos/utils'
+```
+
+### Typings
+
+- Description: Convert `ArrayBuffer` type to string type
+- API_LEVEL: 4.0
+- Example:
+
+```js
+import { bufferToString } from '@zos/utils'
+
+const str = bufferToString(buffer)
 ```
 
 > Start from API_LEVEL `4.0` . Please refer to [API_LEVEL](https://docs.zepp.com/docs/guides/framework/device/compatibility).

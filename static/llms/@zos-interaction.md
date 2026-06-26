@@ -609,6 +609,27 @@ onKey({
 import { onWristMotion } from '@zos/interaction'
 ```
 
+### Typings
+
+- Description: Monitoring hand movement events
+- API_LEVEL: 3.0
+- Constants: `motion`
+- Example:
+
+```js
+import { onWristMotion, WRIST_MOTION_LIFT } from '@zos/interaction'
+
+onWristMotion({
+  callback: (result) => {
+    const { type, motion } = result
+
+    if (type === 3) {
+      console.log(motion === WRIST_MOTION_LIFT)
+    }
+  }
+})
+```
+
 > Start from API_LEVEL `3.0` . Please refer to [API_LEVEL](https://docs.zepp.com/docs/guides/framework/device/compatibility).
 
 Monitoring hand movement events.
