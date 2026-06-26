@@ -153,8 +153,8 @@ const text = createWidget(widget.TEXT, textStyle)
 
 还是上文的例子，假定页面的文件名为 `index.js`
 
-| 配置                  | config-qualifier 的值 | layout 文件名            | 说明                                           |
-| --------------------- | --------------------- | ------------------------ | ---------------------------------------------- |
+| 配置                    | config-qualifier 的值 | layout 文件名            | 说明                                           |
+| ----------------------- | --------------------- | ------------------------ | ---------------------------------------------- |
 | `{st: "r"}`             | `r`                   | `index.r.layout.js`      | 该布局文件对圆形屏幕设备生效                   |
 | `{st: "s"}`             | `s`                   | `index.s.layout.js`      | 该布局文件对方形屏幕设备生效                   |
 | `{st: "b"}`             | `b`                   | `index.b.layout.js`      | 该布局文件对手环条状屏幕设备生效               |
@@ -178,3 +178,27 @@ import { layout } from 'zosLoader:./[name].[pf].layout.js'
 ## 完整示例
 
 完整示例请参考小程序 [calories](https://github.com/zepp-health/zeppos-samples/tree/main/application/3.0/calories)
+
+## Amazfit Bip Max 设备屏幕适配特例
+
+Amazfit Bip Max 屏幕尺寸相对常见的 390 x 450 方形设备较为特殊
+
+如果没有标记对这款设备做适配，默认行为是 `@zos/device` 模块 `getDeviceInfo` 返回的屏幕宽高是 `390 x 450`，小程序绘制区域是 `390 x 450`，在屏幕水平和垂直方向居中显示
+
+如果需要单独进行适配，建议按以下方式处理：
+
+- 在 `app.json` 的 `app` 字段下配置 `"_pikeCompatibled": 1`
+- 完成上述标记后，`getDeviceInfo` 会返回实际值 `432 x 514`，且取消固件的默认居中显示行为，小程序的绘制区域为整个屏幕区域
+- 在 `app.json` 的 `target` 下配置：
+
+  ```json
+  {
+    "st": "s",
+    "sr": "w432",
+    "dw": 432
+  }
+  ```
+
+- 将所有 `*.s.layout.js` 同目录下新增一个 `*.w432-s.layout.js`，内容与 `*.s.layout.js` 保持一致
+- `assets` 下以 `s` 为准，新增一个 `w432-s` 资源目录，资源内容可以与 `s` 共用
+- 自行调整调整 `x`、`y`，图片调整 `w`、`h` 等属性
