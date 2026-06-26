@@ -178,3 +178,28 @@ The layout file directory corresponding to the page file is the same as the dire
 ## Full Example
 
 For a full example, see Mini Program [calories](https://github.com/zepp-health/zeppos-samples/tree/main/application/3.0/calories)
+
+## Amazfit Bip Max Screen Adaptation Special Case
+
+Amazfit Bip Max has some special behavior compared with common square screen devices.
+
+If you do not adapt this device separately, the `@zos/device` module `getDeviceInfo` returns `390 x 450`, the Mini Program drawing area is `390 x 450`, and it is centered horizontally and vertically on the screen.
+
+If you need to adapt it separately, we recommend the following:
+
+- Set `"_pikeCompatibled": 1` under `app` in `app.json`
+- Set the following values in `app.json`:
+
+  ```json
+  {
+    "st": "s",
+    "sr": "w432",
+    "dw": 432
+  }
+  ```
+
+- Create a `*.w432-s.layout.js` file in the same directory as every `*.s.layout.js` file, and keep its content the same as the corresponding `*.s.layout.js` file
+- Under `assets`, use `s` as the baseline and add a `w450-s` resource directory; the resource contents can be shared with `s`
+- Adjust `x` and `y` according to the design draft, and adjust image `w` and `h` as needed
+
+After this configuration is applied, `getDeviceInfo` returns the actual value `432 x 514`.
