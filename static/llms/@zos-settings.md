@@ -302,6 +302,19 @@ console.log(minAPI)
 import { getSystemMode } from '@zos/settings'
 ```
 
+### Typings
+
+- Description: Get the system mode setting information
+- API_LEVEL: 3.0
+- Example:
+
+```js
+import { getSystemMode } from '@zos/settings'
+
+const mode = getSystemMode()
+console.log(mode)
+```
+
 > Start from API_LEVEL `3.0` . Please refer to [API_LEVEL](https://docs.zepp.com/docs/guides/framework/device/compatibility).
 
 Get the system mode setting information.

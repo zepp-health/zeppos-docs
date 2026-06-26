@@ -306,6 +306,19 @@ exit()
 import { getAppIdByName } from '@zos/router'
 ```
 
+### Typings
+
+- Description: Fuzzy match the English name of installed Mini Programs on the device by name
+- API_LEVEL: 3.6
+- Example:
+
+```js
+import { getAppIdByName } from '@zos/router'
+
+const appId = getAppIdByName('calculator')
+console.log(appId)
+```
+
 > Start from API_LEVEL `3.6` . Please refer to [API_LEVEL](https://docs.zepp.com/docs/guides/framework/device/compatibility).
 
 Fuzzy match the English name of installed Mini Programs on the device by name.

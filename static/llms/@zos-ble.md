@@ -1717,6 +1717,17 @@ function mstWriteDescriptor(
 import { removeListener } from '@zos/ble'
 ```
 
+### Typings
+
+- Description: Cancel connection status listening callback function
+- Example:
+
+```js
+import { removeListener } from '@zos/ble'
+
+// ...
+```
+
 > Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](https://docs.zepp.com/docs/guides/framework/device/compatibility).
 
 Cancel connection status listening callback function.

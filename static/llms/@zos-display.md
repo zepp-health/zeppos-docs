@@ -110,6 +110,18 @@ console.log(`current brightness ${result}`)
 import { getSettings } from '@zos/display'
 ```
 
+### Typings
+
+- Description: Get system display related information
+- API_LEVEL: 3.0
+- Example:
+
+```js
+import { getSettings } from '@zos/display'
+
+console.log(getSettings())
+```
+
 > Start from API_LEVEL `3.0` . Please refer to [API_LEVEL](https://docs.zepp.com/docs/guides/framework/device/compatibility).
 
 Get system display related information.

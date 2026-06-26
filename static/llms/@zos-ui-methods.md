@@ -642,49 +642,6 @@ Page({
 
 ---
 
-## showToast
-
-### Import
-
-```js
-import { showToast } from '@zos/ui'
-```
-
-> Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](https://docs.zepp.com/docs/guides/framework/device/compatibility).
-
-[Image: show_toast]
-
-Show Toast with `\n` text line feed support.
-
-## Type
-
-```ts
-(option: Option) => void
-```
-
-## Parameters
-
-### Option: object
-
-| Properties | Description                |   Type   |
-| ---------- | -------------------------- | -------- |
-|    text    | The text content of toast. | `string` |
-
-## Code examples
-
-```js
-
-Page({
-  build() {
-    showToast({
-      text: 'Hello\nZepp OS'
-    })
-  }
-})
-```
-
----
-
 ## setStatusBarVisible
 
 ### Import

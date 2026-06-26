@@ -3446,6 +3446,23 @@ worldClock.destroy()
 import { checkSensor } from '@zos/sensor'
 ```
 
+### Typings
+
+- Description: Check the availability of sensors on the current device
+- API_LEVEL: 3.0
+- Example:
+
+```js
+import { checkSensor, Geolocation } from '@zos/sensor'
+
+const result = checkSensor(Geolocation)
+let geolocation = null
+
+if (result) {
+  geolocation = new Geolocation()
+}
+```
+
 > Start from API_LEVEL `3.0` . Please refer to [API_LEVEL](https://docs.zepp.com/docs/guides/framework/device/compatibility).
 
 Check the availability of sensors on the current device.

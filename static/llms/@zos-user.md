@@ -16,6 +16,22 @@
 import { addHealthData } from '@zos/user'
 ```
 
+### Typings
+
+- Description: Set user health data information
+- API_LEVEL: 3.0
+- Permission: `data:user.health`
+- Example:
+
+```js
+import { addHealthData } from '@zos/user'
+
+addHealthData({
+  weight: 65,
+  bmi: 1900
+})
+```
+
 > Start from API_LEVEL `3.0` . Please refer to [API_LEVEL](https://docs.zepp.com/docs/guides/framework/device/compatibility).
 
 Set user health data information.

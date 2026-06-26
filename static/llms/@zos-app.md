@@ -174,6 +174,22 @@ console.log(packageInfo.name)
 import { getPerformance } from '@zos/app'
 ```
 
+### Typings
+
+- Description: Get Mini Program performance statistics, including memory usage and loading performance metrics
+- API_LEVEL: 4.0
+- Example:
+
+```js
+import { getPerformance } from '@zos/app'
+
+// Get memory info only
+const memoryProfile = getPerformance('memory')
+
+// Get both memory and performance info
+const fullProfile = getPerformance('memory', 'perf')
+```
+
 > Start from API_LEVEL `4.0` . Please refer to [API_LEVEL](https://docs.zepp.com/docs/guides/framework/device/compatibility).
 
 Get Mini Program performance statistics, including memory usage and loading performance metrics.

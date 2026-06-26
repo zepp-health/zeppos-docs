@@ -8,6 +8,17 @@
 import { getText } from '@zos/i18n'
 ```
 
+### Typings
+
+- Description: Get the corresponding string from the internationalization resource file (.po) based on the internationalization key
+- Example:
+
+```js
+import { getText } from '@zos/i18n'
+
+getText('name')
+```
+
 > Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](https://docs.zepp.com/docs/guides/framework/device/compatibility).
 
 Get the corresponding string from the internationalization resource file (.po) based on the internationalization key.
