@@ -530,6 +530,11 @@ module.exports = {
                   id: 'guides/tools/watchface/guides/date',
                   type: 'doc',
                   label: 'Date'
+                },
+                {
+                  id: 'guides/tools/watchface/guides/editable-component',
+                  type: 'doc',
+                  label: 'Editable Component'
                 }
               ]
             },
