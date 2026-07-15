@@ -262,6 +262,27 @@ html[lang='zh-cn'] {
   }
 }
 
+.editable-component-image-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  margin: 1.5rem 0;
+
+  img {
+    flex: 1 1 12rem;
+    max-width: calc((100% - 2rem) / 3);
+    min-width: 0;
+  }
+
+  @media (max-width: 640px) {
+    img {
+      flex-basis: 10rem;
+      max-width: calc((100% - 1rem) / 2);
+    }
+  }
+}
+
 /* 底栏 */
 .footer__item {
   span [class*=iconExternalLink] {
