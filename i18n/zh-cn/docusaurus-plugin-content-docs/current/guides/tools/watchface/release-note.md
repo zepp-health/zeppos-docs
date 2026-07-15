@@ -10,6 +10,7 @@ sidebar_label: 版本历史
 #### 🚀 新增
 
 1. 新增[可编辑数据组件教程](guides/editable-component.md)入口和导出前预览资源校验，帮助开发者更高效地完成可编辑组件配置
+1. 可编辑组件新增 HRV、HybridCharge、海拔高度、睡眠时长数据项
 
 #### 📈 优化
 

@@ -9,6 +9,7 @@ title: Release history
 #### 🚀 New Features
 
 1. Added an [Editable Component tutorial](guides/editable-component.md) entry and pre-export validation for preview resources
+1. Added HRV, HybridCharge, Altitude, and Sleep Duration data fields to Editable Components
 
 #### 📈 Optimizations
 
