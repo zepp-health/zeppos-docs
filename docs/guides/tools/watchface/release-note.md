@@ -4,6 +4,19 @@ title: Release history
 
 # Release history
 
+### V4.9.1 (July 15, 2026)
+
+#### 🚀 New Features
+
+1. Added an [Editable Component tutorial](guides/editable-component.md) entry and pre-export validation for preview resources
+
+#### 📈 Optimizations
+
+1. Simplified Editable Component forms to retain only required settings
+1. Improved Editable Component previews and added an edit-mode preview
+
+---
+
 ### V4.9.0 (June 2, 2026)
 
 #### 🚀 New Features
