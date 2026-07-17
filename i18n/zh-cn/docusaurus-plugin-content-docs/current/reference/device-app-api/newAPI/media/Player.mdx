@@ -1,0 +1,208 @@
+---
+title: Player
+sidebar_label: Player
+---
+
+> API_LEVEL `3.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+![Player_image](https://img-cdn.zepp.com/zepp-applet-and-wechat-applet/20260713/0532b24447e240a19651803e1abbfaa1.jpg)
+
+播放器控制器，用于设置音频文件、准备播放资源、控制播放状态和查询媒体信息。
+
+## 属性
+
+### source
+
+| 属性 | 类型                | 必填 | 默认值 | 说明             | API_LEVEL |
+| ---- | ------------------- | ---- | ------ | ---------------- | --------- |
+| FILE | <code>number</code> | 是   | -      | 播放指定音频文件 | 3.0       |
+
+### event
+
+| 属性     | 类型                | 必填 | 默认值 | 说明                                 | API_LEVEL |
+| -------- | ------------------- | ---- | ------ | ------------------------------------ | --------- |
+| PREPARE  | <code>number</code> | 是   | -      | `prepare()` 的异步结果               | 3.0       |
+| COMPLETE | <code>number</code> | 是   | -      | 音频文件播放结束                     | 3.0       |
+| PLAY     | <code>number</code> | 是   | -      | `start()` 或 `resume()` 后的播放结果 | 3.0       |
+| STOP     | <code>number</code> | 是   | -      | 播放停止                             | 3.0       |
+| PAUSE    | <code>number</code> | 是   | -      | 播放暂停                             | 3.0       |
+| PROGRESS | <code>number</code> | 是   | -      | 播放进度更新                         | 3.0       |
+
+### state
+
+| 属性        | 类型                | 必填 | 默认值 | 说明                   | API_LEVEL |
+| ----------- | ------------------- | ---- | ------ | ---------------------- | --------- |
+| IDLE        | <code>number</code> | 是   | -      | 初始状态               | 3.0       |
+| INITIALIZED | <code>number</code> | 是   | -      | `setSource()` 后的状态 | 3.0       |
+| PREPARING   | <code>number</code> | 是   | -      | 准备播放中的中间状态   | 3.0       |
+| PREPARED    | <code>number</code> | 是   | -      | 准备完成               | 3.0       |
+| STARTING    | <code>number</code> | 是   | -      | 开始播放中的中间状态   | 3.0       |
+| PLAY        | <code>number</code> | 是   | -      | 正在播放               | 3.0       |
+| PAUSING     | <code>number</code> | 是   | -      | 暂停处理中的中间状态   | 3.0       |
+| PAUSED      | <code>number</code> | 是   | -      | 已暂停                 | 3.0       |
+| RESUMING    | <code>number</code> | 是   | -      | 恢复播放中的中间状态   | 3.0       |
+
+## 方法
+
+### setSource
+
+在开始播放之前，设置播放参数，指定音频文件路径。
+
+`player.source.FILE` 播放指定文件，支持 MP3 格式，以及使用音频 API 录制的 OPUS 格式。
+`options.file` 默认相对小程序 `assets` 目录，也可以使用 `data://` 访问小程序 `data` 目录。
+
+```ts
+setSource(source: Player['source']['FILE'], options: { file: string }): void
+```
+
+### prepare
+
+播放器进入准备阶段，检查路径、文件格式和码率是否支持。成功后播放器状态变化并开始缓存多媒体数据，通过事件监听函数获取调用结果。
+
+```ts
+prepare(): void
+```
+
+### start
+
+开始播放
+
+```ts
+start(): void
+```
+
+### pause
+
+暂停播放
+
+```ts
+pause(): void
+```
+
+### resume
+
+恢复播放，调用 `start()` 有同样效果
+
+```ts
+resume(): void
+```
+
+### stop
+
+停止播放
+
+```ts
+stop(): void
+```
+
+### seek
+
+> API_LEVEL `4.2`
+
+设置播放位置（播放文件时长的百分比位置），`percentage` 有效值为 [0 - 100]，返回值代表是否设置成功。
+
+- 如果当前是 `PREPARED` 状态，在 `seek()` 之后会自动开始播放
+- 如果当前是 `PAUSED` 或 `PLAY` 状态，在 `seek()` 之后保持当前状态
+
+```ts
+seek(percentage: number): boolean
+```
+
+### seekTo
+
+> API_LEVEL `4.3`
+
+按秒设置播放位置，功能同 `seek()`
+
+```ts
+seekTo(seconds: number): boolean
+```
+
+### getDuration
+
+获取当前播放的媒体文件总时长，单位秒。返回 `0` 代表无效，需要播放器处于 `PREPARED` 状态才可以获取到值
+
+```ts
+getDuration(): number
+```
+
+### getVolume
+
+获取当前系统音量值，范围 [0 - 100]
+
+```ts
+getVolume(): number
+```
+
+### setVolume
+
+设置系统音量值，范围 [0 - 100]，返回值代表是否设置成功，`true` 表示设置成功
+
+```ts
+setVolume(volume: number): boolean
+```
+
+### getTitle
+
+获取当前播放媒体文件标题，调用失败时返回 `undefined`
+
+```ts
+getTitle(): string | undefined
+```
+
+### getArtist
+
+获取当前播放媒体文件艺术家信息，调用失败时返回 `undefined`
+
+```ts
+getArtist(): string | undefined
+```
+
+### getMediaInfo
+
+获取当前播放媒体文件的标题、艺术家和时长信息。`title`、`artist` 在 `setSource()` 后可获取，`duration` 需要播放器处于 `PREPARED` 状态才可以获取
+
+```ts
+getMediaInfo(): {
+      title: string | undefined
+      artist: string | undefined
+      duration: number
+    }
+```
+
+### getStatus
+
+获取播放器状态，返回值含义参考 `player.state`
+
+```ts
+getStatus(): number
+```
+
+### addEventListener
+
+事件监听，用于播放状态监听，当状态发生变化时会触发 `callback`
+
+```ts
+addEventListener(event: number, callback: (result: boolean | number | undefined) => void): void
+```
+
+## 代码示例
+
+```js
+import { create, id } from '@zos/media'
+
+const player = create(id.PLAYER)
+player.addEventListener(player.event.PREPARE, (result) => {
+  if (result) player.start()
+})
+player.addEventListener(player.event.COMPLETE, () => {
+  player.stop()
+})
+player.setSource(player.source.FILE, { file: 'data://music.opus' })
+const info = player.getMediaInfo()
+console.log(info.title, info.artist, info.duration)
+player.prepare()
+player.pause()
+player.resume()
+player.stop()
+```

@@ -1,0 +1,28 @@
+# encryptKey
+
+> API_LEVEL `3.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+使用固件 PUF 硬件模块对数据进行 AES 加密。输入长度必须是 16 字节的整数倍，通常用于对密钥进行二次加密；失败时返回 `undefined`。
+
+## 类型
+
+```ts
+function encryptKey(data: CryptoData): ArrayBuffer | undefined
+```
+
+## 参数
+
+### CryptoData
+
+| 类型                                                   | 说明       |
+| ------------------------------------------------------ | ---------- |
+| <code>number[]&#124;ArrayBuffer&#124;Uint8Array</code> | 待加密数据 |
+
+## 代码示例
+
+```js
+import { encryptKey } from '@zos/crypto'
+
+const key = new Uint8Array(16)
+const encryptedKey = encryptKey(key)
+```

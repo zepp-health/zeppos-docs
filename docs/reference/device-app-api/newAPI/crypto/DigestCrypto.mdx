@@ -1,0 +1,116 @@
+# MD5 and SHA Digests
+
+## createCrypto
+
+Create a digest instance. Pass the HMAC key through `private_key`.
+
+| algorithmId        | Description         | API_LEVEL |
+| ------------------ | ------------------- | --------- | --- |
+| `alg.MD5`          | MD5 digest          | `3.0`     |
+| `alg.HMACMD5`      | HMAC-MD5 digest     | `3.0`     |
+| `alg.SHA_256`      | SHA-256 digest      | `3.0`     |
+| `alg.HMAC_SHA_256` | HMAC-SHA-256 digest | `3.0`     |
+| `alg.SHA_1`        | SHA-1 digest        | `3.0`     |
+| `alg.HMAC_SHA_1`   | HMAC-SHA-1 digest   | `3.0`     | .   |
+
+### Type
+
+```ts
+function createCrypto(
+  algorithmId: typeof alg.MD5 | typeof alg.SHA_256 | typeof alg.SHA_1,
+  option?: DigestOptions,
+): DigestCrypto | undefined
+function createCrypto(
+  algorithmId: typeof alg.HMACMD5 | typeof alg.HMAC_SHA_256 | typeof alg.HMAC_SHA_1,
+  option: HMACOptions,
+): DigestCrypto | undefined
+```
+
+### Parameters
+
+#### DigestData
+
+| Type                                                   | Description    |
+| ------------------------------------------------------ | -------------- |
+| <code>number[]&#124;ArrayBuffer&#124;Uint8Array</code> | Data to digest |
+
+#### DigestOptions
+
+| Property    | Type                             | Required | DefaultValue | Description                                            |
+| ----------- | -------------------------------- | -------- | ------------ | ------------------------------------------------------ |
+| key_encrypt | <code>boolean&#124;number</code> | N        | -            | Whether the key is encrypted again by the hardware key |
+
+#### HMACOptions
+
+| Property    | Type                             | Required | DefaultValue | Description                                            |
+| ----------- | -------------------------------- | -------- | ------------ | ------------------------------------------------------ |
+| private_key | <code>DigestData</code>          | Y        | -            | Key used by HMAC algorithms                            |
+| key_encrypt | <code>boolean&#124;number</code> | N        | -            | Whether the key is encrypted again by the hardware key |
+
+## DigestCrypto
+
+MD5, SHA, and HMAC digest instance supporting one-shot and streaming calculation.
+
+### Methods
+
+#### encrypt
+
+Calculate a digest in one call
+
+```ts
+encrypt(data: createCrypto.DigestData): DigestResult | undefined
+```
+
+##### DigestResult
+
+| Property   | Type                     | Description   |
+| ---------- | ------------------------ | ------------- |
+| md_content | <code>ArrayBuffer</code> | Digest data   |
+| length     | <code>number</code>      | Digest length |
+
+#### start
+
+Start streaming digest calculation
+
+```ts
+start(): void
+```
+
+#### update
+
+Append a data chunk
+
+```ts
+update(data: createCrypto.DigestData): void
+```
+
+#### finish
+
+Finish streaming calculation and return the digest
+
+```ts
+finish(): DigestResult | undefined
+```
+
+##### DigestResult
+
+| Property   | Type                     | Description   |
+| ---------- | ------------------------ | ------------- |
+| md_content | <code>ArrayBuffer</code> | Digest data   |
+| length     | <code>number</code>      | Digest length |
+
+### Example
+
+```js
+import { alg, createCrypto } from '@zos/crypto'
+
+const digest = createCrypto(alg.HMAC_SHA_256, { private_key: [1, 2, 3] })
+if (!digest) throw new Error('Failed to create digest instance')
+
+const oneShot = digest.encrypt([65, 66, 67])
+
+digest.start()
+digest.update([65])
+digest.update([66, 67])
+const streamed = digest.finish()
+```

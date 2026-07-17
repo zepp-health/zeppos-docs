@@ -266,6 +266,10 @@ const newAPIPathMap = [
     label: 'Storage'
   },
   {
+    path: 'share-storage',
+    label: 'Share Storage'
+  },
+  {
     path: 'i18n',
     label: 'I18n'
   },
@@ -300,7 +304,15 @@ const newAPIPathMap = [
   {
     path: 'app-access',
     label: 'App Access'
-  }
+  },
+  {
+    path: 'media',
+    label: 'Media'
+  },
+  {
+    path: 'crypto',
+    label: 'Crypto'
+  },
 ]
 
 // 首先拼接 prefix
@@ -739,7 +751,6 @@ module.exports = {
             ]
           }
         }),
-        'reference/device-app-api/newAPI/media'
       ]
     },
     {

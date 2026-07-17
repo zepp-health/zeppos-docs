@@ -1,0 +1,59 @@
+---
+title: LocalStorage
+sidebar_label: LocalStorage
+---
+
+> API_LEVEL `3.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+跨应用只读 JSON 键值存储。应用 A 使用 `@zos/storage` 的 `ShareLocalStorage` 发布数据，应用 B 使用应用 A 的 appId 读取；自定义 storagePath 时两端必须使用相同路径。
+
+## 构造函数
+
+创建目标应用的只读共享本地存储实例
+
+```ts
+constructor(appId: number, storagePath?: string)
+```
+
+## 方法
+
+### getItem
+
+读取数据；未找到时返回默认值
+
+```ts
+getItem<T = any>(key: string, defaultValue?: T): T | undefined
+```
+
+### isExisted
+
+判断目标共享存储文件是否存在
+
+```ts
+isExisted(): boolean
+```
+
+## 代码示例
+
+```js
+// ==================== Application A (data provider) ====================
+import { ShareLocalStorage } from '@zos/storage'
+
+const sharedStorage = new ShareLocalStorage('shared-settings.json')
+sharedStorage.setItem('profile', { name: 'Zepp', theme: 'dark' })
+sharedStorage.setItem('lastUpdatedAt', Date.now())
+
+const profile = sharedStorage.getItem('profile', { name: '', theme: 'light' })
+sharedStorage.removeItem('legacy-profile')
+// Clear all shared data when it is no longer needed.
+// sharedStorage.clear()
+
+// ==================== Application B (data consumer) ====================
+import { LocalStorage } from '@zos/share-storage'
+
+const storage = new LocalStorage(100001, 'shared-settings.json') // 100001 is application A's appId
+if (storage.isExisted()) {
+  const profile = storage.getItem('profile', { name: '', theme: 'light' })
+  const lastUpdatedAt = storage.getItem('lastUpdatedAt', 0)
+}
+```

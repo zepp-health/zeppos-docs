@@ -1,0 +1,99 @@
+---
+title: FileSystem
+sidebar_label: FileSystem
+---
+
+> API_LEVEL `3.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+跨应用只读文件系统。应用 B 使用应用 A 的 appId 查询、打开和读取应用 A 的已知文件路径；此类不提供写入能力。
+
+## 构造函数
+
+创建目标应用的只读文件系统实例
+
+```ts
+constructor(appId: number)
+```
+
+## 方法
+
+### openSync
+
+以只读方式打开文件
+
+```ts
+openSync(options: { path: string }): number
+```
+
+### closeSync
+
+关闭文件句柄
+
+```ts
+closeSync(fd: number): number
+```
+
+### statSync
+
+获取文件信息；文件不存在时返回 undefined
+
+```ts
+statSync(options: {
+      path: string
+    }): { size: number; mtimeMs: number; isDir: boolean; isFile: boolean } | undefined
+```
+
+### readSync
+
+读取文件内容到缓冲区
+
+```ts
+readSync(options: {
+      fd: number
+      buffer: ArrayBuffer
+      options?: { offset?: number; length?: number; position?: number }
+    }): number
+```
+
+### readFileSync
+
+读取完整文件内容；指定 encoding 时返回字符串，否则返回 ArrayBuffer
+
+```ts
+readFileSync(options: {
+      path: string
+      options?: { encoding?: string }
+    }): string | ArrayBuffer
+```
+
+## 代码示例
+
+```js
+// ==================== Application A (data provider) ====================
+import { writeFileSync } from '@zos/fs'
+
+const path = 'shared.json'
+writeFileSync({
+  path,
+  data: JSON.stringify({ theme: 'dark' }),
+  options: { encoding: 'utf8' },
+})
+
+// ==================== Application B (data consumer) ====================
+import { FileSystem } from '@zos/share-storage'
+
+const fs = new FileSystem(100001) // 100001 is application A's appId
+const stat = fs.statSync({ path })
+
+if (stat && stat.isFile) {
+  const fd = fs.openSync({ path })
+  const buffer = new ArrayBuffer(stat.size)
+  fs.readSync({ fd, buffer })
+  fs.closeSync(fd)
+}
+
+const content = fs.readFileSync({
+  path,
+  options: { encoding: 'utf8' },
+})
+```

@@ -1,0 +1,28 @@
+# encryptKey
+
+> Start from API_LEVEL `3.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Encrypt data with the firmware PUF hardware module using AES. Input length must be a multiple of 16 bytes; returns `undefined` on failure.
+
+## Type
+
+```ts
+function encryptKey(data: CryptoData): ArrayBuffer | undefined
+```
+
+## Parameters
+
+### CryptoData
+
+| Type                                                   | Description     |
+| ------------------------------------------------------ | --------------- |
+| <code>number[]&#124;ArrayBuffer&#124;Uint8Array</code> | Data to encrypt |
+
+## Example
+
+```js
+import { encryptKey } from '@zos/crypto'
+
+const key = new Uint8Array(16)
+const encryptedKey = encryptKey(key)
+```

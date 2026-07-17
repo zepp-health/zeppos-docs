@@ -1,0 +1,153 @@
+---
+title: ShareTypedStorage
+sidebar_label: ShareTypedStorage
+---
+
+> API_LEVEL `3.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+面向跨应用场景的共享类型化键值存储。应用 A 使用此类发布系统属性，应用 B 可通过 `@zos/share-storage` 的 `TypedStorage` 和应用 A 的 appId 只读访问；自定义 scope 时两端必须使用相同 scope。
+
+## 构造函数
+
+创建共享类型化存储实例。scope 用于为键分组；未传入时使用框架默认的共享分组，传入自定义 scope 时读取方必须使用相同值
+
+```ts
+constructor(scope?: string)
+```
+
+## 方法
+
+### getBool
+
+读取布尔值
+
+```ts
+getBool(key: string, defaultValue: boolean): boolean
+```
+
+### getInt
+
+读取整数
+
+```ts
+getInt(key: string, defaultValue: number): number
+```
+
+### getInt64
+
+读取 64 位整数
+
+```ts
+getInt64(key: string, defaultValue: number): number
+```
+
+### getDouble
+
+读取双精度浮点数
+
+```ts
+getDouble(key: string, defaultValue: number): number
+```
+
+### getString
+
+读取字符串
+
+```ts
+getString(key: string, defaultValue: string): string
+```
+
+### putBool
+
+保存布尔值
+
+```ts
+putBool(key: string, value: boolean): number
+```
+
+### putInt
+
+保存整数
+
+```ts
+putInt(key: string, value: number): number
+```
+
+### putInt64
+
+保存 64 位整数
+
+```ts
+putInt64(key: string, value: number): number
+```
+
+### putDouble
+
+保存双精度浮点数
+
+```ts
+putDouble(key: string, value: number): number
+```
+
+### putString
+
+保存字符串
+
+```ts
+putString(key: string, value: string): number
+```
+
+### has
+
+判断指定键是否存在
+
+```ts
+has(key: string): boolean
+```
+
+### clear
+
+清空所有共享类型化存储数据
+
+```ts
+clear(): void
+```
+
+### remove
+
+删除指定键的数据
+
+```ts
+remove(key: string): boolean
+```
+
+## 代码示例
+
+```js
+// ==================== Application A (data provider) ====================
+import { ShareTypedStorage } from '@zos/storage'
+
+const sharedStorage = new ShareTypedStorage('watchface-data')
+sharedStorage.putBool('enabled', true)
+sharedStorage.putInt('steps', 6000)
+sharedStorage.putInt64('lastUpdatedAt', Date.now())
+sharedStorage.putDouble('progress', 0.75)
+sharedStorage.putString('theme', 'dark')
+
+if (sharedStorage.has('legacy-theme')) {
+  sharedStorage.remove('legacy-theme')
+}
+// Clear all shared typed data when it is no longer needed.
+// sharedStorage.clear()
+
+// ==================== Application B (data consumer) ====================
+// This section runs in application B. Use application A's appId and the same scope.
+import { TypedStorage } from '@zos/share-storage'
+
+const storage = new TypedStorage(appIdOfApplicationA, 'watchface-data')
+const enabled = storage.getBool('enabled', false)
+const steps = storage.getInt('steps', 0)
+const lastUpdatedAt = storage.getInt64('lastUpdatedAt', 0)
+const progress = storage.getDouble('progress', 0)
+const theme = storage.getString('theme', 'light')
+```

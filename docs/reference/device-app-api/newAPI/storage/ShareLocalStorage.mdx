@@ -1,0 +1,80 @@
+---
+title: ShareLocalStorage
+sidebar_label: ShareLocalStorage
+---
+
+> Start from API_LEVEL `3.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Shared JSON key-value storage for cross-application scenarios. Application A publishes data with this class, and application B reads it with `LocalStorage` from `@zos/share-storage` and application A's appId. When using a custom storagePath, both applications must use the same path.
+
+:::info
+permission code: `device:os.local_storage`
+:::
+
+## Constructor
+
+Create a shared local storage instance. Uses the shared storage file by default, or a custom file path.
+
+```ts
+constructor(storagePath?: string)
+```
+
+## Methods
+
+### setItem
+
+Set a value
+
+```ts
+setItem(key: string, value: any): void
+```
+
+### getItem
+
+Get a value, or return the default value when not found
+
+```ts
+getItem<T = any>(key: string, defaultValue?: T): T | undefined
+```
+
+### removeItem
+
+Delete a value by key
+
+```ts
+removeItem(key: string): boolean
+```
+
+### clear
+
+Clear all shared storage data
+
+```ts
+clear(): void
+```
+
+## Example
+
+```js
+// ==================== Application A (data provider) ====================
+import { ShareLocalStorage } from '@zos/storage'
+
+const sharedStorage = new ShareLocalStorage('shared-settings.json')
+sharedStorage.setItem('profile', { name: 'Zepp', theme: 'dark' })
+sharedStorage.setItem('lastUpdatedAt', Date.now())
+
+const profile = sharedStorage.getItem('profile', { name: '', theme: 'light' })
+sharedStorage.removeItem('legacy-profile')
+// Clear all shared data when it is no longer needed.
+// sharedStorage.clear()
+
+// ==================== Application B (data consumer) ====================
+// This section runs in application B. Use application A's appId and the same storagePath.
+import { LocalStorage } from '@zos/share-storage'
+
+const storage = new LocalStorage(appIdOfApplicationA, 'shared-settings.json')
+if (storage.isExisted()) {
+  const profile = storage.getItem('profile', { name: '', theme: 'light' })
+  const lastUpdatedAt = storage.getItem('lastUpdatedAt', 0)
+}
+```

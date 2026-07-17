@@ -1,0 +1,135 @@
+---
+title: TypedStorage
+sidebar_label: TypedStorage
+---
+
+> API_LEVEL `3.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+类型化键值存储，使用系统属性存储数据。适合保存布尔值、数值和字符串等基础类型数据。
+
+## 构造函数
+
+创建类型化存储实例。可选 scope 用于隔离键名
+
+```ts
+constructor(scope?: string)
+```
+
+## 方法
+
+### getBool
+
+读取布尔值
+
+```ts
+getBool(key: string, defaultValue: boolean): boolean
+```
+
+### getInt
+
+读取整数
+
+```ts
+getInt(key: string, defaultValue: number): number
+```
+
+### getInt64
+
+读取 64 位整数
+
+```ts
+getInt64(key: string, defaultValue: number): number
+```
+
+### getDouble
+
+读取双精度浮点数
+
+```ts
+getDouble(key: string, defaultValue: number): number
+```
+
+### getString
+
+读取字符串
+
+```ts
+getString(key: string, defaultValue: string): string
+```
+
+### putBool
+
+保存布尔值
+
+```ts
+putBool(key: string, value: boolean): number
+```
+
+### putInt
+
+保存整数
+
+```ts
+putInt(key: string, value: number): number
+```
+
+### putInt64
+
+保存 64 位整数
+
+```ts
+putInt64(key: string, value: number): number
+```
+
+### putDouble
+
+保存双精度浮点数
+
+```ts
+putDouble(key: string, value: number): number
+```
+
+### putString
+
+保存字符串
+
+```ts
+putString(key: string, value: string): number
+```
+
+### has
+
+判断指定键是否存在
+
+```ts
+has(key: string): boolean
+```
+
+### clear
+
+清空所有类型化存储数据
+
+```ts
+clear(): void
+```
+
+### remove
+
+删除指定键的数据
+
+```ts
+remove(key: string): boolean
+```
+
+## 代码示例
+
+```js
+import { TypedStorage } from '@zos/storage'
+
+const storage = new TypedStorage()
+storage.putBool('enabled', true)
+storage.putInt('count', 1)
+
+const enabled = storage.getBool('enabled', false)
+const count = storage.getInt('count', 0)
+```

@@ -1,0 +1,153 @@
+---
+title: ShareTypedStorage
+sidebar_label: ShareTypedStorage
+---
+
+> Start from API_LEVEL `3.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Shared typed key-value storage for cross-application scenarios. Application A publishes system properties with this class, and application B reads them with `TypedStorage` from `@zos/share-storage` and application A's appId. When using a custom scope, both applications must use the same scope.
+
+## Constructor
+
+Create a shared typed storage instance. The scope groups keys. When omitted, the framework default shared group is used; when customized, readers must use the same value.
+
+```ts
+constructor(scope?: string)
+```
+
+## Methods
+
+### getBool
+
+Get a boolean value
+
+```ts
+getBool(key: string, defaultValue: boolean): boolean
+```
+
+### getInt
+
+Get an integer value
+
+```ts
+getInt(key: string, defaultValue: number): number
+```
+
+### getInt64
+
+Get a 64-bit integer value
+
+```ts
+getInt64(key: string, defaultValue: number): number
+```
+
+### getDouble
+
+Get a double value
+
+```ts
+getDouble(key: string, defaultValue: number): number
+```
+
+### getString
+
+Get a string value
+
+```ts
+getString(key: string, defaultValue: string): string
+```
+
+### putBool
+
+Set a boolean value
+
+```ts
+putBool(key: string, value: boolean): number
+```
+
+### putInt
+
+Set an integer value
+
+```ts
+putInt(key: string, value: number): number
+```
+
+### putInt64
+
+Set a 64-bit integer value
+
+```ts
+putInt64(key: string, value: number): number
+```
+
+### putDouble
+
+Set a double value
+
+```ts
+putDouble(key: string, value: number): number
+```
+
+### putString
+
+Set a string value
+
+```ts
+putString(key: string, value: string): number
+```
+
+### has
+
+Check whether a key exists
+
+```ts
+has(key: string): boolean
+```
+
+### clear
+
+Clear all shared typed storage data
+
+```ts
+clear(): void
+```
+
+### remove
+
+Delete a value by key
+
+```ts
+remove(key: string): boolean
+```
+
+## Example
+
+```js
+// ==================== Application A (data provider) ====================
+import { ShareTypedStorage } from '@zos/storage'
+
+const sharedStorage = new ShareTypedStorage('watchface-data')
+sharedStorage.putBool('enabled', true)
+sharedStorage.putInt('steps', 6000)
+sharedStorage.putInt64('lastUpdatedAt', Date.now())
+sharedStorage.putDouble('progress', 0.75)
+sharedStorage.putString('theme', 'dark')
+
+if (sharedStorage.has('legacy-theme')) {
+  sharedStorage.remove('legacy-theme')
+}
+// Clear all shared typed data when it is no longer needed.
+// sharedStorage.clear()
+
+// ==================== Application B (data consumer) ====================
+// This section runs in application B. Use application A's appId and the same scope.
+import { TypedStorage } from '@zos/share-storage'
+
+const storage = new TypedStorage(appIdOfApplicationA, 'watchface-data')
+const enabled = storage.getBool('enabled', false)
+const steps = storage.getInt('steps', 0)
+const lastUpdatedAt = storage.getInt64('lastUpdatedAt', 0)
+const progress = storage.getDouble('progress', 0)
+const theme = storage.getString('theme', 'light')
+```

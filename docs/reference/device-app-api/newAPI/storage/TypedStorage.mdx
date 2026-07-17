@@ -1,0 +1,135 @@
+---
+title: TypedStorage
+sidebar_label: TypedStorage
+---
+
+> Start from API_LEVEL `3.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Typed key-value storage backed by system properties. Suitable for primitive values such as booleans, numbers and strings..
+
+## Constructor
+
+Create a typed storage instance. The optional scope isolates key names.
+
+```ts
+constructor(scope?: string)
+```
+
+## Methods
+
+### getBool
+
+Get a boolean value
+
+```ts
+getBool(key: string, defaultValue: boolean): boolean
+```
+
+### getInt
+
+Get an integer value
+
+```ts
+getInt(key: string, defaultValue: number): number
+```
+
+### getInt64
+
+Get a 64-bit integer value
+
+```ts
+getInt64(key: string, defaultValue: number): number
+```
+
+### getDouble
+
+Get a double value
+
+```ts
+getDouble(key: string, defaultValue: number): number
+```
+
+### getString
+
+Get a string value
+
+```ts
+getString(key: string, defaultValue: string): string
+```
+
+### putBool
+
+Set a boolean value
+
+```ts
+putBool(key: string, value: boolean): number
+```
+
+### putInt
+
+Set an integer value
+
+```ts
+putInt(key: string, value: number): number
+```
+
+### putInt64
+
+Set a 64-bit integer value
+
+```ts
+putInt64(key: string, value: number): number
+```
+
+### putDouble
+
+Set a double value
+
+```ts
+putDouble(key: string, value: number): number
+```
+
+### putString
+
+Set a string value
+
+```ts
+putString(key: string, value: string): number
+```
+
+### has
+
+Check whether a key exists
+
+```ts
+has(key: string): boolean
+```
+
+### clear
+
+Clear all typed storage data
+
+```ts
+clear(): void
+```
+
+### remove
+
+Delete a value by key
+
+```ts
+remove(key: string): boolean
+```
+
+## Example
+
+```js
+import { TypedStorage } from '@zos/storage'
+
+const storage = new TypedStorage()
+storage.putBool('enabled', true)
+storage.putInt('count', 1)
+
+const enabled = storage.getBool('enabled', false)
+const count = storage.getInt('count', 0)
+```

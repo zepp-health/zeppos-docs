@@ -1,0 +1,88 @@
+---
+title: Recorder
+sidebar_label: Recorder
+---
+
+> Start from API_LEVEL `3.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+The media recorder controller records audio to a file in the mini program `data` directory..
+
+## Properties
+
+### event
+
+| Property | Type                | Required | DefaultValue | Description                            | API_LEVEL |
+| -------- | ------------------- | -------- | ------------ | -------------------------------------- | --------- |
+| START    | <code>number</code> | Y        | -            | Result reported after recording starts | 3.0       |
+| STOP     | <code>number</code> | Y        | -            | Recording stopped                      | 3.0       |
+
+### state
+
+| Property  | Type                | Required | DefaultValue | Description                    | API_LEVEL |
+| --------- | ------------------- | -------- | ------------ | ------------------------------ | --------- |
+| IDLE      | <code>number</code> | Y        | -            | Initial state                  | 3.0       |
+| PREPARING | <code>number</code> | Y        | -            | Requesting recording resources | 3.0       |
+| STARTING  | <code>number</code> | Y        | -            | Starting recording             | 3.0       |
+| RECORDING | <code>number</code> | Y        | -            | Recording in progress          | 3.0       |
+
+## Methods
+
+### setFormat
+
+Set the recording format and output file. Use a value from `codec`; `codec.OPUS` is currently supported. `options.target_file` specifies the output path in the mini program `data` directory, for example `data://record_file.opus`
+
+```ts
+setFormat(codecValue: typeof codec.OPUS, options: { target_file: string }): void
+```
+
+### start
+
+Start recording
+
+```ts
+start(): void
+```
+
+### stop
+
+Stop recording
+
+```ts
+stop(): void
+```
+
+### getStatus
+
+Get the recorder state; see `recorder.state` for the meanings
+
+```ts
+getStatus(): number
+```
+
+### addEventListener
+
+Listen for recorder state changes; `callback` is triggered when the state changes
+
+```ts
+addEventListener(event: number, callback: (result: boolean | undefined) => void): void
+```
+
+## Example
+
+```js
+import { codec, create, id } from '@zos/media'
+
+const recorder = create(id.RECORDER)
+recorder.addEventListener(recorder.event.START, (result) => {
+  if (result) console.log('recording started')
+})
+recorder.addEventListener(recorder.event.STOP, () => {
+  console.log('recording stopped')
+})
+recorder.setFormat(codec.OPUS, {
+  target_file: 'data://record.opus',
+})
+recorder.start()
+recorder.getStatus()
+recorder.stop()
+```

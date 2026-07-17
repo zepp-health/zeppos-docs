@@ -1,0 +1,88 @@
+---
+title: TypedStorage
+sidebar_label: TypedStorage
+---
+
+> Start from API_LEVEL `3.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Read-only typed key-value storage across applications. Application A publishes system properties with `ShareTypedStorage` from `@zos/storage`, and application B reads them with application A's appId. When using a custom scope, both applications must use the same scope.
+
+## Constructor
+
+Create a read-only typed storage instance for the target application. The scope identifies a key group. When omitted, it reads the framework default shared group; a custom scope must match the publisher.
+
+```ts
+constructor(appId: number, scope?: string)
+```
+
+## Methods
+
+### getBool
+
+Get a boolean value from the target application
+
+```ts
+getBool(key: string, defaultValue: boolean): boolean
+```
+
+### getInt
+
+Get an integer value from the target application
+
+```ts
+getInt(key: string, defaultValue: number): number
+```
+
+### getInt64
+
+Get a 64-bit integer value from the target application
+
+```ts
+getInt64(key: string, defaultValue: number): number
+```
+
+### getDouble
+
+Get a double value from the target application
+
+```ts
+getDouble(key: string, defaultValue: number): number
+```
+
+### getString
+
+Get a string value from the target application
+
+```ts
+getString(key: string, defaultValue: string): string
+```
+
+## Example
+
+```js
+// ==================== Application A (data provider) ====================
+import { ShareTypedStorage } from '@zos/storage'
+
+const sharedStorage = new ShareTypedStorage('watchface-data')
+sharedStorage.putBool('enabled', true)
+sharedStorage.putInt('steps', 6000)
+sharedStorage.putInt64('lastUpdatedAt', Date.now())
+sharedStorage.putDouble('progress', 0.75)
+sharedStorage.putString('theme', 'dark')
+
+if (sharedStorage.has('legacy-theme')) {
+  sharedStorage.remove('legacy-theme')
+}
+// Clear all shared typed data when it is no longer needed.
+// sharedStorage.clear()
+
+// ==================== Application B (data consumer) ====================
+import { TypedStorage } from '@zos/share-storage'
+
+const storage = new TypedStorage(100001, 'watchface-data') // 100001 is application A's appId
+const enabled = storage.getBool('enabled', false)
+const steps = storage.getInt('steps', 0)
+const lastUpdatedAt = storage.getInt64('lastUpdatedAt', 0)
+const progress = storage.getDouble('progress', 0)
+const theme = storage.getString('theme', 'light')
+```

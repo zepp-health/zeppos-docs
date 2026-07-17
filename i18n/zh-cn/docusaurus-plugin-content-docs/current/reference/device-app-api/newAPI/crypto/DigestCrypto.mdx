@@ -1,0 +1,116 @@
+# MD5 与 SHA 摘要
+
+## createCrypto
+
+创建摘要实例。HMAC 算法通过 `private_key` 传入密钥。
+
+| algorithmId        | 说明              | API_LEVEL |
+| ------------------ | ----------------- | --------- |
+| `alg.MD5`          | MD5 摘要          | `3.0`     |
+| `alg.HMACMD5`      | HMAC-MD5 摘要     | `3.0`     |
+| `alg.SHA_256`      | SHA-256 摘要      | `3.0`     |
+| `alg.HMAC_SHA_256` | HMAC-SHA-256 摘要 | `3.0`     |
+| `alg.SHA_1`        | SHA-1 摘要        | `3.0`     |
+| `alg.HMAC_SHA_1`   | HMAC-SHA-1 摘要   | `3.0`     |
+
+### 类型
+
+```ts
+function createCrypto(
+  algorithmId: typeof alg.MD5 | typeof alg.SHA_256 | typeof alg.SHA_1,
+  option?: DigestOptions,
+): DigestCrypto | undefined
+function createCrypto(
+  algorithmId: typeof alg.HMACMD5 | typeof alg.HMAC_SHA_256 | typeof alg.HMAC_SHA_1,
+  option: HMACOptions,
+): DigestCrypto | undefined
+```
+
+### 参数
+
+#### DigestData
+
+| 类型                                                   | 说明             |
+| ------------------------------------------------------ | ---------------- |
+| <code>number[]&#124;ArrayBuffer&#124;Uint8Array</code> | 待计算摘要的数据 |
+
+#### DigestOptions
+
+| 属性        | 类型                             | 必填 | 默认值 | 说明                         |
+| ----------- | -------------------------------- | ---- | ------ | ---------------------------- |
+| key_encrypt | <code>boolean&#124;number</code> | 否   | -      | 密钥是否经过硬件密钥二次加密 |
+
+#### HMACOptions
+
+| 属性        | 类型                             | 必填 | 默认值 | 说明                         |
+| ----------- | -------------------------------- | ---- | ------ | ---------------------------- |
+| private_key | <code>DigestData</code>          | 是   | -      | HMAC 算法使用的密钥          |
+| key_encrypt | <code>boolean&#124;number</code> | 否   | -      | 密钥是否经过硬件密钥二次加密 |
+
+## DigestCrypto
+
+MD5、SHA 及对应 HMAC 摘要实例，支持一次性和流式摘要计算。
+
+### 方法
+
+#### encrypt
+
+一次性计算摘要
+
+```ts
+encrypt(data: createCrypto.DigestData): DigestResult | undefined
+```
+
+##### DigestResult
+
+| 属性       | 类型                     | 说明     |
+| ---------- | ------------------------ | -------- |
+| md_content | <code>ArrayBuffer</code> | 摘要数据 |
+| length     | <code>number</code>      | 摘要长度 |
+
+#### start
+
+开始流式摘要计算
+
+```ts
+start(): void
+```
+
+#### update
+
+追加一段待计算数据
+
+```ts
+update(data: createCrypto.DigestData): void
+```
+
+#### finish
+
+完成流式摘要计算并返回结果
+
+```ts
+finish(): DigestResult | undefined
+```
+
+##### DigestResult
+
+| 属性       | 类型                     | 说明     |
+| ---------- | ------------------------ | -------- |
+| md_content | <code>ArrayBuffer</code> | 摘要数据 |
+| length     | <code>number</code>      | 摘要长度 |
+
+### 代码示例
+
+```js
+import { alg, createCrypto } from '@zos/crypto'
+
+const digest = createCrypto(alg.HMAC_SHA_256, { private_key: [1, 2, 3] })
+if (!digest) throw new Error('Failed to create digest instance')
+
+const oneShot = digest.encrypt([65, 66, 67])
+
+digest.start()
+digest.update([65])
+digest.update([66, 67])
+const streamed = digest.finish()
+```

@@ -1,0 +1,27 @@
+# create
+
+> Start from API_LEVEL `3.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Create a media player or recorder.
+
+## Type
+
+```ts
+function create(controllerId: typeof id.PLAYER): Player
+function create(controllerId: typeof id.RECORDER): Recorder
+```
+
+## Example
+
+```js
+import { codec, create, id } from '@zos/media'
+
+const player = create(id.PLAYER)
+player.setSource(player.source.FILE, { file: 'data://music.opus' })
+player.prepare()
+
+const recorder = create(id.RECORDER)
+recorder.setFormat(codec.OPUS, { target_file: 'data://record.opus' })
+recorder.start()
+recorder.stop()
+```

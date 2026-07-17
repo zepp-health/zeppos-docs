@@ -1,0 +1,59 @@
+# CRC Checksums
+
+## createCrypto
+
+Create a CRC checksum instance. The result uses little-endian byte order.
+
+| algorithmId | Description    | API_LEVEL |
+| ----------- | -------------- | --------- | --- |
+| `alg.CRC16` | CRC16 checksum | `3.0`     |
+| `alg.CRC32` | CRC32 checksum | `3.0`     | .   |
+
+### Type
+
+```ts
+function createCrypto(algorithmId: typeof alg.CRC16 | typeof alg.CRC32): CRCCrypto | undefined
+```
+
+### Parameters
+
+#### CRCData
+
+| Type                                                   | Description      |
+| ------------------------------------------------------ | ---------------- |
+| <code>number[]&#124;ArrayBuffer&#124;Uint8Array</code> | Data to checksum |
+
+## CRCCrypto
+
+CRC16/CRC32 checksum instance supporting only `encrypt()`.
+
+### Methods
+
+#### encrypt
+
+Calculate a CRC checksum in little-endian form
+
+```ts
+encrypt(data: createCrypto.CRCData): CRCResult | undefined
+```
+
+##### CRCResult
+
+| Property | Type                     | Description                        |
+| -------- | ------------------------ | ---------------------------------- |
+| data     | <code>ArrayBuffer</code> | CRC checksum in little-endian form |
+| length   | <code>number</code>      | Data length                        |
+
+### Example
+
+```js
+import { alg, createCrypto } from '@zos/crypto'
+
+const crc16 = createCrypto(alg.CRC16)
+if (!crc16) throw new Error('Failed to create CRC16 instance')
+const crc16Result = crc16.encrypt([1, 2, 3])
+
+const crc32 = createCrypto(alg.CRC32)
+if (!crc32) throw new Error('Failed to create CRC32 instance')
+const crc32Result = crc32.encrypt(new Uint8Array([1, 2, 3]))
+```
