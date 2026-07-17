@@ -116,7 +116,7 @@ Check if `tap0` - `tap15` appears in the result list, if it does, then the insta
 :::tip
 If the installation fails, please double check the above steps, you can try the following methods
 
-Re-execute [Configuring the virtual network card](#2-configuring-the-virtual-network-card-1), if it shows that `tun/tap` system extension is installed, uninstall it first and then reinstall it, and reboot the operating system after the installation is completed.
+Re-execute [Configuring the virtual network card](#2-configuring-the-virtual-network-card-1), if it shows that `tun/tap` system extension is installed, uninstall it first and then reinstall it, and reboot the operating system after the installation is completed. Some users might need to manually start the tap/tun devices using the following command: /Applications/Tunnelblick.app/Contents/Resources/openvpnstart loadKexts 3 (as per https://github.com/Tunnelblick/Tunnelblick/issues/703)
 :::
 
 ### Install and launch the Simulator
