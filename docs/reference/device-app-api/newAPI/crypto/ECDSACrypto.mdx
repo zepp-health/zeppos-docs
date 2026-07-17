@@ -1,0 +1,122 @@
+# ECDSA
+
+## createCrypto
+
+Create an ECDSA digital signature instance. The default curve is `ecp_dp.SECP256K1`.
+
+| Value              | Description                       | API_LEVEL |
+| ------------------ | --------------------------------- | --------- | --- |
+| `alg.ECDSA`        | ECDSA digital signature           | `3.0`     |
+| `ecp_dp.SECP192K1` | SECP192K1 elliptic curve          | `3.0`     |
+| `ecp_dp.SECP224K1` | SECP224K1 elliptic curve          | `3.0`     |
+| `ecp_dp.SECP256K1` | SECP256K1 elliptic curve; default | `3.0`     | .   |
+
+### Type
+
+```ts
+function createCrypto(algorithmId: typeof alg.ECDSA, option?: ECDSAOptions): ECDSACrypto | undefined
+```
+
+### Parameters
+
+#### ECDSAData
+
+| Type                                                   | Description     |
+| ------------------------------------------------------ | --------------- |
+| <code>number[]&#124;ArrayBuffer&#124;Uint8Array</code> | Data to process |
+
+#### ECDSAOptions
+
+| Property    | Type                                                                                           | Required | DefaultValue | Description                                              |
+| ----------- | ---------------------------------------------------------------------------------------------- | -------- | ------------ | -------------------------------------------------------- |
+| ecp_dp_mode | <code>typeof ecp_dp.SECP192K1&#124;typeof ecp_dp.SECP224K1&#124;typeof ecp_dp.SECP256K1</code> | N        | -            | Elliptic curve parameter; defaults to `ecp_dp.SECP256K1` |
+| key_encrypt | <code>boolean&#124;number</code>                                                               | N        | -            | Whether the key is encrypted again by the hardware key   |
+| private_key | <code>ECDSAData</code>                                                                         | N        | -            | Existing private key                                     |
+| pub_key     | <code>ECDSAData</code>                                                                         | N        | -            | Existing public key                                      |
+
+## ECDSACrypto
+
+ECDSA instance for key-pair creation, signing, and signature verification.
+
+### Methods
+
+#### createChiper
+
+Create an ECDSA public/private key pair; returns `undefined` on failure
+
+```ts
+createChiper(): ECDSAKeyResult | undefined
+```
+
+##### ECDSAKeyResult
+
+| Property           | Type                     | Description        |
+| ------------------ | ------------------------ | ------------------ |
+| private_key_length | <code>number</code>      | Private key length |
+| private_key        | <code>ArrayBuffer</code> | Private key data   |
+| pub_key_length     | <code>number</code>      | Public key length  |
+| pub_key            | <code>ArrayBuffer</code> | Public key data    |
+
+#### encrypt
+
+Generate a digital signature for data
+
+```ts
+encrypt(
+      data: createCrypto.ECDSAData,
+      option: Options,
+    ): ECDSACipherResult | undefined
+```
+
+##### Options
+
+| Property    | Type                                                | Required | DefaultValue | Description                                            |
+| ----------- | --------------------------------------------------- | -------- | ------------ | ------------------------------------------------------ |
+| digest_type | <code>typeof alg.MD5&#124;typeof alg.HMACMD5</code> | Y        | -            | Digest algorithm; supports `alg.MD5` and `alg.HMACMD5` |
+
+##### ECDSACipherResult
+
+| Property | Type                     | Description            |
+| -------- | ------------------------ | ---------------------- |
+| data     | <code>ArrayBuffer</code> | Digital signature data |
+| length   | <code>number</code>      | Data length            |
+
+#### decrypt
+
+Verify source data with signature data
+
+```ts
+decrypt(
+      data: createCrypto.ECDSAData,
+      option: Options,
+    ): ECDSACipherResult | undefined
+```
+
+##### Options
+
+| Property | Type                                | Required | DefaultValue | Description                 |
+| -------- | ----------------------------------- | -------- | ------------ | --------------------------- |
+| sig_data | <code>createCrypto.ECDSAData</code> | Y        | -            | Digital signature to verify |
+
+##### ECDSACipherResult
+
+| Property | Type                     | Description                        |
+| -------- | ------------------------ | ---------------------------------- |
+| data     | <code>ArrayBuffer</code> | Signature verification result data |
+| length   | <code>number</code>      | Data length                        |
+
+### Example
+
+```js
+import { alg, createCrypto, ecp_dp } from '@zos/crypto'
+
+const source = new Uint8Array([1, 2, 3])
+const ecdsa = createCrypto(alg.ECDSA, { ecp_dp_mode: ecp_dp.SECP256K1 })
+if (!ecdsa) throw new Error('Failed to create ECDSA instance')
+
+const keys = ecdsa.createChiper()
+const signature = ecdsa.encrypt(source, { digest_type: alg.MD5 })
+if (signature) {
+  const verified = ecdsa.decrypt(source, { sig_data: signature.data })
+}
+```

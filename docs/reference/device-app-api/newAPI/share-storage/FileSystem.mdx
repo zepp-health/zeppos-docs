@@ -1,0 +1,99 @@
+---
+title: FileSystem
+sidebar_label: FileSystem
+---
+
+> Start from API_LEVEL `3.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Read-only file system across applications. Application B uses application A's appId to inspect, open and read a known file path from application A; this class does not provide write operations.
+
+## Constructor
+
+Create a read-only file system instance for the target application.
+
+```ts
+constructor(appId: number)
+```
+
+## Methods
+
+### openSync
+
+Open a file in read-only mode
+
+```ts
+openSync(options: { path: string }): number
+```
+
+### closeSync
+
+Close a file descriptor
+
+```ts
+closeSync(fd: number): number
+```
+
+### statSync
+
+Get file information, or undefined when the file does not exist
+
+```ts
+statSync(options: {
+      path: string
+    }): { size: number; mtimeMs: number; isDir: boolean; isFile: boolean } | undefined
+```
+
+### readSync
+
+Read file content into a buffer
+
+```ts
+readSync(options: {
+      fd: number
+      buffer: ArrayBuffer
+      options?: { offset?: number; length?: number; position?: number }
+    }): number
+```
+
+### readFileSync
+
+Read an entire file. Returns a string when encoding is specified, otherwise an ArrayBuffer.
+
+```ts
+readFileSync(options: {
+      path: string
+      options?: { encoding?: string }
+    }): string | ArrayBuffer
+```
+
+## Example
+
+```js
+// ==================== Application A (data provider) ====================
+import { writeFileSync } from '@zos/fs'
+
+const path = 'shared.json'
+writeFileSync({
+  path,
+  data: JSON.stringify({ theme: 'dark' }),
+  options: { encoding: 'utf8' },
+})
+
+// ==================== Application B (data consumer) ====================
+import { FileSystem } from '@zos/share-storage'
+
+const fs = new FileSystem(100001) // 100001 is application A's appId
+const stat = fs.statSync({ path })
+
+if (stat && stat.isFile) {
+  const fd = fs.openSync({ path })
+  const buffer = new ArrayBuffer(stat.size)
+  fs.readSync({ fd, buffer })
+  fs.closeSync(fd)
+}
+
+const content = fs.readFileSync({
+  path,
+  options: { encoding: 'utf8' },
+})
+```

@@ -1,0 +1,59 @@
+# CRC 校验
+
+## createCrypto
+
+创建 CRC 校验实例，计算结果使用小端模式。
+
+| algorithmId | 说明       | API_LEVEL |
+| ----------- | ---------- | --------- |
+| `alg.CRC16` | CRC16 校验 | `3.0`     |
+| `alg.CRC32` | CRC32 校验 | `3.0`     |
+
+### 类型
+
+```ts
+function createCrypto(algorithmId: typeof alg.CRC16 | typeof alg.CRC32): CRCCrypto | undefined
+```
+
+### 参数
+
+#### CRCData
+
+| 类型                                                   | 说明               |
+| ------------------------------------------------------ | ------------------ |
+| <code>number[]&#124;ArrayBuffer&#124;Uint8Array</code> | 待计算校验值的数据 |
+
+## CRCCrypto
+
+CRC16/CRC32 校验实例，只支持 `encrypt()`。
+
+### 方法
+
+#### encrypt
+
+计算 CRC 校验值，结果为小端模式
+
+```ts
+encrypt(data: createCrypto.CRCData): CRCResult | undefined
+```
+
+##### CRCResult
+
+| 属性   | 类型                     | 说明                  |
+| ------ | ------------------------ | --------------------- |
+| data   | <code>ArrayBuffer</code> | 小端模式的 CRC 校验值 |
+| length | <code>number</code>      | 数据长度              |
+
+### 代码示例
+
+```js
+import { alg, createCrypto } from '@zos/crypto'
+
+const crc16 = createCrypto(alg.CRC16)
+if (!crc16) throw new Error('Failed to create CRC16 instance')
+const crc16Result = crc16.encrypt([1, 2, 3])
+
+const crc32 = createCrypto(alg.CRC32)
+if (!crc32) throw new Error('Failed to create CRC32 instance')
+const crc32Result = crc32.encrypt(new Uint8Array([1, 2, 3]))
+```

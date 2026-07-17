@@ -1,0 +1,118 @@
+# AES-CBC
+
+## createCrypto
+
+创建 AES-CBC 对称加密实例。待加密数据长度必须是 16 字节的整数倍。
+
+| algorithmId   | 说明             | API_LEVEL |
+| ------------- | ---------------- | --------- |
+| `alg.AES_CBC` | AES-CBC 对称加密 | `3.0`     |
+
+### 类型
+
+```ts
+function createCrypto(algorithmId: typeof alg.AES_CBC, option: AESOptions): AESCrypto | undefined
+```
+
+### 参数
+
+#### AESData
+
+| 类型                                                   | 说明         |
+| ------------------------------------------------------ | ------------ |
+| <code>number[]&#124;ArrayBuffer&#124;Uint8Array</code> | 待处理的数据 |
+
+#### AESOptions
+
+| 属性           | 类型                             | 必填 | 默认值 | 说明                                       |
+| -------------- | -------------------------------- | ---- | ------ | ------------------------------------------ |
+| key_bit_length | <code>number</code>              | 是   | -      | 密钥位数，AES-CBC 使用 128                 |
+| key_encrypt    | <code>boolean&#124;number</code> | 否   | -      | 密钥是否经过硬件密钥二次加密               |
+| private_key    | <code>AESData</code>             | 否   | -      | 已有私钥；传入后使用该密钥，不再生成新密钥 |
+
+## AESCrypto
+
+AES-CBC 对称加密实例。
+
+### 方法
+
+#### createChiper
+
+创建 AES 私钥；创建实例时已传入私钥则返回该密钥，失败时返回 `undefined`
+
+```ts
+createChiper(): AESKeyResult | undefined
+```
+
+##### AESKeyResult
+
+| 属性               | 类型                     | 说明     |
+| ------------------ | ------------------------ | -------- |
+| private_key_length | <code>number</code>      | 私钥长度 |
+| private_key        | <code>ArrayBuffer</code> | 私钥数据 |
+
+#### encrypt
+
+加密数据，输入长度必须是 16 字节的整数倍
+
+```ts
+encrypt(data: createCrypto.AESData): AESCipherResult | undefined
+```
+
+##### AESCipherResult
+
+| 属性   | 类型                     | 说明         |
+| ------ | ------------------------ | ------------ |
+| data   | <code>ArrayBuffer</code> | 加密后的数据 |
+| length | <code>number</code>      | 数据长度     |
+
+#### decrypt
+
+解密 AES-CBC 数据
+
+```ts
+decrypt(data: createCrypto.AESData): AESCipherResult | undefined
+```
+
+##### AESCipherResult
+
+| 属性   | 类型                     | 说明         |
+| ------ | ------------------------ | ------------ |
+| data   | <code>ArrayBuffer</code> | 解密后的数据 |
+| length | <code>number</code>      | 数据长度     |
+
+### 代码示例
+
+```js
+import { alg, createCrypto } from '@zos/crypto'
+
+const plainData = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16])
+
+const aes = createCrypto(alg.AES_CBC, {
+  key_bit_length: 128,
+  key_encrypt: 1,
+})
+if (!aes) throw new Error('Failed to create AES-CBC instance')
+
+const keyInfo = aes.createChiper()
+if (!keyInfo) throw new Error('Failed to create AES key')
+
+const encrypted = aes.encrypt(plainData)
+if (!encrypted) throw new Error('Failed to encrypt data')
+
+const decrypted = aes.decrypt(encrypted.data)
+if (!decrypted) throw new Error('Failed to decrypt data')
+console.log(new Uint8Array(decrypted.data))
+
+// Create another AES-CBC instance with an existing private key
+const existingKey = new Uint8Array(keyInfo.private_key)
+const aesWithExistingKey = createCrypto(alg.AES_CBC, {
+  key_bit_length: 128,
+  private_key: existingKey,
+  key_encrypt: 1,
+})
+if (!aesWithExistingKey) throw new Error('Failed to reuse AES key')
+
+const encryptedAgain = aesWithExistingKey.encrypt(plainData)
+const decryptedAgain = encryptedAgain ? aesWithExistingKey.decrypt(encryptedAgain.data) : undefined
+```

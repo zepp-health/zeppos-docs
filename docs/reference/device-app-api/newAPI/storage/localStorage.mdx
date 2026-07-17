@@ -5,17 +5,25 @@ sidebar_label: LocalStorage
 
 > Start from API_LEVEL `3.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
 
-Locally stored key-value pairs, data cleared after Mini Program uninstallation.
+Locally stored key-value pairs, data cleared after Mini Program uninstallation. An instance keeps loaded data in memory, making it suitable for repeated reads and writes by reducing repeated file reads.
 
 :::info
 permission code: `device:os.local_storage`
 :::
 
+## Constructor
+
+Create a local storage instance. Uses the Mini Program local storage file by default, or a custom file path.
+
+```ts
+constructor(storagePath?: string)
+```
+
 ## Methods
 
 ### setItem
 
-Get sleep information
+Save data
 
 ```ts
 setItem(key: string, value: any): void
@@ -26,7 +34,7 @@ setItem(key: string, value: any): void
 Read the data, specify the default value `defaultValue`, and return `defaultValue` if the value on the specified `key` is not retrieved.
 
 ```ts
-getItem(key: string, defaultValue?: any): void
+getItem<T = any>(key: string, defaultValue?: T): T | undefined
 ```
 
 ### removeItem
@@ -34,7 +42,7 @@ getItem(key: string, defaultValue?: any): void
 Delete the data of the specified `key`
 
 ```ts
-removeItem(key: string): void
+removeItem(key: string): boolean
 ```
 
 ### clear

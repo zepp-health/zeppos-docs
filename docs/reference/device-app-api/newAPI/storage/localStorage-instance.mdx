@@ -1,11 +1,15 @@
 ---
-title: SessionStorage
-sidebar_label: SessionStorage
+title: localStorage
+sidebar_label: localStorage
 ---
 
 > Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
 
-Key-value pairs are stored and data is cleared after exiting the Mini Program. Each instance has independent temporary in-memory storage, suitable for isolated session data.
+Locally stored key-value pairs, data cleared after Mini Program uninstallation.
+
+:::info
+permission code: `device:os.local_storage`
+:::
 
 ## Methods
 
@@ -35,7 +39,7 @@ removeItem(key: string): boolean
 
 ### clear
 
-Clear all data in sessionStorage
+Clear all data in localStorage
 
 ```ts
 clear(): void
@@ -44,13 +48,12 @@ clear(): void
 ## Example
 
 ```js
-import { SessionStorage } from '@zos/storage'
+import { localStorage } from '@zos/storage'
 
-const sessionStorage = new SessionStorage()
-sessionStorage.setItem('test', 'test value')
-const val = sessionStorage.getItem('test')
-const defaultValue = sessionStorage.getItem('none_key', 'defaultValue')
+localStorage.setItem('test', 'test value')
+const val = localStorage.getItem('test')
+const defaultValue = localStorage.getItem('none_key', 'defaultValue')
 
-sessionStorage.removeItem('test')
-sessionStorage.clear()
+localStorage.removeItem('test')
+localStorage.clear()
 ```

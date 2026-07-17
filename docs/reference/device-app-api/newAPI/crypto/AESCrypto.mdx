@@ -1,0 +1,118 @@
+# AES-CBC
+
+## createCrypto
+
+Create an AES-CBC symmetric encryption instance. Plaintext length must be a multiple of 16 bytes.
+
+| algorithmId   | Description                  | API_LEVEL |
+| ------------- | ---------------------------- | --------- | --- |
+| `alg.AES_CBC` | AES-CBC symmetric encryption | `3.0`     | .   |
+
+### Type
+
+```ts
+function createCrypto(algorithmId: typeof alg.AES_CBC, option: AESOptions): AESCrypto | undefined
+```
+
+### Parameters
+
+#### AESData
+
+| Type                                                   | Description     |
+| ------------------------------------------------------ | --------------- |
+| <code>number[]&#124;ArrayBuffer&#124;Uint8Array</code> | Data to process |
+
+#### AESOptions
+
+| Property       | Type                             | Required | DefaultValue | Description                                                  |
+| -------------- | -------------------------------- | -------- | ------------ | ------------------------------------------------------------ |
+| key_bit_length | <code>number</code>              | Y        | -            | Key length in bits; AES-CBC uses 128                         |
+| key_encrypt    | <code>boolean&#124;number</code> | N        | -            | Whether the key is encrypted again by the hardware key       |
+| private_key    | <code>AESData</code>             | N        | -            | Existing private key; use it instead of generating a new key |
+
+## AESCrypto
+
+AES-CBC symmetric encryption instance.
+
+### Methods
+
+#### createChiper
+
+Create or return the AES private key; returns `undefined` on failure
+
+```ts
+createChiper(): AESKeyResult | undefined
+```
+
+##### AESKeyResult
+
+| Property           | Type                     | Description        |
+| ------------------ | ------------------------ | ------------------ |
+| private_key_length | <code>number</code>      | Private key length |
+| private_key        | <code>ArrayBuffer</code> | Private key data   |
+
+#### encrypt
+
+Encrypt data whose length is a multiple of 16 bytes
+
+```ts
+encrypt(data: createCrypto.AESData): AESCipherResult | undefined
+```
+
+##### AESCipherResult
+
+| Property | Type                     | Description    |
+| -------- | ------------------------ | -------------- |
+| data     | <code>ArrayBuffer</code> | Encrypted data |
+| length   | <code>number</code>      | Data length    |
+
+#### decrypt
+
+Decrypt AES-CBC data
+
+```ts
+decrypt(data: createCrypto.AESData): AESCipherResult | undefined
+```
+
+##### AESCipherResult
+
+| Property | Type                     | Description    |
+| -------- | ------------------------ | -------------- |
+| data     | <code>ArrayBuffer</code> | Decrypted data |
+| length   | <code>number</code>      | Data length    |
+
+### Example
+
+```js
+import { alg, createCrypto } from '@zos/crypto'
+
+const plainData = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16])
+
+const aes = createCrypto(alg.AES_CBC, {
+  key_bit_length: 128,
+  key_encrypt: 1,
+})
+if (!aes) throw new Error('Failed to create AES-CBC instance')
+
+const keyInfo = aes.createChiper()
+if (!keyInfo) throw new Error('Failed to create AES key')
+
+const encrypted = aes.encrypt(plainData)
+if (!encrypted) throw new Error('Failed to encrypt data')
+
+const decrypted = aes.decrypt(encrypted.data)
+if (!decrypted) throw new Error('Failed to decrypt data')
+console.log(new Uint8Array(decrypted.data))
+
+// Create another AES-CBC instance with an existing private key
+const existingKey = new Uint8Array(keyInfo.private_key)
+const aesWithExistingKey = createCrypto(alg.AES_CBC, {
+  key_bit_length: 128,
+  private_key: existingKey,
+  key_encrypt: 1,
+})
+if (!aesWithExistingKey) throw new Error('Failed to reuse AES key')
+
+const encryptedAgain = aesWithExistingKey.encrypt(plainData)
+const decryptedAgain = encryptedAgain ? aesWithExistingKey.decrypt(encryptedAgain.data) : undefined
+```

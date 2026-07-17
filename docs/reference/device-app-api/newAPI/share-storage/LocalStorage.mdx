@@ -1,0 +1,59 @@
+---
+title: LocalStorage
+sidebar_label: LocalStorage
+---
+
+> Start from API_LEVEL `3.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Read-only JSON key-value storage across applications. Application A publishes data with `ShareLocalStorage` from `@zos/storage`, and application B reads it with application A's appId. When using a custom storagePath, both applications must use the same path.
+
+## Constructor
+
+Create a read-only shared local storage instance for the target application.
+
+```ts
+constructor(appId: number, storagePath?: string)
+```
+
+## Methods
+
+### getItem
+
+Get a value, or return the default value when not found
+
+```ts
+getItem<T = any>(key: string, defaultValue?: T): T | undefined
+```
+
+### isExisted
+
+Check whether the target shared storage file exists
+
+```ts
+isExisted(): boolean
+```
+
+## Example
+
+```js
+// ==================== Application A (data provider) ====================
+import { ShareLocalStorage } from '@zos/storage'
+
+const sharedStorage = new ShareLocalStorage('shared-settings.json')
+sharedStorage.setItem('profile', { name: 'Zepp', theme: 'dark' })
+sharedStorage.setItem('lastUpdatedAt', Date.now())
+
+const profile = sharedStorage.getItem('profile', { name: '', theme: 'light' })
+sharedStorage.removeItem('legacy-profile')
+// Clear all shared data when it is no longer needed.
+// sharedStorage.clear()
+
+// ==================== Application B (data consumer) ====================
+import { LocalStorage } from '@zos/share-storage'
+
+const storage = new LocalStorage(100001, 'shared-settings.json') // 100001 is application A's appId
+if (storage.isExisted()) {
+  const profile = storage.getItem('profile', { name: '', theme: 'light' })
+  const lastUpdatedAt = storage.getItem('lastUpdatedAt', 0)
+}
+```

@@ -1,0 +1,88 @@
+---
+title: TypedStorage
+sidebar_label: TypedStorage
+---
+
+> API_LEVEL `3.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+跨应用只读类型化键值存储。应用 A 使用 `@zos/storage` 的 `ShareTypedStorage` 发布系统属性，应用 B 使用应用 A 的 appId 读取；自定义 scope 时两端必须使用相同 scope。
+
+## 构造函数
+
+创建目标应用的只读类型化存储实例。scope 用于定位键所属的分组；未传入时读取框架默认的共享分组，读取自定义 scope 时必须与发布方一致
+
+```ts
+constructor(appId: number, scope?: string)
+```
+
+## 方法
+
+### getBool
+
+读取目标应用的布尔值
+
+```ts
+getBool(key: string, defaultValue: boolean): boolean
+```
+
+### getInt
+
+读取目标应用的整数
+
+```ts
+getInt(key: string, defaultValue: number): number
+```
+
+### getInt64
+
+读取目标应用的 64 位整数
+
+```ts
+getInt64(key: string, defaultValue: number): number
+```
+
+### getDouble
+
+读取目标应用的双精度浮点数
+
+```ts
+getDouble(key: string, defaultValue: number): number
+```
+
+### getString
+
+读取目标应用的字符串
+
+```ts
+getString(key: string, defaultValue: string): string
+```
+
+## 代码示例
+
+```js
+// ==================== Application A (data provider) ====================
+import { ShareTypedStorage } from '@zos/storage'
+
+const sharedStorage = new ShareTypedStorage('watchface-data')
+sharedStorage.putBool('enabled', true)
+sharedStorage.putInt('steps', 6000)
+sharedStorage.putInt64('lastUpdatedAt', Date.now())
+sharedStorage.putDouble('progress', 0.75)
+sharedStorage.putString('theme', 'dark')
+
+if (sharedStorage.has('legacy-theme')) {
+  sharedStorage.remove('legacy-theme')
+}
+// Clear all shared typed data when it is no longer needed.
+// sharedStorage.clear()
+
+// ==================== Application B (data consumer) ====================
+import { TypedStorage } from '@zos/share-storage'
+
+const storage = new TypedStorage(100001, 'watchface-data') // 100001 is application A's appId
+const enabled = storage.getBool('enabled', false)
+const steps = storage.getInt('steps', 0)
+const lastUpdatedAt = storage.getInt64('lastUpdatedAt', 0)
+const progress = storage.getDouble('progress', 0)
+const theme = storage.getString('theme', 'light')
+```

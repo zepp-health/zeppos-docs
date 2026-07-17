@@ -1,0 +1,80 @@
+---
+title: ShareLocalStorage
+sidebar_label: ShareLocalStorage
+---
+
+> API_LEVEL `3.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+面向跨应用场景的共享 JSON 键值存储。应用 A 使用此类发布数据，应用 B 可通过 `@zos/share-storage` 的 `LocalStorage` 和应用 A 的 appId 只读访问；自定义 storagePath 时两端必须使用相同路径。
+
+:::info
+权限代码： `device:os.local_storage`
+:::
+
+## 构造函数
+
+创建共享本地存储实例。默认使用共享存储文件，也可以指定文件路径
+
+```ts
+constructor(storagePath?: string)
+```
+
+## 方法
+
+### setItem
+
+保存数据
+
+```ts
+setItem(key: string, value: any): void
+```
+
+### getItem
+
+读取数据；未找到时返回默认值
+
+```ts
+getItem<T = any>(key: string, defaultValue?: T): T | undefined
+```
+
+### removeItem
+
+删除指定键的数据
+
+```ts
+removeItem(key: string): boolean
+```
+
+### clear
+
+清空共享存储数据
+
+```ts
+clear(): void
+```
+
+## 代码示例
+
+```js
+// ==================== Application A (data provider) ====================
+import { ShareLocalStorage } from '@zos/storage'
+
+const sharedStorage = new ShareLocalStorage('shared-settings.json')
+sharedStorage.setItem('profile', { name: 'Zepp', theme: 'dark' })
+sharedStorage.setItem('lastUpdatedAt', Date.now())
+
+const profile = sharedStorage.getItem('profile', { name: '', theme: 'light' })
+sharedStorage.removeItem('legacy-profile')
+// Clear all shared data when it is no longer needed.
+// sharedStorage.clear()
+
+// ==================== Application B (data consumer) ====================
+// This section runs in application B. Use application A's appId and the same storagePath.
+import { LocalStorage } from '@zos/share-storage'
+
+const storage = new LocalStorage(appIdOfApplicationA, 'shared-settings.json')
+if (storage.isExisted()) {
+  const profile = storage.getItem('profile', { name: '', theme: 'light' })
+  const lastUpdatedAt = storage.getItem('lastUpdatedAt', 0)
+}
+```

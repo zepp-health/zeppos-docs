@@ -14,12 +14,12 @@ function launchApp(option: Option): void
 
 ### Option
 
-| Property | Type                            | Required | DefaultValue | Description                                                                                                                                                                                   | API_LEVEL |
-| -------- | ------------------------------- | -------- | ------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------- |
-| appId    | <code>number</code>             | Y        | -            | Mini Program ID or System App ID (API_LEVEL 3.0 support, value reference System App ID constant)                                                                                              | 2.0       |
-| url      | <code>string</code>             | Y        | -            | path                                                                                                                                                                                          | 2.0       |
-| native   | <code>boolean</code>            | Y        | -            | Whether to jump to the system App                                                                                                                                                             | 3.0       |
-| params   | <code>string&#124;object</code> | N        | -            | The argument passed to the app.js lifecycle `onCreate` supports either a string or a standard JSON object. If a standard JSON object is passed, the method internally converts it to a string | 2.0       |
+| Property | Type                            | Required | DefaultValue       | Description                                                                                                                                                                                   | API_LEVEL |
+| -------- | ------------------------------- | -------- | ------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------- |
+| appId    | <code>number</code>             | Y        | -                  | Mini Program ID or System App ID (API_LEVEL 3.0 support, value reference System App ID constant)                                                                                              | 2.0       |
+| url      | <code>string</code>             | Y        | -                  | path                                                                                                                                                                                          | 2.0       |
+| native   | <code>boolean</code>            | Y        | <code>false</code> | Whether to jump to the system App                                                                                                                                                             | 3.0       |
+| params   | <code>string&#124;object</code> | N        | -                  | The argument passed to the app.js lifecycle `onCreate` supports either a string or a standard JSON object. If a standard JSON object is passed, the method internally converts it to a string | 2.0       |
 
 ## Constants
 

@@ -195,6 +195,22 @@
     "message": "fs 文件系统",
     "description": "The label for category Reference in sidebar reference"
   },
+  "sidebar.reference.category.Share Storage": {
+    "message": "共享存储",
+    "description": "The label for category Reference in sidebar reference"
+  },
+  "sidebar.reference.category.App Access": {
+    "message": "系统应用访问",
+    "description": "The label for category Reference in sidebar reference"
+  },
+  "sidebar.reference.category.Media": {
+    "message": "多媒体",
+    "description": "The label for category Reference in sidebar reference"
+  },
+  "sidebar.reference.category.Crypto": {
+    "message": "加密",
+    "description": "The label for category Reference in sidebar reference"
+  },
   "sidebar.reference.category.WIDGETS": {
     "message": "UI 控件",
     "description": "The label for category Reference in sidebar reference"

@@ -5,11 +5,19 @@ sidebar_label: LocalStorage
 
 > API_LEVEL `3.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
 
-本地存储的键值对，数据在小程序卸载过后清除。
+本地存储的键值对，数据在小程序卸载过后清除。实例会将读取的数据保留在内存中，适合连续读写以减少重复文件读取。
 
 :::info
 权限代码： `device:os.local_storage`
 :::
+
+## 构造函数
+
+创建本地存储实例。默认使用小程序的本地存储文件，也可以指定自定义文件路径
+
+```ts
+constructor(storagePath?: string)
+```
 
 ## 方法
 
@@ -26,7 +34,7 @@ setItem(key: string, value: any): void
 读取数据，指定默认值 `defaultValue` 后，如果没有获取到指定 `key` 上的值，返回 `defaultValue`
 
 ```ts
-getItem(key: string, defaultValue?: any): void
+getItem<T = any>(key: string, defaultValue?: T): T | undefined
 ```
 
 ### removeItem
@@ -34,7 +42,7 @@ getItem(key: string, defaultValue?: any): void
 删除所指定 `key` 的数据
 
 ```ts
-removeItem(key: string): void
+removeItem(key: string): boolean
 ```
 
 ### clear
