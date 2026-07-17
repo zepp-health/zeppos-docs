@@ -18,6 +18,12 @@ Taking Windows as an example, double-clicking the Simulator icon can launch the 
 
 | Version                | Links                                                                                                                                  |
 | ---------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
+
+| 2.1.2 for MacOS(Apple Silicon) 14.0+  | [simulator-2.1.2-macos-arm64](https://upload-cdn.zepp.com/zepp-applet-and-wechat-applet/20260717/simulator-2.1.2-macos-arm64.dmg)         |
+| 2.1.2 for MacOS(Intel Chip) 14.0+      | [simulator-2.1.2-macos-x64](https://upload-cdn.zepp.com/zepp-applet-and-wechat-applet/20260717/simulator-2.1.2-macos-x64.dmg)         |
+| 2.1.2 for Windows      | [simulator_2.1.2_window_x64](https://upload-cdn.zepp.com/zepp-applet-and-wechat-applet/20260717/simulator_2.1.2_window_x64.exe)         |
+| 2.1.2 for Linux(amd64) | [simulator_2.1.2_linux_amd64](https://upload-cdn.zepp.com/zepp-applet-and-wechat-applet/20260717/simulator_2.1.2_linux_amd64.deb) |
+| 2.1.2 for Linux(arm64) | [simulator_2.1.2_linux_arm64](https://upload-cdn.zepp.com/zepp-applet-and-wechat-applet/20260717/simulator_2.1.2_arm64.deb) |
 | 2.1.1 for MacOS(Apple Silicon) 14.0+  | [simulator-2.1.1-macos-arm64](https://upload-cdn.zepp.com/zepp-applet-and-wechat-applet/20260410/simulator-2.1.1-macos-arm64.dmg)         |
 | 2.1.1 for MacOS(Intel Chip) 14.0+      | [simulator-2.1.1-macos-x64](https://upload-cdn.zepp.com/zepp-applet-and-wechat-applet/20260410/simulator-2.1.1-macos-x64.dmg)         |
 | 2.1.1 for Windows      | [simulator_2.1.1_window_x64](https://upload-cdn.zepp.com/zepp-applet-and-wechat-applet/20260410/simulator_2.1.1_window_x64.exe)         |
