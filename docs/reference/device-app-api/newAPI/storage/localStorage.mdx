@@ -26,7 +26,7 @@ constructor(storagePath?: string)
 Save data
 
 ```ts
-setItem(key: string, value: any): void
+setItem(key: string, value: unknown): void
 ```
 
 ### getItem
@@ -34,7 +34,7 @@ setItem(key: string, value: any): void
 Read the data, specify the default value `defaultValue`, and return `defaultValue` if the value on the specified `key` is not retrieved.
 
 ```ts
-getItem<T = any>(key: string, defaultValue?: T): T | undefined
+getItem<T = unknown>(key: string, defaultValue?: T): T | undefined
 ```
 
 ### removeItem

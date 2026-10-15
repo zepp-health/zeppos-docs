@@ -14,7 +14,7 @@ sidebar_label: sessionStorage 键值对存储
 保存数据
 
 ```ts
-setItem(key: string, value: any): void
+setItem(key: string, value: unknown): void
 ```
 
 ### getItem
@@ -22,7 +22,7 @@ setItem(key: string, value: any): void
 读取数据，指定默认值 `defaultValue` 后，如果没有获取到指定 `key` 上的值，返回 `defaultValue`
 
 ```ts
-getItem<T = any>(key: string, defaultValue?: T): T | undefined
+getItem<T = unknown>(key: string, defaultValue?: T): T | undefined
 ```
 
 ### removeItem

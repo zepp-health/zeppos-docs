@@ -84,6 +84,118 @@ const text = createWidget(widget.TEXT, Param)
 | mode        | N           | N           | N                             | N                             |
 | radius      | N           | N           | N                             | N                             |
 
+## Cursor and text editing
+
+> Start from API_LEVEL `4.0`.
+
+Call these methods on the text widget instance returned by `createWidget(widget.TEXT, Param)`. Call `enableCursor(true)` to enable the cursor before using these methods.
+
+### enableCursor
+
+```ts
+enableCursor(enable: boolean): void
+```
+
+Enables or disables the text cursor. Set `enable` to `true` to enable it or `false` to disable it.
+
+### getCursorPos
+
+```ts
+getCursorPos(index: number): { x: number; y: number }
+```
+
+Gets the cursor position for the character at `index`. Returns a coordinate object:
+
+| Property | Type | Description |
+| --- | --- | --- |
+| x | `number` | Horizontal offset relative to the text widget |
+| y | `number` | Vertical offset relative to the text widget |
+
+### getCursorIndex
+
+```ts
+getCursorIndex(x: number, y: number): number
+```
+
+Gets the cursor character index from coordinates. Both `x` and `y` are offsets relative to the text widget, using the same coordinate system as the result of `getCursorPos`.
+
+### getTextCount
+
+```ts
+getTextCount(): number
+```
+
+Gets the number of characters in the text.
+
+### insertString
+
+```ts
+insertString(index: number, str: string): void
+```
+
+Inserts the string `str` at the character index `index`.
+
+### deleteCharacter
+
+```ts
+deleteCharacter(index: number): void
+```
+
+Deletes one character at the character index `index`.
+
+### getCursorHeight
+
+```ts
+getCursorHeight(): number
+```
+
+Gets the cursor height in pixels.
+
+### getLineHeight
+
+```ts
+getLineHeight(): number
+```
+
+Gets the text line height in pixels.
+
+### Cursor and text editing example
+
+This example enables the cursor, inserts and deletes text, then queries the character count, cursor position, and heights.
+
+```js
+import { align, createWidget, text_style, widget } from '@zos/ui'
+
+Page({
+  build() {
+    const text = createWidget(widget.TEXT, {
+      x: 40,
+      y: 120,
+      w: 320,
+      h: 160,
+      color: 0xffffff,
+      text_size: 28,
+      align_h: align.LEFT,
+      align_v: align.TOP,
+      text_style: text_style.WRAP,
+      text: 'Hello',
+    })
+
+    text.enableCursor(true)
+    text.insertString(5, ', Zepp OS')
+    text.deleteCharacter(5)
+
+    // The text is now "Hello Zepp OS".
+    console.log(text.getTextCount())
+
+    const position = text.getCursorPos(0)
+    console.log(position.x, position.y)
+    console.log(text.getCursorIndex(position.x, position.y))
+    console.log(text.getCursorHeight(), text.getLineHeight())
+  },
+})
+```
+
 ## Code example
 
 ```js

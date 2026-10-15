@@ -31,7 +31,7 @@ For details, refer to [Canvas](../../reference/device-app-api/newAPI/ui/widget/C
 
 Supports playback and recording of audio, based on file system, in `MP3` format.
 
-For details, refer to [@zos/media](../../reference/device-app-api/newAPI/media.mdx)。
+For details, refer to [@zos/media](../../reference/device-app-api/newAPI/media/Player.mdx)。
 
 ## BLE Master Mode
 
@@ -56,7 +56,7 @@ In addition to the "File Transfer" function, "Side Service" also adds the functi
 The Mini Program enables the following functional scenarios:
 
 - Use the "File Download" function to download the image resources, convert the image to the image format supported by the watch device through the "Image Conversion" function, transfer the image to the watch device through "File Transfer", and display the image on the watch device through the IMG widget.
-- Download the audio file and transfer it to your watch device using [@zos/media](../../reference/device-app-api/newAPI/media.mdx) audio interface for music playback.
+- Download the audio file and transfer it to your watch device using [@zos/media](../../reference/device-app-api/newAPI/media/Player.mdx) audio interface for music playback.
 
 ## System Event
 

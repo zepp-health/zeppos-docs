@@ -1,0 +1,49 @@
+# getDataDiskInfo
+
+> API_LEVEL `5.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+获取数据分区（`data://`）的总容量、可用容量和已用容量，单位为字节。查询范围为整个数据分区，而非当前应用的占用空间。先检查返回值的 `isSuccess`，查询成功后再读取容量字段。
+
+:::info
+权限代码： `data:os.device.info`
+:::
+
+## 类型
+
+```ts
+function getDataDiskInfo(): Result
+```
+
+## 参数
+
+### SuccessResult
+
+| 属性      | 类型                | 说明                         | API_LEVEL |
+| --------- | ------------------- | ---------------------------- | --------- |
+| isSuccess | <code>true</code>   | 查询成功                     | 5.0       |
+| total     | <code>number</code> | 数据分区总容量，单位为字节   | 5.0       |
+| free      | <code>number</code> | 数据分区可用容量，单位为字节 | 5.0       |
+| used      | <code>number</code> | 数据分区已用容量，单位为字节 | 5.0       |
+
+### FailResult
+
+| 属性      | 类型               | 说明                     | API_LEVEL |
+| --------- | ------------------ | ------------------------ | --------- |
+| isSuccess | <code>false</code> | 查询失败，不包含容量字段 | 5.0       |
+
+### Result
+
+| 类型                                       | 说明      |
+| ------------------------------------------ | --------- |
+| <code>SuccessResult&#124;FailResult</code> | undefined |
+
+## 代码示例
+
+```js
+import { getDataDiskInfo } from '@zos/device'
+
+const result = getDataDiskInfo()
+if (result.isSuccess) {
+  console.log(result.total, result.free, result.used)
+}
+```

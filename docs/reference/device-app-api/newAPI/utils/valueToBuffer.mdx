@@ -1,0 +1,35 @@
+# valueToBuffer
+
+> Start from API_LEVEL `5.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Serializes a JS value to an `ArrayBuffer` using a stable, reliable, and efficient method built into the JS engine. Recommended for application-local persistence; no buffer size estimate is needed.
+
+## Type
+
+```ts
+function valueToBuffer(value: InputValue): Result
+```
+
+## Parameters
+
+### InputValue
+
+| Type                 | Description                  |
+| -------------------- | ---------------------------- |
+| <code>unknown</code> | The JS value to be converted |
+
+### Result
+
+| Type                     | Description                 |
+| ------------------------ | --------------------------- |
+| <code>ArrayBuffer</code> | The converted `ArrayBuffer` |
+
+## Example
+
+```js
+import { valueToBuffer, bufferToValue } from '@zos/utils'
+
+const buffer = valueToBuffer({ enabled: true, count: 3 })
+const restored = bufferToValue(buffer)
+console.log(restored)
+```

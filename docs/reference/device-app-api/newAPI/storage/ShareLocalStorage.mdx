@@ -26,7 +26,7 @@ constructor(storagePath?: string)
 Set a value
 
 ```ts
-setItem(key: string, value: any): void
+setItem(key: string, value: unknown): void
 ```
 
 ### getItem
@@ -34,7 +34,7 @@ setItem(key: string, value: any): void
 Get a value, or return the default value when not found
 
 ```ts
-getItem<T = any>(key: string, defaultValue?: T): T | undefined
+getItem<T = unknown>(key: string, defaultValue?: T): T | undefined
 ```
 
 ### removeItem

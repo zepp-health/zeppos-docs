@@ -84,6 +84,118 @@ const text = createWidget(widget.TEXT, Param)
 | mode        | N           | N           | N                             | N                             |
 | radius      | N           | N           | N                             | N                             |
 
+## 光标与文本编辑
+
+> API_LEVEL `4.0` 开始支持。
+
+以下方法通过 `createWidget(widget.TEXT, Param)` 返回的文本控件实例调用。使用前先调用 `enableCursor(true)` 启用光标功能。
+
+### enableCursor
+
+```ts
+enableCursor(enable: boolean): void
+```
+
+启用或关闭文本光标。`enable` 为 `true` 时启用，为 `false` 时关闭。
+
+### getCursorPos
+
+```ts
+getCursorPos(index: number): { x: number; y: number }
+```
+
+获取字符索引 `index` 对应的光标位置。返回值是坐标对象：
+
+| 属性 | 类型 | 说明 |
+| --- | --- | --- |
+| x | `number` | 相对于文本控件的横向偏移坐标 |
+| y | `number` | 相对于文本控件的纵向偏移坐标 |
+
+### getCursorIndex
+
+```ts
+getCursorIndex(x: number, y: number): number
+```
+
+根据坐标获取光标在文本中的字符索引。`x`、`y` 均为相对于文本控件的偏移坐标，与 `getCursorPos` 返回的坐标使用同一个坐标系。
+
+### getTextCount
+
+```ts
+getTextCount(): number
+```
+
+获取文本的字符数量。
+
+### insertString
+
+```ts
+insertString(index: number, str: string): void
+```
+
+在字符索引 `index` 处插入字符串 `str`。
+
+### deleteCharacter
+
+```ts
+deleteCharacter(index: number): void
+```
+
+删除字符索引 `index` 处的一个字符。
+
+### getCursorHeight
+
+```ts
+getCursorHeight(): number
+```
+
+获取光标高度，单位为像素。
+
+### getLineHeight
+
+```ts
+getLineHeight(): number
+```
+
+获取文本行高，单位为像素。
+
+### 光标与文本编辑示例
+
+以下示例先启用光标，再插入和删除文本，最后查询字符数量、光标位置及高度。
+
+```js
+import { align, createWidget, text_style, widget } from '@zos/ui'
+
+Page({
+  build() {
+    const text = createWidget(widget.TEXT, {
+      x: 40,
+      y: 120,
+      w: 320,
+      h: 160,
+      color: 0xffffff,
+      text_size: 28,
+      align_h: align.LEFT,
+      align_v: align.TOP,
+      text_style: text_style.WRAP,
+      text: 'Hello',
+    })
+
+    text.enableCursor(true)
+    text.insertString(5, ', Zepp OS')
+    text.deleteCharacter(5)
+
+    // The text is now "Hello Zepp OS".
+    console.log(text.getTextCount())
+
+    const position = text.getCursorPos(0)
+    console.log(position.x, position.y)
+    console.log(text.getCursorIndex(position.x, position.y))
+    console.log(text.getCursorHeight(), text.getLineHeight())
+  },
+})
+```
+
 ## 代码示例
 
 ```js
@@ -122,7 +234,7 @@ Page({
       text_style: text_style.NONE,
       font: 'fonts/custom.ttf',
       text_i18n: {
-        'en-US': 'Hello Zepp OS'
+        'en-US': 'Hello Zepp OS',
         'zh-CN': '你好 Zepp OS'
       }
     })

@@ -1,0 +1,35 @@
+# bufferToValue
+
+> API_LEVEL `5.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+使用 JS 引擎内部提供的反序列化方法，将 `valueToBuffer` 生成的 `ArrayBuffer` 还原为 JS 值，稳定、可靠、高效。
+
+## 类型
+
+```ts
+function bufferToValue(buffer: InputBuffer): Result
+```
+
+## 参数
+
+### InputBuffer
+
+| 类型                     | 说明                     |
+| ------------------------ | ------------------------ |
+| <code>ArrayBuffer</code> | 需要转换的 `ArrayBuffer` |
+
+### Result
+
+| 类型                 | 说明           |
+| -------------------- | -------------- |
+| <code>unknown</code> | 转换后的 JS 值 |
+
+## 代码示例
+
+```js
+import { valueToBuffer, bufferToValue } from '@zos/utils'
+
+const buffer = valueToBuffer({ enabled: true, count: 3 })
+const value = bufferToValue(buffer)
+console.log(value)
+```

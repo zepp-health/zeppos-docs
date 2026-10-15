@@ -1,0 +1,229 @@
+---
+title: LIST_VIEW
+sidebar_label: LIST_VIEW
+---
+
+> Start from API_LEVEL `5.0`. Please refer to [API_LEVEL](../../../../../guides/framework/device/compatibility.md).
+
+`LIST_VIEW` uses [`GROUP`](./GROUP.mdx) widgets as list items. Create non-container widgets such as text, images, buttons, slide switches, and image animations directly in each item. Use it for task and settings lists with controls inside each row.
+
+Compared with the template and data-array model of [`SCROLL_LIST`](./SCROLL_LIST.mdx), `LIST_VIEW` provides these capabilities:
+
+- Compose items directly with `createWidget()`, without first defining text and image templates in `item_config`.
+- Place `BUTTON`, `SLIDE_SWITCH`, and other widgets inside a row and handle interaction through their own callbacks.
+- Keep child widget instances and use `setProperty()` to update content within an individual row.
+
+`SCROLL_LIST` remains suitable for lists mainly displaying text and images. `LIST_VIEW` makes it easier to create and operate independent buttons, switches, and other widget combinations within each row.
+
+## Create UI widget
+
+```js
+import { createWidget, widget } from '@zos/ui'
+
+const listView = createWidget(widget.LIST_VIEW, Param)
+```
+
+## Type
+
+### Param: object
+
+| Properties               | Description                                                             | Required | Type       |
+| ------------------------ | ----------------------------------------------------------------------- | -------- | ---------- |
+| x                        | Widget x-coordinate                                                     | YES      | `number`   |
+| y                        | Widget y-coordinate                                                     | YES      | `number`   |
+| w                        | Viewport width                                                          | YES      | `number`   |
+| h                        | Viewport height                                                         | YES      | `number`   |
+| item_space               | Spacing between items                                                   | NO       | `number`   |
+| snap_type                | Snap mode, corresponding to the `SCROLL_LIST` `snap_type` configuration | NO       | `number`   |
+| enable_scroll_bar        | Whether to create an arc scrollbar                                      | NO       | `boolean`  |
+| item_click_func          | Click callback for the top-level `GROUP` of a list item                 | NO       | `function` |
+| item_enable_horizon_drag | Whether items can be dragged horizontally                               | NO       | `boolean`  |
+| item_drag_max_distance   | Maximum horizontal drag offset                                          | NO       | `number`   |
+| pos_y                    | Initial vertical scroll offset                                          | NO       | `number`   |
+
+## Instance Methods
+
+### init
+
+```ts
+init(): boolean
+```
+
+Call `init()` after creating all items and their child widgets. Returns `true` on success or `false` on failure.
+
+Create each item `GROUP` through `LIST_VIEW`'s `createWidget()`, then create child widgets through the `GROUP`'s `createWidget()`. Child coordinates are relative to the `GROUP`. The item `GROUP` must have `x: 0`; the container forces this coordinate to `0`.
+
+## Code example
+
+### Example 1: Create list items directly
+
+This example places six names into individual `GROUP` widgets and initializes the list. It uses actual widgets rather than configuring `item_config`, `text_view`, or `data_array`.
+
+```js
+import { createWidget, widget } from '@zos/ui'
+import { getDeviceInfo } from '@zos/device'
+
+Page({
+  build() {
+    const { width, height } = getDeviceInfo()
+    const listView = createWidget(widget.LIST_VIEW, {
+      x: 0,
+      y: 0,
+      w: width,
+      h: height,
+      item_space: 8,
+      enable_scroll_bar: true
+    })
+    const names = ['Morning walk', 'Reading', 'Stretching', 'Shopping', 'Cycling', 'Evening walk']
+
+    names.forEach((name) => {
+      const item = listView.createWidget(widget.GROUP, {
+        x: 0,
+        y: 0,
+        w: width,
+        h: 96
+      })
+      item.createWidget(widget.TEXT, {
+        x: 40,
+        y: 24,
+        w: width - 80,
+        h: 48,
+        text: name,
+        text_size: 26,
+        color: 0xffffff
+      })
+    })
+
+    listView.init()
+  }
+})
+```
+
+### Example 2: Add an independent button to each row
+
+This example combines text and an Open button in every row. Each button uses its own `click_func`, where the application can handle the action for that row.
+
+```js
+import { align, createWidget, widget } from '@zos/ui'
+import { getDeviceInfo } from '@zos/device'
+
+Page({
+  build() {
+    const { width, height } = getDeviceInfo()
+    const listView = createWidget(widget.LIST_VIEW, {
+      x: 0,
+      y: 0,
+      w: width,
+      h: height,
+      item_space: 8,
+      enable_scroll_bar: true
+    })
+
+    for (let index = 0; index < 6; index += 1) {
+      const item = listView.createWidget(widget.GROUP, {
+        x: 0,
+        y: 0,
+        w: width,
+        h: 112
+      })
+
+      item.createWidget(widget.TEXT, {
+        x: 40,
+        y: 32,
+        w: width - 208,
+        h: 48,
+        text: 'Task ' + (index + 1),
+        text_size: 24,
+        color: 0xffffff,
+        align_v: align.CENTER_V
+      })
+      item.createWidget(widget.BUTTON, {
+        x: width - 144,
+        y: 32,
+        w: 104,
+        h: 48,
+        text: 'Open',
+        text_size: 22,
+        normal_color: 0x333333,
+        press_color: 0x666666,
+        radius: 12,
+        click_func: () => {
+          console.log('Open task', index + 1)
+        }
+      })
+    }
+
+    if (!listView.init()) {
+      console.log('Unable to initialize the list view')
+    }
+  }
+})
+```
+
+### Example 3: Interact with and update a child widget in a row
+
+This example keeps a status text instance for each row. Clicking the row button updates that text directly without recreating the row for the text change. The state is only used to demonstrate UI interaction.
+
+```js
+import { createWidget, prop, widget } from '@zos/ui'
+import { getDeviceInfo } from '@zos/device'
+
+Page({
+  build() {
+    const { width, height } = getDeviceInfo()
+    const listView = createWidget(widget.LIST_VIEW, {
+      x: 0,
+      y: 0,
+      w: width,
+      h: height,
+      item_space: 8,
+      enable_scroll_bar: true
+    })
+
+    for (let index = 0; index < 6; index += 1) {
+      let enabled = false
+      const item = listView.createWidget(widget.GROUP, {
+        x: 0,
+        y: 0,
+        w: width,
+        h: 144
+      })
+      item.createWidget(widget.TEXT, {
+        x: 40,
+        y: 16,
+        w: width - 80,
+        h: 40,
+        text: 'Option ' + (index + 1),
+        text_size: 26,
+        color: 0xffffff
+      })
+      const status = item.createWidget(widget.TEXT, {
+        x: 40,
+        y: 72,
+        w: width - 208,
+        h: 48,
+        text: 'Disabled',
+        text_size: 24,
+        color: 0xaaaaaa
+      })
+      item.createWidget(widget.BUTTON, {
+        x: width - 144,
+        y: 72,
+        w: 104,
+        h: 48,
+        text: 'Toggle',
+        text_size: 22,
+        normal_color: 0x333333,
+        press_color: 0x666666,
+        radius: 12,
+        click_func: () => {
+          enabled = !enabled
+          status.setProperty(prop.TEXT, enabled ? 'Enabled' : 'Disabled')
+        }
+      })
+    }
+
+    listView.init()
+  }
+})
+```

@@ -1,0 +1,35 @@
+# cborDecode
+
+> Start from API_LEVEL `5.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Decodes a CBOR `ArrayBuffer` to a JS value.
+
+## Type
+
+```ts
+function cborDecode(buffer: InputBuffer): Result
+```
+
+## Parameters
+
+### InputBuffer
+
+| Type                     | Description                      |
+| ------------------------ | -------------------------------- |
+| <code>ArrayBuffer</code> | The CBOR `ArrayBuffer` to decode |
+
+### Result
+
+| Type                 | Description          |
+| -------------------- | -------------------- |
+| <code>unknown</code> | The decoded JS value |
+
+## Example
+
+```js
+import { cborEncode, cborDecode } from '@zos/utils'
+
+const buffer = cborEncode({ enabled: true, count: 3 })
+const value = cborDecode(buffer)
+console.log(value)
+```
