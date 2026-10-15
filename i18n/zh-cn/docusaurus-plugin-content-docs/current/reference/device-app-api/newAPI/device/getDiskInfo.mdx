@@ -2,12 +2,13 @@
 
 > API_LEVEL `2.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
 
-获取磁盘信息。
+获取设备存储空间概况，包括总空间、可用空间以及小程序、表盘、音乐、系统的分类占用。不传参数时同步返回结果；从 API_LEVEL 3.0 开始支持传入回调异步查询，推荐使用异步方式。
 
 ## 类型
 
 ```ts
 function getDiskInfo(): Result
+function getDiskInfo(callback: Callback): void
 ```
 
 ## 参数
@@ -23,11 +24,26 @@ function getDiskInfo(): Result
 | music     | <code>number</code> | 音乐占用空间（字节）   | 2.0       |
 | system    | <code>number</code> | 系统占用空间（字节）   | 2.0       |
 
+### Callback
+
+> API_LEVEL `3.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+| 类型                                        | 说明                                                 |
+| ------------------------------------------- | ---------------------------------------------------- |
+| <code>(diskInfo: Result) =&#62; void</code> | 查询完成时接收设备存储空间信息的回调，容量单位为字节 |
+
 ## 代码示例
 
 ```js
 import { getDiskInfo } from '@zos/device'
 
-const { total } = getDiskInfo()
-console.log(total)
+// Synchronous query
+const diskInfo = getDiskInfo()
+console.log(diskInfo.total, diskInfo.free)
+
+// Asynchronous query (API_LEVEL 3.0+)
+getDiskInfo((diskInfo) => {
+  console.log(diskInfo.total, diskInfo.free)
+  console.log(diskInfo.app, diskInfo.watchface, diskInfo.music, diskInfo.system)
+})
 ```

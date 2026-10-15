@@ -31,7 +31,7 @@ Canvas 可以带来更灵活的视图呈现，为构建复杂 UI 提供了基础
 
 支持播放和录制音频，基于文件系统，支持 `MP3` 格式。
 
-详细参考 [@zos/media](../../reference/device-app-api/newAPI/media.mdx)。
+详细参考 [@zos/media](../../reference/device-app-api/newAPI/media/Player.mdx)。
 
 ## BLE 主机模式
 
@@ -56,7 +56,7 @@ Canvas 可以带来更灵活的视图呈现，为构建复杂 UI 提供了基础
 小程序可以实现以下功能场景：
 
 - 使用「文件下载」功能下载图片资源，经过「图片转换」功能将图片转换为手表设备支持的图片格式，通过「文件传输」至手表设备，在手表设备通过 `IMG` 控件展示图片。
-- 下载音频文件，传输至手表设备，使用 [@zos/media](../../reference/device-app-api/newAPI/media.mdx) 音频接口进行音乐播放。
+- 下载音频文件，传输至手表设备，使用 [@zos/media](../../reference/device-app-api/newAPI/media/Player.mdx) 音频接口进行音乐播放。
 
 ## 系统事件
 

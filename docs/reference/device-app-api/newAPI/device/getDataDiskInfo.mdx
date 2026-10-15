@@ -1,0 +1,49 @@
+# getDataDiskInfo
+
+> Start from API_LEVEL `5.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Gets the total, available, and used capacity of the data partition (`data://`) in bytes. This covers the whole data partition, not the current application's storage usage. Check `isSuccess` before reading the capacity fields.
+
+:::info
+permission code: `data:os.device.info`
+:::
+
+## Type
+
+```ts
+function getDataDiskInfo(): Result
+```
+
+## Parameters
+
+### SuccessResult
+
+| Property  | Type                | Description                                | API_LEVEL |
+| --------- | ------------------- | ------------------------------------------ | --------- |
+| isSuccess | <code>true</code>   | The query succeeded                        | 5.0       |
+| total     | <code>number</code> | Total data partition capacity in bytes     | 5.0       |
+| free      | <code>number</code> | Available data partition capacity in bytes | 5.0       |
+| used      | <code>number</code> | Used data partition capacity in bytes      | 5.0       |
+
+### FailResult
+
+| Property  | Type               | Description                                        | API_LEVEL |
+| --------- | ------------------ | -------------------------------------------------- | --------- |
+| isSuccess | <code>false</code> | The query failed; capacity fields are not included | 5.0       |
+
+### Result
+
+| Type                                       | Description |
+| ------------------------------------------ | ----------- |
+| <code>SuccessResult&#124;FailResult</code> | undefined   |
+
+## Example
+
+```js
+import { getDataDiskInfo } from '@zos/device'
+
+const result = getDataDiskInfo()
+if (result.isSuccess) {
+  console.log(result.total, result.free, result.used)
+}
+```

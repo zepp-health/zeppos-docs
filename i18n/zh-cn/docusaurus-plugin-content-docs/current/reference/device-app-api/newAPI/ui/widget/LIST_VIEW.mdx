@@ -1,0 +1,229 @@
+---
+title: LIST_VIEW
+sidebar_label: LIST_VIEW 列表容器
+---
+
+> API_LEVEL `5.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../../guides/framework/device/compatibility.md)。
+
+`LIST_VIEW` 以 [`GROUP`](./GROUP.mdx) 作为列表项，在每项中直接创建文字、图片、按钮、滑动开关或图片动画等非容器控件，适合带行内操作的任务列表、设置列表等场景。
+
+相较于 [`SCROLL_LIST`](./SCROLL_LIST.mdx) 的模板与数据数组方式，`LIST_VIEW` 提供以下能力：
+
+- 直接通过 `createWidget()` 组合列表项，无需先定义 `item_config` 中的文本和图片模板。
+- 在列表项内放置 `BUTTON`、`SLIDE_SWITCH` 等控件，使用这些控件自身的回调处理操作。
+- 保留子控件实例，通过 `setProperty()` 更新某一行中的文本等内容。
+
+如果列表主要展示文字和图片，已有的 `SCROLL_LIST` 仍然适用；当每行需要独立按钮、开关或不同控件组合时，`LIST_VIEW` 更便于直接创建和操作这些控件。
+
+## 创建 UI 控件
+
+```js
+import { createWidget, widget } from '@zos/ui'
+
+const listView = createWidget(widget.LIST_VIEW, Param)
+```
+
+## 类型
+
+### Param: object
+
+| 属性                     | 说明                                           | 是否必须 | 类型       |
+| ------------------------ | ---------------------------------------------- | -------- | ---------- |
+| x                        | 控件 x 坐标                                    | 是       | `number`   |
+| y                        | 控件 y 坐标                                    | 是       | `number`   |
+| w                        | 可视区域宽度                                   | 是       | `number`   |
+| h                        | 可视区域高度                                   | 是       | `number`   |
+| item_space               | 列表项间距                                     | 否       | `number`   |
+| snap_type                | 吸附模式，与 `SCROLL_LIST` 的 `snap_type` 配置对应 | 否       | `number`   |
+| enable_scroll_bar        | 是否创建弧形滚动指示器                         | 否       | `boolean`  |
+| item_click_func          | 列表项顶层 `GROUP` 的点击回调                    | 否       | `function` |
+| item_enable_horizon_drag | 是否允许列表项水平拖拽                         | 否       | `boolean`  |
+| item_drag_max_distance   | 水平拖拽最大偏移距离                           | 否       | `number`   |
+| pos_y                    | 列表初始化时的纵向偏移                         | 否       | `number`   |
+
+## 实例方法
+
+### init
+
+```ts
+init(): boolean
+```
+
+创建全部列表项及其子控件后，调用 `init()` 完成初始化。返回 `true` 表示成功，`false` 表示失败。
+
+通过 `LIST_VIEW` 的 `createWidget()` 创建列表项 `GROUP`，再通过 `GROUP` 的 `createWidget()` 创建子控件。子控件使用相对于 `GROUP` 的坐标；列表项 `GROUP` 的 `x` 必须为 `0`，容器会将其强制设为 `0`。
+
+## 代码示例
+
+### 示例 1: 直接创建列表项
+
+示例把六个名称分别放入 `GROUP`，再初始化列表。不需要配置 `item_config`、`text_view` 或 `data_array`，列表项由实际控件组成。
+
+```js
+import { createWidget, widget } from '@zos/ui'
+import { getDeviceInfo } from '@zos/device'
+
+Page({
+  build() {
+    const { width, height } = getDeviceInfo()
+    const listView = createWidget(widget.LIST_VIEW, {
+      x: 0,
+      y: 0,
+      w: width,
+      h: height,
+      item_space: 8,
+      enable_scroll_bar: true
+    })
+    const names = ['Morning walk', 'Reading', 'Stretching', 'Shopping', 'Cycling', 'Evening walk']
+
+    names.forEach((name) => {
+      const item = listView.createWidget(widget.GROUP, {
+        x: 0,
+        y: 0,
+        w: width,
+        h: 96
+      })
+      item.createWidget(widget.TEXT, {
+        x: 40,
+        y: 24,
+        w: width - 80,
+        h: 48,
+        text: name,
+        text_size: 26,
+        color: 0xffffff
+      })
+    })
+
+    listView.init()
+  }
+})
+```
+
+### 示例 2: 每行添加独立按钮
+
+示例在每行中组合文字和“打开”按钮。按钮直接使用自己的 `click_func`，开发者可以在回调中接入该行的业务操作。
+
+```js
+import { align, createWidget, widget } from '@zos/ui'
+import { getDeviceInfo } from '@zos/device'
+
+Page({
+  build() {
+    const { width, height } = getDeviceInfo()
+    const listView = createWidget(widget.LIST_VIEW, {
+      x: 0,
+      y: 0,
+      w: width,
+      h: height,
+      item_space: 8,
+      enable_scroll_bar: true
+    })
+
+    for (let index = 0; index < 6; index += 1) {
+      const item = listView.createWidget(widget.GROUP, {
+        x: 0,
+        y: 0,
+        w: width,
+        h: 112
+      })
+
+      item.createWidget(widget.TEXT, {
+        x: 40,
+        y: 32,
+        w: width - 208,
+        h: 48,
+        text: 'Task ' + (index + 1),
+        text_size: 24,
+        color: 0xffffff,
+        align_v: align.CENTER_V
+      })
+      item.createWidget(widget.BUTTON, {
+        x: width - 144,
+        y: 32,
+        w: 104,
+        h: 48,
+        text: 'Open',
+        text_size: 22,
+        normal_color: 0x333333,
+        press_color: 0x666666,
+        radius: 12,
+        click_func: () => {
+          console.log('Open task', index + 1)
+        }
+      })
+    }
+
+    if (!listView.init()) {
+      console.log('Unable to initialize the list view')
+    }
+  }
+})
+```
+
+### 示例 3: 操作并更新一行中的子控件
+
+示例为每行保留状态文本实例。点击该行按钮后，直接更新该行文本，不需要为这次文本修改重新创建列表项。这里的状态只用于演示界面交互。
+
+```js
+import { createWidget, prop, widget } from '@zos/ui'
+import { getDeviceInfo } from '@zos/device'
+
+Page({
+  build() {
+    const { width, height } = getDeviceInfo()
+    const listView = createWidget(widget.LIST_VIEW, {
+      x: 0,
+      y: 0,
+      w: width,
+      h: height,
+      item_space: 8,
+      enable_scroll_bar: true
+    })
+
+    for (let index = 0; index < 6; index += 1) {
+      let enabled = false
+      const item = listView.createWidget(widget.GROUP, {
+        x: 0,
+        y: 0,
+        w: width,
+        h: 144
+      })
+      item.createWidget(widget.TEXT, {
+        x: 40,
+        y: 16,
+        w: width - 80,
+        h: 40,
+        text: 'Option ' + (index + 1),
+        text_size: 26,
+        color: 0xffffff
+      })
+      const status = item.createWidget(widget.TEXT, {
+        x: 40,
+        y: 72,
+        w: width - 208,
+        h: 48,
+        text: 'Disabled',
+        text_size: 24,
+        color: 0xaaaaaa
+      })
+      item.createWidget(widget.BUTTON, {
+        x: width - 144,
+        y: 72,
+        w: 104,
+        h: 48,
+        text: 'Toggle',
+        text_size: 22,
+        normal_color: 0x333333,
+        press_color: 0x666666,
+        radius: 12,
+        click_func: () => {
+          enabled = !enabled
+          status.setProperty(prop.TEXT, enabled ? 'Enabled' : 'Disabled')
+        }
+      })
+    }
+
+    listView.init()
+  }
+})
+```

@@ -1,0 +1,35 @@
+# getRandomValues
+
+> Start from API_LEVEL `5.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Fills the supplied `Uint8Array` with hardware-generated random values and returns the same array object. Throws an exception on failure.
+
+## Type
+
+```ts
+function getRandomValues(array: InputArray): Result
+```
+
+## Parameters
+
+### InputArray
+
+| Type                    | Description                                                    |
+| ----------------------- | -------------------------------------------------------------- |
+| <code>Uint8Array</code> | The `Uint8Array` to fill with hardware-generated random values |
+
+### Result
+
+| Type                    | Description                                  |
+| ----------------------- | -------------------------------------------- |
+| <code>Uint8Array</code> | The original array filled with random values |
+
+## Example
+
+```js
+import { getRandomValues } from '@zos/crypto'
+
+const bytes = new Uint8Array(16)
+getRandomValues(bytes)
+console.log(bytes)
+```

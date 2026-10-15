@@ -383,6 +383,7 @@ module.exports = {
             id: 'intro/version'
           },
           items: [
+            'guides/version-info/new-features-50',
             'guides/version-info/new-features-42',
             'guides/version-info/new-features-40',
             'guides/version-info/new-features-35',
@@ -691,6 +692,7 @@ module.exports = {
                   label: 'Layout Widgets',
                   items: [
                     'reference/device-app-api/newAPI/ui/widget/GROUP',
+                    'reference/device-app-api/newAPI/ui/widget/LIST_VIEW',
                     'reference/device-app-api/newAPI/ui/widget/SCROLL_LIST',
                     'reference/device-app-api/newAPI/ui/widget/VIEW_CONTAINER',
                     'reference/device-app-api/newAPI/ui/widget/CYCLE_LIST',

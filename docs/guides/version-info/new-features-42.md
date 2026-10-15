@@ -19,7 +19,7 @@ For details, refer to [Custom Keyboard - Introduction](../../guides/keyboard/int
 
 <img src={useBaseUrl('/img/docs/keyboard/t9.png')} width="50%" title="t9" />
 
-## [Media Multimedia](../../reference/device-app-api/newAPI/media.mdx)
+## [Media Multimedia](../../reference/device-app-api/newAPI/media/Player.mdx)
 
 Player now supports `seek()` function, with new events and a state transition diagram
 

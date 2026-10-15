@@ -1,0 +1,35 @@
+# bufferToValue
+
+> Start from API_LEVEL `5.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Restores a JS value from an `ArrayBuffer` produced by `valueToBuffer`, using a stable, reliable, and efficient method built into the JS engine.
+
+## Type
+
+```ts
+function bufferToValue(buffer: InputBuffer): Result
+```
+
+## Parameters
+
+### InputBuffer
+
+| Type                     | Description                       |
+| ------------------------ | --------------------------------- |
+| <code>ArrayBuffer</code> | The `ArrayBuffer` to be converted |
+
+### Result
+
+| Type                 | Description            |
+| -------------------- | ---------------------- |
+| <code>unknown</code> | The converted JS value |
+
+## Example
+
+```js
+import { valueToBuffer, bufferToValue } from '@zos/utils'
+
+const buffer = valueToBuffer({ enabled: true, count: 3 })
+const value = bufferToValue(buffer)
+console.log(value)
+```

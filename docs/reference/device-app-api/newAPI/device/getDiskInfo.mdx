@@ -2,12 +2,13 @@
 
 > Start from API_LEVEL `2.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
 
-Gets disk information.
+Gets device storage totals, available space, and usage by Mini Programs, watchfaces, music, and the system. Returns the result synchronously when called without arguments. Starting from API_LEVEL 3.0, pass a callback to query asynchronously; asynchronous queries are recommended.
 
 ## Type
 
 ```ts
 function getDiskInfo(): Result
+function getDiskInfo(callback: Callback): void
 ```
 
 ## Parameters
@@ -23,11 +24,26 @@ function getDiskInfo(): Result
 | music     | <code>number</code> | Space occupied by musics in bytes        | 2.0       |
 | system    | <code>number</code> | Space occupied by system in bytes        | 2.0       |
 
+### Callback
+
+> Start from API_LEVEL `3.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+| Type                                        | Description                                                                                     |
+| ------------------------------------------- | ----------------------------------------------------------------------------------------------- |
+| <code>(diskInfo: Result) =&#62; void</code> | Callback receiving device storage information when the query completes; capacities are in bytes |
+
 ## Example
 
 ```js
 import { getDiskInfo } from '@zos/device'
 
-const { total } = getDiskInfo()
-console.log(total)
+// Synchronous query
+const diskInfo = getDiskInfo()
+console.log(diskInfo.total, diskInfo.free)
+
+// Asynchronous query (API_LEVEL 3.0+)
+getDiskInfo((diskInfo) => {
+  console.log(diskInfo.total, diskInfo.free)
+  console.log(diskInfo.app, diskInfo.watchface, diskInfo.music, diskInfo.system)
+})
 ```

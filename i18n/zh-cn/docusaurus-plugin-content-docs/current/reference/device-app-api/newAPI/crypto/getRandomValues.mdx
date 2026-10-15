@@ -1,0 +1,35 @@
+# getRandomValues
+
+> API_LEVEL `5.0` 开始支持，API 兼容性请参考 [API_LEVEL](../../../../guides/framework/device/compatibility.md)。
+
+使用硬件随机数填充传入的 `Uint8Array`，并返回同一个数组对象。失败时抛出异常。
+
+## 类型
+
+```ts
+function getRandomValues(array: InputArray): Result
+```
+
+## 参数
+
+### InputArray
+
+| 类型                    | 说明                            |
+| ----------------------- | ------------------------------- |
+| <code>Uint8Array</code> | 待填充硬件随机数的 `Uint8Array` |
+
+### Result
+
+| 类型                    | 说明                     |
+| ----------------------- | ------------------------ |
+| <code>Uint8Array</code> | 填充随机数后的原数组对象 |
+
+## 代码示例
+
+```js
+import { getRandomValues } from '@zos/crypto'
+
+const bytes = new Uint8Array(16)
+getRandomValues(bytes)
+console.log(bytes)
+```

@@ -1,0 +1,41 @@
+# cborEncode
+
+> Start from API_LEVEL `5.0` . Please refer to [API_LEVEL](../../../../guides/framework/device/compatibility.md).
+
+Encodes a JS value to a CBOR `ArrayBuffer` for data exchange that requires CBOR. For application-local persistence, prefer `valueToBuffer`, a stable, reliable, and efficient method built into the JS engine that requires no buffer size estimate.
+
+## Type
+
+```ts
+function cborEncode(value: InputValue, estimatedSize?: EstimatedSize): Result
+```
+
+## Parameters
+
+### InputValue
+
+| Type                 | Description            |
+| -------------------- | ---------------------- |
+| <code>unknown</code> | The JS value to encode |
+
+### EstimatedSize
+
+| Type                | Description                                                                                                                                                                                                                                          |
+| ------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| <code>number</code> | Estimated encoded binary size in bytes. Optional; the native default is 2 KB (2048 bytes), with a maximum of 32 KB (32768 bytes). The estimate should cover the encoded size without being excessively large; a poor estimate can affect performance |
+
+### Result
+
+| Type                     | Description                    |
+| ------------------------ | ------------------------------ |
+| <code>ArrayBuffer</code> | The CBOR-encoded `ArrayBuffer` |
+
+## Example
+
+```js
+import { cborEncode, cborDecode } from '@zos/utils'
+
+const value = { enabled: true, count: 3 }
+const buffer = cborEncode(value, 2 * 1024)
+console.log(cborDecode(buffer))
+```
