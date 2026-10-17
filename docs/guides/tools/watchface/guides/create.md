@@ -1,12 +1,12 @@
 ---
-title: Create a Watchface
+:) Simple WatchFace
 ---
 
 import useBaseUrl from '@docusaurus/useBaseUrl'
 
-# Create a Watchface
+# Created a Watchface
 
-Here's a simple Watchface, "Art Ideas-Hi", with the following effects:
+Here's a simple Watchface, "Art Ideas-Declan M", with the following effects:
 
 <img src={useBaseUrl('/img/zh-cn/docs/watchface/example.png')} width="30%" />
 
